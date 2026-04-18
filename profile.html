@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PROFILE // ECHO://TERMINAL | John Ogletree</title>
+    <meta name="description" content="Detailed profile of John Ogletree - Digital Architect & Creative Technologist">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/effects.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body style="margin:0; padding:0;">
+    <div class="fixed-banner-container">
+        <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
+    </div>
+
+    <site-sidebar active="about"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    
+    <div class="main-content">
+        <section class="hero" style="min-height: 40vh; margin-bottom: 30px;">
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+                <div class="hero-hud">
+                    <div class="hud-bracket bracket-tl"></div>
+                    <div class="hud-bracket bracket-tr"></div>
+                    <div class="hud-bracket bracket-bl"></div>
+                    <div class="hud-bracket bracket-br"></div>
+                    
+                    <h1 class="hero-title glitch" data-text="SYSTEM:IDENTITY">SYSTEM:IDENTITY</h1>
+                    <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 10px 0;">
+                        CORE DATA & BIO-METRICS
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container" id="app">
+            <section id="identity-core">
+                <h2><i class="fas fa-fingerprint"></i> [USR] core_data — level 5 access</h2>
+                <div class="grid-2">
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-id-badge"></i><span class="card-title">Biological Data</span></div>
+                        <div id="bio-data"></div>
+                    </div>
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-brain"></i><span class="card-title">Neural Network</span></div>
+                        <p id="neural-network-desc"></p>
+                        <div class="skills-grid" id="neural-skills-grid"></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-folder-tree divider-icon"></i><div class="divider-line"></div></div>
+
+            <section id="skill-tree">
+                <h2><i class="fas fa-folder-tree"></i> [DIR] neural_skill_tree</h2>
+                <div class="grid-2" id="skill-tree-grid"></div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-history divider-icon"></i><div class="divider-line"></div></div>
+
+            <section id="operational-history">
+                <h2><i class="fas fa-history"></i> [LOG] operational_history</h2>
+                <div class="terminal-card">
+                    <div class="card-header"><i class="fas fa-scroll"></i><span class="card-title">System Evolution</span></div>
+                    <div id="operational-history-list"></div>
+                </div>
+            </section>
+        </div>
+
+        <site-footer></site-footer>
+    </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/footer-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+</body>
+</html>

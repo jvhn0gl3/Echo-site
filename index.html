@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ECHO://TERMINAL | John Ogletree</title>
+    <meta name="description" content="John Ogletree - Digital Architect & Creative Technologist">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/effects.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body style="margin:0; padding:0;">
+    <div class="fixed-banner-container">
+        <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
+    </div>
+
+    <site-sidebar active="home"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    
+    <div class="main-content">
+        <section class="hero">
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+                <div class="hero-hud">
+                    <div class="hud-bracket bracket-tl"></div>
+                    <div class="hud-bracket bracket-tr"></div>
+                    <div class="hud-bracket bracket-bl"></div>
+                    <div class="hud-bracket bracket-br"></div>
+                    
+                    <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ff6b6b; margin-bottom: 20px; font-family: monospace;">
+                        <div>STATUS: ACTIVE</div>
+                        <div>LOAD: <span id="heroCpu">12%</span></div>
+                        <div>LOC: 33.51° N</div>
+                    </div>
+
+                    <h1 class="hero-title glitch" data-text="JOHN OGLETREE">JOHN OGLETREE</h1>
+                    <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 20px 0;">
+                        DIGITAL ARCHITECT // CREATIVE TECHNOLOGIST
+                    </div>
+                    
+                    <p class="text-muted" style="max-width: 650px; margin: 0 auto 30px; font-size: 1rem; line-height: 1.6;">
+                        Engineering high-performance digital interfaces and edge-computing solutions. System operational. 
+                        <span id="heroTyping"></span><span class="cursor"></span>
+                    </p>
+
+                    <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap">
+                        <a href="/index.html#projects" class="matrix-btn btn-projects-link" style="padding: 15px 40px;">$ ./view_projects</a>
+                        <a href="/index.html#connect" class="matrix-btn btn-connect-link" style="padding: 15px 40px;">$ ./view_connect</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="container" id="app">
+            <!-- ABOUT SECTION -->
+            <section id="about">
+                <h2><i class="fas fa-user-astronaut"></i> [USR] about — system identity</h2>
+                <div class="grid-2">
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-id-card"></i><span class="card-title">John Ogletree</span></div>
+                        <div id="bio-data">
+                            <!-- Injected via content-loader.js -->
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-box"><div class="stat-value">42</div><div class="stat-label">repos</div></div>
+                            <div class="stat-box"><div class="stat-value">1.4k+</div><div class="stat-label">contribs</div></div>
+                            <div class="stat-box"><div class="stat-value">215</div><div class="stat-label">followers</div></div>
+                        </div>
+                    </div>
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-terminal"></i><span class="card-title">$ whoami</span></div>
+                        <p id="neural-network-desc"><!-- Injected --></p>
+                        <div class="skills-grid" id="neural-skills-grid">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/profile.html" class="matrix-btn btn-more-red">$ ./load_more_identity</a>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-cube divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- SERVICES SECTION -->
+            <section id="services">
+                <h2><i class="fas fa-cube"></i> [SYS] services</h2>
+                <div class="services-grid-2x2" id="services-grid">
+                    <!-- Injected -->
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/services.html" class="matrix-btn btn-services-link">$ ./explore_all_services</a>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-folder-open divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- PROJECTS SECTION -->
+            <section id="projects">
+                <h2><i class="fas fa-folder-open"></i> [VAR] projects</h2>
+                <div class="portfolio-grid-2x2" id="projects-grid">
+                    <!-- Injected -->
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/projects.html" class="matrix-btn btn-projects-link">$ ./fetch_all_repositories</a>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-terminal divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- LOG SECTION -->
+            <section id="log">
+                <h2><i class="fas fa-terminal"></i> [LOG] system_log</h2>
+                <div id="log-entries">
+                    <!-- Injected -->
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/log.html" class="matrix-btn btn-log-link">$ ./view_log_entries</a>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-file-pdf divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- RESUME SECTION -->
+            <section id="resume">
+                <h2><i class="fas fa-file-pdf"></i> [DOC] resume</h2>
+                <div id="experience-list">
+                    <!-- Injected -->
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/resume.html" class="matrix-btn">$ ./view_full_resume</a>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-question-circle divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- FAQ SECTION -->
+            <section id="faq">
+                <h2><i class="fas fa-question-circle"></i> [FAQ]</h2>
+                <div class="faq-grid-2x2" id="faq-list">
+                    <!-- Injected -->
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/faq.html" class="matrix-btn">$ ./access_knowledge_base</a>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-plug divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- CONNECT SECTION -->
+            <section id="connect">
+                <h2><i class="fas fa-plug"></i> [DEV] connect</h2>
+                <div class="connect-grid-2x2">
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-envelope"></i><span class="card-title">Contact</span></div>
+                        <form id="contactForm">
+                            <input type="text" placeholder="[name]" class="terminal-input" required>
+                            <input type="email" placeholder="[email]" class="terminal-input" required>
+                            <textarea rows="4" placeholder="[message]" class="terminal-input" required></textarea>
+                            <button type="submit" class="terminal-btn btn-send">$ send_transmission</button>
+                        </form>
+                    </div>
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fab fa-github"></i><span class="card-title">Social Grid</span></div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <a href="#" target="_blank" class="terminal-btn btn-github"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" target="_blank" class="terminal-btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            <a href="#" target="_blank" class="terminal-btn btn-twitter"><i class="fab fa-x-twitter"></i> X / Twitter</a>
+                            <a href="#" class="terminal-btn btn-email"><i class="fas fa-envelope"></i> Email</a>
+                        </div>
+                        <div style="margin-top: 20px; text-align: center;">
+                            <span class="pulse-dot"></span> <span class="text-dim">CREATIVE MODE ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/connect.html" class="matrix-btn">$ ./view_network_nodes</a>
+                </div>
+            </section>
+        </div>
+
+        <site-footer></site-footer>
+    </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/footer-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+</body>
+</html>

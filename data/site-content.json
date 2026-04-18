@@ -1,0 +1,264 @@
+{
+  "profile": {
+    "biological": {
+      "name": "John Ogletree",
+      "origin": "33.51° N, 82.04° W",
+      "occupation": "Digital Architect / Creative Technologist",
+      "status": "Active // Multi-thread Operational"
+    },
+    "neural_network": {
+      "description": "Specialized in deep learning interfaces and high-performance neural architectures. Bridging the gap between human intuition and machine precision.",
+      "skills": [
+        {"icon": "fas fa-brain", "label": "GENERATIVE AI"},
+        {"icon": "fas fa-network-wired", "label": "EDGE NODES"},
+        {"icon": "fas fa-terminal", "label": "CMD INTERFACES"},
+        {"icon": "fas fa-shield-halved", "label": "DATA SEC."}
+      ]
+    },
+    "skill_tree": [
+      {
+        "root": "frontend_dev/",
+        "nodes": ["React.js", "Next.js", "TypeScript", "Tailwind CSS"]
+      },
+      {
+        "root": "design_systems/",
+        "nodes": ["Figma", "Prototyping", "Motion Design", "Cyber Aesthetic"]
+      },
+      {
+        "root": "ai_edge_comp/",
+        "nodes": ["Neural Interfaces", "Edge Optimization", "Autonomous Agents", "LLM Integration"]
+      },
+      {
+        "root": "system_ops/",
+        "nodes": ["Git / GitHub", "Performance Audit", "Edge Deployment", "Digital Strategy"]
+      }
+    ],
+    "operational_history": {
+      "description": "Over 8 years of digital architectural evolution. From low-level systems to high-level strategic design, every iteration has been focused on performance and human-centered resonance.",
+      "logs": [
+        {
+          "title": "2026: ECHO://TERMINAL V4 Deployment",
+          "subtitle": "Achieving peak architectural stability."
+        },
+        {
+          "title": "2022: Multi-Agent System Integration",
+          "subtitle": "Pioneering edge-computing autonomous interfaces."
+        }
+      ]
+    }
+  },
+  "services": {
+    "modules": [
+      {
+        "id": "web",
+        "category": "development",
+        "title": "High-Perf Web Dev",
+        "icon": "fas fa-laptop-code",
+        "description": "Architecting lightning-fast digital interfaces using React, Next.js, and Astro. Optimized for core web vitals and edge-delivery.",
+        "list": ["Custom Web Applications", "Static Site Generation", "API Integration & Design", "Performance Optimization"],
+        "command": "view_module_web"
+      },
+      {
+        "id": "design",
+        "category": "design",
+        "title": "UI/UX Strategic Design",
+        "icon": "fas fa-magic",
+        "description": "User-centered design systems with a cyberpunk aesthetic. Rapid prototyping from wireframe to interactive high-fidelity models.",
+        "list": ["Interface Architecture", "User Journey Mapping", "Visual Identity Systems", "Interaction Prototyping"],
+        "command": "view_module_design"
+      },
+      {
+        "id": "strategy",
+        "category": "consulting",
+        "title": "Digital Growth Consulting",
+        "icon": "fas fa-chart-line",
+        "description": "Strategic roadmapping for digital expansion. Data-driven audits to ensure your system meets operational objectives.",
+        "list": ["SEO & Discovery Strategy", "Conversion Optimization", "Technical System Audits", "Product Roadmapping"],
+        "command": "view_module_strategy"
+      },
+      {
+        "id": "ai",
+        "category": "ai",
+        "title": "Edge Computing & AI",
+        "icon": "fas fa-rocket",
+        "description": "Deploying at the edge. Integrating generative AI and autonomous agents into existing workflows for peak efficiency.",
+        "list": ["LLM Workflow Integration", "Edge Function Deployment", "Autonomous Agent Scripting", "Neural Interface Design"],
+        "command": "view_module_ai"
+      }
+    ],
+    "process": [
+      {"step": "01", "label": "RESEARCH"},
+      {"step": "02", "label": "DESIGN"},
+      {"step": "03", "label": "BUILD"},
+      {"step": "04", "label": "DEPLOY"}
+    ]
+  },
+  "projects": {
+    "archive": [
+      {
+        "title": "Echo Portfolio V4",
+        "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
+        "description": "A terminal-themed hub for digital resonance, featuring a modular architecture and dynamic link synchronization.",
+        "tags": ["Astro", "Vanilla CSS", "JS"],
+        "command": "source_code",
+        "url": "https://github.com/jvhn0gl3/jvhn0gl3.github.io"
+      },
+      {
+        "title": "QuantumLeap Dashboard",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        "description": "Temporal data visualization system for SaaS environments. High-precision analytics with real-time feedback loops.",
+        "tags": ["Next.js", "TypeScript", "D3.js"],
+        "command": "access_live_demo",
+        "url": "#"
+      },
+      {
+        "title": "NeuralNode Interface",
+        "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000&auto=format&fit=crop",
+        "description": "Edge-computing autonomous agent controller. Specialized for high-latency environments and decentralized nodes.",
+        "tags": ["Python", "Rust", "WebAssembly"],
+        "command": "view_documentation",
+        "url": "#"
+      },
+      {
+        "title": "CyberResonance UI",
+        "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop",
+        "description": "A comprehensive design system for cyberpunk-themed applications. Atomic components with glitch effect integration.",
+        "tags": ["Figma", "React", "Storybook"],
+        "command": "load_design_specs",
+        "url": "#"
+      }
+    ],
+    "metrics": {
+      "repos": "42",
+      "contribs": "1.4k",
+      "followers": "215"
+    }
+  },
+  "log": {
+    "entries": [
+      {
+        "id": 42,
+        "title": "System Expansion",
+        "timestamp": "2026-04-18 // 04:30 EST",
+        "category": "SYSTEM_REFACTOR",
+        "description": "Successfully deployed the multi-page architectural overhaul. Each core system module (Profile, Services, Projects, Log) has been decoupled into dedicated interfaces. Integrated a centralized link registry for dynamic synchronization across the entire terminal network.",
+        "tags": ["#refactor", "#architecture", "#dynamic-sync"]
+      },
+      {
+        "id": 41,
+        "title": "HUD Precision Update",
+        "timestamp": "2026-04-15 // 22:15 EST",
+        "category": "INTERFACE_UPDATE",
+        "description": "Refined the HUD bracket positioning system to ensure sub-pixel alignment across varied viewport dimensions. Corrected a minor rendering latency in the CRT scanline generator.",
+        "tags": ["#ui-fix", "#hud", "#crt-effects"]
+      },
+      {
+        "id": 40,
+        "title": "Initial V4 Deployment",
+        "timestamp": "2026-04-10 // 10:00 EST",
+        "category": "V4_RELEASE",
+        "description": "Commenced deployment of ECHO://TERMINAL Version 4. Transitioned to a fully modular CSS structure and a lightweight, asynchronous JavaScript core. Performance metrics indicate a 40% reduction in initial load sequence duration.",
+        "tags": ["#v4-release", "#performance", "#deployment"]
+      }
+    ]
+  },
+  "resume": {
+    "experience": [
+      {
+        "title": "Senior Product Designer @ Innovate Inc.",
+        "period": "2022 - PRESENT // REMOTE",
+        "description": "Leading the architectural design of complex SaaS interfaces. Specialized in high-performance React components and design system synchronization.",
+        "highlights": [
+          "Developed a multi-platform design system reducing frontend latency by 30%.",
+          "Orchestrated cross-functional teams for edge-computing interface deployment.",
+          "Implemented atomic design patterns for enterprise-scale modularity."
+        ]
+      },
+      {
+        "title": "UX/UI Designer @ Creative Solutions",
+        "period": "2020 - 2022 // ATLANTA, GA",
+        "description": "Designed user-centered digital resonance hubs. Focused on interaction fidelity and visual hierarchy in high-data environments.",
+        "highlights": [
+          "Architected interactive prototypes for temporal data visualization.",
+          "Enhanced accessibility compliance to exceed global industry standards.",
+          "Deployed creative asset pipelines for rapid interface iteration."
+        ]
+      },
+      {
+        "title": "Junior Web Developer @ Tech Forward",
+        "period": "2018 - 2020 // AUGUSTA, GA",
+        "description": "Commenced career in digital architecture. Building core frontend modules and ensuring cross-browser system stability.",
+        "highlights": [
+          "Optimized legacy codebase for modern browser engines.",
+          "Integrated third-party APIs into existing architectural nodes.",
+          "Assisted in the initial deployment of centralized data registries."
+        ]
+      }
+    ],
+    "education": {
+      "degree": "B.S. in Computer Science",
+      "institution": "UNIVERSITY OF TECHNOLOGY // 2018",
+      "description": "Concentration in Human-Computer Interaction and Distributed Systems. Achieving peak academic stability metrics."
+    }
+  },
+  "faq": [
+    {
+      "key": "availability",
+      "question": "question --availability",
+      "answer": "Available for freelance/contract roles and architectural consultations. Current bandwidth allows for 1-2 concurrent enterprise-scale modules."
+    },
+    {
+      "key": "pricing",
+      "question": "question --pricing",
+      "answer": "Project-based pricing. Every architectural deployment is unique. Contact for a detailed quote and system audit to determine resource requirements."
+    },
+    {
+      "key": "tech-stack",
+      "question": "question --tech-stack",
+      "answer": "Primarily architecting with React, Next.js, Astro, and TypeScript. Backend deployments utilize Node.js or Python, with edge delivery via decentralized nodes."
+    },
+    {
+      "key": "process",
+      "question": "question --process",
+      "answer": "The workflow follows a rigorous Research -> Design -> Build -> Deploy pipeline. This ensures maximum resonance and structural integrity for every project node."
+    },
+    {
+      "key": "location",
+      "question": "question --location",
+      "answer": "Operating from coordinates 33.51° N, 82.04° W (Martinez, GA). Full remote operational capacity with support for global time-zone synchronization."
+    }
+  ],
+  "pricing": {
+    "tiers": [
+      {
+        "title": "System Audit",
+        "icon": "fas fa-search",
+        "price": "$499",
+        "price_label": "/ FLAT",
+        "description": "Comprehensive analysis of existing digital resonance. Identifying bottlenecks and node optimization opportunities.",
+        "list": ["Performance Metrics", "SEO Node Audit", "UX Flow Analysis", "Strategy Roadmap"],
+        "command": "initialize_audit"
+      },
+      {
+        "title": "Core Build",
+        "icon": "fas fa-layer-group",
+        "price": "$2,499+",
+        "price_label": "/ STARTING",
+        "description": "Architecting a new digital node from the ground up. Focused on modularity, performance, and cyberpunk aesthetics.",
+        "list": ["Custom Architecture", "Responsive Design", "CMS Integration", "1 Month Support"],
+        "command": "commence_build",
+        "featured": true
+      },
+      {
+        "title": "Enterprise Node",
+        "icon": "fas fa-network-wired",
+        "price": "CUSTOM",
+        "price_label": "/ QUOTE",
+        "description": "Scaling complex architectural systems. Multi-node integration, AI interfaces, and global edge delivery.",
+        "list": ["AI Workflow Int.", "Edge Optimization", "Dedicated Maintenance", "System Scalability"],
+        "command": "request_protocol"
+      }
+    ],
+    "disclaimer": "All pricing metrics are baseline estimations. Final resource requirements are determined after the initial signal acquisition and system audit. Flexible payment protocols available for long-term node maintenance."
+  }
+}

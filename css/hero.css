@@ -1,0 +1,91 @@
+/* REFINED HERO STYLES */
+.hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0a0c0f 100%);
+    border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+    margin-bottom: 50px;
+}
+
+.hero-grid {
+    position: absolute;
+    bottom: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 157, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 157, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotateX(60deg);
+    animation: gridFlow 15s linear infinite;
+}
+
+@keyframes gridFlow {
+    0% { transform: rotateX(60deg) translateY(0); }
+    100% { transform: rotateX(60deg) translateY(60px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.hero-hud {
+    display: inline-block;
+    padding: 40px 2%;
+    border: 1px solid rgba(0, 255, 157, 0.3);
+    background: rgba(13, 17, 23, 0.8);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    position: relative;
+}
+
+.hud-bracket {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #00ff9d;
+}
+.bracket-tl { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
+.bracket-tr { top: -5px; right: -5px; border-left: 0; border-bottom: 0; }
+.bracket-bl { bottom: -5px; left: -5px; border-right: 0; border-top: 0; }
+.bracket-br { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 10px;
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.fixed-banner-container {
+    display: contents; /* Let the inner script-injected element determine layout */
+}
+
+/* Target the specific ID used by the Keep Android Open script */
+#kao-banner, .kao-banner, [id*="kao-banner"] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 280px !important;
+    width: calc(100% - 280px) !important;
+    z-index: 10000000 !important;
+    margin: 0 !important;
+    transition: left 0.3s ease, width 0.3s ease !important;
+}
+
+@media (max-width: 1024px) {
+    #kao-banner, .kao-banner, [id*="kao-banner"] {
+        left: 0 !important;
+        width: 100% !important;
+    }
+}
