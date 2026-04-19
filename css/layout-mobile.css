@@ -13,7 +13,7 @@ html, body {
     margin-bottom: 0;
     margin-left: 55px;
     transition: all 0.3s ease;
-    min-width: 0;
+    width: calc(100% - 55px);
 }
 
 /* SIDEBAR -> ACTIVITY BAR */

@@ -66,7 +66,6 @@ h2 {
 
 .container {
     width: 100%;
-    max-width: 600px; /* Forced mobile width */
     margin: 0 auto;
     padding: 10px 20px;
 }
