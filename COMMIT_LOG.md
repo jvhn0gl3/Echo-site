@@ -15,3 +15,4 @@ This file tracks all commits made to this repository.
 - Fixed sidebar scrolling for small viewport heights by enabling `min-height: 0` on the scroll group and adding adaptive scrollbars.
 - Disabled horizontal scrolling in the sidebar navigation group.
 - Updated activity bar icons to be more distinct and descriptive, aligning with the technical aesthetic of each page.
+- Enhanced `directory.html` into a functional file system explorer with technical metadata (size, type, permissions) and system statistics.

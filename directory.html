@@ -14,6 +14,65 @@
     <link rel="stylesheet" href="/css/effects.css">
     <link rel="stylesheet" href="/css/hero.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <style>
+        .file-list {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .file-list th {
+            text-align: left;
+            color: var(--neon-primary);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+            padding: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .file-list td {
+            padding: 8px 10px;
+            color: var(--text-muted);
+        }
+        .file-row:hover {
+            background: rgba(0, 255, 157, 0.05);
+        }
+        .file-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .file-name:hover {
+            color: var(--neon-primary);
+        }
+        .file-name i {
+            width: 20px;
+            text-align: center;
+        }
+        .folder-row {
+            color: var(--neon-primary);
+            font-weight: bold;
+        }
+        .size-col { color: #ff6b6b; text-align: right; }
+        .type-col { color: #ffd93d; }
+        .perm-col { color: var(--text-dim); font-family: monospace; }
+
+        .dir-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            padding: 15px;
+            text-align: center;
+        }
+        .stat-card .label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; }
+        .stat-card .value { font-size: 1.2rem; color: var(--neon-primary); font-weight: bold; }
+    </style>
 </head>
 <body style="margin:0; padding:0;">
     <div class="fixed-banner-container">
@@ -43,24 +102,138 @@
         </section>
 
         <div class="container" id="app">
+            <div class="dir-stats">
+                <div class="stat-card"><div class="label">Total Nodes</div><div class="value">42</div></div>
+                <div class="stat-card"><div class="label">System Health</div><div class="value">98.4%</div></div>
+                <div class="stat-card"><div class="label">Active Modules</div><div class="value">11</div></div>
+                <div class="stat-card"><div class="label">Load Average</div><div class="value">0.42</div></div>
+            </div>
+
             <section id="system-directory">
-                <h2><i class="fas fa-sitemap"></i> [MAP] site_index</h2>
-                <div class="terminal-card">
-                    <div class="card-header"><i class="fas fa-folder-tree"></i><span class="card-title">Root Directory</span></div>
-                    <div class="file-tree">
-                        <div class="tree-root">jvhn0gl3.github.io/</div>
-                        <div class="tree-branch"><i class="fas fa-home"></i> index.html</div>
-                        <div class="tree-branch"><i class="fas fa-user"></i> profile.html</div>
-                        <div class="tree-branch"><i class="fas fa-cube"></i> services.html</div>
-                        <div class="tree-branch"><i class="fas fa-dollar-sign"></i> pricing.html</div>
-                        <div class="tree-branch"><i class="fas fa-folder-open"></i> projects.html</div>
-                        <div class="tree-branch"><i class="fas fa-terminal"></i> log.html</div>
-                        <div class="tree-branch"><i class="fas fa-plug"></i> connect.html</div>
-                        <div class="tree-branch"><i class="fas fa-question-circle"></i> faq.html</div>
-                        <div class="tree-branch"><i class="fas fa-file-pdf"></i> resume.html</div>
-                        <div class="tree-branch"><i class="fas fa-sitemap"></i> directory.html</div>
-                        <div class="tree-branch last"><i class="fas fa-gavel"></i> legal.html</div>
+                <h2><i class="fas fa-sitemap"></i> [MAP] site_explorer</h2>
+                <div class="terminal-card" style="padding: 0; overflow-x: auto;">
+                    <div class="card-header" style="margin: 0; padding: 15px; border-bottom: 1px solid rgba(0, 255, 157, 0.2);">
+                        <i class="fas fa-terminal"></i>
+                        <span class="card-title" style="font-size: 0.9rem;">bash --explore /root/jvhn0gl3.github.io/</span>
                     </div>
+                    
+                    <table class="file-list">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th class="size-col">Size</th>
+                                <th>Permissions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- DIRECTORIES -->
+                            <tr class="file-row folder-row">
+                                <td><div class="file-name"><i class="fas fa-folder"></i> css/</div></td>
+                                <td class="type-col">Directory</td>
+                                <td class="size-col">--</td>
+                                <td class="perm-col">drwxr-xr-x</td>
+                            </tr>
+                            <tr class="file-row folder-row">
+                                <td><div class="file-name"><i class="fas fa-folder"></i> js/</div></td>
+                                <td class="type-col">Directory</td>
+                                <td class="size-col">--</td>
+                                <td class="perm-col">drwxr-xr-x</td>
+                            </tr>
+                            <tr class="file-row folder-row">
+                                <td><div class="file-name"><i class="fas fa-folder"></i> data/</div></td>
+                                <td class="type-col">Directory</td>
+                                <td class="size-col">--</td>
+                                <td class="perm-col">drwxr-xr-x</td>
+                            </tr>
+                            <tr class="file-row folder-row">
+                                <td><div class="file-name"><i class="fas fa-folder"></i> fonts/</div></td>
+                                <td class="type-col">Directory</td>
+                                <td class="size-col">--</td>
+                                <td class="perm-col">drwxr-xr-x</td>
+                            </tr>
+                            
+                            <!-- ROOT FILES -->
+                            <tr class="file-row">
+                                <td><a href="/index.html" class="file-name"><i class="fas fa-file-code"></i> index.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">8.4 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/profile.html" class="file-name"><i class="fas fa-file-code"></i> profile.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">12.2 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/services.html" class="file-name"><i class="fas fa-file-code"></i> services.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">9.1 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/pricing.html" class="file-name"><i class="fas fa-file-code"></i> pricing.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">7.8 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/projects.html" class="file-name"><i class="fas fa-file-code"></i> projects.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">15.6 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/log.html" class="file-name"><i class="fas fa-file-code"></i> log.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">24.1 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/connect.html" class="file-name"><i class="fas fa-file-code"></i> connect.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">6.5 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/faq.html" class="file-name"><i class="fas fa-file-code"></i> faq.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">10.4 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/resume.html" class="file-name"><i class="fas fa-file-pdf"></i> resume.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">11.2 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row" style="background: rgba(0, 255, 157, 0.1);">
+                                <td><a href="/directory.html" class="file-name" style="color: var(--neon-primary);"><i class="fas fa-file-code"></i> directory.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">5.2 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/legal.html" class="file-name"><i class="fas fa-file-code"></i> legal.html</a></td>
+                                <td class="type-col">HTML document</td>
+                                <td class="size-col">4.8 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/README.md" class="file-name"><i class="fas fa-file-lines"></i> README.md</a></td>
+                                <td class="type-col">Markdown text</td>
+                                <td class="size-col">2.1 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                            <tr class="file-row">
+                                <td><a href="/COMMIT_LOG.md" class="file-name"><i class="fas fa-file-lines"></i> COMMIT_LOG.md</a></td>
+                                <td class="type-col">Markdown text</td>
+                                <td class="size-col">1.4 KB</td>
+                                <td class="perm-col">-rw-r--r--</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </div>
