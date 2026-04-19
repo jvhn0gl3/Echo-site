@@ -27,5 +27,6 @@ This file tracks all commits made to this repository.
 - Implemented `commits.html` as a dual-mode Version Control viewer, providing a toggle between the local `COMMIT_LOG.md` archive and a live GitHub repository stream using the GitHub API.
 - Enabled interactive links for each remote commit, allowing users to navigate directly to specific GitHub commit pages.
 - Implemented global overflow protection and enhanced responsiveness for small and very small screens (down to 320px).
+- Optimized layout for all Chrome DevTools device presets, including ultra-tiny 240px screens and large 4K displays, with granular media queries.
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.
