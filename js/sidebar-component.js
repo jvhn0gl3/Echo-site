@@ -2,15 +2,6 @@ class SiteSidebar extends HTMLElement {
     connectedCallback() {
         const activePage = this.getAttribute('active') || 'home';
         this.innerHTML = `
-    <button class="cyber-toggle" id="menuToggle">
-        <div class="toggle-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="toggle-label" id="toggleLabel">[ MENU ]</div>
-    </button>
-
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-logo">ECHO://</div>

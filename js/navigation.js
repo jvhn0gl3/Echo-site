@@ -1,25 +1,7 @@
 // Sidebar and Smooth Scrolling logic
 function initializeNavigation() {
-    const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
-    const toggleLabel = document.getElementById('toggleLabel');
-
-    // Remove existing listeners if any (simple way for this context)
-    const newMenuToggle = menuToggle?.cloneNode(true);
-    if (menuToggle && newMenuToggle) {
-        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
-        
-        // Sidebar Toggle functionality
-        newMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            mainContent?.classList.toggle('blurred');
-            const label = newMenuToggle.querySelector('#toggleLabel') || document.getElementById('toggleLabel');
-            if (label) {
-                label.innerText = sidebar.classList.contains('open') ? '[ CLOSE ]' : '[ MENU ]';
-            }
-        });
-    }
 
     // Close sidebar when clicking links on mobile
     document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -33,8 +15,6 @@ function initializeNavigation() {
             if (window.innerWidth <= 1024 && sidebar) {
                 sidebar.classList.remove('open');
                 mainContent?.classList.remove('blurred');
-                const label = document.getElementById('toggleLabel');
-                if (label) label.innerText = '[ MENU ]';
             }
         });
     });
