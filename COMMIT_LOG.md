@@ -9,3 +9,4 @@ This file tracks all commits made to this repository.
 - Transformed the sidebar into a compact IDE-style activity bar (70px wide) with centered icons and hover tooltips.
 - Updated footer and banner positions/widths to correctly offset the new 70px activity bar across all screen sizes.
 - Reverted the banner system to use the external KAO script, styled to match the new 70px activity bar layout.
+- Expanded navigation with new `directory` and `legal` pages and updated link order in the activity bar.
