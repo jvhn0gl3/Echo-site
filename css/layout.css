@@ -57,6 +57,7 @@
 .sidebar-scroll-group {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     width: 100%;
     scrollbar-width: none;
     min-height: 0; /* Important for flexbox scrolling */
