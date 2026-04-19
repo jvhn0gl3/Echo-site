@@ -1,0 +1,23 @@
+{
+  "name": "Echo OS | Digital Architecture",
+  "short_name": "Echo OS",
+  "description": "A high-performance, terminal-themed digital portfolio and virtual OS environment.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0c0f",
+  "theme_color": "#0a0c0f",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

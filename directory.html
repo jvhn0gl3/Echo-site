@@ -431,30 +431,42 @@
             const clearBtn = document.getElementById('clearSearch');
             const lsRows = document.querySelectorAll('.ls-row');
 
+            // Restore state from LocalStorage
+            const savedSearch = localStorage.getItem('echo-explorer-search');
+            if (savedSearch) {
+                searchInput.value = savedSearch;
+                filterList(savedSearch);
+                clearBtn.style.display = 'block';
+            }
+
+            function filterList(term) {
+                const lowerTerm = term.toLowerCase().trim();
+                lsRows.forEach(row => {
+                    const name = row.dataset.name.toLowerCase();
+                    row.style.display = name.includes(lowerTerm) ? 'flex' : 'none';
+                });
+            }
+
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
-                    const term = e.target.value.toLowerCase().trim();
+                    const term = e.target.value;
+                    filterList(term);
                     
                     if (term.length > 0) {
                         clearBtn.style.display = 'block';
+                        localStorage.setItem('echo-explorer-search', term);
                     } else {
                         clearBtn.style.display = 'none';
+                        localStorage.removeItem('echo-explorer-search');
                     }
-
-                    lsRows.forEach(row => {
-                        const name = row.dataset.name.toLowerCase();
-                        if (name.includes(term)) {
-                            row.style.display = 'flex';
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
                 });
 
                 if (clearBtn) {
                     clearBtn.addEventListener('click', () => {
                         searchInput.value = '';
-                        searchInput.dispatchEvent(new Event('input'));
+                        filterList('');
+                        clearBtn.style.display = 'none';
+                        localStorage.removeItem('echo-explorer-search');
                         searchInput.focus();
                     });
                 }

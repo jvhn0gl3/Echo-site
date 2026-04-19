@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="/css/components.css">
     <link rel="stylesheet" href="/css/effects.css">
     <link rel="stylesheet" href="/css/hero.css">
+
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0a0c0f">
     </head>
 <body style="margin:0; padding:0;">
 
@@ -96,5 +99,13 @@
     <script src="/js/forms.js"></script>
     <script src="/js/data-loader.js"></script>
     <script src="/js/content-loader.js"></script>
+</body>
+</html>
+          navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('[SYSTEM] Service Worker Registered:', reg.scope))
+                    .catch(err => console.error('[ERROR] Service Worker Registration Failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>
