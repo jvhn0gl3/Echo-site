@@ -76,6 +76,7 @@
 
 /* Target the specific ID used by the Keep Android Open script */
 #kao-banner, .kao-banner, [id*="kao-banner"] {
+    display: none !important;
     position: fixed !important;
     top: 0 !important;
     left: 70px !important;
