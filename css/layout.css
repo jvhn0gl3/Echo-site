@@ -1,3 +1,9 @@
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 .main-content {
     flex: 1;
     padding: 20px 2%;
@@ -6,7 +12,8 @@
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 70px; /* Activity bar space */
-    transition: margin-left 0.3s ease;
+    transition: all 0.3s ease;
+    min-width: 0; /* Prevent flex overflow */
 }
 
 /* SIDEBAR REVAMP -> ACTIVITY BAR */
@@ -25,7 +32,7 @@
     align-items: center;
     gap: 20px;
     box-shadow: 10px 0 30px rgba(0, 255, 157, 0.05);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
 }
 
 .sidebar-header {
@@ -35,6 +42,7 @@
     width: 100%;
     text-align: center;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .sidebar-logo {
@@ -86,6 +94,7 @@
     font-size: 1.2rem;
     transition: all 0.3s;
     border: 1px solid transparent;
+    flex-shrink: 0;
 }
 
 .sidebar-link span {
@@ -113,6 +122,11 @@
 .sidebar-link:hover::after {
     opacity: 1;
     left: 75px;
+}
+
+/* Disable tooltips on touch devices or very small screens */
+@media (hover: none), (max-width: 480px) {
+    .sidebar-link::after { display: none !important; }
 }
 
 .sidebar-link::before {
@@ -149,15 +163,37 @@
     gap: 10px;
     padding: 20px 0;
     border-top: 1px solid rgba(0, 255, 157, 0.1);
+    flex-shrink: 0;
 }
 
 /* MOBILE OVERRIDES */
 @media (max-width: 1024px) {
     .main-content {
         margin-left: 70px;
+        padding-bottom: 20px; /* Reduce large bottom padding on mobile */
     }
     .sidebar {
         transform: translateX(0);
+    }
+}
+
+/* VERY SMALL SCREENS OVERRIDES */
+@media (max-width: 480px) {
+    .main-content {
+        margin-left: 50px;
+        padding: 15px 10px;
+        padding-top: 50px;
+    }
+    .sidebar {
+        width: 50px;
+    }
+    .sidebar-logo { font-size: 0.9rem; }
+    .sidebar-link { width: 40px; height: 40px; font-size: 1rem; }
+    
+    /* Ensure banner adjusts to narrower sidebar */
+    #kao-banner, .kao-banner, [id*="kao-banner"] {
+        left: 50px !important;
+        width: calc(100% - 50px) !important;
     }
 }
 
@@ -169,6 +205,7 @@
 @media (min-width:768px){.services-grid-2x2,.portfolio-grid-2x2,.connect-grid-2x2,.faq-grid-2x2{grid-template-columns:repeat(2,1fr);gap:20px}}
 
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+@media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
 
 .skills-grid {
     display: grid;
@@ -176,6 +213,7 @@
     gap: 10px;
     margin-top: 20px;
 }
+@media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
 
 .skill-item {
     border: 1px solid rgba(0, 255, 157, 0.2);
@@ -186,6 +224,9 @@
     align-items: center;
     gap: 10px;
     transition: all 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .skill-item:hover {
@@ -197,6 +238,7 @@
 .skill-item i {
     color: var(--neon-primary);
     font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
 .file-tree {
@@ -205,18 +247,21 @@
     padding: 20px;
     background: rgba(0, 255, 157, 0.02);
     border: 1px dashed rgba(0, 255, 157, 0.2);
+    overflow-x: auto;
 }
 
 .tree-root {
     color: var(--neon-primary);
     font-weight: bold;
     margin-bottom: 5px;
+    white-space: nowrap;
 }
 
 .tree-branch {
     position: relative;
     padding-left: 25px;
     color: var(--text-muted);
+    white-space: nowrap;
 }
 
 .tree-branch::before {
@@ -235,11 +280,13 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .tree-node i {
     width: 20px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 .tree-leaf {
@@ -247,6 +294,7 @@
     padding-left: 45px;
     color: var(--text-dim);
     font-size: 0.8rem;
+    white-space: nowrap;
 }
 
 .tree-leaf::before {

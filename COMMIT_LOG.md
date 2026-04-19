@@ -26,5 +26,6 @@ This file tracks all commits made to this repository.
 - Created `typography.html` (Typography) to showcase system font specifications and linked the `fonts/` directory to this new module.
 - Implemented `commits.html` as a dual-mode Version Control viewer, providing a toggle between the local `COMMIT_LOG.md` archive and a live GitHub repository stream using the GitHub API.
 - Enabled interactive links for each remote commit, allowing users to navigate directly to specific GitHub commit pages.
+- Implemented global overflow protection and enhanced responsiveness for small and very small screens (down to 320px).
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.
