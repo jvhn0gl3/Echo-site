@@ -76,8 +76,8 @@
 #kao-banner, .kao-banner, [id*="kao-banner"] {
     position: fixed !important;
     top: 0 !important;
-    left: 280px !important;
-    width: calc(100% - 280px) !important;
+    left: 70px !important;
+    width: calc(100% - 70px) !important;
     z-index: 10000000 !important;
     margin: 0 !important;
     transition: left 0.3s ease, width 0.3s ease !important;
@@ -85,7 +85,7 @@
 
 @media (max-width: 1024px) {
     #kao-banner, .kao-banner, [id*="kao-banner"] {
-        left: 0 !important;
-        width: 100% !important;
+        left: 70px !important;
+        width: calc(100% - 70px) !important;
     }
 }
