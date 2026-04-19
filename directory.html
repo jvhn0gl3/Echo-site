@@ -108,23 +108,57 @@
         }
 
         .ls-row {
-            display: grid;
-            grid-template-columns: 75px 40px 50px 70px 1fr; /* Compacted globally */
-            gap: 8px;
-            padding: 3px 0;
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            gap: 15px;
             text-decoration: none;
             color: inherit;
-            transition: background 0.1s;
+            transition: background 0.2s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .ls-row:hover { background: rgba(0, 255, 157, 0.05); color: var(--neon-primary); }
         
-        .perm { color: #8395a7; }
-        .owner { color: #54a0ff; }
-        .size { text-align: right; color: #ff9f43; }
-        .date { color: #576574; }
-        .name { color: #fff; display: flex; align-items: center; gap: 6px; }
+        .ls-icon {
+            font-size: 1.2rem;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            flex-shrink: 0;
+        }
 
-        .name i { font-size: 0.7rem; width: 12px; text-align: center; }
+        .ls-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0; /* Allow truncation if needed */
+        }
+
+        .ls-name {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ls-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+        }
+
+        .ls-size { color: #ff9f43; }
+        .ls-date { color: #576574; }
+
+        .ls-arrow {
+            color: rgba(0, 255, 157, 0.3);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
 
         /* STATUS BAR */
         .os-status-bar {
@@ -191,151 +225,172 @@
                 
                 <div class="os-main-view">
                     <div class="os-content" id="lsContainer">
-                        <div class="ls-table">
+                        <!-- MOBILE LIST VIEW -->
+                        <div class="ls-list">
                             <!-- DIRECTORIES -->
                             <a href="/styles.html" class="ls-row" data-name="css/">
-                                <span class="perm">drwxr-xr-x</span>
-                                <span class="owner">root</span>
-                                <span class="size">12.4K</span>
-                                <span class="date">Apr 18 10:12</span>
-                                <span class="name"><i class="fas fa-folder icon-dir"></i> css/</span>
+                                <div class="ls-icon"><i class="fas fa-folder icon-dir"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">css/</span>
+                                    <div class="ls-meta"><span class="ls-size">12.4K</span><span class="ls-date">Apr 18 10:12</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/scripts.html" class="ls-row" data-name="js/">
-                                <span class="perm">drwxr-xr-x</span>
-                                <span class="owner">root</span>
-                                <span class="size">28.1K</span>
-                                <span class="date">Apr 18 10:15</span>
-                                <span class="name"><i class="fas fa-folder icon-dir"></i> js/</span>
+                                <div class="ls-icon"><i class="fas fa-folder icon-dir"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">js/</span>
+                                    <div class="ls-meta"><span class="ls-size">28.1K</span><span class="ls-date">Apr 18 10:15</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/registry.html" class="ls-row" data-name="data/">
-                                <span class="perm">drwxr-xr-x</span>
-                                <span class="owner">root</span>
-                                <span class="size">8.5K</span>
-                                <span class="date">Apr 18 10:18</span>
-                                <span class="name"><i class="fas fa-folder icon-dir"></i> data/</span>
+                                <div class="ls-icon"><i class="fas fa-folder icon-dir"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">data/</span>
+                                    <div class="ls-meta"><span class="ls-size">8.5K</span><span class="ls-date">Apr 18 10:18</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/typography.html" class="ls-row" data-name="fonts/">
-                                <span class="perm">drwxr-xr-x</span>
-                                <span class="owner">root</span>
-                                <span class="size">2.4M</span>
-                                <span class="date">Apr 17 22:45</span>
-                                <span class="name"><i class="fas fa-folder icon-dir"></i> fonts/</span>
+                                <div class="ls-icon"><i class="fas fa-folder icon-dir"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">fonts/</span>
+                                    <div class="ls-meta"><span class="ls-size">2.4M</span><span class="ls-date">Apr 17 22:45</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
 
-                            <!-- SYSTEM FILES -->
+                            <!-- SYSTEM FILES (Easter Eggs) -->
                             <a href="/styles.html" class="ls-row" data-name="styles.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">4.2K</span>
-                                <span class="date">Apr 18 14:02</span>
-                                <span class="name"><i class="fas fa-palette icon-sys"></i> styles.html</span>
+                                <div class="ls-icon"><i class="fas fa-palette icon-sys"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">styles.html</span>
+                                    <div class="ls-meta"><span class="ls-size">4.2K</span><span class="ls-date">Apr 18 14:02</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/scripts.html" class="ls-row" data-name="scripts.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">6.8K</span>
-                                <span class="date">Apr 18 14:05</span>
-                                <span class="name"><i class="fas fa-microchip icon-sys"></i> scripts.html</span>
+                                <div class="ls-icon"><i class="fas fa-microchip icon-sys"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">scripts.html</span>
+                                    <div class="ls-meta"><span class="ls-size">6.8K</span><span class="ls-date">Apr 18 14:05</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/registry.html" class="ls-row" data-name="registry.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">3.1K</span>
-                                <span class="date">Apr 18 14:08</span>
-                                <span class="name"><i class="fas fa-database icon-sys"></i> registry.html</span>
+                                <div class="ls-icon"><i class="fas fa-database icon-sys"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">registry.html</span>
+                                    <div class="ls-meta"><span class="ls-size">3.1K</span><span class="ls-date">Apr 18 14:08</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/typography.html" class="ls-row" data-name="typography.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">2.9K</span>
-                                <span class="date">Apr 18 14:10</span>
-                                <span class="name"><i class="fas fa-font icon-sys"></i> typography.html</span>
+                                <div class="ls-icon"><i class="fas fa-font icon-sys"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">typography.html</span>
+                                    <div class="ls-meta"><span class="ls-size">2.9K</span><span class="ls-date">Apr 18 14:10</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/commits.html" class="ls-row" data-name="commits.html">
-                                <span class="perm">-rwxr-xr-x</span>
-                                <span class="owner">root</span>
-                                <span class="size">12.2K</span>
-                                <span class="date">Apr 18 16:30</span>
-                                <span class="name"><i class="fas fa-clock-rotate-left icon-sys"></i> commits.html</span>
+                                <div class="ls-icon"><i class="fas fa-clock-rotate-left icon-sys"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">commits.html</span>
+                                    <div class="ls-meta"><span class="ls-size">12.2K</span><span class="ls-date">Apr 18 16:30</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
 
                             <!-- ROOT FILES -->
                             <a href="/index.html" class="ls-row" data-name="index.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">8.4K</span>
-                                <span class="date">Apr 18 09:20</span>
-                                <span class="name"><i class="fas fa-house icon-file"></i> index.html</span>
+                                <div class="ls-icon"><i class="fas fa-house icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">index.html</span>
+                                    <div class="ls-meta"><span class="ls-size">8.4K</span><span class="ls-date">Apr 18 09:20</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/profile.html" class="ls-row" data-name="profile.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">12.2K</span>
-                                <span class="date">Apr 18 09:25</span>
-                                <span class="name"><i class="fas fa-user-astronaut icon-file"></i> profile.html</span>
+                                <div class="ls-icon"><i class="fas fa-user-astronaut icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">profile.html</span>
+                                    <div class="ls-meta"><span class="ls-size">12.2K</span><span class="ls-date">Apr 18 09:25</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/services.html" class="ls-row" data-name="services.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">9.1K</span>
-                                <span class="date">Apr 18 09:30</span>
-                                <span class="name"><i class="fas fa-microchip icon-file"></i> services.html</span>
+                                <div class="ls-icon"><i class="fas fa-microchip icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">services.html</span>
+                                    <div class="ls-meta"><span class="ls-size">9.1K</span><span class="ls-date">Apr 18 09:30</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/pricing.html" class="ls-row" data-name="pricing.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">7.8K</span>
-                                <span class="date">Apr 18 09:35</span>
-                                <span class="name"><i class="fas fa-tags icon-file"></i> pricing.html</span>
+                                <div class="ls-icon"><i class="fas fa-tags icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">pricing.html</span>
+                                    <div class="ls-meta"><span class="ls-size">7.8K</span><span class="ls-date">Apr 18 09:35</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/projects.html" class="ls-row" data-name="projects.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">15.6K</span>
-                                <span class="date">Apr 18 09:40</span>
-                                <span class="name"><i class="fas fa-laptop-code icon-file"></i> projects.html</span>
+                                <div class="ls-icon"><i class="fas fa-laptop-code icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">projects.html</span>
+                                    <div class="ls-meta"><span class="ls-size">15.6K</span><span class="ls-date">Apr 18 09:40</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/connect.html" class="ls-row" data-name="connect.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">6.5K</span>
-                                <span class="date">Apr 18 09:45</span>
-                                <span class="name"><i class="fas fa-satellite-dish icon-file"></i> connect.html</span>
+                                <div class="ls-icon"><i class="fas fa-satellite-dish icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">connect.html</span>
+                                    <div class="ls-meta"><span class="ls-size">6.5K</span><span class="ls-date">Apr 18 09:45</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/faq.html" class="ls-row" data-name="faq.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">10.4K</span>
-                                <span class="date">Apr 18 09:50</span>
-                                <span class="name"><i class="fas fa-circle-question icon-file"></i> faq.html</span>
+                                <div class="ls-icon"><i class="fas fa-circle-question icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">faq.html</span>
+                                    <div class="ls-meta"><span class="ls-size">10.4K</span><span class="ls-date">Apr 18 09:50</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/directory.html" class="ls-row" data-name="directory.html" style="color: var(--neon-primary); background: rgba(0,255,157,0.08);">
-                                <span class="perm">-rwxr-xr-x</span>
-                                <span class="owner">usr</span>
-                                <span class="size">8.2K</span>
-                                <span class="date">Apr 18 09:55</span>
-                                <span class="name"><i class="fas fa-terminal icon-file"></i> directory.html</span>
+                                <div class="ls-icon"><i class="fas fa-terminal icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">directory.html</span>
+                                    <div class="ls-meta"><span class="ls-size">8.2K</span><span class="ls-date">Apr 18 09:55</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/legal.html" class="ls-row" data-name="legal.html">
-                                <span class="perm">-rw-------</span>
-                                <span class="owner">root</span>
-                                <span class="size">4.8K</span>
-                                <span class="date">Apr 18 10:00</span>
-                                <span class="name"><i class="fas fa-scale-balanced icon-file"></i> legal.html</span>
+                                <div class="ls-icon"><i class="fas fa-scale-balanced icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">legal.html</span>
+                                    <div class="ls-meta"><span class="ls-size">4.8K</span><span class="ls-date">Apr 18 10:00</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/resume.html" class="ls-row" data-name="resume.html">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">11.2K</span>
-                                <span class="date">Apr 15 18:20</span>
-                                <span class="name"><i class="fas fa-file-pdf icon-file"></i> resume.html</span>
+                                <div class="ls-icon"><i class="fas fa-file-pdf icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">resume.html</span>
+                                    <div class="ls-meta"><span class="ls-size">11.2K</span><span class="ls-date">Apr 15 18:20</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                             <a href="/README.md" class="ls-row" data-name="README.md">
-                                <span class="perm">-rw-r--r--</span>
-                                <span class="owner">usr</span>
-                                <span class="size">2.1K</span>
-                                <span class="date">Apr 10 11:30</span>
-                                <span class="name"><i class="fas fa-file-lines icon-file"></i> README.md</span>
+                                <div class="ls-icon"><i class="fas fa-file-lines icon-file"></i></div>
+                                <div class="ls-info">
+                                    <span class="ls-name">README.md</span>
+                                    <div class="ls-meta"><span class="ls-size">2.1K</span><span class="ls-date">Apr 10 11:30</span></div>
+                                </div>
+                                <div class="ls-arrow"><i class="fas fa-chevron-right"></i></div>
                             </a>
                         </div>
                     </div>
@@ -374,7 +429,7 @@
                     lsRows.forEach(row => {
                         const name = row.dataset.name.toLowerCase();
                         if (name.includes(term)) {
-                            row.style.display = 'grid';
+                            row.style.display = 'flex';
                         } else {
                             row.style.display = 'none';
                         }
