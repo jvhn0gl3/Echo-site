@@ -13,201 +13,80 @@
     <link rel="stylesheet" href="/css/components.css">
     <link rel="stylesheet" href="/css/effects.css">
     <link rel="stylesheet" href="/css/hero.css">
-    <style>
-        .os-window {
-            background: #0a0c0f;
-            border: 1px solid var(--neon-primary);
-            box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
-            display: flex;
-            flex-direction: column;
-            height: 75vh;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-
-        /* DOLPHIN-STYLE TOOLBAR */
-        .os-toolbar {
-            background: rgba(0, 255, 157, 0.05);
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
-            flex-shrink: 0;
-        }
-
-        .os-nav-controls {
-            display: flex;
-            gap: 10px;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-        .os-nav-controls i:hover { color: var(--neon-primary); cursor: pointer; }
-
-        .os-address-bar {
-            flex: 1;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(0, 255, 157, 0.3);
-            border-radius: 4px;
-            padding: 4px 10px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            overflow: hidden;
-        }
-
-        .breadcrumb-item {
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-        .breadcrumb-item:hover { color: var(--neon-primary); cursor: pointer; }
-        .breadcrumb-sep { color: var(--text-dim); opacity: 0.5; }
-
-        .os-window-title {
-            background: #0d1117;
-            padding: 6px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
-            flex-shrink: 0;
-        }
-
-        .os-window-controls {
-            display: flex;
-            gap: 6px;
-        }
-
-        .os-control {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 255, 157, 0.3);
-        }
-        .os-control.red { background: #ff6b6b; }
-        .os-control.yellow { background: #ffd93d; }
-        .os-control.green { background: #00ff9d; }
-
-        .os-main-view {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        /* DOLPHIN SIDEBAR (PLACES) */
-        .os-sidebar {
-            width: 140px;
-            background: rgba(13, 17, 23, 0.4);
-            border-right: 1px solid rgba(0, 255, 157, 0.1);
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            flex-shrink: 0;
-        }
-
-        .os-sidebar-group-title {
-            font-size: 0.5rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .os-place-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            padding: 4px 5px;
-            border-radius: 2px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .os-place-item:hover { background: rgba(0, 255, 157, 0.1); color: var(--neon-primary); }
-        .os-place-item.active { color: var(--neon-primary); border-left: 2px solid var(--neon-primary); background: rgba(0, 255, 157, 0.05); }
-
         .os-content {
             flex: 1;
-            padding: 15px;
+            padding: 10px;
             overflow-y: auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            grid-auto-rows: min-content;
-            gap: 15px;
             background: rgba(0, 0, 0, 0.2);
-        }
-
-        .os-file {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 10px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-            border-radius: 4px;
         }
 
-        .os-file:hover {
-            background: rgba(0, 255, 157, 0.08);
-            border-color: rgba(0, 255, 157, 0.2);
-        }
-
-        .os-file i {
-            font-size: 2.2rem;
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
-        }
-
-        .os-file-name {
-            font-size: 0.65rem;
-            color: #fff;
-            word-break: break-all;
-            font-family: 'Share Tech Mono', monospace;
-            opacity: 0.9;
-        }
-
-        .os-status-bar {
-            padding: 4px 12px;
-            background: #0d1117;
-            border-top: 1px solid rgba(0, 255, 157, 0.1);
+        .os-tree-item {
             display: flex;
-            justify-content: space-between;
-            font-size: 0.6rem;
-            color: var(--text-dim);
+            align-items: center;
+            gap: 10px;
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .os-tree-item:hover {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--neon-primary);
+        }
+
+        .tree-indent {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .tree-indent::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: -6px;
+            bottom: 10px;
+            width: 1px;
+            background: rgba(0, 255, 157, 0.2);
+        }
+        .tree-indent.last::before {
+            bottom: 50%;
+        }
+        .tree-indent::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            width: 10px;
+            height: 1px;
+            background: rgba(0, 255, 157, 0.2);
+        }
+
+        .os-tree-item i {
+            font-size: 0.9rem;
+            width: 16px;
+            text-align: center;
             flex-shrink: 0;
         }
 
-        .os-search-container {
-            display: flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 2px 8px;
-            border-radius: 4px;
-            width: 120px;
-        }
-        .os-search-input {
-            background: transparent;
-            border: none;
-            color: var(--neon-primary);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            outline: none;
-            width: 100%;
-            margin-left: 5px;
+        .os-tree-item span {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         @media (max-width: 480px) {
             .os-sidebar { display: none; }
             .os-toolbar { gap: 10px; padding: 6px; }
-            .os-content { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; }
-            .os-file i { font-size: 1.8rem; }
+            .os-tree-item { padding: 8px 5px; font-size: 0.7rem; }
         }
 
         /* ICON COLORS */
@@ -305,29 +184,80 @@
                     </div>
                     
                     <div class="os-content">
-                        <!-- Folders -->
-                        <a href="/styles.html" class="os-file"><i class="fas fa-folder icon-folder"></i><span class="os-file-name">css/</span></a>
-                        <a href="/scripts.html" class="os-file"><i class="fas fa-folder icon-folder"></i><span class="os-file-name">js/</span></a>
-                        <a href="/registry.html" class="os-file"><i class="fas fa-folder icon-folder"></i><span class="os-file-name">data/</span></a>
-                        <a href="/typography.html" class="os-file"><i class="fas fa-folder icon-folder"></i><span class="os-file-name">fonts/</span></a>
-                        
-                        <!-- Files -->
-                        <a href="/index.html" class="os-file"><i class="fas fa-house icon-home"></i><span class="os-file-name">index.html</span></a>
-                        <a href="/profile.html" class="os-file"><i class="fas fa-user-astronaut icon-profile"></i><span class="os-file-name">profile.html</span></a>
-                        <a href="/services.html" class="os-file"><i class="fas fa-microchip icon-services"></i><span class="os-file-name">services.html</span></a>
-                        <a href="/pricing.html" class="os-file"><i class="fas fa-tags icon-pricing"></i><span class="os-file-name">pricing.html</span></a>
-                        <a href="/projects.html" class="os-file"><i class="fas fa-laptop-code icon-projects"></i><span class="os-file-name">projects.html</span></a>
-                        <a href="/connect.html" class="os-file"><i class="fas fa-satellite-dish icon-connect"></i><span class="os-file-name">connect.html</span></a>
-                        <a href="/faq.html" class="os-file"><i class="fas fa-circle-question icon-faq"></i><span class="os-file-name">faq.html</span></a>
-                        <a href="/resume.html" class="os-file"><i class="fas fa-file-pdf icon-pdf"></i><span class="os-file-name">resume.html</span></a>
-                        <a href="/directory.html" class="os-file" style="background: rgba(0,255,157,0.1);"><i class="fas fa-folder-tree icon-directory"></i><span class="os-file-name">directory.html</span></a>
-                        <a href="/styles.html" class="os-file"><i class="fas fa-palette icon-services"></i><span class="os-file-name">styles.html</span></a>
-                        <a href="/scripts.html" class="os-file"><i class="fas fa-microchip icon-services"></i><span class="os-file-name">scripts.html</span></a>
-                        <a href="/registry.html" class="os-file"><i class="fas fa-database icon-pricing"></i><span class="os-file-name">registry.html</span></a>
-                        <a href="/typography.html" class="os-file"><i class="fas fa-font icon-faq"></i><span class="os-file-name">typography.html</span></a>
-                        <a href="/legal.html" class="os-file"><i class="fas fa-scale-balanced icon-legal"></i><span class="os-file-name">legal.html</span></a>
-                        <a href="/README.md" class="os-file"><i class="fas fa-file-lines icon-md"></i><span class="os-file-name">README.md</span></a>
-                        <a href="/commits.html" class="os-file"><i class="fas fa-clock-rotate-left icon-log"></i><span class="os-file-name">COMMIT_LOG.md</span></a>
+                        <!-- ROOT -->
+                        <div class="os-tree-item" style="color: var(--neon-primary); font-weight: bold;">
+                            <i class="fas fa-folder-open"></i> <span>LOCAL_ARCHIVE/</span>
+                        </div>
+
+                        <!-- CSS BRANCH -->
+                        <a href="/styles.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>css/</span>
+                        </a>
+                        <a href="/styles.html" class="os-tree-item">
+                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-palette icon-services"></i> <span>styles.html</span>
+                        </a>
+
+                        <!-- JS BRANCH -->
+                        <a href="/scripts.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>js/</span>
+                        </a>
+                        <a href="/scripts.html" class="os-tree-item">
+                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-microchip icon-services"></i> <span>scripts.html</span>
+                        </a>
+
+                        <!-- DATA BRANCH -->
+                        <a href="/registry.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>data/</span>
+                        </a>
+                        <a href="/registry.html" class="os-tree-item">
+                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-database icon-pricing"></i> <span>registry.html</span>
+                        </a>
+
+                        <!-- FONTS BRANCH -->
+                        <a href="/typography.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>fonts/</span>
+                        </a>
+                        <a href="/typography.html" class="os-tree-item">
+                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-font icon-faq"></i> <span>typography.html</span>
+                        </a>
+
+                        <!-- ROOT FILES -->
+                        <a href="/index.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-house icon-home"></i> <span>index.html</span>
+                        </a>
+                        <a href="/profile.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-user-astronaut icon-profile"></i> <span>profile.html</span>
+                        </a>
+                        <a href="/services.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-microchip icon-services"></i> <span>services.html</span>
+                        </a>
+                        <a href="/pricing.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-tags icon-pricing"></i> <span>pricing.html</span>
+                        </a>
+                        <a href="/projects.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-laptop-code icon-projects"></i> <span>projects.html</span>
+                        </a>
+                        <a href="/connect.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-satellite-dish icon-connect"></i> <span>connect.html</span>
+                        </a>
+                        <a href="/faq.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-circle-question icon-faq"></i> <span>faq.html</span>
+                        </a>
+                        <a href="/directory.html" class="os-tree-item" style="background: rgba(0,255,157,0.05); color: var(--neon-primary);">
+                            <div class="tree-indent"></div><i class="fas fa-folder-tree icon-directory"></i> <span>directory.html</span>
+                        </a>
+                        <a href="/legal.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-scale-balanced icon-legal"></i> <span>legal.html</span>
+                        </a>
+                        <a href="/resume.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-file-pdf icon-pdf"></i> <span>resume.html</span>
+                        </a>
+                        <a href="/README.md" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-file-lines icon-md"></i> <span>README.md</span>
+                        </a>
+                        <a href="/commits.html" class="os-tree-item">
+                            <div class="tree-indent"></div><i class="fas fa-clock-rotate-left icon-log"></i> <span>COMMIT_LOG.md</span>
+                        </a>
                     </div>
                 </div>
                 
@@ -338,6 +268,39 @@
             </div>
         </div>
     </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('osSearchInput');
+            const treeItems = document.querySelectorAll('.os-tree-item');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const term = e.target.value.toLowerCase().trim();
+                    treeItems.forEach(item => {
+                        const nameEl = item.querySelector('span');
+                        if (nameEl) {
+                            const name = nameEl.textContent.toLowerCase();
+                            if (name.includes(term)) {
+                                item.style.display = 'flex';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
 
     <script src="/js/sidebar-component.js"></script>
     <script src="/js/navigation.js"></script>
