@@ -29,6 +29,7 @@ This file tracks all commits made to this repository.
 - Enabled interactive links for each remote commit, allowing users to navigate directly to specific GitHub commit pages.
 - Integrated live diff previews (additions/deletions) into the Remote Stream view by asynchronously polling the GitHub API for commit details.
 - Redesigned the Remote Stream view to mimic a source control graph, including a vertical track and personalized nodes displaying the author's GitHub profile picture.
+- Hardcoded the specific author avatar URL and linked graph nodes directly to the user's GitHub profile for enhanced identity resonance.
 - Implemented global overflow protection and enhanced responsiveness for small and very small screens (down to 320px).
 - Optimized layout for all Chrome DevTools device presets, including ultra-tiny 240px screens and large 4K displays, with granular media queries.
 - Implemented a global scaling strategy for smaller screens, reducing base font sizes and component dimensions for a more compact, usable mobile UI.

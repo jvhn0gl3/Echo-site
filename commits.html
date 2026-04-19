@@ -326,11 +326,12 @@
                     const msg = c.commit.message.split('\n')[0];
                     const hash = c.sha.substring(0, 7);
                     const url = c.html_url;
-                    const avatar = c.author ? c.author.avatar_url : 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png';
+                    const profileUrl = "https://github.com/jvhn0gl3";
+                    const avatar = "https://avatars.githubusercontent.com/u/223201019?v=4";
                     
                     html += `
                         <div class="commit-item">
-                            <div class="commit-graph-node" style="background-image: url('${avatar}')"></div>
+                            <a href="${profileUrl}" target="_blank" class="commit-graph-node" style="background-image: url('${avatar}')"></a>
                             <div class="commit-main">
                                 <div class="commit-stats" id="stats-${c.sha}">
                                     <!-- Populated by detail fetch -->
