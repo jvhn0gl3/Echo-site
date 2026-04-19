@@ -17,6 +17,7 @@ This file tracks all commits made to this repository.
 - Updated activity bar icons to be more distinct and descriptive, aligning with the technical aesthetic of each page.
 - Enhanced `directory.html` into a functional file system explorer with technical metadata (size, type, permissions) and system statistics.
 - Redesigned `directory.html` to mimic a custom Echo OS file explorer, featuring windowed layout and desktop-style icons.
+- Redesigned the directory explorer as a Dolphin-inspired Linux file manager, featuring a navigation toolbar, breadcrumb address bar, and a functional "Places" sidebar.
 - Branded the directory explorer path to `ECHO://SYS/ROOT/LOCAL_ARCHIVE/` to enhance the virtual OS theme.
 - Assigned unique, descriptive icons and theme-consistent color classes to all files and folders in the directory explorer.
 - Integrated a real-time search bar into the directory explorer, allowing users to filter files and folders within the Echo OS window.

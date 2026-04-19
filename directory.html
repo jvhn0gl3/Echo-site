@@ -15,23 +15,63 @@
     <link rel="stylesheet" href="/css/hero.css">
     <style>
         .os-window {
-            background: #0d1117;
+            background: #0a0c0f;
             border: 1px solid var(--neon-primary);
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.1);
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
             display: flex;
             flex-direction: column;
-            height: 65vh; /* Forced mobile height */
-            margin-top: 20px;
-            transition: height 0.3s ease;
+            height: 75vh;
+            margin-top: 10px;
+            overflow: hidden;
         }
 
-        .os-window-title {
-            background: rgba(0, 255, 157, 0.1);
+        /* DOLPHIN-STYLE TOOLBAR */
+        .os-toolbar {
+            background: rgba(0, 255, 157, 0.05);
             padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+            flex-shrink: 0;
+        }
+
+        .os-nav-controls {
+            display: flex;
+            gap: 10px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+        .os-nav-controls i:hover { color: var(--neon-primary); cursor: pointer; }
+
+        .os-address-bar {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            border-radius: 4px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            overflow: hidden;
+        }
+
+        .breadcrumb-item {
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .breadcrumb-item:hover { color: var(--neon-primary); cursor: pointer; }
+        .breadcrumb-sep { color: var(--text-dim); opacity: 0.5; }
+
+        .os-window-title {
+            background: #0d1117;
+            padding: 6px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
             flex-shrink: 0;
         }
 
@@ -44,57 +84,60 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            border: 1px solid rgba(0, 255, 157, 0.5);
+            border: 1px solid rgba(0, 255, 157, 0.3);
         }
+        .os-control.red { background: #ff6b6b; }
+        .os-control.yellow { background: #ffd93d; }
+        .os-control.green { background: #00ff9d; }
 
-        .os-control.red { background: #ff6b6b; border-color: #ff6b6b; }
-        .os-control.yellow { background: #ffd93d; border-color: #ffd93d; }
-        .os-control.green { background: #00ff9d; border-color: #00ff9d; }
-
-        .os-explorer {
+        .os-main-view {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
 
+        /* DOLPHIN SIDEBAR (PLACES) */
         .os-sidebar {
-            display: none; /* Hide sidebar everywhere for mobile-first OS theme */
+            width: 140px;
+            background: rgba(13, 17, 23, 0.4);
+            border-right: 1px solid rgba(0, 255, 157, 0.1);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-shrink: 0;
         }
 
-        .os-sidebar-section {
-            margin-bottom: 15px;
-        }
-
-        .os-sidebar-title {
-            font-size: 0.55rem;
+        .os-sidebar-group-title {
+            font-size: 0.5rem;
             color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
-        .os-nav-item {
+        .os-place-item {
             display: flex;
             align-items: center;
             gap: 8px;
             color: var(--text-muted);
+            font-size: 0.7rem;
+            padding: 4px 5px;
+            border-radius: 2px;
             text-decoration: none;
-            font-size: 0.75rem;
-            padding: 4px 0;
-            transition: color 0.2s;
+            transition: all 0.2s;
         }
-
-        .os-nav-item:hover { color: var(--neon-primary); }
-        .os-nav-item.active { color: var(--neon-primary); }
+        .os-place-item:hover { background: rgba(0, 255, 157, 0.1); color: var(--neon-primary); }
+        .os-place-item.active { color: var(--neon-primary); border-left: 2px solid var(--neon-primary); background: rgba(0, 255, 157, 0.05); }
 
         .os-content {
             flex: 1;
-            padding: 10px;
+            padding: 15px;
             overflow-y: auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             grid-auto-rows: min-content;
-            gap: 10px;
+            gap: 15px;
             background: rgba(0, 0, 0, 0.2);
         }
 
@@ -103,28 +146,71 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.2s;
             border: 1px solid transparent;
+            border-radius: 4px;
         }
 
         .os-file:hover {
-            background: rgba(0, 255, 157, 0.1);
-            border-color: rgba(0, 255, 157, 0.3);
+            background: rgba(0, 255, 157, 0.08);
+            border-color: rgba(0, 255, 157, 0.2);
         }
 
         .os-file i {
-            font-size: 1.5rem; /* Forced mobile icon size */
-            color: var(--neon-primary);
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
         }
 
-        .os-file i.fa-folder { color: #ffd93d; }
-        .os-file i.fa-file-pdf { color: #ff6b6b; }
-        .os-file i.fa-file-lines { color: var(--text-muted); }
+        .os-file-name {
+            font-size: 0.65rem;
+            color: #fff;
+            word-break: break-all;
+            font-family: 'Share Tech Mono', monospace;
+            opacity: 0.9;
+        }
 
+        .os-status-bar {
+            padding: 4px 12px;
+            background: #0d1117;
+            border-top: 1px solid rgba(0, 255, 157, 0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            flex-shrink: 0;
+        }
+
+        .os-search-container {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            width: 120px;
+        }
+        .os-search-input {
+            background: transparent;
+            border: none;
+            color: var(--neon-primary);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6rem;
+            outline: none;
+            width: 100%;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .os-sidebar { display: none; }
+            .os-toolbar { gap: 10px; padding: 6px; }
+            .os-content { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; }
+            .os-file i { font-size: 1.8rem; }
+        }
+
+        /* ICON COLORS */
         .icon-folder { color: #ffd93d !important; }
         .icon-home { color: #00ff9d !important; }
         .icon-profile { color: #00d2ff !important; }
@@ -138,49 +224,6 @@
         .icon-directory { color: #00ff9d !important; }
         .icon-legal { color: #ee5253 !important; }
         .icon-md { color: #8395a7 !important; }
-
-        .os-file-name {
-            font-size: 0.65rem; /* Forced mobile font size */
-            color: #fff;
-            word-break: break-all;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .os-status-bar {
-            padding: 4px 12px;
-            background: rgba(0, 255, 157, 0.05);
-            border-top: 1px solid rgba(0, 255, 157, 0.1);
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.6rem;
-            color: var(--text-dim);
-            flex-shrink: 0;
-        }
-
-        .os-search-container {
-            margin-left: 15px;
-            display: flex;
-            align-items: center;
-            background: rgba(0, 255, 157, 0.05);
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 1px 8px;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        .os-search-container:focus-within {
-            border-color: var(--neon-primary);
-            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
-        }
-        .os-search-input {
-            background: transparent;
-            border: none;
-            color: var(--neon-primary);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            outline: none;
-            width: 80px; /* Forced mobile search width */
-            margin-left: 6px;
-        }
     </style>
 </head>
 <body style="margin:0; padding:0;">
@@ -190,7 +233,7 @@
     <div class="crt"></div><div class="scanner"></div>
     
     <div class="main-content">
-        <section class="hero" style="min-height: 30vh; margin-bottom: 20px;">
+        <section class="hero" style="min-height: 25vh; margin-bottom: 20px;">
             <div class="hero-grid"></div>
             <div class="hero-content">
                 <div class="hero-hud">
@@ -209,13 +252,10 @@
 
         <div class="container" id="app">
             <div class="os-window">
+                <!-- WINDOW TITLE -->
                 <div class="os-window-title">
-                    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--neon-primary); font-family: 'Share Tech Mono', monospace; flex: 1;">
-                        <i class="fas fa-folder-tree"></i> ECHO://SYS/ROOT/LOCAL_ARCHIVE/
-                        <div class="os-search-container">
-                            <i class="fas fa-search" style="font-size: 0.6rem; opacity: 0.5;"></i>
-                            <input type="text" id="osSearchInput" class="os-search-input" placeholder="SEARCH ARCHIVE...">
-                        </div>
+                    <div style="font-size: 0.6rem; color: var(--text-dim); font-family: 'Share Tech Mono', monospace;">
+                        Dolphin // Echo_OS
                     </div>
                     <div class="os-window-controls">
                         <div class="os-control yellow"></div>
@@ -223,21 +263,44 @@
                         <div class="os-control red"></div>
                     </div>
                 </div>
+
+                <!-- TOOLBAR -->
+                <div class="os-toolbar">
+                    <div class="os-nav-controls">
+                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-house"></i>
+                    </div>
+                    
+                    <div class="os-address-bar">
+                        <span class="breadcrumb-item">ECHO:</span>
+                        <span class="breadcrumb-sep">/</span>
+                        <span class="breadcrumb-item">SYS</span>
+                        <span class="breadcrumb-sep">/</span>
+                        <span class="breadcrumb-item">ROOT</span>
+                        <span class="breadcrumb-sep">/</span>
+                        <span class="breadcrumb-item" style="color: var(--neon-primary);">LOCAL_ARCHIVE</span>
+                    </div>
+
+                    <div class="os-search-container">
+                        <i class="fas fa-search" style="font-size: 0.5rem; opacity: 0.5;"></i>
+                        <input type="text" id="osSearchInput" class="os-search-input" placeholder="Filter...">
+                    </div>
+                </div>
                 
-                <div class="os-explorer">
+                <div class="os-main-view">
+                    <!-- PLACES SIDEBAR -->
                     <div class="os-sidebar">
-                        <div class="os-sidebar-section">
-                            <div class="os-sidebar-title">Quick Access</div>
-                            <a href="/index.html" class="os-nav-item"><i class="fas fa-home"></i> Desktop</a>
-                            <a href="/projects.html" class="os-nav-item"><i class="fas fa-folder-open"></i> Projects</a>
-                            <a href="/log.html" class="os-nav-item"><i class="fas fa-terminal"></i> System Logs</a>
+                        <div class="os-sidebar-group">
+                            <div class="os-sidebar-group-title">Places</div>
+                            <a href="/index.html" class="os-place-item"><i class="fas fa-desktop"></i> Desktop</a>
+                            <a href="/directory.html" class="os-place-item active"><i class="fas fa-folder-tree"></i> Root</a>
+                            <a href="/projects.html" class="os-place-item"><i class="fas fa-folder-open"></i> Projects</a>
                         </div>
-                        <div class="os-sidebar-section">
-                            <div class="os-sidebar-title">Directories</div>
-                            <div class="os-nav-item"><i class="fas fa-folder"></i> css/</div>
-                            <div class="os-nav-item"><i class="fas fa-folder"></i> js/</div>
-                            <div class="os-nav-item"><i class="fas fa-folder"></i> data/</div>
-                            <div class="os-nav-item"><i class="fas fa-folder"></i> fonts/</div>
+                        <div class="os-sidebar-group" style="margin-top: 20px;">
+                            <div class="os-sidebar-group-title">System</div>
+                            <a href="/commits.html" class="os-place-item"><i class="fas fa-clock-rotate-left"></i> Commits</a>
+                            <a href="/registry.html" class="os-place-item"><i class="fas fa-database"></i> Registry</a>
                         </div>
                     </div>
                     
@@ -254,7 +317,6 @@
                         <a href="/services.html" class="os-file"><i class="fas fa-microchip icon-services"></i><span class="os-file-name">services.html</span></a>
                         <a href="/pricing.html" class="os-file"><i class="fas fa-tags icon-pricing"></i><span class="os-file-name">pricing.html</span></a>
                         <a href="/projects.html" class="os-file"><i class="fas fa-laptop-code icon-projects"></i><span class="os-file-name">projects.html</span></a>
-                        <a href="/log.html" class="os-file"><i class="fas fa-terminal icon-log"></i><span class="os-file-name">log.html</span></a>
                         <a href="/connect.html" class="os-file"><i class="fas fa-satellite-dish icon-connect"></i><span class="os-file-name">connect.html</span></a>
                         <a href="/faq.html" class="os-file"><i class="fas fa-circle-question icon-faq"></i><span class="os-file-name">faq.html</span></a>
                         <a href="/resume.html" class="os-file"><i class="fas fa-file-pdf icon-pdf"></i><span class="os-file-name">resume.html</span></a>
@@ -270,7 +332,7 @@
                 </div>
                 
                 <div class="os-status-bar">
-                    <div>17 items | 1.4 MB selected</div>
+                    <div>20 items | 1.8 MB Total</div>
                     <div>SYSTEM: OPERATIONAL</div>
                 </div>
             </div>
