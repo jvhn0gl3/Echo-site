@@ -79,8 +79,9 @@
 
 @media (max-width: 1024px) {
     .site-footer {
-        left: 70px;
-        width: calc(100% - 70px);
+        position: relative; /* Remove fixed on mobile */
+        left: 0;
+        width: 100%;
     }
 }
 

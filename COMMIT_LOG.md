@@ -18,3 +18,4 @@ This file tracks all commits made to this repository.
 - Enhanced `directory.html` into a functional file system explorer with technical metadata (size, type, permissions) and system statistics.
 - Redesigned `directory.html` to mimic a custom Echo OS file explorer, featuring windowed layout and desktop-style icons.
 - Branded the directory explorer path to `ECHO://SYS/ROOT/LOCAL_ARCHIVE/` to enhance the virtual OS theme.
+- Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.
