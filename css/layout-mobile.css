@@ -6,22 +6,22 @@ html, body {
 
 .main-content {
     flex: 1;
-    padding: 15px 2%;
+    padding: 15px 10px;
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: 60px; /* Reduced Activity bar space */
+    margin-left: 55px;
     transition: all 0.3s ease;
-    min-width: 0; /* Prevent flex overflow */
+    min-width: 0;
 }
 
-/* SIDEBAR REVAMP -> ACTIVITY BAR */
+/* SIDEBAR -> ACTIVITY BAR */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 60px; /* Reduced from 70px */
+    width: 55px;
     height: 100vh;
     background: rgba(10, 12, 15, 0.98);
     border-right: 2px solid #00ff9d;
@@ -46,7 +46,7 @@ html, body {
 }
 
 .sidebar-logo {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 900;
     color: #00ff9d;
     text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
@@ -65,43 +65,31 @@ html, body {
 .sidebar-scroll-group {
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
     width: 100%;
     scrollbar-width: none;
-    min-height: 0; /* Important for flexbox scrolling */
+    min-height: 0;
 }
 .sidebar-scroll-group::-webkit-scrollbar { display: none; }
-
-/* Show scrollbar on small heights if needed */
-@media (max-height: 700px) {
-    .sidebar-scroll-group {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0, 255, 157, 0.3) transparent;
-    }
-    .sidebar-scroll-group::-webkit-scrollbar { display: block; width: 2px; }
-    .sidebar-scroll-group::-webkit-scrollbar-thumb { background: rgba(0, 255, 157, 0.3); }
-}
 
 .sidebar-link {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     color: #a3a3a3;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s;
     border: 1px solid transparent;
     flex-shrink: 0;
 }
 
 .sidebar-link span {
-    display: none; /* Hide labels for activity bar */
+    display: none;
 }
-
-/* Tooltips removed for forced mobile UI */
 
 .sidebar-link::before {
     content: "";
@@ -124,11 +112,6 @@ html, body {
     height: 70%;
 }
 
-.sidebar-link i {
-    transition: transform 0.3s;
-}
-.sidebar-link:hover i { transform: scale(1.1); }
-
 .sidebar-footer-nav {
     width: 100%;
     display: flex;
@@ -140,18 +123,7 @@ html, body {
     flex-shrink: 0;
 }
 
-/* MOBILE-FIRST DEFAULTS (Enforced Everywhere) */
-.main-content {
-    margin-left: 55px;
-    padding: 15px 10px;
-    padding-bottom: 20px;
-}
-.sidebar {
-    transform: translateX(0);
-    width: 55px;
-}
-
-/* VERY SMALL SCREENS OVERRIDES (JioPhone 2, etc.) */
+/* VERY SMALL SCREENS OVERRIDES */
 @media (max-width: 360px) {
     .main-content {
         margin-left: 45px;
@@ -164,24 +136,19 @@ html, body {
     }
     .sidebar-logo { font-size: 0.8rem; }
     .sidebar-link { width: 35px; height: 35px; font-size: 0.9rem; }
-    
     h1.hero-title { font-size: 1.4rem; letter-spacing: 2px; }
 }
 
-/* GRIDS (Forced Mobile) */
+/* GRIDS */
 .grid-2{display:grid;grid-template-columns:1fr;gap:20px} 
-
 .services-grid-2x2,.portfolio-grid-2x2,.connect-grid-2x2,.faq-grid-2x2{display:grid;grid-template-columns:1fr;gap:15px;margin-top:10px}
-
 .stats-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:15px 0}
-
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 20px;
 }
-
 
 .skill-item {
     border: 1px solid rgba(0, 255, 157, 0.2);
@@ -195,83 +162,4 @@ html, body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.skill-item:hover {
-    background: rgba(0, 255, 157, 0.1);
-    border-color: var(--neon-primary);
-    transform: translateX(5px);
-}
-
-.skill-item i {
-    color: var(--neon-primary);
-    font-size: 0.9rem;
-    flex-shrink: 0;
-}
-
-.file-tree {
-    font-family: 'Share Tech Mono', monospace;
-    line-height: 1.5;
-    padding: 20px;
-    background: rgba(0, 255, 157, 0.02);
-    border: 1px dashed rgba(0, 255, 157, 0.2);
-    overflow-x: auto;
-}
-
-.tree-root {
-    color: var(--neon-primary);
-    font-weight: bold;
-    margin-bottom: 5px;
-    white-space: nowrap;
-}
-
-.tree-branch {
-    position: relative;
-    padding-left: 25px;
-    color: var(--text-muted);
-    white-space: nowrap;
-}
-
-.tree-branch::before {
-    content: "├──";
-    position: absolute;
-    left: 0;
-    color: rgba(0, 255, 157, 0.3);
-}
-
-.tree-branch.last::before {
-    content: "└──";
-}
-
-.tree-node {
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.tree-node i {
-    width: 20px;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.tree-leaf {
-    position: relative;
-    padding-left: 45px;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    white-space: nowrap;
-}
-
-.tree-leaf::before {
-    content: "│  ├──";
-    position: absolute;
-    left: 20px;
-    color: rgba(0, 255, 157, 0.2);
-}
-
-.tree-leaf.last::before {
-    content: "│  └──";
 }
