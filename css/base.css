@@ -53,15 +53,7 @@ body {
     line-height:1.5;
     padding:0;
     min-height: 100vh;
-    font-size: 16px; /* Base size */
-}
-
-@media (max-width: 1024px) {
-    body { font-size: 14px; }
-}
-
-@media (max-width: 768px) {
-    body { font-size: 13px; }
+    font-size: 13px; /* Forced mobile size */
 }
 
 @media (max-width: 480px) {
@@ -78,7 +70,7 @@ h2 {
 
 .container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 600px; /* Forced mobile width */
     margin: 0 auto;
     padding: 10px 20px;
 }

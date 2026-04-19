@@ -101,33 +101,7 @@ html, body {
     display: none; /* Hide labels for activity bar */
 }
 
-/* IDE style tooltip */
-.sidebar-link::after {
-    content: attr(data-label);
-    position: absolute;
-    left: 70px;
-    background: #00ff9d;
-    color: #0a0c0f;
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.2s;
-    z-index: 100;
-    border-radius: 2px;
-}
-
-.sidebar-link:hover::after {
-    opacity: 1;
-    left: 65px;
-}
-
-/* Disable tooltips on touch devices or very small screens */
-@media (hover: none), (max-width: 480px) {
-    .sidebar-link::after { display: none !important; }
-}
+/* Tooltips removed for forced mobile UI */
 
 .sidebar-link::before {
     content: "";
@@ -166,21 +140,19 @@ html, body {
     flex-shrink: 0;
 }
 
-/* MOBILE OVERRIDES */
-@media (max-width: 1024px) {
-    .main-content {
-        margin-left: 60px;
-        padding-bottom: 20px; /* Reduce large bottom padding on mobile */
-    }
-    .sidebar {
-        transform: translateX(0);
-        width: 60px;
-    }
-    
-    #kao-banner, .kao-banner, [id*="kao-banner"] {
-        left: 60px !important;
-        width: calc(100% - 60px) !important;
-    }
+/* MOBILE OVERRIDES (Default Everywhere) */
+.main-content {
+    margin-left: 60px;
+    padding-bottom: 20px; /* Reduce large bottom padding on mobile */
+}
+.sidebar {
+    transform: translateX(0);
+    width: 60px;
+}
+
+#kao-banner, .kao-banner, [id*="kao-banner"] {
+    left: 60px !important;
+    width: calc(100% - 60px) !important;
 }
 
 /* VERY SMALL SCREENS OVERRIDES (JioPhone 2, etc.) */
@@ -205,36 +177,20 @@ html, body {
     h1.hero-title { font-size: 1.5rem; letter-spacing: 2px; }
 }
 
-/* TABLET & LANDSCAPE OPTIMIZATIONS (iPad, Nest Hub) */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .main-content { padding: 30px 4%; }
-}
-
-/* LARGE DESKTOPS */
-@media (min-width: 1600px) {
-    .container {
-        max-width: 1600px;
-    }
-}
-
-/* GRIDS */
+/* GRIDS (Forced Mobile) */
 .grid-2{display:grid;grid-template-columns:1fr;gap:20px} 
-@media (min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr)}}
 
 .services-grid-2x2,.portfolio-grid-2x2,.connect-grid-2x2,.faq-grid-2x2{display:grid;grid-template-columns:1fr;gap:15px;margin-top:10px}
-@media (min-width:768px){.services-grid-2x2,.portfolio-grid-2x2,.connect-grid-2x2,.faq-grid-2x2{grid-template-columns:repeat(2,1fr);gap:20px}}
 
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
-@media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+.stats-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:15px 0}
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 20px;
 }
-@media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
+
 
 .skill-item {
     border: 1px solid rgba(0, 255, 157, 0.2);

@@ -34,5 +34,7 @@ This file tracks all commits made to this repository.
 - Optimized layout for all Chrome DevTools device presets, including ultra-tiny 240px screens and large 4K displays, with granular media queries.
 - Implemented a global scaling strategy for smaller screens, reducing base font sizes and component dimensions for a more compact, usable mobile UI.
 - Updated `styles.html` to document the new responsive scaling tokens and system breakpoints.
+- Forced a unified mobile-first UI across all screen sizes, clamping the main container to 600px and downsizing all interface elements for a high-density, app-like experience.
+- Removed system-level navigation links from the public activity bar, restricting access to Architecture, Logic, Registry, Typography, and Version Control modules via the OS explorer as easter eggs.
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.
