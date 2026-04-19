@@ -14,3 +14,4 @@ This file tracks all commits made to this repository.
 - Separated social links (GitHub, Email) into a pinned footer group at the bottom of the activity bar.
 - Fixed sidebar scrolling for small viewport heights by enabling `min-height: 0` on the scroll group and adding adaptive scrollbars.
 - Disabled horizontal scrolling in the sidebar navigation group.
+- Updated activity bar icons to be more distinct and descriptive, aligning with the technical aesthetic of each page.
