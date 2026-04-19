@@ -20,7 +20,7 @@
             box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
             display: flex;
             flex-direction: column;
-            height: 70vh;
+            height: 65vh;
             margin-top: 10px;
             overflow: hidden;
             position: relative;
@@ -105,13 +105,13 @@
 
         /* SIDEBAR (PLACES) */
         .os-sidebar {
-            width: 150px;
+            width: 130px;
             background: rgba(10, 12, 15, 0.6);
             border-right: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 15px 10px;
+            padding: 10px 5px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             flex-shrink: 0;
         }
 
@@ -120,17 +120,18 @@
             color: var(--neon-primary);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            padding-left: 5px;
             opacity: 0.6;
         }
 
         .os-place-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: var(--text-muted);
-            font-size: 0.75rem;
-            padding: 6px 8px;
+            font-size: 0.7rem;
+            padding: 4px 8px;
             border-radius: 2px;
             text-decoration: none;
             transition: all 0.3s;
@@ -142,7 +143,7 @@
         /* TREE CONTENT */
         .os-content {
             flex: 1;
-            padding: 20px;
+            padding: 10px 5px;
             overflow-y: auto;
             background: rgba(0, 0, 0, 0.3);
             display: flex;
@@ -154,8 +155,8 @@
         .os-tree-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 8px 12px;
+            gap: 8px;
+            padding: 5px 8px;
             text-decoration: none;
             color: #d1d1d1;
             font-family: 'Fira Code', monospace;
@@ -168,12 +169,12 @@
             background: rgba(0, 255, 157, 0.08);
             color: var(--neon-primary);
             border-color: rgba(0, 255, 157, 0.2);
-            padding-left: 15px;
+            padding-left: 10px;
         }
 
         .tree-indent {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -182,9 +183,9 @@
         .tree-indent::before {
             content: "";
             position: absolute;
-            left: 12px;
+            left: 10px;
             top: -10px;
-            bottom: 14px;
+            bottom: 10px;
             width: 1px;
             background: rgba(0, 255, 157, 0.3);
         }
@@ -192,14 +193,14 @@
         .tree-indent::after {
             content: "";
             position: absolute;
-            left: 12px;
+            left: 10px;
             top: 50%;
-            width: 12px;
+            width: 10px;
             height: 1px;
             background: rgba(0, 255, 157, 0.3);
         }
 
-        .os-tree-item i { font-size: 1rem; width: 20px; text-align: center; flex-shrink: 0; }
+        .os-tree-item i { font-size: 0.9rem; width: 16px; text-align: center; flex-shrink: 0; }
         .os-tree-item span { flex: 1; }
 
         .os-status-bar {
@@ -221,7 +222,7 @@
             border: 1px solid rgba(0, 255, 157, 0.4);
             padding: 3px 10px;
             border-radius: 2px;
-            width: 150px;
+            width: 120px;
             box-shadow: inset 0 0 5px rgba(0, 255, 157, 0.1);
         }
         .os-search-input {
@@ -229,18 +230,18 @@
             border: none;
             color: var(--neon-primary);
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             outline: none;
             width: 100%;
-            margin-left: 8px;
+            margin-left: 6px;
         }
         .os-search-input::placeholder { color: var(--text-dim); opacity: 0.5; }
 
         @media (max-width: 480px) {
             .os-sidebar { display: none; }
             .os-toolbar { gap: 8px; padding: 8px; }
-            .os-tree-item { padding: 10px 5px; font-size: 0.7rem; }
-            .os-search-container { width: 100px; }
+            .os-tree-item { padding: 8px 5px; font-size: 0.7rem; }
+            .os-search-container { width: 80px; }
         }
 
         /* ICON COLORS */
@@ -324,7 +325,7 @@
 
                     <div class="os-search-container">
                         <i class="fas fa-terminal" style="font-size: 0.6rem; opacity: 0.5;"></i>
-                        <input type="text" id="osSearchInput" class="os-search-input" placeholder="filter_archive...">
+                        <input type="text" id="osSearchInput" class="os-search-input" placeholder="filter...">
                     </div>
                 </div>
                 
@@ -347,7 +348,7 @@
                     <div class="os-content">
                         <!-- ROOT -->
                         <div class="os-tree-item" style="color: var(--neon-primary); font-weight: bold; opacity: 0.6;">
-                            <i class="fas fa-folder-open"></i> <span>ECHO://SYS/ROOT/LOCAL_ARCHIVE/</span>
+                            <i class="fas fa-folder-open"></i> <span>LOCAL_ARCHIVE/</span>
                         </div>
 
                         <!-- CSS BRANCH -->
