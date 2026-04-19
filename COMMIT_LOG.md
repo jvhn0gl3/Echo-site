@@ -25,5 +25,6 @@ This file tracks all commits made to this repository.
 - Created `registry.html` (Data) to document system data schemas and linked the `data/` directory to this new module.
 - Created `typography.html` (Typography) to showcase system font specifications and linked the `fonts/` directory to this new module.
 - Implemented `commits.html` as a dual-mode Version Control viewer, providing a toggle between the local `COMMIT_LOG.md` archive and a live GitHub repository stream using the GitHub API.
+- Enabled interactive links for each remote commit, allowing users to navigate directly to specific GitHub commit pages.
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.

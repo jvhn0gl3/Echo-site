@@ -120,6 +120,11 @@
             color: #fff;
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .commit-msg:hover {
+            color: var(--neon-primary);
         }
         .commit-meta {
             font-size: 0.7rem;
@@ -276,7 +281,7 @@
                     html += `
                         <div class="commit-item">
                             <div class="commit-main">
-                                <span class="commit-msg">${msg}</span>
+                                <a href="${url}" target="_blank" class="commit-msg">${msg}</a>
                                 <div class="commit-meta">
                                     <span class="commit-author">@${c.author ? c.author.login : c.commit.author.name}</span>
                                     <span class="commit-date">${date}</span>
