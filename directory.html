@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>DIRECTORY // ECHO://TERMINAL | John Ogletree</title>
+    <title>EXPLORER // ECHO://OS | John Ogletree</title>
     <meta name="description" content="System directory and site map for John Ogletree's digital architecture.">
     <link rel="icon" type="image/jpeg" href="/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -15,63 +15,138 @@
     <link rel="stylesheet" href="/css/hero.css">
     <link rel="stylesheet" href="/css/footer.css">
     <style>
-        .file-list {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.85rem;
+        .os-window {
+            background: #0d1117;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+            margin-top: 20px;
         }
-        .file-list th {
-            text-align: left;
-            color: var(--neon-primary);
-            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 10px;
+
+        .os-window-title {
+            background: rgba(0, 255, 157, 0.1);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        .os-window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .os-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 157, 0.5);
+        }
+
+        .os-control.red { background: #ff6b6b; border-color: #ff6b6b; }
+        .os-control.yellow { background: #ffd93d; border-color: #ffd93d; }
+        .os-control.green { background: #00ff9d; border-color: #00ff9d; }
+
+        .os-explorer {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .os-sidebar {
+            width: 200px;
+            border-right: 1px solid rgba(0, 255, 157, 0.1);
+            padding: 15px;
+            background: rgba(10, 12, 15, 0.5);
+        }
+
+        .os-sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .os-sidebar-title {
+            font-size: 0.6rem;
+            color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 10px;
         }
-        .file-list td {
-            padding: 8px 10px;
-            color: var(--text-muted);
-        }
-        .file-row:hover {
-            background: rgba(0, 255, 157, 0.05);
-        }
-        .file-name {
+
+        .os-nav-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #fff;
+            color: var(--text-muted);
             text-decoration: none;
+            font-size: 0.8rem;
+            padding: 5px 0;
+            transition: color 0.2s;
         }
-        .file-name:hover {
-            color: var(--neon-primary);
-        }
-        .file-name i {
-            width: 20px;
-            text-align: center;
-        }
-        .folder-row {
-            color: var(--neon-primary);
-            font-weight: bold;
-        }
-        .size-col { color: #ff6b6b; text-align: right; }
-        .type-col { color: #ffd93d; }
-        .perm-col { color: var(--text-dim); font-family: monospace; }
 
-        .dir-stats {
+        .os-nav-item:hover { color: var(--neon-primary); }
+        .os-nav-item.active { color: var(--neon-primary); }
+
+        .os-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-auto-rows: min-content;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.2);
         }
-        .stat-card {
-            background: rgba(13, 17, 23, 0.8);
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 15px;
+
+        .os-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
             text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid transparent;
         }
-        .stat-card .label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; }
-        .stat-card .value { font-size: 1.2rem; color: var(--neon-primary); font-weight: bold; }
+
+        .os-file:hover {
+            background: rgba(0, 255, 157, 0.1);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+
+        .os-file i {
+            font-size: 2.5rem;
+            color: var(--neon-primary);
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+
+        .os-file i.fa-folder { color: #ffd93d; }
+        .os-file i.fa-file-pdf { color: #ff6b6b; }
+        .os-file i.fa-file-lines { color: var(--text-muted); }
+
+        .os-file-name {
+            font-size: 0.75rem;
+            color: #fff;
+            word-break: break-all;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .os-status-bar {
+            padding: 5px 15px;
+            background: rgba(0, 255, 157, 0.05);
+            border-top: 1px solid rgba(0, 255, 157, 0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 768px) {
+            .os-sidebar { display: none; }
+        }
     </style>
 </head>
 <body style="margin:0; padding:0;">
@@ -84,7 +159,7 @@
     <div class="crt"></div><div class="scanner"></div>
     
     <div class="main-content">
-        <section class="hero" style="min-height: 40vh; margin-bottom: 30px;">
+        <section class="hero" style="min-height: 30vh; margin-bottom: 20px;">
             <div class="hero-grid"></div>
             <div class="hero-content">
                 <div class="hero-hud">
@@ -95,147 +170,71 @@
                     
                     <h1 class="hero-title glitch" data-text="DIRECTORY">DIRECTORY</h1>
                     <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 10px 0;">
-                        SYSTEM MAP // NODE INDEX
+                        ECHO://OS_EXPLORER
                     </div>
                 </div>
             </div>
         </section>
 
         <div class="container" id="app">
-            <div class="dir-stats">
-                <div class="stat-card"><div class="label">Total Nodes</div><div class="value">42</div></div>
-                <div class="stat-card"><div class="label">System Health</div><div class="value">98.4%</div></div>
-                <div class="stat-card"><div class="label">Active Modules</div><div class="value">11</div></div>
-                <div class="stat-card"><div class="label">Load Average</div><div class="value">0.42</div></div>
-            </div>
-
-            <section id="system-directory">
-                <h2><i class="fas fa-sitemap"></i> [MAP] site_explorer</h2>
-                <div class="terminal-card" style="padding: 0; overflow-x: auto;">
-                    <div class="card-header" style="margin: 0; padding: 15px; border-bottom: 1px solid rgba(0, 255, 157, 0.2);">
-                        <i class="fas fa-terminal"></i>
-                        <span class="card-title" style="font-size: 0.9rem;">bash --explore /root/jvhn0gl3.github.io/</span>
+            <div class="os-window">
+                <div class="os-window-title">
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--neon-primary); font-family: 'Share Tech Mono', monospace;">
+                        <i class="fas fa-folder-tree"></i> /root/jvhn0gl3.github.io/
+                    </div>
+                    <div class="os-window-controls">
+                        <div class="os-control yellow"></div>
+                        <div class="os-control green"></div>
+                        <div class="os-control red"></div>
+                    </div>
+                </div>
+                
+                <div class="os-explorer">
+                    <div class="os-sidebar">
+                        <div class="os-sidebar-section">
+                            <div class="os-sidebar-title">Quick Access</div>
+                            <a href="/index.html" class="os-nav-item"><i class="fas fa-home"></i> Desktop</a>
+                            <a href="/projects.html" class="os-nav-item"><i class="fas fa-folder-open"></i> Projects</a>
+                            <a href="/log.html" class="os-nav-item"><i class="fas fa-terminal"></i> System Logs</a>
+                        </div>
+                        <div class="os-sidebar-section">
+                            <div class="os-sidebar-title">Directories</div>
+                            <div class="os-nav-item"><i class="fas fa-folder"></i> css/</div>
+                            <div class="os-nav-item"><i class="fas fa-folder"></i> js/</div>
+                            <div class="os-nav-item"><i class="fas fa-folder"></i> data/</div>
+                            <div class="os-nav-item"><i class="fas fa-folder"></i> fonts/</div>
+                        </div>
                     </div>
                     
-                    <table class="file-list">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th class="size-col">Size</th>
-                                <th>Permissions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- DIRECTORIES -->
-                            <tr class="file-row folder-row">
-                                <td><div class="file-name"><i class="fas fa-folder"></i> css/</div></td>
-                                <td class="type-col">Directory</td>
-                                <td class="size-col">--</td>
-                                <td class="perm-col">drwxr-xr-x</td>
-                            </tr>
-                            <tr class="file-row folder-row">
-                                <td><div class="file-name"><i class="fas fa-folder"></i> js/</div></td>
-                                <td class="type-col">Directory</td>
-                                <td class="size-col">--</td>
-                                <td class="perm-col">drwxr-xr-x</td>
-                            </tr>
-                            <tr class="file-row folder-row">
-                                <td><div class="file-name"><i class="fas fa-folder"></i> data/</div></td>
-                                <td class="type-col">Directory</td>
-                                <td class="size-col">--</td>
-                                <td class="perm-col">drwxr-xr-x</td>
-                            </tr>
-                            <tr class="file-row folder-row">
-                                <td><div class="file-name"><i class="fas fa-folder"></i> fonts/</div></td>
-                                <td class="type-col">Directory</td>
-                                <td class="size-col">--</td>
-                                <td class="perm-col">drwxr-xr-x</td>
-                            </tr>
-                            
-                            <!-- ROOT FILES -->
-                            <tr class="file-row">
-                                <td><a href="/index.html" class="file-name"><i class="fas fa-file-code"></i> index.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">8.4 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/profile.html" class="file-name"><i class="fas fa-file-code"></i> profile.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">12.2 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/services.html" class="file-name"><i class="fas fa-file-code"></i> services.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">9.1 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/pricing.html" class="file-name"><i class="fas fa-file-code"></i> pricing.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">7.8 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/projects.html" class="file-name"><i class="fas fa-file-code"></i> projects.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">15.6 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/log.html" class="file-name"><i class="fas fa-file-code"></i> log.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">24.1 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/connect.html" class="file-name"><i class="fas fa-file-code"></i> connect.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">6.5 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/faq.html" class="file-name"><i class="fas fa-file-code"></i> faq.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">10.4 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/resume.html" class="file-name"><i class="fas fa-file-pdf"></i> resume.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">11.2 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row" style="background: rgba(0, 255, 157, 0.1);">
-                                <td><a href="/directory.html" class="file-name" style="color: var(--neon-primary);"><i class="fas fa-file-code"></i> directory.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">5.2 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/legal.html" class="file-name"><i class="fas fa-file-code"></i> legal.html</a></td>
-                                <td class="type-col">HTML document</td>
-                                <td class="size-col">4.8 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/README.md" class="file-name"><i class="fas fa-file-lines"></i> README.md</a></td>
-                                <td class="type-col">Markdown text</td>
-                                <td class="size-col">2.1 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                            <tr class="file-row">
-                                <td><a href="/COMMIT_LOG.md" class="file-name"><i class="fas fa-file-lines"></i> COMMIT_LOG.md</a></td>
-                                <td class="type-col">Markdown text</td>
-                                <td class="size-col">1.4 KB</td>
-                                <td class="perm-col">-rw-r--r--</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="os-content">
+                        <!-- Folders -->
+                        <div class="os-file"><i class="fas fa-folder"></i><span class="os-file-name">css/</span></div>
+                        <div class="os-file"><i class="fas fa-folder"></i><span class="os-file-name">js/</span></div>
+                        <div class="os-file"><i class="fas fa-folder"></i><span class="os-file-name">data/</span></div>
+                        <div class="os-file"><i class="fas fa-folder"></i><span class="os-file-name">fonts/</span></div>
+                        
+                        <!-- Files -->
+                        <a href="/index.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">index.html</span></a>
+                        <a href="/profile.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">profile.html</span></a>
+                        <a href="/services.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">services.html</span></a>
+                        <a href="/pricing.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">pricing.html</span></a>
+                        <a href="/projects.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">projects.html</span></a>
+                        <a href="/log.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">log.html</span></a>
+                        <a href="/connect.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">connect.html</span></a>
+                        <a href="/faq.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">faq.html</span></a>
+                        <a href="/resume.html" class="os-file"><i class="fas fa-file-pdf"></i><span class="os-file-name">resume.html</span></a>
+                        <a href="/directory.html" class="os-file" style="background: rgba(0,255,157,0.1);"><i class="fas fa-file-code"></i><span class="os-file-name">directory.html</span></a>
+                        <a href="/legal.html" class="os-file"><i class="fas fa-file-code"></i><span class="os-file-name">legal.html</span></a>
+                        <a href="/README.md" class="os-file"><i class="fas fa-file-lines"></i><span class="os-file-name">README.md</span></a>
+                        <a href="/COMMIT_LOG.md" class="os-file"><i class="fas fa-file-lines"></i><span class="os-file-name">COMMIT_LOG.md</span></a>
+                    </div>
                 </div>
-            </section>
+                
+                <div class="os-status-bar">
+                    <div>17 items | 1.4 MB selected</div>
+                    <div>SYSTEM: OPERATIONAL</div>
+                </div>
+            </div>
         </div>
 
         <site-footer></site-footer>
