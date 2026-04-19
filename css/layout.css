@@ -25,7 +25,6 @@
     align-items: center;
     gap: 20px;
     box-shadow: 10px 0 30px rgba(0, 255, 157, 0.05);
-    overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -35,6 +34,7 @@
     position: relative;
     width: 100%;
     text-align: center;
+    flex-shrink: 0;
 }
 
 .sidebar-logo {
@@ -49,7 +49,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding-top: 10px;
+    padding: 10px 0;
     width: 100%;
     align-items: center;
 }
@@ -59,8 +59,19 @@
     overflow-y: auto;
     width: 100%;
     scrollbar-width: none;
+    min-height: 0; /* Important for flexbox scrolling */
 }
 .sidebar-scroll-group::-webkit-scrollbar { display: none; }
+
+/* Show scrollbar on small heights if needed */
+@media (max-height: 700px) {
+    .sidebar-scroll-group {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 255, 157, 0.3) transparent;
+    }
+    .sidebar-scroll-group::-webkit-scrollbar { display: block; width: 2px; }
+    .sidebar-scroll-group::-webkit-scrollbar-thumb { background: rgba(0, 255, 157, 0.3); }
+}
 
 .sidebar-link {
     position: relative;
