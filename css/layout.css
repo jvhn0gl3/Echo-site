@@ -2,7 +2,7 @@
     flex: 1;
     padding: 20px 2%;
     padding-top: 60px;
-    padding-bottom: 120px;
+    padding-bottom: 20px;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 70px; /* Activity bar space */
@@ -155,7 +155,6 @@
 @media (max-width: 1024px) {
     .main-content {
         margin-left: 70px;
-        padding-bottom: 20px; /* Reduce large bottom padding on mobile */
     }
     .sidebar {
         transform: translateX(0);
