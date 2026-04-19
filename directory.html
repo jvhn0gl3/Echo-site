@@ -109,8 +109,8 @@
 
         .ls-row {
             display: grid;
-            grid-template-columns: 80px 50px 60px 80px 1fr;
-            gap: 10px;
+            grid-template-columns: 75px 40px 50px 70px 1fr; /* Compacted globally */
+            gap: 8px;
             padding: 3px 0;
             text-decoration: none;
             color: inherit;
@@ -142,10 +142,6 @@
         .icon-dir { color: #ffd93d !important; }
         .icon-file { color: var(--neon-primary) !important; }
         .icon-sys { color: #ff6b6b !important; }
-
-        @media (max-width: 480px) {
-            .ls-row { grid-template-columns: 75px 40px 50px 70px 1fr; gap: 8px; }
-        }
     </style>
 </head>
 <body style="margin:0; padding:0;">
