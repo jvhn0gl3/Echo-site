@@ -140,25 +140,15 @@ html, body {
     flex-shrink: 0;
 }
 
-/* MOBILE OVERRIDES (Default Everywhere) */
+/* MOBILE-FIRST DEFAULTS (Enforced Everywhere) */
 .main-content {
-    margin-left: 60px;
-    padding-bottom: 20px; /* Reduce large bottom padding on mobile */
+    margin-left: 55px;
+    padding: 15px 10px;
+    padding-bottom: 20px;
 }
 .sidebar {
     transform: translateX(0);
-    width: 60px;
-}
-
-/* TABLET AND DESKTOP OPTIMIZATIONS (Centered narrow layout) */
-@media (min-width: 768px) {
-    .main-content {
-        margin-left: 65px;
-        padding-top: 40px;
-    }
-    .sidebar {
-        width: 65px;
-    }
+    width: 55px;
 }
 
 /* VERY SMALL SCREENS OVERRIDES (JioPhone 2, etc.) */
@@ -176,17 +166,6 @@ html, body {
     .sidebar-link { width: 35px; height: 35px; font-size: 0.9rem; }
     
     h1.hero-title { font-size: 1.4rem; letter-spacing: 2px; }
-}
-
-/* Fix for target Mobile sizes (360-412px) */
-@media (min-width: 361px) and (max-width: 412px) {
-    .main-content {
-        margin-left: 55px;
-        padding: 15px 10px;
-    }
-    .sidebar {
-        width: 55px;
-    }
 }
 
 /* GRIDS (Forced Mobile) */

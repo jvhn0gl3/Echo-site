@@ -53,26 +53,7 @@ body {
     line-height:1.5;
     padding:0;
     min-height: 100vh;
-    font-size: 14px; /* Default for mid-range */
-}
-
-/* Desktop: 1920×1080, 1536×864, 1366×768, 1280×720 */
-@media (min-width: 1280px) {
-    body { font-size: 15px; }
-}
-
-/* Tablet: 768×1024, 800×1280, 820×1180, 1280×800 */
-@media (min-width: 768px) and (max-width: 1279px) {
-    body { font-size: 14px; }
-}
-
-/* Mobile: 360×800, 390×844, 393×873, 412×915 */
-@media (max-width: 412px) {
-    body { font-size: 13px; }
-}
-
-@media (max-width: 360px) {
-    body { font-size: 12px; }
+    font-size: 13px; /* Forced mobile-first scale globally */
 }
 
 h2 {
