@@ -10,7 +10,8 @@
     "pricing": "/pricing.html",
     "connect": "/connect.html",
     "directory": "/directory.html",
-    "legal": "/legal.html"
+    "legal": "/legal.html",
+    "styles": "/styles.html"
   },
   "buttons": {
     "view_projects": "/projects.html",

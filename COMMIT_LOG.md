@@ -20,5 +20,6 @@ This file tracks all commits made to this repository.
 - Branded the directory explorer path to `ECHO://SYS/ROOT/LOCAL_ARCHIVE/` to enhance the virtual OS theme.
 - Assigned unique, descriptive icons and theme-consistent color classes to all files and folders in the directory explorer.
 - Integrated a real-time search bar into the directory explorer, allowing users to filter files and folders within the Echo OS window.
+- Created `styles.html` (Architecture) to document system design tokens and linked the `css/` directory to this new module.
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.

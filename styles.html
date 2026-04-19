@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ARCHITECTURE // ECHO://OS | John Ogletree</title>
+    <meta name="description" content="System styles and design architecture for John Ogletree's digital environment.">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/effects.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <style>
+        .style-section {
+            margin-bottom: 50px;
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .color-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .color-swatch {
+            height: 60px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .token-info {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+        }
+        .token-label { color: var(--text-dim); }
+        .token-value { color: var(--neon-primary); }
+
+        .font-card {
+            background: rgba(13, 17, 23, 0.6);
+            border-left: 3px solid var(--neon-primary);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .font-preview {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .component-demo {
+            border: 1px dashed rgba(0, 255, 157, 0.3);
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="fixed-banner-container">
+        <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
+    </div>
+
+    <site-sidebar active="styles"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    
+    <div class="main-content">
+        <section class="hero" style="min-height: 30vh; margin-bottom: 40px;">
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+                <div class="hero-hud">
+                    <div class="hud-bracket bracket-tl"></div>
+                    <div class="hud-bracket bracket-tr"></div>
+                    <div class="hud-bracket bracket-bl"></div>
+                    <div class="hud-bracket bracket-br"></div>
+                    
+                    <h1 class="hero-title glitch" data-text="ARCHITECTURE">ARCHITECTURE</h1>
+                    <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 10px 0;">
+                        DESIGN_TOKENS // SYSTEM_STYLES
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container" id="app">
+            <section class="style-section">
+                <h2><i class="fas fa-palette"></i> [TOKEN] color_palette</h2>
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #00ff9d;"></div>
+                        <div class="token-info"><span class="token-label">Variable</span><span class="token-value">--neon-primary</span></div>
+                        <div class="token-info"><span class="token-label">HEX</span><span class="token-value">#00ff9d</span></div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #ff6b6b;"></div>
+                        <div class="token-info"><span class="token-label">Variable</span><span class="token-value">--neon-secondary</span></div>
+                        <div class="token-info"><span class="token-label">HEX</span><span class="token-value">#ff6b6b</span></div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #ffd93d;"></div>
+                        <div class="token-info"><span class="token-label">Variable</span><span class="token-value">--text-gold</span></div>
+                        <div class="token-info"><span class="token-label">HEX</span><span class="token-value">#ffd93d</span></div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #0a0c0f;"></div>
+                        <div class="token-info"><span class="token-label">Variable</span><span class="token-value">--bg-dark</span></div>
+                        <div class="token-info"><span class="token-label">HEX</span><span class="token-value">#0a0c0f</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="style-section">
+                <h2><i class="fas fa-font"></i> [TOKEN] typography</h2>
+                <div class="font-card">
+                    <div class="token-label" style="margin-bottom: 5px;">Primary UI Font (Fixed-width)</div>
+                    <div class="font-preview" style="font-family: 'Share Tech Mono', monospace;">Share Tech Mono</div>
+                    <div class="text-dim" style="font-size: 0.8rem;">ABCDEFGHIJKLM NOPQRSTUVWXYZ 0123456789</div>
+                </div>
+                <div class="font-card">
+                    <div class="token-label" style="margin-bottom: 5px;">Code & Terminal Font</div>
+                    <div class="font-preview" style="font-family: 'Fira Code', monospace;">Fira Code // Retina</div>
+                    <div class="text-dim" style="font-size: 0.8rem;">function init() { return "Echo_OS"; }</div>
+                </div>
+            </section>
+
+            <section class="style-section">
+                <h2><i class="fas fa-cubes"></i> [COMP] ui_elements</h2>
+                <div class="component-demo">
+                    <button class="matrix-btn">PRIMARY_ACTION</button>
+                    <div class="terminal-card" style="margin: 0; width: 300px;">
+                        <div class="card-header"><i class="fas fa-terminal"></i><span class="card-title">Terminal Card</span></div>
+                        <p style="font-size: 0.8rem; margin: 0;">System component preview for architecture documentation.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+</body>
+</html>
