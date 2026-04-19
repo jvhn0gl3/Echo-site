@@ -193,9 +193,9 @@
         .tree-indent::after {
             content: "";
             position: absolute;
-            left: 10px;
+            left: 12px;
             top: 50%;
-            width: 10px;
+            width: 12px;
             height: 1px;
             background: rgba(0, 255, 157, 0.3);
         }
@@ -215,33 +215,57 @@
             flex-shrink: 0;
         }
 
+        /* REWRITTEN SEARCH BAR */
         .os-search-container {
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 255, 157, 0.4);
-            padding: 3px 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            padding: 4px 12px;
             border-radius: 2px;
-            width: 120px;
-            box-shadow: inset 0 0 5px rgba(0, 255, 157, 0.1);
+            width: 180px;
+            transition: all 0.3s;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .os-search-container:focus-within {
+            border-color: var(--neon-primary);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2), inset 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .search-prompt {
+            color: var(--neon-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            margin-right: 8px;
+            white-space: nowrap;
+            opacity: 0.8;
         }
         .os-search-input {
             background: transparent;
             border: none;
-            color: var(--neon-primary);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
+            color: #fff;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
             outline: none;
             width: 100%;
-            margin-left: 6px;
         }
-        .os-search-input::placeholder { color: var(--text-dim); opacity: 0.5; }
+        .os-search-input::placeholder { color: var(--text-dim); opacity: 0.4; }
+        
+        #clearSearch {
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 0.7rem;
+            margin-left: 5px;
+            transition: color 0.2s;
+            display: none;
+        }
+        #clearSearch:hover { color: #ff6b6b; }
 
         @media (max-width: 480px) {
             .os-sidebar { display: none; }
             .os-toolbar { gap: 8px; padding: 8px; }
             .os-tree-item { padding: 8px 5px; font-size: 0.7rem; }
-            .os-search-container { width: 80px; }
+            .os-search-container { width: 120px; }
+            .search-prompt { display: none; }
         }
 
         /* ICON COLORS */
@@ -323,9 +347,11 @@
                         <span class="breadcrumb-item active">LOCAL_ARCHIVE</span>
                     </div>
 
+                    <!-- REWRITTEN SEARCH BAR -->
                     <div class="os-search-container">
-                        <i class="fas fa-terminal" style="font-size: 0.6rem; opacity: 0.5;"></i>
+                        <span class="search-prompt">> grep</span>
                         <input type="text" id="osSearchInput" class="os-search-input" placeholder="filter...">
+                        <i class="fas fa-xmark" id="clearSearch"></i>
                     </div>
                 </div>
                 
@@ -348,7 +374,7 @@
                     <div class="os-content">
                         <!-- ROOT -->
                         <div class="os-tree-item" style="color: var(--neon-primary); font-weight: bold; opacity: 0.6;">
-                            <i class="fas fa-folder-open"></i> <span>LOCAL_ARCHIVE/</span>
+                            <i class="fas fa-folder-open"></i> <span>ECHO://SYS/ROOT/LOCAL_ARCHIVE/</span>
                         </div>
 
                         <!-- CSS BRANCH -->
@@ -440,15 +466,24 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('osSearchInput');
+            const clearBtn = document.getElementById('clearSearch');
             const treeItems = document.querySelectorAll('.os-tree-item');
 
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
                     const term = e.target.value.toLowerCase().trim();
+                    
+                    if (term.length > 0) {
+                        clearBtn.style.display = 'block';
+                    } else {
+                        clearBtn.style.display = 'none';
+                    }
+
                     treeItems.forEach(item => {
                         const nameEl = item.querySelector('span');
                         if (nameEl) {
                             const name = nameEl.textContent.toLowerCase();
+                            // If it's a directory header, always show it unless a deep filter is active (optional)
                             if (name.includes(term)) {
                                 item.style.display = 'flex';
                             } else {
@@ -457,6 +492,14 @@
                         }
                     });
                 });
+
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', () => {
+                        searchInput.value = '';
+                        searchInput.dispatchEvent(new Event('input'));
+                        searchInput.focus();
+                    });
+                }
             }
         });
     </script>
