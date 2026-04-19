@@ -4,7 +4,7 @@
     "profile": "/profile.html",
     "services": "/services.html",
     "projects": "/projects.html",
-    "log": "/log.html",
+    "log": "/commits.html",
     "resume": "/resume.html",
     "faq": "/faq.html",
     "pricing": "/pricing.html",
@@ -14,7 +14,8 @@
     "styles": "/styles.html",
     "scripts": "/scripts.html",
     "registry": "/registry.html",
-    "typography": "/typography.html"
+    "typography": "/typography.html",
+    "commits": "/commits.html"
   },
   "buttons": {
     "view_projects": "/projects.html",
@@ -23,7 +24,7 @@
     "explore_all_services": "/services.html",
     "view_pricing_overview": "/pricing.html",
     "fetch_all_repositories": "https://github.com/jvhn0gl3?tab=repositories",
-    "view_log_entries": "/log.html",
+    "view_log_entries": "/commits.html",
     "view_full_resume": "/resume.html",
     "access_knowledge_base": "/faq.html",
     "view_network_nodes": "/connect.html",
