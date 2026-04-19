@@ -11,7 +11,8 @@
     "connect": "/connect.html",
     "directory": "/directory.html",
     "legal": "/legal.html",
-    "styles": "/styles.html"
+    "styles": "/styles.html",
+    "scripts": "/scripts.html"
   },
   "buttons": {
     "view_projects": "/projects.html",

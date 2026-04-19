@@ -18,6 +18,7 @@ class SiteSidebar extends HTMLElement {
                 <a href="/faq.html" class="sidebar-link ${activePage === 'faq' ? 'active' : ''}" data-label="FAQ"><i class="fas fa-circle-question"></i> <span>[FAQ] help</span></a>
                 <a href="/directory.html" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
                 <a href="/styles.html" class="sidebar-link ${activePage === 'styles' ? 'active' : ''}" data-label="ARCHITECTURE"><i class="fas fa-palette"></i> <span>[CSS] styles</span></a>
+                <a href="/scripts.html" class="sidebar-link ${activePage === 'scripts' ? 'active' : ''}" data-label="LOGIC"><i class="fas fa-microchip"></i> <span>[JS] scripts</span></a>
                 <a href="/legal.html" class="sidebar-link ${activePage === 'legal' ? 'active' : ''}" data-label="LEGAL"><i class="fas fa-scale-balanced"></i> <span>[DOC] legal</span></a>
                 <a href="/resume.html" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
             </nav>
