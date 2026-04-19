@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>EXPLORER // ECHO://OS | John Ogletree</title>
-    <meta name="description" content="System directory and site map for John Ogletree's digital architecture.">
+    <meta name="description" content="Strict terminal file system explorer for Echo OS.">
     <link rel="icon" type="image/jpeg" href="/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/variables.css">
@@ -15,163 +15,137 @@
     <link rel="stylesheet" href="/css/hero.css">
     <style>
         .os-window {
-            background: rgba(13, 17, 23, 0.9);
+            background: #05070a;
             border: 1px solid var(--neon-primary);
-            box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
             display: flex;
             flex-direction: column;
-            height: 65vh;
+            height: 70vh;
             margin-top: 10px;
             overflow: hidden;
             position: relative;
-            backdrop-filter: blur(10px);
         }
 
-        /* HUD BRACKETS FOR WINDOW */
-        .window-bracket {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            border: 2px solid var(--neon-primary);
-            z-index: 100;
-            pointer-events: none;
-        }
-        .w-tl { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
-        .w-tr { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
-        .w-bl { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
-        .w-br { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
-
-        /* DOLPHIN-STYLE TOOLBAR */
-        .os-toolbar {
-            background: rgba(0, 255, 157, 0.08);
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
-            flex-shrink: 0;
-        }
-
-        .os-nav-controls {
-            display: flex;
-            gap: 12px;
-            color: var(--neon-primary);
-            font-size: 0.8rem;
-        }
-        .os-nav-controls i { 
-            cursor: pointer; 
-            transition: transform 0.2s, opacity 0.2s;
-            opacity: 0.7;
-        }
-        .os-nav-controls i:hover { opacity: 1; transform: scale(1.1); }
-
-        .os-address-bar {
-            flex: 1;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(0, 255, 157, 0.4);
-            border-radius: 2px;
-            padding: 5px 12px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.6rem; /* Sized down */
-            flex-wrap: wrap; /* Added wrapping */
-            box-shadow: inset 0 0 10px rgba(0, 255, 157, 0.1);
-        }
-
-        .prompt-symbol { color: var(--neon-primary); font-weight: bold; margin-right: 5px; }
-        .breadcrumb-item { color: #fff; opacity: 0.8; white-space: nowrap; }
-        .breadcrumb-item.active { color: var(--neon-primary); font-weight: bold; }
-        .breadcrumb-sep { color: var(--text-dim); }
-
+        /* WINDOW TITLE */
         .os-window-title {
             background: #0d1117;
-            padding: 5px 12px; /* Sized down */
+            padding: 5px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
             flex-shrink: 0;
         }
-
         .os-window-controls { display: flex; gap: 6px; }
-        .os-control { width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.1); } /* Sized down */
-        .os-control.red { background: #ff6b6b; box-shadow: 0 0 5px #ff6b6b; }
+        .os-control { width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .os-control.red { background: #ff6b6b; }
         .os-control.yellow { background: #ffd93d; }
         .os-control.green { background: #00ff9d; }
 
-        .os-main-view { display: flex; flex: 1; overflow: hidden; }
-
-        /* SIDEBAR (PLACES) */
-        .os-sidebar {
-            width: 110px; /* Sized down */
-            background: rgba(10, 12, 15, 0.6);
-            border-right: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 8px 5px; /* Sized down */
+        /* TERMINAL PROMPT TOOLBAR */
+        .os-toolbar {
+            background: rgba(0, 255, 157, 0.03);
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            color: var(--neon-primary);
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            flex-shrink: 0;
+            gap: 5px;
         }
 
-        .os-sidebar-group-title {
-            font-size: 0.5rem; /* Sized down */
-            color: var(--neon-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-            padding-left: 5px;
-            opacity: 0.6;
-        }
+        .prompt-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .prompt-user { color: #54a0ff; }
+        .prompt-host { color: var(--neon-primary); }
+        .prompt-path { color: #ffd93d; }
 
-        .os-place-item {
+        /* SEARCH AS COMMAND */
+        .os-search-container {
             display: flex;
             align-items: center;
-            gap: 6px;
-            color: var(--text-muted);
-            font-size: 0.65rem; /* Sized down */
-            padding: 4px 6px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
             border-radius: 2px;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid transparent;
+            width: 100%;
+            max-width: 250px;
         }
-        .os-place-item:hover { background: rgba(0, 255, 157, 0.05); color: #fff; border-color: rgba(0, 255, 157, 0.2); }
-        .os-place-item.active { color: var(--neon-primary); background: rgba(0, 255, 157, 0.1); border-color: rgba(0, 255, 157, 0.3); }
+        .os-search-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            outline: none;
+            width: 100%;
+        }
+        #clearSearch { cursor: pointer; opacity: 0.5; font-size: 0.6rem; display: none; }
 
-        /* TREE CONTENT */
-        .os-content {
+        /* TERMINAL LISTING */
+        .os-main-view {
             flex: 1;
-            padding: 8px 5px; /* Sized down */
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.3);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+        }
+
+        .os-content {
+            flex: 1;
+            padding: 10px;
+            overflow: auto; /* Allows horizontal and vertical scroll */
+            background: #05070a;
             scrollbar-width: thin;
             scrollbar-color: var(--neon-primary) transparent;
         }
 
-        .os-sidebar { display: none; } /* HIDDEN EVERYWHERE */
-        .os-toolbar { gap: 8px; padding: 8px; }
-        .os-tree-item { padding: 8px 5px; font-size: 0.7rem; }
-        .os-search-container { width: 120px; }
-        .search-prompt { display: none; }
+        .ls-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.6rem;
+            color: #d1d1d1;
+            white-space: nowrap;
+        }
 
-        /* ICON COLORS */
-        .icon-folder { color: #ffd93d !important; text-shadow: 0 0 5px rgba(255, 217, 61, 0.3); }
-        .icon-home { color: #00ff9d !important; }
-        .icon-profile { color: #00d2ff !important; }
-        .icon-services { color: #ff00ff !important; }
-        .icon-pricing { color: #ffd93d !important; }
-        .icon-projects { color: #ff6b6b !important; }
-        .icon-log { color: #a3a3a3 !important; }
-        .icon-connect { color: #ff9f43 !important; }
-        .icon-faq { color: #54a0ff !important; }
-        .icon-pdf { color: #ff6b6b !important; }
-        .icon-directory { color: #00ff9d !important; }
-        .icon-legal { color: #ee5253 !important; }
-        .icon-md { color: #8395a7 !important; }
+        .ls-row {
+            display: grid;
+            grid-template-columns: 80px 50px 60px 80px 1fr;
+            gap: 10px;
+            padding: 3px 0;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.1s;
+        }
+        .ls-row:hover { background: rgba(0, 255, 157, 0.05); color: var(--neon-primary); }
+        
+        .perm { color: #8395a7; }
+        .owner { color: #54a0ff; }
+        .size { text-align: right; color: #ff9f43; }
+        .date { color: #576574; }
+        .name { color: #fff; display: flex; align-items: center; gap: 6px; }
+
+        .name i { font-size: 0.7rem; width: 12px; text-align: center; }
+
+        /* STATUS BAR */
+        .os-status-bar {
+            padding: 5px 12px;
+            background: #0d1117;
+            border-top: 1px solid rgba(0, 255, 157, 0.2);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* ICON COLORS (SUBDUED) */
+        .icon-dir { color: #ffd93d !important; }
+        .icon-file { color: var(--neon-primary) !important; }
+        .icon-sys { color: #ff6b6b !important; }
+
+        @media (max-width: 480px) {
+            .ls-row { grid-template-columns: 75px 40px 50px 70px 1fr; gap: 8px; }
+        }
     </style>
 </head>
 <body style="margin:0; padding:0;">
@@ -181,35 +155,22 @@
     <div class="crt"></div><div class="scanner"></div>
     
     <div class="main-content">
-        <section class="hero" style="min-height: 25vh; margin-bottom: 20px;">
+        <section class="hero" style="min-height: 20vh; margin-bottom: 20px;">
             <div class="hero-grid"></div>
             <div class="hero-content">
-                <div class="hero-hud">
-                    <div class="hud-bracket bracket-tl"></div>
-                    <div class="hud-bracket bracket-tr"></div>
-                    <div class="hud-bracket bracket-bl"></div>
-                    <div class="hud-bracket bracket-br"></div>
-                    
-                    <h1 class="hero-title glitch" data-text="EXPLORER">EXPLORER</h1>
-                    <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 10px 0;">
-                        ECHO://SYS/ARCHIVE_NODE
-                    </div>
+                <div class="hero-hud" style="padding: 20px 2%;">
+                    <h1 class="hero-title glitch" data-text="SYS:EXPLORER">SYS:EXPLORER</h1>
+                    <div class="text-neon" style="font-size: 0.7rem; letter-spacing: 2px;">TTY: pts/0 // ECHO_OS_KERNEL</div>
                 </div>
             </div>
         </section>
 
         <div class="container" id="app">
             <div class="os-window">
-                <!-- WINDOW HUD BRACKETS -->
-                <div class="window-bracket w-tl"></div>
-                <div class="window-bracket w-tr"></div>
-                <div class="window-bracket w-bl"></div>
-                <div class="window-bracket w-br"></div>
-
                 <!-- WINDOW TITLE -->
                 <div class="os-window-title">
-                    <div style="font-size: 0.65rem; color: var(--neon-primary); font-family: 'Share Tech Mono', monospace; font-weight: bold; letter-spacing: 1px;">
-                        <i class="fas fa-satellite"></i> Dolphin_Kernel // Echo_OS
+                    <div style="font-size: 0.6rem; color: var(--neon-primary); font-family: 'Share Tech Mono', monospace;">
+                        <i class="fas fa-terminal"></i> root@ECHO_OS: /bin/explorer
                     </div>
                     <div class="os-window-controls">
                         <div class="os-control yellow"></div>
@@ -218,151 +179,175 @@
                     </div>
                 </div>
 
-                <!-- TOOLBAR -->
+                <!-- TOOLBAR AS PROMPT -->
                 <div class="os-toolbar">
-                    <div class="os-nav-controls">
-                        <i class="fas fa-chevron-left"></i>
-                        <i class="fas fa-chevron-right"></i>
-                        <i class="fas fa-house-chimney"></i>
+                    <div class="prompt-line">
+                        <span class="prompt-user">root</span><span style="color: #fff;">@</span><span class="prompt-host">ECHO_OS</span><span style="color: #fff;">:</span><span class="prompt-path">~/LOCAL_ARCHIVE</span><span style="color: #fff;">$ ls -la</span>
                     </div>
-                    
-                    <div class="os-address-bar">
-                        <span class="prompt-symbol">$</span>
-                        <span class="breadcrumb-item">ECHO:</span>
-                        <span class="breadcrumb-sep">/</span>
-                        <span class="breadcrumb-item">SYS</span>
-                        <span class="breadcrumb-sep">/</span>
-                        <span class="breadcrumb-item">ROOT</span>
-                        <span class="breadcrumb-sep">/</span>
-                        <span class="breadcrumb-item active">LOCAL_ARCHIVE</span>
-                    </div>
-
-                    <!-- REWRITTEN SEARCH BAR -->
-                    <div class="os-search-container">
-                        <span class="search-prompt">> grep</span>
-                        <input type="text" id="osSearchInput" class="os-search-input" placeholder="filter...">
-                        <i class="fas fa-xmark" id="clearSearch"></i>
+                    <div class="prompt-line">
+                        <span style="color: var(--neon-primary); opacity: 0.6;">> grep</span>
+                        <div class="os-search-container">
+                            <input type="text" id="osSearchInput" class="os-search-input" placeholder="filter_results...">
+                            <i class="fas fa-xmark" id="clearSearch"></i>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="os-main-view">
-                    <!-- PLACES SIDEBAR -->
-                    <div class="os-sidebar">
-                        <div class="os-sidebar-group">
-                            <div class="os-sidebar-group-title">Main_Nodes</div>
-                            <a href="/index.html" class="os-place-item"><i class="fas fa-house-user"></i> Desktop</a>
-                            <a href="/directory.html" class="os-place-item active"><i class="fas fa-folder-tree"></i> Root</a>
-                            <a href="/projects.html" class="os-place-item"><i class="fas fa-code-fork"></i> Projects</a>
+                    <div class="os-content" id="lsContainer">
+                        <div class="ls-table">
+                            <!-- DIRECTORIES -->
+                            <a href="/styles.html" class="ls-row" data-name="css/">
+                                <span class="perm">drwxr-xr-x</span>
+                                <span class="owner">root</span>
+                                <span class="size">12.4K</span>
+                                <span class="date">Apr 18 10:12</span>
+                                <span class="name"><i class="fas fa-folder icon-dir"></i> css/</span>
+                            </a>
+                            <a href="/scripts.html" class="ls-row" data-name="js/">
+                                <span class="perm">drwxr-xr-x</span>
+                                <span class="owner">root</span>
+                                <span class="size">28.1K</span>
+                                <span class="date">Apr 18 10:15</span>
+                                <span class="name"><i class="fas fa-folder icon-dir"></i> js/</span>
+                            </a>
+                            <a href="/registry.html" class="ls-row" data-name="data/">
+                                <span class="perm">drwxr-xr-x</span>
+                                <span class="owner">root</span>
+                                <span class="size">8.5K</span>
+                                <span class="date">Apr 18 10:18</span>
+                                <span class="name"><i class="fas fa-folder icon-dir"></i> data/</span>
+                            </a>
+                            <a href="/typography.html" class="ls-row" data-name="fonts/">
+                                <span class="perm">drwxr-xr-x</span>
+                                <span class="owner">root</span>
+                                <span class="size">2.4M</span>
+                                <span class="date">Apr 17 22:45</span>
+                                <span class="name"><i class="fas fa-folder icon-dir"></i> fonts/</span>
+                            </a>
+
+                            <!-- SYSTEM FILES -->
+                            <a href="/styles.html" class="ls-row" data-name="styles.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">4.2K</span>
+                                <span class="date">Apr 18 14:02</span>
+                                <span class="name"><i class="fas fa-palette icon-sys"></i> styles.html</span>
+                            </a>
+                            <a href="/scripts.html" class="ls-row" data-name="scripts.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">6.8K</span>
+                                <span class="date">Apr 18 14:05</span>
+                                <span class="name"><i class="fas fa-microchip icon-sys"></i> scripts.html</span>
+                            </a>
+                            <a href="/registry.html" class="ls-row" data-name="registry.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">3.1K</span>
+                                <span class="date">Apr 18 14:08</span>
+                                <span class="name"><i class="fas fa-database icon-sys"></i> registry.html</span>
+                            </a>
+                            <a href="/typography.html" class="ls-row" data-name="typography.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">2.9K</span>
+                                <span class="date">Apr 18 14:10</span>
+                                <span class="name"><i class="fas fa-font icon-sys"></i> typography.html</span>
+                            </a>
+                            <a href="/commits.html" class="ls-row" data-name="commits.html">
+                                <span class="perm">-rwxr-xr-x</span>
+                                <span class="owner">root</span>
+                                <span class="size">12.2K</span>
+                                <span class="date">Apr 18 16:30</span>
+                                <span class="name"><i class="fas fa-clock-rotate-left icon-sys"></i> commits.html</span>
+                            </a>
+
+                            <!-- ROOT FILES -->
+                            <a href="/index.html" class="ls-row" data-name="index.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">8.4K</span>
+                                <span class="date">Apr 18 09:20</span>
+                                <span class="name"><i class="fas fa-house icon-file"></i> index.html</span>
+                            </a>
+                            <a href="/profile.html" class="ls-row" data-name="profile.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">12.2K</span>
+                                <span class="date">Apr 18 09:25</span>
+                                <span class="name"><i class="fas fa-user-astronaut icon-file"></i> profile.html</span>
+                            </a>
+                            <a href="/services.html" class="ls-row" data-name="services.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">9.1K</span>
+                                <span class="date">Apr 18 09:30</span>
+                                <span class="name"><i class="fas fa-microchip icon-file"></i> services.html</span>
+                            </a>
+                            <a href="/pricing.html" class="ls-row" data-name="pricing.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">7.8K</span>
+                                <span class="date">Apr 18 09:35</span>
+                                <span class="name"><i class="fas fa-tags icon-file"></i> pricing.html</span>
+                            </a>
+                            <a href="/projects.html" class="ls-row" data-name="projects.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">15.6K</span>
+                                <span class="date">Apr 18 09:40</span>
+                                <span class="name"><i class="fas fa-laptop-code icon-file"></i> projects.html</span>
+                            </a>
+                            <a href="/connect.html" class="ls-row" data-name="connect.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">6.5K</span>
+                                <span class="date">Apr 18 09:45</span>
+                                <span class="name"><i class="fas fa-satellite-dish icon-file"></i> connect.html</span>
+                            </a>
+                            <a href="/faq.html" class="ls-row" data-name="faq.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">10.4K</span>
+                                <span class="date">Apr 18 09:50</span>
+                                <span class="name"><i class="fas fa-circle-question icon-file"></i> faq.html</span>
+                            </a>
+                            <a href="/directory.html" class="ls-row" data-name="directory.html" style="color: var(--neon-primary); background: rgba(0,255,157,0.08);">
+                                <span class="perm">-rwxr-xr-x</span>
+                                <span class="owner">usr</span>
+                                <span class="size">8.2K</span>
+                                <span class="date">Apr 18 09:55</span>
+                                <span class="name"><i class="fas fa-terminal icon-file"></i> directory.html</span>
+                            </a>
+                            <a href="/legal.html" class="ls-row" data-name="legal.html">
+                                <span class="perm">-rw-------</span>
+                                <span class="owner">root</span>
+                                <span class="size">4.8K</span>
+                                <span class="date">Apr 18 10:00</span>
+                                <span class="name"><i class="fas fa-scale-balanced icon-file"></i> legal.html</span>
+                            </a>
+                            <a href="/resume.html" class="ls-row" data-name="resume.html">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">11.2K</span>
+                                <span class="date">Apr 15 18:20</span>
+                                <span class="name"><i class="fas fa-file-pdf icon-file"></i> resume.html</span>
+                            </a>
+                            <a href="/README.md" class="ls-row" data-name="README.md">
+                                <span class="perm">-rw-r--r--</span>
+                                <span class="owner">usr</span>
+                                <span class="size">2.1K</span>
+                                <span class="date">Apr 10 11:30</span>
+                                <span class="name"><i class="fas fa-file-lines icon-file"></i> README.md</span>
+                            </a>
                         </div>
-                        <div class="os-sidebar-group">
-                            <div class="os-sidebar-group-title">System_Apps</div>
-                            <a href="/commits.html" class="os-place-item"><i class="fas fa-clock-rotate-left"></i> Version_Ctrl</a>
-                            <a href="/registry.html" class="os-place-item"><i class="fas fa-database"></i> Registry</a>
-                        </div>
-                    </div>
-                    
-                    <div class="os-content">
-                        <!-- ROOT -->
-                        <div class="os-tree-item" style="color: var(--neon-primary); font-weight: bold; opacity: 0.6;">
-                            <i class="fas fa-folder-open"></i> <span>ECHO://SYS/ROOT/LOCAL_ARCHIVE/</span>
-                            <div class="tree-size">--</div>
-                        </div>
-
-                        <!-- CSS BRANCH -->
-                        <a href="/styles.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>css/</span>
-                            <div class="tree-size">12.4 KB</div>
-                        </a>
-                        <a href="/styles.html" class="os-tree-item">
-                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-palette icon-services"></i> <span>styles.html</span>
-                            <div class="tree-size">4.2 KB</div>
-                        </a>
-
-                        <!-- JS BRANCH -->
-                        <a href="/scripts.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>js/</span>
-                            <div class="tree-size">28.1 KB</div>
-                        </a>
-                        <a href="/scripts.html" class="os-tree-item">
-                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-microchip icon-services"></i> <span>scripts.html</span>
-                            <div class="tree-size">6.8 KB</div>
-                        </a>
-
-                        <!-- DATA BRANCH -->
-                        <a href="/registry.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>data/</span>
-                            <div class="tree-size">8.5 KB</div>
-                        </a>
-                        <a href="/registry.html" class="os-tree-item">
-                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-database icon-pricing"></i> <span>registry.html</span>
-                            <div class="tree-size">3.1 KB</div>
-                        </a>
-
-                        <!-- FONTS BRANCH -->
-                        <a href="/typography.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>fonts/</span>
-                            <div class="tree-size">2.4 MB</div>
-                        </a>
-                        <a href="/typography.html" class="os-tree-item">
-                            <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-font icon-faq"></i> <span>typography.html</span>
-                            <div class="tree-size">2.9 KB</div>
-                        </a>
-
-                        <!-- ROOT FILES -->
-                        <a href="/index.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-house icon-home"></i> <span>index.html</span>
-                            <div class="tree-size">8.4 KB</div>
-                        </a>
-                        <a href="/profile.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-user-astronaut icon-profile"></i> <span>profile.html</span>
-                            <div class="tree-size">12.2 KB</div>
-                        </a>
-                        <a href="/services.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-microchip icon-services"></i> <span>services.html</span>
-                            <div class="tree-size">9.1 KB</div>
-                        </a>
-                        <a href="/pricing.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-tags icon-pricing"></i> <span>pricing.html</span>
-                            <div class="tree-size">7.8 KB</div>
-                        </a>
-                        <a href="/projects.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-laptop-code icon-projects"></i> <span>projects.html</span>
-                            <div class="tree-size">15.6 KB</div>
-                        </a>
-                        <a href="/connect.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-satellite-dish icon-connect"></i> <span>connect.html</span>
-                            <div class="tree-size">6.5 KB</div>
-                        </a>
-                        <a href="/faq.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-circle-question icon-faq"></i> <span>faq.html</span>
-                            <div class="tree-size">10.4 KB</div>
-                        </a>
-                        <a href="/directory.html" class="os-tree-item" style="background: rgba(0,255,157,0.1); border-color: rgba(0,255,157,0.3); color: var(--neon-primary);">
-                            <div class="tree-indent"></div><i class="fas fa-folder-tree icon-directory"></i> <span>directory.html</span>
-                            <div class="tree-size">8.2 KB</div>
-                        </a>
-                        <a href="/legal.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-scale-balanced icon-legal"></i> <span>legal.html</span>
-                            <div class="tree-size">4.8 KB</div>
-                        </a>
-                        <a href="/resume.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-file-pdf icon-pdf"></i> <span>resume.html</span>
-                            <div class="tree-size">11.2 KB</div>
-                        </a>
-                        <a href="/README.md" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-file-lines icon-md"></i> <span>README.md</span>
-                            <div class="tree-size">2.1 KB</div>
-                        </a>
-                        <a href="/commits.html" class="os-tree-item">
-                            <div class="tree-indent"></div><i class="fas fa-clock-rotate-left icon-log"></i> <span>COMMIT_LOG.md</span>
-                            <div class="tree-size">1.4 KB</div>
-                        </a>
                     </div>
                 </div>
                 
                 <div class="os-status-bar">
-                    <div><i class="fas fa-check-circle"></i> 20 items indexed</div>
-                    <div>ENCRYPTION: AES-256 ACTIVE</div>
+                    <div>total 128K</div>
+                    <div>TTY: pts/0 // ECHO_OS_V4</div>
                 </div>
             </div>
         </div>
@@ -378,7 +363,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('osSearchInput');
             const clearBtn = document.getElementById('clearSearch');
-            const treeItems = document.querySelectorAll('.os-tree-item');
+            const lsRows = document.querySelectorAll('.ls-row');
 
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
@@ -390,16 +375,12 @@
                         clearBtn.style.display = 'none';
                     }
 
-                    treeItems.forEach(item => {
-                        const nameEl = item.querySelector('span');
-                        if (nameEl) {
-                            const name = nameEl.textContent.toLowerCase();
-                            // If it's a directory header, always show it unless a deep filter is active (optional)
-                            if (name.includes(term)) {
-                                item.style.display = 'flex';
-                            } else {
-                                item.style.display = 'none';
-                            }
+                    lsRows.forEach(row => {
+                        const name = row.dataset.name.toLowerCase();
+                        if (name.includes(term)) {
+                            row.style.display = 'grid';
+                        } else {
+                            row.style.display = 'none';
                         }
                     });
                 });

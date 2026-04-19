@@ -27,6 +27,7 @@ This file tracks all commits made to this repository.
 - Enforced a strict, uniform mobile-first interface across all screen sizes by removing responsive layout expansions and permanently applying mobile-scaled styles globally.
 - Standardized global sidebar and main content offsets at 55px to ensure consistent layout regardless of device resolution.
 - Permanently applied compact directory explorer UI, including a hidden "Places" sidebar and scaled-down search components for a focused mobile-first experience.
+- Redesigned the directory explorer into a strict "ls -la" terminal interface, featuring high-density file metadata (permissions, owner, size, date) and command-line aesthetics.
 - Created `styles.html` (Architecture) to document system design tokens and linked the `css/` directory to this new module.
 - Created `scripts.html` (Logic) to document system kernel modules and linked the `js/` directory to this new module.
 - Created `registry.html` (Data) to document system data schemas and linked the `data/` directory to this new module.
