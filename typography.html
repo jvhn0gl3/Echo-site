@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>TYPOGRAPHY // ECHO://OS | John Ogletree</title>
+    <meta name="description" content="System typography and font specifications for John Ogletree's digital environment.">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/effects.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <style>
+        .font-section {
+            margin-bottom: 60px;
+        }
+        .typeface-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+            padding: 30px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .typeface-name {
+            font-size: 0.7rem;
+            color: var(--neon-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .typeface-preview-large {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .typeface-alphabet {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            word-break: break-all;
+            margin-bottom: 20px;
+        }
+        .font-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .spec-label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; }
+        .spec-value { font-size: 0.8rem; color: #fff; font-family: 'Share Tech Mono', monospace; }
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="fixed-banner-container">
+        <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
+    </div>
+
+    <site-sidebar active="typography"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    
+    <div class="main-content">
+        <section class="hero" style="min-height: 30vh; margin-bottom: 40px;">
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+                <div class="hero-hud">
+                    <div class="hud-bracket bracket-tl"></div>
+                    <div class="hud-bracket bracket-tr"></div>
+                    <div class="hud-bracket bracket-bl"></div>
+                    <div class="hud-bracket bracket-br"></div>
+                    
+                    <h1 class="hero-title glitch" data-text="TYPOGRAPHY">TYPOGRAPHY</h1>
+                    <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 10px 0;">
+                        TYPE_SPECIFICATIONS // MONO_STREAMS
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container" id="app">
+            <section class="font-section">
+                <h2><i class="fas fa-font"></i> [TYPE] primary_interface</h2>
+                <div class="typeface-card">
+                    <span class="typeface-name">Share Tech Mono</span>
+                    <div class="typeface-preview-large" style="font-family: 'Share Tech Mono', monospace;">ECHO://OS_KERNEL</div>
+                    <div class="typeface-alphabet" style="font-family: 'Share Tech Mono', monospace;">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz<br>
+                        0123456789 !@#$%^&*()
+                    </div>
+                    <div class="font-spec-grid">
+                        <div class="spec-item"><span class="spec-label">Category</span><span class="spec-value">Monospace</span></div>
+                        <div class="spec-item"><span class="spec-label">Weight</span><span class="spec-value">400 (Regular)</span></div>
+                        <div class="spec-item"><span class="spec-label">Usage</span><span class="spec-value">UI / Headings</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="font-section">
+                <h2><i class="fas fa-code"></i> [TYPE] code_rendering</h2>
+                <div class="typeface-card">
+                    <span class="typeface-name">Fira Code</span>
+                    <div class="typeface-preview-large" style="font-family: 'Fira Code', monospace;">void main() { ... }</div>
+                    <div class="typeface-alphabet" style="font-family: 'Fira Code', monospace;">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz<br>
+                        0123456789 => <= !== ===
+                    </div>
+                    <div class="font-spec-grid">
+                        <div class="spec-item"><span class="spec-label">Category</span><span class="spec-value">Monospace + Ligatures</span></div>
+                        <div class="spec-item"><span class="spec-label">Weight</span><span class="spec-value">400 (Regular)</span></div>
+                        <div class="spec-item"><span class="spec-label">Usage</span><span class="spec-value">Terminal / Code Blocks</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="font-section">
+                <h2><i class="fas fa-keyboard"></i> [TYPE] alternate_mono</h2>
+                <div class="typeface-card">
+                    <span class="typeface-name">JetBrains Mono</span>
+                    <div class="typeface-preview-large" style="font-family: 'JetBrains Mono', monospace;">Digital_Architect</div>
+                    <div class="font-spec-grid">
+                        <div class="spec-item"><span class="spec-label">Category</span><span class="spec-value">Developer Mono</span></div>
+                        <div class="spec-item"><span class="spec-label">Origin</span><span class="spec-value">JetBrains / fonts/</span></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+</body>
+</html>

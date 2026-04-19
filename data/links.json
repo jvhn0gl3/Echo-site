@@ -13,7 +13,8 @@
     "legal": "/legal.html",
     "styles": "/styles.html",
     "scripts": "/scripts.html",
-    "registry": "/registry.html"
+    "registry": "/registry.html",
+    "typography": "/typography.html"
   },
   "buttons": {
     "view_projects": "/projects.html",
