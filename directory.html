@@ -200,8 +200,16 @@
             background: rgba(0, 255, 157, 0.3);
         }
 
-        .os-tree-item i { font-size: 0.9rem; width: 16px; text-align: center; flex-shrink: 0; }
         .os-tree-item span { flex: 1; }
+
+        .tree-size {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            opacity: 0.7;
+            text-align: right;
+            min-width: 50px;
+        }
 
         .os-status-bar {
             padding: 6px 15px;
@@ -375,76 +383,97 @@
                         <!-- ROOT -->
                         <div class="os-tree-item" style="color: var(--neon-primary); font-weight: bold; opacity: 0.6;">
                             <i class="fas fa-folder-open"></i> <span>ECHO://SYS/ROOT/LOCAL_ARCHIVE/</span>
+                            <div class="tree-size">--</div>
                         </div>
 
                         <!-- CSS BRANCH -->
                         <a href="/styles.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>css/</span>
+                            <div class="tree-size">12.4 KB</div>
                         </a>
                         <a href="/styles.html" class="os-tree-item">
                             <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-palette icon-services"></i> <span>styles.html</span>
+                            <div class="tree-size">4.2 KB</div>
                         </a>
 
                         <!-- JS BRANCH -->
                         <a href="/scripts.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>js/</span>
+                            <div class="tree-size">28.1 KB</div>
                         </a>
                         <a href="/scripts.html" class="os-tree-item">
                             <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-microchip icon-services"></i> <span>scripts.html</span>
+                            <div class="tree-size">6.8 KB</div>
                         </a>
 
                         <!-- DATA BRANCH -->
                         <a href="/registry.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>data/</span>
+                            <div class="tree-size">8.5 KB</div>
                         </a>
                         <a href="/registry.html" class="os-tree-item">
                             <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-database icon-pricing"></i> <span>registry.html</span>
+                            <div class="tree-size">3.1 KB</div>
                         </a>
 
                         <!-- FONTS BRANCH -->
                         <a href="/typography.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-folder icon-folder"></i> <span>fonts/</span>
+                            <div class="tree-size">2.4 MB</div>
                         </a>
                         <a href="/typography.html" class="os-tree-item">
                             <div class="tree-indent"></div><div class="tree-indent"></div><i class="fas fa-font icon-faq"></i> <span>typography.html</span>
+                            <div class="tree-size">2.9 KB</div>
                         </a>
 
                         <!-- ROOT FILES -->
                         <a href="/index.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-house icon-home"></i> <span>index.html</span>
+                            <div class="tree-size">8.4 KB</div>
                         </a>
                         <a href="/profile.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-user-astronaut icon-profile"></i> <span>profile.html</span>
+                            <div class="tree-size">12.2 KB</div>
                         </a>
                         <a href="/services.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-microchip icon-services"></i> <span>services.html</span>
+                            <div class="tree-size">9.1 KB</div>
                         </a>
                         <a href="/pricing.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-tags icon-pricing"></i> <span>pricing.html</span>
+                            <div class="tree-size">7.8 KB</div>
                         </a>
                         <a href="/projects.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-laptop-code icon-projects"></i> <span>projects.html</span>
+                            <div class="tree-size">15.6 KB</div>
                         </a>
                         <a href="/connect.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-satellite-dish icon-connect"></i> <span>connect.html</span>
+                            <div class="tree-size">6.5 KB</div>
                         </a>
                         <a href="/faq.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-circle-question icon-faq"></i> <span>faq.html</span>
+                            <div class="tree-size">10.4 KB</div>
                         </a>
                         <a href="/directory.html" class="os-tree-item" style="background: rgba(0,255,157,0.1); border-color: rgba(0,255,157,0.3); color: var(--neon-primary);">
                             <div class="tree-indent"></div><i class="fas fa-folder-tree icon-directory"></i> <span>directory.html</span>
+                            <div class="tree-size">8.2 KB</div>
                         </a>
                         <a href="/legal.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-scale-balanced icon-legal"></i> <span>legal.html</span>
+                            <div class="tree-size">4.8 KB</div>
                         </a>
                         <a href="/resume.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-file-pdf icon-pdf"></i> <span>resume.html</span>
+                            <div class="tree-size">11.2 KB</div>
                         </a>
                         <a href="/README.md" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-file-lines icon-md"></i> <span>README.md</span>
+                            <div class="tree-size">2.1 KB</div>
                         </a>
                         <a href="/commits.html" class="os-tree-item">
                             <div class="tree-indent"></div><i class="fas fa-clock-rotate-left icon-log"></i> <span>COMMIT_LOG.md</span>
+                            <div class="tree-size">1.4 KB</div>
                         </a>
                     </div>
                 </div>

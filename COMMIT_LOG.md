@@ -23,6 +23,7 @@ This file tracks all commits made to this repository.
 - Branded the directory explorer path to `ECHO://SYS/ROOT/LOCAL_ARCHIVE/` to enhance the virtual OS theme.
 - Assigned unique, descriptive icons and theme-consistent color classes to all files and folders in the directory explorer.
 - Integrated a real-time search bar into the directory explorer, allowing users to filter files and folders within the Echo OS window.
+- Integrated file size metadata for all explorer items, displayed in a clean "Dolphin" style list view.
 - Created `styles.html` (Architecture) to document system design tokens and linked the `css/` directory to this new module.
 - Created `scripts.html` (Logic) to document system kernel modules and linked the `js/` directory to this new module.
 - Created `registry.html` (Data) to document system data schemas and linked the `data/` directory to this new module.
