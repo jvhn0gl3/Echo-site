@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>REGISTRY // ECHO://OS | John Ogletree</title>
+    <meta name="description" content="System registry and data schemas for John Ogletree's digital environment.">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/effects.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <style>
+        .registry-section {
+            margin-bottom: 50px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            background: rgba(13, 17, 23, 0.6);
+        }
+        .data-table th {
+            text-align: left;
+            color: var(--neon-primary);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+            padding: 12px 15px;
+            text-transform: uppercase;
+        }
+        .data-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+        .key-name { color: #ffd93d; font-weight: bold; }
+        .key-type { color: #ff6b6b; font-size: 0.7rem; }
+        
+        .schema-preview {
+            background: #05070a;
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 157, 0.1);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #d1d1d1;
+            margin-top: 15px;
+            position: relative;
+        }
+        .schema-preview::after {
+            content: "JSON_SCHEMA";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--neon-primary);
+            color: #000;
+            padding: 2px 8px;
+            font-size: 0.6rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="fixed-banner-container">
+        <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
+    </div>
+
+    <site-sidebar active="registry"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    
+    <div class="main-content">
+        <section class="hero" style="min-height: 30vh; margin-bottom: 40px;">
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+                <div class="hero-hud">
+                    <div class="hud-bracket bracket-tl"></div>
+                    <div class="hud-bracket bracket-tr"></div>
+                    <div class="hud-bracket bracket-bl"></div>
+                    <div class="hud-bracket bracket-br"></div>
+                    
+                    <h1 class="hero-title glitch" data-text="REGISTRY">REGISTRY</h1>
+                    <div class="text-neon" style="letter-spacing: 5px; font-weight: bold; margin: 10px 0;">
+                        DATA_SCHEMAS // SYSTEM_RECORDS
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container" id="app">
+            <section class="registry-section">
+                <h2><i class="fas fa-database"></i> [DATA] site_content.json</h2>
+                <div class="module-desc">Central repository for biographical data, service definitions, and terminal logs.</div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Key Path</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="key-name">profile.biological</span></td>
+                            <td><span class="key-type">Object</span></td>
+                            <td>Core identity metrics and spatial coordinates.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="key-name">services.nodes</span></td>
+                            <td><span class="key-type">Array</span></td>
+                            <td>List of active architectural and creative modules.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="key-name">log.entries</span></td>
+                            <td><span class="key-type">Array</span></td>
+                            <td>Historical system updates and deployment records.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="registry-section">
+                <h2><i class="fas fa-link"></i> [DATA] links.json</h2>
+                <div class="module-desc">Registry of internal routes, external social nodes, and dynamic UI elements.</div>
+                <div class="schema-preview">
+{
+  "internal": {
+    "home": "/index.html",
+    "profile": "/profile.html",
+    ...
+  },
+  "social": {
+    "github": "https://github.com/jvhn0gl3",
+    "email": "mailto:..."
+  }
+}
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+</body>
+</html>

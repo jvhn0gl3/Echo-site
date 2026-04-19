@@ -12,7 +12,8 @@
     "directory": "/directory.html",
     "legal": "/legal.html",
     "styles": "/styles.html",
-    "scripts": "/scripts.html"
+    "scripts": "/scripts.html",
+    "registry": "/registry.html"
   },
   "buttons": {
     "view_projects": "/projects.html",

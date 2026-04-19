@@ -22,5 +22,6 @@ This file tracks all commits made to this repository.
 - Integrated a real-time search bar into the directory explorer, allowing users to filter files and folders within the Echo OS window.
 - Created `styles.html` (Architecture) to document system design tokens and linked the `css/` directory to this new module.
 - Created `scripts.html` (Logic) to document system kernel modules and linked the `js/` directory to this new module.
+- Created `registry.html` (Data) to document system data schemas and linked the `data/` directory to this new module.
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.
