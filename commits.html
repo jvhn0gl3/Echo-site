@@ -149,6 +149,16 @@
             font-style: italic;
         }
 
+        .commit-stats {
+            font-size: 0.65rem;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+            font-family: 'Fira Code', monospace;
+        }
+        .stat-add { color: var(--neon-primary); }
+        .stat-del { color: #ff6b6b; }
+
         .loading-overlay {
             display: flex;
             flex-direction: column;
@@ -252,15 +262,26 @@
                 }
             }
 
-            // Fetch GitHub Commits
+            // Fetch GitHub Commits with detailed stats
             async function fetchRemoteStream() {
                 if (remoteLoaded) return;
                 try {
                     const response = await fetch('https://api.github.com/repos/jvhn0gl3/Echo-site/commits');
                     const commits = await response.json();
                     
+                    // Render list immediately
                     renderCommits(commits);
                     remoteLoaded = true;
+
+                    // Fetch details for the latest 15 to get additions/deletions
+                    const detailPromises = commits.slice(0, 15).map(c => 
+                        fetch(`https://api.github.com/repos/jvhn0gl3/Echo-site/commits/${c.sha}`)
+                            .then(res => res.json())
+                    );
+
+                    const details = await Promise.all(detailPromises);
+                    updateWithStats(details);
+
                 } catch (error) {
                     guiView.innerHTML = `<div class="loading-overlay" style="color: #ff6b6b;">[ERROR] Connection to Remote Node failed.</div>`;
                 }
@@ -281,6 +302,9 @@
                     html += `
                         <div class="commit-item">
                             <div class="commit-main">
+                                <div class="commit-stats" id="stats-${c.sha}">
+                                    <!-- Populated by detail fetch -->
+                                </div>
                                 <a href="${url}" target="_blank" class="commit-msg">${msg}</a>
                                 <div class="commit-meta">
                                     <span class="commit-author">@${c.author ? c.author.login : c.commit.author.name}</span>
@@ -294,6 +318,18 @@
                 
                 html += `</div>`;
                 guiView.innerHTML = html;
+            }
+
+            function updateWithStats(details) {
+                details.forEach(d => {
+                    const statsEl = document.getElementById(`stats-${d.sha}`);
+                    if (statsEl) {
+                        statsEl.innerHTML = `
+                            <span class="stat-add">+${d.stats.additions}</span>
+                            <span class="stat-del">-${d.stats.deletions}</span>
+                        `;
+                    }
+                });
             }
 
             loadLocalArchive();
