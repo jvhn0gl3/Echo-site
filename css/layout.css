@@ -113,6 +113,9 @@
 
 /* MOBILE OVERRIDES */
 @media (max-width: 1024px) {
+    .cyber-toggle {
+        display: flex;
+    }
     .main-content {
         margin-left: 0;
         transition: filter 0.3s ease, opacity 0.3s ease;
