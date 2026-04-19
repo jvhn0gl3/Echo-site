@@ -44,10 +44,10 @@
 .terminal-card{background:#0d1117;border:1px solid #00ff9d;padding:20px;margin-bottom:15px;transition:all 0.3s;height:100%;display:flex;flex-direction:column}
 .terminal-card:hover{transform:translateY(-4px);border-color:#ff6b6b}
 .card-header{display:flex;align-items:center;gap:10px;margin-bottom:15px;border-bottom:1px dashed rgba(0,255,157,0.3);padding-bottom:10px}
-.card-title{font-size:1.25rem;font-weight:bold;color:#ffd93d}
+.card-title{font-size:1rem;font-weight:bold;color:#ffd93d}
 
 .stat-box{text-align:center;padding:10px;border:1px solid #00ff9d;background:rgba(0,255,157,0.05)}
-.stat-value{font-size:2rem;font-weight:bold;color:#ff6b6b}
+.stat-value{font-size:1.5rem;font-weight:bold;color:#ff6b6b}
 .stat-label{font-size:0.7rem;text-transform:uppercase;color:#00ff9d}
 
 .project-card{background:#0d1117;border:1px solid #00ff9d;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:all 0.3s}
