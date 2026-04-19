@@ -13,14 +13,9 @@ class SiteSidebar extends HTMLElement {
                 <a href="/services.html" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES"><i class="fas fa-microchip"></i> <span>[SYS] services</span></a>
                 <a href="/pricing.html" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING"><i class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
                 <a href="/projects.html" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
-                <a href="/commits.html" class="sidebar-link ${activePage === 'log' || activePage === 'commits' ? 'active' : ''}" data-label="LOG"><i class="fas fa-terminal"></i> <span>[LOG] entries</span></a>
                 <a href="/connect.html" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT"><i class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
                 <a href="/faq.html" class="sidebar-link ${activePage === 'faq' ? 'active' : ''}" data-label="FAQ"><i class="fas fa-circle-question"></i> <span>[FAQ] help</span></a>
                 <a href="/directory.html" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
-                <a href="/styles.html" class="sidebar-link ${activePage === 'styles' ? 'active' : ''}" data-label="ARCHITECTURE"><i class="fas fa-palette"></i> <span>[CSS] styles</span></a>
-                <a href="/scripts.html" class="sidebar-link ${activePage === 'scripts' ? 'active' : ''}" data-label="LOGIC"><i class="fas fa-microchip"></i> <span>[JS] scripts</span></a>
-                <a href="/registry.html" class="sidebar-link ${activePage === 'registry' ? 'active' : ''}" data-label="REGISTRY"><i class="fas fa-database"></i> <span>[DB] registry</span></a>
-                <a href="/typography.html" class="sidebar-link ${activePage === 'typography' ? 'active' : ''}" data-label="TYPOGRAPHY"><i class="fas fa-font"></i> <span>[TTF] fonts</span></a>
                 <a href="/legal.html" class="sidebar-link ${activePage === 'legal' ? 'active' : ''}" data-label="LEGAL"><i class="fas fa-scale-balanced"></i> <span>[DOC] legal</span></a>
                 <a href="/resume.html" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
             </nav>
