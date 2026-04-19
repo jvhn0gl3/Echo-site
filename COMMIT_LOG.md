@@ -29,5 +29,6 @@ This file tracks all commits made to this repository.
 - Implemented global overflow protection and enhanced responsiveness for small and very small screens (down to 320px).
 - Optimized layout for all Chrome DevTools device presets, including ultra-tiny 240px screens and large 4K displays, with granular media queries.
 - Implemented a global scaling strategy for smaller screens, reducing base font sizes and component dimensions for a more compact, usable mobile UI.
+- Updated `styles.html` to document the new responsive scaling tokens and system breakpoints.
 - Removed the footer component across all pages and deleted associated CSS and JavaScript assets to streamline the interface.
 - Fixed mobile footer overlap by disabling fixed positioning and reducing content padding on small screens.
