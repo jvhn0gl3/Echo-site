@@ -19,11 +19,12 @@ class SiteSidebar extends HTMLElement {
                 <a href="/directory.html" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-sitemap"></i> <span>[MAP] directory</span></a>
                 <a href="/legal.html" class="sidebar-link ${activePage === 'legal' ? 'active' : ''}" data-label="LEGAL"><i class="fas fa-gavel"></i> <span>[DOC] legal</span></a>
                 <a href="/resume.html" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
+                
+                <div style="height: 20px; width: 30px; border-top: 1px solid rgba(0, 255, 157, 0.2); margin: 10px 0;"></div>
+                
+                <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB"><i class="fab fa-github"></i> <span>github</span></a>
+                <a href="mailto:contact@john-ogletree.me" class="sidebar-link" data-label="EMAIL"><i class="fas fa-envelope"></i> <span>email</span></a>
             </nav>
-        </div>
-        <div class="sidebar-footer">
-            <a href="https://github.com/jvhn0gl3" target="_blank" style="color: #a3a3a3;"><i class="fab fa-github"></i></a>
-            <a href="mailto:contact@john-ogletree.me" style="color: #a3a3a3;"><i class="fas fa-envelope"></i></a>
         </div>
     </aside>
         `;

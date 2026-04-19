@@ -10,3 +10,4 @@ This file tracks all commits made to this repository.
 - Updated footer and banner positions/widths to correctly offset the new 70px activity bar across all screen sizes.
 - Reverted the banner system to use the external KAO script, styled to match the new 70px activity bar layout.
 - Expanded navigation with new `directory` and `legal` pages and updated link order in the activity bar.
+- Moved social links (GitHub, Email) into the main scrollable navigation group for a unified activity bar experience.
