@@ -8,3 +8,4 @@ This file tracks all commits made to this repository.
 - Removed the menu toggle button and associated logic; the sidebar is now permanently visible on all screen sizes.
 - Transformed the sidebar into a compact IDE-style activity bar (70px wide) with centered icons and hover tooltips.
 - Updated footer and banner positions/widths to correctly offset the new 70px activity bar across all screen sizes.
+- Implemented a local automated banner slideshow system using `data/banners.json` and a custom `cyber-banner` web component.

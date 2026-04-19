@@ -1,0 +1,51 @@
+.cyber-banner {
+    position: fixed;
+    top: 0;
+    left: 70px;
+    width: calc(100% - 70px);
+    height: 30px;
+    background: rgba(10, 12, 15, 0.95);
+    border-bottom: 1px solid var(--neon-primary);
+    z-index: 10000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.banner-content {
+    color: var(--neon-primary);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: none;
+    text-decoration: none;
+}
+
+.banner-content.active {
+    display: block;
+    opacity: 1;
+}
+
+.banner-content i {
+    margin-right: 10px;
+    font-size: 0.8rem;
+}
+
+.banner-type-info { color: #00ff9d; }
+.banner-type-success { color: #00ff9d; text-shadow: 0 0 5px #00ff9d; }
+.banner-type-warning { color: #ffd93d; }
+.banner-type-error { color: #ff6b6b; }
+
+@media (max-width: 1024px) {
+    .cyber-banner {
+        left: 70px;
+        width: calc(100% - 70px);
+    }
+}

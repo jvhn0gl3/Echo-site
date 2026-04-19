@@ -69,23 +69,6 @@
 }
 
 .fixed-banner-container {
-    display: contents; /* Let the inner script-injected element determine layout */
+    display: contents; /* Let the inner component determine layout */
 }
 
-/* Target the specific ID used by the Keep Android Open script */
-#kao-banner, .kao-banner, [id*="kao-banner"] {
-    position: fixed !important;
-    top: 0 !important;
-    left: 70px !important;
-    width: calc(100% - 70px) !important;
-    z-index: 10000000 !important;
-    margin: 0 !important;
-    transition: left 0.3s ease, width 0.3s ease !important;
-}
-
-@media (max-width: 1024px) {
-    #kao-banner, .kao-banner, [id*="kao-banner"] {
-        left: 70px !important;
-        width: calc(100% - 70px) !important;
-    }
-}
