@@ -69,21 +69,26 @@ html, body {
     width: 100%;
     max-height: calc(100vh - 150px);
     min-height: 0;
+    scrollbar-width: none;
+    position: relative;
+}
+.sidebar-scroll-group::-webkit-scrollbar { display: none; }
+
+.sidebar-scroll-group::after {
+    content: "▼";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--neon-primary);
+    pointer-events: none;
+    animation: pulse 2s infinite;
 }
 
-/* Custom scrollbar for sidebar */
-.sidebar-scroll-group::-webkit-scrollbar {
-    width: 4px;
-}
-.sidebar-scroll-group::-webkit-scrollbar-track {
-    background: #0a0c0f;
-}
-.sidebar-scroll-group::-webkit-scrollbar-thumb {
-    background: #00ff9d;
-    border-radius: 2px;
-}
-.sidebar-scroll-group::-webkit-scrollbar-thumb:hover {
-    background: #ff6b6b;
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 .sidebar-link {
