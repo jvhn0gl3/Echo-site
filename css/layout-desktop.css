@@ -87,6 +87,12 @@ html, body {
     color: var(--neon-primary);
     pointer-events: none;
     animation: pulse 2s infinite;
+    z-index: 10;
+}
+
+/* Ensure content doesn't get hidden behind the arrow */
+.sidebar-nav {
+    padding-bottom: 30px;
 }
 
 @keyframes pulse {
