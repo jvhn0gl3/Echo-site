@@ -13,22 +13,7 @@
     <link rel="stylesheet" href="/css/effects.css">
     <link rel="stylesheet" href="/css/hero.css">
 
-    <!-- Pre-Render Style Injection Engine -->
-    <script>
-        (function() {
-            const width = window.innerWidth;
-            let breakpoint = 'mobile';
-            if (width >= 1024) breakpoint = 'desktop';
-            else if (width >= 768) breakpoint = 'tablet';
-            
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = `/css/layout-${breakpoint}.css`;
-            document.head.appendChild(link);
-            
-            console.log(`[SYSTEM] Resolution-Aware Style Injected: ${breakpoint}_mode`);
-        })();
-    </script>
+    <link rel="stylesheet" href="/css/layout-desktop.css">
     </head>
 <body style="margin:0; padding:0;">
 
