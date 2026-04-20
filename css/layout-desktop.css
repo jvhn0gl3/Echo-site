@@ -69,35 +69,30 @@ html, body {
     width: 100%;
     max-height: calc(100vh - 150px);
     min-height: 0;
-    scrollbar-width: none;
-    position: relative;
-}
-.sidebar-scroll-group::-webkit-scrollbar { display: none; }
-
-.sidebar-scroll-group::after {
-    content: "▼";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 0;
-    background: #000;
-    text-align: center;
-    font-size: 0.7rem;
-    color: var(--neon-primary);
-    pointer-events: none;
-    animation: pulse 2s infinite;
-    z-index: 10;
 }
 
-/* Ensure content doesn't get hidden behind the arrow */
+/* Custom scrollbar for sidebar */
+.sidebar-scroll-group::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-scroll-group::-webkit-scrollbar-track {
+    background: #0a0c0f;
+}
+.sidebar-scroll-group::-webkit-scrollbar-thumb {
+    background: #00ff9d;
+    border-radius: 2px;
+}
+.sidebar-scroll-group::-webkit-scrollbar-thumb:hover {
+    background: #ff6b6b;
+}
+
 .sidebar-nav {
-    padding-bottom: 30px;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px 0;
+    width: 100%;
+    align-items: center;
 }
 
 .sidebar-link {
