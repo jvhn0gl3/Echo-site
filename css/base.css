@@ -46,6 +46,10 @@
 /* ============================================ */
 *{margin:0;padding:0;box-sizing:border-box}
 
+:root {
+    --base-scale: clamp(10px, 0.8vw + 8px, 16px);
+}
+
 body {
     background:#0a0c0f;
     color:#00ff9d;
@@ -53,15 +57,21 @@ body {
     line-height:1.5;
     padding:0;
     min-height: 100vh;
-    font-size: clamp(10px, 0.8vw + 8px, 16px);
+    font-size: var(--base-scale);
 }
 
+h1 { font-size: calc(var(--base-scale) * 2.5); }
 h2 {
-    font-size: 1.2rem;
+    font-size: calc(var(--base-scale) * 1.5);
     margin: 30px 0 15px;
     border-left: 4px solid #00ff9d;
     padding-left: 12px;
     color: #ffd93d;
+}
+
+.matrix-btn {
+    font-size: var(--base-scale);
+    padding: calc(var(--base-scale) * 0.75) calc(var(--base-scale) * 1.5);
 }
 
 .container {
