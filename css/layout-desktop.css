@@ -67,7 +67,8 @@ html, body {
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
-    scrollbar-width: none;
+    scrollbar-width: thin; /* Made visible for user */
+    max-height: calc(100vh - 150px); /* Adjust based on header/footer */
     min-height: 0;
 }
 
