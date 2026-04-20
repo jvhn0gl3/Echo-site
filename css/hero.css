@@ -40,7 +40,11 @@
 }
 
 .hero-hud {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     padding: 20px 2%;
     border: 1px solid rgba(0, 255, 157, 0.3);
     background: rgba(13, 17, 23, 0.8);
