@@ -67,9 +67,23 @@ html, body {
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
-    scrollbar-width: thin; /* Made visible for user */
-    max-height: calc(100vh - 150px); /* Adjust based on header/footer */
+    max-height: calc(100vh - 150px);
     min-height: 0;
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-scroll-group::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-scroll-group::-webkit-scrollbar-track {
+    background: #0a0c0f;
+}
+.sidebar-scroll-group::-webkit-scrollbar-thumb {
+    background: #00ff9d;
+    border-radius: 2px;
+}
+.sidebar-scroll-group::-webkit-scrollbar-thumb:hover {
+    background: #ff6b6b;
 }
 
 .sidebar-link {
