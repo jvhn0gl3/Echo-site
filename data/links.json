@@ -26,7 +26,6 @@
     "view_pricing_overview": "/pricing.html",
     "fetch_all_repositories": "https://github.com/jvhn0gl3?tab=repositories",
     "view_log_entries": "/commits.html",
-    "view_full_dossier": "/profile/dossier.html",
     "access_knowledge_base": "/faq.html",
     "view_network_nodes": "/connect.html",
     "view_module_web": "#",
@@ -39,8 +38,5 @@
     "linkedin": "https://linkedin.com/in/jvhn0gl3",
     "twitter": "https://twitter.com/jvhn0gl3",
     "email": "mailto:contact@john-ogletree.me"
-  }
-}
-.me"
   }
 }
