@@ -63,10 +63,28 @@
                     <section id="connect">
                         <div class="terminal-card">
                             <form id="contactForm" class="contact-form">
-                                <div class="form-group"><label>Identifier</label><input type="text" class="terminal-input" placeholder="Enter name..." required></div>
-                                <div class="form-group"><label>Signal Type</label><input type="email" class="terminal-input" placeholder="Enter email..." required></div>
-                                <div class="form-group"><label>Transmission</label><textarea class="terminal-input" placeholder="Enter message..."></textarea></div>
-                                <button type="submit" class="matrix-btn">$ ./send_transmission</button>
+                                <div class="form-group">
+                                    <label data-i18n="connect.identifier">Identifier</label>
+                                    <input type="text" class="terminal-input" placeholder="Enter name..." required data-i18n="connect.placeholder_name">
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="connect.email_node">Email Node</label>
+                                    <input type="email" class="terminal-input" placeholder="Enter email..." required data-i18n="connect.placeholder_email">
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="connect.signal_type">Signal Type</label>
+                                    <select class="terminal-input">
+                                        <option data-i18n="connect.signal_inquiry">Inquiry</option>
+                                        <option data-i18n="connect.signal_collab">Collaboration</option>
+                                        <option data-i18n="connect.signal_security">Security Report</option>
+                                        <option data-i18n="connect.signal_feedback">System Feedback</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="connect.transmission">Transmission</label>
+                                    <textarea class="terminal-input" placeholder="Enter message..." data-i18n="connect.placeholder_message"></textarea>
+                                </div>
+                                <button type="submit" class="matrix-btn" data-i18n="home.btn_send">$ ./send_transmission</button>
                             </form>
                         </div>
                         <div class="social-grid">

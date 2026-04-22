@@ -17,7 +17,7 @@
             <div class="nav-scroll-group">
                 <a href="/index.html" class="nav-item active" title="Home" data-i18n-tooltip="status.dashboard">
                     <i aria-hidden="true" class="fas fa-house"></i>
-                    <span data-i18n="nav.home" data-i18n="breadcrumb.home">HOME</span>
+                    <span data-i18n="nav.home">HOME</span>
                 </a>
                 <a href="/profile/" class="nav-item" title="Profile" data-i18n-tooltip="status.identity_skills">
                     <i aria-hidden="true" class="fas fa-user-astronaut"></i>
@@ -201,16 +201,16 @@
                         <div class="terminal-card">
                             <form id="contactForm" class="contact-form">
                                 <div class="form-group">
-                                    <label>Identifier</label>
-                                    <input type="text" class="terminal-input" placeholder="Enter name..." required>
+                                    <label data-i18n="connect.identifier">Identifier</label>
+                                    <input type="text" class="terminal-input" placeholder="Enter name..." required data-i18n="connect.placeholder_name">
                                 </div>
                                 <div class="form-group">
-                                    <label>Signal Type</label>
-                                    <input type="email" class="terminal-input" placeholder="Enter email..." required>
+                                    <label data-i18n="connect.email_node">Email Node</label>
+                                    <input type="email" class="terminal-input" placeholder="Enter email..." required data-i18n="connect.placeholder_email">
                                 </div>
                                 <div class="form-group">
-                                    <label>Transmission</label>
-                                    <textarea class="terminal-input" placeholder="Enter message..."></textarea>
+                                    <label data-i18n="connect.transmission">Transmission</label>
+                                    <textarea class="terminal-input" placeholder="Enter message..." data-i18n="connect.placeholder_message"></textarea>
                                 </div>
                                 <button type="submit" class="matrix-btn" data-i18n="home.btn_send">$ ./send_transmission</button>
                             </form>

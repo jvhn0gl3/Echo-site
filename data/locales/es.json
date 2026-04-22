@@ -31,14 +31,16 @@
     "protocol_docs": "Documentación de Protocolo",
     "system_map": "Mapa del Sistema",
     "source_code": "Código Fuente",
-    "acc_settings": "Configuración de Accesibilidad"
+    "acc_settings": "Configuración de Accesibilidad",
+    "no_modules": "NO HAY MÓDULOS QUE COINCIDAN."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "Saltar al contenido",
     "exit_config": "$ ./salir_config",
     "report_issue": "$ ./informar_problema",
-    "acc_conf": "Accesibilidad.conf"
+    "acc_conf": "Accesibilidad.conf",
+    "locale": "Localización"
   },
   "acc": {
     "high_contrast": "Alto Contraste",
@@ -77,5 +79,43 @@
     "resume": "CURRÍCULUM",
     "docs": "DOCS",
     "directory": "DIRECTORIO"
+  },
+  "resume": {
+    "education_title": "sistema.obtener_educación()"
+  },
+  "profile": {
+    "skill_tree_title": "usuario.obtener_árbol_de_habilidades()"
+  },
+  "docs": {
+    "faq_title": "sistema.obtener_faq()"
+  },
+  "bio": {
+    "name": "NOMBRE",
+    "origin": "ORIGEN",
+    "occupation": "OCUPACIÓN",
+    "status": "ESTADO"
+  },
+  "connect": {
+    "identifier": "Identificador",
+    "email_node": "Nodo de Correo",
+    "signal_type": "Tipo de Señal",
+    "signal_inquiry": "Consulta",
+    "signal_collab": "Colaboración",
+    "signal_security": "Informe de Seguridad",
+    "signal_feedback": "Comentarios del Sistema",
+    "transmission": "Transmisión",
+    "placeholder_name": "Ingrese nombre...",
+    "placeholder_email": "Ingrese correo electrónico...",
+    "placeholder_message": "Ingrese mensaje..."
+  },
+  "services": {
+    "discovery_card": "Descubrimiento de Módulos",
+    "search_placeholder": "Consultar módulos del sistema...",
+    "filter_all": "TODO",
+    "filter_dev": "DES",
+    "filter_sys": "SIS",
+    "pipeline_card": "Canal de Ejecución",
+    "execute_title": "servicios.ejecutar()",
+    "workflow_title": "sistema.obtener_flujo_de_trabajo()"
   }
 }

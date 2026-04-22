@@ -31,14 +31,16 @@
     "protocol_docs": "Protokolldokumentation",
     "system_map": "Systemkarte",
     "source_code": "Quellcode",
-    "acc_settings": "Barrierefreiheit-Einstellungen"
+    "acc_settings": "Barrierefreiheit-Einstellungen",
+    "no_modules": "KEINE MODULE ENTSPRECHEN DEN KRITERIEN."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "Zum Inhalt springen",
     "exit_config": "$ ./konfig_verlassen",
     "report_issue": "$ ./problem_melden",
-    "acc_conf": "Barrierefreiheit.conf"
+    "acc_conf": "Barrierefreiheit.conf",
+    "locale": "Sprachumgebung"
   },
   "acc": {
     "high_contrast": "Hoher Kontrast",
@@ -77,5 +79,43 @@
     "resume": "LEBENSLAUF",
     "docs": "DOKS",
     "directory": "VERZEICHNIS"
+  },
+  "resume": {
+    "education_title": "system.hole_ausbildung()"
+  },
+  "profile": {
+    "skill_tree_title": "benutzer.hole_fertigkeitsbaum()"
+  },
+  "docs": {
+    "faq_title": "system.hole_faq()"
+  },
+  "bio": {
+    "name": "NAME",
+    "origin": "HERKUNFT",
+    "occupation": "BERUF",
+    "status": "STATUS"
+  },
+  "connect": {
+    "identifier": "Identifikator",
+    "email_node": "E-Mail-Knoten",
+    "signal_type": "Signaltyp",
+    "signal_inquiry": "Anfrage",
+    "signal_collab": "Zusammenarbeit",
+    "signal_security": "Sicherheitsbericht",
+    "signal_feedback": "System-Feedback",
+    "transmission": "Übertragung",
+    "placeholder_name": "Name eingeben...",
+    "placeholder_email": "E-Mail eingeben...",
+    "placeholder_message": "Nachricht eingeben..."
+  },
+  "services": {
+    "discovery_card": "Modulentdeckung",
+    "search_placeholder": "Systemmodule abfragen...",
+    "filter_all": "ALLE",
+    "filter_dev": "ENTW",
+    "filter_sys": "SYS",
+    "pipeline_card": "Ausführungspipeline",
+    "execute_title": "dienste.ausführen()",
+    "workflow_title": "system.hole_workflow()"
   }
 }

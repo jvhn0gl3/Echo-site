@@ -31,14 +31,16 @@
     "protocol_docs": "Documentazione Protocollo",
     "system_map": "Mappa del Sistema",
     "source_code": "Codice Sorgente",
-    "acc_settings": "Impostazioni Accessibilità"
+    "acc_settings": "Impostazioni Accessibilità",
+    "no_modules": "NESSUN MODULO CORRISPONDENTE AI CRITERI."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "Passa al contenuto",
     "exit_config": "$ ./esci_config",
     "report_issue": "$ ./segnala_problema",
-    "acc_conf": "Accessibilità.conf"
+    "acc_conf": "Accessibilità.conf",
+    "locale": "Lingua"
   },
   "acc": {
     "high_contrast": "Alto Contrasto",
@@ -77,5 +79,43 @@
     "resume": "CURRICULUM",
     "docs": "DOCS",
     "directory": "DIRECTORY"
+  },
+  "resume": {
+    "education_title": "sistema.ottieni_istruzione()"
+  },
+  "profile": {
+    "skill_tree_title": "utente.ottieni_albero_competenze()"
+  },
+  "docs": {
+    "faq_title": "sistema.ottieni_faq()"
+  },
+  "bio": {
+    "name": "NOME",
+    "origin": "ORIGINE",
+    "occupation": "OCCUPAZIONE",
+    "status": "STATO"
+  },
+  "connect": {
+    "identifier": "Identificatore",
+    "email_node": "Nodo Email",
+    "signal_type": "Tipo di Segnale",
+    "signal_inquiry": "Richiesta",
+    "signal_collab": "Collaborazione",
+    "signal_security": "Rapporto di Sicurezza",
+    "signal_feedback": "Feedback di Sistema",
+    "transmission": "Trasmissione",
+    "placeholder_name": "Inserisci nome...",
+    "placeholder_email": "Inserisci email...",
+    "placeholder_message": "Inserisci messaggio..."
+  },
+  "services": {
+    "discovery_card": "Scoperta Moduli",
+    "search_placeholder": "Interroga moduli di sistema...",
+    "filter_all": "TUTTO",
+    "filter_dev": "SVIL",
+    "filter_sys": "SIS",
+    "pipeline_card": "Pipeline di Esecuzione",
+    "execute_title": "servizi.esegui()",
+    "workflow_title": "sistema.ottieni_workflow()"
   }
 }

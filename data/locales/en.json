@@ -31,14 +31,16 @@
     "protocol_docs": "Protocol Documentation",
     "system_map": "System Map",
     "source_code": "Source Code",
-    "acc_settings": "Accessibility Settings"
+    "acc_settings": "Accessibility Settings",
+    "no_modules": "NO MODULES MATCHING CRITERIA."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "Skip to content",
     "exit_config": "$ ./exit_config",
     "report_issue": "$ ./report_access_issue",
-    "acc_conf": "Accessibility.conf"
+    "acc_conf": "Accessibility.conf",
+    "locale": "Locale"
   },
   "acc": {
     "high_contrast": "High Contrast",
@@ -77,5 +79,43 @@
     "resume": "RESUME",
     "docs": "DOCS",
     "directory": "DIRECTORY"
+  },
+  "resume": {
+    "education_title": "system.get_education()"
+  },
+  "profile": {
+    "skill_tree_title": "user.get_skill_tree()"
+  },
+  "docs": {
+    "faq_title": "system.get_faq()"
+  },
+  "bio": {
+    "name": "NAME",
+    "origin": "ORIGIN",
+    "occupation": "OCCUPATION",
+    "status": "STATUS"
+  },
+  "connect": {
+    "identifier": "Identifier",
+    "email_node": "Email Node",
+    "signal_type": "Signal Type",
+    "signal_inquiry": "Inquiry",
+    "signal_collab": "Collaboration",
+    "signal_security": "Security Report",
+    "signal_feedback": "System Feedback",
+    "transmission": "Transmission",
+    "placeholder_name": "Enter name...",
+    "placeholder_email": "Enter email...",
+    "placeholder_message": "Enter message..."
+  },
+  "services": {
+    "discovery_card": "Module Discovery",
+    "search_placeholder": "Query system modules...",
+    "filter_all": "ALL",
+    "filter_dev": "DEV",
+    "filter_sys": "SYS",
+    "pipeline_card": "Execution Pipeline",
+    "execute_title": "services.execute()",
+    "workflow_title": "system.get_workflow()"
   }
 }

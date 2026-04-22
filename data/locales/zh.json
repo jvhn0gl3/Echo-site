@@ -31,14 +31,16 @@
     "protocol_docs": "协议文档",
     "system_map": "系统地图",
     "source_code": "源代码",
-    "acc_settings": "辅助功能设置"
+    "acc_settings": "辅助功能设置",
+    "no_modules": "没有符合条件的模块。"
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "跳至内容",
     "exit_config": "$ ./退出配置",
     "report_issue": "$ ./报告问题",
-    "acc_conf": "辅助功能.conf"
+    "acc_conf": "辅助功能.conf",
+    "locale": "语言区域"
   },
   "acc": {
     "high_contrast": "高对比度",
@@ -77,5 +79,43 @@
     "resume": "简历",
     "docs": "文档",
     "directory": "目录"
+  },
+  "resume": {
+    "education_title": "系统.获取教育背景()"
+  },
+  "profile": {
+    "skill_tree_title": "用户.获取技能树()"
+  },
+  "docs": {
+    "faq_title": "系统.获取常见问题()"
+  },
+  "bio": {
+    "name": "姓名",
+    "origin": "来源",
+    "occupation": "职业",
+    "status": "状态"
+  },
+  "connect": {
+    "identifier": "标识符",
+    "email_node": "邮件节点",
+    "signal_type": "信号类型",
+    "signal_inquiry": "咨询",
+    "signal_collab": "合作",
+    "signal_security": "安全报告",
+    "signal_feedback": "系统反馈",
+    "transmission": "传输",
+    "placeholder_name": "输入姓名...",
+    "placeholder_email": "输入邮箱...",
+    "placeholder_message": "输入消息..."
+  },
+  "services": {
+    "discovery_card": "模块发现",
+    "search_placeholder": "查询系统模块...",
+    "filter_all": "全部",
+    "filter_dev": "开发",
+    "filter_sys": "系统",
+    "pipeline_card": "执行流水线",
+    "execute_title": "服务.执行()",
+    "workflow_title": "系统.获取工作流()"
   }
 }

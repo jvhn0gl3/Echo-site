@@ -31,14 +31,16 @@
     "protocol_docs": "Протокольная документация",
     "system_map": "Карта системы",
     "source_code": "Исходный код",
-    "acc_settings": "Настройки доступности"
+    "acc_settings": "Настройки доступности",
+    "no_modules": "НЕТ МОДУЛЕЙ, СООТВЕТСТВУЮЩИХ КРИТЕРИЯМ."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "Перейти к контенту",
     "exit_config": "$ ./выйти_из_конфига",
     "report_issue": "$ ./сообщить_о_проблеме",
-    "acc_conf": "Доступность.conf"
+    "acc_conf": "Доступность.conf",
+    "locale": "Локаль"
   },
   "acc": {
     "high_contrast": "Высокий контраст",
@@ -77,5 +79,43 @@
     "resume": "РЕЗЮМЕ",
     "docs": "ДОКИ",
     "directory": "КАТАЛОГ"
+  },
+  "resume": {
+    "education_title": "система.получить_образование()"
+  },
+  "profile": {
+    "skill_tree_title": "пользователь.получить_древо_навыков()"
+  },
+  "docs": {
+    "faq_title": "система.получить_faq()"
+  },
+  "bio": {
+    "name": "ИМЯ",
+    "origin": "ПРОИСХОЖДЕНИЕ",
+    "occupation": "РОД ЗАНЯТИЙ",
+    "status": "СТАТУС"
+  },
+  "connect": {
+    "identifier": "Идентификатор",
+    "email_node": "Узел почты",
+    "signal_type": "Тип сигнала",
+    "signal_inquiry": "Запрос",
+    "signal_collab": "Сотрудничество",
+    "signal_security": "Отчет по безопасности",
+    "signal_feedback": "Обратная связь системы",
+    "transmission": "Передача",
+    "placeholder_name": "Введите имя...",
+    "placeholder_email": "Введите email...",
+    "placeholder_message": "Введите сообщение..."
+  },
+  "services": {
+    "discovery_card": "Обнаружение модулей",
+    "search_placeholder": "Запрос системных модулей...",
+    "filter_all": "ВСЕ",
+    "filter_dev": "РАЗР",
+    "filter_sys": "СИС",
+    "pipeline_card": "Конвейер выполнения",
+    "execute_title": "сервисы.выполнить()",
+    "workflow_title": "система.получить_процесс()"
   }
 }

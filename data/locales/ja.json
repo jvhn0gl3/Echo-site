@@ -31,14 +31,16 @@
     "protocol_docs": "プロトコル文書",
     "system_map": "システムマップ",
     "source_code": "ソースコード",
-    "acc_settings": "アクセシビリティ設定"
+    "acc_settings": "アクセシビリティ設定",
+    "no_modules": "条件に一致するモジュールがありません。"
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "コンテンツへスキップ",
     "exit_config": "$ ./設定終了",
     "report_issue": "$ ./問題を報告",
-    "acc_conf": "アクセシビリティ.conf"
+    "acc_conf": "アクセシビリティ.conf",
+    "locale": "ロケール"
   },
   "acc": {
     "high_contrast": "高コントラスト",
@@ -77,5 +79,43 @@
     "resume": "履歴書",
     "docs": "ドキュメント",
     "directory": "ディレクトリ"
+  },
+  "resume": {
+    "education_title": "システム.学歴取得()"
+  },
+  "profile": {
+    "skill_tree_title": "ユーザー.スキルツリー取得()"
+  },
+  "docs": {
+    "faq_title": "システム.FAQ取得()"
+  },
+  "bio": {
+    "name": "名前",
+    "origin": "出身",
+    "occupation": "職業",
+    "status": "ステータス"
+  },
+  "connect": {
+    "identifier": "識別子",
+    "email_node": "メールノード",
+    "signal_type": "信号タイプ",
+    "signal_inquiry": "問い合わせ",
+    "signal_collab": "コラボレーション",
+    "signal_security": "セキュリティ報告",
+    "signal_feedback": "システムフィードバック",
+    "transmission": "送信",
+    "placeholder_name": "名前を入力...",
+    "placeholder_email": "メールを入力...",
+    "placeholder_message": "メッセージを入力..."
+  },
+  "services": {
+    "discovery_card": "モジュール探索",
+    "search_placeholder": "システムモジュールを照会...",
+    "filter_all": "すべて",
+    "filter_dev": "開発",
+    "filter_sys": "システム",
+    "pipeline_card": "実行パイプライン",
+    "execute_title": "サービス.実行()",
+    "workflow_title": "システム.ワークフロー取得()"
   }
 }

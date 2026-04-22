@@ -118,12 +118,12 @@
                     <!-- SEARCH & FILTER -->
                     <section id="discovery">
                         <div class="terminal-card">
-                            <div class="card-header"><span class="card-title">Module Discovery</span></div>
-                            <input type="text" id="service-search" class="terminal-input" placeholder="Query system modules..." style="margin-bottom: 15px;">
+                            <div class="card-header"><span class="card-title" data-i18n="services.discovery_card">Module Discovery</span></div>
+                            <input type="text" id="service-search" class="terminal-input" placeholder="Query system modules..." style="margin-bottom: 15px;" data-i18n="services.search_placeholder">
                             <div class="social-grid" style="grid-template-columns: repeat(3, 1fr);">
-                                <button class="social-btn filter-btn active" data-category="all">ALL</button>
-                                <button class="social-btn filter-btn" data-category="development">DEV</button>
-                                <button class="social-btn filter-btn" data-category="infrastructure">SYS</button>
+                                <button class="social-btn filter-btn active" data-category="all" data-i18n="services.filter_all">ALL</button>
+                                <button class="social-btn filter-btn" data-category="development" data-i18n="services.filter_dev">DEV</button>
+                                <button class="social-btn filter-btn" data-category="infrastructure" data-i18n="services.filter_sys">SYS</button>
                             </div>
                         </div>
                     </section>
@@ -132,7 +132,7 @@
 
                     <!-- SERVICES GRID -->
                     <section id="services">
-                        <h2 data-i18n="home.services_title">services.execute()</h2>
+                        <h2 data-i18n="services.execute_title">services.execute()</h2>
                         <div id="services-grid" class="skills-grid grid-2x2">
                             <!-- DYNAMICALLY LOADED -->
                         </div>
@@ -142,9 +142,9 @@
 
                     <!-- WORKFLOW -->
                     <section id="workflow">
-                        <h2 data-i18n="home.services_title">system.get_workflow()</h2>
+                        <h2 data-i18n="services.workflow_title">system.get_workflow()</h2>
                         <div class="terminal-card">
-                            <div class="card-header"><span class="card-title">Execution Pipeline</span></div>
+                            <div class="card-header"><span class="card-title" data-i18n="services.pipeline_card">Execution Pipeline</span></div>
                             <div id="workflow-steps" class="skills-grid grid-2x2">
                                 <!-- DYNAMICALLY LOADED -->
                             </div>

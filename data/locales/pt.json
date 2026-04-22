@@ -31,14 +31,16 @@
     "protocol_docs": "Documentação de Protocolo",
     "system_map": "Mapa do Sistema",
     "source_code": "Código Fonte",
-    "acc_settings": "Configurações de Acessibilidade"
+    "acc_settings": "Configurações de Acessibilidade",
+    "no_modules": "NENHUM MÓDULO CORRESPONDE AOS CRITÉRIOS."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "Pular para o conteúdo",
     "exit_config": "$ ./sair_config",
     "report_issue": "$ ./relatar_problema",
-    "acc_conf": "Acessibilidade.conf"
+    "acc_conf": "Acessibilidade.conf",
+    "locale": "Localidade"
   },
   "acc": {
     "high_contrast": "Alto Contraste",
@@ -61,7 +63,7 @@
     "pricing_title": "preços.ver_níveis()",
     "blog_title": "blog.ler_entradas()",
     "btn_read_more": "$ ./ler_mais",
-    "projects_title": "projetos.acessar_arquivo()",
+    "projects_title": "projetos.acessar_archive()",
     "btn_all_projects": "$ ./ver_todos_projetos",
     "connect_title": "conectar.init_handshake()",
     "btn_send": "$ ./enviar_transmissão"
@@ -77,5 +79,43 @@
     "resume": "CURRÍCULO",
     "docs": "DOCS",
     "directory": "DIRETÓRIO"
+  },
+  "resume": {
+    "education_title": "sistema.obter_educação()"
+  },
+  "profile": {
+    "skill_tree_title": "usuário.obter_árvore_de_habilidades()"
+  },
+  "docs": {
+    "faq_title": "sistema.obter_faq()"
+  },
+  "bio": {
+    "name": "NOME",
+    "origin": "ORIGEM",
+    "occupation": "OCUPAÇÃO",
+    "status": "ESTADO"
+  },
+  "connect": {
+    "identifier": "Identificador",
+    "email_node": "Nó de E-mail",
+    "signal_type": "Tipo de Sinal",
+    "signal_inquiry": "Inquérito",
+    "signal_collab": "Colaboração",
+    "signal_security": "Relatório de Segurança",
+    "signal_feedback": "Feedback do Sistema",
+    "transmission": "Transmissão",
+    "placeholder_name": "Digite o nome...",
+    "placeholder_email": "Digite o e-mail...",
+    "placeholder_message": "Digite a mensagem..."
+  },
+  "services": {
+    "discovery_card": "Descoberta de Módulos",
+    "search_placeholder": "Consultar módulos do sistema...",
+    "filter_all": "TUDO",
+    "filter_dev": "DES",
+    "filter_sys": "SIS",
+    "pipeline_card": "Pipeline de Execução",
+    "execute_title": "serviços.executar()",
+    "workflow_title": "sistema.obter_workflow()"
   }
 }

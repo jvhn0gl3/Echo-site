@@ -31,14 +31,16 @@
     "protocol_docs": "프로토콜 문서",
     "system_map": "시스템 맵",
     "source_code": "소스 코드",
-    "acc_settings": "접근성 설정"
+    "acc_settings": "접근성 설정",
+    "no_modules": "조건에 일치하는 모듈이 없습니다."
   },
   "ui": {
     "app_title": "ECHO://OS",
     "skip_link": "콘텐츠로 건너뛰기",
     "exit_config": "$ ./설정_종료",
     "report_issue": "$ ./문제_보고",
-    "acc_conf": "접근성.conf"
+    "acc_conf": "접근성.conf",
+    "locale": "로케일"
   },
   "acc": {
     "high_contrast": "고대비",
@@ -77,5 +79,43 @@
     "resume": "이력서",
     "docs": "문서",
     "directory": "디렉토리"
+  },
+  "resume": {
+    "education_title": "시스템.교육_정보_가져오기()"
+  },
+  "profile": {
+    "skill_tree_title": "사용자.기술_트리_가져오기()"
+  },
+  "docs": {
+    "faq_title": "시스템.FAQ_가져오기()"
+  },
+  "bio": {
+    "name": "이름",
+    "origin": "출신",
+    "occupation": "직업",
+    "status": "상태"
+  },
+  "connect": {
+    "identifier": "식별자",
+    "email_node": "이메일 노드",
+    "signal_type": "신호 유형",
+    "signal_inquiry": "문의",
+    "signal_collab": "협업",
+    "signal_security": "보안 보고",
+    "signal_feedback": "시스템 피드백",
+    "transmission": "전송",
+    "placeholder_name": "이름 입력...",
+    "placeholder_email": "이메일 입력...",
+    "placeholder_message": "메시지 입력..."
+  },
+  "services": {
+    "discovery_card": "모듈 검색",
+    "search_placeholder": "시스템 모듈 쿼리...",
+    "filter_all": "전체",
+    "filter_dev": "개발",
+    "filter_sys": "시스템",
+    "pipeline_card": "실행 파이프라인",
+    "execute_title": "서비스.실행()",
+    "workflow_title": "시스템.워크플로_가져오기()"
   }
 }

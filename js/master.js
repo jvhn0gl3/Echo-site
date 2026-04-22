@@ -56,8 +56,8 @@ function applyTranslations() {
     });
 
     // Translate dynamic tooltips if they use keys
-    document.querySelectorAll('[data-i10n-tooltip]').forEach(el => {
-        const key = el.dataset.i10nTooltip;
+    document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
+        const key = el.dataset.i18nTooltip;
         const translation = t(key);
         if (translation !== key) {
             el.setAttribute('data-tooltip', translation);
@@ -178,7 +178,7 @@ function initializeNavigation() {
     if (footer && !statusBar) {
         statusBar = document.createElement('div');
         statusBar.className = 'footer-status-bar';
-        statusBar.innerHTML = '<span class="status-prefix">SYSTEM:</span><span class="status-content"></span>';
+        statusBar.innerHTML = `<span class="status-prefix">${t('status.system')}</span><span class="status-content"></span>`;
         footer.appendChild(statusBar);
     }
 
@@ -350,7 +350,7 @@ function initializeAccessibility() {
                     <div class="acc-toggle"></div>
                 </div>
                 <div class="acc-option" data-setting="acc-dyslexia">
-                    <span>Dyslexia Font</span>
+                    <span data-i18n="acc.dyslexia">Dyslexia Font</span>
                     <div class="acc-toggle"></div>
                 </div>
                 <div class="acc-option" data-setting="acc-light-mode">
@@ -359,7 +359,7 @@ function initializeAccessibility() {
                 </div>
                 <div class="acc-option-group" style="padding: 12px; border-bottom: 1px solid var(--border-main);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span data-i18n="nav.directory">Locale</span>
+                        <span data-i18n="ui.locale">Locale</span>
                         <div style="display: flex; gap: 5px; flex-wrap: wrap;">
                             <button class="social-btn lang-btn active" data-lang="en" style="padding: 2px 8px; font-size: 0.55rem;">EN</button>
                             <button class="social-btn lang-btn" data-lang="es" style="padding: 2px 8px; font-size: 0.55rem;">ES</button>
@@ -445,10 +445,10 @@ async function loadSiteContent() {
         const bio = data.profile.biological;
         if (document.getElementById('bio-data')) {
             document.getElementById('bio-data').innerHTML = `
-                <p><span class="text-gold">> NAME:</span> ${bio.name}</p>
-                <p><span class="text-gold">> ORIGIN:</span> ${bio.origin}</p>
-                <p><span class="text-gold">> OCCUPATION:</span> ${bio.occupation}</p>
-                <p><span class="text-gold">> STATUS:</span> ${bio.status}</p>
+                <p><span class="text-gold">> ${t('bio.name')}:</span> ${bio.name}</p>
+                <p><span class="text-gold">> ${t('bio.origin')}:</span> ${bio.origin}</p>
+                <p><span class="text-gold">> ${t('bio.occupation')}:</span> ${bio.occupation}</p>
+                <p><span class="text-gold">> ${t('bio.status')}:</span> ${bio.status}</p>
             `;
         }
 
@@ -530,7 +530,7 @@ async function loadSiteContent() {
                 });
 
                 if (filtered.length === 0) {
-                    servicesGrid.innerHTML = `<div class="terminal-card" style="grid-column: 1 / -1; text-align: center; border-style: dashed;"><p class="text-dim">NO MODULES MATCHING CRITERIA.</p></div>`;
+                    servicesGrid.innerHTML = `<div class="terminal-card" style="grid-column: 1 / -1; text-align: center; border-style: dashed;"><p class="text-dim">${t('status.no_modules')}</p></div>`;
                 } else {
                     servicesGrid.innerHTML = filtered.map(module => `
                         <div class="terminal-card service-card" data-tooltip="Initialize ${module.title}">
