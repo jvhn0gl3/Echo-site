@@ -50,10 +50,48 @@
                 </div>
             </div>
 
+            <nav class="breadcrumb-nav">
+                <div class="breadcrumb-content">
+                    <span class="breadcrumb-item active">HOME</span>
+                </div>
+            </nav>
+
+            <div class="main-content">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-hud">
+                            <h1 class="hero-title glitch" data-text="JOHN OGLETREE">JOHN OGLETREE</h1>
+                            <div class="text-neon">DIGITAL ARCHITECT // CREATIVE TECHNOLOGIST</div>
+                            
+                            <div style="display:flex; gap:12px; flex-direction:column; margin-top: 20px;">
+                                <a href="#projects" class="matrix-btn">$ ./view_projects</a>
+                                <a href="#connect" class="matrix-btn">$ ./view_connect</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="container" id="app">
+                    <!-- CONTENT WILL BE LOADED BY JS -->
+                </div>
+            </div>
+
             <header class="app-header">
                 <div class="app-title">ECHO://OS</div>
             </header>
+            
+            <div class="crt"></div><div class="scanner"></div>
         </main>
     </div>
+    <script src="/js/master.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('[SYSTEM] Service Worker Registered:', reg.scope))
+                    .catch(err => console.error('[ERROR] Service Worker Registration Failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>
