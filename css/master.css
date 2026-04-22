@@ -441,15 +441,40 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
 }
 
 /* SERVICES GRID */
+.service-card {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.service-card p {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #b0b0b0;
+}
+
 .terminal-list {
     list-style: none;
     text-align: left;
-    margin: 15px 0;
+    margin: 10px 0;
     font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
+
+.terminal-list li {
+    padding-left: 15px;
+    position: relative;
+}
+
 .terminal-list li::before {
-    content: "> ";
+    content: ">";
     color: var(--neon-primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
 }
 
 /* PROJECTS */

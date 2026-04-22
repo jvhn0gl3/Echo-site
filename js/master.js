@@ -255,11 +255,11 @@ async function loadSiteContent() {
                     servicesGrid.innerHTML = `<div class="terminal-card" style="grid-column: 1 / -1; text-align: center; border-style: dashed;"><p class="text-dim">NO MODULES MATCHING CRITERIA.</p></div>`;
                 } else {
                     servicesGrid.innerHTML = filtered.map(module => `
-                        <div class="terminal-card" style="text-align: center;">
-                            <div class="card-header"><i class="${module.icon}"></i><span class="card-title">${module.title}</span></div>
+                        <div class="terminal-card service-card">
+                            <div class="card-header"><i class="${module.icon}"></i> <span class="card-title">${module.title}</span></div>
                             <p>${module.description}</p>
                             <ul class="terminal-list">${module.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                            <div style="margin-top: 20px;"><a href="#" class="terminal-btn">$ ./${module.command}</a></div>
+                            <div style="margin-top: 10px;"><a href="#" class="terminal-btn" style="width: 100%;">$ ./${module.command}</a></div>
                         </div>
                     `).join('');
                 }
