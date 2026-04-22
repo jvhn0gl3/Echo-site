@@ -325,7 +325,19 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     border-left: 3px solid var(--neon-accent);
 }
 .skill-percentage { color: var(--neon-accent); font-weight: 900; }
-.skill-bar-fill { background: linear-gradient(to right, var(--neon-accent), var(--neon-primary)); }
+.skill-bar-fill {
+    background: linear-gradient(to right, var(--neon-accent), var(--neon-primary));
+    height: 100%;
+    width: 0; /* Start at 0 for animation */
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--neon-primary-glow);
+    animation: fillBar 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fillBar {
+    from { width: 0; }
+    to { width: var(--fill-to); }
+}
 
 /* HERO (VIBRANT) */
 .hero {

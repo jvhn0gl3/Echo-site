@@ -203,7 +203,7 @@ async function loadSiteContent() {
                         <div class="skill-stats">
                             <div class="skill-percentage">${percentage}%</div>
                             <div class="skill-bar-container">
-                                <div class="skill-bar-fill" style="width: ${percentage}%"></div>
+                                <div class="skill-bar-fill" style="--fill-to: ${percentage}%"></div>
                             </div>
                         </div>
                     </div>
