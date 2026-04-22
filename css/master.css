@@ -143,6 +143,7 @@ body {
     z-index: 10000006;
     position: relative;
     flex-shrink: 0;
+    margin-top: auto;
 }
 .nav-item {
     display: flex;
