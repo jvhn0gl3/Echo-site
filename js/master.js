@@ -93,6 +93,7 @@ class SiteSidebar extends HTMLElement {
             </nav>
         </div>
         <div class="sidebar-footer-nav">
+            <a href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-tooltip="Accessibility Settings"><i class="fas fa-universal-access"></i> <span>accessibility</span></a>
             <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-tooltip="Source Code"><i class="fab fa-github"></i> <span>github</span></a>
         </div>
     </aside>
