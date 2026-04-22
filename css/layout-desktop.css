@@ -46,8 +46,13 @@ html, body {
 }
 
 .breadcrumb-item::before {
-    content: ">";
+    content: ">>";
     color: #00ff9d;
+    font-weight: normal;
+}
+
+.breadcrumb-item:first-child::before {
+    content: "";
 }
 
 .breadcrumb-item.active {
