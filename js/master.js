@@ -80,20 +80,20 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
-                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME"><i class="fas fa-house"></i> <span>[BIN] home</span></a>
-                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
-                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES"><i class="fas fa-microchip"></i> <span>[SYS] services</span></a>
-                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING"><i class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
-                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG"><i class="fas fa-rss"></i> <span>[LOG] blog</span></a>
-                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
-                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT"><i class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
-                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
-                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS"><i class="fas fa-book"></i> <span>[DOC] docs</span></a>
-                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
+                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-tooltip="System Dashboard"><i class="fas fa-house"></i> <span>[BIN] home</span></a>
+                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-tooltip="User Identity & Skills"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
+                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-tooltip="Operational Modules"><i class="fas fa-microchip"></i> <span>[SYS] services</span></a>
+                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-tooltip="Resource Allocation"><i class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
+                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-tooltip="System Logs"><i class="fas fa-rss"></i> <span>[LOG] blog</span></a>
+                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-tooltip="Development Archive"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
+                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-tooltip="Secure Handshake"><i class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
+                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-tooltip="Professional History"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
+                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-tooltip="Protocol Documentation"><i class="fas fa-book"></i> <span>[DOC] docs</span></a>
+                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-tooltip="System Map"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
-            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB"><i class="fab fa-github"></i> <span>github</span></a>
+            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-tooltip="Source Code"><i class="fab fa-github"></i> <span>github</span></a>
         </div>
     </aside>
         `;
@@ -195,7 +195,7 @@ async function loadSiteContent() {
                 // Generate a pseudo-random stable percentage for the skill
                 const percentage = Math.floor(Math.random() * 20 + 75); // 75% to 95%
                 return `
-                    <div class="skill-item">
+                    <div class="skill-item" data-tooltip="Competency: ${percentage}%">
                         <div class="skill-main">
                             <i class="${skill.icon}"></i>
                             <span>${skill.label}</span>
@@ -255,7 +255,7 @@ async function loadSiteContent() {
                     servicesGrid.innerHTML = `<div class="terminal-card" style="grid-column: 1 / -1; text-align: center; border-style: dashed;"><p class="text-dim">NO MODULES MATCHING CRITERIA.</p></div>`;
                 } else {
                     servicesGrid.innerHTML = filtered.map(module => `
-                        <div class="terminal-card service-card">
+                        <div class="terminal-card service-card" data-tooltip="Initialize ${module.title}">
                             <div class="card-header"><i class="${module.icon}"></i> <span class="card-title">${module.title}</span></div>
                             <p>${module.description}</p>
                             <ul class="terminal-list">${module.list.map(item => `<li>${item}</li>`).join('')}</ul>
