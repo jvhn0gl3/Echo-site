@@ -15,6 +15,14 @@ async function loadLocale(lang = 'en') {
         localStorage.setItem('site-locale', lang);
         document.documentElement.lang = lang;
         applyTranslations();
+        
+        // Sync Language Dropdown UI
+        const display = document.getElementById('currentLangDisplay');
+        if (display) display.textContent = lang.toUpperCase();
+        document.querySelectorAll('.lang-opt').forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.lang === lang);
+        });
+
         console.log(`[i18n] System locale set to: ${lang}`);
     } catch (error) {
         console.error(`[i18n] Failed to load locale ${lang}:`, error);
@@ -250,6 +258,40 @@ function initializeNavigation() {
     });
 }
 window.initializeNavigation = initializeNavigation;
+
+// 3b. LANGUAGE DROPDOWN
+function initializeLanguageDropdown() {
+    const toggle = document.getElementById('langToggle');
+    const dropdown = document.getElementById('langDropdown');
+    const options = document.querySelectorAll('.lang-opt');
+
+    if (!toggle || !dropdown) return;
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+    });
+
+    options.forEach(opt => {
+        opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const lang = opt.dataset.lang;
+            loadLocale(lang);
+            dropdown.classList.remove('active');
+            
+            // Sync with accessibility modal
+            const modalLangBtns = document.querySelectorAll('.acc-modal .lang-btn');
+            modalLangBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        });
+    });
+
+    document.addEventListener('click', () => {
+        dropdown.classList.remove('active');
+    });
+}
+window.initializeLanguageDropdown = initializeLanguageDropdown;
 
 // 4. UI EFFECTS
 const heroTypingEl = document.getElementById('heroTyping');
@@ -610,6 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLocale(currentLocale); // Initial translation load
     loadLinks();
     initializeNavigation();
+    initializeLanguageDropdown();
     initializeForms();
     initializeAccessibility();
     loadSiteContent();

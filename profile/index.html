@@ -34,7 +34,16 @@
 
         <main class="app-main">
             <div class="app-status-bar"><div class="status-left">10:42 PM</div><div class="status-right"><i aria-hidden="true" class="fas fa-wifi"></i><i aria-hidden="true" class="fas fa-signal"></i><div class="battery"></div></div></div>
-            <nav class="breadcrumb-nav"><div class="breadcrumb-back"><i aria-hidden="true" class="fas fa-chevron-left"></i></div><div class="breadcrumb-content"><span class="breadcrumb-item"><a href="/index.html" data-i18n="breadcrumb.home">HOME</a></span><span class="breadcrumb-item active" data-i18n="breadcrumb.profile">PROFILE</span></div></nav>
+            <nav class="breadcrumb-nav"><div class="breadcrumb-back"><i aria-hidden="true" class="fas fa-chevron-left"></i></div><div class="breadcrumb-content"><span class="breadcrumb-item"><a href="/index.html" data-i18n="breadcrumb.home">HOME</a></span><span class="breadcrumb-item active" data-i18n="breadcrumb.profile">PROFILE</span><div class="breadcrumb-lang">
+                        <button class="lang-toggle" id="langToggle">
+                            <i class="fas fa-globe"></i>
+                            <span id="currentLangDisplay">EN</span>
+                        </button>
+                        <div class="lang-dropdown" id="langDropdown">
+                            <button class="lang-opt active" data-lang="en">EN // ENGLISH</button>
+                            <button class="lang-opt" data-lang="es">ES // ESPAÑOL</button>
+                        </div>
+                    </div></div></nav>
 
             <div class="main-content">
                 <section class="hero">
