@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ECHO://SERVICES | System Capabilities</title>
+    <meta name="description" content="System Capabilities - Digital Architecture & Specialized Modules">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/master.css">
+    <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
+</head>
+<body style="margin:0; padding:0;">
+
+    <site-sidebar active="services"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
+    
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-content">
+            <span class="breadcrumb-item"><a href="/index.html">HOME</a></span>
+            <span class="breadcrumb-item active">SERVICES</span>
+        </div>
+    </nav>
+    
+    <div class="main-content">
+        <section class="hero" style="min-height: 25vh;">
+            <div class="hero-content">
+                <h1 class="hero-title glitch" data-text="SYSTEM MODULES">SYSTEM MODULES</h1>
+                <p class="text-neon" style="font-size: 0.9rem; letter-spacing: 2px;">SPECIALIZED CAPABILITIES // OPERATIONAL DOMAINS</p>
+            </div>
+        </section>
+
+        <div class="container" id="app">
+            <!-- MODULE FILTERING SECTION -->
+            <section id="system-audit" class="centered-section">
+                <h2>system.audit_capabilities()</h2>
+                
+                <div class="terminal-card" style="width: 100%; max-width: 1000px;">
+                    <div class="card-header"><span class="card-title">Filter Control</span></div>
+                    
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
+                        <input type="text" id="service-search" placeholder="grep --search [keyword]..." class="terminal-input" style="flex: 1; min-width: 250px; margin-bottom: 0;">
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <button class="terminal-btn filter-btn active" data-category="all" style="padding: 12px 20px; width: auto;">ALL</button>
+                            <button class="terminal-btn filter-btn" data-category="development" style="padding: 12px 20px; width: auto;">DEV</button>
+                            <button class="terminal-btn filter-btn" data-category="design" style="padding: 12px 20px; width: auto;">DSN</button>
+                            <button class="terminal-btn filter-btn" data-category="ai" style="padding: 12px 20px; width: auto;">A.I.</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="services-grid-2x2" id="services-grid" style="margin-top: 30px;">
+                    <!-- Injected via master.js -->
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><div class="divider-line"></div></div>
+
+            <!-- WORKFLOW SECTION -->
+            <section id="workflow" class="centered-section">
+                <h2>system.deployment_workflow</h2>
+                <div class="stats-grid" id="workflow-steps" style="width: 100%; max-width: 800px;">
+                    <!-- Injected via master.js -->
+                </div>
+            </section>
+        </div>
+        
+    </div>
+
+    <script src="/js/master.js"></script>
+</body>
+</html>
