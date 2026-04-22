@@ -9,16 +9,13 @@ async function loadLinks() {
         const response = await fetch('/data/links.json');
         const data = await response.json();
 
-        // 1. Populate Internal Navigation (Sidebar)
-        document.querySelectorAll('.sidebar-nav .sidebar-link').forEach(link => {
+        // 1. Populate Internal Navigation (App Nav)
+        document.querySelectorAll('.app-nav .nav-item, .sidebar-nav .sidebar-link').forEach(link => {
             const span = link.querySelector('span');
             if (span) {
-                const match = span.textContent.match(/\[\w+\]\s*(\w+)/);
-                if (match) {
-                    const key = match[1].toLowerCase();
-                    if (data.internal[key]) {
-                        link.setAttribute('href', data.internal[key]);
-                    }
+                const text = span.textContent.toLowerCase();
+                if (data.internal[text]) {
+                    link.setAttribute('href', data.internal[text]);
                 }
             }
         });
@@ -54,27 +51,23 @@ async function loadLinks() {
             }
         });
 
-        // 4. Fallback for specific classes
-        const classMappings = {
-            '.btn-projects-link': data.internal.projects,
-            '.btn-services-link': data.internal.services,
-            '.btn-log-link': data.internal.log,
-            '.btn-connect-link': data.internal.connect,
-            '.btn-more-red': data.internal.about
-        };
-
-        for (const [selector, url] of Object.entries(classMappings)) {
-            document.querySelectorAll(selector).forEach(el => {
-                if (url) el.setAttribute('href', url);
-            });
-        }
-
         console.log('[SUCCESS] All system links synchronized.');
     } catch (error) {
         console.error('[ERROR] System link synchronization failed:', error);
     }
 }
 window.loadLinks = loadLinks;
+
+// 1b. DYNAMIC STATUS BAR TIME
+function updateStatusBarTime() {
+    const timeEl = document.querySelector('.status-left');
+    if (timeEl) {
+        const now = new Date();
+        timeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+}
+setInterval(updateStatusBarTime, 1000);
+updateStatusBarTime();
 
 // 2. SIDEBAR COMPONENT
 class SiteSidebar extends HTMLElement {
