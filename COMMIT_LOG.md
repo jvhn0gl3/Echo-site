@@ -73,4 +73,5 @@ This file tracks all commits made to this repository.
 - Created `services.html` with terminal-style search, category filtering, and dynamic workflow visualization.
 - Integrated a new "Pricing Plans" section in `index.html` with terminal-style tiered architecture.
 - Finalized global removal of all section heading (`h2`) and divider icons to enforce a minimalist text-driven terminal aesthetic.
+- Enforced a strict, uniform mobile-first layout globally by removing all media queries and multi-column grid expansions.
 
