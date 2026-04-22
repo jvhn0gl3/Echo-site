@@ -21,7 +21,7 @@
   "buttons": {
     "view_projects": "/projects.html",
     "view_connect": "/connect.html",
-    "load_more_identity": "/profile/index.html",
+    "load_more_identity": "/profile.html",
     "explore_all_services": "/services.html",
     "view_pricing_overview": "/pricing.html",
     "fetch_all_repositories": "https://github.com/jvhn0gl3?tab=repositories",

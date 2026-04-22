@@ -2,7 +2,7 @@ const CACHE_NAME = 'echo-os-cache-v1';
 const ASSETS = [
   '/',
   '/index.html',
-  '/profile/index.html',
+  '/profile.html',
   '/services.html',
   '/projects.html',
   '/resume.html',
