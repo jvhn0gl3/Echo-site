@@ -17,7 +17,7 @@ class SiteSidebar extends HTMLElement {
                 <a href="/faq.html" class="sidebar-link ${activePage === 'faq' ? 'active' : ''}" data-label="FAQ"><i class="fas fa-circle-question"></i> <span>[FAQ] help</span></a>
                 <a href="/directory.html" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
                 <a href="/legal.html" class="sidebar-link ${activePage === 'legal' ? 'active' : ''}" data-label="LEGAL"><i class="fas fa-scale-balanced"></i> <span>[DOC] legal</span></a>
-                <a href="/dossier.html" class="sidebar-link ${activePage === 'dossier' || activePage === 'resume' ? 'active' : ''}" data-label="DOSSIER"><i class="fas fa-file-pdf"></i> <span>[DOC] dossier</span></a>
+                <a href="/resume.html" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
