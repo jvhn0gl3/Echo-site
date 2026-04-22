@@ -467,6 +467,52 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     box-shadow: 0 0 10px var(--neon-primary-glow);
 }
 
+/* FILE TREE (SKILL TREE) */
+.file-tree {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+}
+.tree-root {
+    color: var(--text-gold);
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tree-branch {
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    margin-left: 10px;
+}
+.tree-node {
+    padding: 4px 0 4px 15px;
+    position: relative;
+}
+.tree-node::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+.tree-branch.last {
+    border-left: none;
+}
+.tree-branch.last::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .profile-logo {
     border: 2px solid var(--neon-accent);
     box-shadow: 0 0 20px var(--neon-accent-glow);
