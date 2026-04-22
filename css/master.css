@@ -329,6 +329,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
+    counter-reset: node-counter;
 }
 
 .ls-row {
@@ -342,7 +343,30 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     transition: all 0.2s;
+    position: relative;
+    counter-increment: node-counter;
 }
+
+.ls-row.ls-nested {
+    counter-increment: none;
+}
+
+.ls-row.ls-nested::before {
+    content: ">>";
+    left: -20px;
+}
+
+
+.ls-row::before {
+    content: "[" counter(node-counter, decimal-leading-zero) "]";
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
 .ls-row:hover { background: rgba(0, 255, 157, 0.05); border-color: var(--neon-primary); }
 
 .ls-icon {

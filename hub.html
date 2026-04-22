@@ -35,7 +35,7 @@
         <div class="container">
             <div class="terminal-card" style="border-style: dashed; border-color: #ffd93d;">
                 <div class="card-header"><i class="fas fa-satellite"></i> <span class="card-title">NETWORK_MAP.exe</span></div>
-                <p class="text-dim" style="font-size: 0.8rem; margin-bottom: 20px;">Scanning local filesystem for active nodes... Found [12] reachable endpoints.</p>
+                <p class="text-dim" style="font-size: 0.8rem; margin-bottom: 20px;">Scanning local filesystem for active nodes... Found [11] reachable parent nodes.</p>
                 
                 <div class="ls-list">
                     <!-- Home -->
@@ -53,6 +53,15 @@
                         <div class="ls-info">
                             <span class="ls-name">profile/index.html</span>
                             <span class="ls-meta">User Biometrics // Status: OFFLINE</span>
+                        </div>
+                    </a>
+
+                    <!-- Dossier (NESTED) -->
+                    <a href="/profile/dossier.html" class="ls-row ls-nested" style="border-color: #ff6b6b; background: rgba(255, 107, 107, 0.02); margin-left: 30px;">
+                        <div class="ls-icon"><i class="fas fa-user-secret" style="color: #ff6b6b;"></i></div>
+                        <div class="ls-info">
+                            <span class="ls-name">profile/dossier.html</span>
+                            <span class="ls-meta">Restricted Dossier // Status: ENCRYPTED</span>
                         </div>
                     </a>
 
@@ -128,15 +137,6 @@
                         </div>
                     </a>
 
-                    <!-- Dossier -->
-                    <a href="/profile/dossier.html" class="ls-row" style="border-color: #ff6b6b; background: rgba(255, 107, 107, 0.02);">
-                        <div class="ls-icon"><i class="fas fa-user-secret" style="color: #ff6b6b;"></i></div>
-                        <div class="ls-info">
-                            <span class="ls-name">profile/dossier.html</span>
-                            <span class="ls-meta">Restricted Dossier // Status: ENCRYPTED</span>
-                        </div>
-                    </a>
-
                     <!-- Log -->
                     <a href="/log.html" class="ls-row">
                         <div class="ls-icon"><i class="fas fa-terminal" style="color: #ffd93d;"></i></div>
@@ -163,14 +163,6 @@
         </footer>
     </div>
 
-    <script src="/js/sidebar-component.js"></script>
-    <script src="/js/navigation.js"></script>
-    <script src="/js/ui-effects.js"></script>
-    <script src="/js/forms.js"></script>
-    <script src="/js/data-loader.js"></script>
-    <script src="/js/content-loader.js"></script>
-</body>
-</html>
-r.js"></script>
+    <script src="/js/master.js"></script>
 </body>
 </html>
