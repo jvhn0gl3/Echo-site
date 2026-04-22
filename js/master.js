@@ -118,6 +118,15 @@ function initializeNavigation() {
         });
     });
 
+    // Back button functionality
+    document.querySelectorAll('.breadcrumb-back').forEach(btn => {
+        if (btn.dataset.backBound) return;
+        btn.dataset.backBound = "true";
+        btn.addEventListener('click', () => {
+            window.history.back();
+        });
+    });
+
     // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
