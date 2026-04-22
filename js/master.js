@@ -187,7 +187,13 @@ async function loadSiteContent() {
 
         const skillsContainer = document.getElementById('neural-skills-grid');
         if (skillsContainer) {
-            skillsContainer.innerHTML = data.profile.neural_network.skills.map(skill => `
+            // Combine core icons and all nodes from the skill tree
+            const coreSkills = data.profile.neural_network.skills.map(s => ({ label: s.label, icon: s.icon }));
+            const treeSkills = data.profile.skill_tree.flatMap(branch => branch.nodes.map(node => ({ label: node, icon: 'fas fa-code' })));
+            
+            const allSkills = [...coreSkills, ...treeSkills];
+            
+            skillsContainer.innerHTML = allSkills.map(skill => `
                 <div class="skill-item"><i class="${skill.icon}"></i><span>${skill.label}</span></div>
             `).join('');
         }
