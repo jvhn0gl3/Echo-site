@@ -103,88 +103,20 @@ class SiteSidebar extends HTMLElement {
 }
 customElements.define('site-sidebar', SiteSidebar);
 
-// 3. NAVIGATION & SPA LOGIC
+// 3. NAVIGATION LOGIC
 function initializeNavigation() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
     
-    // SPA ROUTER
-    const navigateTo = (url) => {
-        if (url === window.location.pathname) return;
-        
-        fetch(url)
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const newMain = doc.querySelector('.app-main');
-                const currentMain = document.querySelector('.app-main');
-                
-                if (newMain && currentMain) {
-                    currentMain.innerHTML = newMain.innerHTML;
-                    window.history.pushState({}, '', url);
-                    
-                    // Re-initialize for new content
-                    document.title = doc.title;
-                    updateActiveLinks(url);
-                    loadSiteContent();
-                    initializeNavigation(); // Re-bind SPA listeners
-                    
-                    // Reset scroll
-                    const newScrollArea = document.querySelector('.main-content');
-                    if (newScrollArea) newScrollArea.scrollTop = 0;
-                    
-                    console.log(`[SPA] Navigated to: ${url}`);
-                }
-            })
-            .catch(err => {
-                console.error('[SPA] Navigation failed, falling back to full reload:', err);
-                window.location.href = url;
-            });
-    };
-
-    const updateActiveLinks = (url) => {
-        document.querySelectorAll('.nav-item, .sidebar-link').forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === url || (url.endsWith('/') && href === url + 'index.html')) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-    };
-
-    // Intercept all internal links and terminal buttons
-    document.querySelectorAll('a, .matrix-btn, .terminal-btn').forEach(el => {
-        // Prevent double-binding
-        if (el.dataset.spaBound) return;
-        el.dataset.spaBound = "true";
-
-        // Get URL from href (if anchor) or search for nearest parent anchor
-        let href = el.getAttribute('href');
-        
-        // Skip external, anchors, or non-local links
-        if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
-
-        el.addEventListener('click', (e) => {
-            // Only SPA navigate if it's a left click without modifier keys
-            if (e.button === 0 && !e.ctrlKey && !e.shiftKey && !e.metaKey && !e.altKey) {
-                e.preventDefault();
-                navigateTo(href);
-                
-                // Close mobile sidebar if open
-                if (window.innerWidth <= 1024 && sidebar) {
-                    sidebar.classList.remove('open');
-                    mainContent?.classList.remove('blurred');
-                }
+    document.querySelectorAll('.sidebar-link, .nav-item').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Close mobile sidebar if open
+            if (window.innerWidth <= 1024 && sidebar) {
+                sidebar.classList.remove('open');
+                mainContent?.classList.remove('blurred');
             }
         });
     });
-
-    // Handle browser back/forward
-    window.onpopstate = () => {
-        window.location.reload(); // Simplest popstate sync
-    };
 
     // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
