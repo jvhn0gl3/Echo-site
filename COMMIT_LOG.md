@@ -74,4 +74,5 @@ This file tracks all commits made to this repository.
 - Integrated a new "Pricing Plans" section in `index.html` with terminal-style tiered architecture.
 - Finalized global removal of all section heading (`h2`) and divider icons to enforce a minimalist text-driven terminal aesthetic.
 - Enforced a strict, uniform mobile-first layout globally by removing all media queries and multi-column grid expansions.
+- Transformed the site into a dedicated "Mobile App" interface with a constrained `app-container`, top status bar, and bottom navigation bar.
 

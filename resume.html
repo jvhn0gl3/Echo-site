@@ -7,57 +7,77 @@
     <meta name="description" content="Professional Resume - John Ogletree">
     <link rel="icon" type="image/jpeg" href="/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/components.css">
-    <link rel="stylesheet" href="/css/effects.css">
-    <link rel="stylesheet" href="/css/hero.css">
-    <link rel="stylesheet" href="/css/layout-desktop.css">
-    <link rel="stylesheet" href="/css/layout-mobile.css">
-    <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
+    <link rel="stylesheet" href="/css/master.css">
 </head>
 <body style="margin:0; padding:0;">
-
-    <site-sidebar active="resume"></site-sidebar>
-
-    <div class="crt"></div><div class="scanner"></div>
-    <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
-    
-    <nav class="breadcrumb-nav">
-        <div class="breadcrumb-content">
-            <span class="breadcrumb-item"><a href="/index.html">HOME</a></span>
-            <span class="breadcrumb-item active">RESUME</span>
-        </div>
-    </nav>
-    
-    <div class="main-content">
-        <section class="hero" style="min-height: 20vh; margin-bottom: 30px;">
-            <div class="hero-content">
-                <h1 class="hero-title glitch" data-text="CAREER_LOG.txt">CAREER_LOG.txt</h1>
-                <p class="text-neon" style="font-size: 0.9rem; letter-spacing: 2px;">PROFESSIONAL EXPERIENCE // ACADEMIC DATA</p>
+    <div class="app-container">
+        <div class="app-status-bar">
+            <div class="status-left">10:42 PM</div>
+            <div class="status-right">
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-signal"></i>
+                <div class="battery"></div>
             </div>
-        </section>
-
-        <div class="container" id="app">
-            <!-- EXPERIENCE SECTION -->
-            <section id="experience">
-                <h2>system.get_experience()</h2>
-                <div class="grid-2" id="experience-list">
-                    <!-- Injected via content-loader.js -->
-                </div>
-            </section>
-
-            <div class="section-divider"><div class="divider-line"></div><div class="divider-line"></div></div>
-
-            <!-- EDUCATION SECTION -->
-            <section id="education">
-                <h2>system.get_education()</h2>
-                <div class="terminal-card" id="education-data" style="width: 100%;">
-                    <!-- Injected via content-loader.js -->
-                </div>
-            </section>
         </div>
-        
+
+        <header class="app-header">
+            <div class="app-title">ECHO://OS</div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <div class="breadcrumb-content">
+                <span class="breadcrumb-item"><a href="/index.html">HOME</a></span>
+                <span class="breadcrumb-item active">RESUME</span>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-hud">
+                        <h1 class="hero-title glitch" data-text="CAREER_LOG.txt">CAREER_LOG.txt</h1>
+                        <div class="text-neon">PROFESSIONAL EXPERIENCE // ACADEMIC DATA</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container" id="app">
+                <!-- EXPERIENCE SECTION -->
+                <section id="experience">
+                    <h2>system.get_experience()</h2>
+                    <div id="experience-list"></div>
+                </section>
+
+                <div class="section-divider"><div class="divider-line"></div><div class="divider-line"></div></div>
+
+                <!-- EDUCATION SECTION -->
+                <section id="education">
+                    <h2>system.get_education()</h2>
+                    <div class="terminal-card" id="education-data"></div>
+                </section>
+            </div>
+        </div>
+
+        <nav class="app-nav">
+            <a href="/index.html" class="nav-item">
+                <i class="fas fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="/profile.html" class="nav-item">
+                <i class="fas fa-user-astronaut"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/resume.html" class="nav-item active">
+                <i class="fas fa-file-pdf"></i>
+                <span>Resume</span>
+            </a>
+            <a href="/connect.html" class="nav-item">
+                <i class="fas fa-plug"></i>
+                <span>Connect</span>
+            </a>
+        </nav>
+        <div class="crt"></div><div class="scanner"></div>
+        <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
     </div>
 
     <script src="/js/master.js"></script>
