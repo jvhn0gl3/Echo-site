@@ -186,17 +186,88 @@ footer {
     bottom: 0;
     left: 65px;
     width: calc(100% - 65px);
-    background: rgba(10, 12, 15, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    text-align: center;
+    background: rgba(10, 12, 15, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 15px 30px;
     border-top: 1px solid rgba(0, 255, 157, 0.2);
-    color: var(--text-dim);
-    font-size: 0.7rem;
-    font-family: monospace;
     z-index: 1000;
     transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
 }
+
+.footer-revamp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-status {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-label {
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.status-value {
+    color: var(--neon-primary);
+}
+
+.footer-copyright {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.footer-nav-minimal {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-nav-minimal a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.footer-nav-minimal a:hover {
+    color: var(--neon-primary);
+    text-shadow: 0 0 5px var(--neon-primary);
+}
+
+@media screen and (max-width: 850px) {
+    footer {
+        left: 65px !important;
+        width: calc(100% - 65px) !important;
+        padding: 10px 15px !important;
+    }
+    
+    .footer-revamp {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .footer-status {
+        display: none; /* Hide status bar on small mobile to save space */
+    }
+}
+
 
 /* SIDEBAR -> ACTIVITY BAR */
 .sidebar {
