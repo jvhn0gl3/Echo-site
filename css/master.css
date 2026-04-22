@@ -750,6 +750,51 @@ body.acc-reduce-motion * {
     transition: none !important;
 }
 
+body.acc-dyslexia {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+    line-height: 1.6 !important;
+}
+body.acc-dyslexia * {
+    font-family: inherit !important;
+}
+
+body.acc-light-mode {
+    --bg-deep: #ffffff;
+    --bg-app: #f0f0f0;
+    --bg-surface: #ffffff;
+    --bg-surface-alt: #e0e0e0;
+    color: #111;
+    --neon-primary: #008855;
+    --neon-primary-glow: rgba(0, 136, 85, 0.2);
+    --neon-secondary: #cc0022;
+    --neon-secondary-glow: rgba(204, 0, 34, 0.2);
+    --neon-accent: #0088cc;
+    --neon-accent-glow: rgba(0, 136, 204, 0.2);
+    --text-gold: #aa7700;
+    --border-main: rgba(0, 0, 0, 0.2);
+    --border-bright: rgba(0, 0, 0, 0.4);
+}
+body.acc-light-mode .hero-hud,
+body.acc-light-mode .terminal-card,
+body.acc-light-mode .project-card,
+body.acc-light-mode .acc-modal {
+    background: #fff;
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.1);
+}
+body.acc-light-mode .explorer-label {
+    color: #333;
+}
+body.acc-light-mode .terminal-input {
+    background: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+body.acc-light-mode .breadcrumb-item { color: #555; }
+body.acc-light-mode .breadcrumb-item.active { color: var(--neon-accent); text-shadow: none; }
+body.acc-light-mode .breadcrumb-back { color: var(--neon-primary); }
+
 /* ACCESSIBILITY MODAL */
 .acc-modal {
     position: fixed;

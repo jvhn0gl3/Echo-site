@@ -80,21 +80,21 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
-                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-tooltip="System Dashboard"><i class="fas fa-house"></i> <span>[BIN] home</span></a>
-                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-tooltip="User Identity & Skills"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
-                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-tooltip="Operational Modules"><i class="fas fa-microchip"></i> <span>[SYS] services</span></a>
-                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-tooltip="Resource Allocation"><i class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
-                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-tooltip="System Logs"><i class="fas fa-rss"></i> <span>[LOG] blog</span></a>
-                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-tooltip="Development Archive"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
-                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-tooltip="Secure Handshake"><i class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
-                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-tooltip="Professional History"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
-                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-tooltip="Protocol Documentation"><i class="fas fa-book"></i> <span>[DOC] docs</span></a>
-                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-tooltip="System Map"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
+                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-tooltip="System Dashboard"><i aria-hidden="true" class="fas fa-house"></i> <span>[BIN] home</span></a>
+                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-tooltip="User Identity & Skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
+                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-tooltip="Operational Modules"><i aria-hidden="true" class="fas fa-microchip"></i> <span>[SYS] services</span></a>
+                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-tooltip="Resource Allocation"><i aria-hidden="true" class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
+                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-tooltip="System Logs"><i aria-hidden="true" class="fas fa-rss"></i> <span>[LOG] blog</span></a>
+                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-tooltip="Development Archive"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
+                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-tooltip="Secure Handshake"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
+                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-tooltip="Professional History"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
+                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-tooltip="Protocol Documentation"><i aria-hidden="true" class="fas fa-book"></i> <span>[DOC] docs</span></a>
+                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-tooltip="System Map"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
-            <a href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-tooltip="Accessibility Settings"><i class="fas fa-universal-access"></i> <span>accessibility</span></a>
-            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-tooltip="Source Code"><i class="fab fa-github"></i> <span>github</span></a>
+            <a href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-tooltip="Accessibility Settings"><i aria-hidden="true" class="fas fa-universal-access"></i> <span>accessibility</span></a>
+            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-tooltip="Source Code"><i aria-hidden="true" class="fab fa-github"></i> <span>github</span></a>
         </div>
     </aside>
         `;
@@ -238,7 +238,7 @@ function initializeAccessibility() {
         modal = document.createElement('div');
         modal.className = 'acc-modal';
         modal.innerHTML = `
-            <div class="card-header"><i class="fas fa-universal-access"></i> <span class="card-title">Accessibility.conf</span></div>
+            <div class="card-header"><i aria-hidden="true" class="fas fa-universal-access"></i> <span class="card-title">Accessibility.conf</span></div>
             <div class="acc-options">
                 <div class="acc-option" data-setting="acc-high-contrast">
                     <span>High Contrast</span>
@@ -250,6 +250,14 @@ function initializeAccessibility() {
                 </div>
                 <div class="acc-option" data-setting="acc-reduce-motion">
                     <span>Reduce Motion</span>
+                    <div class="acc-toggle"></div>
+                </div>
+                <div class="acc-option" data-setting="acc-dyslexia">
+                    <span>Dyslexia Font</span>
+                    <div class="acc-toggle"></div>
+                </div>
+                <div class="acc-option" data-setting="acc-light-mode">
+                    <span>Light Mode</span>
                     <div class="acc-toggle"></div>
                 </div>
             </div>
@@ -291,7 +299,7 @@ function initializeAccessibility() {
     });
 
     // Load saved preferences
-    ['acc-high-contrast', 'acc-large-text', 'acc-reduce-motion'].forEach(s => {
+    ['acc-high-contrast', 'acc-large-text', 'acc-reduce-motion', 'acc-dyslexia', 'acc-light-mode'].forEach(s => {
         if (localStorage.getItem(s) === 'true') {
             document.body.classList.add(s);
         }
@@ -337,7 +345,7 @@ async function loadSiteContent() {
                 return `
                     <div class="skill-item" data-tooltip="Competency: ${percentage}%">
                         <div class="skill-main">
-                            <i class="${skill.icon}"></i>
+                            <i aria-hidden="true" class="${skill.icon}"></i>
                             <span>${skill.label}</span>
                         </div>
                         <div class="skill-stats">
@@ -355,7 +363,7 @@ async function loadSiteContent() {
         if (skillTreeContainer) {
             skillTreeContainer.innerHTML = data.profile.skill_tree.map((branch) => `
                 <div class="file-tree">
-                    <div class="tree-root"><i class="fas fa-folder-open"></i> ${branch.root}</div>
+                    <div class="tree-root"><i aria-hidden="true" class="fas fa-folder-open"></i> ${branch.root}</div>
                     ${branch.nodes.map((node, i) => `
                         <div class="tree-branch ${i === branch.nodes.length - 1 ? 'last' : ''}">
                             <div class="tree-node">${node}</div>
@@ -396,7 +404,7 @@ async function loadSiteContent() {
                 } else {
                     servicesGrid.innerHTML = filtered.map(module => `
                         <div class="terminal-card service-card" data-tooltip="Initialize ${module.title}">
-                            <div class="card-header"><i class="${module.icon}"></i> <span class="card-title">${module.title}</span></div>
+                            <div class="card-header"><i aria-hidden="true" class="${module.icon}"></i> <span class="card-title">${module.title}</span></div>
                             <p>${module.description}</p>
                             <ul class="terminal-list">${module.list.map(item => `<li>${item}</li>`).join('')}</ul>
                             <div style="margin-top: 10px;"><a href="#" class="terminal-btn" style="width: 100%;">$ ./${module.command}</a></div>
@@ -455,7 +463,7 @@ async function loadSiteContent() {
         if (logEntriesContainer) {
             logEntriesContainer.innerHTML = data.log.entries.map(entry => `
                 <div class="terminal-card">
-                    <div class="card-header"><i class="fas fa-code-commit"></i><span class="card-title">Entry #${entry.id}: ${entry.title}</span></div>
+                    <div class="card-header"><i aria-hidden="true" class="fas fa-code-commit"></i><span class="card-title">Entry #${entry.id}: ${entry.title}</span></div>
                     <div class="text-neon" style="font-size: 0.7rem; margin-bottom: 10px;">TIMESTAMP: ${entry.timestamp} // ${entry.category}</div>
                     <p>${entry.description}</p>
                     <div class="card-tags">${entry.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
@@ -467,7 +475,7 @@ async function loadSiteContent() {
         if (experienceContainer) {
             experienceContainer.innerHTML = data.resume.experience.map(exp => `
                 <div class="terminal-card">
-                    <div class="card-header"><i class="fas fa-chevron-right"></i><span class="card-title">${exp.title}</span></div>
+                    <div class="card-header"><i aria-hidden="true" class="fas fa-chevron-right"></i><span class="card-title">${exp.title}</span></div>
                     <div class="text-neon" style="font-size: 0.8rem; margin-bottom: 10px;">${exp.period}</div>
                     <p>${exp.description}</p>
                     <ul class="terminal-list">${exp.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
@@ -479,7 +487,7 @@ async function loadSiteContent() {
         if (eduContainer) {
             const edu = data.resume.education;
             eduContainer.innerHTML = `
-                <div class="card-header"><i class="fas fa-university"></i><span class="card-title">${edu.degree}</span></div>
+                <div class="card-header"><i aria-hidden="true" class="fas fa-university"></i><span class="card-title">${edu.degree}</span></div>
                 <div class="text-neon" style="font-size: 0.8rem;">${edu.institution}</div>
                 <p style="margin-top: 10px;">${edu.description}</p>
             `;
@@ -489,7 +497,7 @@ async function loadSiteContent() {
         if (faqContainer) {
             faqContainer.innerHTML = data.faq.map(item => `
                 <div class="faq-card" onclick="this.classList.toggle('active')">
-                    <div class="faq-question"><span>$ ${item.question}</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question"><span>$ ${item.question}</span><i aria-hidden="true" class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer"><p>${item.answer}</p></div>
                 </div>
             `).join('');
@@ -499,7 +507,7 @@ async function loadSiteContent() {
         if (pricingGrid) {
             pricingGrid.innerHTML = data.pricing.tiers.map(tier => `
                 <div class="terminal-card" style="text-align: center; ${tier.featured ? 'border-color: var(--neon-primary); box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);' : ''}">
-                    <div class="card-header"><i class="${tier.icon}"></i><span class="card-title">${tier.title}</span></div>
+                    <div class="card-header"><i aria-hidden="true" class="${tier.icon}"></i><span class="card-title">${tier.title}</span></div>
                     <div class="text-gold" style="font-size: 1.5rem; margin: 15px 0;">${tier.price} <span style="font-size: 0.7rem; color: var(--text-dim);">${tier.price_label}</span></div>
                     <p>${tier.description}</p>
                     <ul class="terminal-list">${tier.list.map(item => `<li>${item}</li>`).join('')}</ul>
