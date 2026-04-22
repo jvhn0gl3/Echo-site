@@ -191,7 +191,12 @@ async function loadSiteContent() {
             const coreSkills = data.profile.neural_network.skills.map(s => ({ label: s.label, icon: s.icon }));
             const treeSkills = data.profile.skill_tree.flatMap(branch => branch.nodes.map(node => ({ label: node, icon: 'fas fa-code' })));
             
-            const allSkills = [...coreSkills, ...treeSkills];
+            let allSkills = [...coreSkills, ...treeSkills];
+            
+            // Limit to 2 skills on the home page, show all on profile
+            if (!document.getElementById('all-skills')) {
+                allSkills = allSkills.slice(0, 2);
+            }
             
             skillsContainer.innerHTML = allSkills.map(skill => {
                 // Generate a pseudo-random stable percentage for the skill
