@@ -4,7 +4,7 @@
     .main-content {
         margin-left: 65px !important;
         width: calc(100% - 65px) !important;
-        padding: 40px 15px !important;
+        padding: 40px 15px 80px 15px !important; /* Extra bottom padding for fixed footer */
     }
 
     /* Keep sidebar as a vertical bar */
