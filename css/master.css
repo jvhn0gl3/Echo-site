@@ -327,6 +327,10 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     width: 100%;
 }
 
+.grid-2x2 {
+    grid-template-columns: 1fr 1fr !important;
+}
+
 .skill-main {
     display: flex;
     align-items: center;
