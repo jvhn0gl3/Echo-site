@@ -844,6 +844,122 @@ footer {
 }
 
 
+/* 8. SYSTEM MAP (RIGHT SIDEBAR) */
+.system-map {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100vh;
+    background: rgba(10, 12, 15, 0.9);
+    border-left: 1px solid rgba(0, 255, 157, 0.1);
+    z-index: 10000001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0; /* Clear breadcrumb and banner space */
+    transition: width 0.3s ease;
+}
+
+.system-map:hover {
+    width: 200px;
+    background: rgba(10, 12, 15, 0.98);
+    border-left: 2px solid var(--neon-primary);
+    box-shadow: -10px 0 30px rgba(0, 255, 157, 0.05);
+}
+
+.map-title {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: var(--text-dim);
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.system-map:hover .map-title {
+    writing-mode: horizontal-tb;
+    font-size: 0.7rem;
+    color: var(--neon-primary);
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+    padding-bottom: 10px;
+}
+
+.map-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.map-link {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.map-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-dim);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.map-label {
+    position: absolute;
+    right: 40px;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.system-map:hover .map-label {
+    opacity: 1;
+    right: 25px;
+    position: relative;
+    flex: 1;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.system-map:hover .map-dot {
+    margin-left: 15px;
+}
+
+.map-link:hover .map-dot, .map-link.active .map-dot {
+    background: var(--neon-primary);
+    box-shadow: 0 0 10px var(--neon-primary);
+    transform: scale(1.5);
+}
+
+.map-link.active .map-label {
+    color: var(--neon-primary);
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) {
+    .system-map {
+        display: none; /* Hide on smaller screens to prevent clutter */
+    }
+    .main-content {
+        width: calc(100% - 65px);
+        margin-right: 0;
+    }
+}
+
 .fixed-banner-container {
     display: contents; 
 }
