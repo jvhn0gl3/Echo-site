@@ -33,7 +33,36 @@
 }
 
 /* 1. RESET & GLOBAL APP STYLES */
-*{margin:0;padding:0;box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box; 
+    -webkit-tap-highlight-color: transparent;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Accessibility: Visible Focus States */
+:focus-visible {
+    outline: 2px solid var(--neon-accent);
+    outline-offset: 4px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--neon-primary);
+    color: #000;
+    padding: 10px 20px;
+    z-index: 10000009;
+    font-weight: bold;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
 
 a { text-decoration: none; }
 
@@ -237,6 +266,7 @@ body {
 .app-footer {
     height: 50px;
     display: flex;
+    flex-direction: column; /* Stack title and preview */
     align-items: center;
     justify-content: center;
     padding: 0 20px;
@@ -244,6 +274,8 @@ body {
     border-top: 1px solid var(--border-main);
     z-index: 10000001;
     margin-top: auto; /* Push to bottom of app-main */
+    position: relative;
+    overflow: hidden;
 }
 
 .app-title {
@@ -252,6 +284,44 @@ body {
     letter-spacing: 3px;
     color: var(--neon-primary);
     text-shadow: 0 0 10px var(--neon-primary-glow);
+    transition: all 0.3s ease;
+}
+
+.footer-status-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    background: rgba(0, 255, 157, 0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 0.5rem;
+    color: var(--neon-primary);
+    font-family: monospace;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.2s ease;
+    border-top: 1px solid rgba(0, 255, 157, 0.1);
+}
+
+.footer-status-bar.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.status-prefix {
+    color: var(--text-gold);
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.status-url {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
 }
 
 /* 2. COMPONENTS (HIGH-CONTRAST) */
@@ -617,92 +687,45 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     word-break: break-all;
 }
 
-/* 4. TOOLTIPS (CYBER-STYLE - MOBILE OPTIMIZED) */
-[data-tooltip] {
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
-}
-
-[data-tooltip]::before {
-    content: attr(data-tooltip);
+/* 4. SYSTEM STATUS BAR (FOOTER FEEDBACK) */
+.footer-status-bar {
     position: absolute;
-    bottom: 130%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: rgba(20, 24, 31, 0.95);
-    backdrop-filter: blur(8px);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: rgba(0, 255, 157, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 0.55rem;
     color: var(--neon-primary);
-    padding: 6px 12px;
-    font-size: 0.65rem;
-    font-weight: bold;
-    border-radius: 6px;
-    border: 1px solid var(--neon-primary);
-    white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace;
     opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(100%);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 1px solid var(--neon-primary);
     z-index: 10000008;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8), 0 0 10px var(--neon-primary-glow);
-    letter-spacing: 1.5px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Tooltip arrow */
-[data-tooltip]::after {
-    content: "";
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--neon-primary) transparent transparent transparent;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease;
-    z-index: 10000008;
-}
-
-[data-tooltip]:hover::before, 
-[data-tooltip]:active::before {
+.footer-status-bar.active {
     opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
 }
 
-[data-tooltip]:hover::after,
-[data-tooltip]:active::after {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
+.status-prefix {
+    color: var(--text-gold);
+    margin-right: 10px;
+    font-weight: 900;
 }
 
-/* Specific position for sidebar (right-aligned labels) */
-.app-nav [data-tooltip]::before {
-    bottom: auto;
-    left: 100%;
-    top: 50%;
-    transform: translateX(15px) translateY(-50%);
-    margin-left: 10px;
-}
-
-.app-nav [data-tooltip]::after {
-    bottom: auto;
-    left: 100%;
-    top: 50%;
-    transform: translateX(5px) translateY(-50%);
-    border-color: transparent var(--neon-primary) transparent transparent;
-}
-
-.app-nav [data-tooltip]:hover::before,
-.app-nav [data-tooltip]:active::before {
-    transform: translateX(0) translateY(-50%);
-}
-
-.app-nav [data-tooltip]:hover::after,
-.app-nav [data-tooltip]:active::after {
-    transform: translateX(0) translateY(-50%);
+.status-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .profile-logo {

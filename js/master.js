@@ -107,15 +107,68 @@ customElements.define('site-sidebar', SiteSidebar);
 function initializeNavigation() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
+    const footer = document.querySelector('.app-footer');
     
-    document.querySelectorAll('.sidebar-link, .nav-item').forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Close mobile sidebar if open
-            if (window.innerWidth <= 1024 && sidebar) {
-                sidebar.classList.remove('open');
-                mainContent?.classList.remove('blurred');
-            }
-        });
+    // Create status bar if it doesn't exist
+    let statusBar = document.querySelector('.footer-status-bar');
+    if (footer && !statusBar) {
+        statusBar = document.createElement('div');
+        statusBar.className = 'footer-status-bar';
+        statusBar.innerHTML = '<span class="status-prefix">SYSTEM:</span><span class="status-content"></span>';
+        footer.appendChild(statusBar);
+    }
+
+    const showStatus = (text) => {
+        if (statusBar) {
+            const contentEl = statusBar.querySelector('.status-content');
+            if (contentEl) contentEl.textContent = text;
+            statusBar.classList.add('active');
+            const titleEl = document.querySelector('.app-title');
+            if (titleEl) titleEl.style.opacity = '0';
+        }
+    };
+
+    const hideStatus = () => {
+        if (statusBar) {
+            statusBar.classList.remove('active');
+            const titleEl = document.querySelector('.app-title');
+            if (titleEl) titleEl.style.opacity = '1';
+        }
+    };
+
+    // GLOBAL STATUS DELEGATION (Handles all current and future elements)
+    const handleStatusEvent = (e) => {
+        const target = e.target.closest('a, button, .sidebar-link, .nav-item, [data-tooltip], .terminal-card, .skill-item, .project-card, .social-btn, .matrix-btn, .terminal-btn');
+        if (!target) {
+            if (e.type === 'mouseleave' || e.type === 'touchend') hideStatus();
+            return;
+        }
+
+        if (e.type === 'mouseenter' || e.type === 'touchstart') {
+            const tooltip = target.getAttribute('data-tooltip');
+            const href = target.getAttribute('href');
+            const title = target.querySelector('.card-title')?.textContent;
+            const btnText = target.textContent.trim().startsWith('$ ./') ? target.textContent.trim() : null;
+            
+            const statusText = tooltip || btnText || title || (href && !href.startsWith('#') ? `GOTO: ${href}` : "READY");
+            showStatus(statusText);
+        } else {
+            hideStatus();
+        }
+    };
+
+    document.addEventListener('mouseenter', handleStatusEvent, true);
+    document.addEventListener('mouseleave', handleStatusEvent, true);
+    document.addEventListener('touchstart', handleStatusEvent, {passive: true, capture: true});
+    document.addEventListener('touchend', handleStatusEvent, {passive: true, capture: true});
+
+    // Close sidebar on click (standard navigation)
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a, .sidebar-link, .nav-item');
+        if (link && window.innerWidth <= 1024 && sidebar) {
+            sidebar.classList.remove('open');
+            mainContent?.classList.remove('blurred');
+        }
     });
 
     // Back button functionality
