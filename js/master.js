@@ -88,7 +88,7 @@ class SiteSidebar extends HTMLElement {
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
                 <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME"><i class="fas fa-house"></i> <span>[BIN] home</span></a>
-                <a href="/profile.html" class="sidebar-link ${activePage === 'profile' || activePage === 'about' ? 'active' : ''}" data-label="PROFILE"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
+                <a href="/profile/index.html" class="sidebar-link ${activePage === 'profile' || activePage === 'about' ? 'active' : ''}" data-label="PROFILE"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
                 <a href="/services.html" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES"><i class="fas fa-microchip"></i> <span>[SYS] services</span></a>
                 <a href="/pricing.html" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING"><i class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
                 <a href="/projects.html" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
