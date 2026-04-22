@@ -261,6 +261,10 @@ function initializeAccessibility() {
                     <div class="acc-toggle"></div>
                 </div>
             </div>
+            <div style="margin-top: 15px; padding: 10px; border: 1px dashed var(--border-main); border-radius: 8px;">
+                <p style="font-size: 0.55rem; color: var(--text-dim); margin-bottom: 8px;">[GENERAL_TECHNICAL_ACCOMMODATION]</p>
+                <a href="mailto:contact@john-ogletree.me?subject=Accessibility%20Report" class="terminal-btn" style="width: 100%; font-size: 0.55rem;">$ ./report_access_issue</a>
+            </div>
             <button class="matrix-btn" style="margin-top: 20px;" id="close-acc">$ ./exit_config</button>
         `;
         document.body.appendChild(modal);
