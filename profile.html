@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ECHO://PROFILE | John Ogletree</title>
+    <meta name="description" content="User Profile - Digital Architect Biometrics">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/effects.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <link rel="stylesheet" href="/css/layout-desktop.css">
+    <link rel="stylesheet" href="/css/layout-mobile.css">
+    <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
+    <style>
+        .file-tree {
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 255, 157, 0.02);
+            padding: 15px;
+            border: 1px solid rgba(0, 255, 157, 0.1);
+        }
+        .tree-root {
+            color: #ffd93d;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .tree-branch {
+            position: relative;
+            padding-left: 20px;
+            border-left: 1px solid rgba(0, 255, 157, 0.3);
+            margin-left: 10px;
+            padding-bottom: 10px;
+        }
+        .tree-branch.last {
+            border-left-color: transparent;
+        }
+        .tree-branch::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 15px;
+            height: 10px;
+            border-left: 1px solid rgba(0, 255, 157, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+        }
+        .tree-branch.last::before {
+            border-left: 1px solid rgba(0, 255, 157, 0.3);
+        }
+        .tree-node {
+            color: #fff;
+            font-size: 0.85rem;
+        }
+        
+        .op-log-item {
+            border-left: 2px solid #ff6b6b;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            background: rgba(255, 107, 107, 0.02);
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+
+    <site-sidebar active="profile"></site-sidebar>
+
+    <div class="crt"></div><div class="scanner"></div>
+    <script src="https://keepandroidopen.org/banner.js?size=minimal&animation=on"></script>
+    
+    <div class="main-content">
+        <section class="hero" style="min-height: 30vh;">
+            <div class="hero-content">
+                <h1 class="hero-title glitch" data-text="USER PROFILE">USER PROFILE</h1>
+                <p class="text-neon" style="font-size: 0.9rem; letter-spacing: 2px;">BIOMETRIC DATA // NEURAL ARCHITECTURE</p>
+            </div>
+        </section>
+
+        <div class="container" id="app">
+            <!-- BIOMETRICS SECTION -->
+            <section id="biometrics">
+                <h2><i class="fas fa-fingerprint"></i> biometric.data.stream</h2>
+                <div class="grid-2">
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-id-card"></i><span class="card-title">Biological Identity</span></div>
+                        <div id="bio-data">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+                    <div class="terminal-card">
+                        <div class="card-header"><i class="fas fa-brain"></i><span class="card-title">Neural Network</span></div>
+                        <p id="neural-network-desc"><!-- Injected --></p>
+                        <div class="skills-grid" id="neural-skills-grid">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-code-branch divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- SKILL TREE SECTION -->
+            <section id="skills">
+                <h2><i class="fas fa-sitemap"></i> ./knowledge_base/skill_tree</h2>
+                <div class="grid-2" id="skill-tree-grid">
+                    <!-- Injected -->
+                </div>
+            </section>
+
+            <div class="section-divider"><div class="divider-line"></div><i class="fas fa-history divider-icon"></i><div class="divider-line"></div></div>
+
+            <!-- OPERATIONAL HISTORY SECTION -->
+            <section id="history">
+                <h2><i class="fas fa-clock-rotate-left"></i> system.get_operational_history()</h2>
+                <div class="terminal-card" style="width: 100%;">
+                    <div id="operational-history-list">
+                        <!-- Injected -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer id="site-footer">
+            <p>&copy; 2026 // ECHO://OS // <a href="/hub.html" style="color: inherit; text-decoration: none; border-bottom: 1px dashed #00ff9d;">SYSTEM_READY</a></p>
+        </footer>
+    </div>
+
+    <script src="/js/sidebar-component.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/ui-effects.js"></script>
+    <script src="/js/forms.js"></script>
+    <script src="/js/data-loader.js"></script>
+    <script src="/js/content-loader.js"></script>
+</body>
+</html>
