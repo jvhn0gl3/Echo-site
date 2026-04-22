@@ -136,9 +136,11 @@ body {
     justify-content: space-around;
     align-items: center;
     padding-bottom: env(safe-area-inset-bottom);
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+    z-index: 10000006;
+    position: relative;
+    flex-shrink: 0;
 }
-
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -265,6 +267,4 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     box-shadow: 0 0 20px var(--neon-accent-glow);
 }
 
-#kao-banner {
-    filter: hue-rotate(140deg) brightness(1.2); /* Match the green/cyan theme */
-}
+
