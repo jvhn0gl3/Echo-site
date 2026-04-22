@@ -43,7 +43,7 @@ footer {
     background: rgba(10, 12, 15, 0.98);
     border-right: 2px solid #00ff9d;
     z-index: 10000001;
-    padding: 15px 0;
+    padding: 15px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,7 +158,7 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    padding: 15px 0;
+    padding: 15px 0 5px 0; /* Reduced bottom padding */
     border-top: 1px solid rgba(0, 255, 157, 0.1);
     flex-shrink: 0;
 }
