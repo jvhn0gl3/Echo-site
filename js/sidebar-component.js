@@ -22,7 +22,6 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-footer-nav">
             <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB"><i class="fab fa-github"></i> <span>github</span></a>
-            <a href="mailto:contact@john-ogletree.me" class="sidebar-link" data-label="EMAIL"><i class="fas fa-envelope"></i> <span>email</span></a>
         </div>
     </aside>
         `;
