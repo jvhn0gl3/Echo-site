@@ -57,17 +57,20 @@ body {
 
 /* THE APP CANVAS */
 .app-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     max-width: var(--app-width);
-    height: 100vh;
-    height: 100dvh;
     background: var(--bg-app);
-    position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 100px rgba(0, 0, 0, 1), 0 0 40px var(--neon-primary-glow);
     border-left: 1px solid var(--border-main);
     border-right: 1px solid var(--border-main);
+    overflow: hidden;
 }
 
 /* APP STATUS BAR */
