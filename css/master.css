@@ -45,6 +45,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* THE APP CANVAS */
