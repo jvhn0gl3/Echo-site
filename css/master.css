@@ -196,77 +196,66 @@ footer {
 }
 
 .footer-revamp {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     align-items: center;
     width: 100%;
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
+    text-align: center;
+    border: 1px solid rgba(0, 255, 157, 0.1);
 }
 
-.footer-status {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.footer-revamp > div, .footer-revamp > a {
+    padding: 10px;
+    border-right: 1px solid rgba(0, 255, 157, 0.1);
     font-size: 0.65rem;
-    color: var(--text-dim);
-}
-
-.status-item {
+    height: 100%;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+}
+
+.footer-revamp > div:last-child {
+    border-right: none;
 }
 
 .status-label {
-    color: var(--text-muted);
-    font-weight: bold;
+    color: var(--text-dim);
+    margin-right: 5px;
 }
 
 .status-value {
     color: var(--neon-primary);
+    font-weight: bold;
 }
 
-.footer-copyright {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-}
-
-.footer-nav-minimal {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-nav-minimal a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    transition: all 0.3s;
-}
-
-.footer-nav-minimal a:hover {
-    color: var(--neon-primary);
-    text-shadow: 0 0 5px var(--neon-primary);
+@media screen and (max-width: 1024px) {
+    .footer-revamp {
+        grid-template-columns: repeat(3, 1fr); /* 3 cols on tablet */
+    }
+    .footer-revamp > div:nth-child(n+4) {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 850px) {
     footer {
         left: 65px !important;
         width: calc(100% - 65px) !important;
-        padding: 10px 15px !important;
+        padding: 0 !important; /* No padding for grid edge-to-edge */
     }
     
     .footer-revamp {
-        flex-direction: column;
-        gap: 8px;
+        grid-template-columns: 1fr; /* Stack on mobile */
     }
     
-    .footer-status {
-        display: none; /* Hide status bar on small mobile to save space */
+    .footer-revamp > div {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 255, 157, 0.05);
     }
 }
+
 
 
 /* SIDEBAR -> ACTIVITY BAR */
