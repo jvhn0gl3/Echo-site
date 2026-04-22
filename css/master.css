@@ -598,49 +598,91 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     word-break: break-all;
 }
 
-/* 4. TOOLTIPS (CYBER-STYLE) */
+/* 4. TOOLTIPS (CYBER-STYLE - MOBILE OPTIMIZED) */
 [data-tooltip] {
     position: relative;
+    -webkit-tap-highlight-color: transparent;
 }
 
 [data-tooltip]::before {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 120%;
+    bottom: 130%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: var(--bg-surface);
+    background: rgba(20, 24, 31, 0.95);
+    backdrop-filter: blur(8px);
     color: var(--neon-primary);
-    padding: 5px 10px;
-    font-size: 0.55rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-bright);
+    padding: 6px 12px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 1px solid var(--neon-primary);
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 10000008;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5), 0 0 10px var(--neon-primary-glow);
-    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8), 0 0 10px var(--neon-primary-glow);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
-[data-tooltip]:hover::before {
+/* Tooltip arrow */
+[data-tooltip]::after {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--neon-primary) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 10000008;
+}
+
+[data-tooltip]:hover::before, 
+[data-tooltip]:active::before {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
 
-/* Specific position for sidebar (right-aligned) */
+[data-tooltip]:hover::after,
+[data-tooltip]:active::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Specific position for sidebar (right-aligned labels) */
 .app-nav [data-tooltip]::before {
     bottom: auto;
     left: 100%;
     top: 50%;
-    transform: translateX(10px) translateY(-50%);
+    transform: translateX(15px) translateY(-50%);
     margin-left: 10px;
 }
 
-.app-nav [data-tooltip]:hover::before {
+.app-nav [data-tooltip]::after {
+    bottom: auto;
+    left: 100%;
+    top: 50%;
+    transform: translateX(5px) translateY(-50%);
+    border-color: transparent var(--neon-primary) transparent transparent;
+}
+
+.app-nav [data-tooltip]:hover::before,
+.app-nav [data-tooltip]:active::before {
+    transform: translateX(0) translateY(-50%);
+}
+
+.app-nav [data-tooltip]:hover::after,
+.app-nav [data-tooltip]:active::after {
     transform: translateX(0) translateY(-50%);
 }
 
