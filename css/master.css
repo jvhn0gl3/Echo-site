@@ -334,6 +334,42 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     animation: fillBar 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* SECTION DIVIDERS */
+.section-divider {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 40px 0;
+    opacity: 0.3;
+}
+
+.divider-line {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(to right, transparent, var(--neon-primary), transparent);
+}
+
+.cyber-hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-bright), transparent);
+    margin: 40px 0;
+    position: relative;
+}
+
+.cyber-hr::after {
+    content: "[SECTION_BREAK]";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-app);
+    padding: 0 10px;
+    font-size: 0.5rem;
+    color: var(--neon-primary);
+    letter-spacing: 2px;
+}
+
 @keyframes fillBar {
     from { width: 0; }
     to { width: var(--fill-to); }
