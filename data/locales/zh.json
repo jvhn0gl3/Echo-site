@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "[BIN] 首页",
+    "profile": "[USR] 个人资料",
+    "services": "[SYS] 服务",
+    "pricing": "[VAL] 价格",
+    "blog": "[LOG] 博客",
+    "projects": "[VAR] 项目",
+    "connect": "[DEV] 联系",
+    "resume": "[DOC] 简历",
+    "docs": "[DOC] 文档",
+    "directory": "[MAP] 目录",
+    "github": "github",
+    "accessibility": "辅助功能"
+  },
+  "status": {
+    "system": "系统:",
+    "preview": "预览:",
+    "ready": "就绪",
+    "goto": "前往:",
+    "competency": "能力:",
+    "initialize": "初始化",
+    "dashboard": "系统仪表板",
+    "identity_skills": "身份与技能",
+    "operational_modules": "操作模块",
+    "resource_allocation": "资源分配",
+    "system_logs": "系统日志",
+    "development_archive": "开发存档",
+    "secure_handshake": "安全握手",
+    "professional_history": "职业履历",
+    "protocol_docs": "协议文档",
+    "system_map": "系统地图",
+    "source_code": "源代码",
+    "acc_settings": "辅助功能设置"
+  },
+  "ui": {
+    "app_title": "ECHO://OS",
+    "skip_link": "跳至内容",
+    "exit_config": "$ ./退出配置",
+    "report_issue": "$ ./报告问题",
+    "acc_conf": "辅助功能.conf"
+  },
+  "acc": {
+    "high_contrast": "高对比度",
+    "large_text": "大号字体",
+    "reduce_motion": "减少动态效果",
+    "dyslexia": "读写障碍字体",
+    "light_mode": "浅色模式",
+    "accommodation_header": "[通用技术调节]"
+  },
+  "home": {
+    "hero_title": "JOHN OGLETREE",
+    "hero_subtitle": "数字化架构师 // 创意技术专家",
+    "btn_projects": "$ ./查看项目",
+    "btn_connect": "$ ./查看联系",
+    "about_title": "关于.用户",
+    "identity_card": "身份",
+    "capabilities_card": "能力",
+    "btn_full_profile": "$ ./查看完整资料",
+    "services_title": "服务.获取模块()",
+    "pricing_title": "价格.查看等级()",
+    "blog_title": "博客.阅读文章()",
+    "btn_read_more": "$ ./阅读更多",
+    "projects_title": "项目.访问存档()",
+    "btn_all_projects": "$ ./查看所有项目",
+    "connect_title": "联系.启动握手()",
+    "btn_send": "$ ./发送传输"
+  },
+  "breadcrumb": {
+    "home": "首页",
+    "profile": "个人资料",
+    "services": "服务",
+    "pricing": "价格",
+    "blog": "博客",
+    "projects": "项目",
+    "connect": "联系",
+    "resume": "简历",
+    "docs": "文档",
+    "directory": "目录"
+  }
+}

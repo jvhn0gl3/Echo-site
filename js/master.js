@@ -360,9 +360,17 @@ function initializeAccessibility() {
                 <div class="acc-option-group" style="padding: 12px; border-bottom: 1px solid var(--border-main);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <span data-i18n="nav.directory">Locale</span>
-                        <div style="display: flex; gap: 5px;">
+                        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
                             <button class="social-btn lang-btn active" data-lang="en" style="padding: 2px 8px; font-size: 0.55rem;">EN</button>
                             <button class="social-btn lang-btn" data-lang="es" style="padding: 2px 8px; font-size: 0.55rem;">ES</button>
+                            <button class="social-btn lang-btn" data-lang="fr" style="padding: 2px 8px; font-size: 0.55rem;">FR</button>
+                            <button class="social-btn lang-btn" data-lang="de" style="padding: 2px 8px; font-size: 0.55rem;">DE</button>
+                            <button class="social-btn lang-btn" data-lang="zh" style="padding: 2px 8px; font-size: 0.55rem;">ZH</button>
+                            <button class="social-btn lang-btn" data-lang="ja" style="padding: 2px 8px; font-size: 0.55rem;">JA</button>
+                            <button class="social-btn lang-btn" data-lang="ko" style="padding: 2px 8px; font-size: 0.55rem;">KO</button>
+                            <button class="social-btn lang-btn" data-lang="pt" style="padding: 2px 8px; font-size: 0.55rem;">PT</button>
+                            <button class="social-btn lang-btn" data-lang="it" style="padding: 2px 8px; font-size: 0.55rem;">IT</button>
+                            <button class="social-btn lang-btn" data-lang="ru" style="padding: 2px 8px; font-size: 0.55rem;">RU</button>
                         </div>
                     </div>
                 </div>

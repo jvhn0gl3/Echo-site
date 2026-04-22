@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "[BIN] 홈",
+    "profile": "[USR] 프로필",
+    "services": "[SYS] 서비스",
+    "pricing": "[VAL] 요금",
+    "blog": "[LOG] 블로그",
+    "projects": "[VAR] 프로젝트",
+    "connect": "[DEV] 연락",
+    "resume": "[DOC] 이력서",
+    "docs": "[DOC] 문서",
+    "directory": "[MAP] 디렉토리",
+    "github": "github",
+    "accessibility": "접근성"
+  },
+  "status": {
+    "system": "시스템:",
+    "preview": "미리보기:",
+    "ready": "준비됨",
+    "goto": "이동:",
+    "competency": "숙련도:",
+    "initialize": "초기화",
+    "dashboard": "시스템 대시보드",
+    "identity_skills": "신원 및 기술",
+    "operational_modules": "운영 모듈",
+    "resource_allocation": "자원 할당",
+    "system_logs": "시스템 로그",
+    "development_archive": "개발 아카이브",
+    "secure_handshake": "보안 핸드셰이크",
+    "professional_history": "전문 이력",
+    "protocol_docs": "프로토콜 문서",
+    "system_map": "시스템 맵",
+    "source_code": "소스 코드",
+    "acc_settings": "접근성 설정"
+  },
+  "ui": {
+    "app_title": "ECHO://OS",
+    "skip_link": "콘텐츠로 건너뛰기",
+    "exit_config": "$ ./설정_종료",
+    "report_issue": "$ ./문제_보고",
+    "acc_conf": "접근성.conf"
+  },
+  "acc": {
+    "high_contrast": "고대비",
+    "large_text": "큰 텍스트",
+    "reduce_motion": "동작 줄이기",
+    "dyslexia": "독서장애용 폰트",
+    "light_mode": "라이트 모드",
+    "accommodation_header": "[일반_기술_조정]"
+  },
+  "home": {
+    "hero_title": "JOHN OGLETREE",
+    "hero_subtitle": "디지털 아키텍트 // 크리에이티브 테크놀로지스트",
+    "btn_projects": "$ ./프로젝트_보기",
+    "btn_connect": "$ ./연락처_보기",
+    "about_title": "사용자.정보",
+    "identity_card": "신원",
+    "capabilities_card": "역량",
+    "btn_full_profile": "$ ./전체_프로필_보기",
+    "services_title": "서비스.모듈_가져오기()",
+    "pricing_title": "요금.단계_보기()",
+    "blog_title": "블로그.항목_읽기()",
+    "btn_read_more": "$ ./더_보기",
+    "projects_title": "프로젝트.아카이브_접속()",
+    "btn_all_projects": "$ ./모든_프로젝트_보기",
+    "connect_title": "연락.핸드셰이크_시작()",
+    "btn_send": "$ ./전송_보내기"
+  },
+  "breadcrumb": {
+    "home": "홈",
+    "profile": "프로필",
+    "services": "서비스",
+    "pricing": "요금",
+    "blog": "블로그",
+    "projects": "프로젝트",
+    "connect": "연락",
+    "resume": "이력서",
+    "docs": "문서",
+    "directory": "디렉토리"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "[BIN] início",
+    "profile": "[USR] perfil",
+    "services": "[SYS] serviços",
+    "pricing": "[VAL] preços",
+    "blog": "[LOG] blog",
+    "projects": "[VAR] projetos",
+    "connect": "[DEV] conectar",
+    "resume": "[DOC] currículo",
+    "docs": "[DOC] docs",
+    "directory": "[MAP] diretório",
+    "github": "github",
+    "accessibility": "acessibilidade"
+  },
+  "status": {
+    "system": "SISTEMA:",
+    "preview": "PRÉVIA:",
+    "ready": "PRONTO",
+    "goto": "IR_PARA:",
+    "competency": "Competência:",
+    "initialize": "Inicializar",
+    "dashboard": "Painel do Sistema",
+    "identity_skills": "Identidade e Habilidades",
+    "operational_modules": "Módulos Operacionais",
+    "resource_allocation": "Alocação de Recursos",
+    "system_logs": "Logs do Sistema",
+    "development_archive": "Arquivo de Desenvolvimento",
+    "secure_handshake": "Handshake Seguro",
+    "professional_history": "Histórico Profissional",
+    "protocol_docs": "Documentação de Protocolo",
+    "system_map": "Mapa do Sistema",
+    "source_code": "Código Fonte",
+    "acc_settings": "Configurações de Acessibilidade"
+  },
+  "ui": {
+    "app_title": "ECHO://OS",
+    "skip_link": "Pular para o conteúdo",
+    "exit_config": "$ ./sair_config",
+    "report_issue": "$ ./relatar_problema",
+    "acc_conf": "Acessibilidade.conf"
+  },
+  "acc": {
+    "high_contrast": "Alto Contraste",
+    "large_text": "Texto Grande",
+    "reduce_motion": "Reduzir Movimento",
+    "dyslexia": "Fonte para Dislexia",
+    "light_mode": "Modo Claro",
+    "accommodation_header": "[ACOMODAÇÃO_TÉCNICA_GERAL]"
+  },
+  "home": {
+    "hero_title": "JOHN OGLETREE",
+    "hero_subtitle": "ARQUITETO DIGITAL // TECNÓLOGO CRIATIVO",
+    "btn_projects": "$ ./ver_projetos",
+    "btn_connect": "$ ./ver_conectar",
+    "about_title": "sobre.usuário",
+    "identity_card": "Identidade",
+    "capabilities_card": "Capacidades",
+    "btn_full_profile": "$ ./ver_perfil_completo",
+    "services_title": "serviços.obter_módulos()",
+    "pricing_title": "preços.ver_níveis()",
+    "blog_title": "blog.ler_entradas()",
+    "btn_read_more": "$ ./ler_mais",
+    "projects_title": "projetos.acessar_arquivo()",
+    "btn_all_projects": "$ ./ver_todos_projetos",
+    "connect_title": "conectar.init_handshake()",
+    "btn_send": "$ ./enviar_transmissão"
+  },
+  "breadcrumb": {
+    "home": "INÍCIO",
+    "profile": "PERFIL",
+    "services": "SERVIÇOS",
+    "pricing": "PREÇOS",
+    "blog": "BLOG",
+    "projects": "PROJETOS",
+    "connect": "CONECTAR",
+    "resume": "CURRÍCULO",
+    "docs": "DOCS",
+    "directory": "DIRETÓRIO"
+  }
+}

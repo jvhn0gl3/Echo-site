@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "[BIN] start",
+    "profile": "[USR] profil",
+    "services": "[SYS] dienste",
+    "pricing": "[VAL] preise",
+    "blog": "[LOG] blog",
+    "projects": "[VAR] projekte",
+    "connect": "[DEV] kontakt",
+    "resume": "[DOC] lebenslauf",
+    "docs": "[DOC] doks",
+    "directory": "[MAP] verzeichnis",
+    "github": "github",
+    "accessibility": "barrierefreiheit"
+  },
+  "status": {
+    "system": "SYSTEM:",
+    "preview": "VORSCHAU:",
+    "ready": "BEREIT",
+    "goto": "GEHE_ZU:",
+    "competency": "Kompetenz:",
+    "initialize": "Initialisieren",
+    "dashboard": "System-Dashboard",
+    "identity_skills": "Identität & Fähigkeiten",
+    "operational_modules": "Operative Module",
+    "resource_allocation": "Ressourcenzuweisung",
+    "system_logs": "Systemprotokolle",
+    "development_archive": "Entwicklungsarchiv",
+    "secure_handshake": "Sicherer Handshake",
+    "professional_history": "Beruflicher Werdegang",
+    "protocol_docs": "Protokolldokumentation",
+    "system_map": "Systemkarte",
+    "source_code": "Quellcode",
+    "acc_settings": "Barrierefreiheit-Einstellungen"
+  },
+  "ui": {
+    "app_title": "ECHO://OS",
+    "skip_link": "Zum Inhalt springen",
+    "exit_config": "$ ./konfig_verlassen",
+    "report_issue": "$ ./problem_melden",
+    "acc_conf": "Barrierefreiheit.conf"
+  },
+  "acc": {
+    "high_contrast": "Hoher Kontrast",
+    "large_text": "Großer Text",
+    "reduce_motion": "Animationen reduzieren",
+    "dyslexia": "Legasthenie-Schrift",
+    "light_mode": "Heller Modus",
+    "accommodation_header": "[ALLGEMEINE_TECHNISCHE_ANPASSUNG]"
+  },
+  "home": {
+    "hero_title": "JOHN OGLETREE",
+    "hero_subtitle": "DIGITALER ARCHITEKT // KREATIVER TECHNOLOGE",
+    "btn_projects": "$ ./projekte_ansehen",
+    "btn_connect": "$ ./kontakt_ansehen",
+    "about_title": "über.benutzer",
+    "identity_card": "Identität",
+    "capabilities_card": "Fähigkeiten",
+    "btn_full_profile": "$ ./vollständiges_profil",
+    "services_title": "dienste.hole_module()",
+    "pricing_title": "preise.ebenen_ansehen()",
+    "blog_title": "blog.einträge_lesen()",
+    "btn_read_more": "$ ./mehr_lesen",
+    "projects_title": "projekte.archiv_zugreifen()",
+    "btn_all_projects": "$ ./alle_projekte",
+    "connect_title": "kontakt.handshake_init()",
+    "btn_send": "$ ./übertragung_senden"
+  },
+  "breadcrumb": {
+    "home": "START",
+    "profile": "PROFIL",
+    "services": "DIENSTE",
+    "pricing": "PREISE",
+    "blog": "BLOG",
+    "projects": "PROJEKTE",
+    "connect": "KONTAKT",
+    "resume": "LEBENSLAUF",
+    "docs": "DOKS",
+    "directory": "VERZEICHNIS"
+  }
+}

@@ -7,7 +7,7 @@
     "blog": "[LOG] blog",
     "projects": "[VAR] proyectos",
     "connect": "[DEV] conectar",
-    "resume": "[DOC] curriculum",
+    "resume": "[DOC] currículum",
     "docs": "[DOC] docs",
     "directory": "[MAP] directorio",
     "github": "github",
@@ -15,8 +15,22 @@
   },
   "status": {
     "system": "SISTEMA:",
+    "preview": "VISTA PREVIA:",
     "ready": "LISTO",
     "goto": "IR_A:",
+    "competency": "Competencia:",
+    "initialize": "Inicializar",
+    "dashboard": "Panel del Sistema",
+    "identity_skills": "Identidad y Habilidades",
+    "operational_modules": "Módulos Operativos",
+    "resource_allocation": "Asignación de Recursos",
+    "system_logs": "Registros del Sistema",
+    "development_archive": "Archivo de Desarrollo",
+    "secure_handshake": "Apretón de Manos Seguro",
+    "professional_history": "Historial Profesional",
+    "protocol_docs": "Documentación de Protocolo",
+    "system_map": "Mapa del Sistema",
+    "source_code": "Código Fuente",
     "acc_settings": "Configuración de Accesibilidad"
   },
   "ui": {
@@ -34,6 +48,24 @@
     "light_mode": "Modo Claro",
     "accommodation_header": "[ACOMODACIÓN_TÉCNICA_GENERAL]"
   },
+  "home": {
+    "hero_title": "JOHN OGLETREE",
+    "hero_subtitle": "ARQUITECTO DIGITAL // TECNÓLOGO CREATIVO",
+    "btn_projects": "$ ./ver_proyectos",
+    "btn_connect": "$ ./ver_conectar",
+    "about_title": "sobre.usuario",
+    "identity_card": "Identidad",
+    "capabilities_card": "Capacidades",
+    "btn_full_profile": "$ ./ver_perfil_completo",
+    "services_title": "servicios.obtener_módulos()",
+    "pricing_title": "precios.ver_niveles()",
+    "blog_title": "blog.leer_entradas()",
+    "btn_read_more": "$ ./leer_más",
+    "projects_title": "proyectos.acceder_archivo()",
+    "btn_all_projects": "$ ./ver_todos_los_proyectos",
+    "connect_title": "conectar.iniciar_apretón()",
+    "btn_send": "$ ./enviar_transmisión"
+  },
   "breadcrumb": {
     "home": "INICIO",
     "profile": "PERFIL",
@@ -42,7 +74,7 @@
     "blog": "BLOG",
     "projects": "PROYECTOS",
     "connect": "CONECTAR",
-    "resume": "CURRICULUM",
+    "resume": "CURRÍCULUM",
     "docs": "DOCS",
     "directory": "DIRECTORIO"
   }
