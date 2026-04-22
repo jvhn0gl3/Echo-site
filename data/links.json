@@ -2,7 +2,7 @@
   "internal": {
     "home": "/index.html",
     "profile": "/profile.html",
-    "services": "/services.html",
+    "services": "/services/",
     "projects": "/projects.html",
     "resume": "/resume.html",
     "faq": "/faq.html",
