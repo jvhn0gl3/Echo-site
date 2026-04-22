@@ -81,15 +81,15 @@ class SiteSidebar extends HTMLElement {
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
                 <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME"><i class="fas fa-house"></i> <span>[BIN] home</span></a>
-                <a href="/index.html#about" class="sidebar-link ${activePage === 'profile' || activePage === 'about' ? 'active' : ''}" data-label="PROFILE"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
+                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE"><i class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
                 <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES"><i class="fas fa-microchip"></i> <span>[SYS] services</span></a>
                 <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING"><i class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
-                <a href="/projects.html" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
-                <a href="/connect.html" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT"><i class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
-                <a href="/faq.html" class="sidebar-link ${activePage === 'faq' ? 'active' : ''}" data-label="FAQ"><i class="fas fa-circle-question"></i> <span>[FAQ] help</span></a>
-                <a href="/directory.html" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
-                <a href="/legal.html" class="sidebar-link ${activePage === 'legal' ? 'active' : ''}" data-label="LEGAL"><i class="fas fa-scale-balanced"></i> <span>[DOC] legal</span></a>
-                <a href="/resume.html" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
+                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG"><i class="fas fa-rss"></i> <span>[LOG] blog</span></a>
+                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS"><i class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
+                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT"><i class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
+                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
+                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS"><i class="fas fa-book"></i> <span>[DOC] docs</span></a>
+                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY"><i class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
             </nav>
         </div>
         <div class="sidebar-footer-nav">

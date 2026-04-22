@@ -1,14 +1,15 @@
 {
   "internal": {
     "home": "/index.html",
-    "profile": "/profile.html",
+    "profile": "/profile/",
     "services": "/services/",
-    "projects": "/projects.html",
-    "resume": "/resume.html",
-    "faq": "/faq.html",
     "pricing": "/pricing/",
-    "connect": "/connect.html",
-    "directory": "/directory.html",
+    "blog": "/blog/",
+    "projects": "/projects/",
+    "connect": "/connect/",
+    "resume": "/resume/",
+    "docs": "/docs/",
+    "directory": "/directory/",
     "legal": "/legal.html"
   },
   "hidden": {
