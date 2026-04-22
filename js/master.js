@@ -110,77 +110,7 @@ class SiteSidebar extends HTMLElement {
 }
 customElements.define('site-sidebar', SiteSidebar);
 
-// 3. SYSTEM MAP COMPONENT (RIGHT SIDEBAR TOC)
-class SystemMap extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-            <aside class="system-map" id="systemMap">
-                <div class="map-title">System_Map</div>
-                <div class="map-links" id="mapLinks">
-                    <!-- Dynamic TOC injected here -->
-                </div>
-            </aside>
-        `;
-        this.generateTOC();
-        this.initializeScrollSpy();
-    }
-
-    generateTOC() {
-        const mapLinks = this.querySelector('#mapLinks');
-        const sections = document.querySelectorAll('section[id]');
-        
-        if (sections.length === 0 || !mapLinks) return;
-
-        mapLinks.innerHTML = Array.from(sections).map(section => {
-            const h2 = section.querySelector('h2');
-            const label = h2 ? h2.textContent.replace(/[\{\}\(\)\[\]]/g, '').trim() : section.id;
-            return `
-                <a href="#${section.id}" class="map-link" data-target="${section.id}">
-                    <span class="map-label">${label}</span>
-                    <div class="map-dot"></div>
-                </a>
-            `;
-        }).join('');
-
-        // Re-initialize smooth scroll for new links
-        mapLinks.querySelectorAll('.map-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.getElementById(link.dataset.target);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    }
-
-    initializeScrollSpy() {
-        const options = {
-            root: null,
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    document.querySelectorAll('.map-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.dataset.target === id) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, options);
-
-        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
-    }
-}
-customElements.define('system-map', SystemMap);
-
-// 4. NAVIGATION LOGIC
+// 3. NAVIGATION LOGIC
 function initializeNavigation() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
