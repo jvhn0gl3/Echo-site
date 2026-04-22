@@ -243,12 +243,17 @@ body {
     padding: 15px;
     margin-bottom: 15px;
     box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
 }
 
 .card-header {
     margin-bottom: 12px;
     padding-bottom: 8px;
     border-bottom: 1px solid rgba(0, 255, 157, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 .card-title { color: var(--text-gold); font-size: 0.7rem; letter-spacing: 1px; }
 
@@ -260,11 +265,12 @@ h2 {
     margin: 25px 0 12px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     font-weight: 900;
 }
 h2::before { content: "//"; color: var(--neon-secondary); }
-h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, rgba(255, 45, 85, 0.2), transparent); }
+h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: auto; background: none; }
 
 .matrix-btn, .terminal-btn {
     width: 100%;
@@ -277,6 +283,8 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     letter-spacing: 1px;
     font-size: 0.7rem;
     box-shadow: inset 0 0 10px rgba(0, 255, 157, 0.05);
+    display: inline-block;
+    cursor: pointer;
 }
 
 .matrix-btn:hover, .terminal-btn:hover {
@@ -288,25 +296,28 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
 /* ABOUT SECTION LAYOUT */
 .desc-with-logo {
     display: flex;
+    flex-direction: column;
     gap: 15px;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 15px;
 }
 
 .desc-with-logo p {
-    flex: 1;
     font-size: 0.75rem;
+    text-align: center;
 }
 
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
+    width: 100%;
 }
 
 .skill-main {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin-bottom: 4px;
 }
@@ -314,11 +325,12 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
 .skill-stats {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
 .skill-bar-container {
-    flex: 1;
+    flex: 0 1 150px;
     height: 3px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 2px;
@@ -330,7 +342,7 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     background: rgba(255, 255, 255, 0.03);
     padding: 10px;
     border-radius: 8px;
-    border-left: 2px solid var(--neon-accent);
+    border: 1px solid var(--neon-accent);
 }
 .skill-percentage { color: var(--neon-accent); font-weight: 900; font-size: 0.65rem; }
 .skill-bar-fill {
@@ -349,11 +361,12 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     gap: 3px;
     margin: 30px 0;
     opacity: 0.3;
+    align-items: center;
 }
 
 .divider-line {
     height: 1px;
-    width: 100%;
+    width: 80%;
     background: linear-gradient(to right, transparent, var(--neon-primary), transparent);
 }
 
@@ -386,7 +399,8 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
 /* HERO (VIBRANT) */
 .hero {
     padding: 30px 15px;
-    background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.08), transparent 70%);
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.08), transparent 70%);
+    text-align: center;
 }
 .hero-hud {
     border: 1px solid var(--border-main);
@@ -394,6 +408,9 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-title {
@@ -420,6 +437,7 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
 .pricing-card {
     border: 1px solid var(--text-gold);
     background: rgba(255, 204, 0, 0.02);
+    text-align: center;
 }
 .pricing-card .card-title { color: var(--text-gold); }
 
@@ -428,6 +446,7 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     background: rgba(0,0,0,0.3);
     border-radius: 8px;
     border-color: rgba(255,255,255,0.1);
+    text-align: center;
 }
 .terminal-input:focus {
     border-color: var(--neon-primary);
@@ -438,13 +457,15 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
 .profile-logo {
     border: 2px solid var(--neon-accent);
     box-shadow: 0 0 20px var(--neon-accent-glow);
+    margin: 0 auto;
 }
 
 /* SERVICES GRID */
 .service-card {
-    text-align: left;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
 }
 
@@ -452,29 +473,28 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to ri
     font-size: 0.75rem;
     line-height: 1.5;
     color: #b0b0b0;
+    text-align: center;
 }
 
 .terminal-list {
     list-style: none;
-    text-align: left;
+    text-align: center;
     margin: 10px 0;
     font-size: 0.7rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
 }
 
 .terminal-list li {
-    padding-left: 15px;
+    padding-left: 0;
     position: relative;
 }
 
 .terminal-list li::before {
-    content: ">";
-    color: var(--neon-primary);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
+    content: "";
+    display: none;
 }
 
 /* PROJECTS */
