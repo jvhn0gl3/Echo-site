@@ -20,6 +20,9 @@ class SiteSidebar extends HTMLElement {
                 <a href="/resume.html" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME"><i class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
             </nav>
         </div>
+        <div class="sidebar-footer-nav">
+            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB"><i class="fab fa-github"></i> <span>github</span></a>
+        </div>
     </aside>
         `;
 
