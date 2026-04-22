@@ -214,8 +214,8 @@ body {
     box-shadow: 0 0 5px var(--neon-primary);
 }
 
-/* APP HEADER (BOTTOM BAR) */
-.app-header {
+/* APP FOOTER (BOTTOM BAR) */
+.app-footer {
     height: 50px;
     display: flex;
     align-items: center;
