@@ -154,18 +154,19 @@ function initializeNavigation() {
         });
     };
 
-    // Intercept all internal links
-    document.querySelectorAll('a').forEach(link => {
-        // Prevent double-binding by marking processed links
-        if (link.dataset.spaBound) return;
-        link.dataset.spaBound = "true";
+    // Intercept all internal links and terminal buttons
+    document.querySelectorAll('a, .matrix-btn, .terminal-btn').forEach(el => {
+        // Prevent double-binding
+        if (el.dataset.spaBound) return;
+        el.dataset.spaBound = "true";
 
-        const href = link.getAttribute('href');
+        // Get URL from href (if anchor) or search for nearest parent anchor
+        let href = el.getAttribute('href');
         
         // Skip external, anchors, or non-local links
         if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
 
-        link.addEventListener('click', (e) => {
+        el.addEventListener('click', (e) => {
             // Only SPA navigate if it's a left click without modifier keys
             if (e.button === 0 && !e.ctrlKey && !e.shiftKey && !e.metaKey && !e.altKey) {
                 e.preventDefault();
