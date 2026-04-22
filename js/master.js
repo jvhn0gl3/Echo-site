@@ -221,6 +221,83 @@ function initializeForms() {
     });
 }
 
+// 5b. ACCESSIBILITY CONTROL PANEL
+function initializeAccessibility() {
+    const accBtn = document.querySelector('[data-label="ACCESSIBILITY"], [title="Accessibility"]');
+    if (!accBtn) return;
+
+    // Create Modal & Overlay if they don't exist
+    let modal = document.querySelector('.acc-modal');
+    let overlay = document.querySelector('.acc-overlay');
+
+    if (!modal) {
+        overlay = document.createElement('div');
+        overlay.className = 'acc-overlay';
+        document.body.appendChild(overlay);
+
+        modal = document.createElement('div');
+        modal.className = 'acc-modal';
+        modal.innerHTML = `
+            <div class="card-header"><i class="fas fa-universal-access"></i> <span class="card-title">Accessibility.conf</span></div>
+            <div class="acc-options">
+                <div class="acc-option" data-setting="acc-high-contrast">
+                    <span>High Contrast</span>
+                    <div class="acc-toggle"></div>
+                </div>
+                <div class="acc-option" data-setting="acc-large-text">
+                    <span>Large Text</span>
+                    <div class="acc-toggle"></div>
+                </div>
+                <div class="acc-option" data-setting="acc-reduce-motion">
+                    <span>Reduce Motion</span>
+                    <div class="acc-toggle"></div>
+                </div>
+            </div>
+            <button class="matrix-btn" style="margin-top: 20px;" id="close-acc">$ ./exit_config</button>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    const toggleModal = (show) => {
+        modal.classList.toggle('active', show);
+        overlay.classList.toggle('active', show);
+        if (show) {
+            // Apply current states to toggles
+            modal.querySelectorAll('.acc-option').forEach(opt => {
+                const setting = opt.dataset.setting;
+                opt.classList.toggle('active', document.body.classList.contains(setting));
+            });
+        }
+    };
+
+    accBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleModal(true);
+    });
+
+    overlay.addEventListener('click', () => toggleModal(false));
+    document.getElementById('close-acc')?.addEventListener('click', () => toggleModal(false));
+
+    modal.querySelectorAll('.acc-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            const setting = opt.dataset.setting;
+            const isActive = document.body.classList.toggle(setting);
+            opt.classList.toggle('active', isActive);
+            
+            // Save preference
+            localStorage.setItem(setting, isActive);
+            console.log(`[SYSTEM] Accessibility updated: ${setting} = ${isActive}`);
+        });
+    });
+
+    // Load saved preferences
+    ['acc-high-contrast', 'acc-large-text', 'acc-reduce-motion'].forEach(s => {
+        if (localStorage.getItem(s) === 'true') {
+            document.body.classList.add(s);
+        }
+    });
+}
+
 // 6. CONTENT LOADER
 async function loadSiteContent() {
     try {
@@ -445,6 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLinks();
     initializeNavigation();
     initializeForms();
+    initializeAccessibility();
     loadSiteContent();
 });
 

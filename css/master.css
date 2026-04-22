@@ -728,6 +728,107 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     text-overflow: ellipsis;
 }
 
+/* 5. ACCESSIBILITY MODES */
+body.acc-high-contrast {
+    --neon-primary: #00ff00;
+    --neon-accent: #00ffff;
+    --text-gold: #ffff00;
+    --bg-app: #000;
+    --bg-surface: #000;
+    --border-main: #fff;
+    --border-bright: #fff;
+}
+body.acc-high-contrast .terminal-card { border-width: 2px; }
+
+body.acc-large-text { font-size: 1.1rem; }
+body.acc-large-text .app-title { font-size: 1rem; }
+body.acc-large-text h2 { font-size: 1rem; }
+body.acc-large-text .nav-logo { font-size: 1.2rem; }
+
+body.acc-reduce-motion * {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* ACCESSIBILITY MODAL */
+.acc-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 350px;
+    background: var(--bg-surface);
+    border: 2px solid var(--neon-primary);
+    border-radius: 16px;
+    z-index: 10000010;
+    padding: 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,1), 0 0 20px var(--neon-primary-glow);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.acc-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.acc-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 10000009;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.acc-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.acc-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid var(--border-main);
+    cursor: pointer;
+}
+
+.acc-option:last-child { border-bottom: none; }
+
+.acc-toggle {
+    width: 40px;
+    height: 20px;
+    background: #333;
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.acc-toggle::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.acc-option.active .acc-toggle { background: var(--neon-primary); }
+.acc-option.active .acc-toggle::after { transform: translateX(20px); }
+
 .profile-logo {
     border: 2px solid var(--neon-accent);
     box-shadow: 0 0 20px var(--neon-accent-glow);
