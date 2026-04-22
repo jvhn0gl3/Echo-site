@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ECHO://SERVICES | John Ogletree</title>
+    <meta name="description" content="Digital Services & Solutions - John Ogletree">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/master.css">
+</head>
+<body style="margin:0; padding:0;">
+    <div class="app-container">
+        <nav class="app-nav">
+            <div class="nav-logo">
+                E:://
+            </div>
+            <div class="nav-scroll-group">
+                <a href="/index.html" class="nav-item" title="Home">
+                    <i class="fas fa-house"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/profile.html" class="nav-item" title="Profile">
+                    <i class="fas fa-user-astronaut"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="/services.html" class="nav-item active" title="Services">
+                    <i class="fas fa-microchip"></i>
+                    <span>Services</span>
+                </a>
+                <a href="/pricing.html" class="nav-item" title="Pricing">
+                    <i class="fas fa-tags"></i>
+                    <span>Pricing</span>
+                </a>
+                <a href="/blog.html" class="nav-item" title="Blog">
+                    <i class="fas fa-rss"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="/projects.html" class="nav-item" title="Projects">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Projects</span>
+                </a>
+                <a href="/connect.html" class="nav-item" title="Connect">
+                    <i class="fas fa-plug"></i>
+                    <span>Connect</span>
+                </a>
+                <a href="/resume.html" class="nav-item" title="Resume">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Resume</span>
+                </a>
+                <a href="/docs.html" class="nav-item" title="Docs">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+                <a href="/directory.html" class="nav-item" title="Directory">
+                    <i class="fas fa-folder-tree"></i>
+                    <span>Directory</span>
+                </a>
+            </div>
+            <div class="nav-footer">
+                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-item" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </nav>
+
+        <main class="app-main">
+            <div class="app-status-bar">
+                <div class="status-left">10:42 PM</div>
+                <div class="status-right">
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-signal"></i>
+                    <div class="battery"></div>
+                </div>
+            </div>
+
+            <nav class="breadcrumb-nav">
+                <div class="breadcrumb-content">
+                    <span class="breadcrumb-item"><a href="/index.html">HOME</a></span>
+                    <span class="breadcrumb-item active">SERVICES</span>
+                </div>
+            </nav>
+
+            <div class="main-content">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-hud">
+                            <h1 class="hero-title glitch" data-text="SYSTEM_MODULES">SYSTEM_MODULES</h1>
+                            <div class="text-neon">OPERATIONAL CAPABILITIES // SERVICE SUITE</div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="cyber-hr">
+
+                <div class="container" id="app">
+                    <!-- SEARCH & FILTER -->
+                    <section id="discovery">
+                        <div class="terminal-card">
+                            <div class="card-header"><span class="card-title">Module Discovery</span></div>
+                            <input type="text" id="service-search" class="terminal-input" placeholder="Query system modules..." style="margin-bottom: 15px;">
+                            <div class="social-grid" style="grid-template-columns: repeat(3, 1fr);">
+                                <button class="social-btn filter-btn active" data-category="all">ALL</button>
+                                <button class="social-btn filter-btn" data-category="development">DEV</button>
+                                <button class="social-btn filter-btn" data-category="infrastructure">SYS</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr class="cyber-hr">
+
+                    <!-- SERVICES GRID -->
+                    <section id="services">
+                        <h2>services.execute()</h2>
+                        <div id="services-grid" class="skills-grid">
+                            <!-- DYNAMICALLY LOADED -->
+                        </div>
+                    </section>
+
+                    <hr class="cyber-hr">
+
+                    <!-- WORKFLOW -->
+                    <section id="workflow">
+                        <h2>system.get_workflow()</h2>
+                        <div class="terminal-card">
+                            <div class="card-header"><span class="card-title">Execution Pipeline</span></div>
+                            <div id="workflow-steps" class="skills-grid grid-2x2">
+                                <!-- DYNAMICALLY LOADED -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr class="cyber-hr">
+                </div>
+            </div>
+
+            <footer class="app-footer">
+                <div class="app-title">ECHO://OS</div>
+            </footer>
+            <div class="crt"></div><div class="scanner"></div>
+        </main>
+    </div>
+    <script src="/js/master.js"></script>
+</body>
+</html>
