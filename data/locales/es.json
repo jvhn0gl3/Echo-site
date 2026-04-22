@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "[BIN] inicio",
+    "profile": "[USR] perfil",
+    "services": "[SYS] servicios",
+    "pricing": "[VAL] precios",
+    "blog": "[LOG] blog",
+    "projects": "[VAR] proyectos",
+    "connect": "[DEV] conectar",
+    "resume": "[DOC] curriculum",
+    "docs": "[DOC] docs",
+    "directory": "[MAP] directorio",
+    "github": "github",
+    "accessibility": "accesibilidad"
+  },
+  "status": {
+    "system": "SISTEMA:",
+    "ready": "LISTO",
+    "goto": "IR_A:",
+    "acc_settings": "Configuración de Accesibilidad"
+  },
+  "ui": {
+    "app_title": "ECHO://OS",
+    "skip_link": "Saltar al contenido",
+    "exit_config": "$ ./salir_config",
+    "report_issue": "$ ./informar_problema",
+    "acc_conf": "Accesibilidad.conf"
+  },
+  "acc": {
+    "high_contrast": "Alto Contraste",
+    "large_text": "Texto Grande",
+    "reduce_motion": "Reducir Movimiento",
+    "dyslexia": "Fuente Dislexia",
+    "light_mode": "Modo Claro",
+    "accommodation_header": "[ACOMODACIÓN_TÉCNICA_GENERAL]"
+  },
+  "breadcrumb": {
+    "home": "INICIO",
+    "profile": "PERFIL",
+    "services": "SERVICIOS",
+    "pricing": "PRECIOS",
+    "blog": "BLOG",
+    "projects": "PROYECTOS",
+    "connect": "CONECTAR",
+    "resume": "CURRICULUM",
+    "docs": "DOCS",
+    "directory": "DIRECTORIO"
+  }
+}

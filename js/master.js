@@ -3,6 +3,61 @@
    Consolidated from modular JS artifacts
    ========================================================================== */
 
+// 0. i18n / i10n LOGIC
+let currentLocale = localStorage.getItem('site-locale') || 'en';
+let localeData = {};
+
+async function loadLocale(lang = 'en') {
+    try {
+        const response = await fetch(`/data/locales/${lang}.json`);
+        localeData = await response.json();
+        currentLocale = lang;
+        localStorage.setItem('site-locale', lang);
+        document.documentElement.lang = lang;
+        applyTranslations();
+        console.log(`[i18n] System locale set to: ${lang}`);
+    } catch (error) {
+        console.error(`[i18n] Failed to load locale ${lang}:`, error);
+    }
+}
+
+function t(key) {
+    const keys = key.split('.');
+    let value = localeData;
+    for (const k of keys) {
+        if (value && value[k]) {
+            value = value[k];
+        } else {
+            return key; // Fallback to key name
+        }
+    }
+    return value;
+}
+
+function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const translation = t(key);
+        if (translation !== key) {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = translation;
+            } else {
+                el.textContent = translation;
+            }
+        }
+    });
+
+    // Translate dynamic tooltips if they use keys
+    document.querySelectorAll('[data-i10n-tooltip]').forEach(el => {
+        const key = el.dataset.i10nTooltip;
+        const translation = t(key);
+        if (translation !== key) {
+            el.setAttribute('data-tooltip', translation);
+        }
+    });
+}
+window.loadLocale = loadLocale;
+
 // 1. DATA LOADER - Central Link Synchronization
 async function loadLinks() {
     try {
@@ -80,21 +135,21 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
-                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-tooltip="System Dashboard"><i aria-hidden="true" class="fas fa-house"></i> <span>[BIN] home</span></a>
-                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-tooltip="User Identity & Skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span>[USR] profile</span></a>
-                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-tooltip="Operational Modules"><i aria-hidden="true" class="fas fa-microchip"></i> <span>[SYS] services</span></a>
-                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-tooltip="Resource Allocation"><i aria-hidden="true" class="fas fa-tags"></i> <span>[VAL] pricing</span></a>
-                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-tooltip="System Logs"><i aria-hidden="true" class="fas fa-rss"></i> <span>[LOG] blog</span></a>
-                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-tooltip="Development Archive"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span>[VAR] projects</span></a>
-                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-tooltip="Secure Handshake"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span>[DEV] connect</span></a>
-                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-tooltip="Professional History"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span>[DOC] resume</span></a>
-                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-tooltip="Protocol Documentation"><i aria-hidden="true" class="fas fa-book"></i> <span>[DOC] docs</span></a>
-                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-tooltip="System Map"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span>[MAP] directory</span></a>
+                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></a>
+                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-i18n-tooltip="status.identity_skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></a>
+                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-i18n-tooltip="status.operational_modules"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></a>
+                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-i18n-tooltip="status.resource_allocation"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></a>
+                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-i18n-tooltip="status.system_logs"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></a>
+                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-i18n-tooltip="status.development_archive"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></a>
+                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span data-i18n="nav.connect">[DEV] connect</span></a>
+                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-i18n-tooltip="status.professional_history"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span data-i18n="nav.resume">[DOC] resume</span></a>
+                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-i18n-tooltip="status.protocol_docs"><i aria-hidden="true" class="fas fa-book"></i> <span data-i18n="nav.docs">[DOC] docs</span></a>
+                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-i18n-tooltip="status.system_map"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span data-i18n="nav.directory">[MAP] directory</span></a>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
-            <a href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-tooltip="Accessibility Settings"><i aria-hidden="true" class="fas fa-universal-access"></i> <span>accessibility</span></a>
-            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-tooltip="Source Code"><i aria-hidden="true" class="fab fa-github"></i> <span>github</span></a>
+            <a href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-i18n-tooltip="status.acc_settings"><i aria-hidden="true" class="fas fa-universal-access"></i> <span data-i18n="nav.accessibility">accessibility</span></a>
+            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-i18n-tooltip="status.source_code"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="nav.github">github</span></a>
         </div>
     </aside>
         `;
@@ -257,15 +312,24 @@ function initializeAccessibility() {
                     <div class="acc-toggle"></div>
                 </div>
                 <div class="acc-option" data-setting="acc-light-mode">
-                    <span>Light Mode</span>
+                    <span data-i18n="acc.light_mode">Light Mode</span>
                     <div class="acc-toggle"></div>
+                </div>
+                <div class="acc-option-group" style="padding: 12px; border-bottom: 1px solid var(--border-main);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span data-i18n="nav.directory">Locale</span>
+                        <div style="display: flex; gap: 5px;">
+                            <button class="social-btn lang-btn active" data-lang="en" style="padding: 2px 8px; font-size: 0.55rem;">EN</button>
+                            <button class="social-btn lang-btn" data-lang="es" style="padding: 2px 8px; font-size: 0.55rem;">ES</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="margin-top: 15px; padding: 10px; border: 1px dashed var(--border-main); border-radius: 8px;">
-                <p style="font-size: 0.55rem; color: var(--text-dim); margin-bottom: 8px;">[GENERAL_TECHNICAL_ACCOMMODATION]</p>
-                <a href="mailto:contact@john-ogletree.me?subject=Accessibility%20Report" class="terminal-btn" style="width: 100%; font-size: 0.55rem;">$ ./report_access_issue</a>
+                <p style="font-size: 0.55rem; color: var(--text-dim); margin-bottom: 8px;" data-i18n="acc.accommodation_header">[GENERAL_TECHNICAL_ACCOMMODATION]</p>
+                <a href="mailto:contact@john-ogletree.me?subject=Accessibility%20Report" class="terminal-btn" style="width: 100%; font-size: 0.55rem;" data-i18n="ui.report_issue">$ ./report_access_issue</a>
             </div>
-            <button class="matrix-btn" style="margin-top: 20px;" id="close-acc">$ ./exit_config</button>
+            <button class="matrix-btn" style="margin-top: 20px;" id="close-acc" data-i18n="ui.exit_config">$ ./exit_config</button>
         `;
         document.body.appendChild(modal);
     }
@@ -302,12 +366,24 @@ function initializeAccessibility() {
         });
     });
 
+    // Language Toggles
+    modal.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadLocale(btn.dataset.lang);
+        });
+    });
+
     // Load saved preferences
     ['acc-high-contrast', 'acc-large-text', 'acc-reduce-motion', 'acc-dyslexia', 'acc-light-mode'].forEach(s => {
         if (localStorage.getItem(s) === 'true') {
             document.body.classList.add(s);
         }
     });
+
+    // Set initial active lang btn
+    modal.querySelector(`.lang-btn[data-lang="${currentLocale}"]`)?.classList.add('active');
 }
 
 // 6. CONTENT LOADER
@@ -531,6 +607,7 @@ async function loadSiteContent() {
 
 // 7. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
+    loadLocale(currentLocale); // Initial translation load
     loadLinks();
     initializeNavigation();
     initializeForms();

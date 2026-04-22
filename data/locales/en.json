@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "[BIN] home",
+    "profile": "[USR] profile",
+    "services": "[SYS] services",
+    "pricing": "[VAL] pricing",
+    "blog": "[LOG] blog",
+    "projects": "[VAR] projects",
+    "connect": "[DEV] connect",
+    "resume": "[DOC] resume",
+    "docs": "[DOC] docs",
+    "directory": "[MAP] directory",
+    "github": "github",
+    "accessibility": "accessibility"
+  },
+  "status": {
+    "system": "SYSTEM:",
+    "preview": "PREVIEW:",
+    "ready": "READY",
+    "goto": "GOTO:",
+    "competency": "Competency:",
+    "initialize": "Initialize",
+    "dashboard": "System Dashboard",
+    "identity_skills": "User Identity & Skills",
+    "operational_modules": "Operational Modules",
+    "resource_allocation": "Resource Allocation",
+    "system_logs": "System Logs",
+    "development_archive": "Development Archive",
+    "secure_handshake": "Secure Handshake",
+    "professional_history": "Professional History",
+    "protocol_docs": "Protocol Documentation",
+    "system_map": "System Map",
+    "source_code": "Source Code",
+    "acc_settings": "Accessibility Settings"
+  },
+  "ui": {
+    "app_title": "ECHO://OS",
+    "skip_link": "Skip to content",
+    "exit_config": "$ ./exit_config",
+    "report_issue": "$ ./report_access_issue",
+    "acc_conf": "Accessibility.conf"
+  },
+  "acc": {
+    "high_contrast": "High Contrast",
+    "large_text": "Large Text",
+    "reduce_motion": "Reduce Motion",
+    "dyslexia": "Dyslexia Font",
+    "light_mode": "Light Mode",
+    "accommodation_header": "[GENERAL_TECHNICAL_ACCOMMODATION]"
+  },
+  "home": {
+    "hero_title": "JOHN OGLETREE",
+    "hero_subtitle": "DIGITAL ARCHITECT // CREATIVE TECHNOLOGIST",
+    "btn_projects": "$ ./view_projects",
+    "btn_connect": "$ ./view_connect",
+    "about_title": "about.user",
+    "identity_card": "Identity",
+    "capabilities_card": "Capabilities",
+    "btn_full_profile": "$ ./view_full_profile",
+    "services_title": "services.get_modules()",
+    "pricing_title": "pricing.view_tiers()",
+    "blog_title": "blog.read_entries()",
+    "btn_read_more": "$ ./read_more",
+    "projects_title": "projects.access_archive()",
+    "btn_all_projects": "$ ./view_all_projects",
+    "connect_title": "connect.init_handshake()",
+    "btn_send": "$ ./send_transmission"
+  },
+  "breadcrumb": {
+    "home": "HOME",
+    "profile": "PROFILE",
+    "services": "SERVICES",
+    "pricing": "PRICING",
+    "blog": "BLOG",
+    "projects": "PROJECTS",
+    "connect": "CONNECT",
+    "resume": "RESUME",
+    "docs": "DOCS",
+    "directory": "DIRECTORY"
+  }
+}

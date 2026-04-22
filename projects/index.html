@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,  viewport-fit=cover">
-    <title>ECHO://PROJECTS | John Ogletree</title>
+    <title data-i18n="ui.app_title">ECHO://PROJECTS | John Ogletree</title>
     <meta name="description" content="Project Archive & Development Metrics - John Ogletree">
     <link rel="icon" type="image/jpeg" href="/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/master.css">
 </head>
-<body style="margin:0; padding:0;">`n    <a href="#app" class="skip-link">Skip to content</a>
+<body style="margin:0; padding:0;">`n    <a href="#app" class="skip-link" data-i18n="ui.skip_link">Skip to content</a>
     <div class="app-container">
         <nav class="app-nav">
             <div class="nav-logo">E:://</div>
             <div class="nav-scroll-group">
-                <a href="/index.html" class="nav-item" title="Home" data-tooltip="System Dashboard"><i aria-hidden="true" class="fas fa-house"></i><span>Home</span></a>
-                <a href="/profile/" class="nav-item" title="Profile" data-tooltip="User Identity & Skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i><span>Profile</span></a>
-                <a href="/services/" class="nav-item" title="Services" data-tooltip="Operational Modules"><i aria-hidden="true" class="fas fa-microchip"></i><span>Services</span></a>
-                <a href="/pricing/" class="nav-item" title="Pricing" data-tooltip="Resource Allocation"><i aria-hidden="true" class="fas fa-tags"></i><span>Pricing</span></a>
-                <a href="/blog/" class="nav-item" title="Blog" data-tooltip="System Logs"><i aria-hidden="true" class="fas fa-rss"></i><span>Blog</span></a>
-                <a href="/projects/" class="nav-item active" title="Projects" data-tooltip="Development Archive"><i aria-hidden="true" class="fas fa-laptop-code"></i><span>Projects</span></a>
-                <a href="/connect/" class="nav-item" title="Connect" data-tooltip="Secure Handshake"><i aria-hidden="true" class="fas fa-plug"></i><span>Connect</span></a>
-                <a href="/resume/" class="nav-item" title="Resume" data-tooltip="Professional History"><i aria-hidden="true" class="fas fa-file-pdf"></i><span>Resume</span></a>
-                <a href="/docs/" class="nav-item" title="Docs" data-tooltip="Protocol Documentation"><i aria-hidden="true" class="fas fa-book"></i><span>Docs</span></a>
-                <a href="/directory/" class="nav-item" title="Directory" data-tooltip="System Map"><i aria-hidden="true" class="fas fa-folder-tree"></i><span>Directory</span></a>
+                <a href="/index.html" class="nav-item" title="Home" data-i18n-tooltip="status.dashboard"><i aria-hidden="true" class="fas fa-house"></i><span data-i18n="nav.home" data-i18n="breadcrumb.home">HOME</span></a>
+                <a href="/profile/" class="nav-item" title="Profile" data-i18n-tooltip="status.identity_skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i><span data-i18n="nav.profile" data-i18n="breadcrumb.profile">PROFILE</span></a>
+                <a href="/services/" class="nav-item" title="Services" data-i18n-tooltip="status.operational_modules"><i aria-hidden="true" class="fas fa-microchip"></i><span data-i18n="nav.services" data-i18n="breadcrumb.services">SERVICES</span></a>
+                <a href="/pricing/" class="nav-item" title="Pricing" data-i18n-tooltip="status.resource_allocation"><i aria-hidden="true" class="fas fa-tags"></i><span data-i18n="nav.pricing" data-i18n="breadcrumb.pricing">PRICING</span></a>
+                <a href="/blog/" class="nav-item" title="Blog" data-i18n-tooltip="status.system_logs"><i aria-hidden="true" class="fas fa-rss"></i><span data-i18n="nav.blog" data-i18n="breadcrumb.blog">BLOG</span></a>
+                <a href="/projects/" class="nav-item active" title="Projects" data-i18n-tooltip="status.development_archive"><i aria-hidden="true" class="fas fa-laptop-code"></i><span data-i18n="nav.projects" data-i18n="breadcrumb.projects">PROJECTS</span></a>
+                <a href="/connect/" class="nav-item" title="Connect" data-i18n-tooltip="status.secure_handshake"><i aria-hidden="true" class="fas fa-plug"></i><span data-i18n="nav.connect" data-i18n="breadcrumb.connect">CONNECT</span></a>
+                <a href="/resume/" class="nav-item" title="Resume" data-i18n-tooltip="status.professional_history"><i aria-hidden="true" class="fas fa-file-pdf"></i><span data-i18n="nav.resume" data-i18n="breadcrumb.resume">RESUME</span></a>
+                <a href="/docs/" class="nav-item" title="Docs" data-i18n-tooltip="status.protocol_docs"><i aria-hidden="true" class="fas fa-book"></i><span data-i18n="nav.docs" data-i18n="breadcrumb.docs">DOCS</span></a>
+                <a href="/directory/" class="nav-item" title="Directory" data-i18n-tooltip="status.system_map"><i aria-hidden="true" class="fas fa-folder-tree"></i><span data-i18n="nav.directory" data-i18n="breadcrumb.directory">DIRECTORY</span></a>
             </div>
             <div class="nav-footer">
-                <a href="#" class="nav-item" title="Accessibility" data-tooltip="Accessibility Settings">
+                <a href="#" class="nav-item" title="Accessibility" data-i18n-tooltip="status.acc_settings">
                     <i aria-hidden="true" class="fas fa-universal-access"></i>
                 </a>
-                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-item" title="GitHub" data-tooltip="Source Code">
+                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-item" title="GitHub" data-i18n-tooltip="status.source_code">
                     <i aria-hidden="true" class="fab fa-github"></i>
                 </a>
             </div>
@@ -37,31 +37,33 @@
 
         <main class="app-main">
             <div class="app-status-bar"><div class="status-left">10:42 PM</div><div class="status-right"><i aria-hidden="true" class="fas fa-wifi"></i><i aria-hidden="true" class="fas fa-signal"></i><div class="battery"></div></div></div>
-            <nav class="breadcrumb-nav"><div class="breadcrumb-back" ><i aria-hidden="true" class="fas fa-chevron-left"></i></div><div class="breadcrumb-content"><span class="breadcrumb-item"><a href="/index.html">HOME</a></span><span class="breadcrumb-item active">PROJECTS</span></div></nav>
+            <nav class="breadcrumb-nav"><div class="breadcrumb-back" ><i aria-hidden="true" class="fas fa-chevron-left"></i></div><div class="breadcrumb-content"><span class="breadcrumb-item"><a href="/index.html">HOME</a></span><span class="breadcrumb-item active" data-i18n="breadcrumb.projects">PROJECTS</span></div></nav>
 
             <div class="main-content">
                 <section class="hero"><div class="hero-content"><div class="hero-hud"><h1 class="hero-title glitch" data-text="SYSTEM_ARCHIVE">SYSTEM_ARCHIVE</h1><div class="text-neon">DEVELOPMENT ARTIFACTS // PROJECT DATA</div></div></div></section>
                 <hr class="cyber-hr">
                 <div class="container" id="app">
                     <section id="metrics">
-                        <h2>system.get_metrics()</h2>
+                        <h2 data-i18n="home.projects_title">system.get_metrics()</h2>
                         <div id="github-metrics" class="skills-grid" style="grid-template-columns: repeat(3, 1fr);">
                             <!-- DYNAMICALLY LOADED -->
                         </div>
                     </section>
                     <hr class="cyber-hr">
                     <section id="projects">
-                        <h2>system.access_archive()</h2>
+                        <h2 data-i18n="home.projects_title">system.access_archive()</h2>
                         <div id="projects-grid">
                             <!-- DYNAMICALLY LOADED -->
                         </div>
                     </section>
                 </div>
             </div>
-            <footer class="app-footer"><div class="app-title">ECHO://OS</div></footer>
+            <footer class="app-footer"><div class="app-title" data-i18n="ui.app_title">ECHO://OS</div></footer>
             <div class="crt"></div><div class="scanner"></div>
         </main>
     </div>
     <script src="/js/master.js"></script>
 </body>
 </html>
+
+
