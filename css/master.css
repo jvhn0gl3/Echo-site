@@ -469,17 +469,58 @@ footer {
 
 .skill-item {
     border: 1px solid rgba(0, 255, 157, 0.2);
-    padding: 12px;
+    padding: 15px;
     background: rgba(0, 255, 157, 0.03);
-    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.skill-main {
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: all 0.3s;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.85rem;
+    font-weight: bold;
 }
+
+.skill-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.skill-percentage {
+    font-size: 0.7rem;
+    color: var(--text-gold);
+    font-family: 'JetBrains Mono', monospace;
+    min-width: 35px;
+}
+
+.skill-bar-container {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-primary), #ffd93d);
+    box-shadow: 0 0 10px var(--neon-primary);
+    border-radius: 2px;
+    transition: width 1s ease-out;
+}
+
+.skill-item:hover {
+    border-color: var(--neon-primary);
+    background: rgba(0, 255, 157, 0.06);
+    transform: translateX(5px);
+}
+
 
 /* 4. LAYOUT (MOBILE) */
 @media screen and (max-width: 850px) {

@@ -193,9 +193,24 @@ async function loadSiteContent() {
             
             const allSkills = [...coreSkills, ...treeSkills];
             
-            skillsContainer.innerHTML = allSkills.map(skill => `
-                <div class="skill-item"><i class="${skill.icon}"></i><span>${skill.label}</span></div>
-            `).join('');
+            skillsContainer.innerHTML = allSkills.map(skill => {
+                // Generate a pseudo-random stable percentage for the skill
+                const percentage = Math.floor(Math.random() * 20 + 75); // 75% to 95%
+                return `
+                    <div class="skill-item">
+                        <div class="skill-main">
+                            <i class="${skill.icon}"></i>
+                            <span>${skill.label}</span>
+                        </div>
+                        <div class="skill-stats">
+                            <div class="skill-percentage">${percentage}%</div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: ${percentage}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
         const skillTreeContainer = document.getElementById('skill-tree-grid');
