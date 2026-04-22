@@ -240,13 +240,15 @@ body {
     background: linear-gradient(145deg, var(--bg-surface), #0f1218);
     border: 1px solid var(--border-main);
     border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 12px;
+    margin-bottom: 12px;
     box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
     text-align: center;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     user-select: none;
+    overflow: hidden; /* NO OVERFLOW */
+    width: 100%;
 }
 
 .terminal-card:hover {
@@ -260,27 +262,61 @@ body {
 }
 
 .card-header {
-    margin-bottom: 12px;
-    padding-bottom: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
     border-bottom: 1px solid rgba(0, 255, 157, 0.08);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    font-size: 0.65rem;
 }
-.card-title { color: var(--text-gold); font-size: 0.7rem; letter-spacing: 1px; }
+.card-title { 
+    color: var(--text-gold); 
+    font-size: 0.65rem; 
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    display: block;
+    word-break: break-word;
+}
 
 h2 {
     font-size: 0.7rem;
     color: var(--neon-secondary);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin: 25px 0 12px;
+    letter-spacing: 2px;
+    margin: 20px 0 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     font-weight: 900;
+}
+
+/* 2x2 GRID OPTIMIZATION */
+.grid-2x2 .terminal-card {
+    padding: 10px 6px;
+}
+
+.grid-2x2 .card-header {
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 6px;
+    min-height: 45px;
+}
+
+.grid-2x2 .terminal-btn, .grid-2x2 .matrix-btn {
+    font-size: 0.55rem;
+    padding: 6px 4px;
+    letter-spacing: 0;
+}
+
+.grid-2x2 p {
+    font-size: 0.6rem !important;
+}
+
+.grid-2x2 .terminal-list {
+    font-size: 0.55rem !important;
 }
 h2::before { content: "//"; color: var(--neon-secondary); }
 h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: auto; background: none; }
