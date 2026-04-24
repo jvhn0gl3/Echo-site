@@ -740,7 +740,7 @@ function initializeNotificationCarousel(count) {
     if (!track || count <= 0) return;
 
     // Calculate duration based on the number of items to keep speed consistent
-    const speedPerItem = 15; // seconds
+    const speedPerItem = 25; // seconds
     const duration = count * speedPerItem;
     track.style.animationDuration = `${duration}s`;
 }
