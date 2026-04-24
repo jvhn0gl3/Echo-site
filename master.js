@@ -719,9 +719,9 @@ async function loadNotifications() {
 
         track.innerHTML = notifications.map(n => `
             <div class="notification-item">
-                <span class="notif-id">[${n.id}]</span>
-                <span class="notif-type">${n.type} //</span>
+                <span class="notif-type">${n.type}</span>
                 <span class="notif-message">${n.message}</span>
+                <span class="notif-id">[${n.id}]</span>
             </div>
         `).join('');
 
