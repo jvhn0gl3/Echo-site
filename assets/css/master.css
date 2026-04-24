@@ -171,6 +171,8 @@ body {
 .nav-item:hover {
     color: var(--neon-secondary);
     text-shadow: 0 0 10px var(--neon-secondary-glow);
+    background: rgba(255, 45, 85, 0.05);
+    border-left: 2px solid var(--neon-secondary);
 }
 
 .nav-item.active {
