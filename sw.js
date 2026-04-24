@@ -1,25 +1,7 @@
-const CACHE_NAME = 'echo-os-cache-v5';
+const CACHE_NAME = 'echo-os-cache-v6';
 const ASSETS = [
   '/',
   '/pages/index.html',
-  '/pages/profile/',
-  '/pages/profile/index.html',
-  '/pages/services/',
-  '/pages/services/index.html',
-  '/pages/projects/',
-  '/pages/projects/index.html',
-  '/pages/resume/',
-  '/pages/resume/index.html',
-  '/pages/pricing/',
-  '/pages/pricing/index.html',
-  '/pages/connect/',
-  '/pages/connect/index.html',
-  '/pages/directory/',
-  '/pages/directory/index.html',
-  '/pages/blog/',
-  '/pages/blog/index.html',
-  '/pages/docs/',
-  '/pages/docs/index.html',
   '/assets/css/master.css',
   '/assets/js/master.js',
   '/assets/data/links.json',
@@ -56,18 +38,31 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch Event (Stale-While-Revalidate Strategy for most, Network-First for CSS)
+// Fetch Event
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // Special handling for CSS to ensure it's always fresh
+  // Special handling for CSS to ensure it's always fresh and has correct MIME type
   if (url.pathname.endsWith('.css')) {
+    const freshRequest = new Request(`${event.request.url}${url.search ? '&' : '?'}t=${Date.now()}`, {
+      cache: 'no-store'
+    });
+
     event.respondWith(
-      fetch(event.request)
+      fetch(freshRequest)
         .then(fetchRes => {
+          const newHeaders = new Headers(fetchRes.headers);
+          newHeaders.set('Content-Type', 'text/css');
+
+          const responseClone = new Response(fetchRes.body, {
+            status: fetchRes.status,
+            statusText: fetchRes.statusText,
+            headers: newHeaders
+          });
+
           return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, fetchRes.clone());
-            return fetchRes;
+            cache.put(event.request, responseClone.clone());
+            return responseClone;
           });
         })
         .catch(() => caches.match(event.request))
@@ -75,6 +70,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Standard Stale-While-Revalidate for other assets
   event.respondWith(
     caches.match(event.request)
       .then(cacheRes => {
