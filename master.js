@@ -738,25 +738,26 @@ async function loadNotifications() {
 
 function initializeNotificationCarousel(count) {
     const track = document.getElementById('carouselTrack');
-    if (!track || count <= 1) return; // No need to loop if only 1 item
+    const container = document.querySelector('.system-notification-carousel');
+    if (!track || !container || count <= 1) return;
 
     let index = 0;
-    const itemHeight = 36; // Fixed height from CSS
 
     setInterval(() => {
         index++;
-        track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        track.style.transform = `translateY(-${index * itemHeight}px)`;
+        const itemWidth = container.offsetWidth;
+        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        track.style.transform = `translateX(-${index * itemWidth}px)`;
 
         // Seamless loop reset
         if (index >= count) {
             setTimeout(() => {
                 track.style.transition = 'none';
-                track.style.transform = 'translateY(0)';
+                track.style.transform = 'translateX(0)';
                 index = 0;
-            }, 500); // Wait for transition to finish
+            }, 600); // Wait for transition to finish
         }
-    }, 4000);
+    }, 5000); // Slightly longer pause for ticker reading
 }
 
 // 6c. DYNAMIC VERSION (Linked to Browser Time)
