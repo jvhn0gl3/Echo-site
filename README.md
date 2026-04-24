@@ -27,5 +27,5 @@ The terminal aesthetic is powered by a collection of high-quality, free-for-comm
 
 ---
 **STATUS:** [OPERATIONAL]  
-**VERSION:** v4.2.0-STABLE  
+**VERSION:** v4.2.1-STABLE  
 **COORDINATES:** 33.51° N
