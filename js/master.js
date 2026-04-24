@@ -121,17 +121,6 @@ async function loadLinks() {
 }
 window.loadLinks = loadLinks;
 
-// 1b. DYNAMIC STATUS BAR TIME
-function updateStatusBarTime() {
-    const timeEl = document.querySelector('.status-left');
-    if (timeEl) {
-        const now = new Date();
-        timeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-}
-setInterval(updateStatusBarTime, 1000);
-updateStatusBarTime();
-
 // 2. SIDEBAR COMPONENT
 class SiteSidebar extends HTMLElement {
     connectedCallback() {

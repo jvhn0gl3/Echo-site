@@ -235,31 +235,6 @@ body {
     overflow: hidden;
 }
 
-/* APP STATUS BAR */
-.app-status-bar {
-    height: 25px;
-    padding: 0 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.6rem;
-    color: var(--text-dim);
-    background: rgba(0,0,0,0.4);
-    z-index: 10000002;
-    letter-spacing: 1px;
-}
-
-.status-right { display: flex; gap: 8px; align-items: center; }
-.battery { 
-    width: 15px; height: 8px; border: 1px solid rgba(255,255,255,0.2); position: relative; 
-    border-radius: 1px;
-}
-.battery::after { 
-    content: ""; position: absolute; width: 75%; height: 100%; 
-    background: var(--neon-primary); top: 0; left: 0; 
-    box-shadow: 0 0 5px var(--neon-primary);
-}
-
 /* APP FOOTER (BOTTOM BAR) */
 .app-footer {
     height: 50px;
