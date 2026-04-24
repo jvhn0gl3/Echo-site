@@ -9,7 +9,7 @@ The project employs a high-performance **Single-Page Architecture (SPA)**, provi
 ### 🎨 Design System
 - **Modern Dark Mode**: A neutral, high-contrast palette based on slate and indigo tones, optimized for readability and reduced eye strain.
 - **System Typography**: Leverages native system font stacks for maximum performance and a familiar application feel.
-- **App Shell**: A fixed structural layout including a sidebar (IDE-style activity bar), breadcrumb navigation, and a dynamic notification stream.
+- **App Shell**: A fixed structural layout including a sidebar (IDE-style activity bar), breadcrumb navigation, and a dynamic notification stream. The interface is optimized for direct interaction, with all tooltips and hover-based text overlays removed for a cleaner, high-performance experience.
 
 ### ⚙️ Core Protocols
 - **Full-Width Responsive**: Utilizes the full viewport on all devices with aggressive stacking and wrapping for narrow screens.
