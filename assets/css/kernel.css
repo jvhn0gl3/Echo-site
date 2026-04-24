@@ -1087,8 +1087,49 @@ textarea.terminal-input {
 }
 
 /* ==========================================================================
-   6. RESPONSIVE BREAKPOINTS (FULL WIDTH)
+   6. RESPONSIVE BREAKPOINTS (FULL WIDTH & AGGRESSIVE WRAPPING)
    ========================================================================== */
+
+/* GLOBAL WRAP ENFORCEMENT */
+@media screen and (max-width: 600px) {
+    .grid-2x2, 
+    .skills-grid, 
+    .social-grid, 
+    .explorer-grid, 
+    #projects-grid,
+    .hero-hud,
+    .desc-with-logo {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .terminal-card, .project-card, .skill-item {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Ensure text in cards wraps */
+    .card-title, .status-content, p, li {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    /* Stack hero buttons */
+    .hero-hud {
+        gap: 15px !important;
+    }
+    
+    .hero-hud div[style*="flex-direction: row"] {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .matrix-btn, .terminal-btn {
+        width: 100% !important;
+    }
+}
 
 /* TABLET BREAKPOINT (768px+) */
 @media screen and (min-width: 768px) {
