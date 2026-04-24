@@ -646,6 +646,17 @@ async function loadSiteContent() {
 
 // 7. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('[SYSTEM] ServiceWorker registered:', registration.scope);
+            }).catch(error => {
+                console.log('[SYSTEM] ServiceWorker registration failed:', error);
+            });
+        });
+    }
+
     loadLocale(currentLocale); // Initial translation load
     loadLinks();
     initializeNavigation();
