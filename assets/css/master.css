@@ -79,8 +79,7 @@ body {
     height: 100vh;
     height: 100dvh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     touch-action: manipulation;
     user-select: none;
     -webkit-user-select: none;
@@ -89,15 +88,13 @@ body {
 
 /* THE APP CANVAS */
 .app-container {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
+    flex: 1;
     width: 100%;
     background: var(--bg-app);
     display: flex;
     flex-direction: row; /* Sidebar + Main Content */
     overflow: hidden;
+    position: relative;
 }
 
 /* SIDEBAR (IDE ACTIVITY BAR) */
@@ -1205,6 +1202,21 @@ textarea.terminal-input {
     background: var(--neon-primary);
     color: #000;
     box-shadow: 0 0 15px var(--neon-primary-glow);
+}
+
+/* KAO BANNER OVERRIDE */
+#kao-banner {
+    z-index: 100000000 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+/* Adjust app-container to make room for fixed banner if it exists */
+body.has-kao-banner .app-container {
+    top: 40px; /* Adjust based on banner height */
 }
 
 
