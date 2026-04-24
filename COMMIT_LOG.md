@@ -120,4 +120,6 @@ This file tracks all commits made to this repository.
 - Optimized `master.js` to handle single-page navigation and smooth-scrolling protocols.
 - Condensced the KAO system banner into a single-line, high-density layout using flexbox and line-height overrides.
 - Applied "ECHO://OS" terminal branding to the system banner, featuring Matrix Green accents, Share Tech Mono typography, and glowing CSS effects.
+- Implemented aggressive wrapping and vertical stacking for narrow viewports (<= 600px), forcing all grid components to a single-column layout.
+- Optimized text resilience for terminal strings by enforcing `overflow-wrap: anywhere` across all UI elements to prevent horizontal overflow.
 
