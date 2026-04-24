@@ -132,16 +132,16 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
-                <a href="/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></a>
-                <a href="/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-i18n-tooltip="status.identity_skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></a>
-                <a href="/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-i18n-tooltip="status.operational_modules"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></a>
-                <a href="/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-i18n-tooltip="status.resource_allocation"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></a>
-                <a href="/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-i18n-tooltip="status.system_logs"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></a>
-                <a href="/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-i18n-tooltip="status.development_archive"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></a>
-                <a href="/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span data-i18n="nav.connect">[DEV] connect</span></a>
-                <a href="/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-i18n-tooltip="status.professional_history"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span data-i18n="nav.resume">[DOC] resume</span></a>
-                <a href="/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-i18n-tooltip="status.protocol_docs"><i aria-hidden="true" class="fas fa-book"></i> <span data-i18n="nav.docs">[DOC] docs</span></a>
-                <a href="/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-i18n-tooltip="status.system_map"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span data-i18n="nav.directory">[MAP] directory</span></a>
+                <a href="/pages/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></a>
+                <a href="/pages/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-i18n-tooltip="status.identity_skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></a>
+                <a href="/pages/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-i18n-tooltip="status.operational_modules"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></a>
+                <a href="/pages/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-i18n-tooltip="status.resource_allocation"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></a>
+                <a href="/pages/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-i18n-tooltip="status.system_logs"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></a>
+                <a href="/pages/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-i18n-tooltip="status.development_archive"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></a>
+                <a href="/pages/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span data-i18n="nav.connect">[DEV] connect</span></a>
+                <a href="/pages/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-i18n-tooltip="status.professional_history"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span data-i18n="nav.resume">[DOC] resume</span></a>
+                <a href="/pages/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-i18n-tooltip="status.protocol_docs"><i aria-hidden="true" class="fas fa-book"></i> <span data-i18n="nav.docs">[DOC] docs</span></a>
+                <a href="/pages/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-i18n-tooltip="status.system_map"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span data-i18n="nav.directory">[MAP] directory</span></a>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
@@ -630,7 +630,7 @@ async function loadSiteContent() {
                     <div class="text-gold" style="font-size: 1.5rem; margin: 15px 0;">${tier.price} <span style="font-size: 0.7rem; color: var(--text-dim);">${tier.price_label}</span></div>
                     <p>${tier.description}</p>
                     <ul class="terminal-list">${tier.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                    <div style="margin-top: 20px;"><a href="/connect.html" class="${tier.featured ? 'matrix-btn' : 'terminal-btn'}" style="width: 100%;">$ ./${tier.command}</a></div>
+                    <div style="margin-top: 20px;"><a href="/pages/connect/" class="${tier.featured ? 'matrix-btn' : 'terminal-btn'}" style="width: 100%;">$ ./${tier.command}</a></div>
                 </div>
             `).join('');
         }
