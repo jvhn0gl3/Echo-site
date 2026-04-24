@@ -10,7 +10,6 @@ The project employs a high-performance **Single-Page Architecture (SPA)**, conso
 The project uses a fully-flattened, root-level architecture for maximum simplicity and deployment compatibility. All files, including CSS, JavaScript, data files, fonts, and images, reside at the project root.
 
 ### ⚙️ Core Protocols
-- **Stealth Link Cloaking**: Implements a global protocol that hides the browser's native status bar URL on hover by dynamically switching `href` attributes to `data-href`, maintaining the virtual OS immersion.
 - **Direct Kernel Injection**: Prioritizes local-directory CSS loading to bypass mobile-specific directory traversal issues and strict MIME-type enforcement.
 - **Global Mobile-First**: Enforces a strict, high-density vertical alignment across all screen sizes by disabling expansion breakpoints, ensuring a consistent virtual OS "app" experience on all hardware platforms.
 - **System Notification (KAO)**: Implements a locally-hosted, static version of the branded status bar. This protocol uses a "Forced Visibility" logic kernel that ensures consistent delivery and zero-latency injection into the system entry point.
