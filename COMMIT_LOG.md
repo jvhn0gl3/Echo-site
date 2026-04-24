@@ -93,4 +93,7 @@ This file tracks all commits made to this repository.
 - Implemented a JavaScript `MutationObserver` and CSS overrides to dynamically detect the KAO banner and adjust the application's top offset, preventing content overlap.
 - Relocated the KAO banner script tag in all HTML files to be immediately before the breadcrumb navigation inside the `app-main` area, providing a more integrated "in-app" notification feel.
 - Refined the banner CSS to use relative positioning within the content flow rather than a fixed screen-wide overlay.
+- Standardized KAO banner placement by inserting a `<div id="kao-banner"></div>` placeholder in the exact location of the original status bar (immediately before the breadcrumb navigation).
+- Relocated the KAO banner script to the `<head>` of all HTML files for cleaner execution and standardized asset loading.
+- Deprecated and removed the JavaScript `MutationObserver` and `has-kao-banner` detection logic, relying on the placeholder `div` and standard document flow for layout stability.
 
