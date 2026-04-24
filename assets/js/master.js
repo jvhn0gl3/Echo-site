@@ -152,15 +152,12 @@ class SiteSidebar extends HTMLElement {
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
                 <div data-href="/pages/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></div>
-                <div data-href="/pages/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-i18n-tooltip="status.identity_skills" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></div>
-                <div data-href="/pages/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-i18n-tooltip="status.operational_modules" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></div>
-                <div data-href="/pages/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-i18n-tooltip="status.resource_allocation" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></div>
-                <div data-href="/pages/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-i18n-tooltip="status.system_logs" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></div>
-                <div data-href="/pages/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-i18n-tooltip="status.development_archive" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></div>
-                <div data-href="/pages/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span data-i18n="nav.connect">[DEV] connect</span></div>
-                <div data-href="/pages/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-i18n-tooltip="status.professional_history" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span data-i18n="nav.resume">[DOC] resume</span></div>
-                <div data-href="/pages/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-i18n-tooltip="status.protocol_docs" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-book"></i> <span data-i18n="nav.docs">[DOC] docs</span></div>
-                <div data-href="/pages/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-i18n-tooltip="status.system_map" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span data-i18n="nav.directory">[MAP] directory</span></div>
+                <div data-href="#about" class="sidebar-link" data-label="PROFILE" data-i18n-tooltip="status.identity_skills" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></div>
+                <div data-href="#services" class="sidebar-link" data-label="SERVICES" data-i18n-tooltip="status.operational_modules" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></div>
+                <div data-href="#pricing" class="sidebar-link" data-label="PRICING" data-i18n-tooltip="status.resource_allocation" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></div>
+                <div data-href="#blog" class="sidebar-link" data-label="BLOG" data-i18n-tooltip="status.system_logs" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></div>
+                <div data-href="#projects" class="sidebar-link" data-label="PROJECTS" data-i18n-tooltip="status.development_archive" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></div>
+                <div data-href="#connect" class="sidebar-link" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-plug"></i> <span data-i18n="nav.connect">[DEV] connect</span></div>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
@@ -296,23 +293,24 @@ function initializeNavigation() {
             window.history.back();
         });
     });
-}
-window.initializeNavigation = initializeNavigation;
 
     // Smooth scroll for anchors
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"], [data-href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            const targetId = this.getAttribute('href') || this.getAttribute('data-href');
+            if (targetId && targetId.startsWith('#')) {
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
 }
 window.initializeNavigation = initializeNavigation;
+
 
 // 3b. LANGUAGE DROPDOWN
 function initializeLanguageDropdown() {
