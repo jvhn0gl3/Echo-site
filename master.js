@@ -54,15 +54,6 @@ function applyTranslations() {
             }
         }
     });
-
-    // Translate dynamic tooltips if they use keys
-    document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
-        const key = el.dataset.i18nTooltip;
-        const translation = t(key);
-        if (translation !== key) {
-            el.setAttribute('data-tooltip', translation);
-        }
-    });
 }
 window.loadLocale = loadLocale;
 
@@ -98,10 +89,10 @@ async function loadLinks() {
 
         // 2. Populate Social Links (Keep real hrefs for external, but we'll cloak them on hover later)
         const socialSelectors = {
-            'github': ['[href*="github"]', '.btn-github', '[title="GitHub"]'],
-            'linkedin': ['[href*="linkedin"]', '.btn-linkedin', '[title="LinkedIn"]'],
-            'twitter': ['[href*="twitter"]', '.btn-twitter', '[title*="Twitter"]', '.fab.fa-x-twitter'],
-            'email': ['[href^="mailto"]', '.btn-email', '[title="Email"]', '.fas.fa-envelope']
+            'github': ['[href*="github"]', '.btn-github'],
+            'linkedin': ['[href*="linkedin"]', '.btn-linkedin'],
+            'twitter': ['[href*="twitter"]', '.btn-twitter', '.fab.fa-x-twitter'],
+            'email': ['[href^="mailto"]', '.btn-email', '.fas.fa-envelope']
         };
 
         for (const [key, selectors] of Object.entries(socialSelectors)) {
@@ -151,18 +142,18 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
-                <div data-href="/pages/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></div>
-                <div data-href="#about" class="sidebar-link" data-label="PROFILE" data-i18n-tooltip="status.identity_skills" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></div>
-                <div data-href="#services" class="sidebar-link" data-label="SERVICES" data-i18n-tooltip="status.operational_modules" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></div>
-                <div data-href="#pricing" class="sidebar-link" data-label="PRICING" data-i18n-tooltip="status.resource_allocation" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></div>
-                <div data-href="#blog" class="sidebar-link" data-label="BLOG" data-i18n-tooltip="status.system_logs" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></div>
-                <div data-href="#projects" class="sidebar-link" data-label="PROJECTS" data-i18n-tooltip="status.development_archive" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></div>
-                <div data-href="#connect" class="sidebar-link" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-plug"></i> <span data-i18n="nav.connect">[DEV] connect</span></div>
+                <div data-href="/pages/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></div>
+                <div data-href="#about" class="sidebar-link" data-label="PROFILE" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></div>
+                <div data-href="#services" class="sidebar-link" data-label="SERVICES" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></div>
+                <div data-href="#pricing" class="sidebar-link" data-label="PRICING" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></div>
+                <div data-href="#blog" class="sidebar-link" data-label="BLOG" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></div>
+                <div data-href="#projects" class="sidebar-link" data-label="PROJECTS" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></div>
+                <div data-href="#connect" class="sidebar-link" data-label="CONNECT" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-plug"></i> <span data-i18n="nav.connect">[DEV] connect</span></div>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
-            <div data-href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-i18n-tooltip="status.acc_settings" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-universal-access"></i> <span data-i18n="nav.accessibility">accessibility</span></div>
-            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-i18n-tooltip="status.source_code"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="nav.github">github</span></a>
+            <div data-href="#" class="sidebar-link" data-label="ACCESSIBILITY" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-universal-access"></i> <span data-i18n="nav.accessibility">accessibility</span></div>
+            <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="nav.github">github</span></a>
         </div>
     </aside>
         `;
@@ -207,7 +198,7 @@ function initializeNavigation() {
 
     // GLOBAL STATUS DELEGATION (Handles all current and future elements)
     const handleStatusEvent = (e) => {
-        const target = e.target.closest('a, button, .sidebar-link, .nav-item, [data-tooltip], .terminal-card, .skill-item, .project-card, .social-btn, .matrix-btn, .terminal-btn, [data-href]');
+        const target = e.target.closest('a, button, .sidebar-link, .nav-item, .terminal-card, .skill-item, .project-card, .social-btn, .matrix-btn, .terminal-btn, [data-href]');
         if (!target) {
             if (e.type === 'mouseleave' || e.type === 'touchend') hideStatus();
             return;
@@ -224,12 +215,11 @@ function initializeNavigation() {
                 target.style.cursor = 'pointer';
             }
 
-            const tooltip = target.getAttribute('data-tooltip');
             const activeHref = target.getAttribute('data-href') || target.getAttribute('href');
             const title = target.querySelector('.card-title')?.textContent;
             const btnText = target.textContent.trim().startsWith('$ ./') ? target.textContent.trim() : null;
             
-            const statusText = tooltip || btnText || title || (activeHref && !activeHref.startsWith('#') ? `GOTO: ${activeHref}` : "READY");
+            const statusText = btnText || title || (activeHref && !activeHref.startsWith('#') ? `GOTO: ${activeHref}` : "READY");
             showStatus(statusText);
         } else {
             hideStatus();
@@ -373,7 +363,7 @@ function initializeForms() {
 
 // 5b. ACCESSIBILITY CONTROL PANEL
 function initializeAccessibility() {
-    const accBtn = document.querySelector('[data-label="ACCESSIBILITY"], [title="Accessibility"]');
+    const accBtn = document.querySelector('[data-label="ACCESSIBILITY"]');
     if (!accBtn) return;
 
     // Create Modal & Overlay if they don't exist
@@ -526,7 +516,7 @@ async function loadSiteContent() {
                 // Generate a pseudo-random stable percentage for the skill
                 const percentage = Math.floor(Math.random() * 20 + 75); // 75% to 95%
                 return `
-                    <div class="skill-item" data-tooltip="Competency: ${percentage}%">
+                    <div class="skill-item" >
                         <div class="skill-main">
                             <i aria-hidden="true" class="${skill.icon}"></i>
                             <span>${skill.label}</span>
@@ -586,7 +576,7 @@ async function loadSiteContent() {
                     servicesGrid.innerHTML = `<div class="terminal-card" style="grid-column: 1 / -1; text-align: center; border-style: dashed;"><p class="text-dim">${t('status.no_modules')}</p></div>`;
                 } else {
                     servicesGrid.innerHTML = filtered.map(module => `
-                        <div class="terminal-card service-card" data-tooltip="Initialize ${module.title}">
+                        <div class="terminal-card service-card" >
                             <div class="card-header"><i aria-hidden="true" class="${module.icon}"></i> <span class="card-title">${module.title}</span></div>
                             <p>${module.description}</p>
                             <ul class="terminal-list">${module.list.map(item => `<li>${item}</li>`).join('')}</ul>
