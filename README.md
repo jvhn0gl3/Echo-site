@@ -4,17 +4,14 @@ A high-performance, terminal-themed digital portfolio for John Ogletree, designe
 
 ## 🖥️ System Architecture
 
-The project is built using a clean, modular approach to ensure scalability and ease of maintenance.
-
-## 🖥️ System Architecture
-
-The project is built using a clean, modular approach to ensure scalability and ease of maintenance.
+The project employs a high-performance **Single-Page Architecture (SPA)**, consolidating all operational modules into a unified terminal entry point for maximum immersion and zero-latency transition.
 
 ### 🎨 System Assets
 Resources are centralized in `/assets`, with a specialized kernel fallback in `/pages`:
-- `pages/kernel.css`: Primary system stylesheet, locally injected for maximum mobile-browser reliability and cache-busting.
-- `assets/js/master.js`: Unified system logic kernel handling i18n, navigation, dynamic content, and UI effects.
-- `assets/data/links.json`: Central registry for system navigation and external node synchronization.
+- `pages/index.html`: Unified system entry point (SPA Kernel).
+- `pages/kernel.css`: Primary system stylesheet, locally injected for maximum mobile-browser reliability.
+- `assets/js/master.js`: Unified system logic kernel handling i18n, anchor navigation, and UI effects.
+- `assets/data/links.json`: Central registry for system anchors and external node synchronization.
 - `assets/data/locales/`: i18n localization artifacts for multi-language support.
 
 ### ⚙️ Core Protocols
