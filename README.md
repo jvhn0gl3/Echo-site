@@ -19,6 +19,7 @@ Resources are centralized in `/assets`, with a specialized kernel fallback in `/
 - **Direct Kernel Injection**: Prioritizes local-directory CSS loading to bypass mobile-specific directory traversal issues and strict MIME-type enforcement.
 - **Global Mobile-First**: Enforces a strict, high-density vertical alignment across all screen sizes by disabling expansion breakpoints, ensuring a consistent virtual OS "app" experience on all hardware platforms.
 - **System Notification (KAO)**: Implements a locally-hosted, static version of the branded status bar. This protocol uses a "Forced Visibility" logic kernel that ensures consistent delivery and zero-latency injection into the system entry point.
+- **Notification Stream**: Employs a dynamic, vertical carousel linked to a JSON database to relay real-time system metrics, security logs, and operational updates above the primary navigation layer.
 - **Dynamic HUD**: Real-time simulation of system metrics and automated terminal typing sequences.
 
 ## 🖋️ Typography

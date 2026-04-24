@@ -139,5 +139,8 @@ This file tracks all commits made to this repository.
 - Upgraded Service Worker to `v10` and corrected the manifest path for the relocated system stylesheet.
 - Permanently removed the Service Worker architecture (`sw.js`) and all associated registration and lifecycle logic from the system kernel.
 - Sanitized `README.md` to remove PWA and Service Worker protocols, aligning documentation with the new network-first delivery model.
+- Implemented a dynamic "System Notification Carousel" above the breadcrumb navigation, linked to a centralized JSON database (`assets/data/notifications.json`).
+- Developed a vertical scrolling logic kernel in `master.js` to cycle through system messages with seamless loop support.
+- Designed high-density terminal aesthetics for the notification stream, featuring color-coded categories and technical ID tracking.
 - Re-enabled active Service Worker registration in the master logic kernel (`master.js`) after finalizing CSS debugging.
 
