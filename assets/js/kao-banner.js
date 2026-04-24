@@ -1,9 +1,10 @@
 /**
  * Keep Android Open – Static Banner (ECHO://OS Edition)
- * Adaption: Removed countdown logic, internalizing styles and branding.
+ * FORCED VISIBILITY MODE - Bypassing dismissal for debug.
  */
 (function () {
   "use strict";
+  console.log('[SYSTEM] Initializing Internal Banner...');
 
   var messages = {
     en: "Android will become a locked-down platform",
@@ -15,7 +16,7 @@
     ko: "Android\uAC00 \uD3D0\uC1C4\uB41C \uD50C\uB7AB\uD3FC\u0 Korean",
     pt: "O Android se tornar\u00E1 uma plataforma fechada",
     ru: "Android \u0441\u0442\u0430\u043D\u0435\u0442 \u0437\u0430\u043A\u0440\u044B\u0442\u043E\u0439 \u043F\u043B\u0430\u0442\u0444\u043E\u0440\u043C\u043E\u0439",
-    it: "Android diventer\u00E0 una piattaforma bloccata"
+    it: "Android diventer\u00E0 una plataforma bloccata"
   };
 
   function resolveLocale() {
@@ -26,16 +27,8 @@
 
   var locale = resolveLocale();
   var storageKey = "kao-banner-hidden";
-  var dismissDays = 30;
 
-  // Check dismissal
-  try {
-    var dismissed = localStorage.getItem(storageKey);
-    if (dismissed) {
-      var elapsed = Date.now() - Number(dismissed);
-      if (elapsed < dismissDays * 24 * 60 * 60 * 1000) return;
-    }
-  } catch (e) {}
+  // REMOVED DISMISSAL CHECK TO FORCE SHOW
 
   var banner = document.createElement("div");
   banner.className = "kao-banner";
@@ -57,11 +50,22 @@
   };
   banner.appendChild(closeBtn);
 
-  // Automatic target detection
-  var target = document.getElementById("kao-banner") || document.body.firstChild;
-  if (target === document.body.firstChild) {
-      document.body.insertBefore(banner, document.body.firstChild);
+  // Robust target detection
+  var inject = function() {
+    var target = document.getElementById("kao-banner");
+    if (target) {
+        target.innerHTML = ''; // Clear placeholder
+        target.appendChild(banner);
+        console.log('[SUCCESS] Banner injected into #kao-banner');
+    } else {
+        document.body.insertBefore(banner, document.body.firstChild);
+        console.log('[WARN] #kao-banner not found, prepending to body');
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inject);
   } else {
-      target.appendChild(banner);
+    inject();
   }
 })();
