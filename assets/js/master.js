@@ -710,13 +710,14 @@ async function loadSiteContent() {
 
 // 7. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
-    // DEBUG: Unregister SW to fix CSS loading
+    // Register Service Worker
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-            for (let registration of registrations) {
-                registration.unregister();
-                console.log('[DEBUG] ServiceWorker unregistered');
-            }
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('[SYSTEM] ServiceWorker registered:', registration.scope);
+            }).catch(error => {
+                console.log('[SYSTEM] ServiceWorker registration failed:', error);
+            });
         });
     }
 
