@@ -926,6 +926,11 @@ body.acc-light-mode .breadcrumb-back { color: var(--neon-primary); }
     border: 1px solid var(--border-main);
     margin-bottom: 20px;
 }
+#projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
 .project-img {
     width: 100%;
     height: 120px;
@@ -1062,6 +1067,154 @@ textarea.terminal-input {
 .lang-opt.active {
     color: var(--neon-primary);
     background: rgba(0, 255, 157, 0.1);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE BREAKPOINTS (FULL WIDTH)
+   ========================================================================== */
+
+/* TABLET BREAKPOINT (768px+) */
+@media screen and (min-width: 768px) {
+    :root {
+        --app-width: 100%;
+        --base-scale: clamp(12px, 0.8vw + 8px, 16px);
+    }
+
+    .app-container {
+        max-width: none;
+        left: 0;
+        transform: none;
+        border-left: none;
+        border-right: none;
+        box-shadow: none;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-2x2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    #projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .explorer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .main-content {
+        padding: 25px;
+    }
+}
+
+/* DESKTOP BREAKPOINT (1024px+) */
+@media screen and (min-width: 1024px) {
+    .app-nav {
+        width: 220px;
+        padding: 20px 0;
+        align-items: flex-start;
+    }
+
+    .nav-logo {
+        width: 100%;
+        font-size: 1.2rem;
+        padding-left: 20px;
+        justify-content: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .nav-scroll-group {
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0 20px;
+        height: 45px;
+        gap: 15px;
+        border-left: 3px solid transparent;
+    }
+
+    .nav-item i {
+        font-size: 1rem;
+        width: 20px;
+        text-align: center;
+    }
+
+    .nav-item span {
+        display: block;
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .nav-item.active {
+        border-left: 3px solid var(--neon-primary);
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-2x2 {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    #projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .explorer-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .text-neon {
+        font-size: 1rem;
+    }
+
+    .main-content {
+        padding: 40px;
+    }
+
+    .app-footer {
+        height: 60px;
+    }
+
+    .app-title {
+        font-size: 1rem;
+    }
+}
+
+/* LARGE DESKTOP (1440px+) */
+@media screen and (min-width: 1440px) {
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid-2x2 {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    #projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .main-content {
+        padding: 60px;
+    }
 }
 
 
