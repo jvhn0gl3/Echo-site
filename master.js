@@ -723,6 +723,7 @@ async function loadNotifications() {
                 <span class="notif-message">${n.message}</span>
                 <span class="notif-id">[${n.id}]</span>
             </div>
+            <div style="color: var(--border-bright); opacity: 0.3; font-weight: 300;">//</div>
         `).join('');
 
         // Duplicate content for seamless linear loop
