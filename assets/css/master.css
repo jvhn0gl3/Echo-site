@@ -1207,16 +1207,9 @@ textarea.terminal-input {
 /* KAO BANNER OVERRIDE */
 #kao-banner {
     z-index: 100000000 !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
+    position: relative !important;
     width: 100% !important;
     display: block !important;
-}
-
-/* Adjust app-container to make room for fixed banner if it exists */
-body.has-kao-banner .app-container {
-    top: 40px; /* Adjust based on banner height */
 }
 
 

@@ -91,4 +91,6 @@ This file tracks all commits made to this repository.
 - Refactored the global layout to use a vertical flexbox on the `body` element, ensuring the KAO banner functions as a natural top-level status bar.
 - Relocated the KAO banner script tag to the beginning of the `<body>` in all HTML files and added the `defer` attribute for optimal loading.
 - Implemented a JavaScript `MutationObserver` and CSS overrides to dynamically detect the KAO banner and adjust the application's top offset, preventing content overlap.
+- Relocated the KAO banner script tag in all HTML files to be immediately before the breadcrumb navigation inside the `app-main` area, providing a more integrated "in-app" notification feel.
+- Refined the banner CSS to use relative positioning within the content flow rather than a fixed screen-wide overlay.
 
