@@ -122,4 +122,5 @@ This file tracks all commits made to this repository.
 - Applied "ECHO://OS" terminal branding to the system banner, featuring Matrix Green accents, Share Tech Mono typography, and glowing CSS effects.
 - Implemented aggressive wrapping and vertical stacking for narrow viewports (<= 600px), forcing all grid components to a single-column layout.
 - Optimized text resilience for terminal strings by enforcing `overflow-wrap: anywhere` across all UI elements to prevent horizontal overflow.
+- Temporarily removed all content sections (`about`, `services`, `pricing`, `blog`, `projects`, `connect`) from `index.html`, retaining only the primary hero component for interface focus.
 
