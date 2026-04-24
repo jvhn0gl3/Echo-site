@@ -11,15 +11,15 @@ The project is built using a clean, modular approach to ensure scalability and e
 The project is built using a clean, modular approach to ensure scalability and ease of maintenance.
 
 ### 🎨 System Assets
-Resources are centralized in `/assets` to ensure a high-performance, immersive experience:
-- `assets/css/master.css`: Consolidated stylesheet containing all architectural, component, and visual effect modules.
+Resources are centralized in `/assets`, with a specialized kernel fallback in `/pages`:
+- `pages/kernel.css`: Primary system stylesheet, locally injected for maximum mobile-browser reliability and cache-busting.
 - `assets/js/master.js`: Unified system logic kernel handling i18n, navigation, dynamic content, and UI effects.
 - `assets/data/links.json`: Central registry for system navigation and external node synchronization.
 - `assets/data/locales/`: i18n localization artifacts for multi-language support.
 
 ### ⚙️ Core Protocols
 - **Stealth Link Cloaking**: Implements a global protocol that hides the browser's native status bar URL on hover by dynamically switching `href` attributes to `data-href`, maintaining the virtual OS immersion.
-- **Force CSS Synchronization**: Employs a network-first Service Worker strategy with strict MIME type enforcement (`text/css`) and internal cache-busting timestamps to ensure consistent visual rendering on mobile devices.
+- **Direct Kernel Injection**: Prioritizes local-directory CSS loading to bypass mobile-specific directory traversal issues and strict MIME-type enforcement across varied network conditions.
 - **PWA Persistence**: Service worker (`sw.js`) and manifest (`manifest.json`) integration for offline functionality and app-like installation.
 - **Dynamic HUD**: Real-time simulation of system metrics and automated terminal typing sequences.
 

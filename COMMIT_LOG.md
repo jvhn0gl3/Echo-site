@@ -112,4 +112,7 @@ This file tracks all commits made to this repository.
 - Added `self.skipWaiting()` and `self.clients.claim()` to the Service Worker for immediate activation and control over all active tabs.
 - Synchronized all system HTML files with a `v=3` cache-buster for the master stylesheet.
 - Updated `README.md` with the "Force CSS Synchronization" protocol documentation.
+- Implemented "Direct Kernel Injection" by relocating the master stylesheet to the `/pages` directory to resolve mobile path resolution failures.
+- Standardized all HTML links to use local `./kernel.css` with UTF-8 charset enforcement.
+- Performed a "Nuclear Reset" on the Service Worker to clear legacy caches and ensure clean network-only pass-through during debugging.
 
