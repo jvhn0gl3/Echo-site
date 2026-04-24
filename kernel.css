@@ -72,20 +72,7 @@ html {
     height: 100%;
 }
 
-body {
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.5;
-    overflow: hidden;
-    height: 100vh;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    touch-action: manipulation;
-    user-select: none;
-    -webkit-user-select: none;
-    font-size: 0.9rem;
+body {-size: clamp(0.75rem, 2.5vw, 0.9rem);
 }
 
 /* THE APP CANVAS */
@@ -379,8 +366,7 @@ body {
     line-height: 1.2;
 }
 
-h2 {
-    font-size: 1rem;
+h2 {-size: clamp(0.85rem, 4vw, 1rem);
     color: var(--app-primary);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -821,7 +807,7 @@ body.acc-high-contrast .terminal-card { border-width: 2px; }
 
 body.acc-large-text { font-size: 1.1rem; }
 body.acc-large-text .app-title { font-size: 1rem; }
-body.acc-large-text h2 { font-size: 1rem; }
+body.acc-large-text h2 {-size: clamp(0.85rem, 4vw, 1rem); }
 body.acc-large-text .nav-logo { font-size: 1.2rem; }
 
 body.acc-reduce-motion * {
