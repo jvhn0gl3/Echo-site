@@ -177,8 +177,10 @@ body {
 
 .nav-item.active {
     color: var(--neon-primary);
-    border-left: 2px solid var(--neon-primary);
+    background: rgba(0, 255, 157, 0.1);
+    border-left: 3px solid var(--neon-primary);
     text-shadow: 0 0 15px var(--neon-primary-glow);
+    box-shadow: inset 4px 0 10px -4px var(--neon-primary-glow);
 }
 
 /* CONTENT AREA */
