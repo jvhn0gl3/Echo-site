@@ -1,4 +1,4 @@
-const CACHE_NAME = 'echo-os-cache-v3';
+const CACHE_NAME = 'echo-os-cache-v5';
 const ASSETS = [
   '/',
   '/pages/index.html',
@@ -40,6 +40,7 @@ self.addEventListener('install', event => {
         console.log('[SERVICE WORKER] Pre-caching critical assets');
         return cache.addAll(ASSETS);
       })
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -51,24 +52,41 @@ self.addEventListener('activate', event => {
         .filter(key => key !== CACHE_NAME)
         .map(key => caches.delete(key))
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
-// Fetch Event (Cache First, falling back to Network)
+// Fetch Event (Stale-While-Revalidate Strategy for most, Network-First for CSS)
 self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  
+  // Special handling for CSS to ensure it's always fresh
+  if (url.pathname.endsWith('.css')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(fetchRes => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, fetchRes.clone());
+            return fetchRes;
+          });
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(cacheRes => {
-        return cacheRes || fetch(event.request).then(fetchRes => {
+        const fetchPromise = fetch(event.request).then(fetchRes => {
           return caches.open(CACHE_NAME).then(cache => {
-            // Optional: Dynamic caching of new requests
-            // cache.put(event.request.url, fetchRes.clone());
+            if (event.request.method === 'GET') {
+                cache.put(event.request, fetchRes.clone());
+            }
             return fetchRes;
           });
         });
-      }).catch(() => {
-        // Fallback for offline pages if needed
+        return cacheRes || fetchPromise;
       })
   );
 });
