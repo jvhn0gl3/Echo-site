@@ -150,4 +150,6 @@ This file tracks all commits made to this repository.
 - Re-enabled active Service Worker registration in the master logic kernel (`master.js`) after finalizing CSS debugging.
 - Standardized the master stylesheet link in `index.html` by removing the legacy `?v=3` cache-buster to align with the simplified root-level architecture.
 - Permanently removed the KAO banner system by deleting the `kao-banner.js` script registration from the system entry point (`index.html`).
+- Implemented a "Dynamic Version" display in the application footer, which automatically synchronizes with the browser's local time in `MM.DD.YYYY:HH.MM` format.
+- Updated `README.md` to document the transition from static versioning to a dynamically-linked system clock for version tracking.
 

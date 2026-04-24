@@ -756,6 +756,21 @@ function initializeNotificationCarousel(count) {
     }, 4000);
 }
 
+// 6c. DYNAMIC VERSION (Linked to Browser Time)
+function updateDynamicVersion() {
+    const versionEl = document.getElementById('app-version');
+    if (!versionEl) return;
+
+    const now = new Date();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const min = String(now.getMinutes()).padStart(2, '0');
+
+    versionEl.textContent = `VERSION: ${mm}.${dd}.${yyyy}:${hh}.${min}`;
+}
+
 // 7. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
     loadLocale(currentLocale); // Initial translation load
@@ -766,6 +781,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAccessibility();
     loadSiteContent();
     loadNotifications();
+    updateDynamicVersion();
+    setInterval(updateDynamicVersion, 10000); // Update every 10 seconds
 });
 
 window.addEventListener('load', () => {
