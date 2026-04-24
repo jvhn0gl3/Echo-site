@@ -18,7 +18,7 @@ Resources are centralized in `/assets`, with a specialized kernel fallback in `/
 - **Stealth Link Cloaking**: Implements a global protocol that hides the browser's native status bar URL on hover by dynamically switching `href` attributes to `data-href`, maintaining the virtual OS immersion.
 - **Direct Kernel Injection**: Prioritizes local-directory CSS loading to bypass mobile-specific directory traversal issues and strict MIME-type enforcement.
 - **Global Mobile-First**: Enforces a strict, high-density vertical alignment across all screen sizes by disabling expansion breakpoints, ensuring a consistent virtual OS "app" experience on all hardware platforms.
-- **System Notification (KAO)**: Integrates a branded, one-line "ECHO-themed" status bar for high-density information relay. Features specialized spacing for small-screen button clearance and graceful text truncation.
+- **System Notification (KAO)**: Integrates a branded, one-line "ECHO-themed" status bar for high-density information relay. Employs a "Double-Safe" padding protocol (50px clearance) to ensure zero overlap between system text and the close command on small screens.
 - **PWA Persistence**: Service worker (`sw.js`) and manifest (`manifest.json`) integration for offline functionality and app-like installation.
 - **Dynamic HUD**: Real-time simulation of system metrics and automated terminal typing sequences.
 
