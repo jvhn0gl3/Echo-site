@@ -658,28 +658,4 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     setTimeout(() => typeHero(typingText), 1500);
     setInterval(updateHeroCpu, 3000);
-
-    // KAO Banner Detection & Layout Sync
-    const checkKao = () => {
-        const banner = document.getElementById('kao-banner');
-        if (banner) {
-            document.body.classList.add('has-kao-banner');
-            console.log('[SYSTEM] KAO Banner detected. Layout adjusted.');
-            return true;
-        }
-        return false;
-    };
-
-    if (!checkKao()) {
-        const observer = new MutationObserver((mutations) => {
-            if (checkKao()) observer.disconnect();
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-        
-        // Fallback interval
-        const interval = setInterval(() => {
-            if (checkKao()) clearInterval(interval);
-        }, 1000);
-        setTimeout(() => clearInterval(interval), 10000);
-    }
 });
