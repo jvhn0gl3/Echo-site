@@ -75,4 +75,16 @@ This file tracks all commits made to this repository.
 - Finalized global removal of all section heading (`h2`) and divider icons to enforce a minimalist text-driven terminal aesthetic.
 - Enforced a strict, uniform mobile-first layout globally by removing all media queries and multi-column grid expansions.
 - Transformed the site into a dedicated "Mobile App" interface with a constrained `app-container`, top status bar, and bottom navigation bar.
+## [2026-04-24]
+- Transitioned the entire application to a full-width layout, removing the 600px/450px constraints and centering logic to utilize the full viewport on all devices.
+- Standardized a 4-column (4x1) horizontal grid structure across all core components, including skills, services, projects, metrics, and social links.
+- Implemented responsive grid fallbacks (2x1 and 1x1) for tablet and mobile viewports to maintain usability within the new full-width architecture.
+- Reverted the navigation sidebar to a permanent icon-only "IDE Activity Bar" across all screen sizes, ensuring a consistent and focused navigation interface.
+- Applied a uniform 20px padding around all navigation icons and the logo to enhance visual balance and touch targets.
+- Fixed the navigation logo ("E:://") to remain on a single line on all screen sizes using `white-space: nowrap` and width optimizations.
+- Removed the top `app-status-bar` (time, battery, signal icons) and its associated JavaScript update logic to maximize content space and streamline the UI.
+- Standardized hero buttons as a horizontal row across all screen sizes for improved desktop ergonomics.
+- Re-organized the project architecture by moving all static resources (`css`, `js`, `fonts`, `data`, and images) into a centralized `assets/` directory.
+- Re-organized the site structure by moving all HTML pages and page directories into a top-level `pages/` directory, updating all internal link registries and references accordingly.
+- Updated the service worker and web app manifest to synchronize with the new `/assets/` and `/pages/` directory structures.
 
