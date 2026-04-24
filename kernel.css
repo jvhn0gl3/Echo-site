@@ -1152,10 +1152,36 @@ textarea.terminal-input {
 .explorer-grid, 
 #projects-grid,
 .hero-hud,
-.desc-with-logo {
+.desc-with-logo,
+.breadcrumb-content {
     grid-template-columns: 1fr !important;
     display: flex !important;
     flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.breadcrumb-content {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+@media screen and (max-width: 480px) {
+    .breadcrumb-content {
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+    
+    #app-version {
+        border-left: none !important;
+        padding-left: 0 !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+        padding-top: 4px !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
 }
 
 .terminal-card, .project-card, .skill-item {
