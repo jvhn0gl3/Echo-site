@@ -96,4 +96,9 @@ This file tracks all commits made to this repository.
 - Standardized KAO banner placement by inserting a `<div id="kao-banner"></div>` placeholder in the exact location of the original status bar (immediately before the breadcrumb navigation).
 - Relocated the KAO banner script to the `<head>` of all HTML files for cleaner execution and standardized asset loading.
 - Deprecated and removed the JavaScript `MutationObserver` and `has-kao-banner` detection logic, relying on the placeholder `div` and standard document flow for layout stability.
+- Implemented a root `index.html` redirect to automatically forward traffic to the new `/pages/index.html` architecture.
+- Scaled down the KAO banner components via CSS (`font-size`, `padding`, `height`) to achieve a high-density "status bar" aesthetic that integrates seamlessly with the virtual OS theme.
+- Integrated Service Worker (SW) registration logic into `assets/js/master.js` to ensure reliable offline support and asset persistence.
+- Bumped Service Worker version to `v3` and applied `?v=2` cache-busters to global CSS links to force a refresh on mobile devices and resolve stale cache issues.
+- Optimized KAO banner injection by using the `?id=kao-banner` parameter to target the specific placeholder `div` within the content area.
 
