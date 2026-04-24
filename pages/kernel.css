@@ -1087,127 +1087,53 @@ textarea.terminal-input {
 }
 
 /* ==========================================================================
-   6. RESPONSIVE BREAKPOINTS (FULL WIDTH & AGGRESSIVE WRAPPING)
+   6. GLOBAL MOBILE-FIRST ENFORCEMENT (UNIFORM SCALING)
    ========================================================================== */
 
-/* GLOBAL WRAP ENFORCEMENT */
-@media screen and (max-width: 600px) {
-    .grid-2x2, 
-    .skills-grid, 
-    .social-grid, 
-    .explorer-grid, 
-    #projects-grid,
-    .hero-hud,
-    .desc-with-logo {
-        grid-template-columns: 1fr !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
+/* 
+   SYSTEM MANDATE: Everything is mobile-first. 
+   Expansion breakpoints are disabled to maintain the "ECHO OS" app aesthetic 
+   on all hardware platforms.
+*/
 
-    .terminal-card, .project-card, .skill-item {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    /* Ensure text in cards wraps */
-    .card-title, .status-content, p, li {
-        white-space: normal !important;
-        word-wrap: break-word !important;
-        overflow-wrap: anywhere !important;
-    }
-
-    /* Stack hero buttons */
-    .hero-hud {
-        gap: 15px !important;
-    }
-    
-    .hero-hud div[style*="flex-direction: row"] {
-        flex-direction: column !important;
-        width: 100% !important;
-    }
-
-    .matrix-btn, .terminal-btn {
-        width: 100% !important;
-    }
+.grid-2x2, 
+.skills-grid, 
+.social-grid, 
+.explorer-grid, 
+#projects-grid,
+.hero-hud,
+.desc-with-logo {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-/* TABLET BREAKPOINT (768px+) */
-@media screen and (min-width: 768px) {
-    :root {
-        --app-width: 100%;
-        --base-scale: clamp(12px, 0.8vw + 8px, 16px);
-    }
-
-    .grid-2x2 {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-
-    #projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .explorer-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .main-content {
-        padding: 25px;
-    }
+.terminal-card, .project-card, .skill-item {
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
-/* DESKTOP BREAKPOINT (1024px+) */
-@media screen and (min-width: 1024px) {
-    .grid-2x2 {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-
-    #projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .explorer-grid {
-        grid-template-columns: repeat(6, 1fr);
-    }
-    
-    .hero-title {
-        font-size: 3rem;
-    }
-    
-    .text-neon {
-        font-size: 1rem;
-    }
-
-    .main-content {
-        padding: 40px;
-    }
-
-    .app-footer {
-        height: 60px;
-    }
-
-    .app-title {
-        font-size: 1rem;
-    }
+/* Ensure text in cards wraps */
+.card-title, .status-content, p, li {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: anywhere !important;
 }
 
-/* LARGE DESKTOP (1440px+) */
-@media screen and (min-width: 1440px) {
-    .grid-2x2 {
-        grid-template-columns: repeat(4, 1fr) !important;
-    }
-
-    #projects-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    
-    .main-content {
-        padding: 60px;
-    }
+/* Stack hero buttons */
+.hero-hud {
+    gap: 15px !important;
 }
+
+.hero-hud div[style*="flex-direction: row"] {
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.matrix-btn, .terminal-btn {
+    width: 100% !important;
+}
+
 
 .social-grid {
     display: grid;
