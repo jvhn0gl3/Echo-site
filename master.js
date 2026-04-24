@@ -717,7 +717,7 @@ async function loadNotifications() {
         const response = await fetch('notifications.json');
         const notifications = await response.json();
 
-        track.innerHTML = notifications.map(n => `
+        const content = notifications.map(n => `
             <div class="notification-item">
                 <span class="notif-type">${n.type}</span>
                 <span class="notif-message">${n.message}</span>
@@ -725,10 +725,8 @@ async function loadNotifications() {
             </div>
         `).join('');
 
-        // Clone first item to end for seamless loop
-        if (notifications.length > 0) {
-            track.innerHTML += track.firstElementChild.outerHTML;
-        }
+        // Duplicate content for seamless linear loop
+        track.innerHTML = content + content;
 
         initializeNotificationCarousel(notifications.length);
     } catch (error) {
@@ -738,26 +736,12 @@ async function loadNotifications() {
 
 function initializeNotificationCarousel(count) {
     const track = document.getElementById('carouselTrack');
-    const container = document.querySelector('.system-notification-carousel');
-    if (!track || !container || count <= 1) return;
+    if (!track || count <= 0) return;
 
-    let index = 0;
-
-    setInterval(() => {
-        index++;
-        const itemWidth = container.offsetWidth;
-        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        track.style.transform = `translateX(-${index * itemWidth}px)`;
-
-        // Seamless loop reset
-        if (index >= count) {
-            setTimeout(() => {
-                track.style.transition = 'none';
-                track.style.transform = 'translateX(0)';
-                index = 0;
-            }, 600); // Wait for transition to finish
-        }
-    }, 5000); // Slightly longer pause for ticker reading
+    // Calculate duration based on the number of items to keep speed consistent
+    const speedPerItem = 15; // seconds
+    const duration = count * speedPerItem;
+    track.style.animationDuration = `${duration}s`;
 }
 
 // 6c. DYNAMIC VERSION (Linked to Browser Time)

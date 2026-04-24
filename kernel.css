@@ -926,7 +926,8 @@ textarea.terminal-input {
        display: flex;
        flex-direction: row;
        width: max-content;
-       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+       animation: ticker linear infinite;
+       will-change: transform;
    }
 
    .notification-item {
@@ -934,15 +935,21 @@ textarea.terminal-input {
        flex-shrink: 0;
        display: flex;
        align-items: center;
-       padding: 0 20px;
+       padding: 0 40px; /* Wider padding for ticker spacing */
        font-size: 0.75rem;
        font-weight: 500;
        letter-spacing: 0.2px;
        gap: 12px;
        white-space: nowrap;
-       width: 100%;
-       min-width: 100%;
-       justify-content: center;
+   }
+
+   @keyframes ticker {
+       0% { transform: translateX(0); }
+       100% { transform: translateX(-50%); } /* Animates half length (original content) */
+   }
+
+   .system-notification-carousel:hover .carousel-track {
+       animation-play-state: paused;
    }
 
    .notif-type {
