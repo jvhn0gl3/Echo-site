@@ -914,9 +914,7 @@ textarea.terminal-input {
    .system-notification-carousel {
        background: var(--bg-surface);
        border-bottom: 1px solid var(--border-main);
-       min-height: 36px;
-       height: auto;
-       max-height: 72px;
+       height: 36px;
        overflow: hidden;
        display: flex;
        align-items: center;
@@ -932,16 +930,16 @@ textarea.terminal-input {
    }
 
    .notification-item {
-       min-height: 36px;
-       height: auto;
+       height: 36px;
+       flex-shrink: 0;
        display: flex;
        align-items: center;
-       padding: 8px 20px;
+       padding: 0 20px;
        font-size: 0.75rem;
        font-weight: 500;
        letter-spacing: 0.2px;
        gap: 12px;
-       flex-wrap: nowrap;
+       white-space: nowrap;
    }
 
    .notif-type {
@@ -967,14 +965,7 @@ textarea.terminal-input {
        color: var(--text-secondary);
        font-size: 0.65rem;
        font-weight: 600;
-       opacity: 0.5;
-       font-family: inherit;
-   }
-
-   .notif-id {
-       color: var(--text-dim);
-       font-size: 0.45rem;
-       opacity: 0.5;
+       opacity: 0.4;
    }
 
    /* 6. GLOBAL MOBILE-FIRST ENFORCEMENT (UNIFORM SCALING) */
