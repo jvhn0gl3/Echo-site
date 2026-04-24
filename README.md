@@ -1,28 +1,20 @@
-# ECHO://TERMINAL | John Ogletree
+# ECHO OS | John Ogletree
 
-A high-performance, terminal-themed digital portfolio for John Ogletree, designed with a cyberpunk aesthetic and a modular architecture.
+A high-performance, modern digital portfolio and application shell for John Ogletree, featuring a clean dark mode interface and a responsive mobile-first architecture.
 
-## 🖥️ System Architecture
+## 📱 Application Architecture
 
-The project employs a high-performance **Single-Page Architecture (SPA)**, consolidating all operational modules into a unified terminal entry point for maximum immersion and zero-latency transition.
+The project employs a high-performance **Single-Page Architecture (SPA)**, providing a seamless, app-like experience with zero-latency transitions between modules.
 
-### 🎨 System Assets
-The project uses a fully-flattened, root-level architecture for maximum simplicity and deployment compatibility. All files, including CSS, JavaScript, data files, fonts, and images, reside at the project root.
+### 🎨 Design System
+- **Modern Dark Mode**: A neutral, high-contrast palette based on slate and indigo tones, optimized for readability and reduced eye strain.
+- **System Typography**: Leverages native system font stacks for maximum performance and a familiar application feel.
+- **App Shell**: A fixed structural layout including a sidebar (IDE-style activity bar), breadcrumb navigation, and a dynamic notification stream.
 
 ### ⚙️ Core Protocols
-- **Direct Kernel Injection**: Prioritizes local-directory CSS loading to bypass mobile-specific directory traversal issues and strict MIME-type enforcement.
-- **Global Mobile-First**: Enforces a strict, high-density vertical alignment across all screen sizes by disabling expansion breakpoints, ensuring a consistent virtual OS "app" experience on all hardware platforms.
-- **Notification Stream**: Employs a dynamic, vertical carousel linked to a JSON database to relay real-time system metrics, security logs, and operational updates above the primary navigation layer.
-- **Dynamic HUD**: Real-time simulation of system metrics and automated terminal typing sequences.
-
-## 🖋️ Typography
-
-The terminal aesthetic is powered by a collection of high-quality, free-for-commercial-use monospaced fonts located in `/fonts`:
-- **Share Tech Mono** (Primary)
-- **Space Mono**
-- **JetBrains Mono**
-- **IBM Plex Mono**
-- **Fira Code**
+- **Full-Width Responsive**: Utilizes the full viewport on all devices with aggressive stacking and wrapping for narrow screens.
+- **Direct Kernel Injection**: Prioritizes local-directory asset loading for maximum performance and reliability.
+- **Dynamic Versioning**: Real-time synchronization of the system version with the browser's local clock.
 
 ---
 **STATUS:** [OPERATIONAL]  
