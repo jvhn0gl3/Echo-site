@@ -743,8 +743,9 @@ function initializeNotificationCarousel(count) {
     let index = 0;
     setInterval(() => {
         index++;
+        const itemHeight = track.firstElementChild.offsetHeight;
         track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        track.style.transform = `translateY(-${index * 30}px)`;
+        track.style.transform = `translateY(-${index * itemHeight}px)`;
 
         if (index === count) {
             setTimeout(() => {

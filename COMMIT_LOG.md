@@ -154,5 +154,6 @@ This file tracks all commits made to this repository.
 - Relocated the dynamic version indicator to the breadcrumb navigation, positioned to the right of the language dropdown for improved visibility and UI integration.
 - Created a centralized system notification database (`notifications.json`) with sample data to populate the dynamic carousel.
 - Implemented global responsive wrapping and stacking protocols for narrow screens (<= 480px), ensuring the breadcrumb navigation and all flex containers stack correctly for a focused mobile-first UI.
+- Enhanced the system notification carousel to support multi-line message wrapping and dynamic height calculation, eliminating text truncation on mobile devices.
 - Updated `README.md` to document the transition from static versioning to a dynamically-linked system clock for version tracking.
 
