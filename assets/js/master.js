@@ -708,6 +708,54 @@ async function loadSiteContent() {
     }
 }
 
+// 6b. NOTIFICATION CAROUSEL
+async function loadNotifications() {
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
+
+    try {
+        const response = await fetch('/assets/data/notifications.json');
+        const notifications = await response.json();
+
+        track.innerHTML = notifications.map(n => `
+            <div class="notification-item">
+                <span class="notif-id">[${n.id}]</span>
+                <span class="notif-type">${n.type} //</span>
+                <span class="notif-message">${n.message}</span>
+            </div>
+        `).join('');
+
+        // Clone first item to end for seamless loop
+        if (notifications.length > 0) {
+            track.innerHTML += track.firstElementChild.outerHTML;
+        }
+
+        initializeNotificationCarousel(notifications.length);
+    } catch (error) {
+        console.error('[ERROR] Failed to load system notifications:', error);
+    }
+}
+
+function initializeNotificationCarousel(count) {
+    const track = document.getElementById('carouselTrack');
+    if (!track || count <= 0) return;
+
+    let index = 0;
+    setInterval(() => {
+        index++;
+        track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        track.style.transform = `translateY(-${index * 30}px)`;
+
+        if (index === count) {
+            setTimeout(() => {
+                track.style.transition = 'none';
+                track.style.transform = 'translateY(0)';
+                index = 0;
+            }, 500);
+        }
+    }, 4000);
+}
+
 // 7. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
     loadLocale(currentLocale); // Initial translation load
@@ -717,6 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeForms();
     initializeAccessibility();
     loadSiteContent();
+    loadNotifications();
 });
 
 window.addEventListener('load', () => {
