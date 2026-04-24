@@ -137,5 +137,7 @@ This file tracks all commits made to this repository.
 - Implemented "Forced Visibility Mode" for the internal KAO banner by removing `localStorage` dismissal checks.
 - Refactored the internal banner module with a `DOMContentLoaded` listener to ensure robust injection into the `#kao-banner` placeholder regardless of load speed.
 - Upgraded Service Worker to `v10` and corrected the manifest path for the relocated system stylesheet.
+- Permanently removed the Service Worker architecture (`sw.js`) and all associated registration and lifecycle logic from the system kernel.
+- Sanitized `README.md` to remove PWA and Service Worker protocols, aligning documentation with the new network-first delivery model.
 - Re-enabled active Service Worker registration in the master logic kernel (`master.js`) after finalizing CSS debugging.
 
