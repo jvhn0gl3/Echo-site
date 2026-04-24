@@ -17,16 +17,16 @@ const ASSETS = [
   '/scripts.html',
   '/registry.html',
   '/typography.html',
-  '/css/master.css',
-  '/js/master.js',
-  '/data/links.json',
-  '/data/site-content.json',
-  '/logo.jpg',
-  '/fonts/ShareTechMono-Regular.ttf',
-  '/fonts/SpaceMono-Regular.ttf',
-  '/fonts/JetBrainsMono-Regular.ttf',
-  '/fonts/IBMPlexMono-Regular.ttf',
-  '/fonts/FiraCode-Regular.ttf'
+  '/assets/css/master.css',
+  '/assets/js/master.js',
+  '/assets/data/links.json',
+  '/assets/data/site-content.json',
+  '/assets/img/logo.jpg',
+  '/assets/fonts/ShareTechMono-Regular.ttf',
+  '/assets/fonts/SpaceMono-Regular.ttf',
+  '/assets/fonts/JetBrainsMono-Regular.ttf',
+  '/assets/fonts/IBMPlexMono-Regular.ttf',
+  '/assets/fonts/FiraCode-Regular.ttf'
 ];
 
 // Install Event

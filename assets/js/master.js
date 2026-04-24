@@ -9,7 +9,7 @@ let localeData = {};
 
 async function loadLocale(lang = 'en') {
     try {
-        const response = await fetch(`/data/locales/${lang}.json`);
+        const response = await fetch(`/assets/data/locales/${lang}.json`);
         localeData = await response.json();
         currentLocale = lang;
         localStorage.setItem('site-locale', lang);
@@ -69,7 +69,7 @@ window.loadLocale = loadLocale;
 // 1. DATA LOADER - Central Link Synchronization
 async function loadLinks() {
     try {
-        const response = await fetch('/data/links.json');
+        const response = await fetch('/assets/data/links.json');
         const data = await response.json();
 
         // 1. Populate Internal Navigation (App Nav)
@@ -428,7 +428,7 @@ function initializeAccessibility() {
 // 6. CONTENT LOADER
 async function loadSiteContent() {
     try {
-        const response = await fetch('/data/site-content.json');
+        const response = await fetch('/assets/data/site-content.json');
         const data = await response.json();
 
         const bio = data.profile.biological;
