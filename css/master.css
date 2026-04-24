@@ -26,7 +26,7 @@
     --border-bright: rgba(0, 255, 157, 0.4);
 
     /* SIZING */
-    --app-width: 450px;
+    --app-width: 100%;
     --header-height: 65px;
     --nav-height: 75px;
     --base-scale: clamp(10px, 0.7vw + 7px, 13px);
@@ -92,16 +92,11 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 100%;
-    max-width: var(--app-width);
     background: var(--bg-app);
     display: flex;
     flex-direction: row; /* Sidebar + Main Content */
-    box-shadow: 0 0 100px rgba(0, 0, 0, 1), 0 0 40px var(--neon-primary-glow);
-    border-left: 1px solid var(--border-main);
-    border-right: 1px solid var(--border-main);
     overflow: hidden;
 }
 
@@ -688,6 +683,13 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     word-break: break-all;
 }
 
+.container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
 /* 4. SYSTEM STATUS BAR (FOOTER FEEDBACK) */
 .footer-status-bar {
     position: absolute;
@@ -1078,15 +1080,6 @@ textarea.terminal-input {
     :root {
         --app-width: 100%;
         --base-scale: clamp(12px, 0.8vw + 8px, 16px);
-    }
-
-    .app-container {
-        max-width: none;
-        left: 0;
-        transform: none;
-        border-left: none;
-        border-right: none;
-        box-shadow: none;
     }
 
     .skills-grid {
