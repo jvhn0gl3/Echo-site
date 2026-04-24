@@ -102,31 +102,32 @@ body {
 
 /* SIDEBAR (IDE ACTIVITY BAR) */
 .app-nav {
-    width: 55px;
+    width: 65px;
     height: 100%;
     background: var(--bg-surface);
     border-right: 1px solid var(--border-bright);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    padding: 20px 0;
     z-index: 10000006;
     flex-shrink: 0;
 }
 
 .nav-logo {
-    width: 55px;
-    height: 50px;
-    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--neon-primary);
     letter-spacing: -1px;
     text-shadow: 0 0 10px var(--neon-primary-glow);
     flex-shrink: 0;
+    padding: 0 20px;
 }
 
 .nav-scroll-group {
@@ -156,7 +157,7 @@ body {
 
 .nav-item {
     width: 100%;
-    height: 55px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
