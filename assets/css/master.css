@@ -1210,6 +1210,21 @@ textarea.terminal-input {
     position: relative !important;
     width: 100% !important;
     display: block !important;
+    min-height: auto !important;
+}
+
+.kao-banner {
+    font-size: 0.6rem !important;
+    padding: 8px !important;
+    line-height: 1.2 !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.kao-banner-close {
+    font-size: 0.8rem !important;
+    top: 5px !important;
+    right: 5px !important;
 }
 
 
