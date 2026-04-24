@@ -1212,6 +1212,13 @@ textarea.terminal-input {
     display: inline !important;
 }
 
+/* Hide the seconds countdown specifically */
+.kao-banner span[id*="seconds"], 
+.kao-banner span[class*="seconds"],
+.kao-banner .kao-banner-seconds {
+    display: none !important;
+}
+
 .kao-banner a {
     color: var(--neon-accent) !important;
     text-decoration: underline !important;
