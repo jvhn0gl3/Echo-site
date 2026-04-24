@@ -738,21 +738,23 @@ async function loadNotifications() {
 
 function initializeNotificationCarousel(count) {
     const track = document.getElementById('carouselTrack');
-    if (!track || count <= 0) return;
+    if (!track || count <= 1) return; // No need to loop if only 1 item
 
     let index = 0;
+    const itemHeight = 36; // Fixed height from CSS
+
     setInterval(() => {
         index++;
-        const itemHeight = track.firstElementChild.offsetHeight;
         track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
         track.style.transform = `translateY(-${index * itemHeight}px)`;
 
-        if (index === count) {
+        // Seamless loop reset
+        if (index >= count) {
             setTimeout(() => {
                 track.style.transition = 'none';
                 track.style.transform = 'translateY(0)';
                 index = 0;
-            }, 500);
+            }, 500); // Wait for transition to finish
         }
     }, 4000);
 }
