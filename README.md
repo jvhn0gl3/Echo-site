@@ -10,28 +10,17 @@ The project is built using a clean, modular approach to ensure scalability and e
 
 The project is built using a clean, modular approach to ensure scalability and ease of maintenance.
 
-### 🎨 Modular CSS
-Styles are decomposed into specialized modules located in `/css`:
-- `variables.css`: Global CSS variables and utility color classes.
-- `base.css`: Font face declarations, resets, and core element styles.
-- `layout-desktop.css`: Structural definitions for the sidebar, main content, and grid systems.
-- `components.css`: Styles for buttons, cards, tags, and inputs.
-- `effects.css`: Visual enhancements including CRT overlays, glitch animations, and scanning lines.
-- `hero.css`: Specialized styles for the interactive HUD and hero section.
+### 🎨 System Assets
+Resources are centralized in `/assets` to ensure a high-performance, immersive experience:
+- `assets/css/master.css`: Consolidated stylesheet containing all architectural, component, and visual effect modules.
+- `assets/js/master.js`: Unified system logic kernel handling i18n, navigation, dynamic content, and UI effects.
+- `assets/data/links.json`: Central registry for system navigation and external node synchronization.
+- `assets/data/locales/`: i18n localization artifacts for multi-language support.
 
-### ⚙️ Modular JavaScript
-Functionality is distributed across specialized scripts in `/js`:
-- `sidebar-component.js`: Custom elements for the sidebar navigation.
-- `navigation.js`: Handles smooth scrolling.
-- `ui-effects.js`: Manages hero section typing animations and simulated real-time system stats.
-- `forms.js`: Handles contact form interactions.
-- `data-loader.js`: Dynamically fetches and synchronizes link data from JSON.
-- `content-loader.js`: Orchestrates dynamic content injection.
-
-### 📂 Centralized Data & PWA
-- `data/links.json`: A single source of truth for all internal navigation and external social links.
-- `manifest.json`: Web App Manifest for PWA installation and branding.
-- `sw.js`: Service worker for cache-first asset persistence.
+### ⚙️ Core Protocols
+- **Stealth Link Cloaking**: Implements a global protocol that hides the browser's native status bar URL on hover by dynamically switching `href` attributes to `data-href`, maintaining the virtual OS immersion.
+- **PWA Persistence**: Service worker (`sw.js`) and manifest (`manifest.json`) integration for offline functionality and app-like installation.
+- **Dynamic HUD**: Real-time simulation of system metrics and automated terminal typing sequences.
 
 ## 🖋️ Typography
 

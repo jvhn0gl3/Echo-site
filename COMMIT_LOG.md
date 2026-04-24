@@ -104,4 +104,7 @@ This file tracks all commits made to this repository.
 - Enhanced all system navigation tooltips in the `en.json` locale with highly descriptive, technical language aligned with the Echo OS theme, providing functional context for every core module.
 - Implemented an enhanced hover state for all navigation links, adding a subtle background highlight and a matching left border in the secondary cyber-pink color for improved interactive feedback.
 - Enhanced the active navigation state with a primary green background highlight and an inner glow effect, providing clear visual confirmation of the current system module.
+- Implemented a "Stealth Link Cloaking" protocol to hide the browser's native status bar URL on hover by dynamically converting `href` attributes to `data-href`.
+- Updated global navigation and click handlers to support cloaked links with full accessibility and keyboard navigation.
+- Refactored `README.md` to reflect consolidated asset architecture and documented the Stealth Link feature.
 
