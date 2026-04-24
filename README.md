@@ -19,6 +19,7 @@ Resources are centralized in `/assets` to ensure a high-performance, immersive e
 
 ### ⚙️ Core Protocols
 - **Stealth Link Cloaking**: Implements a global protocol that hides the browser's native status bar URL on hover by dynamically switching `href` attributes to `data-href`, maintaining the virtual OS immersion.
+- **Force CSS Synchronization**: Employs a network-first Service Worker strategy with strict MIME type enforcement (`text/css`) and internal cache-busting timestamps to ensure consistent visual rendering on mobile devices.
 - **PWA Persistence**: Service worker (`sw.js`) and manifest (`manifest.json`) integration for offline functionality and app-like installation.
 - **Dynamic HUD**: Real-time simulation of system metrics and automated terminal typing sequences.
 

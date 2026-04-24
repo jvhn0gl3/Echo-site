@@ -107,4 +107,9 @@ This file tracks all commits made to this repository.
 - Implemented a "Stealth Link Cloaking" protocol to hide the browser's native status bar URL on hover by dynamically converting `href` attributes to `data-href`.
 - Updated global navigation and click handlers to support cloaked links with full accessibility and keyboard navigation.
 - Refactored `README.md` to reflect consolidated asset architecture and documented the Stealth Link feature.
+- Upgraded Service Worker to `v6` to resolve mobile CSS loading issues by implementing strict MIME type enforcement (`text/css`).
+- Implemented an internal cache-busting protocol in the Service Worker that appends dynamic timestamps to CSS network requests.
+- Added `self.skipWaiting()` and `self.clients.claim()` to the Service Worker for immediate activation and control over all active tabs.
+- Synchronized all system HTML files with a `v=3` cache-buster for the master stylesheet.
+- Updated `README.md` with the "Force CSS Synchronization" protocol documentation.
 
