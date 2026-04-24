@@ -7,12 +7,7 @@ A high-performance, terminal-themed digital portfolio for John Ogletree, designe
 The project employs a high-performance **Single-Page Architecture (SPA)**, consolidating all operational modules into a unified terminal entry point for maximum immersion and zero-latency transition.
 
 ### 🎨 System Assets
-The project uses a flat, root-level architecture for maximum simplicity and deployment compatibility. All asset categories (`css`, `js`, `data`, `img`, `fonts`) reside in their own dedicated folders at the project root.
-- `index.html`: Unified system entry point (SPA Kernel).
-- `kernel.css`: Primary system stylesheet.
-- `master.js`: Unified system logic kernel.
-- `data/`: Central registry for notifications, links, and content.
-- `locales/`: i18n localization artifacts.
+The project uses a fully-flattened, root-level architecture for maximum simplicity and deployment compatibility. All files, including CSS, JavaScript, data files, fonts, and images, reside at the project root.
 
 ### ⚙️ Core Protocols
 - **Stealth Link Cloaking**: Implements a global protocol that hides the browser's native status bar URL on hover by dynamically switching `href` attributes to `data-href`, maintaining the virtual OS immersion.
