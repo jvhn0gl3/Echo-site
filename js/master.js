@@ -464,9 +464,9 @@ async function loadSiteContent() {
             
             let allSkills = [...coreSkills, ...treeSkills];
             
-            // Limit to 2 skills on the home page, show all on profile
+            // Show all core skills on home page (4x1), or all skills on profile
             if (!document.getElementById('all-skills')) {
-                allSkills = allSkills.slice(0, 2);
+                allSkills = coreSkills;
             }
             
             skillsContainer.innerHTML = allSkills.map(skill => {
