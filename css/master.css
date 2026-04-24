@@ -450,20 +450,32 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
     width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .skills-grid {
         grid-template-columns: 1fr;
     }
 }
 
 .grid-2x2 {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+@media screen and (max-width: 900px) {
+    .grid-2x2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .grid-2x2 {
+        grid-template-columns: 1fr !important;
+    }
 }
 
 .skill-main {
@@ -655,7 +667,7 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
 /* EXPLORER INTERFACE */
 .explorer-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     padding: 10px;
 }
@@ -944,8 +956,20 @@ body.acc-light-mode .breadcrumb-back { color: var(--neon-primary); }
 }
 #projects-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    #projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 .project-img {
     width: 100%;
@@ -1165,6 +1189,47 @@ textarea.terminal-input {
     .main-content {
         padding: 60px;
     }
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 800px) {
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.social-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-main);
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.65rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    background: var(--neon-primary);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-primary-glow);
 }
 
 
