@@ -445,9 +445,21 @@ h2::after { content: "//"; color: var(--neon-secondary); flex: none; height: aut
 
 .skills-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .grid-2x2 {
@@ -1084,10 +1096,6 @@ textarea.terminal-input {
         --base-scale: clamp(12px, 0.8vw + 8px, 16px);
     }
 
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .grid-2x2 {
         grid-template-columns: repeat(2, 1fr) !important;
     }
@@ -1111,10 +1119,6 @@ textarea.terminal-input {
 
 /* DESKTOP BREAKPOINT (1024px+) */
 @media screen and (min-width: 1024px) {
-    .skills-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     .grid-2x2 {
         grid-template-columns: repeat(3, 1fr) !important;
     }
@@ -1150,10 +1154,6 @@ textarea.terminal-input {
 
 /* LARGE DESKTOP (1440px+) */
 @media screen and (min-width: 1440px) {
-    .skills-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
     .grid-2x2 {
         grid-template-columns: repeat(4, 1fr) !important;
     }
