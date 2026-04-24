@@ -103,4 +103,5 @@ This file tracks all commits made to this repository.
 - Optimized KAO banner injection by using the `?id=kao-banner` parameter to target the specific placeholder `div` within the content area.
 - Enhanced all system navigation tooltips in the `en.json` locale with highly descriptive, technical language aligned with the Echo OS theme, providing functional context for every core module.
 - Implemented an enhanced hover state for all navigation links, adding a subtle background highlight and a matching left border in the secondary cyber-pink color for improved interactive feedback.
+- Enhanced the active navigation state with a primary green background highlight and an inner glow effect, providing clear visual confirmation of the current system module.
 
