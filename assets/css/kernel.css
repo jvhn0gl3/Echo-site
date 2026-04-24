@@ -1219,17 +1219,29 @@ textarea.terminal-input {
 }
 
 .kao-banner {
-    font-size: 0.6rem !important;
-    padding: 8px !important;
-    line-height: 1.2 !important;
-    height: auto !important;
-    min-height: 0 !important;
+    font-size: 0.55rem !important;
+    padding: 2px 15px !important;
+    line-height: 20px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+}
+
+.kao-banner p, .kao-banner span, .kao-banner a {
+    display: inline !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .kao-banner-close {
-    font-size: 0.8rem !important;
-    top: 5px !important;
-    right: 5px !important;
+    font-size: 0.7rem !important;
+    top: 50% !important;
+    right: 10px !important;
+    transform: translateY(-50%) !important;
 }
 
 
