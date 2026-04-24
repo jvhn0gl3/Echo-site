@@ -125,4 +125,6 @@ This file tracks all commits made to this repository.
 - Temporarily removed all content sections (`about`, `services`, `pricing`, `blog`, `projects`, `connect`) from `index.html`, retaining only the primary hero component for interface focus.
 - Enforced a strict, permanent mobile-first architecture globally by removing all `min-width` expansion breakpoints (Tablet/Desktop).
 - Standardized the single-column flex-stack layout across all hardware platforms to maintain a high-density "ECHO OS" app aesthetic.
+- Fixed a visual overlap bug in the KAO banner on small screens by increasing right padding to 40px, ensuring centered text and countdown seconds clear the close button.
+- Implemented `text-overflow: ellipsis` on the system banner to gracefully handle long notification strings without UI breakage.
 
