@@ -87,4 +87,8 @@ This file tracks all commits made to this repository.
 - Re-organized the project architecture by moving all static resources (`css`, `js`, `fonts`, `data`, and images) into a centralized `assets/` directory.
 - Re-organized the site structure by moving all HTML pages and page directories into a top-level `pages/` directory, updating all internal link registries and references accordingly.
 - Updated the service worker and web app manifest to synchronize with the new `/assets/` and `/pages/` directory structures.
+- Replaced the removed status bar with the Keep Android Open (KAO) banner script across all pages.
+- Refactored the global layout to use a vertical flexbox on the `body` element, ensuring the KAO banner functions as a natural top-level status bar.
+- Relocated the KAO banner script tag to the beginning of the `<body>` in all HTML files and added the `defer` attribute for optimal loading.
+- Implemented a JavaScript `MutationObserver` and CSS overrides to dynamically detect the KAO banner and adjust the application's top offset, preventing content overlap.
 
