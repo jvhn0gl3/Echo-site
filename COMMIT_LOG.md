@@ -164,6 +164,7 @@ This file tracks all commits made to this repository.
 - Revamped the system notification carousel into a continuous, linear weather-channel style ticker with high-performance CSS animations.
 - Implemented seamless linear looping by duplicating notification content and automatically calculating animation duration based on message count.
 - Added a subtle `//` visual separator between ticker items to improve readability and maintain a professional application aesthetic.
+- Enhanced all system notification messages in `notifications.json` with highly descriptive, technical context and expanded alerts for improved user information.
 - Enabled pause-on-hover functionality for the notification ticker to allow users to interact with specific system messages.
 - Updated `README.md` to document the transition to the new modern ticker architecture.
 

@@ -1,22 +1,22 @@
 [
   {
-    "id": "SYS-2026",
-    "type": "SYSTEM ALERT",
-    "message": "Android is gonna be a locked down operating system in 130 days: Starting September 2026, a silent update will block non-registered apps."
+    "id": "SYS-ALERT-2026",
+    "type": "CRITICAL ALERT",
+    "message": "Android OS Transition Warning: Starting September 2026, a mandatory system update will enforce strict developer registration protocols. Apps from unregistered developers will be blocked unless they provide verified government ID and sign the updated Google Service Agreement."
   },
   {
-    "id": "HEALTH-04",
+    "id": "HEALTH-SAM-2026",
     "type": "AWARENESS",
-    "message": "Stress Awareness Month recognized every April. Learning to cope with stress is vital for a healthy and positive life."
+    "message": "April is Stress Awareness Month: Since 1992, this month has focused on the impact of long-term stress on mental and physical health. Developing healthy coping mechanisms today is essential for maintaining a positive and balanced life in an increasingly complex digital landscape."
   },
   {
-    "id": "SEC-7712",
+    "id": "SEC-CORE-7712",
     "type": "SECURITY",
-    "message": "Kernel firewall integrity confirmed. All unauthorized intrusion attempts neutralized."
+    "message": "Kernel Integrity Report: Global firewall handshake confirmed. Zero-day intrusion attempts successfully mitigated by the proactive neural defense layer. System encryption remains at quantum-resistant baseline levels."
   },
   {
-    "id": "NET-4042",
+    "id": "NET-LINK-4042",
     "type": "NETWORK",
-    "message": "Sub-orbital data link established. Latency optimized at 0.12ms."
+    "message": "Connectivity Status: Sub-orbital data link synchronized with satellite cluster ECHO-4. Global latency has been optimized to 0.12ms, ensuring high-speed data transmission for all localized system modules."
   }
 ]
