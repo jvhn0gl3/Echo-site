@@ -72,21 +72,31 @@ async function loadLinks() {
         const response = await fetch('/assets/data/links.json');
         const data = await response.json();
 
-        // 1. Populate Internal Navigation (App Nav)
-        document.querySelectorAll('.app-nav .nav-item, .sidebar-nav .sidebar-link').forEach(link => {
+        // 1. Populate Internal Navigation & Any matching internal links
+        document.querySelectorAll('a[href], .app-nav .nav-item, .sidebar-nav .sidebar-link').forEach(link => {
+            let href = link.getAttribute('href');
+            
+            // Check if it's an internal nav item that needs mapping from links.json
             const span = link.querySelector('span');
             if (span) {
-                const text = span.textContent.toLowerCase().replace('[bin] ', '').replace('[usr] ', '').replace('[sys] ', '').replace('[val] ', '').replace('[log] ', '').replace('[var] ', '').replace('[dev] ', '').replace('[doc] ', '').replace('[map] ', '');
+                const text = span.textContent.toLowerCase().replace(/\[.*?\]\s*/g, '');
                 const key = text.trim();
                 if (data.internal[key]) {
-                    link.setAttribute('data-href', data.internal[key]);
-                    link.removeAttribute('href');
-                    link.style.cursor = 'pointer';
+                    href = data.internal[key];
                 }
+            }
+
+            // If it's internal (starts with / or is in our internal list), cloak it
+            if (href && (href.startsWith('/') || Object.values(data.internal).includes(href))) {
+                link.setAttribute('data-href', href);
+                link.removeAttribute('href');
+                link.setAttribute('role', 'link');
+                link.setAttribute('tabindex', '0');
+                link.style.cursor = 'pointer';
             }
         });
 
-        // 2. Populate Social Links (Keep real hrefs for external)
+        // 2. Populate Social Links (Keep real hrefs for external, but we'll cloak them on hover later)
         const socialSelectors = {
             'github': ['[href*="github"]', '.btn-github', '[title="GitHub"]'],
             'linkedin': ['[href*="linkedin"]', '.btn-linkedin', '[title="LinkedIn"]'],
@@ -99,8 +109,10 @@ async function loadLinks() {
             if (url) {
                 selectors.forEach(selector => {
                     document.querySelectorAll(selector).forEach(el => {
-                        if (el.tagName === 'A') el.setAttribute('href', url);
-                        else if (el.parentElement.tagName === 'A') el.parentElement.setAttribute('href', url);
+                        const target = el.tagName === 'A' ? el : el.parentElement;
+                        if (target && target.tagName === 'A') {
+                            target.setAttribute('href', url);
+                        }
                     });
                 });
             }
@@ -114,12 +126,14 @@ async function loadLinks() {
                 if (data.buttons[command]) {
                     btn.setAttribute('data-href', data.buttons[command]);
                     btn.removeAttribute('href');
+                    btn.setAttribute('role', 'link');
+                    btn.setAttribute('tabindex', '0');
                     btn.style.cursor = 'pointer';
                 }
             }
         });
 
-        console.log('[SUCCESS] All system links synchronized.');
+        console.log('[SUCCESS] All system links synchronized and cloaked.');
     } catch (error) {
         console.error('[ERROR] System link synchronization failed:', error);
     }
@@ -137,20 +151,20 @@ class SiteSidebar extends HTMLElement {
         </div>
         <div class="sidebar-scroll-group">
             <nav class="sidebar-nav">
-                <div data-href="/pages/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></div>
-                <div data-href="/pages/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-i18n-tooltip="status.identity_skills"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></div>
-                <div data-href="/pages/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-i18n-tooltip="status.operational_modules"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></div>
-                <div data-href="/pages/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-i18n-tooltip="status.resource_allocation"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></div>
-                <div data-href="/pages/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-i18n-tooltip="status.system_logs"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></div>
-                <div data-href="/pages/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-i18n-tooltip="status.development_archive"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></div>
-                <div data-href="/pages/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span data-i18n="nav.connect">[DEV] connect</span></div>
-                <div data-href="/pages/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-i18n-tooltip="status.professional_history"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span data-i18n="nav.resume">[DOC] resume</span></div>
-                <div data-href="/pages/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-i18n-tooltip="status.protocol_docs"><i aria-hidden="true" class="fas fa-book"></i> <span data-i18n="nav.docs">[DOC] docs</span></div>
-                <div data-href="/pages/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-i18n-tooltip="status.system_map"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span data-i18n="nav.directory">[MAP] directory</span></div>
+                <div data-href="/pages/index.html" class="sidebar-link ${activePage === 'home' ? 'active' : ''}" data-label="HOME" data-i18n-tooltip="status.dashboard" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-house"></i> <span data-i18n="nav.home">[BIN] home</span></div>
+                <div data-href="/pages/profile/" class="sidebar-link ${activePage === 'profile' ? 'active' : ''}" data-label="PROFILE" data-i18n-tooltip="status.identity_skills" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-user-astronaut"></i> <span data-i18n="nav.profile">[USR] profile</span></div>
+                <div data-href="/pages/services/" class="sidebar-link ${activePage === 'services' ? 'active' : ''}" data-label="SERVICES" data-i18n-tooltip="status.operational_modules" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-microchip"></i> <span data-i18n="nav.services">[SYS] services</span></div>
+                <div data-href="/pages/pricing/" class="sidebar-link ${activePage === 'pricing' ? 'active' : ''}" data-label="PRICING" data-i18n-tooltip="status.resource_allocation" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-tags"></i> <span data-i18n="nav.pricing">[VAL] pricing</span></div>
+                <div data-href="/pages/blog/" class="sidebar-link ${activePage === 'blog' ? 'active' : ''}" data-label="BLOG" data-i18n-tooltip="status.system_logs" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-rss"></i> <span data-i18n="nav.blog">[LOG] blog</span></div>
+                <div data-href="/pages/projects/" class="sidebar-link ${activePage === 'projects' ? 'active' : ''}" data-label="PROJECTS" data-i18n-tooltip="status.development_archive" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-laptop-code"></i> <span data-i18n="nav.projects">[VAR] projects</span></div>
+                <div data-href="/pages/connect/" class="sidebar-link ${activePage === 'connect' ? 'active' : ''}" data-label="CONNECT" data-i18n-tooltip="status.secure_handshake" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-satellite-dish"></i> <span data-i18n="nav.connect">[DEV] connect</span></div>
+                <div data-href="/pages/resume/" class="sidebar-link ${activePage === 'resume' ? 'active' : ''}" data-label="RESUME" data-i18n-tooltip="status.professional_history" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-file-pdf"></i> <span data-i18n="nav.resume">[DOC] resume</span></div>
+                <div data-href="/pages/docs/" class="sidebar-link ${activePage === 'docs' ? 'active' : ''}" data-label="DOCS" data-i18n-tooltip="status.protocol_docs" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-book"></i> <span data-i18n="nav.docs">[DOC] docs</span></div>
+                <div data-href="/pages/directory/" class="sidebar-link ${activePage === 'directory' ? 'active' : ''}" data-label="DIRECTORY" data-i18n-tooltip="status.system_map" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-folder-tree"></i> <span data-i18n="nav.directory">[MAP] directory</span></div>
             </nav>
         </div>
         <div class="sidebar-footer-nav">
-            <div data-href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-i18n-tooltip="status.acc_settings"><i aria-hidden="true" class="fas fa-universal-access"></i> <span data-i18n="nav.accessibility">accessibility</span></div>
+            <div data-href="#" class="sidebar-link" data-label="ACCESSIBILITY" data-i18n-tooltip="status.acc_settings" role="link" tabindex="0"><i aria-hidden="true" class="fas fa-universal-access"></i> <span data-i18n="nav.accessibility">accessibility</span></div>
             <a href="https://github.com/jvhn0gl3" target="_blank" class="sidebar-link" data-label="GITHUB" data-i18n-tooltip="status.source_code"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="nav.github">github</span></a>
         </div>
     </aside>
@@ -202,13 +216,23 @@ function initializeNavigation() {
             return;
         }
 
+        // CLOAKING LOGIC: Remove href on hover to hide browser status bar
         if (e.type === 'mouseenter' || e.type === 'touchstart') {
+            const href = target.getAttribute('href');
+            if (href && !href.startsWith('#')) {
+                target.setAttribute('data-href', href);
+                target.removeAttribute('href');
+                target.setAttribute('role', 'link');
+                if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '0');
+                target.style.cursor = 'pointer';
+            }
+
             const tooltip = target.getAttribute('data-tooltip');
-            const href = target.getAttribute('href') || target.getAttribute('data-href');
+            const activeHref = target.getAttribute('data-href') || target.getAttribute('href');
             const title = target.querySelector('.card-title')?.textContent;
             const btnText = target.textContent.trim().startsWith('$ ./') ? target.textContent.trim() : null;
             
-            const statusText = tooltip || btnText || title || (href && !href.startsWith('#') ? `GOTO: ${href}` : "READY");
+            const statusText = tooltip || btnText || title || (activeHref && !activeHref.startsWith('#') ? `GOTO: ${activeHref}` : "READY");
             showStatus(statusText);
         } else {
             hideStatus();
@@ -226,9 +250,10 @@ function initializeNavigation() {
         if (!target) return;
 
         const href = target.getAttribute('href') || target.getAttribute('data-href');
+        const isExternal = target.hasAttribute('target') || (href && (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')));
         
-        // Handle Internal Data-Href Navigation
-        if (href && !target.hasAttribute('target') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+        // Handle Navigation
+        if (href) {
             if (href === '#') return;
             if (href.startsWith('#')) {
                 const targetElement = document.querySelector(href);
@@ -239,16 +264,27 @@ function initializeNavigation() {
                 return;
             }
 
-            // Normal internal navigation
-            e.preventDefault();
-            console.log(`[SYSTEM] Navigating to: ${href}`);
-            window.location.href = href;
+            // Internal navigation (or cloaked external)
+            if (!target.hasAttribute('href') || !isExternal) {
+                e.preventDefault();
+                console.log(`[SYSTEM] Navigating to: ${href}`);
+                if (isExternal) window.open(href, '_blank');
+                else window.location.href = href;
+            }
         }
 
         // Sidebar closing logic for mobile
         if (window.innerWidth <= 1024 && sidebar) {
             sidebar.classList.remove('open');
             mainContent?.classList.remove('blurred');
+        }
+    });
+
+    // Keyboard support for cloaked links
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const target = document.activeElement.closest('[data-href]');
+            if (target) target.click();
         }
     });
 
@@ -260,6 +296,8 @@ function initializeNavigation() {
             window.history.back();
         });
     });
+}
+window.initializeNavigation = initializeNavigation;
 
     // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
