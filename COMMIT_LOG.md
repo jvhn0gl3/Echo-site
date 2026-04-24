@@ -142,5 +142,8 @@ This file tracks all commits made to this repository.
 - Implemented a dynamic "System Notification Carousel" above the breadcrumb navigation, linked to a centralized JSON database (`assets/data/notifications.json`).
 - Developed a vertical scrolling logic kernel in `master.js` to cycle through system messages with seamless loop support.
 - Designed high-density terminal aesthetics for the notification stream, featuring color-coded categories and technical ID tracking.
+- Flattened the project architecture by moving all sub-directories (`css`, `js`, `data`, `fonts`, `img`) and their contents to the root level.
+- Sanitized all internal file references in `index.html`, `kernel.css`, and `master.js` to remove the `/assets/` path prefix.
+- Removed the now-empty `pages/` directory and transitioned the main entry point to a root `index.html`.
 - Re-enabled active Service Worker registration in the master logic kernel (`master.js`) after finalizing CSS debugging.
 
