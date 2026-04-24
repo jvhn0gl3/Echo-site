@@ -101,4 +101,5 @@ This file tracks all commits made to this repository.
 - Integrated Service Worker (SW) registration logic into `assets/js/master.js` to ensure reliable offline support and asset persistence.
 - Bumped Service Worker version to `v3` and applied `?v=2` cache-busters to global CSS links to force a refresh on mobile devices and resolve stale cache issues.
 - Optimized KAO banner injection by using the `?id=kao-banner` parameter to target the specific placeholder `div` within the content area.
+- Enhanced all system navigation tooltips in the `en.json` locale with highly descriptive, technical language aligned with the Echo OS theme, providing functional context for every core module.
 
