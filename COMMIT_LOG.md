@@ -109,6 +109,7 @@ This file tracks all commits made to this repository.
 - [SYS_UPDATE] UI: Implemented custom OS-style vertical scrollbar for the navigation sidebar, featuring slim dimensions and active hover states.
 - [SYS_UPDATE] UI: Transitioned system surfaces to a glossy Glassmorphism aesthetic, featuring semi-transparent backgrounds and high-intensity `backdrop-filter` blurs.
 - [SYS_UPDATE] UI: Transitioned design system to a Technical Documentation (README) aesthetic, utilizing the GitHub Dark palette, structural borders, and centered content layouts.
+- [SYS_UPDATE] UI: Optimized content flow to utilize the full width of the README wrapper, left-aligning key components like the Hero section for improved documentation readability.
 
 - Integrated Service Worker (SW) registration logic into `assets/js/master.js` to ensure reliable offline support and asset persistence.
 - Bumped Service Worker version to `v3` and applied `?v=2` cache-busters to global CSS links to force a refresh on mobile devices and resolve stale cache issues.
