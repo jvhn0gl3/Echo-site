@@ -68,11 +68,17 @@
 
 a { text-decoration: none; }
 
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-body {-size: clamp(0.75rem, 2.5vw, 0.9rem);
+body {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
 }
 
 /* THE APP CANVAS */
