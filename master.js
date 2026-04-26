@@ -167,6 +167,7 @@ customElements.define('site-sidebar', SiteSidebar);
 function initializeNavigation() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
+    /*
     const footer = document.querySelector('.app-footer');
     
     // Create status bar if it doesn't exist
@@ -230,6 +231,7 @@ function initializeNavigation() {
     document.addEventListener('mouseleave', handleStatusEvent, true);
     document.addEventListener('touchstart', handleStatusEvent, {passive: true, capture: true});
     document.addEventListener('touchend', handleStatusEvent, {passive: true, capture: true});
+    */
 
     // GLOBAL CLICK HANDLER (System Navigation)
     document.addEventListener('click', (e) => {
