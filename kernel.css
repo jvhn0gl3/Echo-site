@@ -139,11 +139,26 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-bright) transparent;
 }
 
 .nav-scroll-group::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
+    width: 3px;
+}
+
+.nav-scroll-group::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.nav-scroll-group::-webkit-scrollbar-thumb {
+    background: var(--border-main);
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.nav-scroll-group::-webkit-scrollbar-thumb:hover {
+    background: var(--app-primary);
 }
 
 .nav-footer {
