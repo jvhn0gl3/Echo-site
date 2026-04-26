@@ -6,17 +6,18 @@
 :root {
     /* MODERN APP PALETTE (SLATE DARK) */
     --app-primary: #3b82f6;       /* Clean Blue */
-    --app-primary-glow: rgba(59, 130, 246, 0.1);
+    --app-primary-glow: rgba(59, 130, 246, 0.15);
     
     --app-secondary: #6366f1;     /* Indigo */
-    --app-secondary-glow: rgba(99, 102, 241, 0.1);
+    --app-secondary-glow: rgba(99, 102, 241, 0.15);
     
     --app-accent: #10b981;        /* Emerald Green */
-    --app-accent-glow: rgba(16, 185, 129, 0.1);
+    --app-accent-glow: rgba(16, 185, 129, 0.15);
     
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-gold: #f59e0b;         /* Amber */
+    --text-primary: #f8fafc;      /* Slate 50 */
+    --text-secondary: #94a3b8;    /* Slate 400 */
+    --text-dim: #64748b;          /* Slate 500 */
+    --text-gold: #fbbf24;         /* Amber 400 */
 
     /* DEPTH PALETTE */
     --bg-deep: #020617;           /* Slate 950 */
@@ -24,14 +25,14 @@
     --bg-surface: #1e293b;        /* Slate 800 */
     --bg-surface-alt: #334155;    /* Slate 700 */
     
-    --border-main: rgba(255, 255, 255, 0.08);
-    --border-bright: rgba(255, 255, 255, 0.15);
+    --border-main: rgba(255, 255, 255, 0.06);
+    --border-bright: rgba(255, 255, 255, 0.12);
 
     /* SIZING */
     --app-width: 100%;
     --header-height: 65px;
     --nav-height: 75px;
-    --base-scale: clamp(10px, 0.7vw + 7px, 13px);
+    --base-scale: clamp(14px, 1vw + 10px, 18px);
 }
 
 /* 1. RESET & GLOBAL APP STYLES */
@@ -40,8 +41,14 @@
     padding:0;
     box-sizing:border-box; 
     -webkit-tap-highlight-color: transparent;
-    overflow-wrap: break-word;
-    word-break: break-word;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Accessibility: Visible Focus States */
@@ -292,68 +299,77 @@ body {
 .terminal-card, .project-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-main);
-    border-radius: 8px;
-    padding: clamp(10px, 3vw, 20px);
-    margin-bottom: clamp(10px, 3vw, 20px);
-    text-align: center;
-    transition: all 0.2s ease;
+    border-radius: 12px;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     overflow: hidden;
     width: 100%;
+    position: relative;
 }
 
 .terminal-card:hover, .project-card:hover {
     background: var(--bg-surface-alt);
     border-color: var(--app-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 .card-header {
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
     border-bottom: 1px solid var(--border-main);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-    font-size: 0.8rem;
+    gap: 12px;
 }
+
 .card-title { 
     color: var(--text-gold); 
     font-weight: 700;
+    font-size: 1.1rem;
     letter-spacing: 0.5px;
     line-height: 1.2;
 }
 
-h2 {-size: clamp(0.85rem, 4vw, 1rem);
+h2 {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
     color: var(--app-primary);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 30px 0 20px;
+    letter-spacing: 2px;
+    margin: 3.5rem 0 2rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 12px;
     font-weight: 800;
 }
 
 .matrix-btn, .terminal-btn {
     width: 100%;
-    padding: clamp(10px, 3vw, 12px) clamp(15px, 4vw, 20px);
-    border-radius: 6px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     border: 1px solid var(--app-primary);
-    background: var(--app-primary);
-    color: #fff;
+    background: transparent;
+    color: var(--app-primary);
     font-weight: 700;
-    font-size: 0.75rem;
-    display: inline-block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    text-align: center;
     transition: all 0.2s ease;
 }
 
 .matrix-btn:hover, .terminal-btn:hover {
     background: var(--app-primary);
-    filter: brightness(1.1);
+    color: #fff;
+    box-shadow: 0 0 20px var(--app-primary-glow);
 }
 
 /* EFFECTS REMOVED */
