@@ -1,0 +1,3 @@
+[submodule "sys-schema"]
+	path = sys-schema
+	url = https://github.com/jvhn0gl3/jvhn0gl3-chroma.git
