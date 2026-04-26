@@ -19,14 +19,16 @@
     --text-dim: #64748b;          /* Slate 500 */
     --text-gold: #fbbf24;         /* Amber 400 */
 
-    /* DEPTH PALETTE */
+    /* DEPTH PALETTE (GLOSSY GLASS) */
     --bg-deep: #020617;           /* Slate 950 */
     --bg-app: #0f172a;            /* Slate 900 */
-    --bg-surface: #1e293b;        /* Slate 800 */
-    --bg-surface-alt: #334155;    /* Slate 700 */
+    --bg-surface: rgba(30, 41, 59, 0.7); /* Slate 800 with Transparency */
+    --bg-surface-alt: rgba(51, 65, 85, 0.8); /* Slate 700 with Transparency */
     
-    --border-main: rgba(255, 255, 255, 0.06);
-    --border-bright: rgba(255, 255, 255, 0.12);
+    --border-main: rgba(255, 255, 255, 0.1);
+    --border-bright: rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(16px);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
     /* SIZING */
     --app-width: 100%;
@@ -45,6 +47,9 @@
 
 body {
     background-color: var(--bg-deep);
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
     color: var(--text-primary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
@@ -104,6 +109,8 @@ body {
     width: 70px;
     height: 100%;
     background: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border-right: 1px solid var(--border-bright);
     display: flex;
     flex-direction: column;
@@ -210,7 +217,9 @@ body {
 .breadcrumb-nav {
     padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 20px);
     background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-main);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-bright);
     font-size: 0.7rem;
     display: flex;
     align-items: center;
@@ -256,8 +265,10 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-    background: linear-gradient(to top, var(--bg-surface), var(--bg-app));
-    border-top: 1px solid var(--border-main);
+    background: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--border-bright);
     z-index: 10000001;
     margin-top: auto; /* Push to bottom of app-main */
     position: relative;
@@ -313,7 +324,9 @@ body {
 /* 2. COMPONENTS (APP UI) */
 .terminal-card, .project-card {
     background: var(--bg-surface);
-    border: 1px solid var(--border-main);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-bright);
     border-radius: 12px;
     padding: clamp(1.2rem, 3vw, 2rem);
     margin-bottom: clamp(1rem, 3vw, 2rem);
@@ -323,13 +336,14 @@ body {
     overflow: hidden;
     width: 100%;
     position: relative;
+    box-shadow: var(--glass-shadow);
 }
 
 .terminal-card:hover, .project-card:hover {
     background: var(--bg-surface-alt);
     border-color: var(--app-primary);
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.6);
 }
 
 .card-header {
@@ -1139,7 +1153,9 @@ textarea.terminal-input {
    /* SYSTEM NOTIFICATION CAROUSEL */
    .system-notification-carousel {
        background: var(--bg-surface);
-       border-bottom: 1px solid var(--border-main);
+       backdrop-filter: var(--glass-blur);
+       -webkit-backdrop-filter: var(--glass-blur);
+       border-bottom: 1px solid var(--border-bright);
        height: 36px;
        overflow: hidden;
        display: flex;

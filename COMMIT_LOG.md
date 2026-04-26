@@ -106,6 +106,8 @@ This file tracks all commits made to this repository.
 - [SYS_UPDATE] UI/UX: Applied comprehensive visual polish to global typography using the 'Inter' font stack.
 - [SYS_UPDATE] UI/UX: Enhanced component depth with refined shadows, smooth transitions, and fluid `clamp()` based scaling.
 - [SYS_UPDATE] UI/UX: Standardized component alignment to left-aligned for a professional technical aesthetic.
+- [SYS_UPDATE] UI: Implemented custom OS-style vertical scrollbar for the navigation sidebar, featuring slim dimensions and active hover states.
+- [SYS_UPDATE] UI: Transitioned system surfaces to a glossy Glassmorphism aesthetic, featuring semi-transparent backgrounds and high-intensity `backdrop-filter` blurs.
 
 - Integrated Service Worker (SW) registration logic into `assets/js/master.js` to ensure reliable offline support and asset persistence.
 - Bumped Service Worker version to `v3` and applied `?v=2` cache-busters to global CSS links to force a refresh on mobile devices and resolve stale cache issues.
