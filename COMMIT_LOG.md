@@ -98,6 +98,15 @@ This file tracks all commits made to this repository.
 - Deprecated and removed the JavaScript `MutationObserver` and `has-kao-banner` detection logic, relying on the placeholder `div` and standard document flow for layout stability.
 - Implemented a root `index.html` redirect to automatically forward traffic to the new `/pages/index.html` architecture.
 - Scaled down the KAO banner components via CSS (`font-size`, `padding`, `height`) to achieve a high-density "status bar" aesthetic that integrates seamlessly with the virtual OS theme.
+
+## [2026-04-26]
+- [SYS_UPDATE] Architecture: Promoted IDE Sidebar to a global standard across all screen sizes.
+- [SYS_UPDATE] Architecture: Enforced strict "App Shell" layout, locking outer UI elements and confining scroll to the main content area.
+- [SYS_UPDATE] Kernel: Removed 'SYSTEM STATUS' status-bar element and deprecated all hover-based status triggers in `master.js`.
+- [SYS_UPDATE] UI/UX: Applied comprehensive visual polish to global typography using the 'Inter' font stack.
+- [SYS_UPDATE] UI/UX: Enhanced component depth with refined shadows, smooth transitions, and fluid `clamp()` based scaling.
+- [SYS_UPDATE] UI/UX: Standardized component alignment to left-aligned for a professional technical aesthetic.
+
 - Integrated Service Worker (SW) registration logic into `assets/js/master.js` to ensure reliable offline support and asset persistence.
 - Bumped Service Worker version to `v3` and applied `?v=2` cache-busters to global CSS links to force a refresh on mobile devices and resolve stale cache issues.
 - Optimized KAO banner injection by using the `?id=kao-banner` parameter to target the specific placeholder `div` within the content area.
