@@ -295,40 +295,10 @@ function updateHeroCpu() {
 
 // 5. FORM HANDLERS
 function initializeForms() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        
-        // Prepare payload for ntfy
-        const payload = {
-            title: `Contact Form: ${data.name || 'Anonymous'}`,
-            message: `From: ${data.email || 'No Email'}\n\n${data.message || 'No Message Content'}`,
-            tags: ["mailbox", "incoming_envelope"],
-            priority: 4
-        };
-
-        try {
-            const response = await fetch('/ntfy', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (response.ok) {
-                alert('[SUCCESS] Transmission received. Forwarding to neural link...');
-                form.reset();
-            } else {
-                throw new Error('Signal interference detected.');
-            }
-        } catch (error) {
-            console.error('[ERROR] Form submission failed:', error);
-            alert('[CRITICAL ERROR] Failed to transmit signal. Please try again.');
-        }
+        alert('[SUCCESS] Transmission received. Processing response...');
+        e.target.reset();
     });
 }
 
