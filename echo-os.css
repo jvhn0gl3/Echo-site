@@ -249,70 +249,6 @@ body {
     overflow: hidden;
 }
 
-/* APP FOOTER (BOTTOM BAR) */
-.app-footer {
-    height: 50px;
-    display: flex;
-    flex-direction: column; /* Stack title and preview */
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    background: var(--bg-surface);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border-top: 1px solid var(--border-bright);
-    z-index: 10000001;
-    margin-top: auto; /* Push to bottom of app-main */
-    position: relative;
-    overflow: hidden;
-}
-
-.app-title {
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 3px;
-    color: var(--app-primary);
-    text-shadow: 0 0 10px var(--app-primary-glow);
-    transition: all 0.3s ease;
-}
-
-.footer-status-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 18px;
-    background: rgba(0, 255, 157, 0.05);
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    font-size: 0.5rem;
-    color: var(--app-primary);
-    font-family: monospace;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.2s ease;
-    border-top: 1px solid rgba(0, 255, 157, 0.1);
-}
-
-.footer-status-bar.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.status-prefix {
-    color: var(--text-gold);
-    margin-right: 8px;
-    font-weight: bold;
-}
-
-.status-url {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    opacity: 0.8;
-}
-
 /* 2. COMPONENTS (APP UI) */
 .main-content {
     flex: 1;
@@ -762,47 +698,6 @@ h1, h2 {
     max-width: none;
     margin: 0;
     padding: 0;
-}
-
-/* 4. SYSTEM STATUS BAR (FOOTER FEEDBACK) */
-.footer-status-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    background: rgba(0, 255, 157, 0.1);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    font-size: 0.55rem;
-    color: var(--app-primary);
-    font-family: 'JetBrains Mono', monospace;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 1px solid var(--app-primary);
-    z-index: 10000008;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer-status-bar.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.status-prefix {
-    color: var(--text-gold);
-    margin-right: 10px;
-    font-weight: 900;
-}
-
-.status-content {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* 5. ACCESSIBILITY MODES */
