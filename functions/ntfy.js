@@ -4,8 +4,8 @@ export async function onRequestPost(context) {
   try {
     const data = await request.json();
     
-    // Use NTFY_TOPIC from environment variables or fallback to a default
-    const topic = env.NTFY_TOPIC || "echo_os_notifications";
+    // Retrieve the topic from the Cloudflare Environment Variable
+    const topic = env.hnKx9bm6qUYckyNL || "echo_os_notifications";
     const ntfyUrl = `https://ntfy.sh/${topic}`;
 
     // Construct the message from the incoming data
