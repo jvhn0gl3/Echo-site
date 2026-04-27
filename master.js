@@ -484,7 +484,7 @@ function initializeAccessibility() {
 // 6. CONTENT LOADER
 async function loadSiteContent() {
     try {
-        const response = await fetch('site-content.json');
+        const response = await fetch('nodes/set/site-content.json');
         const data = await response.json();
 
         const bio = data.profile.biological;
@@ -706,7 +706,7 @@ async function loadNotifications() {
     if (!track) return;
 
     try {
-        const response = await fetch('notifications.json');
+        const response = await fetch('nodes/set/notifications.json');
         const notifications = await response.json();
 
         const content = notifications.map(n => `

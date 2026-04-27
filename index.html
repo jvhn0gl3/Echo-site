@@ -7,7 +7,9 @@
     <meta name="description" content="John Ogletree - Digital Architect & Creative Technologist">
     <link rel="icon" type="image/jpeg" href="/img/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="sys-schema/echo-os.css">
+    <link rel="stylesheet" href="palette.css">
+    <link rel="stylesheet" href="echo-os.css">
+    <link rel="stylesheet" href="fonts.css">
 
 </head>
 <body style="margin:0; padding:0;">
@@ -70,16 +72,14 @@
         </nav>
 
         <main class="app-main">
-            <div id="kao-banner"></div>
-
             <div class="system-notification-carousel" id="notificationCarousel">
                 <div class="carousel-track" id="carouselTrack">
                     <!-- DYNAMICALLY LOADED -->
                 </div>
             </div>
 
-            <nav class="breadcrumb-nav">
-                <div class="breadcrumb-back" style="visibility: hidden; pointer-events: none;">
+            <div id="kao-banner"></div>
+            <nav class="breadcrumb-nav">                <div class="breadcrumb-back" style="visibility: hidden; pointer-events: none;">
                     <i aria-hidden="true" class="fas fa-chevron-left"></i>
                 </div>
                 <div class="breadcrumb-content">
@@ -135,6 +135,7 @@
                     </footer>
                 </main>
             </div>
+    <script src="kao-banner.js"></script>
     <script src="master.js"></script>
 </body>
 </html>

@@ -112,6 +112,10 @@ This file tracks all commits made to this repository.
 - [SYS_UPDATE] UI: Optimized content flow to utilize the full width of the README wrapper, left-aligning key components like the Hero section for improved documentation readability.
 - [SYS_UPDATE] Infrastructure: Decentralized design system by migrating `kernel.css` to the `css-schema` database repository; implemented CDN injection via jsDelivr.
 - [SYS_UPDATE] Infrastructure: Migrated design system to a Git Submodule architecture using the `jvhn0gl3-chroma` repository; established local path resolution in `sys-schema/`.
+- [SYS_UPDATE] Infrastructure: Decoupled color definitions from core schema into the `jvhn0gl3-palette` submodule, enabling independent color theme management and global reusability.
+- [SYS_UPDATE] Architecture: Merged palette and schema into a "Master Schema" configuration by nesting `sys-palette` inside `sys-schema`, creating a self-contained, plug-and-play design system.
+- [SYS_UPDATE] Architecture: Migrated structural HTML kernel to the standalone `jvhn0gl3-shell` node, further decoupling system foundation from logic and styling modules.
+- [SYS_UPDATE] Architecture: Migrated behavioral JS kernel to the standalone `jvhn0gl3-engine` node, completing the modular decoupling of system structure, style, and logic.
 
 - Integrated Service Worker (SW) registration logic into `assets/js/master.js` to ensure reliable offline support and asset persistence.
 - Bumped Service Worker version to `v3` and applied `?v=2` cache-busters to global CSS links to force a refresh on mobile devices and resolve stale cache issues.

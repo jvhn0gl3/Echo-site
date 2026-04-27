@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* ==========================================================================
+   JVHN0GL3 PALETTE - GITHUB DARK README SCHEMA
+   ========================================================================== */
+
+:root {
+    /* PRIMARY ACCENTS */
+    --app-primary: #58a6ff;       /* GitHub Blue */
+    --app-primary-glow: rgba(88, 166, 255, 0.1);
+    
+    --app-secondary: #bc8cff;     /* GitHub Purple */
+    --app-accent: #3fb950;        /* GitHub Green */
+    
+    /* TEXT PALETTE */
+    --text-primary: #c9d1d9;      /* Main text */
+    --text-secondary: #8b949e;    /* Muted text */
+    --text-dim: #484f58;
+    --text-gold: #d29922;         /* Warning/Gold */
+
+    /* SURFACE & DEPTH */
+    --bg-deep: #010409;           /* Deepest Black */
+    --bg-app: #0d1117;            /* Main Background */
+    --bg-surface: #161b22;        /* Header/Card Background */
+    --bg-surface-alt: #21262d;    /* Hover Background */
+    
+    /* BORDERS */
+    --border-main: #30363d;       /* Standard Border */
+    --border-bright: #8b949e;     /* High Contrast Border */
+}

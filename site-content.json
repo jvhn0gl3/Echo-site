@@ -1,0 +1,36 @@
+{
+  "profile": {
+    "biological": {
+      "name": "John Ogletree",
+      "origin": "Earth // Digital Space",
+      "occupation": "Creative Technologist // Full-Stack Architect",
+      "status": "OPERATIONAL"
+    },
+    "neural_network": {
+      "description": "Cross-disciplinary expert specializing in decentralized architectures, Virtual OS design, and high-performance web systems. Proficient in transforming complex technical requirements into seamless digital experiences.",
+      "skills": [
+        {"label": "Systems Architecture", "icon": "fas fa-microchip"},
+        {"label": "Decentralized Protocols", "icon": "fas fa-network-wired"},
+        {"label": "Vanilla Full-Stack", "icon": "fas fa-code"},
+        {"label": "UX Kernel Design", "icon": "fas fa-brain"}
+      ]
+    },
+    "skill_tree": [
+      {
+        "root": "frontend.sys",
+        "nodes": ["Vanilla JS", "CSS3 Architecture", "HTML5 Layouts", "PWA Design"]
+      },
+      {
+        "root": "backend.sys",
+        "nodes": ["Node.js Kernel", "JSON Databases", "API Orchestration", "Git Protocols"]
+      }
+    ],
+    "operational_history": {
+        "description": "Legacy logs and deployment history across various digital sectors.",
+        "logs": [
+            { "title": "Echo OS v1.0", "subtitle": "Core Deployment // April 2026" },
+            { "title": "Digital Portfolio", "subtitle": "Architecture Evolution // 2024-2026" }
+        ]
+    }
+  }
+}
