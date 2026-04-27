@@ -31,6 +31,26 @@
             { "title": "Echo OS v1.0", "subtitle": "Core Deployment // April 2026" },
             { "title": "Digital Portfolio", "subtitle": "Architecture Evolution // 2024-2026" }
         ]
-    }
+    },
+    "services": [
+        {
+            "title": "System Architecture",
+            "icon": "fas fa-microchip",
+            "description": "Designing robust, scalable digital infrastructures and decentralized systems.",
+            "features": ["Cloudflare Workers", "Edge Computing", "Kernel Optimization"]
+        },
+        {
+            "title": "Full-Stack Development",
+            "icon": "fas fa-code",
+            "description": "Building high-performance applications with vanilla core technologies.",
+            "features": ["Modern JavaScript", "CSS3 Architecture", "API Design"]
+        },
+        {
+            "title": "UX Kernel Design",
+            "icon": "fas fa-brain",
+            "description": "Creating immersive, interactive experiences focused on user performance.",
+            "features": ["Interface Logic", "Motion Design", "Accessibility Core"]
+        }
+    ]
   }
 }

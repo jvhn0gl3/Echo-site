@@ -3,168 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title data-i18n="ui.app_title">ECHO://OS | John Ogletree</title>
+    <title>Echo OS | John Ogletree</title>
     <meta name="description" content="John Ogletree - Digital Architect & Creative Technologist">
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="palette.css">
-    <link rel="stylesheet" href="echo-os.css">
-    <link rel="stylesheet" href="fonts.css">
+    <style>
+/* FONTS */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('JetBrainsMono-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Share Tech Mono';
+    src: url('ShareTechMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
 
+/* PALETTE */
+:root {
+    --app-primary: #58a6ff;
+    --app-primary-glow: rgba(88, 166, 255, 0.1);
+    --app-secondary: #bc8cff;
+    --app-accent: #3fb950;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --text-dim: #484f58;
+    --text-gold: #d29922;
+    --bg-deep: #010409;
+    --bg-app: #0d1117;
+    --bg-surface: #161b22;
+    --bg-surface-alt: #21262d;
+    --border-main: #30363d;
+    --border-bright: #8b949e;
+    --app-width: 100%;
+    --header-height: 65px;
+    --nav-height: 75px;
+    --base-scale: 16px;
+}
+
+/* MASTER CSS */
+/* 1. RESET & GLOBAL APP STYLES */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box; 
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    height: 100%;
+    overflow: hidden;
+}
+a { text-decoration: none; }
+html, body { height: 100%; margin: 0; padding: 0; }
+
+.app-container {
+    flex: 1;
+    width: 100%;
+    background: var(--bg-app);
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+}
+
+.app-nav {
+    width: 70px;
+    height: 100%;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-bright);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+    z-index: 10000006;
+    flex-shrink: 0;
+}
+.nav-logo {
+    width: 100%;
+    margin-bottom: clamp(10px, 3vw, 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--app-primary);
+    padding: 0 10px;
+    white-space: nowrap;
+}
+.nav-scroll-group {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scrollbar-width: thin;
+}
+.nav-item {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+.nav-item i { font-size: 1.2rem; }
+.nav-item:hover { color: var(--app-primary); background: rgba(255, 255, 255, 0.03); }
+.nav-item.active { color: var(--app-primary); background: rgba(59, 130, 246, 0.1); border-left: 3px solid var(--app-primary); }
+
+.app-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.system-notification-carousel {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-bright);
+    height: 36px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10000007;
+}
+.carousel-track { display: flex; width: max-content; animation: ticker linear infinite; }
+.notification-item { height: 36px; display: flex; align-items: center; padding: 0 40px; font-size: 0.75rem; gap: 10px; white-space: nowrap; }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.notif-type { color: var(--app-primary); font-weight: 700; font-size: 0.65rem; background: var(--app-primary-glow); padding: 2px 8px; border-radius: 4px; }
+
+.breadcrumb-nav {
+    padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 20px);
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-bright);
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000008;
+}
+.breadcrumb-content { display: flex; gap: 10px; flex: 1; justify-content: center; align-items: center; }
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: clamp(20px, 5vw, 45px);
+    background: var(--bg-app);
+    display: flex;
+    justify-content: center;
+}
+.content-wrapper { width: 100%; max-width: 1012px; }
+
+.terminal-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.card-header { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-main); padding-bottom: 10px; margin-bottom: 15px; }
+.card-title { color: var(--app-primary); font-weight: 600; font-size: 1.1rem; }
+
+.text-gold { color: var(--text-gold); }
+.text-neon { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; }
+.cyber-hr { border: none; height: 1px; background: var(--border-main); margin: 40px 0; }
+
+.matrix-btn, .terminal-btn {
+    padding: 5px 16px;
+    font-size: 14px;
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-main);
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* KAO BANNER */
+.kao-banner {
+    background: rgba(0, 20, 12, 0.9);
+    border: 1px solid var(--app-primary);
+    color: var(--app-primary);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.kao-banner a { color: var(--app-accent); margin: 0 5px; }
+.kao-banner-close { position: absolute; right: 10px; background: none; border: none; color: var(--app-secondary); cursor: pointer; }
+
+/* MODAL */
+.acc-modal {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
+    width: 90%; max-width: 350px; background: var(--bg-surface); border: 2px solid var(--app-primary);
+    border-radius: 16px; z-index: 10000010; padding: 20px; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+}
+.acc-modal.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+.acc-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000009; opacity: 0; visibility: hidden; }
+.acc-overlay.active { opacity: 1; visibility: visible; }
+.acc-option { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border-main); cursor: pointer; }
+.acc-toggle { width: 40px; height: 20px; background: #333; border-radius: 10px; position: relative; }
+.acc-toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.3s ease; }
+.acc-option.active .acc-toggle { background: var(--app-primary); }
+.acc-option.active .acc-toggle::after { transform: translateX(20px); }
+
+.lang-toggle { background: none; border: 1px solid rgba(0, 255, 157, 0.2); color: var(--app-primary); font-size: 0.45rem; padding: 1px 6px; border-radius: 4px; cursor: pointer; }
+.lang-dropdown { position: absolute; top: 100%; right: 0; background: var(--bg-surface); border: 1px solid var(--app-primary); border-radius: 8px; padding: 5px; display: none; flex-direction: column; z-index: 10000007; }
+.lang-dropdown.active { display: flex; }
+.lang-opt { background: none; border: none; color: #888; font-size: 0.5rem; padding: 8px 10px; cursor: pointer; width: 100%; text-align: left; }
+.lang-opt.active { color: var(--app-primary); }
+    </style>
 </head>
-<body style="margin:0; padding:0;">
-    <a href="#app" class="skip-link" data-i18n="ui.skip_link">Skip to content</a>
+<body>
     <div class="app-container">
         <nav class="app-nav">
             <div class="nav-logo">E:://</div>
             <div class="nav-scroll-group">
-                <a href="/index.html" class="nav-item active">
-                    <i aria-hidden="true" class="fas fa-house"></i>
-                    <span data-i18n="nav.home">HOME</span>
-                </a>
-                <a href="#about" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-user-astronaut"></i>
-                    <span data-i18n="nav.profile" data-i18n="breadcrumb.profile">PROFILE</span>
-                </a>
-                <a href="#services" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-microchip"></i>
-                    <span data-i18n="nav.services" data-i18n="breadcrumb.services">SERVICES</span>
-                </a>
-                <a href="#pricing" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-tags"></i>
-                    <span data-i18n="nav.pricing" data-i18n="breadcrumb.pricing">PRICING</span>
-                </a>
-                <a href="#blog" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-rss"></i>
-                    <span data-i18n="nav.blog" data-i18n="breadcrumb.blog">BLOG</span>
-                </a>
-                <a href="#projects" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-laptop-code"></i>
-                    <span data-i18n="nav.projects" data-i18n="breadcrumb.projects">PROJECTS</span>
-                </a>
-                <a href="#connect" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-plug"></i>
-                    <span data-i18n="nav.connect" data-i18n="breadcrumb.connect">CONNECT</span>
-                </a>
-                <a href="/pages/resume/" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-file-pdf"></i>
-                    <span data-i18n="nav.resume" data-i18n="breadcrumb.resume">RESUME</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-book"></i>
-                    <span data-i18n="nav.docs" data-i18n="breadcrumb.docs">DOCS</span>
-                </a>
-                <a href="/pages/directory/" class="nav-item">
-                    <i aria-hidden="true" class="fas fa-folder-tree"></i>
-                    <span data-i18n="nav.directory" data-i18n="breadcrumb.directory">DIRECTORY</span>
-                </a>
+                <a href="#home" class="nav-item active" data-section="home"><i class="fas fa-house"></i></a>
+                <a href="#about" class="nav-item" data-section="about"><i class="fas fa-user-astronaut"></i></a>
+                <a href="#services" class="nav-item" data-section="services"><i class="fas fa-microchip"></i></a>
+                <a href="#pricing" class="nav-item" data-section="pricing"><i class="fas fa-tags"></i></a>
+                <a href="#blog" class="nav-item" data-section="blog"><i class="fas fa-rss"></i></a>
+                <a href="#projects" class="nav-item" data-section="projects"><i class="fas fa-laptop-code"></i></a>
+                <a href="#connect" class="nav-item" data-section="connect"><i class="fas fa-plug"></i></a>
             </div>
             <div class="nav-footer">
-                <a href="#" class="nav-item" data-label="ACCESSIBILITY">
-                    <i aria-hidden="true" class="fas fa-universal-access"></i>
-                    <span data-i18n="nav.accessibility">Accessibility</span>
-                </a>
-                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-item">
-                    <i aria-hidden="true" class="fab fa-github"></i>
-                    <span data-i18n="nav.github">GitHub</span>
-                </a>
+                <a href="#" class="nav-item" data-label="ACCESSIBILITY"><i class="fas fa-universal-access"></i></a>
+                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-item"><i class="fab fa-github"></i></a>
             </div>
         </nav>
 
         <main class="app-main">
-            <div class="system-notification-carousel" id="notificationCarousel">
-                <div class="carousel-track" id="carouselTrack">
-                    <!-- DYNAMICALLY LOADED -->
-                </div>
+            <div class="system-notification-carousel">
+                <div class="carousel-track" id="carouselTrack"></div>
             </div>
-
             <div id="kao-banner"></div>
-            <nav class="breadcrumb-nav">                <div class="breadcrumb-back" style="visibility: hidden; pointer-events: none;">
-                    <i aria-hidden="true" class="fas fa-chevron-left"></i>
-                </div>
+            <nav class="breadcrumb-nav">
                 <div class="breadcrumb-content">
-                    <span class="breadcrumb-item active" data-i18n="breadcrumb.home" data-i18n="breadcrumb.home">HOME</span>
+                    <span class="breadcrumb-item active">HOME</span>
                     <div class="breadcrumb-lang">
-                        <button class="lang-toggle" id="langToggle">
-                            <i class="fas fa-globe"></i>
-                            <span id="currentLangDisplay">EN</span>
-                        </button>
-                        <div class="lang-dropdown" id="langDropdown">
-                            <button class="lang-opt active" data-lang="en">EN // ENGLISH</button>
-                            <button class="lang-opt" data-lang="es">ES // ESPAÑOL</button>
-                            <button class="lang-opt" data-lang="fr">FR // FRANÇAIS</button>
-                            <button class="lang-opt" data-lang="de">DE // DEUTSCH</button>
-                            <button class="lang-opt" data-lang="zh">ZH // 中文</button>
-                            <button class="lang-opt" data-lang="ja">JA // 日本語</button>
-                            <button class="lang-opt" data-lang="ko">KO // 한국어</button>
-                            <button class="lang-opt" data-lang="pt">PT // PORTUGUÊS</button>
-                            <button class="lang-opt" data-lang="it">IT // ITALIANO</button>
-                            <button class="lang-opt" data-lang="ru">RU // РУССКИЙ</button>
-                        </div>
+                        <button class="lang-toggle" id="langToggle"><i class="fas fa-globe"></i> <span id="currentLangDisplay">EN</span></button>
+                        <div class="lang-dropdown" id="langDropdown"></div>
                     </div>
-                    <div id="app-version" style="font-size: 0.45rem; color: var(--text-gold); opacity: 0.6; font-family: 'Share Tech Mono', monospace; margin-left: 5px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 10px; white-space: nowrap;"></div>
+                    <div id="app-version"></div>
                 </div>
             </nav>
 
             <div class="main-content">
                 <div class="content-wrapper">
-                <section class="hero">
-                    <div class="hero-content">
+                    <section id="home" class="hero">
                         <div class="hero-hud">
-                            <h1 class="hero-title" data-i18n="home.hero_title">JOHN OGLETREE</h1>
-                            <div class="text-neon" data-i18n="home.hero_subtitle">DIGITAL ARCHITECT // CREATIVE TECHNOLOGIST</div>
-
+                            <h1 class="hero-title">JOHN OGLETREE</h1>
+                            <div class="text-neon">DIGITAL ARCHITECT // CREATIVE TECHNOLOGIST</div>
                             <div class="hero-btn-group">
-                                <a href="#projects" class="matrix-btn" data-i18n="home.btn_projects">View Projects</a>
-                                <a href="#connect" class="matrix-btn" data-i18n="home.btn_connect">Get in Touch</a>
+                                <a href="#projects" class="matrix-btn">View Projects</a>
+                                <a href="#connect" class="matrix-btn">Get in Touch</a>
                             </div>
+                        </div>
+                    </section>
+
+                    <section id="about" style="margin-top: 40px;">
+                        <div class="terminal-card">
+                            <div class="card-header">
+                                <i class="fas fa-id-badge"></i>
+                                <span class="card-title">Profile.conf</span>
                             </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+                                <div style="flex: 1; min-width: 300px;">
+                                    <p id="neural-network-desc"></p>
+                                    <div id="bio-data"></div>
+                                </div>
+                                <div style="flex-shrink: 0; width: 200px;">
+                                    <img src="logo.jpg" alt="John Ogletree" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-bright);">
+                                </div>
                             </div>
-                            </section>
+                        </div>
+                    </section>
 
-                            <section id="about" class="profile-section">
-                                <div class="terminal-card">
-                                    <div class="card-header">
-                                        <i aria-hidden="true" class="fas fa-id-badge"></i>
-                                        <span class="card-title">Profile.conf</span>
-                                    </div>
-
-                                    <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
-                                        <!-- COLUMN 1: BRIEF -->
-                                        <div style="flex: 1; min-width: 300px;">
-                                            <p id="neural-network-desc" style="font-size: 1.1rem; color: var(--text-primary); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
-                                                <!-- DYNAMICALLY LOADED: 1-2 Sentence Bio -->
-                                            </p>
-                                            <div id="bio-data" style="font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text-secondary);">
-                                                <!-- DYNAMICALLY LOADED: Biological Specs -->
-                                            </div>
-                                            </div>
-
-                                            <!-- COLUMN 2: IMAGE -->                                        <div style="flex-shrink: 0; width: clamp(200px, 30vw, 300px);">
-                                            <div style="aspect-ratio: 1/1; border: 1px solid var(--border-bright); border-radius: 8px; overflow: hidden; background: var(--bg-surface-alt);">
-                                                <img src="logo.jpg" alt="John Ogletree" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8; filter: grayscale(0.5) contrast(1.2);">
-                                            </div>
-                                        </div>
-                                        </div>
-
-                                        <!-- FULL WIDTH BUTTON -->
-                                        <div style="margin-top: 30px;">
-                                        <a href="/pages/resume/" class="terminal-btn" style="width: 100%;" data-i18n="nav.resume">$ ./access_full_dossier</a>
-                                        </div>
-                                        </div>
-                                        </section>
-                            <hr class="cyber-hr">
-
-                            <div class="container" id="app">                            <!-- OTHER SECTIONS TEMPORARILY REMOVED -->
+                    <section id="services" style="margin-top: 40px;">
+                        <div class="terminal-card">
+                            <div class="card-header">
+                                <i class="fas fa-microchip"></i>
+                                <span class="card-title">Services.sys</span>
                             </div>
-                        </div> <!-- End content-wrapper -->
-                    </div> <!-- End main-content -->
-                </main>
+                            <div id="services-grid"></div>
+                        </div>
+                    </section>
+
+                    <section id="pricing" style="margin-top: 40px;">
+                        <div class="terminal-card">
+                            <div class="card-header"><i class="fas fa-tags"></i> <span class="card-title">Pricing.val</span></div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                                <div class="terminal-card" style="border-top: 4px solid var(--app-primary);">
+                                    <h3>Basic.node</h3>
+                                    <p>$99/mo</p>
+                                    <ul class="terminal-list"><li>Static Site</li><li>Standard SEO</li></ul>
+                                </div>
+                                <div class="terminal-card" style="border-top: 4px solid var(--text-gold);">
+                                    <h3>Pro.kernel</h3>
+                                    <p>$299/mo</p>
+                                    <ul class="terminal-list"><li>Dynamic PWA</li><li>Custom Backend</li></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="connect" style="margin-top: 40px; margin-bottom: 100px;">
+                        <div class="terminal-card">
+                            <div class="card-header"><i class="fas fa-plug"></i> <span class="card-title">Connect.dev</span></div>
+                            <form id="contactForm" class="contact-form">
+                                <input type="text" name="name" placeholder="NAME" class="terminal-input" required>
+                                <input type="email" name="email" placeholder="EMAIL" class="terminal-input" required>
+                                <textarea name="message" placeholder="MESSAGE" class="terminal-input" required></textarea>
+                                <button type="submit" class="terminal-btn">Transmit Signal</button>
+                            </form>
+                        </div>
+                    </section>
+                </div>
             </div>
-    <script src="kao-banner.js"></script>
-    <script src="master.js"></script>
+        </main>
+    </div>
+
+    <script>
+/* DATA INJECTION */
+const LOCALE_DATA = {
+    en: {
+        nav: { home: "HOME", profile: "PROFILE", services: "SERVICES", pricing: "PRICING", blog: "BLOG", projects: "PROJECTS", connect: "CONNECT", accessibility: "Accessibility" },
+        bio: { name: "NAME", origin: "ORIGIN", occupation: "OCCUPATION", status: "STATUS" }
+    }
+};
+
+const SITE_CONTENT = {
+    profile: {
+        biological: { name: "John Ogletree", origin: "Earth // Digital Space", occupation: "Creative Technologist", status: "OPERATIONAL" },
+        neural_network: { description: "Cross-disciplinary expert specializing in decentralized architectures." },
+        services: [
+            { title: "System Architecture", icon: "fas fa-microchip", description: "Designing robust, scalable digital infrastructures.", features: ["Cloudflare Workers", "Edge Computing"] },
+            { title: "Full-Stack Development", icon: "fas fa-code", description: "Building high-performance applications.", features: ["Modern JS", "CSS3"] }
+        ]
+    }
+};
+
+const NOTIFICATIONS = [
+    { id: "SYS-01", type: "SECURITY", message: "Kernel handshakes confirmed." },
+    { id: "SYS-02", type: "NETWORK", message: "Latency optimized to 0.12ms." }
+];
+
+/* LOGIC */
+let currentLocale = 'en';
+
+function init() {
+    renderNotifications();
+    renderProfile();
+    renderServices();
+    updateVersion();
+    setInterval(updateVersion, 10000);
+    
+    // Simple navigation
+    document.querySelectorAll('.nav-item[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+}
+
+function renderNotifications() {
+    const track = document.getElementById('carouselTrack');
+    const content = NOTIFICATIONS.map(n => `
+        <div class="notification-item">
+            <span class="notif-type">${n.type}</span>
+            <span class="notif-message">${n.message}</span>
+            <span class="notif-id">[${n.id}]</span>
+        </div>
+    `).join('');
+    track.innerHTML = content + content;
+    track.style.animationDuration = (NOTIFICATIONS.length * 10) + 's';
+}
+
+function renderProfile() {
+    const bio = SITE_CONTENT.profile.biological;
+    document.getElementById('bio-data').innerHTML = `
+        <p><span class="text-gold">> NAME:</span> ${bio.name}</p>
+        <p><span class="text-gold">> ORIGIN:</span> ${bio.origin}</p>
+        <p><span class="text-gold">> OCCUPATION:</span> ${bio.occupation}</p>
+        <p><span class="text-gold">> STATUS:</span> ${bio.status}</p>
+    `;
+    document.getElementById('neural-network-desc').textContent = SITE_CONTENT.profile.neural_network.description;
+}
+
+function renderServices() {
+    const grid = document.getElementById('services-grid');
+    grid.innerHTML = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            ${SITE_CONTENT.profile.services.map(s => `
+                <div class="terminal-card">
+                    <i class="${s.icon}" style="font-size: 1.5rem; color: var(--app-primary);"></i>
+                    <h3>${s.title}</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">${s.description}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function updateVersion() {
+    const el = document.getElementById('app-version');
+    if (!el) return;
+    const now = new Date();
+    el.textContent = `VERSION: ${now.getMonth()+1}.${now.getDate()}.${now.getFullYear()}:${now.getHours()}.${now.getMinutes()}`;
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+/* KAO BANNER INLINE */
+(function() {
+    const banner = document.createElement("div");
+    banner.className = "kao-banner";
+    banner.innerHTML = `<a href="https://keepandroidopen.org" target="_blank">Keep Android Open: Android is becoming a closed platform</a><button class="kao-banner-close">✕</button>`;
+    document.getElementById('kao-banner').appendChild(banner);
+    banner.querySelector('.kao-banner-close').onclick = () => banner.style.display = 'none';
+})();
+    </script>
 </body>
 </html>
-
-
-

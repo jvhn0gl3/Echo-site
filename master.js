@@ -441,6 +441,24 @@ async function loadSiteContent() {
             document.getElementById('neural-network-desc').textContent = data.profile.neural_network.description;
         }
 
+        const servicesContainer = document.getElementById('services-grid');
+        if (servicesContainer && data.profile.services) {
+            servicesContainer.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    ${data.profile.services.map(service => `
+                        <div class="service-card" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-main); padding: 20px; border-radius: 8px; transition: all 0.3s ease; text-align: left; align-items: flex-start;">
+                            <i aria-hidden="true" class="${service.icon}" style="font-size: 1.5rem; color: var(--app-primary); margin-bottom: 15px;"></i>
+                            <h3 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px;">${service.title}</h3>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 15px; text-align: left;">${service.description}</p>
+                            <ul class="terminal-list" style="align-items: flex-start; margin: 0; gap: 5px;">
+                                ${service.features.map(feature => `<li style="font-size: 0.7rem; color: var(--text-gold);"><i class="fas fa-caret-right" style="margin-right: 8px; font-size: 0.6rem;"></i>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
         const skillsContainer = document.getElementById('neural-skills-grid');
         if (skillsContainer) {
             // Combine core icons and all nodes from the skill tree
