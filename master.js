@@ -8,8 +8,9 @@ let currentLocale = localStorage.getItem('site-locale') || 'en';
 let localeData = {};
 
 async function loadLocale(lang = 'en') {
+    console.log(`[i18n] Attempting to load locale: ${lang}`);
     try {
-        const response = await fetch(`locales/${lang}.json`);
+        const response = await fetch(`locales/${lang}.json?v=${Date.now()}`);
         localeData = await response.json();
         currentLocale = lang;
         localStorage.setItem('site-locale', lang);
@@ -59,8 +60,9 @@ window.loadLocale = loadLocale;
 
 // 1. DATA LOADER - Central Link Synchronization
 async function loadLinks() {
+    console.log('[SYSTEM] Synchronizing system links...');
     try {
-        const response = await fetch('links.json');
+        const response = await fetch(`links.json?v=${Date.now()}`);
         const data = await response.json();
 
         // 1. Populate Internal Navigation & Any matching internal links
@@ -167,71 +169,6 @@ customElements.define('site-sidebar', SiteSidebar);
 function initializeNavigation() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
-    /*
-    const footer = document.querySelector('.app-footer');
-    
-    // Create status bar if it doesn't exist
-    let statusBar = document.querySelector('.footer-status-bar');
-    if (footer && !statusBar) {
-        statusBar = document.createElement('div');
-        statusBar.className = 'footer-status-bar';
-        statusBar.innerHTML = `<span class="status-prefix">${t('status.system')}</span><span class="status-content"></span>`;
-        footer.appendChild(statusBar);
-    }
-
-    const showStatus = (text) => {
-        if (statusBar) {
-            const contentEl = statusBar.querySelector('.status-content');
-            if (contentEl) contentEl.textContent = text;
-            statusBar.classList.add('active');
-            const titleEl = document.querySelector('.app-title');
-            if (titleEl) titleEl.style.opacity = '0';
-        }
-    };
-
-    const hideStatus = () => {
-        if (statusBar) {
-            statusBar.classList.remove('active');
-            const titleEl = document.querySelector('.app-title');
-            if (titleEl) titleEl.style.opacity = '1';
-        }
-    };
-
-    // GLOBAL STATUS DELEGATION (Handles all current and future elements)
-    const handleStatusEvent = (e) => {
-        const target = e.target.closest('a, button, .sidebar-link, .nav-item, .terminal-card, .skill-item, .project-card, .social-btn, .matrix-btn, .terminal-btn, [data-href]');
-        if (!target) {
-            if (e.type === 'mouseleave' || e.type === 'touchend') hideStatus();
-            return;
-        }
-
-        // CLOAKING LOGIC: Remove href on hover to hide browser status bar
-        if (e.type === 'mouseenter' || e.type === 'touchstart') {
-            const href = target.getAttribute('href');
-            if (href && !href.startsWith('#')) {
-                target.setAttribute('data-href', href);
-                target.removeAttribute('href');
-                target.setAttribute('role', 'link');
-                if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '0');
-                target.style.cursor = 'pointer';
-            }
-
-            const activeHref = target.getAttribute('data-href') || target.getAttribute('href');
-            const title = target.querySelector('.card-title')?.textContent;
-            const btnText = target.textContent.trim().startsWith('$ ./') ? target.textContent.trim() : null;
-            
-            const statusText = btnText || title || (activeHref && !activeHref.startsWith('#') ? `GOTO: ${activeHref}` : "READY");
-            showStatus(statusText);
-        } else {
-            hideStatus();
-        }
-    };
-
-    document.addEventListener('mouseenter', handleStatusEvent, true);
-    document.addEventListener('mouseleave', handleStatusEvent, true);
-    document.addEventListener('touchstart', handleStatusEvent, {passive: true, capture: true});
-    document.addEventListener('touchend', handleStatusEvent, {passive: true, capture: true});
-    */
 
     // GLOBAL CLICK HANDLER (System Navigation)
     document.addEventListener('click', (e) => {
@@ -483,17 +420,18 @@ function initializeAccessibility() {
 
 // 6. CONTENT LOADER
 async function loadSiteContent() {
+    console.log('[SYSTEM] Synchronizing digital content artifacts...');
     try {
-        const response = await fetch('nodes/set/site-content.json');
+        const response = await fetch(`site-content.json?v=${Date.now()}`);
         const data = await response.json();
 
         const bio = data.profile.biological;
         if (document.getElementById('bio-data')) {
             document.getElementById('bio-data').innerHTML = `
-                <p><span class="text-gold">> ${t('bio.name')}:</span> ${bio.name}</p>
-                <p><span class="text-gold">> ${t('bio.origin')}:</span> ${bio.origin}</p>
-                <p><span class="text-gold">> ${t('bio.occupation')}:</span> ${bio.occupation}</p>
-                <p><span class="text-gold">> ${t('bio.status')}:</span> ${bio.status}</p>
+                <p><span class="text-gold">> ${t('bio.name') || 'NAME'}:</span> ${bio.name}</p>
+                <p><span class="text-gold">> ${t('bio.origin') || 'ORIGIN'}:</span> ${bio.origin}</p>
+                <p><span class="text-gold">> ${t('bio.occupation') || 'OCCUPATION'}:</span> ${bio.occupation}</p>
+                <p><span class="text-gold">> ${t('bio.status') || 'STATUS'}:</span> ${bio.status}</p>
             `;
         }
 
@@ -561,137 +499,6 @@ async function loadSiteContent() {
             `;
         }
 
-        const servicesGrid = document.getElementById('services-grid');
-        if (servicesGrid) {
-            let currentCategory = 'all';
-            let searchQuery = '';
-            const renderServices = () => {
-                const filtered = data.services.modules.filter(module => {
-                    const matchesCategory = currentCategory === 'all' || module.category === currentCategory;
-                    const matchesSearch = module.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                          module.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                          module.list.some(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
-                    return matchesCategory && matchesSearch;
-                });
-
-                if (filtered.length === 0) {
-                    servicesGrid.innerHTML = `<div class="terminal-card" style="grid-column: 1 / -1; text-align: center; border-style: dashed;"><p class="text-dim">${t('status.no_modules')}</p></div>`;
-                } else {
-                    servicesGrid.innerHTML = filtered.map(module => `
-                        <div class="terminal-card service-card" >
-                            <div class="card-header"><i aria-hidden="true" class="${module.icon}"></i> <span class="card-title">${module.title}</span></div>
-                            <p>${module.description}</p>
-                            <ul class="terminal-list">${module.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                            <div style="margin-top: 10px;"><a href="#" class="terminal-btn" style="width: 100%;">$ ./${module.command}</a></div>
-                        </div>
-                    `).join('');
-                }
-                if (window.loadLinks) window.loadLinks();
-            };
-
-            const searchInput = document.getElementById('service-search');
-            searchInput?.addEventListener('input', (e) => { searchQuery = e.target.value; renderServices(); });
-
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentCategory = btn.dataset.category;
-                    renderServices();
-                });
-            });
-            renderServices();
-        }
-
-        const workflowGrid = document.getElementById('workflow-steps');
-        if (workflowGrid) {
-            workflowGrid.innerHTML = data.services.process.map(proc => `
-                <div class="stat-box"><div class="stat-value">${proc.step}</div><div class="stat-label">${proc.label}</div></div>
-            `).join('');
-        }
-
-        const projectsGrid = document.getElementById('projects-grid');
-        if (projectsGrid) {
-            projectsGrid.innerHTML = data.projects.archive.map(project => `
-                <div class="project-card">
-                    <img src="${project.image}" class="project-img">
-                    <div class="project-content">
-                        <div class="card-title">${project.title}</div>
-                        <p>${project.description}</p>
-                        <div class="card-tags">${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-                        <div style="margin-top: 20px;"><a href="${project.url}" target="_blank" class="terminal-btn">$ ./${project.command}</a></div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        const metricsContainer = document.getElementById('github-metrics');
-        if (metricsContainer) {
-            metricsContainer.innerHTML = `
-                <div class="stat-box"><div class="stat-value">${data.projects.metrics.repos}</div><div class="stat-label">REPOS</div></div>
-                <div class="stat-box"><div class="stat-value">${data.projects.metrics.contribs}</div><div class="stat-label">CONTRIBS</div></div>
-                <div class="stat-box"><div class="stat-value">${data.projects.metrics.followers}</div><div class="stat-label">FOLLOWERS</div></div>
-            `;
-        }
-
-        const logEntriesContainer = document.getElementById('log-entries');
-        if (logEntriesContainer) {
-            logEntriesContainer.innerHTML = data.log.entries.map(entry => `
-                <div class="terminal-card">
-                    <div class="card-header"><i aria-hidden="true" class="fas fa-code-commit"></i><span class="card-title">Entry #${entry.id}: ${entry.title}</span></div>
-                    <div class="text-neon" style="font-size: 0.7rem; margin-bottom: 10px;">TIMESTAMP: ${entry.timestamp} // ${entry.category}</div>
-                    <p>${entry.description}</p>
-                    <div class="card-tags">${entry.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-                </div>
-            `).join('');
-        }
-
-        const experienceContainer = document.getElementById('experience-list');
-        if (experienceContainer) {
-            experienceContainer.innerHTML = data.resume.experience.map(exp => `
-                <div class="terminal-card">
-                    <div class="card-header"><i aria-hidden="true" class="fas fa-chevron-right"></i><span class="card-title">${exp.title}</span></div>
-                    <div class="text-neon" style="font-size: 0.8rem; margin-bottom: 10px;">${exp.period}</div>
-                    <p>${exp.description}</p>
-                    <ul class="terminal-list">${exp.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
-                </div>
-            `).join('');
-        }
-
-        const eduContainer = document.getElementById('education-data');
-        if (eduContainer) {
-            const edu = data.resume.education;
-            eduContainer.innerHTML = `
-                <div class="card-header"><i aria-hidden="true" class="fas fa-university"></i><span class="card-title">${edu.degree}</span></div>
-                <div class="text-neon" style="font-size: 0.8rem;">${edu.institution}</div>
-                <p style="margin-top: 10px;">${edu.description}</p>
-            `;
-        }
-
-        const faqContainer = document.getElementById('faq-list');
-        if (faqContainer) {
-            faqContainer.innerHTML = data.faq.map(item => `
-                <div class="faq-card" onclick="this.classList.toggle('active')">
-                    <div class="faq-question"><span>$ ${item.question}</span><i aria-hidden="true" class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><p>${item.answer}</p></div>
-                </div>
-            `).join('');
-        }
-
-        const pricingGrid = document.getElementById('pricing-grid');
-        if (pricingGrid) {
-            pricingGrid.innerHTML = data.pricing.tiers.map(tier => `
-                <div class="terminal-card" style="text-align: center; ${tier.featured ? 'border-color: var(--neon-primary); box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);' : ''}">
-                    <div class="card-header"><i aria-hidden="true" class="${tier.icon}"></i><span class="card-title">${tier.title}</span></div>
-                    <div class="text-gold" style="font-size: 1.5rem; margin: 15px 0;">${tier.price} <span style="font-size: 0.7rem; color: var(--text-dim);">${tier.price_label}</span></div>
-                    <p>${tier.description}</p>
-                    <ul class="terminal-list">${tier.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                    <div style="margin-top: 20px;"><a href="/pages/connect/" class="${tier.featured ? 'matrix-btn' : 'terminal-btn'}" style="width: 100%;">$ ./${tier.command}</a></div>
-                </div>
-            `).join('');
-        }
-        if (document.getElementById('pricing-disclaimer')) document.getElementById('pricing-disclaimer').textContent = data.pricing.disclaimer;
-
         console.log('[SUCCESS] All digital content artifacts synchronized.');
         if (window.loadLinks) window.loadLinks();
 
@@ -702,12 +509,17 @@ async function loadSiteContent() {
 
 // 6b. NOTIFICATION CAROUSEL
 async function loadNotifications() {
+    console.log('[SYSTEM] Loading system notifications...');
     const track = document.getElementById('carouselTrack');
-    if (!track) return;
+    if (!track) {
+        console.warn('[WARN] carouselTrack element not found in DOM.');
+        return;
+    }
 
     try {
-        const response = await fetch('nodes/set/notifications.json');
+        const response = await fetch(`notifications.json?v=${Date.now()}`);
         const notifications = await response.json();
+        console.log(`[SUCCESS] Loaded ${notifications.length} notifications.`);
 
         const content = notifications.map(n => `
             <div class="notification-item">
