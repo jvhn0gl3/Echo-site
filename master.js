@@ -11,6 +11,7 @@ async function loadLocale(lang = 'en') {
     console.log(`[i18n] Attempting to load locale: ${lang}`);
     try {
         const response = await fetch(`locales/${lang}.json?v=${Date.now()}`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         localeData = await response.json();
         currentLocale = lang;
         localStorage.setItem('site-locale', lang);
@@ -26,7 +27,8 @@ async function loadLocale(lang = 'en') {
 
         console.log(`[i18n] System locale set to: ${lang}`);
     } catch (error) {
-        console.error(`[i18n] Failed to load locale ${lang}:`, error);
+        console.warn(`[i18n] Failed to load locale ${lang}. Using fallback keys.`, error);
+        applyTranslations(); // Still try to apply whatever we have or fallback to keys
     }
 }
 
