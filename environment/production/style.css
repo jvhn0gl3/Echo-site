@@ -16,9 +16,39 @@ html, body {
 
 .app-shell {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100%;
     width: 100%;
+}
+
+.app-sidebar {
+    width: 200px;
+    background-color: #161b22;
+    border-right: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    flex-shrink: 0;
+}
+
+.app-sidebar .nav-item {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #8b949e;
+    cursor: pointer;
+}
+
+.app-sidebar .nav-item:hover {
+    background-color: #21262d;
+    color: #f0f6fc;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
 }
 
 .app-header {
@@ -71,19 +101,4 @@ html, body {
     background-color: rgba(110, 118, 129, 0.4);
     border-radius: 6px;
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-}
-
-.app-footer {
-    background-color: #161b22;
-    color: #8b949e;
-    height: 60px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #30363d;
-}
-
-.nav-item {
-    font-size: 0.75rem;
-    font-weight: 500;
 }
