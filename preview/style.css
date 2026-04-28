@@ -613,3 +613,18 @@ hr {
 .stream-line .timestamp { color: var(--text-secondary); }
 .stream-line .label { color: var(--accent); font-weight: 600; }
 .stream-line .value { color: #7ee787; }
+
+#staging-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffc107;
+    color: #000;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10000;
+    font-family: 'JetBrains Mono', monospace;
+}
