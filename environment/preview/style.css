@@ -1,0 +1,14 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.banner {
+    background-color: #ffcc00;
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-bottom: 2px solid #e6b800;
+}
