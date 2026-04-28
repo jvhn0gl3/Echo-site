@@ -139,6 +139,7 @@ body {
 #ticker-track {
     display: flex;
     white-space: nowrap;
+    width: max-content;
     animation: ticker-scroll 40s linear infinite;
     padding-left: 100%;
 }
