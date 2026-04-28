@@ -6,7 +6,6 @@
     --text-secondary: #a0a0a0;
     --sidebar-width: 70px;
     --header-height: 60px;
-    --nav-height: 65px;
 }
 
 * {
@@ -25,42 +24,41 @@ body {
 
 #app-shell {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100%;
 }
 
-/* Mobile-first Sidebar (Bottom Nav) */
 #app-sidebar {
-    order: 2;
-    width: 100%;
-    height: var(--nav-height);
+    width: var(--sidebar-width);
+    height: 100%;
     background-color: var(--bg-secondary);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.1);
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    padding: 0 10px;
+    padding: 20px 0;
     z-index: 100;
+    flex-shrink: 0;
 }
 
 .nav-brand {
-    display: none; /* Hide brand on mobile nav */
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
 }
 
 .nav-group {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    gap: 0;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .nav-item {
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
     background: rgba(255,255,255,0.05);
-    border-radius: 12px;
+    border-radius: 10px;
     transition: all 0.2s ease;
 }
 
@@ -74,7 +72,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    order: 1;
+    min-width: 0;
 }
 
 #app-header {
@@ -85,6 +83,7 @@ body {
     background: rgba(45, 45, 45, 0.8);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
 }
 
 #breadcrumb {
@@ -92,13 +91,16 @@ body {
     font-size: 0.8rem;
     color: var(--text-secondary);
     letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #app-content {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    background: radial-gradient(circle at top, rgba(74, 144, 226, 0.08), transparent);
+    background: radial-gradient(circle at top left, rgba(74, 144, 226, 0.05), transparent);
 }
 
 .content-card {
@@ -113,44 +115,24 @@ body {
 h1 {
     margin-bottom: 12px;
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 p {
     color: var(--text-secondary);
     line-height: 1.5;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
-/* Desktop Expansion */
+/* Tablet/Desktop Refinements */
 @media (min-width: 768px) {
-    #app-shell {
-        flex-direction: row;
-    }
-
-    #app-sidebar {
-        order: 0;
-        width: var(--sidebar-width);
-        height: 100%;
-        flex-direction: column;
-        justify-content: flex-start;
-        border-top: none;
-        border-right: 1px solid rgba(255,255,255,0.1);
-        padding: 25px 0;
-    }
-
     .nav-brand {
-        display: block;
-        font-weight: bold;
-        color: var(--accent);
-        margin-bottom: 40px;
         font-size: 1.2rem;
+        margin-bottom: 40px;
     }
 
     .nav-group {
-        flex-direction: column;
         gap: 20px;
-        width: auto;
     }
 
     .nav-item {
@@ -168,5 +150,13 @@ p {
 
     #breadcrumb {
         font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
     }
 }
