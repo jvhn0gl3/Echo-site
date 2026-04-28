@@ -111,7 +111,7 @@ body {
 #ticker-track {
     display: flex;
     white-space: nowrap;
-    animation: ticker-scroll 80s linear infinite;
+    animation: ticker-scroll 40s linear infinite;
 }
 
 .ticker-item {
