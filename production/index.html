@@ -1,4 +1,13 @@
-<!DOCTYPE html><html><head><title>Echo OS - Production</title><link rel="icon" href="favicon.jpg" type="image/jpeg"><link rel="stylesheet" href="style.css"></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo OS - README.md</title>
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
     <div id="app-shell">
         <nav id="app-sidebar">
             <div class="nav-brand">E//</div>
@@ -17,16 +26,46 @@
                         <span class="ticker-item">//</span>
                         <span class="ticker-item">CORE KERNEL LOADED SUCCESSFULLY</span>
                         <span class="ticker-item">//</span>
-                        <span class="ticker-item">ALL MODULES OPERATIONAL</span>
+                        <span class="ticker-item">SYSTEM VERSION 04.28.2026 ONLINE</span>
                     </div>
                 </div>
             </header>
             <section id="app-content">
-                <div class="content-card">
-                    <h1>System Initialized</h1>
-                    <p>Core kernel loaded successfully. All modules operational.</p>
+                <div class="readme-wrapper">
+                    <div class="readme-header">
+                        <span>README.md</span>
+                    </div>
+                    <div class="readme-body">
+                        <h1>Echo OS</h1>
+                        <p>A high-density, modern application shell designed for technical documentation and system monitoring.</p>
+                        
+                        <div class="alert">
+                            <strong>Note:</strong> This interface is optimized for performance and readability across all screen sizes using a mobile-first fluid scaling strategy.
+                        </div>
+
+                        <h2>Architecture</h2>
+                        <p>The system utilizes a dual-environment architecture to separate public-facing assets from development-only modules.</p>
+                        <ul>
+                            <li><code>production/</code> - Sanitized public artifacts.</li>
+                            <li><code>development/</code> - Sensitive environment configurations (Git ignored).</li>
+                        </ul>
+
+                        <h2>Core Components</h2>
+                        <h3>IDE Activity Bar</h3>
+                        <p>A permanent vertical sidebar providing instant access to system modules. Standardized at <code>65px</code> width for consistent layout across all platforms.</p>
+
+                        <h3>SITE.NOTIFICATIONS</h3>
+                        <p>An emergency-style ticker integrated into the system header for real-time status relay and critical alerts.</p>
+
+                        <hr>
+                        
+                        <h2>Kernel Status</h2>
+                        <p>Current system state: <code>STABLE</code></p>
+                        <p>Build Reference: <code>04.28.2026.00.35.26</code></p>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
-</body></html>
+</body>
+</html>
