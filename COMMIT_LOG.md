@@ -100,6 +100,7 @@ This file tracks all commits made to this repository.
 - Scaled down the KAO banner components via CSS (`font-size`, `padding`, `height`) to achieve a high-density "status bar" aesthetic that integrates seamlessly with the virtual OS theme.
 
 ## [2026-04-28]
+- [UI_FIX] Optimize notification ticker duration for improved readability.
 - [FEAT] Update notification ticker content and rebrand to SITE.NOTIFICATIONS.
 - [FEAT] Integrate emergency notification ticker into system header.
 - [SYS_UPDATE] UI/UX: Implemented fluid responsiveness using clamp() scaling and dynamic flex layouts.
