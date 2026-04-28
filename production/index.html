@@ -75,53 +75,6 @@
             </section>
         </main>
     </div>
-    <script>
-        const logs = [
-            "Initializing hardware abstraction layer...",
-            "Loading core kernel modules...",
-            "Checking filesystem integrity... [OK]",
-            "Synchronizing localized font assets...",
-            "Establishing secure network protocols...",
-            "Initializing SITE.NOTIFICATIONS engine...",
-            "Loading README documentation shell...",
-            "Kernel verification complete. System Ready."
-        ];
-        
-        const logContainer = document.getElementById('boot-log');
-        const progress = document.getElementById('boot-progress');
-        const bootScreen = document.getElementById('boot-screen');
-        const appShell = document.getElementById('app-shell');
-        
-        let i = 0;
-        function showLogs() {
-            if (i < logs.length) {
-                const line = document.createElement('div');
-                line.className = 'log-line';
-                line.textContent = `> ${logs[i]}`;
-                logContainer.appendChild(line);
-                i++;
-                const delay = Math.random() * 400 + 100;
-                progress.style.width = `${(i / logs.length) * 100}%`;
-                setTimeout(showLogs, delay);
-            } else {
-                setTimeout(startApp, 500);
-            }
-        }
-        
-        function startApp() {
-            bootScreen.style.opacity = '0';
-            appShell.style.visibility = 'visible';
-            appShell.style.opacity = '1';
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-            }, 800);
-        }
-        
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') startApp();
-        });
-        
-        window.onload = showLogs;
-    </script>
+    <script src="master.js"></script>
 </body>
 </html>
