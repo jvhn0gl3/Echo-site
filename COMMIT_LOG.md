@@ -100,6 +100,8 @@ This file tracks all commits made to this repository.
 - Scaled down the KAO banner components via CSS (`font-size`, `padding`, `height`) to achieve a high-density "status bar" aesthetic that integrates seamlessly with the virtual OS theme.
 
 ## [2026-04-28]
+- [SYS_UPDATE] Architecture: Temporarily removed Hero Terminal from the overview interface for restructuring.
+- [FEAT] Implement unified Hero Terminal overview for system landing page.
 - [SYS_UPDATE] UI: Redesigned Hero section into a dual-column dashboard with integrated system console mockup.
 - [FEAT] Implement high-density technical Hero section with system status badges and action protocols.
 - [FEAT] Integrate Font Awesome 6 icon library and update navigation architecture.
