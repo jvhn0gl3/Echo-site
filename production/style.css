@@ -93,11 +93,23 @@ body {
     border: 1px solid var(--border);
     transition: 0.2s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    background: var(--bg-secondary);
 }
 
 .nav-item.active {
     background: var(--bg-secondary);
     border-color: var(--accent);
+    color: var(--accent);
 }
 
 #app-main {
