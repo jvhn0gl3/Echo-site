@@ -100,6 +100,7 @@ This file tracks all commits made to this repository.
 - Scaled down the KAO banner components via CSS (`font-size`, `padding`, `height`) to achieve a high-density "status bar" aesthetic that integrates seamlessly with the virtual OS theme.
 
 ## [2026-04-28]
+- [UI_FIX] Resolve ticker junction spacing by injecting non-breaking spaces into the loop track.
 - [UI_FIX] Consolidate notification ticker into a unified continuous string with linear separators.
 - [FEAT] Implement seamless, zero-gap linear notification ticker loop.
 - [FIX] Resolve premature ticker loop restart by enforcing max-content width calculation.
