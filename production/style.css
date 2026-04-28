@@ -140,6 +140,7 @@ body {
     display: flex;
     white-space: nowrap;
     animation: ticker-scroll 40s linear infinite;
+    padding-left: 100%;
 }
 
 .ticker-item {
@@ -150,7 +151,7 @@ body {
 }
 
 @keyframes ticker-scroll {
-    0% { transform: translateX(100%); }
+    0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
 }
 
