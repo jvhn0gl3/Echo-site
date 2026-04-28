@@ -197,13 +197,23 @@ body {
 }
 
 .hero-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
     padding-bottom: 32px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 24px;
 }
 
+@media (min-width: 850px) {
+    .hero-section {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+    }
+}
+
 .hero-tagline {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
     margin-bottom: 16px;
 }
@@ -216,20 +226,71 @@ body {
 }
 
 .badge {
-    padding: 4px 10px;
+    padding: 0;
+    overflow: hidden;
+    display: inline-flex;
+    border-radius: 4px;
+    font-size: 11px;
+    border: none;
+    background: none;
+}
+
+.badge-label {
+    background: #57606a;
+    color: white;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+.badge-value {
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
     color: var(--text-secondary);
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-left: none;
+}
+
+.badge-success .badge-value { color: #3fb950; }
+.badge-accent .badge-value { color: var(--accent); }
+
+.hero-console {
+    background: #010409;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.console-header {
+    background: #161b22;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
     gap: 6px;
+    border-bottom: 1px solid var(--border);
 }
 
-.badge-success { color: #3fb950; border-color: rgba(63, 185, 80, 0.3); }
-.badge-accent { color: var(--accent); border-color: var(--accent-glow); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #30363d; }
+.console-title { font-size: 11px; color: var(--text-secondary); margin-left: 4px; font-family: 'JetBrains Mono'; }
+
+.console-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.console-body code {
+    background: none;
+    padding: 0;
+    font-size: 12px;
+    color: #7ee787;
+    font-family: 'JetBrains Mono';
+}
+
+.console-body code:first-child { color: var(--text-primary); }
+.cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
 .hero-actions {
     display: flex;
