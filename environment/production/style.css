@@ -22,26 +22,36 @@ html, body {
 }
 
 .app-sidebar {
-    width: 200px;
+    width: 50px;
     background-color: #161b22;
     border-right: 1px solid #30363d;
     display: flex;
     flex-direction: column;
-    padding: 15px 0;
+    align-items: center;
+    padding: 10px 0;
     flex-shrink: 0;
 }
 
 .app-sidebar .nav-item {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
     color: #8b949e;
     cursor: pointer;
+    transition: color 0.2s, border-left 0.2s;
 }
 
 .app-sidebar .nav-item:hover {
-    background-color: #21262d;
     color: #f0f6fc;
+    background-color: #21262d;
+}
+
+.app-sidebar .nav-item.active {
+    color: #f0f6fc;
+    border-left: 2px solid #f78166;
 }
 
 .main-container {
