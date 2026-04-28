@@ -147,7 +147,7 @@ body {
     font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     font-size: 0.8rem;
     color: var(--text-primary);
-    padding: 0 40px;
+    padding: 0;
 }
 
 @keyframes ticker-scroll {
