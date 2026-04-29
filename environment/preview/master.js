@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Echo-site preview script loaded.');
 
     // Initialize sidebar interactions
-    const navItems = document.querySelectorAll('.app-sidebar .nav-item');
+    const navItems = document.querySelectorAll('.nav-scroll-group .nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             navItems.forEach(nav => nav.classList.remove('active'));

@@ -28,8 +28,31 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    padding: 0;
     flex-shrink: 0;
+}
+
+.logo-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #21262d;
+    border-bottom: 1px solid #30363d;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: #f0f6fc;
+}
+
+.nav-scroll-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .app-sidebar .nav-item {
