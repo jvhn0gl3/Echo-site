@@ -7,8 +7,9 @@ This directory contains the live, stable version of Echo-site.
 
 ## Files
 - `index.html`: The main entry point for the website.
-- `style.css`: Contains the visual styling for the site.
+- `kernel.css`: Contains the visual styling for the site.
 - `master.js`: The primary JavaScript logic for the production environment.
+- `server.js`: Lightweight Node.js server for serving static assets.
 
 ## Usage
 The `index.html` file serves as the landing page, featuring a welcome header and linking to the necessary assets for styling and interactivity.
