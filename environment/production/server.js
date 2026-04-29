@@ -3,13 +3,14 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Echo-site Lightweight Production Server
+ * Echo-site Hybrid Server (Production & Development)
  * 
  * A no-build, dependency-free static file server.
- * Constraints: Strictly relative paths, no absolute path resolution.
+ * Mode: Use --dev for development features (SPA fallback, verbose logs).
  */
 
-const PORT = 3000;
+const IS_DEV = process.argv.includes('--dev');
+const PORT = process.env.PORT || (IS_DEV ? 3001 : 3000);
 
 const MIME_TYPES = {
     '.html': 'text/html',
@@ -25,8 +26,7 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
     // Resolve path relative to current working directory
-    // Stripping query strings and using '.' as base
-    let urlPath = req.url.split('?')[0];
+    const urlPath = req.url.split('?')[0];
     let filePath = '.' + (urlPath === '/' ? '/index.html' : urlPath);
     
     // Basic security: prevent moving above the current directory
@@ -36,27 +36,40 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    const extname = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[extname] || 'application/octet-stream';
+    const serveFile = (targetPath, status = 200) => {
+        const extname = path.extname(targetPath).toLowerCase();
+        const contentType = MIME_TYPES[extname] || 'application/octet-stream';
 
-    fs.readFile(filePath, (error, content) => {
-        if (error) {
-            if (error.code === 'ENOENT') {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('404 Not Found');
+        fs.readFile(targetPath, (error, content) => {
+            if (error) {
+                if (error.code === 'ENOENT') {
+                    // SPA Fallback for Development: redirect non-existent routes to index.html
+                    if (IS_DEV && !targetPath.endsWith('index.html')) {
+                        console.log(`[DEV] Fallback: ${urlPath} -> index.html`);
+                        serveFile('./index.html');
+                    } else {
+                        res.writeHead(404, { 'Content-Type': 'text/plain' });
+                        res.end('404 Not Found');
+                    }
+                } else {
+                    res.writeHead(500);
+                    res.end(`Server Error: ${error.code}`);
+                }
             } else {
-                res.writeHead(500);
-                res.end(`Server Error: ${error.code}`);
+                res.writeHead(status, { 'Content-Type': contentType });
+                res.end(content, 'utf-8');
+                if (IS_DEV) console.log(`[${status}] ${req.method} ${urlPath}`);
             }
-        } else {
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
-        }
-    });
+        });
+    };
+
+    serveFile(filePath);
 });
 
 server.listen(PORT, () => {
-    console.log(`Echo-site Production Server active.`);
+    const mode = IS_DEV ? 'DEVELOPMENT (SPA Fallback Active)' : 'PRODUCTION';
+    console.log(`\nEcho-site ${mode} Server active.`);
     console.log(`Access at: http://localhost:${PORT}`);
     console.log(`Root: ./`);
+    if (IS_DEV) console.log(`Logs active...\n`);
 });
