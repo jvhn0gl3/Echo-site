@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Echo-site - Preview</title>
+    <link rel="stylesheet" href="kernel.css">
+</head>
+<body>
+    <div id="boot-overlay" class="boot-overlay">
+        <div id="boot-log"></div>
+        <div class="boot-cursor"></div>
+    </div>
+    <div class="app-shell">
+        <aside class="app-sidebar">
+            <div class="logo-container">
+                <img src="logo.png" alt="Echo Logo" class="sidebar-logo">
+            </div>
+            <div class="nav-scroll-group">
+                <div class="nav-item active" title="Explorer">≡ƒôä</div>
+                <div class="nav-item" title="Search">≡ƒöì</div>
+                <div class="nav-item" title="Source Control">≡ƒî┐</div>
+                <div class="nav-item" title="Extensions">≡ƒº⌐</div>
+            </div>
+        </aside>
+        <div class="main-container">
+            <div class="weather-alert">
+                <div class="notification-track">
+                    <div class="notification-item">
+                        <span><strong>126 DAYS UNTIL LOCKDOWN:</strong> Your phone is about to stop being yours. Starting Sept 2026, Google will block unregistered apps. Every device, worldwide, no opt-out. Γåô</span>
+                    </div>
+                    <div class="notification-item">
+                        <span class="alert-icon">ΓÜá∩╕Å</span> 
+                        <span><strong>STAGING ALERT:</strong> PRE-PRODUCTION SYSTEM ACTIVE ΓÇö SYSTEM STATUS: OPERATIONAL</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="notification-item">
+                        <span><strong>126 DAYS UNTIL LOCKDOWN:</strong> Your phone is about to stop being yours. Starting Sept 2026, Google will block unregistered apps. Every device, worldwide, no opt-out. Γåô</span>
+                    </div>
+                    <div class="notification-item">
+                        <span class="alert-icon">ΓÜá∩╕Å</span> 
+                        <span><strong>STAGING ALERT:</strong> PRE-PRODUCTION SYSTEM ACTIVE ΓÇö SYSTEM STATUS: OPERATIONAL</span>
+                    </div>
+                </div>
+            </div>
+            <header class="app-header">
+                <h1>Echo-site Preview</h1>
+            </header>
+            <main class="app-content">
+                <h1>Preview Environment</h1>
+                <p>Welcome to the <strong>IDE-style</strong> shell with an icon-only activity bar.</p>
+                
+                <h2>Deployment Goals</h2>
+                <ul>
+                    <li>Validate <code>CSS</code> responsiveness.</li>
+                    <li>Test cross-browser compatibility.</li>
+                    <li>Verify production-ready assets.</li>
+                </ul>
+
+                <h2>System Status</h2>
+                <p>All systems operational. Running on <code>node.js</code> development server.</p>
+            </main>
+        </div>
+    </div>
+    <script src="master.js"></script>
+<script>(function(){const ws=new WebSocket('ws://'+location.hostname+':35729');ws.onmessage=(m)=>{if(m.data==='reload')location.reload();};})();</script></body>
+</html>
