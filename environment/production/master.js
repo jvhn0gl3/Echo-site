@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
     const isPreview = window.location.pathname.includes('preview');
-    console.log(`Echo-site ${isPreview ? 'preview' : 'production'} script loaded.`);
+    const isolateBoot = urlParams.get('component') === 'boot';
+    const skipBoot = urlParams.get('skipboot') === 'true';
 
     // --- Boot Sequence Simulation ---
     const bootOverlay = document.getElementById('boot-overlay');
     const bootLog = document.getElementById('boot-log');
+
+    if (skipBoot) {
+        bootOverlay.classList.add('hidden');
+    }
 
     const bootMessages = [
         { text: 'Initialising Echo Kernel v4.2.0-release...', type: 'info' },
