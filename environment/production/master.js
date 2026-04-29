@@ -4,6 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const isolateBoot = urlParams.get('component') === 'boot';
     const skipBoot = urlParams.get('skipboot') === 'true';
 
+    // --- Viewport Dimension Tracking ---
+    const updateViewportParam = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const currentParams = new URLSearchParams(window.location.search);
+        const dimensionString = `${width}x${height}`;
+        
+        if (currentParams.get('view') !== dimensionString) {
+            currentParams.set('view', dimensionString);
+            // Also keep 'mobile' if it was requested, or replace it with this more descriptive one
+            currentParams.delete('mobile'); 
+            const newUrl = `${window.location.pathname}?${currentParams.toString()}${window.location.hash}`;
+            window.history.replaceState(null, '', newUrl);
+        }
+    };
+
+    // Initial check and event listener
+    updateViewportParam();
+    window.addEventListener('resize', updateViewportParam);
+
     // --- Boot Sequence Simulation ---
     const bootOverlay = document.getElementById('boot-overlay');
     const bootLog = document.getElementById('boot-log');
