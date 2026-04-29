@@ -279,7 +279,8 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px 0;
+    padding: 0;
+    width: 100%;
 }
 
 .profile-card {
@@ -287,14 +288,13 @@ html, body {
     border: 1px solid #30363d;
     border-radius: 12px;
     width: 100%;
-    max-width: 450px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
 
 .profile-header {
     position: relative;
-    height: 120px;
+    height: 180px;
 }
 
 .profile-banner {
