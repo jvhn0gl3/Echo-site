@@ -116,7 +116,7 @@ html, body {
 .weather-alert {
     background-color: #d73a49;
     color: #ffffff;
-    height: 40px;
+    height: 120px;
     overflow: hidden;
     position: relative;
     border-bottom: 1px solid #cb2431;
@@ -129,18 +129,26 @@ html, body {
     white-space: nowrap;
     position: absolute;
     will-change: transform;
-    animation: marquee 30s linear infinite;
+    animation: marquee 45s linear infinite;
 }
 
 .notification-item {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-right: 100px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    padding-right: 150px;
     font-weight: bold;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    line-height: 1.2;
+}
+
+.notification-item strong {
+    font-size: 1.1rem;
+    color: #ffffff;
 }
 
 .alert-icon {
