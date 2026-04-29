@@ -41,9 +41,13 @@ html, body {
     background-color: #21262d;
     border-bottom: 1px solid #30363d;
     margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 0.7rem;
-    color: #f0f6fc;
+    overflow: hidden;
+}
+
+.sidebar-logo {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }
 
 .nav-scroll-group {
