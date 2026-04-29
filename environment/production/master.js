@@ -84,22 +84,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.nav-scroll-group .nav-item');
     const sections = document.querySelectorAll('.app-content section');
 
+    console.log(`[SYSTEM] Initialised ${navItems.length} nav items and ${sections.length} sections.`);
+
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const targetSection = item.getAttribute('data-section');
+            console.log(`[NAV] Switching to: ${targetSection}`);
             
             // Update active nav item
             navItems.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
 
             // Update visible section
+            let found = false;
             sections.forEach(section => {
                 if (section.id === `${targetSection}-section`) {
+                    console.log(`[NAV] Showing section: ${section.id}`);
                     section.classList.remove('hidden');
+                    found = true;
                 } else {
                     section.classList.add('hidden');
                 }
             });
+
+            if (!found) {
+                console.error(`[NAV] ERROR: Section ${targetSection}-section not found!`);
+            }
 
             console.log(`Navigation: ${item.getAttribute('title')}`);
         });

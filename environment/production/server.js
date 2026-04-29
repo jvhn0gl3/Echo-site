@@ -6,7 +6,7 @@ const path = require('path');
  * Echo-site Hybrid Server (Production & Development)
  * 
  * A no-build, dependency-free static file server.
- * Mode: Use --dev for development features (SPA fallback, verbose logs).
+ * Mode: Use --dev for development features (SPA fallback, verbose logs, Live Reload).
  */
 
 const IS_DEV = process.argv.includes('--dev');
@@ -24,7 +24,39 @@ const MIME_TYPES = {
     '.md': 'text/markdown'
 };
 
+// Live Reload State
+const clients = [];
+
+if (IS_DEV) {
+    console.log(`[DEV] Monitoring for file changes...`);
+    try {
+        fs.watch('.', { recursive: true }, (eventType, filename) => {
+            if (filename && !filename.includes('.git') && !filename.includes('node_modules')) {
+                console.log(`[DEV] Change detected: ${filename}. Reloading clients...`);
+                clients.forEach(res => res.write('data: reload\n\n'));
+            }
+        });
+    } catch (err) {
+        console.error(`[DEV] Watcher Error: ${err.message}`);
+    }
+}
+
 const server = http.createServer((req, res) => {
+    // Live Reload Endpoint
+    if (IS_DEV && req.url === '/__livereload') {
+        res.writeHead(200, {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive'
+        });
+        clients.push(res);
+        req.on('close', () => {
+            const index = clients.indexOf(res);
+            if (index !== -1) clients.splice(index, 1);
+        });
+        return;
+    }
+
     // Resolve path relative to current working directory
     const urlPath = req.url.split('?')[0];
     let filePath = '.' + (urlPath === '/' ? '/index.html' : urlPath);
@@ -56,8 +88,46 @@ const server = http.createServer((req, res) => {
                     res.end(`Server Error: ${error.code}`);
                 }
             } else {
-                res.writeHead(status, { 'Content-Type': contentType });
-                res.end(content, 'utf-8');
+                // Security Headers
+                const headers = {
+                    'Content-Type': contentType,
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
+                    'X-XSS-Protection': '1; mode=block',
+                    'Referrer-Policy': 'strict-origin-when-cross-origin',
+                    'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';",
+                    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
+                };
+
+                let finalContent = content;
+
+                // Inject Live Reload script in Dev Mode
+                if (IS_DEV && extname === '.html') {
+                    const reloadScript = `
+                    <script id="livereload-script">
+                        (function() {
+                            const source = new EventSource('/__livereload');
+                            source.onmessage = (e) => {
+                                if (e.data === 'reload') {
+                                    console.log('[DEV] Reloading...');
+                                    location.reload();
+                                }
+                            };
+                            source.onerror = () => {
+                                console.warn('[DEV] LiveReload connection lost. Retrying...');
+                            };
+                        })();
+                    </script>`;
+                    const bodyString = content.toString();
+                    if (bodyString.includes('</body>')) {
+                        finalContent = bodyString.replace('</body>', `${reloadScript}</body>`);
+                    } else {
+                        finalContent = bodyString + reloadScript;
+                    }
+                }
+
+                res.writeHead(status, headers);
+                res.end(finalContent, 'utf-8');
                 if (IS_DEV) console.log(`[${status}] ${req.method} ${urlPath}`);
             }
         });
@@ -67,7 +137,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-    const mode = IS_DEV ? 'DEVELOPMENT (SPA Fallback Active)' : 'PRODUCTION';
+    const mode = IS_DEV ? 'DEVELOPMENT (Live Reload & SPA Fallback Active)' : 'PRODUCTION';
     console.log(`\nEcho-site ${mode} Server active.`);
     console.log(`Access at: http://localhost:${PORT}`);
     console.log(`Root: ./`);
