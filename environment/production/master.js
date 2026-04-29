@@ -62,10 +62,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Sidebar interactions ---
     const navItems = document.querySelectorAll('.nav-scroll-group .nav-item');
+    const sections = document.querySelectorAll('.app-content section');
+
     navItems.forEach(item => {
         item.addEventListener('click', () => {
+            const targetSection = item.getAttribute('data-section');
+            
+            // Update active nav item
             navItems.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
+
+            // Update visible section
+            sections.forEach(section => {
+                if (section.id === `${targetSection}-section`) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
             console.log(`Navigation: ${item.getAttribute('title')}`);
         });
     });

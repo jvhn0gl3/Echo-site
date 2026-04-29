@@ -17,10 +17,11 @@
                 <img src="logo.png" alt="Echo Logo" class="sidebar-logo">
             </div>
             <div class="nav-scroll-group">
-                <div class="nav-item active" title="Explorer">📄</div>
-                <div class="nav-item" title="Search">🔍</div>
-                <div class="nav-item" title="Source Control">🌿</div>
-                <div class="nav-item" title="Extensions">🧩</div>
+                <div class="nav-item active" title="Explorer" data-section="explorer">📄</div>
+                <div class="nav-item" title="Apps" data-section="apps">📱</div>
+                <div class="nav-item" title="Search" data-section="search">🔍</div>
+                <div class="nav-item" title="Source Control" data-section="source-control">🌿</div>
+                <div class="nav-item" title="Extensions" data-section="extensions">🧩</div>
             </div>
         </aside>
         <div class="main-container">
@@ -47,18 +48,58 @@
                 <h1>Echo-site Production</h1>
             </header>
             <main class="app-content">
-                <h1>Echo-site Live</h1>
-                <p>Welcome to the <strong>production</strong> environment. This site is optimized for mobile document viewing with an IDE-style activity bar.</p>
-                
-                <h2>Key Features</h2>
-                <ul>
-                    <li>Responsive <code>Activity Bar</code> architecture.</li>
-                    <li>GitHub-flavored <code>README</code> aesthetic.</li>
-                    <li>Optimized for readability and touch interaction.</li>
-                </ul>
+                <section id="explorer-section">
+                    <h1>Echo-site Live</h1>
+                    <p>Welcome to the <strong>production</strong> environment. This site is optimized for mobile document viewing with an IDE-style activity bar.</p>
+                    
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li>Responsive <code>Activity Bar</code> architecture.</li>
+                        <li>GitHub-flavored <code>README</code> aesthetic.</li>
+                        <li>Optimized for readability and touch interaction.</li>
+                    </ul>
 
-                <h2>System Architecture</h2>
-                <p>The site follows a strict <code>Staging-to-Production</code> workflow to ensure stability.</p>
+                    <h2>System Architecture</h2>
+                    <p>The site follows a strict <code>Staging-to-Production</code> workflow to ensure stability.</p>
+                </section>
+
+                <section id="apps-section" class="hidden">
+                    <h1>Applications</h1>
+                    <p>Access your system tools and installed applications.</p>
+                    <div class="apps-grid">
+                        <div class="app-card">
+                            <div class="app-icon">📁</div>
+                            <div class="app-name">Explorer</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">⚙️</div>
+                            <div class="app-name">Settings</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">📟</div>
+                            <div class="app-name">Terminal</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">🌐</div>
+                            <div class="app-name">Browser</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="search-section" class="hidden">
+                    <h1>Search</h1>
+                    <p>Search functionality is coming soon.</p>
+                </section>
+
+                <section id="source-control-section" class="hidden">
+                    <h1>Source Control</h1>
+                    <p>Git integration and source control management.</p>
+                </section>
+
+                <section id="extensions-section" class="hidden">
+                    <h1>Extensions</h1>
+                    <p>Manage and install system extensions.</p>
+                </section>
             </main>
         </div>
     </div>
