@@ -104,4 +104,42 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Navigation: ${item.getAttribute('title')}`);
         });
     });
+
+    // --- Hero Terminal Simulation ---
+    const terminalBody = document.getElementById('hero-terminal-body');
+    if (terminalBody) {
+        const logMessages = [
+            "Network packet filtered: ICMP from 192.168.1.105",
+            "Kernel process [io_worker] scheduled",
+            "Memory compression active: saved 124MB",
+            "Security audit: no anomalies detected",
+            "NTP sync request sent to pool.ntp.org",
+            "Filesystem integrity check: 100% clean",
+            "Interface eth0: traffic 4.2 MB/s down, 0.8 MB/s up",
+            "Background task: indexing production assets",
+            "System temperature: 42°C (Optimal)"
+        ];
+
+        function addTerminalLog() {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            const timestamp = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            line.innerHTML = `<span class="status-info">[${timestamp}]</span> ${logMessages[Math.floor(Math.random() * logMessages.length)]}`;
+            
+            // Insert before the last prompt line
+            const promptLine = terminalBody.querySelector('.terminal-line:last-child');
+            terminalBody.insertBefore(line, promptLine);
+
+            // Keep only last 10 lines to prevent overflow
+            const lines = terminalBody.querySelectorAll('.terminal-line');
+            if (lines.length > 12) {
+                terminalBody.removeChild(lines[1]); // Keep the first ./initialise_hero.sh line
+            }
+            
+            setTimeout(addTerminalLog, Math.random() * 5000 + 2000);
+        }
+
+        // Start simulation after boot
+        setTimeout(addTerminalLog, 5000);
+    }
 });
