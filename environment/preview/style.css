@@ -116,18 +116,38 @@ html, body {
 .weather-alert {
     background-color: #d73a49;
     color: #ffffff;
-    padding: 12px;
-    font-weight: bold;
-    text-align: center;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
     border-bottom: 1px solid #cb2431;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 0.95rem;
-    letter-spacing: 0.05em;
 }
 
-.weather-alert .alert-icon {
+.notification-track {
+    display: flex;
+    white-space: nowrap;
+    position: absolute;
+    will-change: transform;
+    animation: marquee 30s linear infinite;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 100px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.alert-icon {
     font-size: 1.2em;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
