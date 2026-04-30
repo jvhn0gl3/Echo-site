@@ -115,7 +115,7 @@ const server = http.createServer((req, res) => {
 
 `));
                 res.writeHead(200, { ...ntfyHeaders, 'Content-Type': 'application/json' });
-                res.end(JSON.RSON.stringify({ status: 'success', id: message.id }));
+                res.end(JSON.stringify({ status: 'success', id: message.id }));
             });
             return;
         }
