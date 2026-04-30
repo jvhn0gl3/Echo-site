@@ -3,111 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project README</title> <!-- Changed title to reflect README appearance -->
+    <title>IDE Simulation</title> <!-- Changed title -->
+    <!-- Font Awesome CDN (optional for this IDE look, but kept from previous state) -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" />
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5; /* Light grey background, common for documentation sites */
-            color: #24292e; /* Dark text, similar to GitHub READMEs */
+            background-color: #252526; /* Dark background for IDE */
+            color: #cccccc; /* Light grey text */
             display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            align-items: center; /* Center content horizontally */
-            min-height: 100vh;
+            flex-direction: column; /* Stack menu, workspace, status bar */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Prevent scrollbars on body */
             box-sizing: border-box;
-        }
-        .readme-container {
-            background-color: #ffffff; /* White background for the content area */
-            width: 90%; /* Max width for content */
-            max-width: 900px; /* Limit to a reasonable width for readability */
-            margin: 30px auto; /* Center the container with some top/bottom margin */
-            padding: 30px; /* Padding inside the container */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
-            border-radius: 8px; /* Slightly rounded corners */
-            box-sizing: border-box;
-        }
-        .readme-title {
-            font-size: 2.5em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eaecef; /* Separator line */
-            padding-bottom: 10px;
-        }
-        .readme-content p {
-            font-size: 1.1em;
-            line-height: 1.7; /* More generous line height for readability */
-            margin-bottom: 20px;
-        }
-        /* Styling for code blocks or specific elements if needed */
-        .readme-content code {
-            background-color: #f6f8fa;
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
-            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        }
-        .readme-content pre {
-            background-color: #f6f8fa;
-            padding: 15px;
-            border-radius: 6px;
-            overflow-x: auto;
-            margin-bottom: 20px;
-        }
-        .readme-content pre code {
-            background-color: transparent;
-            padding: 0;
-        }
-        .readme-content ul {
-            margin-bottom: 20px;
-            padding-left: 30px;
-        }
-        .readme-content li {
-            margin-bottom: 10px;
         }
 
-        /* Remove sidebar specific styles as they are not needed for README appearance */
-        .app-icon, .app-title, .sidebar, .sidebar-header, .sidebar-nav {
-            display: none;
+        /* Menu Bar */
+        .menu-bar {
+            background-color: #333333; /* Darker grey for menu */
+            padding: 8px 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            flex-shrink: 0; /* Prevent menu bar from shrinking */
         }
-        /* Ensure main content styling is removed or overridden if it interferes */
-        .main-content {
-            display: none; /* Hide the old main-content div */
+        .menu-bar span {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        .menu-bar span:hover {
+            background-color: #444444;
+        }
+
+        /* Main Workspace Area */
+        .workspace {
+            display: flex;
+            flex-grow: 1; /* Takes remaining height */
+            overflow: hidden; /* Prevents content overflow */
+        }
+
+        /* Left Sidebar (File Explorer) */
+        .file-explorer {
+            width: 250px; /* Fixed width for sidebar */
+            background-color: #2f2f2f; /* Slightly lighter than body */
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            border-right: 1px solid #444444;
+            overflow-y: auto;
+            flex-shrink: 0; /* Prevent sidebar from shrinking */
+        }
+        .file-explorer h3 {
+            margin-top: 0;
+            font-size: 1em;
+            color: #aaaaaa;
+            border-bottom: 1px solid #444444;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .file-explorer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .file-explorer li {
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        .file-explorer li:hover {
+            background-color: #3a3a3a;
+        }
+        .file-explorer .folder {
+            font-weight: bold;
+        }
+        .file-explorer .file {
+            color: #88ccff; /* Blueish for files */
+        }
+
+        /* Editor/Terminal Area */
+        .editor-area {
+            flex-grow: 1; /* Takes remaining width */
+            display: flex;
+            flex-direction: column; /* Stack editor and terminal if split */
+            background-color: #1e1e1e; /* Very dark for editor */
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace for code */
+            font-size: 0.95em;
+            overflow: auto; /* Allow scrolling if content overflows */
+        }
+        .editor-header { /* Tab bar for open files */
+            background-color: #333333;
+            padding: 8px 15px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .editor-tab {
+            padding: 8px 12px;
+            background-color: #2f2f2f;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .editor-tab.active {
+            background-color: #1e1e1e; /* Active tab matches editor background */
+        }
+        .editor-content {
+            padding: 15px 25px; /* Padding for code */
+            white-space: pre-wrap; /* Preserve whitespace and wrap */
+            line-height: 1.4;
+            flex-grow: 1; /* Allow editor content to grow */
+            overflow-y: auto; /* Allow scrolling for editor content */
+        }
+        .editor-content .line-number {
+            color: #888888;
+            display: inline-block;
+            width: 30px; /* Space for line numbers */
+            text-align: right;
+            margin-right: 15px;
+            user-select: none; /* Prevent selection of line numbers */
+            padding-right: 5px; /* Space between number and code */
+        }
+        .editor-content .code-line {
+            display: block; /* Each line is a block */
+        }
+        /* Placeholder for actual syntax highlighting */
+        .editor-content .keyword { color: #569cd6; } /* Blue */
+        .editor-content .string { color: #ce9178; } /* Orange */
+        .editor-content .comment { color: #6a9955; } /* Green */
+
+        /* Terminal */
+        .terminal {
+            background-color: #1e1e1e; /* Same as editor */
+            height: 150px; /* Fixed height for terminal */
+            border-top: 1px solid #444444;
+            padding: 15px 25px;
+            overflow-y: auto;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .terminal span { /* Prompt or command output */
+            display: block;
+        }
+        .terminal .prompt::before {
+            content: "> ";
+            color: #6a9955; /* Green prompt */
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background-color: #2d2d2d; /* Dark grey */
+            padding: 8px 15px;
+            font-size: 0.8em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .status-bar-left, .status-bar-right {
+            display: flex;
+            gap: 15px;
         }
     </style>
 </head>
 <body>
-    <div class="readme-container">
-        <h1 class="readme-title">My App README</h1>
-        <div class="readme-content">
-            <p>This document outlines the project "My App". It's a simple web application demonstrating a clean UI with an icon-only sidebar for navigation.</p>
-
-            <h2>Features</h2>
+    <div class="menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Run</span>
+        <span>Help</span>
+    </div>
+    <div class="workspace">
+        <div class="file-explorer">
+            <h3>Explorer</h3>
             <ul>
-                <li>Responsive, icon-only navigation sidebar.</li>
-                <li>Navigation links: Dashboard, Settings, Profile, About.</li>
-                <li>Uses Font Awesome for icons.</li>
-                <li>Clean and minimal design.</li>
+                <li class="folder">Project Root</li>
+                <ul>
+                    <li class="file">index.html</li>
+                    <li class="file">logo.png</li>
+                    <li class="folder">src</li>
+                    <li class="folder">dist</li>
+                    <li class="file">package.json</li>
+                </ul>
             </ul>
-
-            <h2>Technologies Used</h2>
-            <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Font Awesome</li>
-            </ul>
-
-            <h2>Project Structure</h2>
-            <p>The project currently consists of:</p>
-            <ul>
-                <li><code>index.html</code>: The main file containing structure, styling, and content.</li>
-                <li><code>logo.png</code>: The application's logo.</li>
-            </ul>
-
-            <h2>How to Run</h2>
-            <p>To view this application, simply open the <code>index.html</code> file in your web browser.</p>
-
-            <h2>Note on Icons</h2>
-            <p>The application is configured to use Font Awesome icons. If icons do not display, please ensure that the Font Awesome CDN is accessible and that there are no network restrictions preventing the loading of its CSS and font files.</p>
+        </div>
+        <div class="editor-area">
+            <div class="editor-header">
+                <div class="editor-tab active">index.html</div>
+                <div class="editor-tab">style.css</div>
+                <div class="editor-tab">script.js</div>
+            </div>
+            <div class="editor-content">
+                <!-- Placeholder for code editor content -->
+                <div class="code-line"><span class="line-number">1</span>&lt;!DOCTYPE html&gt;</div>
+                <div class="code-line"><span class="line-number">2</span>&lt;html lang="en"&gt;</div>
+                <div class="code-line"><span class="line-number">3</span>&lt;head&gt;</div>
+                <div class="code-line"><span class="line-number">4</span>    &lt;meta charset="UTF-8"&gt;</div>
+                <div class="code-line"><span class="line-number">5</span>    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+                <div class="code-line"><span class="line-number">6</span>    &lt;title&gt;My App&lt;/title&gt;</div>
+                <div class="code-line"><span class="line-number">7</span>    &lt;!-- Font Awesome CDN --&gt;</div>
+                <div class="code-line"><span class="line-number">8</span>    &lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" /&gt;</div>
+                <div class="code-line"><span class="line-number">9</span>    &lt;style&gt;</div>
+                <div class="code-line"><span class="line-number">10</span>        body { ... }</div>
+                <div class="code-line"><span class="line-number">11</span>        .sidebar { ... }</div>
+                <div class="code-line"><span class="line-number">12</span>        .file-explorer { ... }</div>
+                <div class="code-line"><span class="line-number">13</span>        .editor-area { ... }</div>
+                <div class="code-line"><span class="line-number">14</span>        .status-bar { ... }</div>
+                <div class="code-line"><span class="line-number">15</span>    &lt;/style&gt;</div>
+                <div class="code-line"><span class="line-number">16</span>&lt;/head&gt;</div>
+                <div class="code-line"><span class="line-number">17</span>&lt;body&gt;</div>
+                <div class="code-line"><span class="line-number">18</span>    &lt;div class="sidebar"&gt; ... &lt;/div&gt;</div>
+                <div class="code-line"><span class="line-number">19</span>    &lt;div class="main-content"&gt; ... &lt;/div&gt;</div>
+                <div class="code-line"><span class="line-number">20</span>&lt;/body&gt;</div>
+                <div class="code-line"><span class="line-number">21</span>&lt;/html&gt;</div>
+            </div>
+        </div>
+    </div>
+    <div class="terminal">
+        <span>Terminal</span>
+        <span></span> <!-- Placeholder for terminal content -->
+        <span class="prompt"></span>
+    </div>
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span>Ln 21, Col 1</span>
+            <span>Spaces: 4</span>
+        </div>
+        <div class="status-bar-right">
+            <span>UTF-8</span>
+            <span>LF</span>
+            <span>Indonesian</span>
         </div>
     </div>
 </body>
