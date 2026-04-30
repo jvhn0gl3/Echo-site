@@ -11,80 +11,123 @@
             padding: 0;
             background-color: #e0e0e0; /* App background */
             color: #333;
-            display: flex;
-            flex-direction: column;
+            display: flex; /* Changed to row for sidebar + content */
+            flex-direction: row;
             min-height: 100vh;
             box-sizing: border-box;
         }
-        .app-bar {
-            background-color: #ffffff; /* White app bar */
-            width: 100%;
-            height: 56px; /* Standard app bar height */
-            padding: 0 16px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .sidebar {
+            width: 250px; /* Fixed width for the sidebar */
+            background-color: #ffffff; /* White sidebar */
+            box-shadow: 2px 0 4px rgba(0,0,0,0.1); /* Shadow on the right side */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left */
+            padding: 20px 0; /* Padding for the sidebar content */
+            flex-shrink: 0; /* Prevent sidebar from shrinking */
+        }
+        .sidebar-header {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Distribute space between elements */
+            padding: 0 20px; /* Padding for header within sidebar */
+            margin-bottom: 20px;
+            width: 100%; /* Take full width of sidebar */
             box-sizing: border-box;
         }
-        .app-bar-left {
-            display: flex;
-            align-items: center;
-        }
         .app-icon {
-            width: 40px; /* Smaller icon for app bar */
+            width: 40px;
             height: 40px;
-            border-radius: 10px; /* Slightly less rounded for app bar */
+            border-radius: 10px;
             margin-right: 12px;
             object-fit: cover;
         }
         .app-title {
             color: #000000;
-            font-size: 1.2em; /* Smaller font for app bar title */
+            font-size: 1.2em;
             font-weight: 600;
             margin: 0;
         }
-        .app-bar-right {
-            display: flex;
-            align-items: center;
-        }
-        .app-bar-icon {
-            width: 24px; /* Standard icon size */
-            height: 24px;
-            margin-left: 16px; /* Spacing between icons */
-            cursor: pointer; /* Indicate clickable */
-            /* Placeholder for icons - replace with actual SVGs/images if needed */
-            background-color: #ccc; /* Grey placeholder */
-            border-radius: 4px;
-        }
-        .app-content {
-            flex-grow: 1; /* Allow content to take up remaining space */
-            text-align: center;
-            padding: 20px;
+        .sidebar-nav {
             width: 100%;
-            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
-        .app-content p {
+        .sidebar-nav a {
+            padding: 15px 20px; /* Padding for navigation links */
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            display: block; /* Make links block elements */
+            transition: background-color 0.2s ease;
+        }
+        .sidebar-nav a:hover {
+            background-color: #f0f0f0; /* Hover effect */
+        }
+        .sidebar-nav a.active { /* Optional: style for active link */
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+        .main-content {
+            flex-grow: 1; /* Allow content to take up remaining space */
+            padding: 20px; /* Padding for the main content area */
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+        .main-content p {
             font-size: 1.1em;
             line-height: 1.6;
             margin-top: 0;
         }
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px; /* Collapsed sidebar on small screens */
+                align-items: center;
+            }
+            .sidebar-header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+                margin-bottom: 10px;
+            }
+            .app-icon {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            .app-title {
+                font-size: 1em;
+                display: none; /* Hide title when collapsed */
+            }
+            .sidebar-nav a {
+                padding: 15px 10px; /* Adjust padding for collapsed sidebar */
+                text-align: center; /* Center text */
+                font-size: 0.9em;
+            }
+            .sidebar-nav a span { /* If we were using spans for text */
+                display: none;
+            }
+            .main-content {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="app-bar">
-        <div class="app-bar-left">
+    <div class="sidebar">
+        <div class="sidebar-header">
             <img src="logo.png" alt="App Logo" class="app-icon">
             <h1 class="app-title">My App</h1>
         </div>
-        <div class="app-bar-right">
-            <!-- Placeholder for a menu/search icon -->
-            <div class="app-bar-icon" aria-label="Search"></div>
-            <div class="app-bar-icon" aria-label="Menu"></div>
-        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Settings</a>
+            <a href="#">Profile</a>
+            <a href="#">About</a>
+        </nav>
     </div>
-    <div class="app-content">
-        <p>Welcome to your personalized mobile experience.</p>
+    <div class="main-content">
+        <p>Welcome to your personalized mobile application dashboard.</p>
+        <p>This is the main content area. You can navigate using the sidebar on the left.</p>
     </div>
 </body>
 </html>
