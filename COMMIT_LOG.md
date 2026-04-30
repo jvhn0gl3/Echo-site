@@ -4,6 +4,7 @@
 
 | Date/Time | Commit | Message |
 |-----------|--------|---------|
+| 04.30.2026/01.06.04 | 592c888 | Final configuration test: POST to private ntfy worker |
 | 04.30.2026/00.49.15 | c8dd63f | Final diagnostic test for private ntfy server |
 | 04.30.2026/00.46.08 | 9e6041c | Deploying GET broadcast support to bypass Cloudflare 405 |
 | 04.30.2026/00.38.25 | 8970aa9 | Test deployment notification to ntfy |
