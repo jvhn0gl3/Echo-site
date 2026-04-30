@@ -90,49 +90,59 @@ html, body {
     min-width: 0;
 }
 
-/* Breadcrumb Styling */
 .breadcrumb {
     display: flex;
     align-items: center;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.85rem;
-    color: #8b949e;
     letter-spacing: 0.05em;
     background: rgba(22, 27, 34, 0.5);
-    padding: 4px 12px;
-    border-radius: 4px;
+    padding: 6px 15px;
+    border-radius: 6px;
     border: 1px solid rgba(48, 54, 61, 0.5);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
     width: fit-content;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
 
 .breadcrumb-item a {
     color: #8b949e;
     text-decoration: none;
-    transition: color 0.2s, text-shadow 0.2s;
-    padding: 2px 4px;
-    border-radius: 3px;
+    transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease;
+    padding: 3px 6px;
+    border-radius: 4px;
 }
 
 .breadcrumb-item a:hover {
     color: #f78166;
-    text-shadow: 0 0 8px rgba(247, 129, 102, 0.5);
-    background: rgba(247, 129, 102, 0.1);
+    text-shadow: 0 0 10px rgba(247, 129, 102, 0.7);
+    background: rgba(247, 129, 102, 0.15);
 }
 
 .breadcrumb-item.active a {
-    color: #f0f6fc;
+    color: #ffffff; /* Brighter white for active */
     font-weight: 600;
+    background: linear-gradient(90deg, rgba(247, 129, 102, 0.2) 0%, rgba(247, 129, 102, 0.1) 100%); /* Gradient background for active */
+    box-shadow: 0 0 8px rgba(247, 129, 102, 0.5); /* Glow for active */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show background */
+    animation: breadcrumb-glow 2s infinite alternate; /* Subtle glow animation */
 }
 
 .breadcrumb-separator {
-    margin: 0 8px;
-    color: #30363d;
+    margin: 0 10px;
+    color: #444c56; /* Slightly darker separator */
+    font-weight: bold;
     user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.breadcrumb-separator:hover {
+    transform: scale(1.2);
 }
 
 .breadcrumb-cursor {
-    margin-left: 4px;
+    margin-left: 6px;
     color: #f78166;
     font-weight: bold;
     animation: breadcrumb-blink 1s step-end infinite;
@@ -141,6 +151,12 @@ html, body {
 @keyframes breadcrumb-blink {
     50% { opacity: 0; }
 }
+
+@keyframes breadcrumb-glow {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
 
 .app-header {
     background-color: #161b22;
