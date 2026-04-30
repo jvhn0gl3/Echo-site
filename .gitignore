@@ -1,9 +1,9 @@
-# Ignore deploy script
+
 deploy.ps1
 
-# Ignore Node.js dependency directories and package lock files
+
 node_modules/
 package-lock.json
 
-# Ignore environment files
+
 .env
