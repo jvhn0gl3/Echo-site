@@ -1,3 +1,0 @@
-[submodule "ntfy-worker"]
-	path = ntfy-worker
-	url = https://github.com/jvhn0gl3/ntfy-worker.git
