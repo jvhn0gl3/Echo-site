@@ -30,7 +30,7 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-    const host = req.headers.host || '';
+    const host = req.headers['x-forwarded-host'] || req.headers.host || '';
     const isNtfySubdomain = host.toLowerCase().startsWith('ntfy.');
     const urlPath = req.url.split('?')[0];
     const isStaticAsset = /\.(css|js|png|jpg|jpeg|gif|svg|json|ico)$/i.test(urlPath);
@@ -65,9 +65,10 @@ const server = http.createServer((req, res) => {
     };
 
     // --- ntfy Implementation ---
-    if (isNtfySubdomain && !isStaticAsset) {
+    const isNtfyPath = req.url.startsWith('/ntfy/');
+    if ((isNtfySubdomain || isNtfyPath) && !isStaticAsset) {
         const urlParts = req.url.split('/');
-        let topic = urlParts[1]?.split('?')[0];
+        let topic = isNtfySubdomain ? urlParts[1]?.split('?')[0] : urlParts[2]?.split('?')[0];
         
         if (!topic || topic === '' || topic === 'index.html') {
             return serveFile(path.join(__dirname, 'ntfy/index.html'));
@@ -92,6 +93,29 @@ const server = http.createServer((req, res) => {
         }
 
         if (req.method === 'GET') {
+            const query = new URL(req.url, `http://${host}`).searchParams;
+            const messageText = query.get('message') || query.get('m');
+            
+            if (messageText) {
+                const message = {
+                    id: Date.now().toString(36) + Math.random().toString(36).substring(2, 5),
+                    time: Math.floor(Date.now() / 1000),
+                    message: messageText, topic: topic,
+                    title: query.get('title') || query.get('t') || 'Echo-OS Alert',
+                    priority: parseInt(query.get('priority') || query.get('p')) || 3,
+                    tags: (query.get('tags') || '').split(',').map(t => t.trim()).filter(Boolean)
+                };
+                if (!ntfyCache[topic]) ntfyCache[topic] = [];
+                ntfyCache[topic].push(message);
+                if (ntfyCache[topic].length > MAX_CACHE) ntfyCache[topic].shift();
+                if (ntfyTopics[topic]) ntfyTopics[topic].forEach(c => c.write(`data: ${JSON.stringify(message)}
+
+`));
+                res.writeHead(200, { ...ntfyHeaders, 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ status: 'success', id: message.id }));
+                return;
+            }
+
             res.writeHead(200, { ...ntfyHeaders, 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive' });
             if (!ntfyTopics[topic]) ntfyTopics[topic] = [];
             ntfyTopics[topic].push(res);
