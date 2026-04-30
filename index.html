@@ -1,250 +1,681 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDE Simulation</title> <!-- Changed title -->
-    <!-- Font Awesome CDN (optional for this IDE look, but kept from previous state) -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" />
-    <style>
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #252526; /* Dark background for IDE */
-            color: #cccccc; /* Light grey text */
-            display: flex;
-            flex-direction: column; /* Stack menu, workspace, status bar */
-            height: 100vh; /* Full viewport height */
-            overflow: hidden; /* Prevent scrollbars on body */
-            box-sizing: border-box;
-        }
 
-        /* Menu Bar */
-        .menu-bar {
-            background-color: #333333; /* Darker grey for menu */
-            padding: 8px 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            display: flex;
-            gap: 20px;
-            font-size: 0.9em;
-            flex-shrink: 0; /* Prevent menu bar from shrinking */
-        }
-        .menu-bar span {
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
-        }
-        .menu-bar span:hover {
-            background-color: #444444;
-        }
+<!doctype html>
+<html lang="en" class="scroll-smooth scroll-pt-20">
+	<head>
+		<!-- Primary Meta Tags -->
+		<title id="site-title">Echo | John Ogletree - Digital Creator & Designer</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Welcome to Echo, the personal portfolio of John Ogletree. Explore my creations in web design, development, and digital strategy." />
+		<meta name="keywords" content="John Ogletree, Portfolio, Web Developer, UI/UX Designer, Digital Creator, Astro, JavaScript, Georgia" />
+		<meta name="author" content="John Ogletree" />
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/assets/images/logo.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-        /* Main Workspace Area */
-        .workspace {
-            display: flex;
-            flex-grow: 1; /* Takes remaining height */
-            overflow: hidden; /* Prevents content overflow */
-        }
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://john-ogletree.me/" />
+		<meta property="og:title" content="Echo | John Ogletree - Digital Creator & Designer" />
+		<meta property="og:description" content="Welcome to Echo, the personal portfolio of John Ogletree. Explore my creations in web design, development, and digital strategy." />
+		<meta property="og:image" content="https://example.com/social-preview.png" />
 
-        /* Left Sidebar (File Explorer) */
-        .file-explorer {
-            width: 250px; /* Fixed width for sidebar */
-            background-color: #2f2f2f; /* Slightly lighter than body */
-            padding: 15px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            border-right: 1px solid #444444;
-            overflow-y: auto;
-            flex-shrink: 0; /* Prevent sidebar from shrinking */
-        }
-        .file-explorer h3 {
-            margin-top: 0;
-            font-size: 1em;
-            color: #aaaaaa;
-            border-bottom: 1px solid #444444;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-        }
-        .file-explorer ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .file-explorer li {
-            margin-bottom: 8px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
-        }
-        .file-explorer li:hover {
-            background-color: #3a3a3a;
-        }
-        .file-explorer .folder {
-            font-weight: bold;
-        }
-        .file-explorer .file {
-            color: #88ccff; /* Blueish for files */
-        }
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://john-ogletree.me/" />
+		<meta property="twitter:title" content="Echo | John Ogletree - Digital Creator & Designer" />
+		<meta property="twitter:description" content="Welcome to Echo, the personal portfolio of John Ogletree. Explore my creations in web design, development, and digital strategy." />
+		<meta property="twitter:image" content="https://example.com/social-preview.png" />
+	<!-- Tailwind CSS CDN -->
+		<script id="tailwind-cdn" src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {
+							'bg': '#3B2F2A',
+							'surface': '#4A3E38',
+							'text': '#F0EAD6',
+							'text-light': '#D4C9A8',
+							'heading': '#E07A5F',
+							'accent': '#3D87A6',
+							'border': '#5B4F48',
+							'tag-bg': 'rgba(61, 135, 166, 0.15)',
+						},
+						fontFamily: {
+							mono: ['IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+						},
+						keyframes: {
+							blink: {
+								'50%': { backgroundColor: 'transparent' }
+							}
+						},
+						animation: {
+							blink: 'blink 1s steps(1) infinite'
+						}
+					}
+				}
+			}
+		</script>
+<!-- Google tag (gtag.js) -->
+<script id="gtag-js" async src="https://www.googletagmanager.com/gtag/js?id=G-FY6WZRNX8M"></script>
+		<script id="gtag-config">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        /* Editor/Terminal Area */
-        .editor-area {
-            flex-grow: 1; /* Takes remaining width */
-            display: flex;
-            flex-direction: column; /* Stack editor and terminal if split */
-            background-color: #1e1e1e; /* Very dark for editor */
-            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace for code */
-            font-size: 0.95em;
-            overflow: auto; /* Allow scrolling if content overflows */
-        }
-        .editor-header { /* Tab bar for open files */
-            background-color: #333333;
-            padding: 8px 15px;
-            display: flex;
-            gap: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            flex-shrink: 0; /* Prevent shrinking */
-        }
-        .editor-tab {
-            padding: 8px 12px;
-            background-color: #2f2f2f;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .editor-tab.active {
-            background-color: #1e1e1e; /* Active tab matches editor background */
-        }
-        .editor-content {
-            padding: 15px 25px; /* Padding for code */
-            white-space: pre-wrap; /* Preserve whitespace and wrap */
-            line-height: 1.4;
-            flex-grow: 1; /* Allow editor content to grow */
-            overflow-y: auto; /* Allow scrolling for editor content */
-        }
-        .editor-content .line-number {
-            color: #888888;
-            display: inline-block;
-            width: 30px; /* Space for line numbers */
-            text-align: right;
-            margin-right: 15px;
-            user-select: none; /* Prevent selection of line numbers */
-            padding-right: 5px; /* Space between number and code */
-        }
-        .editor-content .code-line {
-            display: block; /* Each line is a block */
-        }
-        /* Placeholder for actual syntax highlighting */
-        .editor-content .keyword { color: #569cd6; } /* Blue */
-        .editor-content .string { color: #ce9178; } /* Orange */
-        .editor-content .comment { color: #6a9955; } /* Green */
-
-        /* Terminal */
-        .terminal {
-            background-color: #1e1e1e; /* Same as editor */
-            height: 150px; /* Fixed height for terminal */
-            border-top: 1px solid #444444;
-            padding: 15px 25px;
-            overflow-y: auto;
-            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-            font-size: 0.9em;
-            flex-shrink: 0; /* Prevent shrinking */
-        }
-        .terminal span { /* Prompt or command output */
-            display: block;
-        }
-        .terminal .prompt::before {
-            content: "> ";
-            color: #6a9955; /* Green prompt */
-        }
-
-        /* Status Bar */
-        .status-bar {
-            background-color: #2d2d2d; /* Dark grey */
-            padding: 8px 15px;
-            font-size: 0.8em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
-            flex-shrink: 0; /* Prevent shrinking */
-        }
-        .status-bar-left, .status-bar-right {
-            display: flex;
-            gap: 15px;
-        }
-    </style>
-</head>
-<body>
-    <div class="menu-bar">
-        <span>File</span>
-        <span>Edit</span>
-        <span>View</span>
-        <span>Run</span>
-        <span>Help</span>
-    </div>
-    <div class="workspace">
-        <div class="file-explorer">
-            <h3>Explorer</h3>
-            <ul>
-                <li class="folder">Project Root</li>
-                <ul>
-                    <li class="file">index.html</li>
-                    <li class="file">logo.png</li>
-                    <li class="folder">src</li>
-                    <li class="folder">dist</li>
-                    <li class="file">package.json</li>
-                </ul>
-            </ul>
+  gtag('config', 'G-FY6WZRNX8M');
+</script>
+        <!-- Updated path for style.css -->
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	</head>
+	<body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
+    <header id="site-header" class="sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-border bg-surface p-4 px-4 md:px-8">
+    <div id="header-logo-container" class="flex items-center gap-4">
+        <!-- Desktop View: pxltr30 links to repo, Echo links home -->
+        <div id="desktop-logo-wrapper" class="items-center gap-2 text-xl hidden lg:flex">
+            <a id="desktop-repo-link" href="https://pxltr30.github.io/pxltr30/" class="font-bold no-underline hover:underline flex items-center gap-1">
+                <div id="logo-text-user">pxltr30</div>
+            </a>
+            <div id="logo-text-separator" class="text-text-light">/</div>
+            <a id="desktop-home-link" href="/" class="font-bold no-underline hover:underline text-heading flex items-center gap-1">
+                <div id="logo-text-project">Echo</div>
+            </a>
         </div>
-        <div class="editor-area">
-            <div class="editor-header">
-                <div class="editor-tab active">index.html</div>
-                <div class="editor-tab">style.css</div>
-                <div class="editor-tab">script.js</div>
+
+        <!-- Mobile View: Entire logo links to home -->
+        <div id="mobile-logo-wrapper" class="flex items-center gap-2 text-xl lg:hidden">
+            <a id="mobile-home-link" href="/" class="font-bold no-underline hover:underline flex items-center gap-1">
+                <div id="logo-text-user">pxltr30</div>
+                <div id="logo-text-separator">/</div>
+                <div id="logo-text-project" class="text-heading">Echo</div>
+            </a>
+        </div>
+    </div>
+    <div id="desktop-navigation" class="hidden items-center gap-3 lg:flex">
+        <a id="nav-home" href="/" class="text-text-light hover:text-heading no-underline">home</a>
+        <a id="nav-about" href="/about.html" class="text-text-light hover:text-heading no-underline">about</a>
+        <a id="nav-services" href="/services/index" class="text-text-light hover:text-heading no-underline">services</a>
+        <a id="nav-pricing" href="/pricing" class="text-text-light hover:text-heading no-underline">pricing</a>
+        <a id="nav-store" href="/store" class="text-text-light hover:text-heading no-underline">store</a>
+        <a id="nav-projects" href="/projects/index" class="text-text-light hover:text-heading no-underline">projects</a>
+        <a id="nav-blog" href="/thoughts/index" class="text-text-light hover:text-heading no-underline">blog</a>
+        <a id="nav-connect" href="/#connect-section" class="text-text-light hover:text-heading no-underline">connect</a>
+        <a id="nav-docs" href="/docs" class="text-text-light hover:text-heading no-underline">docs</a>
+        <a id="nav-resume" href="/resume/index" class="text-text-light hover:text-heading no-underline">resume</a>
+        <a id="nav-directory" href="/sitemap.xml" class="text-text-light hover:text-heading no-underline">directory</a>
+    </div>
+    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-text-light hover:text-heading focus:outline-none focus:ring-2 focus:ring-accent">
+        <i id="mobile-menu-icon" class="fa-solid fa-bars h-6 w-6"></i>
+    </button>
+</header>
+    <div id="page-container">
+        <main id="main-content" class="mx-auto px-4 py-4 pb-8 transition-filter duration-300 ease-in-out md:px-6 lg:px-8">
+            
+            <section id="hero-section" class="flex min-h-[60vh] flex-col items-center justify-center py-12 text-center md:py-20 lg:min-h-[70vh]">
+                <div id="hero-content" class="max-w-4xl px-4">
+                    <h1 id="hero-title" class="mb-6 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl">
+                        Crafting <span id="hero-title-accent" class="text-accent italic">Digital</span> Solutions with <span id="hero-title-precision" class="border-b-4 border-accent">Precision</span>
+                    </h1>
+                    <p id="hero-description" class="mx-auto mb-10 max-w-2xl text-lg text-text-light md:text-xl lg:text-2xl">
+                        Welcome to Echo, the personal portfolio of John Ogletree. I build modern, high-performance web experiences that blend aesthetic design with technical excellence.
+                    </p>
+                    <div id="hero-cta-container" class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                        <a id="hero-cta-primary" href="/projects/index" class="inline-flex w-full items-center justify-center rounded-md bg-accent px-8 py-4 font-mono font-bold text-bg transition-transform duration-200 hover:scale-105 sm:w-auto">
+                            Explore Projects
+                        </a>
+                        <a id="hero-cta-secondary" href="/#connect-section" class="inline-flex w-full items-center justify-center rounded-md border-2 border-heading px-8 py-4 font-mono font-bold text-heading transition-colors duration-200 hover:bg-heading hover:text-text sm:w-auto">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <h2 id="profile-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Profile</h2>
+            <section id="profile-section" class="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+                <div id="profile-card" class="flex flex-col gap-5 rounded-lg border border-border bg-surface p-6">
+                    <div id="profile-card-header" class="flex flex-col items-start gap-6 border-b border-border pb-5 md:flex-row md:items-center">
+                        <div id="profile-info" class="flex flex-1 items-center gap-4">
+                            <img id="profile-image" src="/assets/images/logo.svg" alt="John Ogletree" class="h-[4.375rem] w-[4.375rem] rounded-full border-2 border-border object-cover" />
+                            <div id="profile-text-content" class="flex flex-col">
+                                <h3 id="profile-name" class="m-0 font-mono font-medium leading-tight text-heading text-xl md:text-2xl">John Ogletree</h3>
+                                <p id="profile-handle" class="mb-2 text-base text-text-light">@pxltr30</p>
+                                <div id="social-links" class="flex flex-wrap gap-4">
+                                    <!-- Social links populated by socialsLoader.js -->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="profile-stats" class="flex w-full flex-row gap-3 md:w-auto md:min-w-[9.375rem] md:flex-col">
+                            <div id="stat-repos" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
+                                <span id="stat-repos-value" class="text-2xl font-bold text-heading" data-value="42">0</span>
+                                <span id="stat-repos-label" class="text-xs uppercase tracking-wider text-text-light">Repos</span>
+                            </div>
+                            <div id="stat-contribs" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
+                                <span id="stat-contribs-value" class="text-2xl font-bold text-heading" data-value="1480">0</span>
+                                <span id="stat-contribs-label" class="text-xs uppercase tracking-wider text-text-light">Contribs</span>
+                            </div>
+                            <div id="stat-followers" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
+                                <span id="stat-followers-value" class="text-2xl font-bold text-heading" data-value="215">0</span>
+                                <span id="stat-followers-label" class="text-xs uppercase tracking-wider text-text-light">Followers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="language-skills" class="flex flex-col gap-3 border-t border-border pt-5 md:min-w-[9.375rem]">
+                        <div id="lang-javascript" class="flex w-full items-baseline justify-between">
+                            <span id="lang-javascript-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
+                                <span id="lang-javascript-icon" class="h-3 w-3 rounded-full" style="background-color: #f1e05a;"></span>
+                                JavaScript
+                            </span>
+                            <span id="lang-javascript-percent" class="text-lg font-medium text-heading">45%</span>
+                        </div>
+                        <div id="lang-typescript" class="flex w-full items-baseline justify-between">
+                            <span id="lang-typescript-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
+                                <span id="lang-typescript-icon" class="h-3 w-3 rounded-full" style="background-color: #3178c6;"></span>
+                                TypeScript
+                            </span>
+                            <span id="lang-typescript-percent" class="text-lg font-medium text-heading">30%</span>
+                        </div>
+                        <div id="lang-java" class="flex w-full items-baseline justify-between">
+                             <span id="lang-java-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
+                                <span id="lang-java-icon" class="h-3 w-3 rounded-full" style="background-color: #b07219;"></span>
+                                Java
+                            </span>
+                            <span id="lang-java-percent" class="text-lg font-medium text-heading">15%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="skill-bars-container" class="flex flex-col gap-6">
+                    <div id="design-skills" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        <div id="skill-ui-design" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                            <div id="skill-ui-design-header" class="flex items-center justify-between">
+                                <div id="skill-ui-design-info" class="flex items-center gap-3">
+                                    <i id="icon-ui-design" class="fa-solid fa-layer-group text-accent text-xl"></i>
+                                    <span id="skill-ui-design-label" class="font-mono text-lg font-bold text-text">UI Design</span>
+                                </div>
+                                <span id="skill-ui-design-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                            </div>
+                            <div id="skill-ui-design-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                <div id="skill-ui-design-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div id="skill-ux-research" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                            <div id="skill-ux-research-header" class="flex items-center justify-between">
+                                <div id="skill-ux-research-info" class="flex items-center gap-3">
+                                    <i id="icon-ux-research" class="fa-solid fa-magnifying-glass text-accent text-xl"></i>
+                                    <span id="skill-ux-research-label" class="font-mono text-lg font-bold text-text">UX Research</span>
+                                </div>
+                                <span id="skill-ux-research-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                            </div>
+                            <div id="skill-ux-research-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                <div id="skill-ux-research-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="75"></div>
+                            </div>
+                        </div>
+                        <div id="skill-prototyping" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                            <div id="skill-prototyping-header" class="flex items-center justify-between">
+                                <div id="skill-prototyping-info" class="flex items-center gap-3">
+                                    <i id="icon-prototyping" class="fa-solid fa-code text-accent text-xl"></i>
+                                    <span id="skill-prototyping-label" class="font-mono text-lg font-bold text-text">Prototyping</span>
+                                </div>
+                                <span id="skill-prototyping-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                            </div>
+                            <div id="skill-prototyping-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                <div id="skill-prototyping-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div id="skill-frontend-dev" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                            <div id="skill-frontend-dev-header" class="flex items-center justify-between">
+                                <div id="skill-frontend-dev-info" class="flex items-center gap-3">
+                                    <i id="icon-frontend-dev" class="fa-solid fa-terminal text-accent text-xl"></i>
+                                    <span id="skill-frontend-dev-label" class="font-mono text-lg font-bold text-text">Frontend Dev</span>
+                                </div>
+                                <span id="skill-frontend-dev-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                            </div>
+                            <div id="skill-frontend-dev-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                <div id="skill-frontend-dev-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bio-link-container">
+                        <a id="bio-link" href="/about.html" class="box-border flex w-full items-center justify-center rounded-md border border-heading bg-transparent py-3 px-6 text-center font-mono font-bold text-heading no-underline transition-colors duration-200 hover:bg-heading hover:text-text">More About Me</a>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section id="services-section" class="services-overview">
+                <h2 id="services-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Capabilities Overview</h2>
+                <div id="services-grid" class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+                    <div id="service-web-design" class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                        <div id="service-icon-web-wrapper" class="text-accent">
+                            <i id="icon-web-dev" class="fa-solid fa-laptop-code text-3xl"></i>
+                        </div>
+                        <h3 id="service-title-web" class="m-0 font-mono text-xl font-bold text-accent">Web Design & Development</h3>
+                        <p id="service-desc-web" class="flex-grow text-[0.95rem] leading-relaxed text-text-light">Crafting responsive, high-performance websites from scratch. I focus on clean code and user-centric design to build digital experiences that work beautifully on any device.</p>
+                    </div>
+                    <div id="service-prototyping-card" class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                        <div id="service-icon-proto-wrapper" class="text-accent">
+                            <i id="icon-prototyping-svg" class="fa-solid fa-wand-magic-sparkles text-3xl"></i>
+                        </div>
+                        <h3 id="service-title-proto" class="m-0 font-mono text-xl font-bold text-accent">Interactive Prototyping</h3>
+                        <p id="service-desc-proto" class="flex-grow text-[0.95rem] leading-relaxed text-text-light">Bringing ideas to life with high-fidelity, clickable prototypes. This crucial step allows for user testing and validation before a single line of code is written.</p>
+                    </div>
+                    <div id="service-strategy" class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                        <div id="service-icon-strategy-wrapper" class="text-accent">
+                            <i id="icon-strategy-svg" class="fa-solid fa-chess text-3xl"></i>
+                        </div>
+                        <h3 id="service-title-strategy" class="m-0 font-mono text-xl font-bold text-accent">Digital Strategy & Consultation</h3>
+                        <p id="service-desc-strategy" class="mb-4">Leveraging user research and analytics to help you make informed decisions. I provide insights that align your digital presence with your business goals for measurable success.</p>
+                    </div>
+                </div>
+                <div id="all-services-link-container" class="mt-8 text-center">
+                    <a id="all-services-link" href="/services/index" class="inline-flex items-center justify-center rounded-md border border-heading bg-heading py-3 px-8 font-mono font-bold text-text no-underline transition-colors duration-200 hover:border-[#D36C52] hover:bg-[#D36C52] hover:text-text">View All Services</a>
+                </div>
+            </section>
+
+
+
+            <section id="projects-section" class="projects-overview">
+                <h2 id="projects-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Creations Overview</h2>
+                <div id="projects-grid" class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+                    <div id="project-echo" class="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                        <div id="project-echo-thumb-wrapper" class="aspect-video overflow-hidden">
+                            <img id="project-echo-image" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Abstract code on a screen" class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105">
+                        </div>
+                        <div id="project-echo-content" class="flex flex-grow flex-col p-6">
+                            <h3 id="project-echo-title" class="m-0 mb-2 font-mono text-xl font-bold text-accent">Echo - Personal Portfolio</h3>
+                            <p id="project-echo-desc" class="mb-4">The very website you are on. A fully responsive personal hub built with Astro, showcasing a blend of design and modern web technologies.</p>
+                            <div id="project-echo-tags" class="flex flex-wrap gap-2">
+                                <span id="tag-echo-astro" class="rounded-full bg-[rgba(224,122,95,0.15)] py-1 px-3 text-xs font-medium text-[#B35F48]">Astro</span>
+                                <span id="tag-echo-css" class="rounded-full bg-[rgba(38,139,210,0.15)] py-1 px-3 text-xs font-medium text-[#268BD2]">CSS</span>
+                                <span id="tag-echo-js" class="rounded-full bg-[rgba(181,137,0,0.2)] py-1 px-3 text-xs font-medium text-[#b58900]">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="project-quantumleap" class="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                        <div id="project-quantumleap-thumb-wrapper" class="aspect-video overflow-hidden">
+                            <img id="project-quantumleap-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Analytics dashboard with charts and graphs" class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105">
+                        </div>
+                        <div id="project-quantumleap-content" class="flex flex-grow flex-col p-6">
+                            <h3 id="project-quantumleap-title" class="m-0 mb-2 font-mono text-xl font-bold text-accent">QuantumLeap - SaaS Dashboard</h3>
+                            <p id="project-quantumleap-desc" class="mb-4">A UI/UX concept for a next-generation analytics platform, focusing on data visualization and intuitive user workflows.</p>
+                            <div id="project-quantumleap-tags" class="flex flex-wrap gap-2">
+                                <span id="tag-quantumleap-figma" class="rounded-full bg-[rgba(163,55,240,0.1)] py-1 px-3 text-xs font-medium text-[#8327c3]">Figma</span>
+                                <span id="tag-quantumleap-uiux" class="rounded-full bg-[rgba(61, 135, 166, 0.15)] py-1 px-3 text-xs font-medium text-accent">UI/UX</span>
+                                <span id="tag-quantumleap-proto" class="rounded-full bg-[rgba(188,71,73,0.15)] py-1 px-3 text-xs font-medium text-[#BC4749]">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="project-codegenius" class="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                        <div id="project-codegenius-thumb-wrapper" class="aspect-video overflow-hidden">
+                            <img id="project-codegenius-image" src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1931&auto=format&fit=crop" alt="Laptop with code and abstract shapes" class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105">
+                        </div>
+                        <div id="project-codegenius-content" class="flex flex-grow flex-col p-6">
+                            <h3 id="project-codegenius-title" class="m-0 mb-2 font-mono text-xl font-bold text-accent">CodeGenius - AI Assistant UI</h3>
+                            <p id="project-codegenius-desc" class="mb-4">An interface design for an AI-powered code completion tool, designed to be unobtrusive yet powerful for developers.</p>
+                            <div id="project-codegenius-tags" class="flex flex-wrap gap-2">
+                                <span id="tag-codegenius-ui" class="rounded-full bg-[rgba(42,161,152,0.15)] py-1 px-3 text-xs font-medium text-[#2AA198]">UI Design</span>
+                                <span id="tag-codegenius-ux" class="rounded-full bg-[rgba(203,75,22,0.15)] py-1 px-3 text-xs font-medium text-[#CB4B16]">UX Research</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="all-projects-link-container" class="mt-8 text-center">
+                    <a id="all-projects-link" href="/projects/index" class="inline-flex items-center justify-center rounded-md border border-heading bg-heading py-3 px-8 font-mono font-bold text-text no-underline transition-colors duration-200 hover:border-[#D36C52] hover:bg-[#D36C52] hover:text-text">View All Projects</a>
+                </div>
+            </section>
+
+
+
+            <section id="connect-section" class="forms-section">
+                <h2 id="connect-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Connect</h2>
+                <div id="connect-grid" class="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+                    <div id="contact-form-card" class="rounded-lg border border-border bg-surface p-8">
+                        <h3 id="contact-form-title" class="m-0 mb-2 font-mono text-xl font-bold text-accent">Contact Me</h3>
+                        <p id="contact-form-desc" class="mb-4">Have a question or a project in mind? Let's talk. I'm always open to discussing new ideas and opportunities.</p>
+                        <form id="contact-form" action="#" method="POST">
+                            <div id="form-group-name" class="mb-6">
+                                <label id="label-name" for="name" class="mb-2 block text-sm font-medium text-text">Name</label>
+                                <input type="text" id="name" name="name" required class="box-border w-full rounded-md border border-border bg-surface p-3 font-mono text-base text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50">
+                            </div>
+                            <div id="form-group-email" class="mb-6">
+                                <label id="label-email" for="email" class="mb-2 block text-sm font-medium text-text">Email</label>
+                                <input type="email" id="email" name="email" required class="box-border w-full rounded-md border border-border bg-surface p-3 font-mono text-base text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50">
+                            </div>
+                            <div id="form-group-message" class="mb-6">
+                                <label id="label-message" for="message" class="mb-2 block text-sm font-medium text-text">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="box-border w-full min-h-[7.5rem] resize-y rounded-md border border-border bg-surface p-3 font-mono text-base text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50"></textarea>
+                            </div>
+                            <button id="contact-submit" type="submit" class="w-full inline-flex items-center justify-center rounded-md border border-heading bg-heading py-3 px-8 font-mono font-bold text-text no-underline transition-colors duration-200 hover:border-[#D36C52] hover:bg-[#D36C52] hover:text-text">Send Message</button>
+                        </form>
+                    </div>
+                    <div id="newsletter-card" class="rounded-lg border border-border bg-surface p-8">
+                        <h3 id="newsletter-title" class="m-0 mb-2 font-mono text-xl font-bold text-accent">Join My Newsletter</h3>
+                        <p id="newsletter-desc" class="mb-6 text-[0.95rem] leading-relaxed text-text-light">Subscribe to receive updates on my latest projects, articles, and design resources directly in your inbox. No spam, ever.</p>
+                        <form id="newsletter-form" action="#" method="POST">
+                            <div id="form-group-newsletter" class="mb-6">
+                                <label id="label-newsletter-email" for="newsletter-email" class="mb-2 block text-sm font-medium text-text">Email Address</label>
+                                <input type="email" id="newsletter-email" name="email" required class="box-border w-full rounded-md border border-border bg-surface p-3 font-mono text-base text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50">
+                            </div>
+                            <button id="newsletter-submit" type="submit" class="w-full inline-flex items-center justify-center rounded-md border border-heading bg-heading py-3 px-8 font-mono font-bold text-text no-underline transition-colors duration-200 hover:border-[#D36C52] hover:bg-[#D36C52] hover:text-text">Subscribe</button>
+                        </form>
+                        <p id="newsletter-privacy" class="mt-6 mb-0 text-center text-xs text-text-light">Your privacy is important. I'll never share your email.</p>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section id="blog-section" class="log-overview">
+                <h2 id="blog-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Log Overview</h2>
+                <div id="blog-grid" class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+                    <article id="post-dune">
+                        <a id="post-dune-link" href="/thoughts/post-slug-1" class="group flex h-full rounded-lg border border-border bg-surface no-underline transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                            <div id="post-dune-content" class="flex flex-col p-6">
+                                <p id="post-dune-meta" class="mb-2 text-xs text-text-light">Film Review · 6 min read</p>
+                                <h3 id="post-dune-title" class="m-0 mb-3 font-mono text-xl font-bold text-accent transition-colors duration-200 group-hover:text-heading group-hover:underline">Dune: A Masterclass in World-Building</h3>
+                                <p id="post-dune-excerpt" class="mb-6 flex-grow text-[0.95rem] leading-relaxed text-text">Denis Villeneuve's adaptation of the sci-fi epic is a cinematic triumph, blending stunning visuals with a deeply resonant narrative. A closer look at what makes it unforgettable.</p>
+                                <div id="post-dune-tags" class="flex flex-wrap gap-2">
+                                    <span id="tag-dune-film" class="rounded-full bg-[rgba(106,153,78,0.2)] py-1 px-3 text-xs font-medium text-[#6A994E]">Film</span>
+                                    <span id="tag-dune-scifi" class="rounded-full bg-[rgba(108,113,196,0.15)] py-1 px-3 text-xs font-medium text-[#6C71C4]">Sci-Fi</span>
+                                    <span id="tag-dune-review" class="rounded-full bg-[rgba(108,117,125,0.2)] py-1 px-3 text-xs font-medium text-[#6c757d]">Review</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <article id="post-astrobook">
+                        <a id="post-astrobook-link" href="/thoughts/post-slug-2" class="group flex h-full rounded-lg border border-border bg-surface no-underline transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                             <div id="post-astrobook-content" class="flex flex-col p-6">
+                                <p id="post-astrobook-meta" class="mb-2 text-xs text-text-light">Tech Review · 8 min read</p>
+                                <h3 id="post-astrobook-title" class="m-0 mb-3 font-mono text-xl font-bold text-accent transition-colors duration-200 group-hover:text-heading group-hover:underline">The M4 AstroBook: A Developer's Dream?</h3>
+                                <p id="post-astrobook-excerpt" class="mb-6 flex-grow text-[0.95rem] leading-relaxed text-text">After a month with Apple's latest hardware, I'm sharing my thoughts on its performance, battery life, and whether it's the ultimate machine for modern web development.</p>
+                                <div id="post-astrobook-tags" class="flex flex-wrap gap-2">
+                                    <span id="tag-astrobook-tech" class="rounded-full bg-[rgba(0,95,115,0.15)] py-1 px-3 text-xs font-medium text-[#005f73]">Tech</span>
+                                    <span id="tag-astrobook-apple" class="rounded-full bg-[rgba(147,161,161,0.2)] py-1 px-3 text-xs font-medium text-[#839496]">Apple</span>
+                                    <span id="tag-astrobook-review" class="rounded-full bg-[rgba(108,117,125,0.2)] py-1 px-3 text-xs font-medium text-[#6c757d]">Review</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <article id="post-augusta">
+                        <a id="post-augusta-link" href="/thoughts/post-slug-3" class="group flex h-full rounded-lg border border-border bg-surface no-underline transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                            <div id="post-augusta-content" class="flex flex-col p-6">
+                                <p id="post-augusta-meta" class="mb-2 text-xs text-text-light">Personal Essay · 5 min read</p>
+                                <h3 id="post-augusta-title" class="m-0 mb-3 font-mono text-xl font-bold text-accent transition-colors duration-200 group-hover:text-heading group-hover:underline">Finding Creative Flow in Augusta</h3>
+                                <p id="post-augusta-excerpt" class="mb-6 flex-grow text-[0.95rem] leading-relaxed text-text">Moving away from the hustle of a big city was a creative gamble. Here's how the quiet charm of Martinez and the surrounding area has reshaped my daily process and inspiration.</p>
+                                <div id="post-augusta-tags" class="flex flex-wrap gap-2">
+                                    <span id="tag-augusta-life" class="rounded-full bg-[rgba(217,91,138,0.15)] py-1 px-3 text-xs font-medium text-[#D95B8A]">Life</span>
+                                    <span id="tag-augusta-creativity" class="rounded-full bg-[rgba(108,113,196,0.2)] py-1 px-3 text-xs font-medium text-[#6C71C4]">Creativity</span>
+                                    <span id="tag-augusta-georgia" class="rounded-full bg-[rgba(253,158,116,0.2)] py-1 px-3 text-xs font-medium text-[#E4865B]">Georgia</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+                <div id="all-posts-link-container" class="mt-8 text-center">
+                    <a id="all-posts-link" href="/thoughts/index" class="inline-flex items-center justify-center rounded-md border border-heading bg-heading py-3 px-8 font-mono font-bold text-text no-underline transition-colors duration-200 hover:border-[#D36C52] hover:bg-[#D36C52] hover:text-text">View All Posts</a>
+                </div>
+            </section>
+
+
+
+            <section id="resume-section" class="resume-overview">
+                <h2 id="resume-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Credentials Overview</h2>
+                <div id="resume-grid" class="grid grid-cols-1 gap-10 lg:grid-cols-[2fr,1fr]">
+                    <div id="experience-container">
+                        <h3 id="experience-title" class="m-0 mb-6 font-mono text-base font-bold uppercase tracking-wider text-accent">Experience</h3>
+                        <div id="exp-senior-designer" class="relative border-l-2 border-border pb-8 pl-6 last:pb-2 before:absolute before:top-[6px] before:left-[-6px] before:h-2.5 before:w-2.5 before:rounded-full before:border-2 before:border-bg before:bg-accent before:content-['']">
+                            <h4 id="exp-senior-designer-role" class="m-0 text-lg leading-tight text-text">Senior Product Designer</h4>
+                            <p id="exp-senior-designer-details" class="mt-1 mb-0 text-sm text-text-light">Innovate Inc. | 2022 - Present</p>
+                        </div>
+                        <div id="exp-uxui-designer" class="relative border-l-2 border-border pb-8 pl-6 last:pb-2 before:absolute before:top-[6px] before:left-[-6px] before:h-2.5 before:w-2.5 before:rounded-full before:border-2 before:border-bg before:bg-accent before:content-['']">
+                            <h4 id="exp-uxui-designer-role" class="m-0 text-lg leading-tight text-text">UX/UI Designer</h4>
+                            <p id="exp-uxui-designer-details" class="mt-1 mb-0 text-sm text-text-light">Creative Solutions | 2019 - 2022</p>
+                        </div>
+                         <div id="exp-junior-dev" class="relative border-l-2 border-border pb-8 pl-6 last:pb-2 before:absolute before:top-[6px] before:left-[-6px] before:h-2.5 before:w-2.5 before:rounded-full before:border-2 before:border-bg before:bg-accent before:content-['']">
+                            <h4 id="exp-junior-dev-role" class="m-0 text-lg leading-tight text-text">Junior Web Developer</h4>
+                            <p id="exp-junior-dev-details" class="mt-1 mb-0 text-sm text-text-light">Tech Forward LLC | 2018 - 2019</p>
+                        </div>
+                    </div>
+                    <div id="education-awards-container" class="flex flex-col gap-6">
+                        <div id="education-section">
+                            <h3 id="education-title" class="m-0 mb-6 font-mono text-base font-bold uppercase tracking-wider text-accent">Education</h3>
+                            <div id="edu-gatech" class="relative border-l-2 border-border pb-8 pl-6 last:pb-2 before:absolute before:top-[6px] before:left-[-6px] before:h-2.5 before:w-2.5 before:rounded-full before:border-2 before:border-bg before:bg-accent before:content-['']">
+                                <h4 id="edu-gatech-degree" class="m-0 text-lg leading-tight text-text">B.S. in Computer Science</h4>
+                                <p id="edu-gatech-details" class="mt-1 mb-0 text-sm text-text-light">Georgia Institute of Technology | 2018</p>
+                            </div>
+                        </div>
+                        <div id="awards-section">
+                            <h3 id="awards-title" class="m-0 mb-6 font-mono text-base font-bold uppercase tracking-wider text-accent">Awards</h3>
+                             <div id="award-ui-design" class="relative border-l-2 border-border pb-8 pl-6 last:pb-2 before:absolute before:top-[6px] before:left-[-6px] before:h-2.5 before:w-2.5 before:rounded-full before:border-2 before:border-bg before:bg-accent before:content-['']">
+                                <h4 id="award-ui-design-title" class="m-0 text-lg leading-tight text-text">"Best UI" Designathon</h4>
+                                <p id="award-ui-design-details" class="mt-1 mb-0 text-sm text-text-light">Awwwards Interactive | 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="full-resume-link-container" class="mt-8 text-center">
+                    <a id="full-resume-link" href="/resume/index" class="inline-flex items-center justify-center rounded-md border border-heading bg-heading py-3 px-8 font-mono font-bold text-text no-underline transition-colors duration-200 hover:border-[#D36C52] hover:bg-[#D36C52] hover:text-text">View Full Résumé</a>
+                </div>
+            </section>
+
+
+
+            <section id="faq-section" class="faq-section">
+                <h2 id="faq-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Frequently Asked Questions</h2>
+                <div id="faq-list">
+                    <details id="faq-availability" class="mb-4 rounded-lg border border-border bg-surface p-6">
+                        <summary id="faq-availability-summary" class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-accent hover:text-heading after:text-2xl after:font-normal after:transition-transform after:duration-200 after:ease-out after:content-['+'] open:after:rotate-45">What is your current availability for new projects?</summary>
+                        <div id="faq-availability-content" class="pt-4 leading-relaxed text-text-light">
+                            <p id="faq-availability-text" class="mb-4">I am currently available for new freelance projects and contract roles. If you have an interesting challenge, feel free to reach out via the contact form above.</p>
+                        </div>
+                    </details>
+                    <details id="faq-technologies" class="mb-4 rounded-lg border border-border bg-surface p-6">
+                        <summary id="faq-technologies-summary" class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-accent hover:text-heading after:text-2xl after:font-normal after:transition-transform after:duration-200 after:ease-out after:content-['+'] open:after:rotate-45">What technologies are you most excited about right now?</summary>
+                         <div id="faq-technologies-content" class="pt-4 leading-relaxed text-text-light">
+                            <p id="faq-technologies-text">I'm particularly excited about the evolution of edge computing and the growing capabilities of modern web frameworks like Astro and SvelteKit. On the design front, I'm closely following the advancements in variable fonts and generative AI tools.</p>
+                        </div>
+                    </details>
+                    <details id="faq-location" class="mb-4 rounded-lg border border-border bg-surface p-6">
+                        <summary id="faq-location-summary" class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-accent hover:text-heading after:text-2xl after:font-normal after:transition-transform after:duration-200 after:ease-out after:content-['+'] open:after:rotate-45">Where are you located?</summary>
+                         <div id="faq-location-content" class="pt-4 leading-relaxed text-text-light">
+                            <p id="faq-location-text">I am based in Martinez, Georgia, and am available for remote work globally. I'm also open to hybrid opportunities in the Augusta metropolitan area.</p>
+                        </div>
+                    </details>
+                    <details id="faq-work" class="mb-4 rounded-lg border border-border bg-surface p-6">
+                        <summary id="faq-work-summary" class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-accent hover:text-heading after:text-2xl after:font-normal after:transition-transform after:duration-200 after:ease-out after:content-['+'] open:after:rotate-45">Can we see more of your work?</summary>
+                         <div id="faq-work-content" class="pt-4 leading-relaxed text-text-light">
+                            <p id="faq-work-text">Absolutely! The "Creations Overview" on this page is just a small sample. You can view a more extensive collection of my work on the dedicated <a id="faq-projects-link" href="/projects/index">creations page</a>.</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer id="site-footer" class="mt-16 border-t border-border bg-surface py-12">
+    <div id="footer-container" class="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+        <div id="footer-grid" class="grid grid-cols-1 gap-12 md:grid-cols-3">
+            <!-- Brand Section -->
+            <div id="footer-brand" class="flex flex-col gap-4">
+                <div id="footer-logo-wrapper" class="flex items-center gap-2 text-xl font-bold text-heading">
+                    <i id="footer-logo-icon" class="fa-solid fa-book-open"></i>
+                    <span id="footer-logo-text">Echo</span>
+                </div>
+                <p id="footer-tagline" class="max-w-xs text-sm leading-relaxed text-text-light">
+                    Building the next generation of digital experiences through design, code, and strategy.
+                </p>
+                <div id="footer-socials" class="flex gap-4">
+                    <!-- Social links populated by socialsLoader.js -->
+                </div>
             </div>
-            <div class="editor-content">
-                <!-- Placeholder for code editor content -->
-                <div class="code-line"><span class="line-number">1</span>&lt;!DOCTYPE html&gt;</div>
-                <div class="code-line"><span class="line-number">2</span>&lt;html lang="en"&gt;</div>
-                <div class="code-line"><span class="line-number">3</span>&lt;head&gt;</div>
-                <div class="code-line"><span class="line-number">4</span>    &lt;meta charset="UTF-8"&gt;</div>
-                <div class="code-line"><span class="line-number">5</span>    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
-                <div class="code-line"><span class="line-number">6</span>    &lt;title&gt;My App&lt;/title&gt;</div>
-                <div class="code-line"><span class="line-number">7</span>    &lt;!-- Font Awesome CDN --&gt;</div>
-                <div class="code-line"><span class="line-number">8</span>    &lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" /&gt;</div>
-                <div class="code-line"><span class="line-number">9</span>    &lt;style&gt;</div>
-                <div class="code-line"><span class="line-number">10</span>        body { ... }</div>
-                <div class="code-line"><span class="line-number">11</span>        .sidebar { ... }</div>
-                <div class="code-line"><span class="line-number">12</span>        .file-explorer { ... }</div>
-                <div class="code-line"><span class="line-number">13</span>        .editor-area { ... }</div>
-                <div class="code-line"><span class="line-number">14</span>        .status-bar { ... }</div>
-                <div class="code-line"><span class="line-number">15</span>    &lt;/style&gt;</div>
-                <div class="code-line"><span class="line-number">16</span>&lt;/head&gt;</div>
-                <div class="code-line"><span class="line-number">17</span>&lt;body&gt;</div>
-                <div class="code-line"><span class="line-number">18</span>    &lt;div class="sidebar"&gt; ... &lt;/div&gt;</div>
-                <div class="code-line"><span class="line-number">19</span>    &lt;div class="main-content"&gt; ... &lt;/div&gt;</div>
-                <div class="code-line"><span class="line-number">20</span>&lt;/body&gt;</div>
-                <div class="code-line"><span class="line-number">21</span>&lt;/html&gt;</div>
+
+            <!-- Quick Links -->
+            <div id="footer-links-container">
+                <h4 id="footer-links-title" class="mb-6 font-mono text-xs font-bold uppercase tracking-widest text-accent">Navigation</h4>
+                <nav id="footer-nav" class="grid grid-cols-2 gap-y-3 gap-x-8">
+                    <a id="footer-link-home" href="/" class="text-sm text-text-light hover:text-heading no-underline transition-colors">home</a>
+                    <a id="footer-link-about" href="/about.html" class="text-sm text-text-light hover:text-heading no-underline transition-colors">about</a>
+                    <a id="footer-link-services" href="/services/index" class="text-sm text-text-light hover:text-heading no-underline transition-colors">services</a>
+                    <a id="footer-link-projects" href="/projects/index" class="text-sm text-text-light hover:text-heading no-underline transition-colors">projects</a>
+                    <a id="footer-link-blog" href="/thoughts/index" class="text-sm text-text-light hover:text-heading no-underline transition-colors">blog</a>
+                    <a id="footer-link-resume" href="/resume/index" class="text-sm text-text-light hover:text-heading no-underline transition-colors">resume</a>
+                </nav>
+            </div>
+
+            <!-- Newsletter/Status -->
+            <div id="footer-status">
+                <h4 id="footer-status-title" class="mb-6 font-mono text-xs font-bold uppercase tracking-widest text-accent">System Status</h4>
+                <div id="status-card" class="rounded border border-border bg-bg/50 p-4">
+                    <div id="status-item" class="flex items-center gap-3">
+                        <span id="status-indicator" class="relative flex h-3 w-3">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
+                        </span>
+                        <span id="status-text" class="text-xs font-mono text-text-light uppercase tracking-tighter">all systems operational</span>
+                    </div>
+                    <p id="status-last-updated" class="mt-3 text-[10px] font-mono text-text-light/50">Last deployment: Feb 20, 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div id="footer-bottom" class="mt-12 flex flex-col items-center justify-between gap-6 border-t border-border pt-8 md:flex-row">
+            <p id="footer-copyright" class="text-xs text-text-light/60">
+                &copy; 2026 John Ogletree. All rights reserved. Built with precision.
+            </p>
+            <div id="footer-legal" class="flex gap-6">
+                <a id="footer-privacy" href="#" class="text-xs text-text-light/60 hover:text-heading no-underline transition-colors">Privacy Policy</a>
+                <a id="footer-terms" href="#" class="text-xs text-text-light/60 hover:text-heading no-underline transition-colors">Terms of Service</a>
             </div>
         </div>
     </div>
-    <div class="terminal">
-        <span>Terminal</span>
-        <span></span> <!-- Placeholder for terminal content -->
-        <span class="prompt"></span>
+</footer>
+
+<script id="animations-script" is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Profile Card Logic ---
+        const profileCard = document.getElementById('profile-card');
+        if (profileCard) {
+            const animateStats = () => {
+                const statValues = profileCard.querySelectorAll('.stat-value[data-value]');
+                statValues.forEach(stat => {
+                    const finalValue = parseInt(stat.getAttribute('data-value'), 10);
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    const animate = (currentTime) => {
+                        const elapsedTime = currentTime - startTime;
+                        const progress = Math.min(elapsedTime / duration, 1);
+                        stat.textContent = Math.floor(progress * finalValue).toLocaleString();
+                        if (progress < 1) requestAnimationFrame(animate);
+                    };
+                    requestAnimationFrame(animate);
+                });
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(profileCard);
+        }
+
+        // --- Animated Skills Logic ---
+        const skillItems = document.querySelectorAll('.skill-item');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target.querySelector('.skill-progress');
+                    const skillPercentage = entry.target.querySelector('.skill-percentage'); // Get the skill percentage span
+                    const targetWidth = progressBar.getAttribute('data-progress');
+                    progressBar.style.width = targetWidth + '%'; // Add '%' to the width
+                    skillPercentage.textContent = targetWidth + '%'; // Update the text content of the skill percentage span
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillItems.forEach(item => {
+            skillObserver.observe(item);
+        });
+    });
+
+
+
+</script>
+<!-- Updated path for navbarLoader.js -->
+
+
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+<nav id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-surface shadow-lg z-50 p-6 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+    <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg font-bold text-heading">Menu</h3>
+        <button id="close-mobile-menu-button" class="text-text-light hover:text-heading focus:outline-none">
+            <i class="fa-solid fa-times h-6 w-6"></i>
+        </button>
     </div>
-    <div class="status-bar">
-        <div class="status-bar-left">
-            <span>Ln 21, Col 1</span>
-            <span>Spaces: 4</span>
-        </div>
-        <div class="status-bar-right">
-            <span>UTF-8</span>
-            <span>LF</span>
-            <span>Indonesian</span>
-        </div>
+    <div class="flex flex-col gap-4">
+        <a href="/" class="text-text-light hover:text-heading no-underline">home</a>
+        <a href="/about.html" class="text-text-light hover:text-heading no-underline">about</a>
+        <a href="/services/index" class="text-text-light hover:text-heading no-underline">services</a>
+        <a href="/pricing" class="text-text-light hover:text-heading no-underline">pricing</a>
+        <a href="/store" class="text-text-light hover:text-heading no-underline">store</a>
+        <a href="/projects/index" class="text-text-light hover:text-heading no-underline">projects</a>
+        <a href="/thoughts/index" class="text-text-light hover:text-heading no-underline">blog</a>
+        <a href="/#connect-section" class="text-text-light hover:text-heading no-underline">connect</a>
+        <a href="/docs" class="text-text-light hover:text-heading no-underline">docs</a>
+        <a href="/resume/index" class="text-text-light hover:text-heading no-underline">resume</a>
+        <a href="/directory" class="text-text-light hover:text-heading no-underline">directory</a>
     </div>
-</body>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+        const body = document.body;
+
+        const toggleMobileMenu = () => {
+            mobileMenuOverlay.classList.toggle('hidden');
+            mobileMenu.classList.toggle('translate-x-full');
+            mobileMenuIcon.classList.toggle('fa-bars');
+            mobileMenuIcon.classList.toggle('fa-times');
+            body.classList.toggle('overflow-hidden'); // Prevent scrolling when menu is open
+        };
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+        if (closeMobileMenuButton) {
+            closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+        }
+    });
+</script>
+
+<script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service worker registered successfully:', registration);
+          })
+          .catch(error => {
+            console.error('Service worker registration failed:', error);
+          });
+      }
+    </script>
+    </body>
 </html>
