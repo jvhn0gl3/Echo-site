@@ -24,62 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateViewportLog();
     window.addEventListener('resize', updateViewportLog);
 
-    // --- Boot Sequence Simulation ---
-    const bootOverlay = document.getElementById('boot-overlay');
-    const bootLog = document.getElementById('boot-log');
-
-    if (skipBoot) {
-        bootOverlay.classList.add('hidden');
-    }
-
-    const bootMessages = [
-        { text: 'Initialising Echo Kernel v4.2.0-release...', type: 'info' },
-        { text: 'Checking CPU microcode... updated', type: 'ok' },
-        { text: 'Memory Check: 16384MB OK', type: 'ok' },
-        { text: 'Mounting virtual file systems...', type: 'info' },
-        { text: 'Detecting hardware interfaces...', type: 'info' },
-        { text: 'Network interface: eth0 (v-switch) UP', type: 'ok' },
-        { text: 'Synchronising system clock with NTP...', type: 'info' },
-        { text: 'Clock sync: +0.002s', type: 'ok' },
-        { text: 'Loading kernel modules...', type: 'info' },
-        { text: 'Module [echo_core] loaded', type: 'ok' },
-        { text: 'Module [echo_ui_shell] loaded', type: 'ok' },
-        { text: 'Security Policy: Enforced', type: 'info' },
-        { text: 'Checking environment integrity...', type: 'info' },
-        { text: `Target Environment: ${isPreview ? 'PREVIEW/STAGING' : 'PRODUCTION/LIVE'}`, type: 'warn' },
-        { text: 'Integrity Check: VALID', type: 'ok' },
-        { text: 'Starting Echo Site Application...', type: 'info' },
-        { text: 'Finalising session...', type: 'info' }
-    ];
-
-    let currentLine = 0;
-
-    function addBootLine() {
-        if (currentLine < bootMessages.length) {
-            const msg = bootMessages[currentLine];
-            const div = document.createElement('div');
-            div.className = `boot-line ${msg.type}`;
-            div.textContent = msg.text;
-            bootLog.appendChild(div);
-            
-            // Auto-scroll to bottom
-            bootOverlay.scrollTop = bootOverlay.scrollHeight;
-
-            currentLine++;
-            // Randomized timing for realism
-            const nextDelay = Math.random() * 200 + 50; 
-            setTimeout(addBootLine, nextDelay);
-        } else {
-            // Boot complete
-            setTimeout(() => {
-                bootOverlay.classList.add('hidden');
-            }, 800);
-        }
-    }
-
-    // Start boot sequence
-    addBootLine();
-
     // --- Sidebar interactions ---
     const navItems = document.querySelectorAll('.nav-scroll-group .nav-item');
     const sections = document.querySelectorAll('.app-content section');

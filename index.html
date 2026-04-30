@@ -5,6 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Echo-site - Production</title>
     <link rel="icon" href="logo.png">
+    <style>
+        .boot-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            color: #00ff00;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace;
+            font-size: 0.8rem;
+            padding: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            line-height: 1.2;
+        }
+
+        .boot-line {
+            margin-bottom: 2px;
+            white-space: pre-wrap;
+        }
+
+        .boot-line.ok::before {
+            content: "[  OK  ] ";
+            color: #00ff00;
+        }
+
+        .boot-line.info::before {
+            content: "[ INFO ] ";
+            color: #00aaff;
+        }
+
+        .boot-line.warn::before {
+            content: "[ WARN ] ";
+            color: #ffff00;
+        }
+
+        .boot-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: #00ff00;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
     <link rel="stylesheet" href="kernel.css">
 </head>
 <body>
@@ -100,6 +152,35 @@
             </main>
         </div>
     </div>
+    <script>
+        window.addEventListener('load', () => {
+            const log = document.getElementById('boot-log');
+            const overlay = document.getElementById('boot-overlay');
+            const lines = [
+                'INITIALIZING NTFY_GATEWAY...',
+                'LOADING KERNEL_MODULES... OK',
+                'ESTABLISHING SECURE_SESSION... OK',
+                'SYNCING SUBSCRIPTIONS... OK',
+                'SYSTEM READY.'
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < lines.length) {
+                    const line = document.createElement('div');
+                    line.textContent = `> ${lines[i]}`;
+                    log.appendChild(line);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        overlay.style.opacity = '0';
+                        setTimeout(() => overlay.style.display = 'none', 500);
+                    }, 500);
+                }
+            }, 150);
+        });
+    </script>
     <script src="master.js?v=04.29.2026.02.55"></script>
 </body>
 </html>
