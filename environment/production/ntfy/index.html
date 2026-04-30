@@ -293,7 +293,7 @@
             const timestamp = new Date().toLocaleTimeString('en-GB', { hour12: false });
             
             try {
-                const response = await fetch(`/ntfy/${topic}`, {
+                const response = await fetch(`/${topic}`, {
                     method: 'POST',
                     body: message,
                     headers: { 'Title': title, 'Priority': priority, 'Tags': tags }

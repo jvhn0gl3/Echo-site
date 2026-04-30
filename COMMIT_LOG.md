@@ -4,6 +4,7 @@
 
 | Date/Time | Commit | Message |
 |-----------|--------|---------|
+| 04.30.2026/00.28.28 | 66f56cd | Reconfigure ntfy to subdomain-only endpoint |
 | 04.29.2026/19.15.01 | 2683dd9 | refactor: remove about-me section and update default navigation to apps |
 | 04.29.2026/03.08.20 | c349c8a | feat: evolve profile section into comprehensive About Me with technical arsenal and system metrics |
 | 04.29.2026/03.01.29 | b48915b | style: expand profile card to occupy full content width |

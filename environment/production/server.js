@@ -10,6 +10,12 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
+// --- ntfy State ---
+const ntfyTopics = {};
+const ntfyCache = {};
+const MAX_BODY_SIZE = 1024 * 1024; // 1MB
+const MAX_CACHE = 100;
+
 const MIME_TYPES = {
     '.html': 'text/html',
     '.css': 'text/css',
@@ -59,9 +65,9 @@ const server = http.createServer((req, res) => {
     };
 
     // --- ntfy Implementation ---
-    if ((isNtfySubdomain || req.url.startsWith('/ntfy/')) && !isStaticAsset) {
+    if (isNtfySubdomain && !isStaticAsset) {
         const urlParts = req.url.split('/');
-        let topic = isNtfySubdomain ? urlParts[1]?.split('?')[0] : urlParts[2]?.split('?')[0];
+        let topic = urlParts[1]?.split('?')[0];
         
         if (!topic || topic === '' || topic === 'index.html') {
             return serveFile(path.join(__dirname, 'ntfy/index.html'));
