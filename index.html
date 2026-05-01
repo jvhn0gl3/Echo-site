@@ -668,5 +668,22 @@
           });
       }
     </script>
+<script>
+    // Dynamic Countdown Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const lockdownDate = new Date('2026-09-01T00:00:00Z'); // Target date: September 1, 2026 UTC
+        const today = new Date();
+        const timeDiff = lockdownDate.getTime() - today.getTime();
+        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+        const countdownSpan = document.getElementById('countdown-text');
+        if (countdownSpan) {
+            // Ensure the number of days is not negative (though unlikely with Sep 1, 2026)
+            const displayDays = Math.max(0, daysDiff);
+            countdownSpan.textContent = displayDays + ' days until lockdown';
+        }
+    });
+</script>
+
     </body>
 </html>
