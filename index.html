@@ -126,116 +126,118 @@
                 </div>
             </section>
 
+            <div id="profile-full-wrapper" class="w-full px-4 md:px-8 lg:px-12 py-12 border-b border-border/50">
+                <h2 id="profile-heading" class="m-0 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Profile</h2>
+                <section id="profile-section" class="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+                    <div id="profile-card" class="flex flex-col gap-5 rounded-lg border border-border bg-surface p-6">
+                        <div id="profile-card-header" class="flex flex-col items-start gap-6 border-b border-border pb-5 md:flex-row md:items-center">
+                            <div id="profile-info" class="flex flex-1 items-center gap-4">
+                                <img id="profile-image" src="logo.png" alt="John Ogletree" class="h-[4.375rem] w-[4.375rem] rounded-full border-2 border-border object-cover" />
+                                <div id="profile-text-content" class="flex flex-col">
+                                    <h3 id="profile-name" class="m-0 font-mono font-medium leading-tight text-heading text-xl md:text-2xl">John Ogletree</h3>
+                                    <p id="profile-handle" class="mb-2 text-base text-text-light">@jvhn0gl3</p>
+                                    <div id="social-links" class="flex flex-wrap gap-4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="profile-stats" class="flex w-full flex-row gap-3 md:w-auto md:min-w-[9.375rem] md:flex-col">
+                                <div id="stat-repos" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
+                                    <span id="stat-repos-value" class="stat-value text-2xl font-bold text-heading" data-value="42">0</span>
+                                    <span id="stat-repos-label" class="text-xs uppercase tracking-wider text-text-light">Repos</span>
+                                </div>
+                                <div id="stat-contribs" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
+                                    <span id="stat-contribs-value" class="stat-value text-2xl font-bold text-heading" data-value="1480">0</span>
+                                    <span id="stat-contribs-label" class="text-xs uppercase tracking-wider text-text-light">Contribs</span>
+                                </div>
+                                <div id="stat-followers" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
+                                    <span id="stat-followers-value" class="stat-value text-2xl font-bold text-heading" data-value="215">0</span>
+                                    <span id="stat-followers-label" class="text-xs uppercase tracking-wider text-text-light">Followers</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="language-skills" class="flex flex-col gap-3 border-t border-border pt-5 md:min-w-[9.375rem]">
+                            <div id="lang-javascript" class="flex w-full items-baseline justify-between">
+                                <span id="lang-javascript-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
+                                    <span id="lang-javascript-icon" class="h-3 w-3 rounded-full" style="background-color: #f1e05a;"></span>
+                                    JavaScript
+                                </span>
+                                <span id="lang-javascript-percent" class="text-lg font-medium text-heading">45%</span>
+                            </div>
+                            <div id="lang-typescript" class="flex w-full items-baseline justify-between">
+                                <span id="lang-typescript-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
+                                    <span id="lang-typescript-icon" class="h-3 w-3 rounded-full" style="background-color: #3178c6;"></span>
+                                    TypeScript
+                                </span>
+                                <span id="lang-typescript-percent" class="text-lg font-medium text-heading">30%</span>
+                            </div>
+                            <div id="lang-java" class="flex w-full items-baseline justify-between">
+                                 <span id="lang-java-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
+                                    <span id="lang-java-icon" class="h-3 w-3 rounded-full" style="background-color: #b07219;"></span>
+                                    Java
+                                </span>
+                                <span id="lang-java-percent" class="text-lg font-medium text-heading">15%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="skill-bars-container" class="flex flex-col gap-6">
+                        <div id="design-skills" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div id="skill-ui-design" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                                <div id="skill-ui-design-header" class="flex items-center justify-between">
+                                    <div id="skill-ui-design-info" class="flex items-center gap-3">
+                                        <i id="icon-ui-design" class="fa-solid fa-layer-group text-accent text-xl"></i>
+                                        <span id="skill-ui-design-label" class="font-mono text-lg font-bold text-text">UI Design</span>
+                                    </div>
+                                    <span id="skill-ui-design-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                                </div>
+                                <div id="skill-ui-design-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                    <div id="skill-ui-design-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="90"></div>
+                                </div>
+                            </div>
+                            <div id="skill-ux-research" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                                <div id="skill-ux-research-header" class="flex items-center justify-between">
+                                    <div id="skill-ux-research-info" class="flex items-center gap-3">
+                                        <i id="icon-ux-research" class="fa-solid fa-magnifying-glass text-accent text-xl"></i>
+                                        <span id="skill-ux-research-label" class="font-mono text-lg font-bold text-text">UX Research</span>
+                                    </div>
+                                    <span id="skill-ux-research-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                                </div>
+                                <div id="skill-ux-research-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                    <div id="skill-ux-research-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="75"></div>
+                                </div>
+                            </div>
+                            <div id="skill-prototyping" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                                <div id="skill-prototyping-header" class="flex items-center justify-between">
+                                    <div id="skill-prototyping-info" class="flex items-center gap-3">
+                                        <i id="icon-prototyping" class="fa-solid fa-code text-accent text-xl"></i>
+                                        <span id="skill-prototyping-label" class="font-mono text-lg font-bold text-text">Prototyping</span>
+                                    </div>
+                                    <span id="skill-prototyping-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                                </div>
+                                <div id="skill-prototyping-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                    <div id="skill-prototyping-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="85"></div>
+                                </div>
+                            </div>
+                            <div id="skill-frontend-dev" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
+                                <div id="skill-frontend-dev-header" class="flex items-center justify-between">
+                                    <div id="skill-frontend-dev-info" class="flex items-center gap-3">
+                                        <i id="icon-frontend-dev" class="fa-solid fa-terminal text-accent text-xl"></i>
+                                        <span id="skill-frontend-dev-label" class="font-mono text-lg font-bold text-text">Frontend Dev</span>
+                                    </div>
+                                    <span id="skill-frontend-dev-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
+                                </div>
+                                <div id="skill-frontend-dev-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
+                                    <div id="skill-frontend-dev-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bio-link-container">
+                            <a id="bio-link" href="/about.html" class="box-border flex w-full items-center justify-center rounded-md border border-heading bg-transparent py-3 px-6 text-center font-mono font-bold text-heading no-underline transition-colors duration-200 hover:bg-heading hover:text-text">More About Me</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
             <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-            
-            <h2 id="profile-heading" class="m-0 mt-14 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Profile</h2>
-            <section id="profile-section" class="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
-                <div id="profile-card" class="flex flex-col gap-5 rounded-lg border border-border bg-surface p-6">
-                    <div id="profile-card-header" class="flex flex-col items-start gap-6 border-b border-border pb-5 md:flex-row md:items-center">
-                        <div id="profile-info" class="flex flex-1 items-center gap-4">
-                            <img id="profile-image" src="logo.png" alt="John Ogletree" class="h-[4.375rem] w-[4.375rem] rounded-full border-2 border-border object-cover" />
-                            <div id="profile-text-content" class="flex flex-col">
-                                <h3 id="profile-name" class="m-0 font-mono font-medium leading-tight text-heading text-xl md:text-2xl">John Ogletree</h3>
-                                <p id="profile-handle" class="mb-2 text-base text-text-light">@jvhn0gl3</p>
-                                <div id="social-links" class="flex flex-wrap gap-4">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="profile-stats" class="flex w-full flex-row gap-3 md:w-auto md:min-w-[9.375rem] md:flex-col">
-                            <div id="stat-repos" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
-                                <span id="stat-repos-value" class="text-2xl font-bold text-heading" data-value="42">0</span>
-                                <span id="stat-repos-label" class="text-xs uppercase tracking-wider text-text-light">Repos</span>
-                            </div>
-                            <div id="stat-contribs" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
-                                <span id="stat-contribs-value" class="text-2xl font-bold text-heading" data-value="1480">0</span>
-                                <span id="stat-contribs-label" class="text-xs uppercase tracking-wider text-text-light">Contribs</span>
-                            </div>
-                            <div id="stat-followers" class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline">
-                                <span id="stat-followers-value" class="text-2xl font-bold text-heading" data-value="215">0</span>
-                                <span id="stat-followers-label" class="text-xs uppercase tracking-wider text-text-light">Followers</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="language-skills" class="flex flex-col gap-3 border-t border-border pt-5 md:min-w-[9.375rem]">
-                        <div id="lang-javascript" class="flex w-full items-baseline justify-between">
-                            <span id="lang-javascript-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
-                                <span id="lang-javascript-icon" class="h-3 w-3 rounded-full" style="background-color: #f1e05a;"></span>
-                                JavaScript
-                            </span>
-                            <span id="lang-javascript-percent" class="text-lg font-medium text-heading">45%</span>
-                        </div>
-                        <div id="lang-typescript" class="flex w-full items-baseline justify-between">
-                            <span id="lang-typescript-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
-                                <span id="lang-typescript-icon" class="h-3 w-3 rounded-full" style="background-color: #3178c6;"></span>
-                                TypeScript
-                            </span>
-                            <span id="lang-typescript-percent" class="text-lg font-medium text-heading">30%</span>
-                        </div>
-                        <div id="lang-java" class="flex w-full items-baseline justify-between">
-                             <span id="lang-java-label" class="flex items-center gap-2 text-xs uppercase tracking-wider text-text-light">
-                                <span id="lang-java-icon" class="h-3 w-3 rounded-full" style="background-color: #b07219;"></span>
-                                Java
-                            </span>
-                            <span id="lang-java-percent" class="text-lg font-medium text-heading">15%</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="skill-bars-container" class="flex flex-col gap-6">
-                    <div id="design-skills" class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        <div id="skill-ui-design" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
-                            <div id="skill-ui-design-header" class="flex items-center justify-between">
-                                <div id="skill-ui-design-info" class="flex items-center gap-3">
-                                    <i id="icon-ui-design" class="fa-solid fa-layer-group text-accent text-xl"></i>
-                                    <span id="skill-ui-design-label" class="font-mono text-lg font-bold text-text">UI Design</span>
-                                </div>
-                                <span id="skill-ui-design-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
-                            </div>
-                            <div id="skill-ui-design-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
-                                <div id="skill-ui-design-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="90"></div>
-                            </div>
-                        </div>
-                        <div id="skill-ux-research" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
-                            <div id="skill-ux-research-header" class="flex items-center justify-between">
-                                <div id="skill-ux-research-info" class="flex items-center gap-3">
-                                    <i id="icon-ux-research" class="fa-solid fa-magnifying-glass text-accent text-xl"></i>
-                                    <span id="skill-ux-research-label" class="font-mono text-lg font-bold text-text">UX Research</span>
-                                </div>
-                                <span id="skill-ux-research-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
-                            </div>
-                            <div id="skill-ux-research-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
-                                <div id="skill-ux-research-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="75"></div>
-                            </div>
-                        </div>
-                        <div id="skill-prototyping" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
-                            <div id="skill-prototyping-header" class="flex items-center justify-between">
-                                <div id="skill-prototyping-info" class="flex items-center gap-3">
-                                    <i id="icon-prototyping" class="fa-solid fa-code text-accent text-xl"></i>
-                                    <span id="skill-prototyping-label" class="font-mono text-lg font-bold text-text">Prototyping</span>
-                                </div>
-                                <span id="skill-prototyping-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
-                            </div>
-                            <div id="skill-prototyping-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
-                                <div id="skill-prototyping-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="85"></div>
-                            </div>
-                        </div>
-                        <div id="skill-frontend-dev" class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg">
-                            <div id="skill-frontend-dev-header" class="flex items-center justify-between">
-                                <div id="skill-frontend-dev-info" class="flex items-center gap-3">
-                                    <i id="icon-frontend-dev" class="fa-solid fa-terminal text-accent text-xl"></i>
-                                    <span id="skill-frontend-dev-label" class="font-mono text-lg font-bold text-text">Frontend Dev</span>
-                                </div>
-                                <span id="skill-frontend-dev-percentage" class="skill-percentage font-mono text-sm text-text-light">0%</span>
-                            </div>
-                            <div id="skill-frontend-dev-bar-wrapper" class="relative h-2.5 w-full rounded bg-border overflow-hidden">
-                                <div id="skill-frontend-dev-progress" class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="bio-link-container">
-                        <a id="bio-link" href="/about.html" class="box-border flex w-full items-center justify-center rounded-md border border-heading bg-transparent py-3 px-6 text-center font-mono font-bold text-heading no-underline transition-colors duration-200 hover:bg-heading hover:text-text">More About Me</a>
-                    </div>
-                </div>
-            </section>
 
 
 
