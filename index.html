@@ -112,21 +112,27 @@
         /* Services icon */
         .nav-link[data-route="services"] i { color: #f1c40f; }
         .nav-link[data-route="services"]:hover i { color: #f1c40f; text-shadow: 0 0 12px rgba(241,196,15,0.5); }
+        /* Pricing icon */
+        .nav-link[data-route="pricing"] i { color: #e84393; }
+        .nav-link[data-route="pricing"]:hover i { color: #e84393; text-shadow: 0 0 12px rgba(232,67,147,0.5); }
         /* Projects icon */
         .nav-link[data-route="projects"] i { color: #2ecc71; }
         .nav-link[data-route="projects"]:hover i { color: #2ecc71; text-shadow: 0 0 12px rgba(46,204,113,0.5); }
         /* Blog icon */
         .nav-link[data-route="blog"] i { color: #e67e22; }
         .nav-link[data-route="blog"]:hover i { color: #e67e22; text-shadow: 0 0 12px rgba(230,126,34,0.5); }
-        /* Connect icon */
-        .nav-link[data-route="connect"] i { color: #9b59b6; }
-        .nav-link[data-route="connect"]:hover i { color: #9b59b6; text-shadow: 0 0 12px rgba(155,89,182,0.5); }
         /* Resume icon */
         .nav-link[data-route="resume"] i { color: #e74c3c; }
         .nav-link[data-route="resume"]:hover i { color: #e74c3c; text-shadow: 0 0 12px rgba(231,76,60,0.5); }
-        /* FAQ icon */
-        .nav-link[data-route="faq"] i { color: #1abc9c; }
-        .nav-link[data-route="faq"]:hover i { color: #1abc9c; text-shadow: 0 0 12px rgba(26,188,156,0.5); }
+        /* Connect icon */
+        .nav-link[data-route="connect"] i { color: #9b59b6; }
+        .nav-link[data-route="connect"]:hover i { color: #9b59b6; text-shadow: 0 0 12px rgba(155,89,182,0.5); }
+        /* Docs icon */
+        .nav-link[data-route="docs"] i { color: #3498db; }
+        .nav-link[data-route="docs"]:hover i { color: #3498db; text-shadow: 0 0 12px rgba(52,152,219,0.5); }
+        /* Directory icon */
+        .nav-link[data-route="directory"] i { color: #95a5a6; }
+        .nav-link[data-route="directory"]:hover i { color: #95a5a6; text-shadow: 0 0 12px rgba(149,165,166,0.5); }
         
         /* Active state for icons */
         .nav-link.active-nav i {
@@ -142,11 +148,13 @@
             <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
             <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
             <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-cog text-xl"></i></a>
+            <a href="#pricing" data-route="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-tag text-xl"></i></a>
             <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-folder text-xl"></i></a>
             <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-blog text-xl"></i></a>
-            <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
             <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-file-contract text-xl"></i></a>
-            <a href="#faq" data-route="faq" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-question text-xl"></i></a>
+            <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
+            <a href="#docs" data-route="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i></a>
+            <a href="#directory" data-route="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i></a>
         </div>
     </aside>
 
@@ -198,9 +206,13 @@
                         <a href="#home" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">home</a>
                         <a href="#about" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">about</a>
                         <a href="#services" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">services</a>
+                        <a href="#pricing" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">pricing</a>
                         <a href="#projects" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">projects</a>
                         <a href="#blog" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">blog</a>
                         <a href="#resume" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">resume</a>
+                        <a href="#connect" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">connect</a>
+                        <a href="#docs" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">docs</a>
+                        <a href="#directory" class="nav-link text-sm text-text-light hover:text-heading no-underline transition-colors">directory</a>
                     </nav>
                 </div>
                 <div id="footer-status">
@@ -296,9 +308,20 @@
                 <div class="w-full px-4 md:px-8 lg:px-12 py-12">
                     <h2 class="text-2xl font-bold text-heading mb-6">Capabilities Overview</h2>
                     <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
-                        <div class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8"><i class="fa-solid fa-laptop-code text-accent text-3xl"></i><h3 class="font-mono text-xl font-bold text-accent">Web Design & Development</h3><p class="text-text-light">Crafting responsive, high-performance websites from scratch.</p></div>
-                        <div class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8"><i class="fa-solid fa-wand-magic-sparkles text-accent text-3xl"></i><h3 class="font-mono text-xl font-bold text-accent">Interactive Prototyping</h3><p class="text-text-light">Bringing ideas to life with high-fidelity, clickable prototypes.</p></div>
-                        <div class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8"><i class="fa-solid fa-chess text-accent text-3xl"></i><h3 class="font-mono text-xl font-bold text-accent">Digital Strategy & Consultation</h3><p class="text-text-light">Leveraging user research and analytics to help you make informed decisions.</p></div>
+                        <div class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8"><i class="fa-solid fa-laptop-code text-accent text-3xl"></i><h3 class="font-mono text-xl font-bold text-accent">Web Design & Development</h3><p class="text-text-light">Crafting responsive, high-performance websites from scratch.</p><a href="#connect" class="inline-block mt-4 text-accent hover:text-heading transition-colors">Learn More →</a></div>
+                        <div class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8"><i class="fa-solid fa-wand-magic-sparkles text-accent text-3xl"></i><h3 class="font-mono text-xl font-bold text-accent">Interactive Prototyping</h3><p class="text-text-light">Bringing ideas to life with high-fidelity, clickable prototypes.</p><a href="#connect" class="inline-block mt-4 text-accent hover:text-heading transition-colors">Learn More →</a></div>
+                        <div class="flex flex-col gap-4 rounded-lg border border-border bg-surface p-8"><i class="fa-solid fa-chess text-accent text-3xl"></i><h3 class="font-mono text-xl font-bold text-accent">Digital Strategy & Consultation</h3><p class="text-text-light">Leveraging user research and analytics to help you make informed decisions.</p><a href="#connect" class="inline-block mt-4 text-accent hover:text-heading transition-colors">Learn More →</a></div>
+                    </div>
+                </div>
+            `,
+            
+            pricing: `
+                <div class="w-full px-4 md:px-8 lg:px-12 py-12">
+                    <h1 class="text-4xl font-bold text-heading mb-6">Pricing</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="rounded-lg border border-border bg-surface p-8 text-center"><h3 class="text-2xl font-bold text-heading mb-4">Basic</h3><p class="text-3xl font-bold text-accent mb-4">$500</p><p class="text-text-light mb-6">Perfect for small projects and startups.</p><ul class="text-left text-text-light mb-6"><li class="mb-2">✓ Responsive Design</li><li class="mb-2">✓ Up to 5 Pages</li><li class="mb-2">✓ Contact Form</li><li>✓ 1 Month Support</li></ul><a href="#connect" class="inline-block bg-accent text-bg px-6 py-2 rounded-md font-bold hover:opacity-80 transition-opacity">Get Started</a></div>
+                        <div class="rounded-lg border-2 border-heading bg-surface p-8 text-center relative"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-heading text-text px-4 py-1 rounded-full text-sm">Popular</div><h3 class="text-2xl font-bold text-heading mb-4">Professional</h3><p class="text-3xl font-bold text-accent mb-4">$1,500</p><p class="text-text-light mb-6">Ideal for growing businesses.</p><ul class="text-left text-text-light mb-6"><li class="mb-2">✓ All Basic Features</li><li class="mb-2">✓ Up to 15 Pages</li><li class="mb-2">✓ CMS Integration</li><li class="mb-2">✓ SEO Optimization</li><li>✓ 3 Months Support</li></ul><a href="#connect" class="inline-block bg-heading text-text px-6 py-2 rounded-md font-bold hover:opacity-80 transition-opacity">Get Started</a></div>
+                        <div class="rounded-lg border border-border bg-surface p-8 text-center"><h3 class="text-2xl font-bold text-heading mb-4">Enterprise</h3><p class="text-3xl font-bold text-accent mb-4">Custom</p><p class="text-text-light mb-6">For large-scale applications.</p><ul class="text-left text-text-light mb-6"><li class="mb-2">✓ All Pro Features</li><li class="mb-2">✓ Unlimited Pages</li><li class="mb-2">✓ Custom Development</li><li class="mb-2">✓ Priority Support</li><li>✓ 12 Months Support</li></ul><a href="#connect" class="inline-block bg-accent text-bg px-6 py-2 rounded-md font-bold hover:opacity-80 transition-opacity">Contact Us</a></div>
                     </div>
                 </div>
             `,
@@ -325,16 +348,6 @@
                 </div>
             `,
             
-            connect: `
-                <div class="w-full px-4 md:px-8 lg:px-12 py-12">
-                    <h2 class="text-2xl font-bold text-heading mb-6">Connect</h2>
-                    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                        <div class="rounded-lg border border-border bg-surface p-8"><h3 class="font-mono text-xl font-bold text-accent mb-4">Contact Me</h3><p class="mb-6 text-text-light">Have a question or a project in mind? Let's talk.</p><form><input type="text" placeholder="Name" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"><input type="email" placeholder="Email" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"><textarea rows="4" placeholder="Message" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"></textarea><button class="w-full bg-heading text-text py-3 rounded-md font-bold hover:bg-[#D36C52] transition-colors">Send Message</button></form></div>
-                        <div class="rounded-lg border border-border bg-surface p-8"><h3 class="font-mono text-xl font-bold text-accent mb-4">Join My Newsletter</h3><p class="mb-6 text-text-light">Subscribe for updates on projects and design resources.</p><form><input type="email" placeholder="Email Address" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"><button class="w-full bg-heading text-text py-3 rounded-md font-bold hover:bg-[#D36C52] transition-colors">Subscribe</button></form><p class="mt-6 text-center text-xs text-text-light">No spam, ever. Unsubscribe anytime.</p></div>
-                    </div>
-                </div>
-            `,
-            
             resume: `
                 <div class="w-full px-4 md:px-8 lg:px-12 py-12">
                     <h2 class="text-2xl font-bold text-heading mb-6">Credentials Overview</h2>
@@ -353,14 +366,40 @@
                 </div>
             `,
             
-            faq: `
+            connect: `
                 <div class="w-full px-4 md:px-8 lg:px-12 py-12">
-                    <h2 class="text-2xl font-bold text-heading mb-6">Frequently Asked Questions</h2>
-                    <div class="space-y-4">
-                        <details class="rounded-lg border border-border bg-surface p-6"><summary class="font-bold text-accent cursor-pointer">What is your current availability?</summary><p class="mt-4 text-text-light">I am currently available for new freelance projects and contract roles.</p></details>
-                        <details class="rounded-lg border border-border bg-surface p-6"><summary class="font-bold text-accent cursor-pointer">What technologies excite you most?</summary><p class="mt-4 text-text-light">Edge computing, Astro, SvelteKit, variable fonts, and generative AI tools.</p></details>
-                        <details class="rounded-lg border border-border bg-surface p-6"><summary class="font-bold text-accent cursor-pointer">Where are you located?</summary><p class="mt-4 text-text-light">Martinez, Georgia. Available for remote work globally.</p></details>
-                        <details class="rounded-lg border border-border bg-surface p-6"><summary class="font-bold text-accent cursor-pointer">Can I see more work?</summary><p class="mt-4 text-text-light">Absolutely! Check out the <a href="#projects" class="text-accent hover:underline">Creations Overview</a> section.</p></details>
+                    <h2 class="text-2xl font-bold text-heading mb-6">Connect</h2>
+                    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                        <div class="rounded-lg border border-border bg-surface p-8"><h3 class="font-mono text-xl font-bold text-accent mb-4">Contact Me</h3><p class="mb-6 text-text-light">Have a question or a project in mind? Let's talk.</p><form><input type="text" placeholder="Name" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"><input type="email" placeholder="Email" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"><textarea rows="4" placeholder="Message" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"></textarea><button class="w-full bg-heading text-text py-3 rounded-md font-bold hover:bg-[#D36C52] transition-colors">Send Message</button></form></div>
+                        <div class="rounded-lg border border-border bg-surface p-8"><h3 class="font-mono text-xl font-bold text-accent mb-4">Join My Newsletter</h3><p class="mb-6 text-text-light">Subscribe for updates on projects and design resources.</p><form><input type="email" placeholder="Email Address" class="w-full p-3 mb-4 rounded-md border border-border bg-bg text-text"><button class="w-full bg-heading text-text py-3 rounded-md font-bold hover:bg-[#D36C52] transition-colors">Subscribe</button></form><p class="mt-6 text-center text-xs text-text-light">No spam, ever. Unsubscribe anytime.</p></div>
+                    </div>
+                </div>
+            `,
+            
+            docs: `
+                <div class="w-full px-4 md:px-8 lg:px-12 py-12">
+                    <h1 class="text-4xl font-bold text-heading mb-6">Documentation</h1>
+                    <div class="rounded-lg border border-border bg-surface p-8">
+                        <p class="mb-4 text-text-light">Welcome to the documentation section. Here you'll find guides, API references, and resources to help you get the most out of my work.</p>
+                        <div class="space-y-4 mt-6">
+                            <div class="border-b border-border pb-4"><h3 class="text-xl font-bold text-accent mb-2">Getting Started</h3><p class="text-text-light">Learn the basics and setup instructions.</p><a href="#" class="text-accent hover:text-heading transition-colors inline-block mt-2">Read Guide →</a></div>
+                            <div class="border-b border-border pb-4"><h3 class="text-xl font-bold text-accent mb-2">API Reference</h3><p class="text-text-light">Complete API documentation and examples.</p><a href="#" class="text-accent hover:text-heading transition-colors inline-block mt-2">View API →</a></div>
+                            <div class="border-b border-border pb-4"><h3 class="text-xl font-bold text-accent mb-2">Tutorials</h3><p class="text-text-light">Step-by-step tutorials for common tasks.</p><a href="#" class="text-accent hover:text-heading transition-colors inline-block mt-2">Browse Tutorials →</a></div>
+                            <div><h3 class="text-xl font-bold text-accent mb-2">FAQ</h3><p class="text-text-light">Frequently asked questions and troubleshooting.</p><a href="#faq" class="text-accent hover:text-heading transition-colors inline-block mt-2">Go to FAQ →</a></div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            
+            directory: `
+                <div class="w-full px-4 md:px-8 lg:px-12 py-12">
+                    <h1 class="text-4xl font-bold text-heading mb-6">Site Directory</h1>
+                    <div class="rounded-lg border border-border bg-surface p-8">
+                        <p class="mb-6 text-text-light">Complete sitemap and navigation guide for Echo.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div><h3 class="text-xl font-bold text-accent mb-4">Main Pages</h3><ul class="space-y-2 text-text-light"><li><a href="#home" class="hover:text-heading transition-colors">🏠 Home</a></li><li><a href="#about" class="hover:text-heading transition-colors">👤 About</a></li><li><a href="#services" class="hover:text-heading transition-colors">⚙️ Services</a></li><li><a href="#pricing" class="hover:text-heading transition-colors">💰 Pricing</a></li><li><a href="#projects" class="hover:text-heading transition-colors">📁 Projects</a></li></ul></div>
+                            <div><h3 class="text-xl font-bold text-accent mb-4">Resources</h3><ul class="space-y-2 text-text-light"><li><a href="#blog" class="hover:text-heading transition-colors">📝 Blog</a></li><li><a href="#resume" class="hover:text-heading transition-colors">📄 Resume</a></li><li><a href="#connect" class="hover:text-heading transition-colors">✉️ Connect</a></li><li><a href="#docs" class="hover:text-heading transition-colors">📚 Docs</a></li><li><a href="#faq" class="hover:text-heading transition-colors">❓ FAQ</a></li></ul></div>
+                        </div>
                     </div>
                 </div>
             `
