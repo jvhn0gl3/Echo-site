@@ -70,20 +70,45 @@
         .countdown-link:hover {
             text-decoration: underline;
         }
+        
+        /* Vertical Scroll Group for Nav Icons */
+        .nav-scroll-group {
+            height: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #E07A5F #4A3E38;
+        }
+        .nav-scroll-group::-webkit-scrollbar {
+            width: 4px;
+        }
+        .nav-scroll-group::-webkit-scrollbar-track {
+            background: #4A3E38;
+            border-radius: 4px;
+        }
+        .nav-scroll-group::-webkit-scrollbar-thumb {
+            background: #E07A5F;
+            border-radius: 4px;
+        }
+        .nav-scroll-group::-webkit-scrollbar-thumb:hover {
+            background: #3D87A6;
+        }
     </style>
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
 
-    <!-- Sidebar Navigation (SPA with hash routing) -->
-    <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col gap-1 items-center py-4">
-        <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-house text-xl"></i></a>
-        <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-user text-xl"></i></a>
-        <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-cog text-xl"></i></a>
-        <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-folder text-xl"></i></a>
-        <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-blog text-xl"></i></a>
-        <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-paper-plane text-xl"></i></a>
-        <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-file-contract text-xl"></i></a>
-        <a href="#faq" data-route="faq" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-question text-xl"></i></a>
+    <!-- Sidebar Navigation (SPA with hash routing) - Vertical Scroll Group -->
+    <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
+        <div class="nav-scroll-group flex flex-col gap-1 items-center w-full">
+            <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-house text-xl"></i></a>
+            <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-user text-xl"></i></a>
+            <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-cog text-xl"></i></a>
+            <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-folder text-xl"></i></a>
+            <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-blog text-xl"></i></a>
+            <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-paper-plane text-xl"></i></a>
+            <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-file-contract text-xl"></i></a>
+            <a href="#faq" data-route="faq" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-question text-xl"></i></a>
+        </div>
     </aside>
 
     <!-- Header -->
