@@ -63,6 +63,13 @@
         .active-nav {
             color: #E07A5F !important;
         }
+        .countdown-link {
+            color: inherit;
+            text-decoration: inherit;
+        }
+        .countdown-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
@@ -100,7 +107,7 @@
             </div>
             <div id="alert-bar" class="flex items-center gap-2 bg-yellow-300 text-black px-3 py-1 rounded-md">
                 <i class="fa-solid fa-triangle-exclamation animate-blink"></i>
-                <span><strong id="countdown-text" class="text-red-700 font-bold text-base mx-1"></strong> days until lockdown</span>
+                <span><a href="https://www.change.org/p/stop-google-from-limiting-apk-file-usage" target="_blank" rel="noopener noreferrer" class="countdown-link"><strong id="countdown-text" class="text-red-700 font-bold text-base mx-1"></strong> days until Android OS lockdown - Sign the petition</a></span>
             </div>
         </div>
     </header>
@@ -403,7 +410,7 @@
             window.addEventListener('hashchange', handleRouteChange);
         }
         
-        // Countdown timer - Fixed duplication issue
+        // Countdown timer - Linked to Change.org petition
         function updateCountdown() {
             const lockdownDate = new Date('2026-09-01T00:00:00Z');
             const today = new Date();
