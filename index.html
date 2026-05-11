@@ -100,7 +100,7 @@
             </div>
             <div id="alert-bar" class="flex items-center gap-2 bg-yellow-300 text-black px-3 py-1 rounded-md">
                 <i class="fa-solid fa-triangle-exclamation animate-blink"></i>
-                <span><strong id="countdown-text" class="text-red-700 font-bold text-base mx-1">124</strong> days until lockdown</span>
+                <span><strong id="countdown-text" class="text-red-700 font-bold text-base mx-1"></strong> days until lockdown</span>
             </div>
         </div>
     </header>
@@ -403,7 +403,7 @@
             window.addEventListener('hashchange', handleRouteChange);
         }
         
-        // Countdown timer
+        // Countdown timer - Fixed duplication issue
         function updateCountdown() {
             const lockdownDate = new Date('2026-09-01T00:00:00Z');
             const today = new Date();
@@ -411,7 +411,8 @@
             const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             const countdownSpan = document.getElementById('countdown-text');
             if (countdownSpan) {
-                countdownSpan.textContent = Math.max(0, daysDiff) + ' days until lockdown';
+                const displayDays = Math.max(0, daysDiff);
+                countdownSpan.textContent = displayDays;
             }
         }
         
