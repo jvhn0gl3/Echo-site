@@ -206,10 +206,10 @@
                         </div>
                         <div class="flex flex-col gap-6">
                             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-layer-group text-accent text-xl"></i><span class="font-mono text-lg font-bold">UI Design</span></div><span class="skill-percentage text-sm text-text-light">0%</span></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="90"></div></div></div>
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-magnifying-glass text-accent text-xl"></i><span class="font-mono text-lg font-bold">UX Research</span></div><span class="skill-percentage text-sm text-text-light">0%</span></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="75"></div></div></div>
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-code text-accent text-xl"></i><span class="font-mono text-lg font-bold">Prototyping</span></div><span class="skill-percentage text-sm text-text-light">0%</span></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="85"></div></div></div>
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-terminal text-accent text-xl"></i><span class="font-mono text-lg font-bold">Frontend Dev</span></div><span class="skill-percentage text-sm text-text-light">0%</span></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="80"></div></div></div>
+                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-layer-group text-accent text-xl"></i><span class="font-mono text-lg font-bold">UI Design</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="90"></div></div></div>
+                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-magnifying-glass text-accent text-xl"></i><span class="font-mono text-lg font-bold">UX Research</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="75"></div></div></div>
+                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-code text-accent text-xl"></i><span class="font-mono text-lg font-bold">Prototyping</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="85"></div></div></div>
+                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-terminal text-accent text-xl"></i><span class="font-mono text-lg font-bold">Frontend Dev</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="80"></div></div></div>
                             </div>
                             <a href="#about" class="box-border flex w-full items-center justify-center rounded-md border border-heading bg-transparent py-3 px-6 text-center font-mono font-bold text-heading no-underline transition-colors hover:bg-heading hover:text-text">More About Me</a>
                         </div>
@@ -376,12 +376,10 @@
             const skillItems = document.querySelectorAll('.skill-item');
             skillItems.forEach(item => {
                 const progressBar = item.querySelector('.skill-progress');
-                const skillPercentage = item.querySelector('.skill-percentage');
-                if (progressBar && skillPercentage) {
+                if (progressBar) {
                     const targetWidth = progressBar.getAttribute('data-progress');
                     setTimeout(() => {
                         progressBar.style.width = targetWidth + '%';
-                        skillPercentage.textContent = targetWidth + '%';
                     }, 100);
                 }
             });
