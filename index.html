@@ -62,6 +62,7 @@
         }
         .active-nav {
             color: #E07A5F !important;
+            text-shadow: 0 0 8px rgba(224,122,95,0.3);
         }
         .countdown-link {
             color: inherit;
@@ -93,6 +94,44 @@
         .nav-scroll-group::-webkit-scrollbar-thumb:hover {
             background: #3D87A6;
         }
+        
+        /* Colorized Nav Icons */
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link i {
+            transition: all 0.3s ease;
+        }
+        /* Home icon */
+        .nav-link[data-route="home"] i { color: #E07A5F; }
+        .nav-link[data-route="home"]:hover i { color: #E07A5F; text-shadow: 0 0 12px rgba(224,122,95,0.5); }
+        /* About icon */
+        .nav-link[data-route="about"] i { color: #5bc0de; }
+        .nav-link[data-route="about"]:hover i { color: #5bc0de; text-shadow: 0 0 12px rgba(91,192,222,0.5); }
+        /* Services icon */
+        .nav-link[data-route="services"] i { color: #f1c40f; }
+        .nav-link[data-route="services"]:hover i { color: #f1c40f; text-shadow: 0 0 12px rgba(241,196,15,0.5); }
+        /* Projects icon */
+        .nav-link[data-route="projects"] i { color: #2ecc71; }
+        .nav-link[data-route="projects"]:hover i { color: #2ecc71; text-shadow: 0 0 12px rgba(46,204,113,0.5); }
+        /* Blog icon */
+        .nav-link[data-route="blog"] i { color: #e67e22; }
+        .nav-link[data-route="blog"]:hover i { color: #e67e22; text-shadow: 0 0 12px rgba(230,126,34,0.5); }
+        /* Connect icon */
+        .nav-link[data-route="connect"] i { color: #9b59b6; }
+        .nav-link[data-route="connect"]:hover i { color: #9b59b6; text-shadow: 0 0 12px rgba(155,89,182,0.5); }
+        /* Resume icon */
+        .nav-link[data-route="resume"] i { color: #e74c3c; }
+        .nav-link[data-route="resume"]:hover i { color: #e74c3c; text-shadow: 0 0 12px rgba(231,76,60,0.5); }
+        /* FAQ icon */
+        .nav-link[data-route="faq"] i { color: #1abc9c; }
+        .nav-link[data-route="faq"]:hover i { color: #1abc9c; text-shadow: 0 0 12px rgba(26,188,156,0.5); }
+        
+        /* Active state for icons */
+        .nav-link.active-nav i {
+            filter: drop-shadow(0 0 6px currentColor);
+        }
     </style>
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
@@ -100,14 +139,14 @@
     <!-- Sidebar Navigation (SPA with hash routing) - Vertical Scroll Group -->
     <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
         <div class="nav-scroll-group flex flex-col gap-1 items-center w-full">
-            <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-house text-xl"></i></a>
-            <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-user text-xl"></i></a>
-            <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-cog text-xl"></i></a>
-            <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-folder text-xl"></i></a>
-            <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-blog text-xl"></i></a>
-            <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-paper-plane text-xl"></i></a>
-            <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-file-contract text-xl"></i></a>
-            <a href="#faq" data-route="faq" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md"><i class="fa-solid fa-question text-xl"></i></a>
+            <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
+            <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
+            <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-cog text-xl"></i></a>
+            <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-folder text-xl"></i></a>
+            <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-blog text-xl"></i></a>
+            <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
+            <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-file-contract text-xl"></i></a>
+            <a href="#faq" data-route="faq" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-question text-xl"></i></a>
         </div>
     </aside>
 
