@@ -111,15 +111,38 @@
         .nav-link[data-route="directory"] i { color: #95a5a6; }
         .nav-link[data-route="directory"]:hover i { color: #95a5a6; text-shadow: 0 0 12px rgba(149,165,166,0.5); }
         /* GitHub icon */
-        .nav-link[data-route="github"] i { color: #fff; }
-        .nav-link[data-route="github"]:hover i { color: #fff; text-shadow: 0 0 12px rgba(255,255,255,0.5); }
+        .github-link i { color: #fff; }
+        .github-link:hover i { color: #fff; text-shadow: 0 0 12px rgba(255,255,255,0.5); }
         
         /* Active state for icons */
         .nav-link.active-nav i {
             filter: drop-shadow(0 0 6px currentColor);
         }
         
-        /* Separator line */
+        /* Sidebar layout - pushes github to bottom */
+        .sidebar-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+        
+        .nav-top {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .nav-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 16px;
+        }
+        
         .nav-separator {
             width: 80%;
             height: 1px;
@@ -130,21 +153,28 @@
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
 
-    <!-- Sidebar Navigation (SPA with hash routing) -->
+    <!-- Sidebar Navigation (SPA with hash routing) with GitHub at bottom -->
     <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
-        <div class="flex flex-col gap-1 items-center w-full">
-            <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
-            <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
-            <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-cog text-xl"></i></a>
-            <a href="#pricing" data-route="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-tag text-xl"></i></a>
-            <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-folder text-xl"></i></a>
-            <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-blog text-xl"></i></a>
-            <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-file-contract text-xl"></i></a>
-            <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
-            <a href="#docs" data-route="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i></a>
-            <a href="#directory" data-route="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i></a>
-            <div class="nav-separator"></div>
-            <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" data-route="github" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i></a>
+        <div class="sidebar-container w-full">
+            <!-- Top navigation items -->
+            <div class="nav-top">
+                <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
+                <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
+                <a href="#services" data-route="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-cog text-xl"></i></a>
+                <a href="#pricing" data-route="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-tag text-xl"></i></a>
+                <a href="#projects" data-route="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-folder text-xl"></i></a>
+                <a href="#blog" data-route="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-blog text-xl"></i></a>
+                <a href="#resume" data-route="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-file-contract text-xl"></i></a>
+                <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
+                <a href="#docs" data-route="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i></a>
+                <a href="#directory" data-route="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i></a>
+            </div>
+            
+            <!-- Bottom section with GitHub link -->
+            <div class="nav-bottom">
+                <div class="nav-separator"></div>
+                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i></a>
+            </div>
         </div>
     </aside>
 
