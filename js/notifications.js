@@ -96,7 +96,12 @@ function refreshCountdownInNotification() {
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    startNotificationLoop();
-    setInterval(refreshCountdownInNotification, 60000);
-});
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        startNotificationLoop();
+        setInterval(refreshCountdownInNotification, 60000);
+    });
+}
+
+// Export for use in master.js
+export { notifications, startNotificationLoop, refreshCountdownInNotification };
