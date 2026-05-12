@@ -1,9 +1,6 @@
 /* master.css - Main CSS file that imports all other CSS files */
 
-/* Import Tailwind (via CDN in HTML) */
-/* Import Font Awesome (via CDN in HTML) */
-
 /* Import notification styles */
 @import url('notifications.css');
 
-/* Additional global styles can go here */
+/* Any additional global styles can go here */
