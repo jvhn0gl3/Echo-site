@@ -1,0 +1,21 @@
+/* Custom notification colors - Tailwind doesn't have these exact colors */
+.alert-safe { 
+    background-color: #2ecc71 !important; 
+    color: #1a1a1a !important; 
+}
+
+.alert-warning { 
+    background-color: #f39c12 !important; 
+    color: #1a1a1a !important; 
+}
+
+.alert-danger { 
+    background-color: #e74c3c !important; 
+    color: #fff !important; 
+}
+
+.alert-critical { 
+    background-color: #c0392b !important; 
+    color: #fff !important; 
+    animation: pulse 1s ease-in-out infinite !important; 
+}
