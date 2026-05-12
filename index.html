@@ -359,10 +359,22 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 40px;
-            padding: 4rem 2rem;
+            padding: 2rem 1.5rem;
             width: 100%;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
             margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-card {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .section-card {
+                padding: 4rem 3rem;
+            }
         }
 
         .hero-title {
@@ -1169,17 +1181,17 @@
     <div id="main-content" tabindex="-1">
         <section class="flex flex-col items-center justify-center py-6">
             <div class="section-card flex flex-col items-center">
-                <h1 class="hero-title mb-8 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl text-center">
+                <h1 class="hero-title mb-6 sm:mb-8 font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-heading text-center">
                     Crafting <span class="text-accent italic">Digital</span> Solutions with <span class="border-b-4 border-accent">Precision</span>
                 </h1>
-                <p class="mx-auto mb-12 text-lg text-text-light md:text-xl lg:text-2xl max-w-2xl text-center">
+                <p class="mx-auto mb-10 sm:mb-12 text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl text-center text-text-light">
                     Welcome to Echo — where creativity meets code in a seamless dashboard experience.
                 </p>
-                <div class="flex flex-col items-center justify-center gap-6 sm:flex-row w-full max-w-lg">
-                    <a href="#" class="btn-modern btn-primary-glass w-full sm:w-auto">
+                <div class="flex flex-col items-center justify-center gap-4 sm:gap-6 sm:flex-row w-full max-w-lg">
+                    <a href="#" class="btn-modern btn-primary-glass w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base">
                         <i class="fa-solid fa-rocket"></i> Explore Projects
                     </a>
-                    <a href="#" class="btn-modern btn-secondary-glass w-full sm:w-auto">
+                    <a href="#" class="btn-modern btn-secondary-glass w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base">
                         <i class="fa-solid fa-paper-plane"></i> Get in Touch
                     </a>
                 </div>
@@ -1189,29 +1201,29 @@
         <!-- Profile Section -->
         <section id="about" class="flex flex-col items-center justify-center py-6">
             <div class="section-card">
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-8 lg:gap-12">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8 md:gap-10 lg:gap-12">
                     <!-- Profile Sidebar (Image + Coffee) -->
-                    <div class="flex flex-col items-center gap-6">
+                    <div class="flex flex-col items-center gap-4 sm:gap-6">
                         <div class="relative group">
                             <div class="absolute -inset-1 bg-gradient-to-r from-heading to-accent rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                            <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/10">
+                            <div class="relative w-32 h-32 sm:w-48 h-48 md:w-56 h-56 lg:w-64 h-64 rounded-full overflow-hidden border-2 border-white/10">
                                 <img src="logo.png" alt="Profile" class="w-full h-full object-cover">
                             </div>
                         </div>
                         
                         <!-- Moved Coffee Card -->
-                        <div class="w-full p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
-                            <div class="text-heading font-bold text-2xl">∞</div>
-                            <div class="text-text-light text-xs uppercase tracking-widest opacity-60">Coffee Consumption</div>
+                        <div class="w-full p-3 sm:p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
+                            <div class="text-heading font-bold text-lg sm:text-xl md:text-2xl">∞</div>
+                            <div class="text-text-light text-[10px] sm:text-xs uppercase tracking-widest opacity-60">Coffee Consumption</div>
                         </div>
                     </div>
 
                     <!-- Profile Info -->
                     <div class="flex-1 text-center md:text-left">
-                        <h2 class="text-3xl md:text-5xl font-bold text-heading mb-2">john ogletree ( jvhn0gl3 )</h2>
-                        <p class="text-accent text-xl font-mono mb-6 italic">Full-Stack Digital Architect</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-2">john ogletree ( jvhn0gl3 )</h2>
+                        <p class="text-accent text-base sm:text-lg md:text-xl font-mono mb-4 sm:mb-6 italic">Full-Stack Digital Architect</p>
                         
-                        <div class="space-y-4 text-text-light text-lg">
+                        <div class="space-y-3 sm:space-y-4 text-text-light text-sm sm:text-base md:text-lg">
                             <p>
                                 Specializing in building high-performance, aesthetically pleasing digital products. With over a decade of experience in software engineering and UI/UX design.
                             </p>
@@ -1221,30 +1233,30 @@
                         </div>
 
                         <!-- Stats/Quick Info -->
-                        <div class="grid grid-cols-2 gap-4 mt-8">
-                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
-                                <div class="text-heading font-bold text-2xl">10+</div>
-                                <div class="text-text-light text-xs uppercase tracking-widest opacity-60">Years Exp.</div>
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
+                            <div class="p-3 sm:p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
+                                <div class="text-heading font-bold text-xl md:text-2xl lg:text-3xl">10+</div>
+                                <div class="text-text-light text-[10px] sm:text-xs uppercase tracking-widest opacity-60">Years Exp.</div>
                             </div>
-                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
-                                <div class="text-heading font-bold text-2xl">50+</div>
-                                <div class="text-text-light text-xs uppercase tracking-widest opacity-60">Projects</div>
+                            <div class="p-3 sm:p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
+                                <div class="text-heading font-bold text-xl md:text-2xl lg:text-3xl">50+</div>
+                                <div class="text-text-light text-[10px] sm:text-xs uppercase tracking-widest opacity-60">Projects</div>
                             </div>
                         </div>
 
                         <!-- Social Buttons -->
-                        <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-                            <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
-                                <i class="fa-brands fa-github text-xl"></i>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8">
+                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                                <i class="fa-brands fa-github text-lg sm:text-xl"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
-                                <i class="fa-brands fa-linkedin text-xl"></i>
+                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                                <i class="fa-brands fa-linkedin text-lg sm:text-xl"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
-                                <i class="fa-brands fa-twitter text-xl"></i>
+                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                                <i class="fa-brands fa-twitter text-lg sm:text-xl"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
-                                <i class="fa-brands fa-instagram text-xl"></i>
+                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                                <i class="fa-brands fa-instagram text-lg sm:text-xl"></i>
                             </a>
                         </div>
                     </div>
