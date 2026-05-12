@@ -28,9 +28,13 @@
                         mono: ['IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
                     },
                     keyframes: {
-                        blink: { '50%': { backgroundColor: 'transparent' } }
+                        blink: { '50%': { backgroundColor: 'transparent' } },
+                        pulse: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.7' } }
                     },
-                    animation: { blink: 'blink 1s steps(1) infinite' }
+                    animation: { 
+                        blink: 'blink 1s steps(1) infinite',
+                        pulse: 'pulse 1s ease-in-out infinite'
+                    }
                 }
             }
         }
@@ -184,6 +188,12 @@
             padding: 1rem;
             margin-bottom: 0.75rem;
         }
+        
+        /* Alert bar color classes */
+        .alert-safe { background-color: #2ecc71 !important; color: #1a1a1a !important; }
+        .alert-warning { background-color: #f39c12 !important; color: #1a1a1a !important; }
+        .alert-danger { background-color: #e74c3c !important; color: #fff !important; }
+        .alert-critical { background-color: #c0392b !important; color: #fff !important; animation: pulse 1s ease-in-out infinite !important; }
     </style>
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
@@ -229,9 +239,9 @@
                     <div class="text-heading">Echo</div>
                 </a>
             </div>
-            <div id="alert-bar" class="flex items-center gap-2 bg-yellow-300 text-black px-3 py-1 rounded-md">
+            <div id="alert-bar" class="flex items-center gap-2 px-3 py-1 rounded-md transition-all duration-300">
                 <i class="fa-solid fa-triangle-exclamation animate-blink"></i>
-                <span><a href="https://www.change.org/p/stop-google-from-limiting-apk-file-usage" target="_blank" rel="noopener noreferrer" class="countdown-link"><strong id="countdown-text" class="text-red-700 font-bold text-base mx-1"></strong> days until Android OS lockdown - Sign the petition</a></span>
+                <span><a href="https://www.change.org/p/stop-google-from-limiting-apk-file-usage" target="_blank" rel="noopener noreferrer" class="countdown-link"><strong id="countdown-text" class="font-bold text-base mx-1"></strong> days until Android OS lockdown - Sign the petition</a></span>
             </div>
         </div>
     </header>
@@ -617,21 +627,51 @@
             window.addEventListener('hashchange', handleRouteChange);
         }
         
+        // Countdown timer with color changing based on remaining days
         function updateCountdown() {
             const lockdownDate = new Date('2026-09-01T00:00:00Z');
             const today = new Date();
             const timeDiff = lockdownDate.getTime() - today.getTime();
             const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             const countdownSpan = document.getElementById('countdown-text');
+            const alertBar = document.getElementById('alert-bar');
+            
             if (countdownSpan) {
                 const displayDays = Math.max(0, daysDiff);
                 countdownSpan.textContent = displayDays;
+                
+                // Change alert bar color based on remaining days
+                if (alertBar) {
+                    // Remove all existing color classes
+                    alertBar.classList.remove('alert-safe', 'alert-warning', 'alert-danger', 'alert-critical');
+                    
+                    // Add appropriate color class based on days remaining
+                    if (displayDays > 60) {
+                        // Safe zone - Green (>60 days)
+                        alertBar.classList.add('alert-safe');
+                    } else if (displayDays > 30) {
+                        // Warning zone - Orange (31-60 days)
+                        alertBar.classList.add('alert-warning');
+                    } else if (displayDays > 7) {
+                        // Danger zone - Red (8-30 days)
+                        alertBar.classList.add('alert-danger');
+                    } else if (displayDays > 0) {
+                        // Critical zone - Dark red with pulse animation (1-7 days)
+                        alertBar.classList.add('alert-critical');
+                    } else {
+                        // Past due - Dark red with pulse (0 or negative)
+                        alertBar.classList.add('alert-critical');
+                    }
+                }
             }
         }
         
         document.addEventListener('DOMContentLoaded', () => {
             setupNavigation();
             updateCountdown();
+            // Update countdown every hour to refresh color if needed
+            setInterval(updateCountdown, 3600000);
+            
             const initialPage = window.location.hash.slice(1) || 'home';
             if (pages[initialPage]) {
                 loadPage(initialPage);
