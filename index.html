@@ -85,12 +85,6 @@
             min-height: 100vh;
         }
         
-        /* Alert styles */
-        .alert-safe { background-color: #2ecc71 !important; color: #1a1a1a !important; }
-        .alert-warning { background-color: #f39c12 !important; color: #1a1a1a !important; }
-        .alert-danger { background-color: #e74c3c !important; color: #fff !important; }
-        .alert-critical { background-color: #c0392b !important; color: #fff !important; animation: pulse 1s ease-in-out infinite !important; }
-        
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
@@ -196,8 +190,6 @@
             #sidebar { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
             #sidebar.open { transform: translateX(0); }
             .menu-toggle { display: flex !important; }
-            #notification-bar { min-width: auto !important; max-width: 250px; }
-            #notification-text { white-space: normal; font-size: 11px; }
             .hero-title { font-size: 2rem !important; }
         }
         
@@ -902,13 +894,6 @@
 
         <!-- Right: Status/Notifications -->
         <div class="flex items-center gap-4">
-            <!-- Notification Bar -->
-            <div id="notification-bar" class="flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 shadow-lg cursor-pointer border border-white/10" style="background-color: rgba(46, 204, 113, 0.2); min-width: 280px;" role="status" aria-live="polite">
-                <i id="notification-icon" class="fa-solid fa-bell text-sm animate-pulse text-white" aria-hidden="true"></i>
-                <div class="relative overflow-hidden flex-1">
-                    <div id="notification-text" class="text-xs font-semibold text-text whitespace-nowrap overflow-hidden text-ellipsis uppercase tracking-wider"></div>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -1115,63 +1100,6 @@
             });
         });
         
-        // Notifications
-        const notifications = [
-            { text: "days until Android OS lockdown - Sign the petition", link: "https://www.change.org/p/stop-google-from-limiting-apk-file-usage", color: "alert-safe", hasCountdown: true },
-            { text: "New portfolio feature: Interactive 3D models coming soon!", link: null, color: "alert-warning", hasCountdown: false },
-            { text: "New blog post: 'The Future of Web Design' - Read now!", link: null, color: "alert-info", hasCountdown: false },
-            { text: "Fresh projects added to the Creations Gallery!", link: null, color: "alert-safe", hasCountdown: false },
-            { text: "Subscribe to my newsletter for exclusive design resources!", link: null, color: "alert-safe", hasCountdown: false }
-        ];
-        
-        let notificationIndex = 0;
-        let interval = null;
-        
-        function getDaysRemaining() {
-            const target = new Date('2026-09-01T00:00:00Z');
-            const now = new Date();
-            const diff = target.getTime() - now.getTime();
-            return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
-        }
-        
-        function getColorClass(days) {
-            if (days > 60) return 'alert-safe';
-            if (days > 30) return 'alert-warning';
-            if (days > 7) return 'alert-danger';
-            return 'alert-critical';
-        }
-        
-        function updateNotification() {
-            const bar = document.getElementById('notification-bar');
-            const textEl = document.getElementById('notification-text');
-            const iconEl = document.getElementById('notification-icon');
-            if (!bar || !textEl) return;
-            
-            const n = notifications[notificationIndex];
-            
-            if (n.hasCountdown) {
-                const days = getDaysRemaining();
-                textEl.textContent = `⚠️ ${days} ${n.text}`;
-                const color = getColorClass(days);
-                bar.className = bar.className.split(' ').filter(c => !c.startsWith('alert-')).join(' ') + ' ' + color;
-                iconEl.className = days <= 7 ? 'fa-solid fa-circle-exclamation text-sm animate-pulse' : 'fa-solid fa-bell text-sm';
-            } else {
-                textEl.textContent = `⚠️ ${n.text}`;
-                bar.className = bar.className.split(' ').filter(c => !c.startsWith('alert-')).join(' ') + ' ' + n.color;
-                iconEl.className = 'fa-solid fa-bell text-sm';
-            }
-            
-            if (n.link && isValidUrl(n.link)) {
-                bar.style.cursor = 'pointer';
-                bar.onclick = () => window.open(n.link, '_blank', 'noopener,noreferrer');
-            } else {
-                bar.style.cursor = 'default';
-                bar.onclick = null;
-            }
-            
-            notificationIndex = (notificationIndex + 1) % notifications.length;
-        }
-        
         // Security: prevent copy but preserve styling
         document.addEventListener('copy', (e) => e.preventDefault());
         document.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -1201,8 +1129,6 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadAccessibilityPreferences();
-            updateNotification();
-            interval = setInterval(updateNotification, 8000);
 
             // Search focus handling
             const searchInput = document.querySelector('.search-container input');
