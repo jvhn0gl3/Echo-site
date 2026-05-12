@@ -3,7 +3,7 @@
 <head>
     <title>Echo | John Ogletree - Digital Creator & Designer</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="description" content="Welcome to Echo, the personal portfolio of John Ogletree. Explore my creations in web design, development, and digital strategy." />
     <meta name="keywords" content="John Ogletree, Portfolio, Web Developer, UI/UX Designer, Digital Creator, Astro, JavaScript, Georgia" />
     <meta name="author" content="John Ogletree" />
@@ -22,7 +22,6 @@
                         'heading': '#E07A5F',
                         'accent': '#3D87A6',
                         'border': '#5B4F48',
-                        'tag-bg': 'rgba(61, 135, 166, 0.15)',
                     },
                     fontFamily: {
                         mono: ['IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
@@ -40,13 +39,68 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/master.css">
-    <script type="module" src="js/master.js"></script>
+    
+    <style>
+        /* Custom notification colors */
+        .alert-safe { background-color: #2ecc71 !important; color: #1a1a1a !important; }
+        .alert-warning { background-color: #f39c12 !important; color: #1a1a1a !important; }
+        .alert-danger { background-color: #e74c3c !important; color: #fff !important; }
+        .alert-critical { background-color: #c0392b !important; color: #fff !important; animation: pulse 1s ease-in-out infinite !important; }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .ml-16 { margin-left: 0 !important; }
+            aside { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; }
+            aside.open { transform: translateX(0); }
+            .menu-toggle { display: block !important; }
+            #notification-bar { min-width: auto !important; max-width: 200px; }
+            .notification-container { min-width: auto !important; }
+            #notification-text { font-size: 11px; white-space: normal; }
+        }
+        @media (min-width: 769px) {
+            .menu-toggle { display: none; }
+        }
+        .menu-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            z-index: 1001;
+            background: #4A3E38;
+            border: none;
+            color: #F0EAD6;
+            font-size: 24px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
 
+    <!-- Mobile Menu Toggle Button -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
     <!-- Sidebar Component -->
-    <sidebar></sidebar>
+    <aside id="sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
+        <div class="flex flex-col h-full justify-between w-full">
+            <div class="flex flex-col gap-1 items-center flex-1">
+                <a href="#" data-nav="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
+                <a href="#" data-nav="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
+                <a href="#" data-nav="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-cog text-xl"></i></a>
+                <a href="#" data-nav="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-tag text-xl"></i></a>
+                <a href="#" data-nav="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-folder text-xl"></i></a>
+                <a href="#" data-nav="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-blog text-xl"></i></a>
+                <a href="#" data-nav="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-file-contract text-xl"></i></a>
+                <a href="#" data-nav="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
+                <a href="#" data-nav="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i></a>
+                <a href="#" data-nav="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i></a>
+            </div>
+            <div class="flex flex-col items-center gap-2 pb-4">
+                <div class="w-[80%] h-px bg-border my-2"></div>
+                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </aside>
 
     <!-- Header -->
     <header class="sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-border bg-surface p-4 px-4 md:px-8">
@@ -69,9 +123,9 @@
             </div>
             
             <!-- Notification Loop Container -->
-            <div id="notification-bar" class="flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 min-w-[450px] shadow-lg cursor-pointer">
+            <div id="notification-bar" class="flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 shadow-lg cursor-pointer" style="background-color: #2ecc71; min-width: 300px;">
                 <i id="notification-icon" class="fa-solid fa-bell text-sm animate-pulse"></i>
-                <div class="relative overflow-hidden min-w-[500px] flex-1">
+                <div class="relative overflow-hidden flex-1">
                     <div id="notification-text" class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis"></div>
                 </div>
             </div>
@@ -79,7 +133,7 @@
     </header>
 
     <!-- Main Content - Hero Section Only -->
-    <div class="ml-16">
+    <div class="ml-16 md:ml-16" id="main-content">
         <section class="flex min-h-[80vh] flex-col items-center justify-center py-12 text-center md:py-20">
             <div class="w-full px-4 md:px-8 lg:px-12">
                 <h1 class="mb-6 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl">
@@ -99,5 +153,124 @@
             </div>
         </section>
     </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking a link on mobile
+        document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('open');
+                }
+            });
+        });
+
+        // Notification Loop System
+        const notifications = [
+            { text: "⚠️ <strong id='countdown-text'></strong> days until Android OS lockdown - Sign the petition", link: "https://www.change.org/p/stop-google-from-limiting-apk-file-usage", color: "alert-safe" },
+            { text: "🚀 New portfolio feature: Interactive 3D models coming soon!", link: null, color: "alert-warning" },
+            { text: "📝 New blog post: 'The Future of Web Design' - Read now!", link: null, color: "alert-info" },
+            { text: "🎨 Fresh projects added to the Creations Gallery!", link: null, color: "alert-safe" },
+            { text: "💡 Tip: Check out the new documentation section for guides", link: null, color: "alert-warning" },
+            { text: "🔔 Subscribe to my newsletter for exclusive design resources!", link: null, color: "alert-safe" }
+        ];
+
+        let currentNotificationIndex = 0;
+        let notificationInterval;
+
+        function updateCountdownForNotification() {
+            const lockdownDate = new Date('2026-09-01T00:00:00Z');
+            const today = new Date();
+            const timeDiff = lockdownDate.getTime() - today.getTime();
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            return Math.max(0, daysDiff);
+        }
+
+        function getColorClass(daysRemaining) {
+            if (daysRemaining > 60) return 'alert-safe';
+            if (daysRemaining > 30) return 'alert-warning';
+            if (daysRemaining > 7) return 'alert-danger';
+            return 'alert-critical';
+        }
+
+        function updateNotificationBar() {
+            const notificationBar = document.getElementById('notification-bar');
+            const notificationText = document.getElementById('notification-text');
+            const notificationIcon = document.getElementById('notification-icon');
+            
+            if (!notificationBar || !notificationText) return;
+            
+            let notification = notifications[currentNotificationIndex];
+            
+            if (currentNotificationIndex === 0) {
+                const daysRemaining = updateCountdownForNotification();
+                const countdownHtml = `<strong>${daysRemaining}</strong> days until Android OS lockdown - Sign the petition`;
+                notificationText.innerHTML = countdownHtml;
+                
+                const colorClass = getColorClass(daysRemaining);
+                notificationBar.classList.remove('alert-safe', 'alert-warning', 'alert-danger', 'alert-critical');
+                notificationBar.classList.add(colorClass);
+                notificationIcon.className = daysRemaining <= 7 ? 'fa-solid fa-circle-exclamation text-sm animate-pulse' : 'fa-solid fa-bell text-sm';
+            } else {
+                notificationText.innerHTML = notification.text;
+                notificationBar.classList.remove('alert-safe', 'alert-warning', 'alert-danger', 'alert-critical');
+                notificationBar.classList.add(notification.color);
+                notificationIcon.className = 'fa-solid fa-bell text-sm';
+            }
+            
+            if (notification.link) {
+                notificationBar.style.cursor = 'pointer';
+                notificationBar.onclick = () => {
+                    if (notification.link.startsWith('#')) {
+                        console.log('Navigate to:', notification.link);
+                    } else {
+                        window.open(notification.link, '_blank');
+                    }
+                };
+            } else {
+                notificationBar.style.cursor = 'default';
+                notificationBar.onclick = null;
+            }
+            
+            currentNotificationIndex = (currentNotificationIndex + 1) % notifications.length;
+        }
+
+        function startNotificationLoop() {
+            updateNotificationBar();
+            notificationInterval = setInterval(updateNotificationBar, 8000);
+        }
+
+        function refreshCountdownInNotification() {
+            if (currentNotificationIndex === 0) {
+                const countdownSpan = document.getElementById('countdown-text');
+                if (countdownSpan) {
+                    const daysRemaining = updateCountdownForNotification();
+                    countdownSpan.textContent = daysRemaining;
+                    
+                    const notificationBar = document.getElementById('notification-bar');
+                    const colorClass = getColorClass(daysRemaining);
+                    notificationBar.classList.remove('alert-safe', 'alert-warning', 'alert-danger', 'alert-critical');
+                    notificationBar.classList.add(colorClass);
+                    
+                    const notificationIcon = document.getElementById('notification-icon');
+                    if (notificationIcon) {
+                        notificationIcon.className = daysRemaining <= 7 ? 'fa-solid fa-circle-exclamation text-sm animate-pulse' : 'fa-solid fa-bell text-sm';
+                    }
+                }
+            }
+        }
+
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded - initializing components');
+            startNotificationLoop();
+            setInterval(refreshCountdownInNotification, 60000);
+        });
+    </script>
 </body>
 </html>

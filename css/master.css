@@ -1,6 +1,0 @@
-/* master.css - Main CSS file that imports all other CSS files */
-
-/* Import notification styles */
-@import url('notifications.css');
-
-/* Any additional global styles can go here */
