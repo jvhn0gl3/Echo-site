@@ -381,6 +381,29 @@
             top: 0;
         }
         
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #5B4F48;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #E07A5F;
+        }
+        
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #5B4F48 transparent;
+        }
+
         /* Tooltip */
         [data-tooltip] {
             position: relative;
@@ -418,8 +441,8 @@
 
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4" aria-label="Main navigation">
-        <div class="flex flex-col h-full justify-between w-full">
-            <div class="flex flex-col gap-1 items-center flex-1">
+        <div class="flex flex-col h-full w-full">
+            <div class="flex flex-col gap-1 items-center flex-1 overflow-y-auto py-2 w-full custom-scrollbar">
                 <a href="#" data-nav="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Home"><i class="fa-solid fa-house text-xl"></i><span class="sr-only">Home</span></a>
                 <a href="#" data-nav="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="About"><i class="fa-solid fa-user text-xl"></i><span class="sr-only">About</span></a>
                 <a href="#" data-nav="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Services"><i class="fa-solid fa-cog text-xl"></i><span class="sr-only">Services</span></a>
@@ -431,15 +454,18 @@
                 <a href="#" data-nav="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Documentation"><i class="fa-solid fa-book text-xl"></i><span class="sr-only">Documentation</span></a>
                 <a href="#" data-nav="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Directory"><i class="fa-solid fa-sitemap text-xl"></i><span class="sr-only">Directory</span></a>
             </div>
-            <div class="flex flex-col items-center gap-2 pb-4">
+            
+            <div class="flex flex-col items-center mt-auto w-full pb-4">
                 <div class="w-[80%] h-px bg-border my-2" aria-hidden="true"></div>
                 
-                <!-- Accessibility Modal Trigger -->
-                <button class="accessibility-trigger" onclick="openAccessibilityModal()" aria-label="Accessibility options" data-tooltip="Accessibility Menu">
-                    <i class="fa-solid fa-universal-access"></i>
-                </button>
-                
-                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="GitHub Profile"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
+                <div class="flex flex-col items-center gap-2">
+                    <!-- Accessibility Modal Trigger -->
+                    <button class="accessibility-trigger text-text-light hover:text-heading flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" onclick="openAccessibilityModal()" aria-label="Accessibility options" data-tooltip="Accessibility Menu">
+                        <i class="fa-solid fa-universal-access text-xl"></i>
+                    </button>
+                    
+                    <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="GitHub Profile"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
+                </div>
             </div>
         </div>
     </aside>
