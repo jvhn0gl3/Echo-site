@@ -110,10 +110,21 @@
         /* Directory icon */
         .nav-link[data-route="directory"] i { color: #95a5a6; }
         .nav-link[data-route="directory"]:hover i { color: #95a5a6; text-shadow: 0 0 12px rgba(149,165,166,0.5); }
+        /* GitHub icon */
+        .nav-link[data-route="github"] i { color: #fff; }
+        .nav-link[data-route="github"]:hover i { color: #fff; text-shadow: 0 0 12px rgba(255,255,255,0.5); }
         
         /* Active state for icons */
         .nav-link.active-nav i {
             filter: drop-shadow(0 0 6px currentColor);
+        }
+        
+        /* Separator line */
+        .nav-separator {
+            width: 80%;
+            height: 1px;
+            background: #5B4F48;
+            margin: 8px 0;
         }
     </style>
 </head>
@@ -132,6 +143,8 @@
             <a href="#connect" data-route="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i></a>
             <a href="#docs" data-route="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i></a>
             <a href="#directory" data-route="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i></a>
+            <div class="nav-separator"></div>
+            <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" data-route="github" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i></a>
         </div>
     </aside>
 
