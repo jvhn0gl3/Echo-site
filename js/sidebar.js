@@ -48,5 +48,5 @@ class SidebarComponent extends HTMLElement {
     }
 }
 
-// Register the custom element
-customElements.define('sidebar-component', SidebarComponent);
+// Register the custom element with the name 'sidebar'
+customElements.define('sidebar', SidebarComponent);
