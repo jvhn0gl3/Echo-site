@@ -134,6 +134,92 @@
             color: #E07A5F !important;
         }
         
+        /* Accessibility Menu Styles */
+        .accessibility-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .accessibility-btn {
+            background: transparent;
+            border: none;
+            color: #D4C9A8;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .accessibility-btn:hover {
+            background: #5B4F48;
+            color: #E07A5F;
+            transform: scale(1.05);
+        }
+        
+        .accessibility-btn:focus {
+            outline: 2px solid #E07A5F;
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode */
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        
+        body.high-contrast .bg-surface,
+        body.high-contrast #sidebar,
+        body.high-contrast header,
+        body.high-contrast footer {
+            background-color: #111111 !important;
+        }
+        
+        body.high-contrast .text-heading,
+        body.high-contrast .fa-solid,
+        body.high-contrast .fa-brands {
+            color: #ffff00 !important;
+        }
+        
+        /* Large text mode */
+        body.large-text {
+            font-size: 120% !important;
+        }
+        
+        body.large-text h1 {
+            font-size: 3rem !important;
+        }
+        
+        /* Reduce motion */
+        body.reduce-motion * {
+            animation-duration: 0.001s !important;
+            transition-duration: 0.001s !important;
+        }
+        
+        /* Dyslexic font mode */
+        body.dyslexic-font {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', 'Comic Neue', sans-serif !important;
+        }
+        
+        /* Readable line height */
+        body.readable-line-height {
+            line-height: 1.8 !important;
+        }
+        
+        /* Focus visible indicator */
+        :focus-visible {
+            outline: 3px solid #E07A5F;
+            outline-offset: 3px;
+        }
+        
         /* Prevent data exfiltration but preserve styling */
         body {
             user-select: none;
@@ -149,31 +235,73 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #E07A5F;
+            color: #1a1a1a;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1002;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Skip to content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Mobile Menu Toggle -->
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
+    <aside id="sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4" aria-label="Main navigation">
         <div class="flex flex-col h-full justify-between w-full">
             <div class="flex flex-col gap-1 items-center flex-1">
-                <a href="#" data-nav="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i><span class="sr-only">Home</span></a>
-                <a href="#" data-nav="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i><span class="sr-only">About</span></a>
-                <a href="#" data-nav="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-cog text-xl"></i><span class="sr-only">Services</span></a>
-                <a href="#" data-nav="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-tag text-xl"></i><span class="sr-only">Pricing</span></a>
-                <a href="#" data-nav="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-folder text-xl"></i><span class="sr-only">Projects</span></a>
-                <a href="#" data-nav="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-blog text-xl"></i><span class="sr-only">Blog</span></a>
-                <a href="#" data-nav="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-file-contract text-xl"></i><span class="sr-only">Resume</span></a>
-                <a href="#" data-nav="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-paper-plane text-xl"></i><span class="sr-only">Connect</span></a>
-                <a href="#" data-nav="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i><span class="sr-only">Docs</span></a>
-                <a href="#" data-nav="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i><span class="sr-only">Directory</span></a>
+                <a href="#" data-nav="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Home"><i class="fa-solid fa-house text-xl"></i><span class="sr-only">Home</span></a>
+                <a href="#" data-nav="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="About"><i class="fa-solid fa-user text-xl"></i><span class="sr-only">About</span></a>
+                <a href="#" data-nav="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Services"><i class="fa-solid fa-cog text-xl"></i><span class="sr-only">Services</span></a>
+                <a href="#" data-nav="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Pricing"><i class="fa-solid fa-tag text-xl"></i><span class="sr-only">Pricing</span></a>
+                <a href="#" data-nav="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Projects"><i class="fa-solid fa-folder text-xl"></i><span class="sr-only">Projects</span></a>
+                <a href="#" data-nav="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Blog"><i class="fa-solid fa-blog text-xl"></i><span class="sr-only">Blog</span></a>
+                <a href="#" data-nav="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Resume"><i class="fa-solid fa-file-contract text-xl"></i><span class="sr-only">Resume</span></a>
+                <a href="#" data-nav="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Connect"><i class="fa-solid fa-paper-plane text-xl"></i><span class="sr-only">Connect</span></a>
+                <a href="#" data-nav="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Documentation"><i class="fa-solid fa-book text-xl"></i><span class="sr-only">Documentation</span></a>
+                <a href="#" data-nav="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="Directory"><i class="fa-solid fa-sitemap text-xl"></i><span class="sr-only">Directory</span></a>
             </div>
             <div class="flex flex-col items-center gap-2 pb-4">
-                <div class="w-[80%] h-px bg-border my-2"></div>
-                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
+                <div class="w-[80%] h-px bg-border my-2" aria-hidden="true"></div>
+                
+                <!-- Accessibility Menu -->
+                <div class="accessibility-menu" aria-label="Accessibility options">
+                    <button class="accessibility-btn" onclick="toggleHighContrast()" aria-label="High contrast mode" title="High contrast mode">
+                        <i class="fa-solid fa-circle-half-stroke"></i>
+                    </button>
+                    <button class="accessibility-btn" onclick="increaseTextSize()" aria-label="Increase text size" title="Increase text size">
+                        <i class="fa-solid fa-text-height"></i>
+                    </button>
+                    <button class="accessibility-btn" onclick="toggleDyslexicFont()" aria-label="Dyslexic friendly font" title="Dyslexic friendly font">
+                        <i class="fa-solid fa-font"></i>
+                    </button>
+                    <button class="accessibility-btn" onclick="toggleReadableLineHeight()" aria-label="Readable line height" title="Readable line height">
+                        <i class="fa-solid fa-align-left"></i>
+                    </button>
+                    <button class="accessibility-btn" onclick="toggleReduceMotion()" aria-label="Reduce motion" title="Reduce motion">
+                        <i class="fa-solid fa-person-walking"></i>
+                    </button>
+                    <button class="accessibility-btn" onclick="resetAccessibility()" aria-label="Reset all accessibility settings" title="Reset accessibility">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </button>
+                </div>
+                
+                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="GitHub Profile"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
             </div>
         </div>
     </aside>
@@ -191,8 +319,8 @@
             </div>
             
             <!-- Notification Bar -->
-            <div id="notification-bar" class="flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 shadow-lg cursor-pointer" style="background-color: #2ecc71; min-width: 300px;">
-                <i id="notification-icon" class="fa-solid fa-bell text-sm animate-pulse"></i>
+            <div id="notification-bar" class="flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 shadow-lg cursor-pointer" style="background-color: #2ecc71; min-width: 300px;" role="status" aria-live="polite">
+                <i id="notification-icon" class="fa-solid fa-bell text-sm animate-pulse" aria-hidden="true"></i>
                 <div class="relative overflow-hidden flex-1">
                     <div id="notification-text" class="text-sm font-medium text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis"></div>
                 </div>
@@ -201,7 +329,7 @@
     </header>
 
     <!-- Main Content -->
-    <div class="ml-16" id="main-content">
+    <div class="ml-16" id="main-content" tabindex="-1">
         <section class="flex min-h-[80vh] flex-col items-center justify-center py-12 text-center md:py-20">
             <div class="w-full px-4 md:px-8 lg:px-12">
                 <h1 class="hero-title mb-6 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl">
@@ -224,6 +352,57 @@
 
     <script>
         'use strict';
+        
+        // Accessibility functions
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+            localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+        }
+        
+        function increaseTextSize() {
+            if (document.body.classList.contains('large-text')) {
+                document.body.classList.remove('large-text');
+                localStorage.setItem('largeText', 'false');
+            } else {
+                document.body.classList.add('large-text');
+                localStorage.setItem('largeText', 'true');
+            }
+        }
+        
+        function toggleDyslexicFont() {
+            document.body.classList.toggle('dyslexic-font');
+            localStorage.setItem('dyslexicFont', document.body.classList.contains('dyslexic-font'));
+        }
+        
+        function toggleReadableLineHeight() {
+            document.body.classList.toggle('readable-line-height');
+            localStorage.setItem('readableLineHeight', document.body.classList.contains('readable-line-height'));
+        }
+        
+        function toggleReduceMotion() {
+            document.body.classList.toggle('reduce-motion');
+            localStorage.setItem('reduceMotion', document.body.classList.contains('reduce-motion'));
+        }
+        
+        function resetAccessibility() {
+            document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'readable-line-height', 'reduce-motion');
+            localStorage.removeItem('highContrast');
+            localStorage.removeItem('largeText');
+            localStorage.removeItem('dyslexicFont');
+            localStorage.removeItem('readableLineHeight');
+            localStorage.removeItem('reduceMotion');
+            // Reset text size to default
+            document.body.style.fontSize = '';
+        }
+        
+        // Load saved accessibility preferences
+        function loadAccessibilityPreferences() {
+            if (localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
+            if (localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
+            if (localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
+            if (localStorage.getItem('readableLineHeight') === 'true') document.body.classList.add('readable-line-height');
+            if (localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
+        }
         
         // Helper functions
         function sanitizeText(text) {
@@ -349,8 +528,22 @@
         document.addEventListener('contextmenu', (e) => e.preventDefault());
         document.addEventListener('dragstart', (e) => e.preventDefault());
         
-        // Clear storage
-        try { localStorage.clear(); sessionStorage.clear(); } catch(e) {}
+        // Clear storage (except accessibility preferences)
+        try { 
+            const prefs = {
+                highContrast: localStorage.getItem('highContrast'),
+                largeText: localStorage.getItem('largeText'),
+                dyslexicFont: localStorage.getItem('dyslexicFont'),
+                readableLineHeight: localStorage.getItem('readableLineHeight'),
+                reduceMotion: localStorage.getItem('reduceMotion')
+            };
+            localStorage.clear();
+            sessionStorage.clear();
+            // Restore accessibility preferences
+            Object.keys(prefs).forEach(key => {
+                if (prefs[key] !== null) localStorage.setItem(key, prefs[key]);
+            });
+        } catch(e) {}
         
         // Disable console
         const noop = () => {};
@@ -358,6 +551,7 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            loadAccessibilityPreferences();
             updateNotification();
             interval = setInterval(updateNotification, 8000);
         });
