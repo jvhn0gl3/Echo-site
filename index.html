@@ -104,11 +104,95 @@
         }
         
         /* Mobile responsive */
+        /* Revamped Mobile Toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            z-index: 1001;
+            width: 48px;
+            height: 48px;
+            background: rgba(74, 62, 56, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(224, 122, 95, 0.4);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-toggle:hover {
+            background: #E07A5F;
+            border-color: #E07A5F;
+            transform: scale(1.05);
+        }
+
+        .menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .hamburger-box {
+            width: 24px;
+            height: 20px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            display: block;
+            top: 50%;
+            margin-top: -1px;
+            transition: background-color 0s 0.1s linear;
+        }
+
+        .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+            width: 24px;
+            height: 2px;
+            background-color: #F0EAD6;
+            border-radius: 4px;
+            position: absolute;
+            transition-property: transform, top, bottom, background-color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease;
+        }
+
+        .hamburger-inner::before, .hamburger-inner::after {
+            content: "";
+            display: block;
+        }
+
+        .hamburger-inner::before { top: -8px; }
+        .hamburger-inner::after { bottom: -8px; }
+
+        /* Morph to X */
+        .menu-toggle.active .hamburger-inner {
+            background-color: transparent !important;
+        }
+
+        .menu-toggle.active .hamburger-inner::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle.active .hamburger-inner::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        .menu-toggle:hover .hamburger-inner,
+        .menu-toggle:hover .hamburger-inner::before,
+        .menu-toggle:hover .hamburger-inner::after {
+            background-color: #3B2F2A;
+        }
+
         @media (max-width: 768px) {
             .ml-16 { margin-left: 0 !important; }
-            #sidebar { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; }
+            #sidebar { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
             #sidebar.open { transform: translateX(0); }
-            .menu-toggle { display: block !important; }
+            .menu-toggle { display: flex !important; }
             #notification-bar { min-width: auto !important; max-width: 250px; }
             #notification-text { white-space: normal; font-size: 11px; }
             .hero-title { font-size: 2rem !important; }
@@ -116,20 +200,6 @@
         
         @media (min-width: 769px) {
             .menu-toggle { display: none; }
-        }
-        
-        .menu-toggle {
-            position: fixed;
-            left: 10px;
-            top: 10px;
-            z-index: 1001;
-            background: #4A3E38;
-            border: none;
-            color: #F0EAD6;
-            font-size: 24px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
         }
         
         .nav-link {
@@ -437,7 +507,11 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Mobile Menu Toggle -->
-    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
 
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4" aria-label="Main navigation">
@@ -706,8 +780,10 @@
         // Sidebar toggle
         window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.menu-toggle');
             if (sidebar) {
                 sidebar.classList.toggle('open');
+                toggle?.classList.toggle('active');
                 document.body.style.overflow = sidebar.classList.contains('open') && window.innerWidth <= 768 ? 'hidden' : '';
             }
         };
@@ -719,6 +795,7 @@
                 const toggle = document.querySelector('.menu-toggle');
                 if (sidebar?.classList.contains('open') && !sidebar.contains(e.target) && !toggle?.contains(e.target)) {
                     sidebar.classList.remove('open');
+                    toggle?.classList.remove('active');
                     document.body.style.overflow = '';
                 }
             }
@@ -734,6 +811,7 @@
                 }
                 if (window.innerWidth <= 768) {
                     document.getElementById('sidebar')?.classList.remove('open');
+                    document.querySelector('.menu-toggle')?.classList.remove('active');
                     document.body.style.overflow = '';
                 }
             });
