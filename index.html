@@ -74,11 +74,18 @@
         
         /* Vertical Scroll Group for Nav Icons */
         .nav-scroll-group {
-            height: 100%;
-            max-height: 80vh;
+            height: calc(100% - 20px);
+            max-height: calc(80vh - 20px);
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: #E07A5F #4A3E38;
+            padding: 10px 0;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
         }
         .nav-scroll-group::-webkit-scrollbar {
             width: 4px;
@@ -143,7 +150,7 @@
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
 
     <!-- Sidebar Navigation (SPA with hash routing) - Vertical Scroll Group -->
-    <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
+    <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-2">
         <div class="nav-scroll-group flex flex-col gap-1 items-center w-full">
             <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
             <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
@@ -225,7 +232,7 @@
                             </span>
                             <span class="text-xs font-mono text-text-light uppercase tracking-tighter">all systems operational</span>
                         </div>
-                        <p class="mt-3 text-[10px] font-mono text-text-light/50">Last deployment: May 11, 2026</p>
+                        <p class="mt-3 text-[10px] font-mono text-text-light/50">Last deployment: May 12, 2026</p>
                     </div>
                 </div>
             </div>
