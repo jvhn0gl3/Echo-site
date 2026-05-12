@@ -80,46 +80,32 @@
         .nav-link i {
             transition: all 0.3s ease;
         }
-        /* Home icon */
         .nav-link[data-route="home"] i { color: #E07A5F; }
         .nav-link[data-route="home"]:hover i { color: #E07A5F; text-shadow: 0 0 12px rgba(224,122,95,0.5); }
-        /* About icon */
         .nav-link[data-route="about"] i { color: #5bc0de; }
         .nav-link[data-route="about"]:hover i { color: #5bc0de; text-shadow: 0 0 12px rgba(91,192,222,0.5); }
-        /* Services icon */
         .nav-link[data-route="services"] i { color: #f1c40f; }
         .nav-link[data-route="services"]:hover i { color: #f1c40f; text-shadow: 0 0 12px rgba(241,196,15,0.5); }
-        /* Pricing icon */
         .nav-link[data-route="pricing"] i { color: #e84393; }
         .nav-link[data-route="pricing"]:hover i { color: #e84393; text-shadow: 0 0 12px rgba(232,67,147,0.5); }
-        /* Projects icon */
         .nav-link[data-route="projects"] i { color: #2ecc71; }
         .nav-link[data-route="projects"]:hover i { color: #2ecc71; text-shadow: 0 0 12px rgba(46,204,113,0.5); }
-        /* Blog icon */
         .nav-link[data-route="blog"] i { color: #e67e22; }
         .nav-link[data-route="blog"]:hover i { color: #e67e22; text-shadow: 0 0 12px rgba(230,126,34,0.5); }
-        /* Resume icon */
         .nav-link[data-route="resume"] i { color: #e74c3c; }
         .nav-link[data-route="resume"]:hover i { color: #e74c3c; text-shadow: 0 0 12px rgba(231,76,60,0.5); }
-        /* Connect icon */
         .nav-link[data-route="connect"] i { color: #9b59b6; }
         .nav-link[data-route="connect"]:hover i { color: #9b59b6; text-shadow: 0 0 12px rgba(155,89,182,0.5); }
-        /* Docs icon */
         .nav-link[data-route="docs"] i { color: #3498db; }
         .nav-link[data-route="docs"]:hover i { color: #3498db; text-shadow: 0 0 12px rgba(52,152,219,0.5); }
-        /* Directory icon */
         .nav-link[data-route="directory"] i { color: #95a5a6; }
         .nav-link[data-route="directory"]:hover i { color: #95a5a6; text-shadow: 0 0 12px rgba(149,165,166,0.5); }
-        /* GitHub icon */
-        .github-link i { color: #fff; }
-        .github-link:hover i { color: #fff; text-shadow: 0 0 12px rgba(255,255,255,0.5); }
         
-        /* Active state for icons */
         .nav-link.active-nav i {
             filter: drop-shadow(0 0 6px currentColor);
         }
         
-        /* Sidebar layout - pushes github to bottom */
+        /* Sidebar layout */
         .sidebar-container {
             display: flex;
             flex-direction: column;
@@ -149,14 +135,62 @@
             background: #5B4F48;
             margin: 8px 0;
         }
+
+        /* Quick Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .stat-card {
+            background: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #E07A5F;
+        }
+        
+        /* Section Preview Cards */
+        .section-preview {
+            background: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        .section-preview:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .preview-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #5bc0de;
+            text-decoration: none;
+        }
+        .preview-link:hover {
+            text-decoration: underline;
+        }
+        
+        .service-mini {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
     </style>
 </head>
 <body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 transition-transform duration-300 ease-in-out flex flex-col min-h-screen">
 
-    <!-- Sidebar Navigation (SPA with hash routing) with GitHub at bottom -->
+    <!-- Sidebar Navigation -->
     <aside id="activity-bar-sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
         <div class="sidebar-container w-full">
-            <!-- Top navigation items -->
             <div class="nav-top">
                 <a href="#home" data-route="home" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-house text-xl"></i></a>
                 <a href="#about" data-route="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-user text-xl"></i></a>
@@ -169,8 +203,6 @@
                 <a href="#docs" data-route="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-book text-xl"></i></a>
                 <a href="#directory" data-route="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i></a>
             </div>
-            
-            <!-- Bottom section with GitHub link -->
             <div class="nav-bottom">
                 <div class="nav-separator"></div>
                 <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i></a>
@@ -183,18 +215,18 @@
         <div id="header-logo-container" class="flex items-center gap-4">
             <div id="desktop-logo-wrapper" class="items-center gap-2 text-xl hidden lg:flex">
                 <a href="#home" class="font-bold no-underline hover:underline flex items-center gap-1">
-                    <div id="logo-text-user">jvhn0gl3</div>
+                    <div>jvhn0gl3</div>
                 </a>
-                <div id="logo-text-separator" class="text-text-light">/</div>
+                <div class="text-text-light">/</div>
                 <a href="#home" class="font-bold no-underline hover:underline text-heading flex items-center gap-1">
-                    <div id="logo-text-project">Echo</div>
+                    <div>Echo</div>
                 </a>
             </div>
             <div id="mobile-logo-wrapper" class="flex items-center gap-2 text-xl lg:hidden">
                 <a href="#home" class="font-bold no-underline hover:underline flex items-center gap-1">
-                    <div id="logo-text-user">jvhn0gl3</div>
-                    <div id="logo-text-separator">/</div>
-                    <div id="logo-text-project" class="text-heading">Echo</div>
+                    <div>jvhn0gl3</div>
+                    <div class="text-text-light">/</div>
+                    <div class="text-heading">Echo</div>
                 </a>
             </div>
             <div id="alert-bar" class="flex items-center gap-2 bg-yellow-300 text-black px-3 py-1 rounded-md">
@@ -260,55 +292,124 @@
     </footer>
 
     <script>
-        // ----------------------------
-        // SINGLE PAGE APPLICATION (SPA)
-        // ----------------------------
-        
-        // Page Templates
+        // Page Templates - Home is now the MASTER OVERVIEW
         const pages = {
             home: `
-                <section id="hero-section" class="flex min-h-[60vh] flex-col items-center justify-center py-12 text-center md:py-20 lg:min-h-[70vh] bg-surface/30 w-full border-b border-border/50">
-                    <div id="hero-content" class="w-full px-4 md:px-8 lg:px-12">
-                        <h1 class="mb-6 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl">
+                <!-- HERO SECTION -->
+                <section class="flex min-h-[40vh] flex-col items-center justify-center py-12 text-center md:py-16 bg-surface/30 w-full border-b border-border/50">
+                    <div class="w-full px-4 md:px-8 lg:px-12">
+                        <h1 class="mb-4 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-6xl">
                             Crafting <span class="text-accent italic">Digital</span> Solutions with <span class="border-b-4 border-accent">Precision</span>
                         </h1>
-                        <p class="mx-auto mb-10 text-lg text-text-light md:text-xl lg:text-2xl">Welcome to my wacky side of the internet</p>
+                        <p class="mx-auto mb-8 text-lg text-text-light md:text-xl max-w-3xl">Welcome to Echo — the personal portfolio of John Ogletree. I build modern, high-performance web experiences that blend aesthetic design with technical excellence.</p>
                         <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <a href="#projects" class="inline-flex w-full items-center justify-center rounded-md bg-accent px-8 py-4 font-mono font-bold text-bg transition-transform duration-200 hover:scale-105 sm:w-auto">Explore Projects</a>
-                            <a href="#connect" class="inline-flex w-full items-center justify-center rounded-md border-2 border-heading px-8 py-4 font-mono font-bold text-heading transition-colors duration-200 hover:bg-heading hover:text-text sm:w-auto">Get in Touch</a>
+                            <a href="#projects" class="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 font-mono font-bold text-bg transition-transform duration-200 hover:scale-105">Explore Projects</a>
+                            <a href="#connect" class="inline-flex items-center justify-center rounded-md border-2 border-heading px-6 py-3 font-mono font-bold text-heading transition-colors duration-200 hover:bg-heading hover:text-text">Get in Touch</a>
                         </div>
                     </div>
                 </section>
-                <div class="w-full px-4 md:px-8 lg:px-12 py-12 border-b border-border/50">
-                    <h2 class="m-0 mb-6 border-b border-border pb-2 font-mono font-medium text-heading text-xl before:mr-2 before:font-normal before:text-text-light before:content-['##'] md:text-2xl">Profile</h2>
-                    <div class="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
-                        <div class="flex flex-col gap-5 rounded-lg border border-border bg-surface p-6">
-                            <div class="flex flex-col items-start gap-6 border-b border-border pb-5 md:flex-row md:items-center">
-                                <div class="flex flex-1 items-center gap-4">
-                                    <img src="/assets/images/logo.png" alt="John Ogletree" class="h-[4.375rem] w-[4.375rem] rounded-full border-2 border-border object-cover">
-                                    <div><h3 class="font-mono font-medium text-heading text-xl md:text-2xl">John Ogletree</h3><p class="text-base text-text-light">@jvhn0gl3</p></div>
-                                </div>
-                                <div class="flex w-full flex-row gap-3 md:w-auto md:min-w-[9.375rem] md:flex-col">
-                                    <div class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline"><span class="stat-value text-2xl font-bold text-heading" data-value="42">0</span><span class="text-xs uppercase tracking-wider text-text-light">Repos</span></div>
-                                    <div class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline"><span class="stat-value text-2xl font-bold text-heading" data-value="1480">0</span><span class="text-xs uppercase tracking-wider text-text-light">Contribs</span></div>
-                                    <div class="flex w-full flex-col items-center justify-between md:flex-row md:items-baseline"><span class="stat-value text-2xl font-bold text-heading" data-value="215">0</span><span class="text-xs uppercase tracking-wider text-text-light">Followers</span></div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-3 border-t border-border pt-5">
-                                <div class="flex justify-between"><span class="flex items-center gap-2 text-xs uppercase"><span class="h-3 w-3 rounded-full bg-[#f1e05a]"></span>JavaScript</span><span class="text-lg font-medium text-heading">45%</span></div>
-                                <div class="flex justify-between"><span class="flex items-center gap-2 text-xs uppercase"><span class="h-3 w-3 rounded-full bg-[#3178c6]"></span>TypeScript</span><span class="text-lg font-medium text-heading">30%</span></div>
-                                <div class="flex justify-between"><span class="flex items-center gap-2 text-xs uppercase"><span class="h-3 w-3 rounded-full bg-[#b07219]"></span>Java</span><span class="text-lg font-medium text-heading">15%</span></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-6">
-                            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-layer-group text-accent text-xl"></i><span class="font-mono text-lg font-bold">UI Design</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="90"></div></div></div>
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-magnifying-glass text-accent text-xl"></i><span class="font-mono text-lg font-bold">UX Research</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="75"></div></div></div>
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-code text-accent text-xl"></i><span class="font-mono text-lg font-bold">Prototyping</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="85"></div></div></div>
-                                <div class="skill-item flex flex-col gap-3 rounded-lg border border-border bg-surface p-6"><div class="flex justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-terminal text-accent text-xl"></i><span class="font-mono text-lg font-bold">Frontend Dev</span></div></div><div class="relative h-2.5 w-full rounded bg-border overflow-hidden"><div class="skill-progress absolute left-0 top-0 h-full rounded bg-accent" data-progress="80"></div></div></div>
-                            </div>
-                            <a href="#about" class="box-border flex w-full items-center justify-center rounded-md border border-heading bg-transparent py-3 px-6 text-center font-mono font-bold text-heading no-underline transition-colors hover:bg-heading hover:text-text">More About Me</a>
-                        </div>
+
+                <!-- QUICK STATS -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Quick Stats</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-number">42</div><div>GitHub Repos</div></div>
+                        <div class="stat-card"><div class="stat-number">1,480+</div><div>Contributions</div></div>
+                        <div class="stat-card"><div class="stat-number">215</div><div>Followers</div></div>
+                        <div class="stat-card"><div class="stat-number">2026</div><div>Active Since</div></div>
+                    </div>
+                </div>
+
+                <!-- ABOUT PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">About</h2>
+                    <div class="section-preview">
+                        <p class="text-text-light mb-3">John Ogletree is a digital creator and designer based in Martinez, Georgia, blending technical precision with creative expression.</p>
+                        <p class="text-text-light">With a background in graphic design, web development, and character animation, he brings a unique multidisciplinary approach to every project.</p>
+                        <a href="#about" class="preview-link">Read more about me →</a>
+                    </div>
+                </div>
+
+                <!-- SERVICES PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Capabilities</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="service-mini"><i class="fa-solid fa-laptop-code text-accent text-xl mb-2"></i><h3 class="font-bold text-heading">Web Design & Development</h3><p class="text-sm text-text-light mt-1">Responsive, high-performance websites from scratch.</p></div>
+                        <div class="service-mini"><i class="fa-solid fa-wand-magic-sparkles text-accent text-xl mb-2"></i><h3 class="font-bold text-heading">Interactive Prototyping</h3><p class="text-sm text-text-light mt-1">High-fidelity, clickable prototypes for testing.</p></div>
+                        <div class="service-mini"><i class="fa-solid fa-chess text-accent text-xl mb-2"></i><h3 class="font-bold text-heading">Digital Strategy</h3><p class="text-sm text-text-light mt-1">User research and analytics for success.</p></div>
+                    </div>
+                    <a href="#services" class="preview-link inline-block mt-4">View all services →</a>
+                </div>
+
+                <!-- PROJECTS PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Featured Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-surface rounded-lg border border-border overflow-hidden"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300" class="w-full h-40 object-cover"><div class="p-4"><h3 class="font-bold text-heading">Echo Portfolio</h3><p class="text-sm text-text-light mt-1">Personal portfolio website built with modern web technologies.</p></div></div>
+                        <div class="bg-surface rounded-lg border border-border overflow-hidden"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300" class="w-full h-40 object-cover"><div class="p-4"><h3 class="font-bold text-heading">QuantumLeap</h3><p class="text-sm text-text-light mt-1">SaaS dashboard UI/UX concept with data visualization.</p></div></div>
+                        <div class="bg-surface rounded-lg border border-border overflow-hidden"><img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=300" class="w-full h-40 object-cover"><div class="p-4"><h3 class="font-bold text-heading">CodeGenius</h3><p class="text-sm text-text-light mt-1">AI-powered code assistant interface design.</p></div></div>
+                    </div>
+                    <a href="#projects" class="preview-link inline-block mt-4">View all projects →</a>
+                </div>
+
+                <!-- BLOG PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Latest Logs</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-surface rounded-lg border border-border p-4"><p class="text-xs text-accent mb-2">Film Review</p><h3 class="font-bold text-heading">Dune: A Masterclass in World-Building</h3><p class="text-sm text-text-light mt-1">Denis Villeneuve's adaptation is a cinematic triumph...</p></div>
+                        <div class="bg-surface rounded-lg border border-border p-4"><p class="text-xs text-accent mb-2">Tech Review</p><h3 class="font-bold text-heading">The M4 AstroBook: A Developer's Dream?</h3><p class="text-sm text-text-light mt-1">Performance, battery life, and web development...</p></div>
+                        <div class="bg-surface rounded-lg border border-border p-4"><p class="text-xs text-accent mb-2">Personal Essay</p><h3 class="font-bold text-heading">Finding Creative Flow in Augusta</h3><p class="text-sm text-text-light mt-1">How Martinez reshaped my creative process...</p></div>
+                    </div>
+                    <a href="#blog" class="preview-link inline-block mt-4">Read all posts →</a>
+                </div>
+
+                <!-- PRICING PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Pricing Plans</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-surface rounded-lg border border-border p-4 text-center"><h3 class="font-bold text-heading">Basic</h3><p class="text-2xl font-bold text-accent mt-2">$500</p><p class="text-sm text-text-light mt-2">Perfect for small projects</p></div>
+                        <div class="bg-surface rounded-lg border-2 border-heading p-4 text-center relative"><div class="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-heading text-text px-3 py-0.5 rounded-full text-xs">Popular</div><h3 class="font-bold text-heading mt-2">Professional</h3><p class="text-2xl font-bold text-accent mt-2">$1,500</p><p class="text-sm text-text-light mt-2">Ideal for growing businesses</p></div>
+                        <div class="bg-surface rounded-lg border border-border p-4 text-center"><h3 class="font-bold text-heading">Enterprise</h3><p class="text-2xl font-bold text-accent mt-2">Custom</p><p class="text-sm text-text-light mt-2">For large-scale applications</p></div>
+                    </div>
+                    <a href="#pricing" class="preview-link inline-block mt-4">View all pricing →</a>
+                </div>
+
+                <!-- RESUME PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Experience Snapshot</h2>
+                    <div class="section-preview">
+                        <div class="mb-3"><span class="text-accent font-bold">Senior Product Designer</span> - Innovate Inc. (2022 - Present)</div>
+                        <div class="mb-3"><span class="text-accent font-bold">UX/UI Designer</span> - Creative Solutions (2019 - 2022)</div>
+                        <div><span class="text-accent font-bold">Junior Web Developer</span> - Tech Forward LLC (2018 - 2019)</div>
+                        <a href="#resume" class="preview-link inline-block mt-4">View full résumé →</a>
+                    </div>
+                </div>
+
+                <!-- FAQ PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">FAQs</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-surface rounded-lg border border-border p-4"><h3 class="font-bold text-accent text-sm">Current availability?</h3><p class="text-sm text-text-light mt-1">Available for freelance and contract roles.</p></div>
+                        <div class="bg-surface rounded-lg border border-border p-4"><h3 class="font-bold text-accent text-sm">Location?</h3><p class="text-sm text-text-light mt-1">Martinez, Georgia. Remote worldwide.</p></div>
+                    </div>
+                    <a href="#faq" class="preview-link inline-block mt-4">View all FAQs →</a>
+                </div>
+
+                <!-- DOCS PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8 border-b border-border/50">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Documentation</h2>
+                    <div class="section-preview text-center">
+                        <p class="text-text-light mb-2">Getting started guides, API references, and tutorials.</p>
+                        <a href="#docs" class="preview-link">Browse documentation →</a>
+                    </div>
+                </div>
+
+                <!-- CONNECT PREVIEW -->
+                <div class="w-full px-4 md:px-8 lg:px-12 py-8">
+                    <h2 class="text-xl font-mono font-medium text-heading mb-4 before:content-['##'] before:mr-2 before:text-text-light">Let's Connect</h2>
+                    <div class="section-preview text-center">
+                        <p class="text-text-light mb-4">Have a project in mind? Let's talk!</p>
+                        <a href="#connect" class="inline-flex items-center justify-center rounded-md bg-heading px-6 py-3 font-mono font-bold text-text transition-colors duration-200 hover:bg-[#D36C52]">Contact Me →</a>
                     </div>
                 </div>
             `,
@@ -428,13 +529,11 @@
         // Router state
         let currentPage = 'home';
         
-        // Function to load page content
         function loadPage(pageId) {
             const container = document.getElementById('main-content');
             const content = pages[pageId];
             
             if (content) {
-                // Add exit animation class
                 container.style.opacity = '0';
                 container.style.transform = 'translateY(-20px)';
                 
@@ -445,20 +544,13 @@
                     container.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     
                     currentPage = pageId;
-                    
-                    // Re-run animations for new content
                     initializeAnimations();
-                    
-                    // Update URL hash without triggering scroll
                     history.pushState(null, null, `#${pageId}`);
-                    
-                    // Update active nav links
                     updateActiveNav(pageId);
                 }, 150);
             }
         }
         
-        // Update active navigation styling
         function updateActiveNav(pageId) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 const route = link.getAttribute('data-route');
@@ -470,9 +562,7 @@
             });
         }
         
-        // Initialize animations for dynamically loaded content
         function initializeAnimations() {
-            // Profile stats animation
             const profileCard = document.querySelector('#profile-card, [data-value]');
             if (profileCard) {
                 const statValues = document.querySelectorAll('.stat-value[data-value]');
@@ -495,7 +585,6 @@
                 });
             }
             
-            // Skill bars animation
             const skillItems = document.querySelectorAll('.skill-item');
             skillItems.forEach(item => {
                 const progressBar = item.querySelector('.skill-progress');
@@ -508,7 +597,6 @@
             });
         }
         
-        // Handle hash change (browser back/forward)
         function handleRouteChange() {
             const hash = window.location.hash.slice(1) || 'home';
             if (pages[hash] && hash !== currentPage) {
@@ -516,7 +604,6 @@
             }
         }
         
-        // Set up navigation event listeners
         function setupNavigation() {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -527,11 +614,9 @@
                     }
                 });
             });
-            
             window.addEventListener('hashchange', handleRouteChange);
         }
         
-        // Countdown timer - Linked to Change.org petition
         function updateCountdown() {
             const lockdownDate = new Date('2026-09-01T00:00:00Z');
             const today = new Date();
@@ -544,12 +629,9 @@
             }
         }
         
-        // Initialize SPA
         document.addEventListener('DOMContentLoaded', () => {
             setupNavigation();
             updateCountdown();
-            
-            // Load initial page based on hash or default to home
             const initialPage = window.location.hash.slice(1) || 'home';
             if (pages[initialPage]) {
                 loadPage(initialPage);
