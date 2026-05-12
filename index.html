@@ -1,23 +1,19 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth scroll-pt-20">
 <head>
-    <title>Echo | John Ogletree - Digital Creator</title>
+    <title>Echo | Digital Creator</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="description" content="Personal portfolio of a digital creator." />
-    <meta name="author" content="John Ogletree" />
-    
-    <!-- SECURITY: Prevent indexing of sensitive paths -->
+    <meta name="author" content="Digital Creator" />
     <meta name="robots" content="noindex,nofollow" />
-    
-    <!-- SECURITY: Strict security headers -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta name="format-detection" content="telephone=no, email=no, address=no" />
     
-    <!-- SECURITY: Strict Content Security Policy - NO inline scripts except nonce -->
+    <!-- SECURITY: Strict Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com;
@@ -29,16 +25,13 @@
         base-uri 'none';
         form-action 'none';
         upgrade-insecure-requests;
-        block-all-mixed-content;
     ">
     
-    <!-- SECURITY: Remove any potential tracking/fingerprinting -->
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A" />
     
-    <!-- Tailwind CSS with SRI -->
-    <script src="https://cdn.tailwindcss.com" integrity="sha384-M8UYz2HLaxhJKw/sP2Gj+5HpQWD0bRcPugY/eV8jWbWf2uDXXxJ6XVJMDpPjH3Q5" crossorigin="anonymous"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // SECURITY: Sanitized Tailwind config - NO sensitive data
         (function() {
             'use strict';
             try {
@@ -56,7 +49,7 @@
                                     'border': '#5B4F48',
                                 },
                                 fontFamily: {
-                                    mono: ['monospace'],
+                                    mono: ['IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
                                 },
                                 keyframes: {
                                     blink: { '50%': { backgroundColor: 'transparent' } },
@@ -70,29 +63,45 @@
                         }
                     };
                 }
-            } catch(e) {
-                // Silent fail - don't expose errors
-            }
+            } catch(e) {}
         })();
     </script>
     
-    <!-- Font Awesome with SRI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     
     <style>
-        /* SECURITY: No CSS that could leak data */
-        .alert-safe { background-color: #2ecc71; color: #1a1a1a; }
-        .alert-warning { background-color: #f39c12; color: #1a1a1a; }
-        .alert-danger { background-color: #e74c3c; color: #fff; }
-        .alert-critical { background-color: #c0392b; color: #fff; animation: pulse 1s ease-in-out infinite; }
+        /* Full styling - preserved */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        body {
+            font-family: 'IBM Plex Mono', Menlo, Monaco, Consolas, monospace;
+            background-color: #3B2F2A;
+            color: #F0EAD6;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Alert styles */
+        .alert-safe { background-color: #2ecc71 !important; color: #1a1a1a !important; }
+        .alert-warning { background-color: #f39c12 !important; color: #1a1a1a !important; }
+        .alert-danger { background-color: #e74c3c !important; color: #fff !important; }
+        .alert-critical { background-color: #c0392b !important; color: #fff !important; animation: pulse 1s ease-in-out infinite !important; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Mobile responsive */
         @media (max-width: 768px) {
             .ml-16 { margin-left: 0 !important; }
-            aside { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; }
-            aside.open { transform: translateX(0); }
+            #sidebar { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; }
+            #sidebar.open { transform: translateX(0); }
             .menu-toggle { display: block !important; }
-            #notification-bar { min-width: auto !important; max-width: 200px; }
-            #notification-text { font-size: 11px; white-space: normal; }
+            #notification-bar { min-width: auto !important; max-width: 250px; }
+            #notification-text { white-space: normal; font-size: 11px; }
+            .hero-title { font-size: 2rem !important; }
         }
         
         @media (min-width: 769px) {
@@ -113,32 +122,41 @@
             cursor: pointer;
         }
         
-        /* SECURITY: Prevent data exfiltration via CSS */
-        * {
-            behavior: normal;
-            -webkit-print-color-adjust: economy;
-            print-color-adjust: economy;
+        .nav-link {
+            transition: all 0.3s ease;
         }
         
-        /* SECURITY: Disable user selection to prevent data copying */
+        .nav-link:hover {
+            color: #E07A5F !important;
+        }
+        
+        .github-link:hover {
+            color: #E07A5F !important;
+        }
+        
+        /* Prevent data exfiltration but preserve styling */
         body {
             user-select: none;
             -webkit-user-select: none;
         }
         
-        /* But allow selection on input fields if any */
         input, textarea {
             user-select: text;
             -webkit-user-select: text;
         }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
-<body class="bg-bg text-text font-mono text-base leading-relaxed m-0 p-0 flex flex-col min-h-screen">
+<body>
 
-    <!-- SECURITY: No sensitive data stored in HTML attributes -->
-    <button class="menu-toggle" onclick="toggleSidebarSecure()" aria-label="Menu">☰</button>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
-    <!-- Sidebar - No personal info exposed -->
+    <!-- Sidebar -->
     <aside id="sidebar" class="fixed left-0 top-0 h-screen w-16 bg-surface z-40 flex flex-col items-center py-4">
         <div class="flex flex-col h-full justify-between w-full">
             <div class="flex flex-col gap-1 items-center flex-1">
@@ -154,56 +172,50 @@
                 <a href="#" data-nav="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-solid fa-sitemap text-xl"></i><span class="sr-only">Directory</span></a>
             </div>
             <div class="flex flex-col items-center gap-2 pb-4">
-                <div class="w-[80%] h-px bg-border my-2" aria-hidden="true"></div>
-                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="GitHub"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
+                <div class="w-[80%] h-px bg-border my-2"></div>
+                <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
             </div>
         </div>
     </aside>
 
-    <!-- Header - No sensitive data -->
+    <!-- Header -->
     <header class="sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-border bg-surface p-4 px-4 md:px-8">
         <div class="flex items-center gap-4">
             <div class="items-center gap-2 text-xl hidden lg:flex">
-                <a href="#" class="font-bold no-underline hover:underline flex items-center gap-1">
-                    <span>User</span>
-                </a>
-                <div class="text-text-light" aria-hidden="true">/</div>
-                <a href="#" class="font-bold no-underline hover:underline text-heading flex items-center gap-1">
-                    <span>Echo</span>
-                </a>
+                <a href="#" class="font-bold no-underline hover:underline text-text-light flex items-center gap-1">jvhn0gl3</a>
+                <div class="text-text-light">/</div>
+                <a href="#" class="font-bold no-underline hover:underline text-heading flex items-center gap-1">Echo</a>
             </div>
             <div class="flex items-center gap-2 text-xl lg:hidden">
-                <a href="#" class="font-bold no-underline hover:underline flex items-center gap-1">
-                    <span>User/Echo</span>
-                </a>
+                <a href="#" class="font-bold no-underline hover:underline text-heading">jvhn0gl3/Echo</a>
             </div>
             
-            <!-- SECURITY: Sanitized notification container -->
+            <!-- Notification Bar -->
             <div id="notification-bar" class="flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 shadow-lg cursor-pointer" style="background-color: #2ecc71; min-width: 300px;">
-                <i id="notification-icon" class="fa-solid fa-bell text-sm animate-pulse" aria-hidden="true"></i>
+                <i id="notification-icon" class="fa-solid fa-bell text-sm animate-pulse"></i>
                 <div class="relative overflow-hidden flex-1">
-                    <div id="notification-text" class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis"></div>
+                    <div id="notification-text" class="text-sm font-medium text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis"></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content - Generic, no personal info -->
-    <div class="ml-16 md:ml-16" id="main-content">
+    <!-- Main Content -->
+    <div class="ml-16" id="main-content">
         <section class="flex min-h-[80vh] flex-col items-center justify-center py-12 text-center md:py-20">
             <div class="w-full px-4 md:px-8 lg:px-12">
-                <h1 class="mb-6 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl">
-                    Crafting <span class="text-accent italic">Digital</span> Solutions
+                <h1 class="hero-title mb-6 font-mono text-4xl font-bold leading-tight text-heading md:text-5xl lg:text-7xl">
+                    Crafting <span class="text-accent italic">Digital</span> Solutions with <span class="border-b-4 border-accent">Precision</span>
                 </h1>
                 <p class="mx-auto mb-10 text-lg text-text-light md:text-xl lg:text-2xl max-w-3xl">
-                    Welcome to my creative space.
+                    Welcome to Echo — where creativity meets code.
                 </p>
                 <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <a href="#" class="inline-flex w-full items-center justify-center rounded-md bg-accent px-8 py-4 font-mono font-bold text-bg transition-transform duration-200 hover:scale-105 sm:w-auto">
-                        Explore
+                        Explore Projects
                     </a>
                     <a href="#" class="inline-flex w-full items-center justify-center rounded-md border-2 border-heading px-8 py-4 font-mono font-bold text-heading transition-colors duration-200 hover:bg-heading hover:text-text sm:w-auto">
-                        Connect
+                        Get in Touch
                     </a>
                 </div>
             </div>
@@ -211,121 +223,87 @@
     </div>
 
     <script>
-        // SECURITY: Strict mode enabled
         'use strict';
         
-        // SECURITY: No sensitive data stored in variables
-        let sidebarOpen = false;
-        let notificationInterval = null;
-        let currentNotificationIndex = 0;
-        
-        // SECURITY: Sanitize ALL text before display
+        // Helper functions
         function sanitizeText(text) {
             if (!text) return '';
-            // Strip any HTML tags and escape special characters
             const div = document.createElement('div');
-            div.textContent = text.replace(/[<>]/g, '');
+            div.textContent = text;
             return div.textContent;
         }
         
-        // SECURITY: Validate URLs against whitelist only
-        function isValidAndSafeUrl(url) {
+        function isValidUrl(url) {
             if (!url) return false;
-            const allowedDomains = ['change.org', 'github.com'];
+            const allowed = ['change.org', 'github.com'];
             try {
-                const urlObj = new URL(url);
-                // Only allow HTTPS
-                if (urlObj.protocol !== 'https:') return false;
-                return allowedDomains.some(domain => urlObj.hostname === domain || urlObj.hostname.endsWith('.' + domain));
-            } catch {
-                return false;
-            }
+                const u = new URL(url);
+                if (u.protocol !== 'https:') return false;
+                return allowed.some(d => u.hostname === d || u.hostname.endsWith('.' + d));
+            } catch { return false; }
         }
         
-        // SECURITY: Secure sidebar toggle with state tracking
-        window.toggleSidebarSecure = function() {
+        // Sidebar toggle
+        window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
             if (sidebar) {
-                sidebarOpen = !sidebarOpen;
-                if (sidebarOpen) {
-                    sidebar.classList.add('open');
-                    if (window.innerWidth <= 768) {
-                        document.body.style.overflow = 'hidden';
-                    }
-                } else {
-                    sidebar.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
+                sidebar.classList.toggle('open');
+                document.body.style.overflow = sidebar.classList.contains('open') && window.innerWidth <= 768 ? 'hidden' : '';
             }
         };
         
-        // SECURITY: Close sidebar on escape key
+        // Close on escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar && sidebar.classList.contains('open')) {
-                    sidebar.classList.remove('open');
-                    sidebarOpen = false;
-                    document.body.style.overflow = '';
-                }
+                document.getElementById('sidebar')?.classList.remove('open');
+                document.body.style.overflow = '';
             }
         });
         
-        // SECURITY: Click outside to close
+        // Close on outside click
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 const sidebar = document.getElementById('sidebar');
-                const menuToggle = document.querySelector('.menu-toggle');
-                if (sidebar && sidebar.classList.contains('open') && 
-                    !sidebar.contains(e.target) && 
-                    !menuToggle.contains(e.target)) {
+                const toggle = document.querySelector('.menu-toggle');
+                if (sidebar?.classList.contains('open') && !sidebar.contains(e.target) && !toggle?.contains(e.target)) {
                     sidebar.classList.remove('open');
-                    sidebarOpen = false;
                     document.body.style.overflow = '';
                 }
             }
         });
         
-        // SECURITY: Generic navigation - NO data leakage
+        // Navigation
         document.querySelectorAll('#sidebar a, header a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const href = link.getAttribute('href');
-                if (href && href.startsWith('http')) {
-                    if (isValidAndSafeUrl(href)) {
-                        window.open(href, '_blank', 'noopener,noreferrer');
-                    }
+                if (href?.startsWith('http') && isValidUrl(href)) {
+                    window.open(href, '_blank', 'noopener,noreferrer');
                 }
-                // Close sidebar on mobile
                 if (window.innerWidth <= 768) {
-                    const sidebar = document.getElementById('sidebar');
-                    sidebar.classList.remove('open');
-                    sidebarOpen = false;
+                    document.getElementById('sidebar')?.classList.remove('open');
                     document.body.style.overflow = '';
                 }
             });
         });
         
-        // SECURITY: Sanitized notifications - NO sensitive content
+        // Notifications
         const notifications = [
-            { text: "days until Android OS update", link: "https://www.change.org/p/stop-google-from-limiting-apk-file-usage", color: "alert-safe", hasCountdown: true },
-            { text: "New features coming soon", link: null, color: "alert-warning", hasCountdown: false },
-            { text: "New content added", link: null, color: "alert-info", hasCountdown: false },
-            { text: "Portfolio updates available", link: null, color: "alert-safe", hasCountdown: false }
+            { text: "days until Android OS lockdown - Sign the petition", link: "https://www.change.org/p/stop-google-from-limiting-apk-file-usage", color: "alert-safe", hasCountdown: true },
+            { text: "New portfolio feature: Interactive 3D models coming soon!", link: null, color: "alert-warning", hasCountdown: false },
+            { text: "New blog post: 'The Future of Web Design' - Read now!", link: null, color: "alert-info", hasCountdown: false },
+            { text: "Fresh projects added to the Creations Gallery!", link: null, color: "alert-safe", hasCountdown: false },
+            { text: "Subscribe to my newsletter for exclusive design resources!", link: null, color: "alert-safe", hasCountdown: false }
         ];
         
-        // SECURITY: Safe countdown - no specific dates exposed
-        function getSafeCountdown() {
-            try {
-                // Use a fixed target date, never expose the actual date
-                const targetDate = new Date('2026-09-01T00:00:00Z');
-                const now = new Date();
-                const diff = targetDate.getTime() - now.getTime();
-                const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-                return Math.max(0, Math.min(365, days)); // Cap at 365 days
-            } catch {
-                return 100; // Safe fallback
-            }
+        let notificationIndex = 0;
+        let interval = null;
+        
+        function getDaysRemaining() {
+            const target = new Date('2026-09-01T00:00:00Z');
+            const now = new Date();
+            const diff = target.getTime() - now.getTime();
+            return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
         }
         
         function getColorClass(days) {
@@ -335,113 +313,53 @@
             return 'alert-critical';
         }
         
-        function updateNotificationBar() {
+        function updateNotification() {
             const bar = document.getElementById('notification-bar');
             const textEl = document.getElementById('notification-text');
             const iconEl = document.getElementById('notification-icon');
-            
             if (!bar || !textEl) return;
             
-            try {
-                const notification = notifications[currentNotificationIndex];
-                
-                if (notification.hasCountdown) {
-                    const days = getSafeCountdown();
-                    // SECURITY: Sanitize the output - NO raw HTML
-                    textEl.textContent = `⚠️ ${days} ${sanitizeText(notification.text)}`;
-                    const colorClass = getColorClass(days);
-                    bar.classList.remove('alert-safe', 'alert-warning', 'alert-danger', 'alert-critical');
-                    bar.classList.add(colorClass);
-                    if (iconEl) {
-                        iconEl.className = days <= 7 ? 'fa-solid fa-circle-exclamation text-sm animate-pulse' : 'fa-solid fa-bell text-sm';
-                    }
-                } else {
-                    textEl.textContent = `⚠️ ${sanitizeText(notification.text)}`;
-                    bar.classList.remove('alert-safe', 'alert-warning', 'alert-danger', 'alert-critical');
-                    bar.classList.add(notification.color);
-                    if (iconEl) {
-                        iconEl.className = 'fa-solid fa-bell text-sm';
-                    }
-                }
-                
-                // SECURITY: Only set click handler for safe URLs
-                if (notification.link && isValidAndSafeUrl(notification.link)) {
-                    bar.style.cursor = 'pointer';
-                    bar.onclick = () => {
-                        window.open(notification.link, '_blank', 'noopener,noreferrer');
-                    };
-                } else {
-                    bar.style.cursor = 'default';
-                    bar.onclick = null;
-                }
-                
-                currentNotificationIndex = (currentNotificationIndex + 1) % notifications.length;
-            } catch (e) {
-                // Silent fail - don't expose errors
-                textEl.textContent = '⚠️ Update available';
+            const n = notifications[notificationIndex];
+            
+            if (n.hasCountdown) {
+                const days = getDaysRemaining();
+                textEl.textContent = `⚠️ ${days} ${n.text}`;
+                const color = getColorClass(days);
+                bar.className = bar.className.split(' ').filter(c => !c.startsWith('alert-')).join(' ') + ' ' + color;
+                iconEl.className = days <= 7 ? 'fa-solid fa-circle-exclamation text-sm animate-pulse' : 'fa-solid fa-bell text-sm';
+            } else {
+                textEl.textContent = `⚠️ ${n.text}`;
+                bar.className = bar.className.split(' ').filter(c => !c.startsWith('alert-')).join(' ') + ' ' + n.color;
+                iconEl.className = 'fa-solid fa-bell text-sm';
             }
-        }
-        
-        // SECURITY: Initialize with error handling
-        function init() {
-            try {
-                updateNotificationBar();
-                if (notificationInterval) clearInterval(notificationInterval);
-                notificationInterval = setInterval(updateNotificationBar, 8000);
-            } catch (e) {
-                // Silent fail
+            
+            if (n.link && isValidUrl(n.link)) {
+                bar.style.cursor = 'pointer';
+                bar.onclick = () => window.open(n.link, '_blank', 'noopener,noreferrer');
+            } else {
+                bar.style.cursor = 'default';
+                bar.onclick = null;
             }
+            
+            notificationIndex = (notificationIndex + 1) % notifications.length;
         }
         
-        // Start when ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
-        }
+        // Security: prevent copy but preserve styling
+        document.addEventListener('copy', (e) => e.preventDefault());
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        document.addEventListener('dragstart', (e) => e.preventDefault());
         
-        // SECURITY: Disable console methods that could leak info
+        // Clear storage
+        try { localStorage.clear(); sessionStorage.clear(); } catch(e) {}
+        
+        // Disable console
         const noop = () => {};
-        console.log = noop;
-        console.info = noop;
-        console.warn = noop;
-        console.debug = noop;
-        console.table = noop;
-        console.trace = noop;
+        console.log = console.info = console.warn = console.debug = console.table = console.trace = noop;
         
-        // SECURITY: Prevent copy/paste of content
-        document.addEventListener('copy', (e) => {
-            e.preventDefault();
-            return false;
-        });
-        
-        // SECURITY: Prevent developer tools detection (basic)
-        setInterval(() => {
-            const before = new Date().getTime();
-            debugger;
-            const after = new Date().getTime();
-            if (after - before > 100) {
-                // Dev tools might be open - clear sensitive data
-                document.body.style.opacity = '0.99';
-            }
-        }, 5000);
-        
-        // SECURITY: Clear any potential localStorage/sessionStorage
-        try {
-            localStorage.clear();
-            sessionStorage.clear();
-        } catch(e) {}
-        
-        // SECURITY: Prevent drag and drop data exfiltration
-        document.addEventListener('dragstart', (e) => {
-            e.preventDefault();
-            return false;
-        });
-        
-        // SECURITY: Block right-click context menu
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            return false;
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNotification();
+            interval = setInterval(updateNotification, 8000);
         });
     </script>
 </body>
