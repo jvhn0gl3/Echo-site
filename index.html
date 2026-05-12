@@ -374,7 +374,7 @@
             top: 1rem;
             left: 1rem;
             height: calc(100vh - 2rem);
-            width: 4.5rem; /* ~72px */
+            width: 5rem; /* ~80px */
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-x: hidden;
             background: rgba(74, 62, 56, 0.85);
@@ -386,22 +386,22 @@
 
         @media (min-width: 769px) {
             #sidebar:hover {
-                width: 16rem; /* 256px */
+                width: 17rem; /* 272px */
             }
             
             #sidebar:hover ~ header {
-                left: 17.5rem;
+                left: 18.5rem;
             }
 
             #sidebar:hover ~ #main-content {
-                padding-left: 17rem;
+                padding-left: 18.5rem;
             }
         }
 
         header {
             position: fixed;
             top: 1rem;
-            left: 6.5rem;
+            left: 7rem;
             right: 1rem;
             height: 4.5rem;
             background: rgba(59, 47, 42, 0.8) !important;
@@ -417,8 +417,8 @@
         }
 
         #main-content {
-            padding-top: 6.5rem;
-            padding-left: 6.5rem;
+            padding-top: 7rem;
+            padding-left: 7rem;
             padding-right: 1.5rem;
             padding-bottom: 1.5rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -429,9 +429,9 @@
             transform: translateX(-10px);
             transition: all 0.3s ease;
             white-space: nowrap;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            margin-left: 1rem;
+            margin-left: 1.25rem;
         }
 
         #sidebar:hover .nav-label,
@@ -446,9 +446,9 @@
             transition: all 0.3s ease;
             white-space: nowrap;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #E07A5F;
-            margin-left: 1rem;
+            margin-left: 1.25rem;
         }
 
         .nav-link-container {
@@ -458,24 +458,28 @@
 
         .nav-link {
             width: 100%;
+            display: flex !important;
+            align-items: center !important;
             justify-content: flex-start !important;
             padding: 0.875rem !important;
             border-radius: 16px !important;
             margin-bottom: 0.5rem;
+            position: relative;
         }
 
         .nav-link i {
-            min-width: 1.5rem;
+            min-width: 2rem;
             text-align: center;
+            font-size: 1.25rem;
         }
 
         .active-nav-indicator {
             position: absolute;
-            left: 0.25rem;
+            left: 0;
             width: 4px;
             height: 1.5rem;
             background: #E07A5F;
-            border-radius: 4px;
+            border-radius: 0 4px 4px 0;
             display: none;
         }
 
@@ -486,6 +490,16 @@
         .nav-link.active {
             background: rgba(224, 122, 95, 0.2) !important;
             color: #E07A5F !important;
+        }
+
+        .brand-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2rem;
+            height: 2rem;
+            background: #3D87A6;
+            border-radius: 8px;
         }
 
         .search-container {
@@ -699,8 +713,8 @@
     <aside id="sidebar" aria-label="Main navigation">
         <div class="flex flex-col h-full w-full py-6">
             <!-- Brand Section -->
-            <div class="flex items-center px-4 mb-8 w-full overflow-hidden">
-                <div class="flex items-center justify-center min-w-[32px] h-[32px] bg-accent rounded-lg">
+            <div class="flex items-center px-6 mb-10 w-full overflow-hidden">
+                <div class="brand-icon-container">
                     <span class="text-bg font-bold text-lg">E</span>
                 </div>
                 <span class="sidebar-brand-text">Echo CLI</span>
@@ -711,70 +725,70 @@
                 <div class="nav-link-container">
                     <a href="#" data-nav="home" class="nav-link active text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Home">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-house text-xl text-blue-400"></i>
+                        <i class="fa-solid fa-house text-blue-400"></i>
                         <span class="nav-label">Home</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="about" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="About">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-user text-xl text-orange-400"></i>
+                        <i class="fa-solid fa-user text-orange-400"></i>
                         <span class="nav-label">About</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="services" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Services">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-cog text-xl text-cyan-400"></i>
+                        <i class="fa-solid fa-cog text-cyan-400"></i>
                         <span class="nav-label">Services</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="pricing" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Pricing">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-tag text-xl text-emerald-400"></i>
+                        <i class="fa-solid fa-tag text-emerald-400"></i>
                         <span class="nav-label">Pricing</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="projects" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Projects">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-folder text-xl text-yellow-400"></i>
+                        <i class="fa-solid fa-folder text-yellow-400"></i>
                         <span class="nav-label">Projects</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="blog" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Blog">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-blog text-xl text-purple-400"></i>
+                        <i class="fa-solid fa-blog text-purple-400"></i>
                         <span class="nav-label">Blog</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="resume" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Resume">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-file-contract text-xl text-rose-400"></i>
+                        <i class="fa-solid fa-file-contract text-rose-400"></i>
                         <span class="nav-label">Resume</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="connect" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Connect">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-paper-plane text-xl text-indigo-400"></i>
+                        <i class="fa-solid fa-paper-plane text-indigo-400"></i>
                         <span class="nav-label">Connect</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="docs" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Documentation">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-book text-xl text-amber-400"></i>
+                        <i class="fa-solid fa-book text-amber-400"></i>
                         <span class="nav-label">Documentation</span>
                     </a>
                 </div>
                 <div class="nav-link-container">
                     <a href="#" data-nav="directory" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200" aria-label="Directory">
                         <div class="active-nav-indicator"></div>
-                        <i class="fa-solid fa-sitemap text-xl text-teal-400"></i>
+                        <i class="fa-solid fa-sitemap text-teal-400"></i>
                         <span class="nav-label">Directory</span>
                     </a>
                 </div>
@@ -787,14 +801,14 @@
                 <div class="flex flex-col items-start gap-1 w-full overflow-hidden">
                     <div class="nav-link-container">
                         <button class="nav-link text-text-light hover:text-heading flex items-center p-3 rounded-md transition-all duration-200 w-full" onclick="openAccessibilityModal()" aria-label="Accessibility options" data-tooltip="Accessibility Menu">
-                            <i class="fa-solid fa-universal-access text-xl text-sky-400"></i>
+                            <i class="fa-solid fa-universal-access text-sky-400"></i>
                             <span class="nav-label">Accessibility</span>
                         </button>
                     </div>
                     
                     <div class="nav-link-container">
                         <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="nav-link text-text-light hover:text-heading no-underline flex items-center p-3 rounded-md transition-all duration-200 w-full" aria-label="GitHub Profile">
-                            <i class="fa-brands fa-github text-xl text-white"></i>
+                            <i class="fa-brands fa-github text-white"></i>
                             <span class="nav-label">GitHub Profile</span>
                         </a>
                     </div>
