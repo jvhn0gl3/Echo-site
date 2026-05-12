@@ -93,6 +93,16 @@
             50% { opacity: 0.7; }
         }
         
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes modalFadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); }
+        }
+        
         /* Mobile responsive */
         @media (max-width: 768px) {
             .ml-16 { margin-left: 0 !important; }
@@ -134,85 +144,155 @@
             color: #E07A5F !important;
         }
         
-        /* Consolidated Accessibility Menu */
-        .accessibility-container {
-            position: relative;
-            display: inline-block;
+        /* Accessibility Modal - Centered Popup */
+        .accessibility-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
         }
         
-        .accessibility-trigger {
+        .accessibility-modal.show {
+            display: flex;
+        }
+        
+        .accessibility-modal-content {
+            background: #2a2a2a;
+            border: 2px solid #5B4F48;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            padding: 0;
+            animation: modalFadeIn 0.2s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .accessibility-modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #5B4F48;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accessibility-modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #E07A5F;
+            margin: 0;
+        }
+        
+        .accessibility-modal-header button {
             background: transparent;
             border: none;
             color: #D4C9A8;
+            font-size: 24px;
             cursor: pointer;
-            padding: 8px;
+            padding: 0;
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
             transition: all 0.2s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
         }
         
-        .accessibility-trigger:hover {
+        .accessibility-modal-header button:hover {
             background: #5B4F48;
             color: #E07A5F;
-            transform: scale(1.05);
         }
         
-        .accessibility-dropdown {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4A3E38;
-            border: 1px solid #5B4F48;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 8px;
-            display: none;
+        .accessibility-modal-body {
+            padding: 20px 24px;
+            display: flex;
             flex-direction: column;
-            gap: 8px;
-            min-width: 180px;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            gap: 12px;
         }
         
-        .accessibility-dropdown.show {
-            display: flex;
-        }
-        
-        .accessibility-dropdown button {
-            background: transparent;
-            border: none;
-            color: #F0EAD6;
-            padding: 8px 12px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 6px;
+        .accessibility-option {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            transition: all 0.2s ease;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #3B2F2A;
         }
         
-        .accessibility-dropdown button:hover {
-            background: #5B4F48;
-            color: #E07A5F;
+        .accessibility-option-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
-        .accessibility-dropdown button i {
-            width: 20px;
+        .accessibility-option-left i {
+            width: 24px;
+            font-size: 18px;
+            color: #5bc0de;
+        }
+        
+        .accessibility-option-left span {
             font-size: 14px;
         }
         
-        .accessibility-dropdown .divider {
-            height: 1px;
+        .accessibility-option button {
+            background: #3B2F2A;
+            border: 1px solid #5B4F48;
+            color: #F0EAD6;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .accessibility-option button:hover {
             background: #5B4F48;
-            margin: 4px 0;
+            color: #E07A5F;
+        }
+        
+        .accessibility-option button.active {
+            background: #E07A5F;
+            color: #1a1a1a;
+            border-color: #E07A5F;
+        }
+        
+        .accessibility-modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #5B4F48;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .accessibility-modal-footer button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-reset {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #c0392b;
+        }
+        
+        .btn-close {
+            background: #5bc0de;
+            color: #1a1a1a;
+        }
+        
+        .btn-close:hover {
+            background: #46a9c5;
         }
         
         /* High contrast mode */
@@ -294,7 +374,7 @@
             color: #1a1a1a;
             padding: 8px;
             text-decoration: none;
-            z-index: 1002;
+            z-index: 2001;
         }
         
         .skip-link:focus {
@@ -319,7 +399,7 @@
             font-size: 11px;
             white-space: nowrap;
             display: none;
-            z-index: 1001;
+            z-index: 2001;
             margin-bottom: 5px;
         }
         
@@ -354,27 +434,73 @@
             <div class="flex flex-col items-center gap-2 pb-4">
                 <div class="w-[80%] h-px bg-border my-2" aria-hidden="true"></div>
                 
-                <!-- Consolidated Accessibility Menu -->
-                <div class="accessibility-container">
-                    <button class="accessibility-trigger" onclick="toggleAccessibilityMenu()" aria-label="Accessibility options" data-tooltip="Accessibility Menu">
-                        <i class="fa-solid fa-universal-access"></i>
-                    </button>
-                    <div id="accessibility-dropdown" class="accessibility-dropdown" aria-label="Accessibility options menu">
-                        <button onclick="toggleHighContrast()"><i class="fa-solid fa-circle-half-stroke"></i> High Contrast</button>
-                        <button onclick="increaseTextSize()"><i class="fa-solid fa-text-height"></i> Larger Text</button>
-                        <button onclick="toggleDyslexicFont()"><i class="fa-solid fa-font"></i> Dyslexic Font</button>
-                        <button onclick="toggleReadableLineHeight()"><i class="fa-solid fa-align-left"></i> Readable Spacing</button>
-                        <button onclick="toggleReduceMotion()"><i class="fa-solid fa-person-walking"></i> Reduce Motion</button>
-                        <button onclick="toggleGrayscale()"><i class="fa-solid fa-palette"></i> Grayscale</button>
-                        <div class="divider"></div>
-                        <button onclick="resetAccessibility()"><i class="fa-solid fa-arrow-rotate-left"></i> Reset All</button>
-                    </div>
-                </div>
+                <!-- Accessibility Modal Trigger -->
+                <button class="accessibility-trigger" onclick="openAccessibilityModal()" aria-label="Accessibility options" data-tooltip="Accessibility Menu">
+                    <i class="fa-solid fa-universal-access"></i>
+                </button>
                 
                 <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="GitHub Profile"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
             </div>
         </div>
     </aside>
+
+    <!-- Accessibility Modal (Centered Popup) -->
+    <div id="accessibility-modal" class="accessibility-modal" role="dialog" aria-modal="true" aria-label="Accessibility Options">
+        <div class="accessibility-modal-content">
+            <div class="accessibility-modal-header">
+                <h2><i class="fa-solid fa-universal-access"></i> Accessibility Options</h2>
+                <button onclick="closeAccessibilityModal()" aria-label="Close">&times;</button>
+            </div>
+            <div class="accessibility-modal-body">
+                <div class="accessibility-option">
+                    <div class="accessibility-option-left">
+                        <i class="fa-solid fa-circle-half-stroke"></i>
+                        <span>High Contrast</span>
+                    </div>
+                    <button id="btn-high-contrast" onclick="toggleHighContrast()">Toggle</button>
+                </div>
+                <div class="accessibility-option">
+                    <div class="accessibility-option-left">
+                        <i class="fa-solid fa-text-height"></i>
+                        <span>Larger Text</span>
+                    </div>
+                    <button id="btn-large-text" onclick="increaseTextSize()">Toggle</button>
+                </div>
+                <div class="accessibility-option">
+                    <div class="accessibility-option-left">
+                        <i class="fa-solid fa-font"></i>
+                        <span>Dyslexic Friendly Font</span>
+                    </div>
+                    <button id="btn-dyslexic-font" onclick="toggleDyslexicFont()">Toggle</button>
+                </div>
+                <div class="accessibility-option">
+                    <div class="accessibility-option-left">
+                        <i class="fa-solid fa-align-left"></i>
+                        <span>Readable Line Spacing</span>
+                    </div>
+                    <button id="btn-readable-spacing" onclick="toggleReadableLineHeight()">Toggle</button>
+                </div>
+                <div class="accessibility-option">
+                    <div class="accessibility-option-left">
+                        <i class="fa-solid fa-person-walking"></i>
+                        <span>Reduce Motion</span>
+                    </div>
+                    <button id="btn-reduce-motion" onclick="toggleReduceMotion()">Toggle</button>
+                </div>
+                <div class="accessibility-option">
+                    <div class="accessibility-option-left">
+                        <i class="fa-solid fa-palette"></i>
+                        <span>Grayscale Mode</span>
+                    </div>
+                    <button id="btn-grayscale" onclick="toggleGrayscale()">Toggle</button>
+                </div>
+            </div>
+            <div class="accessibility-modal-footer">
+                <button class="btn-reset" onclick="resetAllAccessibility()">Reset All</button>
+                <button class="btn-close" onclick="closeAccessibilityModal()">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-border bg-surface p-4 px-4 md:px-8">
@@ -423,18 +549,50 @@
     <script>
         'use strict';
         
-        // Accessibility Menu Toggle
-        function toggleAccessibilityMenu() {
-            const dropdown = document.getElementById('accessibility-dropdown');
-            dropdown.classList.toggle('show');
+        // Accessibility Modal Functions
+        const modal = document.getElementById('accessibility-modal');
+        
+        function openAccessibilityModal() {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            // Update button states
+            updateButtonStates();
         }
         
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            const container = document.querySelector('.accessibility-container');
-            const dropdown = document.getElementById('accessibility-dropdown');
-            if (container && dropdown && !container.contains(e.target)) {
-                dropdown.classList.remove('show');
+        function closeAccessibilityModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        function updateButtonStates() {
+            const btnHighContrast = document.getElementById('btn-high-contrast');
+            const btnLargeText = document.getElementById('btn-large-text');
+            const btnDyslexicFont = document.getElementById('btn-dyslexic-font');
+            const btnReadableSpacing = document.getElementById('btn-readable-spacing');
+            const btnReduceMotion = document.getElementById('btn-reduce-motion');
+            const btnGrayscale = document.getElementById('btn-grayscale');
+            
+            if (btnHighContrast) btnHighContrast.classList.toggle('active', document.body.classList.contains('high-contrast'));
+            if (btnLargeText) btnLargeText.classList.toggle('active', document.body.classList.contains('large-text'));
+            if (btnDyslexicFont) btnDyslexicFont.classList.toggle('active', document.body.classList.contains('dyslexic-font'));
+            if (btnReadableSpacing) btnReadableSpacing.classList.toggle('active', document.body.classList.contains('readable-line-height'));
+            if (btnReduceMotion) btnReduceMotion.classList.toggle('active', document.body.classList.contains('reduce-motion'));
+            if (btnGrayscale) btnGrayscale.classList.toggle('active', document.body.classList.contains('grayscale'));
+        }
+        
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAccessibilityModal();
+                document.getElementById('sidebar')?.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close modal when clicking outside the content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeAccessibilityModal();
             }
         });
         
@@ -442,6 +600,7 @@
         function toggleHighContrast() {
             document.body.classList.toggle('high-contrast');
             localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+            updateButtonStates();
         }
         
         function increaseTextSize() {
@@ -452,29 +611,34 @@
                 document.body.classList.add('large-text');
                 localStorage.setItem('largeText', 'true');
             }
+            updateButtonStates();
         }
         
         function toggleDyslexicFont() {
             document.body.classList.toggle('dyslexic-font');
             localStorage.setItem('dyslexicFont', document.body.classList.contains('dyslexic-font'));
+            updateButtonStates();
         }
         
         function toggleReadableLineHeight() {
             document.body.classList.toggle('readable-line-height');
             localStorage.setItem('readableLineHeight', document.body.classList.contains('readable-line-height'));
+            updateButtonStates();
         }
         
         function toggleReduceMotion() {
             document.body.classList.toggle('reduce-motion');
             localStorage.setItem('reduceMotion', document.body.classList.contains('reduce-motion'));
+            updateButtonStates();
         }
         
         function toggleGrayscale() {
             document.body.classList.toggle('grayscale');
             localStorage.setItem('grayscale', document.body.classList.contains('grayscale'));
+            updateButtonStates();
         }
         
-        function resetAccessibility() {
+        function resetAllAccessibility() {
             document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'readable-line-height', 'reduce-motion', 'grayscale');
             localStorage.removeItem('highContrast');
             localStorage.removeItem('largeText');
@@ -482,6 +646,7 @@
             localStorage.removeItem('readableLineHeight');
             localStorage.removeItem('reduceMotion');
             localStorage.removeItem('grayscale');
+            updateButtonStates();
         }
         
         // Load saved accessibility preferences
@@ -518,21 +683,10 @@
             if (sidebar) {
                 sidebar.classList.toggle('open');
                 document.body.style.overflow = sidebar.classList.contains('open') && window.innerWidth <= 768 ? 'hidden' : '';
-                // Close accessibility dropdown when opening sidebar
-                document.getElementById('accessibility-dropdown')?.classList.remove('show');
             }
         };
         
-        // Close on escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.getElementById('sidebar')?.classList.remove('open');
-                document.getElementById('accessibility-dropdown')?.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Close on outside click
+        // Close sidebar on outside click
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 const sidebar = document.getElementById('sidebar');
@@ -556,7 +710,6 @@
                     document.getElementById('sidebar')?.classList.remove('open');
                     document.body.style.overflow = '';
                 }
-                document.getElementById('accessibility-dropdown')?.classList.remove('show');
             });
         });
         
@@ -649,6 +802,17 @@
             updateNotification();
             interval = setInterval(updateNotification, 8000);
         });
+        
+        // Make functions globally available
+        window.openAccessibilityModal = openAccessibilityModal;
+        window.closeAccessibilityModal = closeAccessibilityModal;
+        window.toggleHighContrast = toggleHighContrast;
+        window.increaseTextSize = increaseTextSize;
+        window.toggleDyslexicFont = toggleDyslexicFont;
+        window.toggleReadableLineHeight = toggleReadableLineHeight;
+        window.toggleReduceMotion = toggleReduceMotion;
+        window.toggleGrayscale = toggleGrayscale;
+        window.resetAllAccessibility = resetAllAccessibility;
     </script>
 </body>
 </html>
