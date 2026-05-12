@@ -134,40 +134,85 @@
             color: #E07A5F !important;
         }
         
-        /* Accessibility Menu Styles */
-        .accessibility-menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 8px;
+        /* Consolidated Accessibility Menu */
+        .accessibility-container {
+            position: relative;
+            display: inline-block;
         }
         
-        .accessibility-btn {
+        .accessibility-trigger {
             background: transparent;
             border: none;
             color: #D4C9A8;
             cursor: pointer;
-            padding: 6px;
-            border-radius: 6px;
+            padding: 8px;
+            border-radius: 8px;
             transition: all 0.2s ease;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 18px;
         }
         
-        .accessibility-btn:hover {
+        .accessibility-trigger:hover {
             background: #5B4F48;
             color: #E07A5F;
             transform: scale(1.05);
         }
         
-        .accessibility-btn:focus {
-            outline: 2px solid #E07A5F;
-            outline-offset: 2px;
+        .accessibility-dropdown {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4A3E38;
+            border: 1px solid #5B4F48;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 180px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .accessibility-dropdown.show {
+            display: flex;
+        }
+        
+        .accessibility-dropdown button {
+            background: transparent;
+            border: none;
+            color: #F0EAD6;
+            padding: 8px 12px;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        
+        .accessibility-dropdown button:hover {
+            background: #5B4F48;
+            color: #E07A5F;
+        }
+        
+        .accessibility-dropdown button i {
+            width: 20px;
+            font-size: 14px;
+        }
+        
+        .accessibility-dropdown .divider {
+            height: 1px;
+            background: #5B4F48;
+            margin: 4px 0;
         }
         
         /* High contrast mode */
@@ -178,8 +223,7 @@
         
         body.high-contrast .bg-surface,
         body.high-contrast #sidebar,
-        body.high-contrast header,
-        body.high-contrast footer {
+        body.high-contrast header {
             background-color: #111111 !important;
         }
         
@@ -220,6 +264,11 @@
             outline-offset: 3px;
         }
         
+        /* Grayscale mode */
+        body.grayscale {
+            filter: grayscale(100%);
+        }
+        
         /* Prevent data exfiltration but preserve styling */
         body {
             user-select: none;
@@ -236,7 +285,7 @@
             scroll-behavior: smooth;
         }
         
-        /* Skip to content link for accessibility */
+        /* Skip to content link */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -251,11 +300,37 @@
         .skip-link:focus {
             top: 0;
         }
+        
+        /* Tooltip */
+        [data-tooltip] {
+            position: relative;
+        }
+        
+        [data-tooltip]:before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: #F0EAD6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            display: none;
+            z-index: 1001;
+            margin-bottom: 5px;
+        }
+        
+        [data-tooltip]:hover:before {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Skip to content link for screen readers -->
+    <!-- Skip to content link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Mobile Menu Toggle -->
@@ -279,26 +354,21 @@
             <div class="flex flex-col items-center gap-2 pb-4">
                 <div class="w-[80%] h-px bg-border my-2" aria-hidden="true"></div>
                 
-                <!-- Accessibility Menu -->
-                <div class="accessibility-menu" aria-label="Accessibility options">
-                    <button class="accessibility-btn" onclick="toggleHighContrast()" aria-label="High contrast mode" title="High contrast mode">
-                        <i class="fa-solid fa-circle-half-stroke"></i>
+                <!-- Consolidated Accessibility Menu -->
+                <div class="accessibility-container">
+                    <button class="accessibility-trigger" onclick="toggleAccessibilityMenu()" aria-label="Accessibility options" data-tooltip="Accessibility Menu">
+                        <i class="fa-solid fa-universal-access"></i>
                     </button>
-                    <button class="accessibility-btn" onclick="increaseTextSize()" aria-label="Increase text size" title="Increase text size">
-                        <i class="fa-solid fa-text-height"></i>
-                    </button>
-                    <button class="accessibility-btn" onclick="toggleDyslexicFont()" aria-label="Dyslexic friendly font" title="Dyslexic friendly font">
-                        <i class="fa-solid fa-font"></i>
-                    </button>
-                    <button class="accessibility-btn" onclick="toggleReadableLineHeight()" aria-label="Readable line height" title="Readable line height">
-                        <i class="fa-solid fa-align-left"></i>
-                    </button>
-                    <button class="accessibility-btn" onclick="toggleReduceMotion()" aria-label="Reduce motion" title="Reduce motion">
-                        <i class="fa-solid fa-person-walking"></i>
-                    </button>
-                    <button class="accessibility-btn" onclick="resetAccessibility()" aria-label="Reset all accessibility settings" title="Reset accessibility">
-                        <i class="fa-solid fa-arrow-rotate-left"></i>
-                    </button>
+                    <div id="accessibility-dropdown" class="accessibility-dropdown" aria-label="Accessibility options menu">
+                        <button onclick="toggleHighContrast()"><i class="fa-solid fa-circle-half-stroke"></i> High Contrast</button>
+                        <button onclick="increaseTextSize()"><i class="fa-solid fa-text-height"></i> Larger Text</button>
+                        <button onclick="toggleDyslexicFont()"><i class="fa-solid fa-font"></i> Dyslexic Font</button>
+                        <button onclick="toggleReadableLineHeight()"><i class="fa-solid fa-align-left"></i> Readable Spacing</button>
+                        <button onclick="toggleReduceMotion()"><i class="fa-solid fa-person-walking"></i> Reduce Motion</button>
+                        <button onclick="toggleGrayscale()"><i class="fa-solid fa-palette"></i> Grayscale</button>
+                        <div class="divider"></div>
+                        <button onclick="resetAccessibility()"><i class="fa-solid fa-arrow-rotate-left"></i> Reset All</button>
+                    </div>
                 </div>
                 
                 <a href="https://github.com/jvhn0gl3" target="_blank" rel="noopener noreferrer" class="github-link text-text-light hover:text-heading no-underline flex items-center justify-center p-3 hover:bg-surface rounded-md transition-all duration-200" aria-label="GitHub Profile"><i class="fa-brands fa-github text-xl"></i><span class="sr-only">GitHub</span></a>
@@ -353,6 +423,21 @@
     <script>
         'use strict';
         
+        // Accessibility Menu Toggle
+        function toggleAccessibilityMenu() {
+            const dropdown = document.getElementById('accessibility-dropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.querySelector('.accessibility-container');
+            const dropdown = document.getElementById('accessibility-dropdown');
+            if (container && dropdown && !container.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+        
         // Accessibility functions
         function toggleHighContrast() {
             document.body.classList.toggle('high-contrast');
@@ -384,15 +469,19 @@
             localStorage.setItem('reduceMotion', document.body.classList.contains('reduce-motion'));
         }
         
+        function toggleGrayscale() {
+            document.body.classList.toggle('grayscale');
+            localStorage.setItem('grayscale', document.body.classList.contains('grayscale'));
+        }
+        
         function resetAccessibility() {
-            document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'readable-line-height', 'reduce-motion');
+            document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'readable-line-height', 'reduce-motion', 'grayscale');
             localStorage.removeItem('highContrast');
             localStorage.removeItem('largeText');
             localStorage.removeItem('dyslexicFont');
             localStorage.removeItem('readableLineHeight');
             localStorage.removeItem('reduceMotion');
-            // Reset text size to default
-            document.body.style.fontSize = '';
+            localStorage.removeItem('grayscale');
         }
         
         // Load saved accessibility preferences
@@ -402,6 +491,7 @@
             if (localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
             if (localStorage.getItem('readableLineHeight') === 'true') document.body.classList.add('readable-line-height');
             if (localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
+            if (localStorage.getItem('grayscale') === 'true') document.body.classList.add('grayscale');
         }
         
         // Helper functions
@@ -428,6 +518,8 @@
             if (sidebar) {
                 sidebar.classList.toggle('open');
                 document.body.style.overflow = sidebar.classList.contains('open') && window.innerWidth <= 768 ? 'hidden' : '';
+                // Close accessibility dropdown when opening sidebar
+                document.getElementById('accessibility-dropdown')?.classList.remove('show');
             }
         };
         
@@ -435,6 +527,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.getElementById('sidebar')?.classList.remove('open');
+                document.getElementById('accessibility-dropdown')?.classList.remove('show');
                 document.body.style.overflow = '';
             }
         });
@@ -463,6 +556,7 @@
                     document.getElementById('sidebar')?.classList.remove('open');
                     document.body.style.overflow = '';
                 }
+                document.getElementById('accessibility-dropdown')?.classList.remove('show');
             });
         });
         
@@ -535,11 +629,11 @@
                 largeText: localStorage.getItem('largeText'),
                 dyslexicFont: localStorage.getItem('dyslexicFont'),
                 readableLineHeight: localStorage.getItem('readableLineHeight'),
-                reduceMotion: localStorage.getItem('reduceMotion')
+                reduceMotion: localStorage.getItem('reduceMotion'),
+                grayscale: localStorage.getItem('grayscale')
             };
             localStorage.clear();
             sessionStorage.clear();
-            // Restore accessibility preferences
             Object.keys(prefs).forEach(key => {
                 if (prefs[key] !== null) localStorage.setItem(key, prefs[key]);
             });
