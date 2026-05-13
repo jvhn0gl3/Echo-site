@@ -263,11 +263,11 @@
                 <p class="mx-auto mb-10 sm:mb-12 text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl text-center text-text-light">
                     Welcome to Echo — where creativity meets code in a seamless dashboard experience.
                 </p>
-                <div class="flex flex-col items-center justify-center gap-4 sm:gap-6 sm:flex-row w-full max-w-lg">
-                    <a href="#" class="btn-modern btn-primary-glass w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base">
+                <div class="btn-group btn-group-responsive flex-col sm:flex-row w-full max-w-lg gap-4 sm:gap-6">
+                    <a href="#" class="btn btn-primary btn-lg w-full sm:w-auto">
                         <i class="fa-solid fa-rocket"></i> Explore Projects
                     </a>
-                    <a href="#" class="btn-modern btn-secondary-glass w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base">
+                    <a href="#" class="btn btn-secondary btn-lg w-full sm:w-auto">
                         <i class="fa-solid fa-paper-plane"></i> Get in Touch
                     </a>
                 </div>
@@ -321,19 +321,37 @@
                         </div>
 
                         <!-- Social Buttons -->
-                        <div class="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8">
-                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                        <div class="btn-group flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8">
+                            <a href="#" class="btn btn-icon btn-icon-md">
                                 <i class="fa-brands fa-github text-lg sm:text-xl"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                            <a href="#" class="btn btn-icon btn-icon-md">
                                 <i class="fa-brands fa-linkedin text-lg sm:text-xl"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                            <a href="#" class="btn btn-icon btn-icon-md">
                                 <i class="fa-brands fa-twitter text-lg sm:text-xl"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 sm:w-11 h-11 md:w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-text-light hover:text-heading hover:border-heading transition-all">
+                            <a href="#" class="btn btn-icon btn-icon-md">
                                 <i class="fa-brands fa-instagram text-lg sm:text-xl"></i>
                             </a>
+                        </div>
+
+                        <!-- Additional button examples -->
+                        <div class="mt-8 pt-6 border-t border-white/10">
+                            <div class="btn-group flex flex-wrap gap-3 justify-center md:justify-start">
+                                <button class="btn btn-outline btn-sm" onclick="openAccessibilityModal()">
+                                    <i class="fa-solid fa-universal-access"></i> Accessibility
+                                </button>
+                                <button class="btn btn-ghost btn-sm" onclick="navigate('blog')">
+                                    <i class="fa-solid fa-blog"></i> Read Blog
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                                <button class="btn btn-success btn-sm">
+                                    <i class="fa-solid fa-check"></i> Confirm
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
