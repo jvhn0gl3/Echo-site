@@ -440,32 +440,40 @@
 
         .hero-title { max-width: 1200px; }
 
-        /* Sidebar */
+        /* Sidebar - ICON ONLY on ALL screens */
         #sidebar {
             position: fixed;
             top: 1rem;
             left: 1rem;
             height: calc(100vh - 2rem);
             width: 5rem;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-x: hidden;
             background: rgba(74, 62, 56, 0.85);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
             z-index: 50;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @media (min-width: 769px) {
-            #sidebar:hover { width: 17rem; }
-            #sidebar:hover ~ header { left: 18.5rem; }
-            #sidebar:hover ~ #main-content { padding-left: 18.5rem; }
+        /* Remove hover expansion - keep icon only */
+        #sidebar:hover {
+            width: 5rem;
         }
 
         @media (max-width: 768px) {
-            #sidebar { left: -100%; width: 280px !important; }
-            #sidebar.open { left: 1rem; }
-            #main-content { padding-left: 1rem; padding-right: 1rem; }
+            #sidebar {
+                left: -100%;
+                width: 5rem !important;
+            }
+            #sidebar.open {
+                left: 1rem;
+                transform: translateX(0);
+            }
+            #main-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
 
         header {
@@ -486,7 +494,12 @@
             padding: 0 1.5rem;
         }
 
-        @media (max-width: 768px) { header { left: 1rem; right: 1rem; } }
+        @media (max-width: 768px) { 
+            header { 
+                left: 1rem; 
+                right: 1rem; 
+            }
+        }
 
         #main-content {
             padding-top: 7rem;
@@ -496,31 +509,17 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Hide all text labels permanently - icon only */
         .nav-label {
-            opacity: 0;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            width: 0;
-            overflow: hidden;
+            display: none;
         }
-
-        #sidebar:hover .nav-label { opacity: 1; width: auto; margin-left: 1.25rem; }
 
         .sidebar-brand-text {
-            opacity: 0;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: #E07A5F;
-            width: 0;
-            overflow: hidden;
+            display: none;
         }
 
-        #sidebar:hover .sidebar-brand-text { opacity: 1; width: auto; margin-left: 1.25rem; }
-
         .nav-link {
-            width: auto;
+            width: 100%;
             min-width: 3.5rem;
             display: flex !important;
             align-items: center !important;
@@ -534,9 +533,30 @@
             color: #D4C9A8;
         }
 
-        #sidebar:hover .nav-link { width: 100%; justify-content: flex-start !important; padding-left: 1.25rem !important; }
-        .nav-link i { min-width: 1.5rem; text-align: center; font-size: 1.25rem; }
-        .nav-link.active { background: rgba(224, 122, 95, 0.2) !important; color: #E07A5F !important; }
+        .nav-link i {
+            min-width: 1.5rem;
+            text-align: center;
+            font-size: 1.25rem;
+        }
+
+        .nav-link.active {
+            background: rgba(224, 122, 95, 0.2) !important;
+            color: #E07A5F !important;
+        }
+
+        .active-nav-indicator {
+            position: absolute;
+            left: 0;
+            width: 4px;
+            height: 1.5rem;
+            background: #E07A5F;
+            border-radius: 0 4px 4px 0;
+            display: none;
+        }
+
+        .nav-link.active .active-nav-indicator {
+            display: block;
+        }
 
         .brand-icon-container {
             display: flex;
@@ -556,8 +576,6 @@
             margin-bottom: 2.5rem;
             padding: 0 0.75rem;
         }
-
-        #sidebar:hover .brand-section { justify-content: flex-start; padding-left: 1.25rem; }
 
         .search-container {
             background: rgba(0, 0, 0, 0.25);
