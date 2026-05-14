@@ -518,54 +518,22 @@
             display: none;
         }
 
-        .nav-link {
-            width: 100%;
-            min-width: 3.5rem;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            padding: 0.875rem !important;
-            border-radius: 16px !important;
-            margin-bottom: 0.5rem;
-            position: relative;
-            transition: all 0.3s ease !important;
-            text-decoration: none;
-            color: #D4C9A8;
-        }
-
-        .nav-link i {
-            min-width: 1.5rem;
-            text-align: center;
-            font-size: 1.25rem;
-        }
-
-        .nav-link.active {
-            background: rgba(224, 122, 95, 0.2) !important;
-            color: #E07A5F !important;
-        }
-
-        .active-nav-indicator {
-            position: absolute;
-            left: 0;
-            width: 4px;
-            height: 1.5rem;
-            background: #E07A5F;
-            border-radius: 0 4px 4px 0;
-            display: none;
-        }
-
-        .nav-link.active .active-nav-indicator {
-            display: block;
-        }
-
+        /* Updated brand icon container for favicon */
         .brand-icon-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 2.25rem;
+            width: 2.25rem;
             height: 2.25rem;
-            background: #3D87A6;
             border-radius: 8px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .brand-icon-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .brand-section {
@@ -667,7 +635,7 @@
         <div class="flex flex-col h-full w-full py-6">
             <div class="brand-section overflow-hidden">
                 <div class="brand-icon-container">
-                    <span class="text-bg font-bold text-lg">E</span>
+                    <img src="/favicon-96x96.png" alt="Echo Logo">
                 </div>
                 <span class="sidebar-brand-text">Echo</span>
             </div>
