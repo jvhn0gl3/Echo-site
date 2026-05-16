@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <meta name="description" content="Echo - Digital Creator Portfolio. Full-stack development, UI/UX design, and creative digital solutions." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Echo - Digital Creator Portfolio. Full-stack development and digital solutions." />
     <meta name="author" content="John Ogletree" />
-    <meta name="robots" content="index,follow" />
     
     <title>Echo | Digital Creator</title>
     
@@ -14,438 +13,240 @@
     <link rel="apple-touch-icon" href="logo.jpeg" />
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'dark': '#0A0A0A',
-                        'darker': '#050505',
-                        'card': '#111111',
-                        'card-hover': '#1A1A1A',
-                        'accent-primary': '#6366F1',
-                        'accent-secondary': '#8B5CF6',
-                        'accent-glow': '#818CF8',
-                        'text-primary': '#FFFFFF',
-                        'text-secondary': '#A1A1AA',
-                        'text-muted': '#52525B',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    animation: {
-                        'gradient': 'gradient 8s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        gradient: {
-                            '0%, 100%': { 'background-position': '0% 50%' },
-                            '50%': { 'background-position': '100% 50%' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        glow: {
-                            '0%, 100%': { opacity: '0.5' },
-                            '50%': { opacity: '1' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
     
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body class="bg-dark text-text-primary font-sans antialiased">
+<body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <!-- Background Effects -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-accent-primary/20 rounded-full blur-[100px] animate-float"></div>
-        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-secondary/20 rounded-full blur-[100px] animate-float" style="animation-delay: -3s"></div>
-        <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-accent-glow/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="grid-pattern"></div>
-    </div>
-
-    <!-- Sidebar - Icon Only, Always Visible -->
-    <aside class="sidebar fixed left-0 top-0 h-full w-20 bg-card/80 backdrop-blur-xl border-r border-white/10 z-40 transition-all duration-300">
-        <div class="flex flex-col h-full py-6">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-inner">
             <!-- Logo -->
-            <div class="mb-8 flex justify-center">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-primary to-accent-secondary p-[2px]">
-                    <div class="w-full h-full rounded-xl bg-dark flex items-center justify-center overflow-hidden">
-                        <img src="logo.jpeg" alt="Echo" class="w-full h-full object-cover">
-                    </div>
-                </div>
+            <div class="logo">
+                <img src="logo.jpeg" alt="Echo">
             </div>
 
-            <!-- Navigation - Icons Only -->
-            <nav class="flex-1">
-                <div class="flex flex-col items-center gap-2">
-                    <a href="#" data-nav="home" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Home">
-                        <i class="fa-solid fa-compass text-xl"></i>
-                    </a>
-                    <a href="#" data-nav="about" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="About">
-                        <i class="fa-solid fa-user-astronaut text-xl"></i>
-                    </a>
-                    <a href="#" data-nav="services" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Services">
-                        <i class="fa-solid fa-cube text-xl"></i>
-                    </a>
-                    <a href="#" data-nav="projects" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Projects">
-                        <i class="fa-solid fa-layer-group text-xl"></i>
-                    </a>
-                    <a href="#" data-nav="blog" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Blog">
-                        <i class="fa-solid fa-pen-fancy text-xl"></i>
-                    </a>
-                    <a href="#" data-nav="connect" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Connect">
-                        <i class="fa-solid fa-paper-plane text-xl"></i>
-                    </a>
-                </div>
+            <!-- Navigation -->
+            <nav>
+                <a href="#" data-nav="home" class="nav-link active" title="Home">
+                    <i class="fa-solid fa-compass"></i>
+                </a>
+                <a href="#" data-nav="about" class="nav-link" title="About">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="#" data-nav="services" class="nav-link" title="Services">
+                    <i class="fa-solid fa-cube"></i>
+                </a>
+                <a href="#" data-nav="projects" class="nav-link" title="Projects">
+                    <i class="fa-solid fa-layer-group"></i>
+                </a>
+                <a href="#" data-nav="blog" class="nav-link" title="Blog">
+                    <i class="fa-solid fa-pen-fancy"></i>
+                </a>
+                <a href="#" data-nav="connect" class="nav-link" title="Connect">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </a>
             </nav>
 
-            <!-- Bottom Actions - Icons Only -->
-            <div class="mt-auto pt-4 border-t border-white/10">
-                <div class="flex flex-col items-center gap-2">
-                    <button id="accessibility-trigger" class="w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Accessibility">
-                        <i class="fa-solid fa-universal-access text-xl"></i>
-                    </button>
-                    <a href="https://github.com/jvhn0gl3" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="GitHub">
-                        <i class="fa-brands fa-github text-xl"></i>
-                    </a>
-                </div>
+            <!-- Bottom -->
+            <div class="bottom-actions">
+                <button id="accessibility-trigger" class="nav-link" title="Accessibility">
+                    <i class="fa-solid fa-universal-access"></i>
+                </button>
+                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-link" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
             </div>
         </div>
     </aside>
 
     <!-- Main Content -->
-    <main class="main-content ml-20 transition-all duration-300">
-        
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center px-6 py-20">
-            <div class="max-w-5xl mx-auto text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 mb-8 animate-glow">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
-                    </span>
-                    <span class="text-sm text-accent-primary">Available for work</span>
+    <main class="main">
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="badge">Available for work</div>
+                <h1>Digital <span class="gradient">Alchemy</span></h1>
+                <p>Crafting digital experiences that transcend the ordinary. Full-stack development meets creative innovation.</p>
+                <div class="buttons">
+                    <button class="btn-primary explore-btn">Explore Work</button>
+                    <button class="btn-secondary contact-btn">Contact Me</button>
                 </div>
-                
-                <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-r from-text-primary via-accent-primary to-accent-secondary bg-clip-text text-transparent bg-[length:200%] animate-gradient">
-                    Digital Alchemy
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto mb-10">
-                    Crafting digital experiences that transcend the ordinary. 
-                    Full-stack development meets creative innovation.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <button class="explore-btn px-8 py-4 rounded-xl bg-gradient-to-r from-accent-primary to-accent-secondary text-white font-semibold hover:shadow-lg hover:shadow-accent-primary/25 transition-all hover:scale-105">
-                        <i class="fa-solid fa-rocket mr-2"></i> Explore Work
-                    </button>
-                    <button class="contact-btn px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-text-primary font-semibold hover:bg-white/10 transition-all hover:scale-105">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Contact Me
-                    </button>
-                </div>
-                
-                <!-- Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-accent-primary">10+</div>
-                        <div class="text-text-muted text-sm">Years Experience</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-accent-primary">50+</div>
-                        <div class="text-text-muted text-sm">Projects Completed</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-accent-primary">30+</div>
-                        <div class="text-text-muted text-sm">Happy Clients</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-accent-primary">24/7</div>
-                        <div class="text-text-muted text-sm">Support</div>
-                    </div>
+                <div class="stats">
+                    <div><span>10+</span> Years</div>
+                    <div><span>50+</span> Projects</div>
+                    <div><span>30+</span> Clients</div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-20 px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">About <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Me</span></h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                        <div class="relative rounded-2xl overflow-hidden aspect-square bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center">
-                            <img src="logo.jpeg" alt="Profile" class="w-full h-full object-cover opacity-90">
-                        </div>
+        <!-- About -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About <span class="gradient">Me</span></h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="logo.jpeg" alt="Profile">
                     </div>
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4">John Ogletree <span class="text-accent-primary">(jvhn0gl3)</span></h3>
-                        <p class="text-text-secondary mb-6 leading-relaxed">
-                            Full-Stack Digital Architect with over a decade of experience in software engineering and UI/UX design. 
-                            I specialize in building high-performance, aesthetically pleasing digital products that make a difference.
-                        </p>
-                        <p class="text-text-secondary mb-8 leading-relaxed">
-                            I bridge the gap between complex backend logic and intuitive frontend experiences, 
-                            ensuring every line of code serves a purpose and every pixel has meaning.
-                        </p>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-1 p-4 rounded-xl bg-card border border-white/10">
-                                <div class="text-2xl font-bold text-accent-primary">10+</div>
-                                <div class="text-text-muted text-sm">Years Experience</div>
-                            </div>
-                            <div class="flex-1 p-4 rounded-xl bg-card border border-white/10">
-                                <div class="text-2xl font-bold text-accent-primary">50+</div>
-                                <div class="text-text-muted text-sm">Projects</div>
-                            </div>
+                    <div class="about-content">
+                        <h3>John Ogletree <span>@jvhn0gl3</span></h3>
+                        <p>Full-Stack Digital Architect with over a decade of experience in software engineering and UI/UX design. I specialize in building high-performance, aesthetically pleasing digital products.</p>
+                        <p>I bridge the gap between complex backend logic and intuitive frontend experiences, ensuring every line of code serves a purpose.</p>
+                        <div class="stats-mini">
+                            <div><span>10+</span> Years Exp</div>
+                            <div><span>50+</span> Projects</div>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-3 mt-8">
-                            <a href="#" class="btn-icon-social"><i class="fa-brands fa-github"></i></a>
-                            <a href="#" class="btn-icon-social"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="#" class="btn-icon-social"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#" class="btn-icon-social"><i class="fa-brands fa-instagram"></i></a>
+                        <div class="social">
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20 px-6 bg-card/30">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">What I <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Offer</span></h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-6 mb-12">
-                    <div class="service-card p-6 rounded-2xl bg-card border border-white/10 hover:border-accent-primary/50 transition-all group">
-                        <div class="w-14 h-14 rounded-xl bg-accent-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-code text-2xl text-accent-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Web Development</h3>
-                        <p class="text-text-secondary">Modern, responsive websites built with cutting-edge technologies and best practices.</p>
+        <!-- Services -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2>What I <span class="gradient">Offer</span></h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fa-solid fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Modern, responsive websites built with cutting-edge technologies.</p>
                     </div>
-                    
-                    <div class="service-card p-6 rounded-2xl bg-card border border-white/10 hover:border-accent-primary/50 transition-all group">
-                        <div class="w-14 h-14 rounded-xl bg-accent-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-palette text-2xl text-accent-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
-                        <p class="text-text-secondary">Beautiful, intuitive interfaces that users love to interact with.</p>
+                    <div class="service-card">
+                        <i class="fa-solid fa-palette"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Beautiful, intuitive interfaces that users love.</p>
                     </div>
-                    
-                    <div class="service-card p-6 rounded-2xl bg-card border border-white/10 hover:border-accent-primary/50 transition-all group">
-                        <div class="w-14 h-14 rounded-xl bg-accent-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-mobile-alt text-2xl text-accent-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Mobile Apps</h3>
-                        <p class="text-text-secondary">Cross-platform mobile applications for iOS and Android.</p>
+                    <div class="service-card">
+                        <i class="fa-solid fa-mobile-alt"></i>
+                        <h3>Mobile Apps</h3>
+                        <p>Cross-platform apps for iOS and Android.</p>
                     </div>
                 </div>
-                
                 <div class="text-center">
-                    <button class="view-all-services px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-text-primary font-semibold hover:bg-white/10 hover:border-accent-primary/50 transition-all inline-flex items-center gap-2 group">
-                        <span>View All Services</span>
-                        <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
-                    </button>
+                    <button class="view-all view-all-services">View All Services →</button>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Projects</span></h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    <div class="project-card group rounded-2xl overflow-hidden bg-card border border-white/10 hover:border-accent-primary/50 transition-all">
-                        <div class="aspect-video bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center">
-                            <i class="fa-solid fa-cube text-5xl text-text-muted group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Project Alpha</h3>
-                            <p class="text-text-secondary text-sm mb-4">A revolutionary platform for digital creators.</p>
-                            <div class="flex gap-2">
-                                <span class="text-xs px-2 py-1 rounded-full bg-accent-primary/10 text-accent-primary">React</span>
-                                <span class="text-xs px-2 py-1 rounded-full bg-accent-primary/10 text-accent-primary">Node.js</span>
-                            </div>
-                        </div>
+        <!-- Projects -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Featured <span class="gradient">Projects</span></h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fa-solid fa-cube"></i></div>
+                        <h3>Project Alpha</h3>
+                        <p>A revolutionary platform for digital creators.</p>
+                        <div class="tags"><span>React</span><span>Node.js</span></div>
                     </div>
-                    
-                    <div class="project-card group rounded-2xl overflow-hidden bg-card border border-white/10 hover:border-accent-primary/50 transition-all">
-                        <div class="aspect-video bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center">
-                            <i class="fa-solid fa-cloud text-5xl text-text-muted group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Project Beta</h3>
-                            <p class="text-text-secondary text-sm mb-4">Cloud-based analytics dashboard.</p>
-                            <div class="flex gap-2">
-                                <span class="text-xs px-2 py-1 rounded-full bg-accent-primary/10 text-accent-primary">Vue</span>
-                                <span class="text-xs px-2 py-1 rounded-full bg-accent-primary/10 text-accent-primary">Python</span>
-                            </div>
-                        </div>
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fa-solid fa-cloud"></i></div>
+                        <h3>Project Beta</h3>
+                        <p>Cloud-based analytics dashboard.</p>
+                        <div class="tags"><span>Vue</span><span>Python</span></div>
                     </div>
-                    
-                    <div class="project-card group rounded-2xl overflow-hidden bg-card border border-white/10 hover:border-accent-primary/50 transition-all">
-                        <div class="aspect-video bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center">
-                            <i class="fa-solid fa-robot text-5xl text-text-muted group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Project Gamma</h3>
-                            <p class="text-text-secondary text-sm mb-4">AI-powered content generation tool.</p>
-                            <div class="flex gap-2">
-                                <span class="text-xs px-2 py-1 rounded-full bg-accent-primary/10 text-accent-primary">Next.js</span>
-                                <span class="text-xs px-2 py-1 rounded-full bg-accent-primary/10 text-accent-primary">OpenAI</span>
-                            </div>
-                        </div>
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fa-solid fa-robot"></i></div>
+                        <h3>Project Gamma</h3>
+                        <p>AI-powered content generation tool.</p>
+                        <div class="tags"><span>Next.js</span><span>OpenAI</span></div>
                     </div>
                 </div>
-                
                 <div class="text-center">
-                    <button class="view-all-projects px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-text-primary font-semibold hover:bg-white/10 hover:border-accent-primary/50 transition-all inline-flex items-center gap-2 group">
-                        <span>View All Projects</span>
-                        <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
-                    </button>
+                    <button class="view-all view-all-projects">View All Projects →</button>
                 </div>
             </div>
         </section>
 
-        <!-- Blog Section -->
-        <section id="blog" class="py-20 px-6 bg-card/30">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Latest <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Insights</span></h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-6 mb-12">
-                    <div class="blog-card p-6 rounded-2xl bg-card border border-white/10 hover:border-accent-primary/50 transition-all">
-                        <div class="text-sm text-accent-primary mb-2">Technology</div>
-                        <h3 class="text-lg font-bold mb-2">The Future of Web Development</h3>
-                        <p class="text-text-secondary text-sm mb-4">Exploring emerging trends and technologies shaping the web.</p>
-                        <a href="#" class="text-accent-primary text-sm hover:underline">Read more →</a>
+        <!-- Blog -->
+        <section id="blog" class="blog">
+            <div class="container">
+                <h2>Latest <span class="gradient">Insights</span></h2>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <div class="blog-cat">Technology</div>
+                        <h3>The Future of Web Development</h3>
+                        <p>Exploring emerging trends shaping the web.</p>
+                        <a href="#">Read more →</a>
                     </div>
-                    
-                    <div class="blog-card p-6 rounded-2xl bg-card border border-white/10 hover:border-accent-primary/50 transition-all">
-                        <div class="text-sm text-accent-primary mb-2">Design</div>
-                        <h3 class="text-lg font-bold mb-2">Minimalist UI Principles</h3>
-                        <p class="text-text-secondary text-sm mb-4">How less becomes more in modern interface design.</p>
-                        <a href="#" class="text-accent-primary text-sm hover:underline">Read more →</a>
+                    <div class="blog-card">
+                        <div class="blog-cat">Design</div>
+                        <h3>Minimalist UI Principles</h3>
+                        <p>How less becomes more in modern design.</p>
+                        <a href="#">Read more →</a>
                     </div>
-                    
-                    <div class="blog-card p-6 rounded-2xl bg-card border border-white/10 hover:border-accent-primary/50 transition-all">
-                        <div class="text-sm text-accent-primary mb-2">Career</div>
-                        <h3 class="text-lg font-bold mb-2">10 Years in Review</h3>
-                        <p class="text-text-secondary text-sm mb-4">Lessons learned from a decade of digital creation.</p>
-                        <a href="#" class="text-accent-primary text-sm hover:underline">Read more →</a>
+                    <div class="blog-card">
+                        <div class="blog-cat">Career</div>
+                        <h3>10 Years in Review</h3>
+                        <p>Lessons from a decade of creation.</p>
+                        <a href="#">Read more →</a>
                     </div>
                 </div>
-                
                 <div class="text-center">
-                    <button class="view-all-blog px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-text-primary font-semibold hover:bg-white/10 hover:border-accent-primary/50 transition-all inline-flex items-center gap-2 group">
-                        <span>View All Posts</span>
-                        <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
-                    </button>
+                    <button class="view-all view-all-blog">View All Posts →</button>
                 </div>
             </div>
         </section>
 
-        <!-- Connect Section -->
-        <section id="connect" class="py-20 px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Let's Work <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Together</span></h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mb-8"></div>
-                <p class="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">
-                    Have a project in mind? Let's create something amazing together.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="mailto:hello@echo.dev" class="px-8 py-4 rounded-xl bg-gradient-to-r from-accent-primary to-accent-secondary text-white font-semibold hover:shadow-lg hover:shadow-accent-primary/25 transition-all hover:scale-105">
-                        <i class="fa-solid fa-envelope mr-2"></i> hello@echo.dev
-                    </a>
-                    <a href="#" class="px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-text-primary font-semibold hover:bg-white/10 transition-all hover:scale-105">
-                        <i class="fa-brands fa-discord mr-2"></i> Discord
-                    </a>
+        <!-- Connect -->
+        <section id="connect" class="connect">
+            <div class="container">
+                <h2>Let's Work <span class="gradient">Together</span></h2>
+                <p>Have a project in mind? Let's create something amazing.</p>
+                <div class="connect-buttons">
+                    <a href="mailto:hello@echo.dev" class="btn-primary">Email Me</a>
+                    <a href="#" class="btn-secondary">Discord</a>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="py-8 px-6 border-t border-white/10 text-center text-text-muted text-sm">
-            <p>&copy; 2024 Echo. All rights reserved. | Built with <i class="fa-solid fa-heart text-accent-primary"></i> by jvhn0gl3</p>
+        <footer>
+            <p>&copy; 2024 Echo. Built with <i class="fa-solid fa-heart"></i> by jvhn0gl3</p>
         </footer>
     </main>
 
-    <!-- Command Palette Modal -->
-    <div id="command-palette" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center" role="dialog">
-        <div class="w-full max-w-md bg-card rounded-2xl border border-white/10 overflow-hidden animate-fadeIn">
-            <div class="flex items-center gap-3 p-4 border-b border-white/10">
-                <i class="fa-solid fa-terminal text-accent-primary"></i>
-                <input type="text" id="command-input" placeholder="Type a command..." class="flex-1 bg-transparent border-none outline-none text-text-primary" autocomplete="off">
-                <span class="text-xs px-2 py-1 rounded-md bg-white/10 text-text-muted">ESC</span>
+    <!-- Command Palette -->
+    <div id="command-palette" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa-solid fa-terminal"></i>
+                <input type="text" id="command-input" placeholder="Type a command...">
+                <span class="key-hint">ESC</span>
             </div>
-            <div class="p-2">
-                <div class="text-xs text-text-muted px-3 py-2">Quick Actions</div>
-                <div class="command-item" data-nav="home"><i class="fa-solid fa-compass w-8 text-accent-primary"></i><span>Go to Home</span><span class="text-text-muted text-sm ml-auto">H</span></div>
-                <div class="command-item" data-nav="projects"><i class="fa-solid fa-layer-group w-8 text-accent-primary"></i><span>View Projects</span><span class="text-text-muted text-sm ml-auto">P</span></div>
-                <div class="command-item" id="cmd-accessibility"><i class="fa-solid fa-universal-access w-8 text-accent-primary"></i><span>Accessibility</span><span class="text-text-muted text-sm ml-auto">A</span></div>
+            <div class="modal-body">
+                <div class="command-group">Quick Actions</div>
+                <div class="command-item" data-nav="home">🏠 Go to Home</div>
+                <div class="command-item" data-nav="projects">📁 View Projects</div>
+                <div class="command-item" id="cmd-accessibility">♿ Accessibility</div>
             </div>
         </div>
     </div>
 
     <!-- Accessibility Modal -->
-    <div id="accessibility-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center" role="dialog">
-        <div class="w-full max-w-md bg-card rounded-2xl border border-white/10 overflow-hidden animate-fadeIn">
-            <div class="flex justify-between items-center p-4 border-b border-white/10">
-                <h2 class="text-xl font-bold"><i class="fa-solid fa-universal-access text-accent-primary mr-2"></i> Accessibility</h2>
-                <button id="close-modal-btn" class="text-text-muted hover:text-text-primary text-2xl">&times;</button>
+    <div id="accessibility-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-universal-access"></i> Accessibility</h3>
+                <button class="close-btn">&times;</button>
             </div>
-            <div class="p-4 space-y-4">
-                <div class="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                    <span><i class="fa-solid fa-circle-half-stroke text-accent-primary mr-2"></i> High Contrast</span>
-                    <button id="btn-high-contrast" class="px-4 py-1 rounded-lg bg-white/10 hover:bg-accent-primary/20 transition-all">Toggle</button>
-                </div>
-                <div class="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                    <span><i class="fa-solid fa-text-height text-accent-primary mr-2"></i> Larger Text</span>
-                    <button id="btn-large-text" class="px-4 py-1 rounded-lg bg-white/10 hover:bg-accent-primary/20 transition-all">Toggle</button>
-                </div>
-                <div class="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                    <span><i class="fa-solid fa-font text-accent-primary mr-2"></i> Dyslexic Font</span>
-                    <button id="btn-dyslexic-font" class="px-4 py-1 rounded-lg bg-white/10 hover:bg-accent-primary/20 transition-all">Toggle</button>
-                </div>
-                <div class="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                    <span><i class="fa-solid fa-person-walking text-accent-primary mr-2"></i> Reduce Motion</span>
-                    <button id="btn-reduce-motion" class="px-4 py-1 rounded-lg bg-white/10 hover:bg-accent-primary/20 transition-all">Toggle</button>
-                </div>
+            <div class="modal-body">
+                <div class="access-item"><span>🔆 High Contrast</span><button id="btn-high-contrast">Toggle</button></div>
+                <div class="access-item"><span>🔤 Larger Text</span><button id="btn-large-text">Toggle</button></div>
+                <div class="access-item"><span>📖 Dyslexic Font</span><button id="btn-dyslexic-font">Toggle</button></div>
+                <div class="access-item"><span>🎬 Reduce Motion</span><button id="btn-reduce-motion">Toggle</button></div>
             </div>
-            <div class="flex gap-3 p-4 border-t border-white/10">
-                <button id="reset-all-btn" class="flex-1 px-4 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all">Reset All</button>
-                <button id="modal-close-btn" class="flex-1 px-4 py-2 rounded-lg bg-accent-primary/20 text-accent-primary hover:bg-accent-primary/30 transition-all">Close</button>
+            <div class="modal-footer">
+                <button id="reset-all-btn">Reset All</button>
+                <button id="modal-close-btn">Close</button>
             </div>
         </div>
     </div>
