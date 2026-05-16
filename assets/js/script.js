@@ -91,6 +91,30 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
+// View All Buttons
+document.querySelectorAll('.view-all-services, .view-all-projects, .view-all-blog').forEach(btn => {
+    btn.addEventListener('click', () => {
+        // This would typically open a modal or navigate to a dedicated page
+        // For now, show an alert or console message
+        if (btn.classList.contains('view-all-services')) {
+            alert('All services page - Coming soon!');
+        } else if (btn.classList.contains('view-all-projects')) {
+            alert('All projects page - Coming soon!');
+        } else if (btn.classList.contains('view-all-blog')) {
+            alert('All blog posts page - Coming soon!');
+        }
+    });
+});
+
+// Hero Buttons
+document.querySelector('.explore-btn')?.addEventListener('click', () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+document.querySelector('.contact-btn')?.addEventListener('click', () => {
+    document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' });
+});
+
 // Modal Elements
 const commandPalette = document.getElementById('command-palette');
 const accessibilityModal = document.getElementById('accessibility-modal');
@@ -224,10 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('modal-close-btn')?.addEventListener('click', closeAccessibilityModal);
     document.getElementById('accessibility-trigger')?.addEventListener('click', openAccessibilityModal);
     
-    // Search trigger
-    const searchContainer = document.querySelector('.search-container');
-    if (searchContainer) searchContainer.addEventListener('click', openCommandPalette);
-    
     // Close modals on outside click
     commandPalette?.addEventListener('click', (e) => { if (e.target === commandPalette) closeCommandPalette(); });
     accessibilityModal?.addEventListener('click', (e) => { if (e.target === accessibilityModal) closeAccessibilityModal(); });
@@ -255,22 +275,6 @@ commandPalette?.addEventListener('click', (e) => {
 
 accessibilityModal?.addEventListener('click', (e) => {
     if (e.target === accessibilityModal) closeAccessibilityModal();
-});
-
-// Hero buttons
-document.querySelector('.btn-primary')?.addEventListener('click', () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-});
-
-document.querySelectorAll('.btn-secondary, .btn-primary:last-child').forEach(btn => {
-    btn?.addEventListener('click', () => {
-        document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' });
-    });
-});
-
-// Explore Projects button
-document.querySelector('.btn-gradient')?.addEventListener('click', () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
 });
 
 // Security measures
