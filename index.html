@@ -105,16 +105,18 @@
             gap: 8px;
         }
 
-        /* Main Content */
+        /* Main Content - Full Width */
         .main {
             margin-left: 72px;
+            width: calc(100% - 72px);
         }
 
         section {
-            padding: 80px 40px;
+            padding: 80px 48px;
+            width: 100%;
         }
 
-        /* Hero Section */
+        /* Hero Section - Full Width */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -124,7 +126,6 @@
 
         .hero-content {
             max-width: 900px;
-            margin: 0 auto;
             width: 100%;
         }
 
@@ -212,7 +213,7 @@
             color: #666;
         }
 
-        /* About Section */
+        /* About Section - Full Width */
         .about {
             background: #0D0D0D;
         }
@@ -222,8 +223,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         .about-image {
@@ -321,17 +321,16 @@
             color: transparent;
         }
 
-        /* Services, Projects, Blog Grids */
+        /* Services, Projects, Blog Grids - Full Width */
         .services, .projects, .blog {
-            max-width: 100%;
+            width: 100%;
         }
 
         .services-grid, .projects-grid, .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         /* Cards */
@@ -381,6 +380,7 @@
             display: flex;
             gap: 8px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .tags span {
@@ -434,11 +434,12 @@
             margin-top: 50px;
         }
 
-        /* Connect Section */
+        /* Connect Section - Full Width */
         .connect {
             text-align: center;
             background: linear-gradient(135deg, #0A0A0A 0%, #0F0F0F 100%);
-            padding: 100px 40px;
+            padding: 100px 48px;
+            width: 100%;
         }
 
         .connect h2 {
@@ -460,11 +461,12 @@
 
         /* Footer */
         footer {
-            padding: 32px 40px;
+            padding: 32px 48px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: #666;
             font-size: 14px;
+            width: 100%;
         }
 
         footer i {
@@ -623,10 +625,17 @@
             font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif;
         }
 
-        /* Responsive */
+        /* Responsive - Maintain full width */
+        @media (max-width: 1200px) {
+            .services-grid, .projects-grid, .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
         @media (max-width: 1024px) {
             section {
-                padding: 60px 30px;
+                padding: 60px 32px;
             }
             
             h1 {
@@ -640,6 +649,11 @@
             .about-grid {
                 gap: 40px;
             }
+            
+            .services-grid, .projects-grid, .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -649,10 +663,11 @@
             
             .main {
                 margin-left: 60px;
+                width: calc(100% - 60px);
             }
             
             section {
-                padding: 50px 20px;
+                padding: 50px 24px;
             }
             
             h1 {
@@ -688,6 +703,7 @@
             
             .main {
                 margin-left: 56px;
+                width: calc(100% - 56px);
             }
             
             section {
@@ -704,6 +720,7 @@
             
             .btn-primary, .btn-secondary {
                 text-align: center;
+                width: 100%;
             }
             
             .stats {
@@ -755,7 +772,7 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Main Content - Full Width -->
     <main class="main">
         <!-- Hero -->
         <section id="home" class="hero">
