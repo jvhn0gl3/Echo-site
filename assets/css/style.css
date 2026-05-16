@@ -51,19 +51,38 @@
     background: #8B5CF6;
 }
 
-/* Navigation Links */
-.nav-link {
-    position: relative;
+/* Sidebar - Icon Only */
+.sidebar {
+    width: 80px;
 }
 
-.nav-link.active {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+/* Icon Navigation Links */
+.nav-link-icon.active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
     color: #FFFFFF;
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    border: 1px solid rgba(99, 102, 241, 0.4);
 }
 
-.nav-link.active i {
+.nav-link-icon.active i {
     color: #6366F1;
+}
+
+/* Tooltip on hover */
+.nav-link-icon:hover::after,
+button.w-12:hover::after,
+a.w-12:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 70px;
+    background: #1A1A1A;
+    color: #FFFFFF;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 50;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
 }
 
 /* Service Cards */
@@ -177,15 +196,43 @@ body.dyslexic-font {
     font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .cursor-dot, .cursor-outline {
+/* Responsive - Sidebar always visible */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+    }
+    
+    .main-content {
+        margin-left: 80px;
+    }
+    
+    .nav-link-icon:hover::after {
         display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
     }
 }
 
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
+@media (max-width: 640px) {
+    .sidebar {
+        width: 70px;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+    }
+    
+    .w-12 {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* Remove cursor on touch devices */
+@media (max-width: 1024px) {
+    .cursor-dot, .cursor-outline {
+        display: none;
     }
 }

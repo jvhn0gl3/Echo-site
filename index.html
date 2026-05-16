@@ -78,71 +78,58 @@
         <div class="grid-pattern"></div>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn fixed top-6 right-6 z-50 w-12 h-12 rounded-xl bg-card border border-white/10 backdrop-blur-sm hidden max-lg:flex items-center justify-center cursor-pointer transition-all hover:bg-accent-primary/20 hover:border-accent-primary/50">
-        <i class="fa-solid fa-bars text-xl"></i>
-    </button>
-
-    <!-- Sidebar -->
-    <aside class="sidebar fixed left-0 top-0 h-full w-72 bg-card/80 backdrop-blur-xl border-r border-white/10 z-40 transition-all duration-300 max-lg:-translate-x-full">
-        <div class="flex flex-col h-full p-8">
+    <!-- Sidebar - Icon Only, Always Visible -->
+    <aside class="sidebar fixed left-0 top-0 h-full w-20 bg-card/80 backdrop-blur-xl border-r border-white/10 z-40 transition-all duration-300">
+        <div class="flex flex-col h-full py-6">
             <!-- Logo -->
-            <div class="mb-10 text-center">
-                <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary p-[2px]">
-                    <div class="w-full h-full rounded-2xl bg-dark flex items-center justify-center overflow-hidden">
+            <div class="mb-8 flex justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-primary to-accent-secondary p-[2px]">
+                    <div class="w-full h-full rounded-xl bg-dark flex items-center justify-center overflow-hidden">
                         <img src="logo.jpeg" alt="Echo" class="w-full h-full object-cover">
                     </div>
                 </div>
-                <h2 class="text-xl font-bold bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Echo</h2>
-                <p class="text-text-muted text-sm mt-1">Digital Creator</p>
             </div>
 
-            <!-- Navigation -->
+            <!-- Navigation - Icons Only -->
             <nav class="flex-1">
-                <div class="space-y-2">
-                    <a href="#" data-nav="home" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                        <i class="fa-solid fa-compass text-lg w-5"></i>
-                        <span>Home</span>
+                <div class="flex flex-col items-center gap-2">
+                    <a href="#" data-nav="home" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Home">
+                        <i class="fa-solid fa-compass text-xl"></i>
                     </a>
-                    <a href="#" data-nav="about" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                        <i class="fa-solid fa-user-astronaut text-lg w-5"></i>
-                        <span>About</span>
+                    <a href="#" data-nav="about" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="About">
+                        <i class="fa-solid fa-user-astronaut text-xl"></i>
                     </a>
-                    <a href="#" data-nav="services" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                        <i class="fa-solid fa-cube text-lg w-5"></i>
-                        <span>Services</span>
+                    <a href="#" data-nav="services" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Services">
+                        <i class="fa-solid fa-cube text-xl"></i>
                     </a>
-                    <a href="#" data-nav="projects" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                        <i class="fa-solid fa-layer-group text-lg w-5"></i>
-                        <span>Projects</span>
+                    <a href="#" data-nav="projects" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Projects">
+                        <i class="fa-solid fa-layer-group text-xl"></i>
                     </a>
-                    <a href="#" data-nav="blog" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                        <i class="fa-solid fa-pen-fancy text-lg w-5"></i>
-                        <span>Blog</span>
+                    <a href="#" data-nav="blog" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Blog">
+                        <i class="fa-solid fa-pen-fancy text-xl"></i>
                     </a>
-                    <a href="#" data-nav="connect" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                        <i class="fa-solid fa-paper-plane text-lg w-5"></i>
-                        <span>Connect</span>
+                    <a href="#" data-nav="connect" class="nav-link-icon w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Connect">
+                        <i class="fa-solid fa-paper-plane text-xl"></i>
                     </a>
                 </div>
             </nav>
 
-            <!-- Bottom Actions -->
-            <div class="pt-8 border-t border-white/10">
-                <button id="accessibility-trigger" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                    <i class="fa-solid fa-universal-access text-lg w-5"></i>
-                    <span>Accessibility</span>
-                </button>
-                <a href="https://github.com/jvhn0gl3" target="_blank" class="mt-2 w-full flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all group">
-                    <i class="fa-brands fa-github text-lg w-5"></i>
-                    <span>GitHub</span>
-                </a>
+            <!-- Bottom Actions - Icons Only -->
+            <div class="mt-auto pt-4 border-t border-white/10">
+                <div class="flex flex-col items-center gap-2">
+                    <button id="accessibility-trigger" class="w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="Accessibility">
+                        <i class="fa-solid fa-universal-access text-xl"></i>
+                    </button>
+                    <a href="https://github.com/jvhn0gl3" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all group" title="GitHub">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </aside>
 
     <!-- Main Content -->
-    <main class="main-content ml-72 transition-all duration-300 max-lg:ml-0">
+    <main class="main-content ml-20 transition-all duration-300">
         
         <!-- Hero Section -->
         <section id="home" class="min-h-screen flex items-center justify-center px-6 py-20">

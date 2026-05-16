@@ -19,38 +19,8 @@ if (cursorDot && cursorOutline) {
     });
 }
 
-// Mobile Menu
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const sidebar = document.querySelector('.sidebar');
-const mainContent = document.querySelector('.main-content');
-
-function toggleMobileMenu() {
-    if (window.innerWidth <= 1024) {
-        sidebar?.classList.toggle('-translate-x-full');
-        mobileMenuBtn?.classList.toggle('active');
-        if (mobileMenuBtn?.classList.contains('active')) {
-            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-times text-xl"></i>';
-        } else {
-            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-        }
-    }
-}
-
-mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
-
-// Close sidebar on link click (mobile)
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        if (window.innerWidth <= 1024) {
-            sidebar?.classList.add('-translate-x-full');
-            mobileMenuBtn?.classList.remove('active');
-            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-        }
-    });
-});
-
 // Navigation with active state
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('.nav-link-icon');
 const sections = ['home', 'about', 'services', 'projects', 'blog', 'connect'];
 
 function setActiveNav() {
@@ -78,7 +48,7 @@ window.addEventListener('scroll', setActiveNav);
 setActiveNav();
 
 // Smooth scroll for navigation
-document.querySelectorAll('.nav-link').forEach(link => {
+document.querySelectorAll('.nav-link-icon').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = link.getAttribute('data-nav');
@@ -94,8 +64,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
 // View All Buttons
 document.querySelectorAll('.view-all-services, .view-all-projects, .view-all-blog').forEach(btn => {
     btn.addEventListener('click', () => {
-        // This would typically open a modal or navigate to a dedicated page
-        // For now, show an alert or console message
         if (btn.classList.contains('view-all-services')) {
             alert('All services page - Coming soon!');
         } else if (btn.classList.contains('view-all-projects')) {
@@ -262,19 +230,8 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeAccessibilityModal();
         closeCommandPalette();
-        sidebar?.classList.remove('-translate-x-full');
-        mobileMenuBtn?.classList.remove('active');
         document.body.style.overflow = '';
     }
-});
-
-// Close modals on outside click
-commandPalette?.addEventListener('click', (e) => {
-    if (e.target === commandPalette) closeCommandPalette();
-});
-
-accessibilityModal?.addEventListener('click', (e) => {
-    if (e.target === accessibilityModal) closeAccessibilityModal();
 });
 
 // Security measures
