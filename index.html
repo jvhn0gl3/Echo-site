@@ -93,230 +93,269 @@
         body.large-text { font-size: 120%; }
         body.reduce-motion * { transition: none !important; animation: none !important; }
         body.dyslexic-font { font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif; }
+        
+        /* Hidden templates storage */
+        .page-templates { display: none; }
+        
         @media (max-width: 1024px) { section { padding: 60px 32px; } h1 { font-size: 56px; } h2 { font-size: 36px; } .services-grid, .projects-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { .sidebar { width: 60px; } .main { margin-left: 60px; width: calc(100% - 60px); } section { padding: 50px 24px; } h1 { font-size: 40px; } h2 { font-size: 28px; } .about-grid { grid-template-columns: 1fr; } .services-grid, .projects-grid, .blog-grid { grid-template-columns: 1fr; } }
         @media (max-width: 480px) { .sidebar { width: 56px; } .main { margin-left: 56px; width: calc(100% - 56px); } section { padding: 40px 16px; } h1 { font-size: 32px; } .buttons { flex-direction: column; } .btn-primary, .btn-secondary { text-align: center; width: 100%; } }
     </style>
 </head>
 <body>
-    <div id="app"></div>
+    <!-- Hidden Page Templates (components as sections in HTML) -->
+    <div class="page-templates">
+        <!-- Home Template -->
+        <section id="template-home" class="hero">
+            <div class="hero-content">
+                <div class="badge">Available for work</div>
+                <h1>Digital <span class="gradient">Alchemy</span></h1>
+                <p>Crafting digital experiences that transcend the ordinary. Full-stack development meets creative innovation.</p>
+                <div class="buttons">
+                    <button class="btn-primary explore-btn">Explore Work</button>
+                    <button class="btn-secondary contact-btn">Contact Me</button>
+                </div>
+                <div class="stats">
+                    <div><span>10+</span> Years</div>
+                    <div><span>50+</span> Projects</div>
+                    <div><span>30+</span> Clients</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Template -->
+        <section id="template-about" class="about">
+            <div class="section-header">
+                <h2>About <span class="gradient">Me</span></h2>
+                <p class="section-subtitle">Get to know the person behind the code</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image"><img src="logo.jpeg" alt="Profile"></div>
+                <div class="about-content">
+                    <h3>John Ogletree <span>@jvhn0gl3</span></h3>
+                    <p>Full-Stack Digital Architect with over a decade of experience in software engineering and UI/UX design. I specialize in building high-performance, aesthetically pleasing digital products.</p>
+                    <p>I bridge the gap between complex backend logic and intuitive frontend experiences, ensuring every line of code serves a purpose and every pixel has meaning.</p>
+                    <div class="stats-mini">
+                        <div><span>10+</span> Years Exp</div>
+                        <div><span>50+</span> Projects</div>
+                    </div>
+                    <div class="social">
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Template -->
+        <section id="template-services" class="services">
+            <div class="section-header">
+                <h2>What I <span class="gradient">Offer</span></h2>
+                <p class="section-subtitle">Comprehensive digital solutions for modern businesses</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Modern, responsive websites built with cutting-edge technologies and best practices for optimal performance.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-palette"></i>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful, intuitive interfaces that users love to interact with, backed by user research and testing.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-mobile-alt"></i>
+                    <h3>Mobile Apps</h3>
+                    <p>Cross-platform mobile applications for iOS and Android built with React Native and Flutter.</p>
+                </div>
+            </div>
+            <div class="text-center"><button class="view-all view-all-services">View All Services →</button></div>
+        </section>
+
+        <!-- Projects Template -->
+        <section id="template-projects" class="projects">
+            <div class="section-header">
+                <h2>Featured <span class="gradient">Projects</span></h2>
+                <p class="section-subtitle">Some of my best work</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon"><i class="fa-solid fa-cube"></i></div>
+                    <h3>Project Alpha</h3>
+                    <p>A revolutionary platform for digital creators to showcase and sell their work.</p>
+                    <div class="tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fa-solid fa-cloud"></i></div>
+                    <h3>Project Beta</h3>
+                    <p>Cloud-based analytics dashboard for real-time business intelligence.</p>
+                    <div class="tags"><span>Vue</span><span>Python</span><span>AWS</span></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h3>Project Gamma</h3>
+                    <p>AI-powered content generation tool for marketing teams.</p>
+                    <div class="tags"><span>Next.js</span><span>OpenAI</span><span>PostgreSQL</span></div>
+                </div>
+            </div>
+            <div class="text-center"><button class="view-all view-all-projects">View All Projects →</button></div>
+        </section>
+
+        <!-- Blog Template -->
+        <section id="template-blog" class="blog">
+            <div class="section-header">
+                <h2>Latest <span class="gradient">Insights</span></h2>
+                <p class="section-subtitle">Thoughts on technology, design, and creativity</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-cat">Technology</div>
+                    <h3>The Future of Web Development</h3>
+                    <p>Exploring emerging trends and technologies shaping the future of the web in 2024 and beyond.</p>
+                    <a href="#">Read more →</a>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-cat">Design</div>
+                    <h3>Minimalist UI Principles</h3>
+                    <p>How less becomes more in modern interface design, and why simplicity wins.</p>
+                    <a href="#">Read more →</a>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-cat">Career</div>
+                    <h3>10 Years in Review</h3>
+                    <p>Lessons learned from a decade of digital creation and software development.</p>
+                    <a href="#">Read more →</a>
+                </div>
+            </div>
+            <div class="text-center"><button class="view-all view-all-blog">View All Posts →</button></div>
+        </section>
+
+        <!-- Connect Template -->
+        <section id="template-connect" class="connect">
+            <h2>Let's Work <span class="gradient">Together</span></h2>
+            <p>Have a project in mind? Let's create something amazing together.</p>
+            <div class="connect-buttons">
+                <a href="mailto:hello@echo.dev" class="btn-primary">Email Me</a>
+                <a href="#" class="btn-secondary">Discord</a>
+            </div>
+        </section>
+    </div>
+
+    <div id="app">
+        <!-- Dynamic content will be injected here -->
+    </div>
+
     <script>
         (function() {
             'use strict';
             
-            // Page Components
-            const pages = {
-                home: () => `
-                    <section id="home" class="hero">
-                        <div class="hero-content">
-                            <div class="badge">Available for work</div>
-                            <h1>Digital <span class="gradient">Alchemy</span></h1>
-                            <p>Crafting digital experiences that transcend the ordinary. Full-stack development meets creative innovation.</p>
-                            <div class="buttons">
-                                <button class="btn-primary explore-btn">Explore Work</button>
-                                <button class="btn-secondary contact-btn">Contact Me</button>
-                            </div>
-                            <div class="stats">
-                                <div><span>10+</span> Years</div>
-                                <div><span>50+</span> Projects</div>
-                                <div><span>30+</span> Clients</div>
-                            </div>
-                        </div>
-                    </section>
-                `,
-                about: () => `
-                    <section id="about" class="about">
-                        <div class="section-header">
-                            <h2>About <span class="gradient">Me</span></h2>
-                            <p class="section-subtitle">Get to know the person behind the code</p>
-                        </div>
-                        <div class="about-grid">
-                            <div class="about-image"><img src="logo.jpeg" alt="Profile"></div>
-                            <div class="about-content">
-                                <h3>John Ogletree <span>@jvhn0gl3</span></h3>
-                                <p>Full-Stack Digital Architect with over a decade of experience in software engineering and UI/UX design. I specialize in building high-performance, aesthetically pleasing digital products.</p>
-                                <p>I bridge the gap between complex backend logic and intuitive frontend experiences, ensuring every line of code serves a purpose and every pixel has meaning.</p>
-                                <div class="stats-mini">
-                                    <div><span>10+</span> Years Exp</div>
-                                    <div><span>50+</span> Projects</div>
-                                </div>
-                                <div class="social">
-                                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                `,
-                services: () => `
-                    <section id="services" class="services">
-                        <div class="section-header">
-                            <h2>What I <span class="gradient">Offer</span></h2>
-                            <p class="section-subtitle">Comprehensive digital solutions for modern businesses</p>
-                        </div>
-                        <div class="services-grid">
-                            <div class="service-card">
-                                <i class="fa-solid fa-code"></i>
-                                <h3>Web Development</h3>
-                                <p>Modern, responsive websites built with cutting-edge technologies and best practices for optimal performance.</p>
-                            </div>
-                            <div class="service-card">
-                                <i class="fa-solid fa-palette"></i>
-                                <h3>UI/UX Design</h3>
-                                <p>Beautiful, intuitive interfaces that users love to interact with, backed by user research and testing.</p>
-                            </div>
-                            <div class="service-card">
-                                <i class="fa-solid fa-mobile-alt"></i>
-                                <h3>Mobile Apps</h3>
-                                <p>Cross-platform mobile applications for iOS and Android built with React Native and Flutter.</p>
-                            </div>
-                        </div>
-                        <div class="text-center"><button class="view-all view-all-services">View All Services →</button></div>
-                    </section>
-                `,
-                projects: () => `
-                    <section id="projects" class="projects">
-                        <div class="section-header">
-                            <h2>Featured <span class="gradient">Projects</span></h2>
-                            <p class="section-subtitle">Some of my best work</p>
-                        </div>
-                        <div class="projects-grid">
-                            <div class="project-card">
-                                <div class="project-icon"><i class="fa-solid fa-cube"></i></div>
-                                <h3>Project Alpha</h3>
-                                <p>A revolutionary platform for digital creators to showcase and sell their work.</p>
-                                <div class="tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
-                            </div>
-                            <div class="project-card">
-                                <div class="project-icon"><i class="fa-solid fa-cloud"></i></div>
-                                <h3>Project Beta</h3>
-                                <p>Cloud-based analytics dashboard for real-time business intelligence.</p>
-                                <div class="tags"><span>Vue</span><span>Python</span><span>AWS</span></div>
-                            </div>
-                            <div class="project-card">
-                                <div class="project-icon"><i class="fa-solid fa-robot"></i></div>
-                                <h3>Project Gamma</h3>
-                                <p>AI-powered content generation tool for marketing teams.</p>
-                                <div class="tags"><span>Next.js</span><span>OpenAI</span><span>PostgreSQL</span></div>
-                            </div>
-                        </div>
-                        <div class="text-center"><button class="view-all view-all-projects">View All Projects →</button></div>
-                    </section>
-                `,
-                blog: () => `
-                    <section id="blog" class="blog">
-                        <div class="section-header">
-                            <h2>Latest <span class="gradient">Insights</span></h2>
-                            <p class="section-subtitle">Thoughts on technology, design, and creativity</p>
-                        </div>
-                        <div class="blog-grid">
-                            <div class="blog-card">
-                                <div class="blog-cat">Technology</div>
-                                <h3>The Future of Web Development</h3>
-                                <p>Exploring emerging trends and technologies shaping the future of the web in 2024 and beyond.</p>
-                                <a href="#">Read more →</a>
-                            </div>
-                            <div class="blog-card">
-                                <div class="blog-cat">Design</div>
-                                <h3>Minimalist UI Principles</h3>
-                                <p>How less becomes more in modern interface design, and why simplicity wins.</p>
-                                <a href="#">Read more →</a>
-                            </div>
-                            <div class="blog-card">
-                                <div class="blog-cat">Career</div>
-                                <h3>10 Years in Review</h3>
-                                <p>Lessons learned from a decade of digital creation and software development.</p>
-                                <a href="#">Read more →</a>
-                            </div>
-                        </div>
-                        <div class="text-center"><button class="view-all view-all-blog">View All Posts →</button></div>
-                    </section>
-                `,
-                connect: () => `
-                    <section id="connect" class="connect">
-                        <h2>Let's Work <span class="gradient">Together</span></h2>
-                        <p>Have a project in mind? Let's create something amazing together.</p>
-                        <div class="connect-buttons">
-                            <a href="mailto:hello@echo.dev" class="btn-primary">Email Me</a>
-                            <a href="#" class="btn-secondary">Discord</a>
-                        </div>
-                    </section>
-                `
-            };
-            
             let currentPage = 'home';
             
+            // Get template content by ID
+            function getTemplateContent(pageName) {
+                const template = document.getElementById(`template-${pageName}`);
+                if (template) {
+                    return template.cloneNode(true);
+                }
+                return null;
+            }
+            
             // Layout wrapper
-            function renderLayout(pageContent) {
-                return `
-                    <aside class="sidebar">
-                        <div class="sidebar-inner">
-                            <div class="logo"><img src="logo.jpeg" alt="Echo"></div>
-                            <nav>
-                                <a href="#" data-page="home" class="nav-link ${currentPage === 'home' ? 'active' : ''}" title="Home"><i class="fa-solid fa-compass"></i></a>
-                                <a href="#" data-page="about" class="nav-link ${currentPage === 'about' ? 'active' : ''}" title="About"><i class="fa-solid fa-user"></i></a>
-                                <a href="#" data-page="services" class="nav-link ${currentPage === 'services' ? 'active' : ''}" title="Services"><i class="fa-solid fa-cube"></i></a>
-                                <a href="#" data-page="projects" class="nav-link ${currentPage === 'projects' ? 'active' : ''}" title="Projects"><i class="fa-solid fa-layer-group"></i></a>
-                                <a href="#" data-page="blog" class="nav-link ${currentPage === 'blog' ? 'active' : ''}" title="Blog"><i class="fa-solid fa-pen-fancy"></i></a>
-                                <a href="#" data-page="connect" class="nav-link ${currentPage === 'connect' ? 'active' : ''}" title="Connect"><i class="fa-solid fa-paper-plane"></i></a>
-                            </nav>
-                            <div class="bottom-actions">
-                                <button id="accessibility-trigger" class="nav-link" title="Accessibility"><i class="fa-solid fa-universal-access"></i></button>
-                                <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                            </div>
-                        </div>
-                    </aside>
-                    <main class="main">
-                        ${pageContent}
-                        <footer>
-                            <p>&copy; 2024 Echo. Built with <i class="fa-solid fa-heart"></i> by jvhn0gl3</p>
-                        </footer>
-                    </main>
-                    <div id="command-palette" class="modal hidden">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <i class="fa-solid fa-terminal"></i>
-                                <input type="text" id="command-input" placeholder="Type a command...">
-                                <span class="key-hint">ESC</span>
-                            </div>
-                            <div class="modal-body">
-                                <div class="command-group">Quick Actions</div>
-                                <div class="command-item" data-page="home">🏠 Go to Home</div>
-                                <div class="command-item" data-page="projects">📁 View Projects</div>
-                                <div class="command-item" id="cmd-accessibility">♿ Accessibility</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="accessibility-modal" class="modal hidden">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3><i class="fa-solid fa-universal-access"></i> Accessibility</h3>
-                                <button class="close-btn" id="close-modal-btn">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="access-item"><span>🔆 High Contrast</span><button id="btn-high-contrast">Toggle</button></div>
-                                <div class="access-item"><span>🔤 Larger Text</span><button id="btn-large-text">Toggle</button></div>
-                                <div class="access-item"><span>📖 Dyslexic Font</span><button id="btn-dyslexic-font">Toggle</button></div>
-                                <div class="access-item"><span>🎬 Reduce Motion</span><button id="btn-reduce-motion">Toggle</button></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="reset-all-btn">Reset All</button>
-                                <button id="modal-close-btn">Close</button>
-                            </div>
+            function renderLayout(pageContentElement) {
+                const footer = document.createElement('footer');
+                footer.innerHTML = '<p>&copy; 2024 Echo. Built with <i class="fa-solid fa-heart"></i> by jvhn0gl3</p>';
+                
+                const main = document.createElement('main');
+                main.className = 'main';
+                main.appendChild(pageContentElement);
+                main.appendChild(footer);
+                
+                // Sidebar HTML
+                const sidebar = document.createElement('aside');
+                sidebar.className = 'sidebar';
+                sidebar.innerHTML = `
+                    <div class="sidebar-inner">
+                        <div class="logo"><img src="logo.jpeg" alt="Echo"></div>
+                        <nav>
+                            <a href="#" data-page="home" class="nav-link ${currentPage === 'home' ? 'active' : ''}" title="Home"><i class="fa-solid fa-compass"></i></a>
+                            <a href="#" data-page="about" class="nav-link ${currentPage === 'about' ? 'active' : ''}" title="About"><i class="fa-solid fa-user"></i></a>
+                            <a href="#" data-page="services" class="nav-link ${currentPage === 'services' ? 'active' : ''}" title="Services"><i class="fa-solid fa-cube"></i></a>
+                            <a href="#" data-page="projects" class="nav-link ${currentPage === 'projects' ? 'active' : ''}" title="Projects"><i class="fa-solid fa-layer-group"></i></a>
+                            <a href="#" data-page="blog" class="nav-link ${currentPage === 'blog' ? 'active' : ''}" title="Blog"><i class="fa-solid fa-pen-fancy"></i></a>
+                            <a href="#" data-page="connect" class="nav-link ${currentPage === 'connect' ? 'active' : ''}" title="Connect"><i class="fa-solid fa-paper-plane"></i></a>
+                        </nav>
+                        <div class="bottom-actions">
+                            <button id="accessibility-trigger" class="nav-link" title="Accessibility"><i class="fa-solid fa-universal-access"></i></button>
+                            <a href="https://github.com/jvhn0gl3" target="_blank" class="nav-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
                         </div>
                     </div>
                 `;
+                
+                // Modals HTML
+                const commandPalette = document.createElement('div');
+                commandPalette.id = 'command-palette';
+                commandPalette.className = 'modal hidden';
+                commandPalette.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fa-solid fa-terminal"></i>
+                            <input type="text" id="command-input" placeholder="Type a command...">
+                            <span class="key-hint">ESC</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="command-group">Quick Actions</div>
+                            <div class="command-item" data-page="home">🏠 Go to Home</div>
+                            <div class="command-item" data-page="projects">📁 View Projects</div>
+                            <div class="command-item" id="cmd-accessibility">♿ Accessibility</div>
+                        </div>
+                    </div>
+                `;
+                
+                const accessibilityModal = document.createElement('div');
+                accessibilityModal.id = 'accessibility-modal';
+                accessibilityModal.className = 'modal hidden';
+                accessibilityModal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3><i class="fa-solid fa-universal-access"></i> Accessibility</h3>
+                            <button class="close-btn" id="close-modal-btn">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="access-item"><span>🔆 High Contrast</span><button id="btn-high-contrast">Toggle</button></div>
+                            <div class="access-item"><span>🔤 Larger Text</span><button id="btn-large-text">Toggle</button></div>
+                            <div class="access-item"><span>📖 Dyslexic Font</span><button id="btn-dyslexic-font">Toggle</button></div>
+                            <div class="access-item"><span>🎬 Reduce Motion</span><button id="btn-reduce-motion">Toggle</button></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="reset-all-btn">Reset All</button>
+                            <button id="modal-close-btn">Close</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Clear and rebuild app
+                const app = document.getElementById('app');
+                app.innerHTML = '';
+                app.appendChild(sidebar);
+                app.appendChild(main);
+                app.appendChild(commandPalette);
+                app.appendChild(accessibilityModal);
+                
+                return app;
             }
             
             function renderPage(pageName) {
                 currentPage = pageName;
-                const pageContent = pages[pageName] ? pages[pageName]() : pages.home();
-                const fullHTML = renderLayout(pageContent);
-                document.getElementById('app').innerHTML = fullHTML;
-                attachEventListeners();
-                updateActiveNav();
+                const contentElement = getTemplateContent(pageName);
+                if (contentElement) {
+                    renderLayout(contentElement);
+                    attachEventListeners();
+                } else {
+                    console.error('Page not found:', pageName);
+                }
             }
             
             function updateActiveNav() {
@@ -367,6 +406,8 @@
                 document.getElementById('btn-large-text')?.addEventListener('click', toggleLargeText);
                 document.getElementById('btn-dyslexic-font')?.addEventListener('click', toggleDyslexicFont);
                 document.getElementById('btn-reduce-motion')?.addEventListener('click', toggleReduceMotion);
+                
+                updateActiveNav();
             }
             
             // Modal functions
