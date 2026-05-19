@@ -218,32 +218,60 @@
             font-family: monospace;
         }
 
-        /* Blog list */
-        .blog-list {
-            list-style: none;
+        /* Blog Grid - 3x3 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
         }
 
-        .blog-item {
-            padding: 14px 0;
-            border-bottom: 1px solid #313244;
+        .blog-card {
+            background: #181825;
+            border: 1px solid #313244;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.15s ease;
             cursor: pointer;
-            transition: all 0.1s ease;
         }
 
-        .blog-item:hover {
-            background: #313244;
-            padding-left: 12px;
+        .blog-card:hover {
+            border-color: #89b4fa;
+            transform: translateY(-4px);
+        }
+
+        .blog-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #89b4fa;
+            margin-bottom: 12px;
         }
 
         .blog-title {
             font-weight: 600;
-            margin-bottom: 6px;
-            color: #89b4fa;
+            margin-bottom: 8px;
+            color: #cdd6f4;
+            font-size: 16px;
+        }
+
+        .blog-excerpt {
+            font-size: 13px;
+            color: #6c7086;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .blog-meta {
-            font-size: 12px;
+            font-size: 11px;
             color: #6c7086;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .blog-meta i {
+            font-size: 11px;
         }
 
         /* Social links */
@@ -307,7 +335,8 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .projects-grid {
+            .projects-grid,
+            .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
             }
@@ -323,7 +352,8 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
-            .projects-grid {
+            .projects-grid,
+            .blog-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
@@ -416,26 +446,46 @@
         </div>
         <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" style="color:#89b4fa;">View all projects on GitHub</a></p>
 
-        <!-- Blog Section -->
+        <!-- Blog Section - 3x3 Grid -->
         <h2><i class="fa-regular fa-pen-fancy"></i> Latest Insights</h2>
-        <ul class="blog-list">
-            <li class="blog-item">
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-category">🚀 Technology</div>
                 <div class="blog-title">The Future of Web Development</div>
-                <div class="blog-meta">Technology · 5 min read</div>
-            </li>
-            <li class="blog-item">
+                <div class="blog-excerpt">Exploring emerging trends and technologies shaping the future of the web in 2024 and beyond.</div>
+                <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 5 min read</div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-category">🎨 Design</div>
                 <div class="blog-title">Minimalist UI Principles</div>
-                <div class="blog-meta">Design · 4 min read</div>
-            </li>
-            <li class="blog-item">
+                <div class="blog-excerpt">How less becomes more in modern interface design, and why simplicity wins.</div>
+                <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 4 min read</div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-category">💼 Career</div>
                 <div class="blog-title">10 Years in Review</div>
-                <div class="blog-meta">Career · 7 min read</div>
-            </li>
-            <li class="blog-item">
+                <div class="blog-excerpt">Lessons learned from a decade of digital creation and software development.</div>
+                <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 7 min read</div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-category">✍️ Opinion</div>
                 <div class="blog-title">Why I Love Monospace Fonts</div>
-                <div class="blog-meta">Opinion · 3 min read</div>
-            </li>
-        </ul>
+                <div class="blog-excerpt">The beauty of consistent character widths in programming and design.</div>
+                <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 3 min read</div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-category">🤖 AI</div>
+                <div class="blog-title">Building with LLMs</div>
+                <div class="blog-excerpt">Practical approaches to integrating large language models into your apps.</div>
+                <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 8 min read</div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-category">🔧 Tools</div>
+                <div class="blog-title">My Dev Setup 2024</div>
+                <div class="blog-excerpt">A look at the tools, extensions, and configurations that boost my productivity.</div>
+                <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 6 min read</div>
+            </div>
+        </div>
         <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog" style="color:#89b4fa;">Read all posts</a></p>
 
         <!-- Connect Section -->
@@ -581,6 +631,13 @@
             document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 alert('All blog posts — coming soon!');
+            });
+            
+            // Blog card click handlers
+            document.querySelectorAll('.blog-card').forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    alert(`Reading: ${card.querySelector('.blog-title')?.innerText || 'Blog post'} — Coming soon!`);
+                });
             });
             
             // Accessibility Modal
