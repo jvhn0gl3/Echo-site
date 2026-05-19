@@ -31,124 +31,6 @@
             width: 100%;
         }
 
-        /* Activity Bar (Leftmost) */
-        .activity-bar {
-            width: 48px;
-            background: #181825;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px 0;
-            border-right: 1px solid #313244;
-        }
-
-        .activity-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #cdd6f4;
-            cursor: pointer;
-            transition: all 0.1s ease;
-            font-size: 20px;
-            position: relative;
-        }
-
-        .activity-icon:hover {
-            color: #89b4fa;
-        }
-
-        .activity-icon.active {
-            color: #89b4fa;
-            border-left: 2px solid #89b4fa;
-            background: #1e1e2e;
-        }
-
-        .activity-icon[data-tooltip]:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            left: 52px;
-            background: #313244;
-            color: #cdd6f4;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            white-space: nowrap;
-            z-index: 100;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .activity-spacer {
-            flex: 1;
-        }
-
-        /* Sidebar (File Explorer) */
-        .sidebar {
-            width: 260px;
-            background: #181825;
-            border-right: 1px solid #313244;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 12px 16px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #6c7086;
-            border-bottom: 1px solid #313244;
-        }
-
-        .file-tree {
-            padding: 8px 0;
-        }
-
-        .file-item {
-            padding: 6px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            color: #cdd6f4;
-            font-size: 13px;
-            transition: all 0.1s ease;
-        }
-
-        .file-item i {
-            font-size: 14px;
-            color: #89b4fa;
-            width: 20px;
-        }
-
-        .file-item:hover {
-            background: #313244;
-        }
-
-        .file-item.active {
-            background: #313244;
-            color: #89b4fa;
-        }
-
-        .folder-item {
-            padding: 6px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #6c7086;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .folder-item i {
-            font-size: 12px;
-        }
-
         /* Main Editor Area */
         .editor-area {
             flex: 1;
@@ -596,70 +478,27 @@
 </head>
 <body>
     <div class="ide-container">
-        <!-- Activity Bar -->
-        <div class="activity-bar">
-            <div class="activity-icon active" data-section="readme" data-tooltip="README.md">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-            <div class="activity-icon" data-section="about" data-tooltip="about.md">
-                <i class="fa-regular fa-user"></i>
-            </div>
-            <div class="activity-icon" data-section="skills" data-tooltip="skills.json">
-                <i class="fa-regular fa-cube"></i>
-            </div>
-            <div class="activity-icon" data-section="projects" data-tooltip="projects.tsx">
-                <i class="fa-regular fa-folder"></i>
-            </div>
-            <div class="activity-icon" data-section="blog" data-tooltip="blog.md">
-                <i class="fa-regular fa-pen-fancy"></i>
-            </div>
-            <div class="activity-icon" data-section="connect" data-tooltip="connect.ts">
-                <i class="fa-regular fa-envelope"></i>
-            </div>
-            <div class="activity-spacer"></div>
-            <div class="activity-icon" id="accessibility-trigger-activity" data-tooltip="Settings">
-                <i class="fa-solid fa-universal-access"></i>
-            </div>
-            <div class="activity-icon" id="command-palette-trigger-activity" data-tooltip="Command Palette">
-                <i class="fa-solid fa-terminal"></i>
-            </div>
-        </div>
-
-        <!-- File Explorer Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">EXPLORER</div>
-            <div class="file-tree">
-                <div class="folder-item"><i class="fa-regular fa-folder-open"></i> PORTFOLIO</div>
-                <div class="file-item active" data-section="readme">
-                    <i class="fa-regular fa-file-lines"></i> README.md
-                </div>
-                <div class="file-item" data-section="about">
-                    <i class="fa-regular fa-file"></i> about.md
-                </div>
-                <div class="file-item" data-section="skills">
-                    <i class="fa-regular fa-file-code"></i> skills.json
-                </div>
-                <div class="file-item" data-section="projects">
-                    <i class="fa-regular fa-file-code"></i> projects.tsx
-                </div>
-                <div class="file-item" data-section="blog">
-                    <i class="fa-regular fa-file"></i> blog.md
-                </div>
-                <div class="file-item" data-section="connect">
-                    <i class="fa-regular fa-file"></i> connect.ts
-                </div>
-                <div class="folder-item" style="margin-top: 16px;"><i class="fa-regular fa-folder"></i> config</div>
-                <div class="file-item"><i class="fa-regular fa-file"></i> package.json</div>
-                <div class="file-item"><i class="fa-regular fa-file"></i> tsconfig.json</div>
-            </div>
-        </div>
-
         <!-- Editor Area -->
         <div class="editor-area">
             <!-- Tabs Bar -->
             <div class="tabs-bar" id="tabs-bar">
                 <div class="tab active" data-section="readme">
                     <i class="fa-regular fa-file-lines"></i> README.md
+                </div>
+                <div class="tab" data-section="about">
+                    <i class="fa-regular fa-user"></i> about.md
+                </div>
+                <div class="tab" data-section="skills">
+                    <i class="fa-regular fa-cube"></i> skills.json
+                </div>
+                <div class="tab" data-section="projects">
+                    <i class="fa-regular fa-folder"></i> projects.tsx
+                </div>
+                <div class="tab" data-section="blog">
+                    <i class="fa-regular fa-pen-fancy"></i> blog.md
+                </div>
+                <div class="tab" data-section="connect">
+                    <i class="fa-regular fa-envelope"></i> connect.ts
                 </div>
             </div>
 
@@ -677,7 +516,8 @@
                 </div>
                 <div class="status-right">
                     <span class="status-item" id="cursor-position">Ln 1, Col 1</span>
-                    <span class="status-item"><i class="fa-regular fa-gear"></i> Spaces: 2</span>
+                    <span class="status-item" id="command-palette-trigger"><i class="fa-solid fa-terminal"></i> Ctrl+P</span>
+                    <span class="status-item" id="accessibility-trigger"><i class="fa-solid fa-universal-access"></i> Accessibility</span>
                 </div>
             </div>
         </div>
@@ -826,38 +666,7 @@
             
             // Update active UI elements
             function updateActiveUI(section) {
-                // Update activity bar
-                document.querySelectorAll('.activity-icon').forEach(icon => {
-                    icon.classList.remove('active');
-                    if (icon.getAttribute('data-section') === section) {
-                        icon.classList.add('active');
-                    }
-                });
-                
-                // Update file tree
-                document.querySelectorAll('.file-item').forEach(file => {
-                    file.classList.remove('active');
-                    if (file.getAttribute('data-section') === section) {
-                        file.classList.add('active');
-                    }
-                });
-                
                 // Update tabs
-                const tabsBar = document.getElementById('tabs-bar');
-                const existingTab = Array.from(tabsBar.children).find(tab => tab.getAttribute('data-section') === section);
-                
-                if (!existingTab) {
-                    const newTab = document.createElement('div');
-                    newTab.className = 'tab active';
-                    newTab.setAttribute('data-section', section);
-                    const iconMap = { readme: 'fa-regular fa-file-lines', about: 'fa-regular fa-user', skills: 'fa-regular fa-cube', projects: 'fa-regular fa-folder', blog: 'fa-regular fa-pen-fancy', connect: 'fa-regular fa-envelope' };
-                    const labelMap = { readme: 'README.md', about: 'about.md', skills: 'skills.json', projects: 'projects.tsx', blog: 'blog.md', connect: 'connect.ts' };
-                    newTab.innerHTML = `<i class="${iconMap[section]}"></i> ${labelMap[section]}`;
-                    newTab.addEventListener('click', () => renderContent(section));
-                    tabsBar.appendChild(newTab);
-                }
-                
-                // Update active tab
                 document.querySelectorAll('.tab').forEach(tab => {
                     tab.classList.remove('active');
                     if (tab.getAttribute('data-section') === section) {
@@ -878,20 +687,11 @@
                 });
             }
             
-            // Navigation event listeners
-            function setupNavigation() {
-                // Activity bar clicks
-                document.querySelectorAll('.activity-icon[data-section]').forEach(icon => {
-                    icon.addEventListener('click', () => {
-                        const section = icon.getAttribute('data-section');
-                        renderContent(section);
-                    });
-                });
-                
-                // File tree clicks
-                document.querySelectorAll('.file-item[data-section]').forEach(file => {
-                    file.addEventListener('click', () => {
-                        const section = file.getAttribute('data-section');
+            // Setup tab navigation
+            function setupTabs() {
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const section = tab.getAttribute('data-section');
                         renderContent(section);
                     });
                 });
@@ -924,12 +724,12 @@
                 document.body.style.overflow = '';
             };
             
-            document.getElementById('command-palette-trigger-activity')?.addEventListener('click', (e) => {
+            document.getElementById('command-palette-trigger')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 openCommandPalette();
             });
             
-            document.getElementById('accessibility-trigger-activity')?.addEventListener('click', (e) => {
+            document.getElementById('accessibility-trigger')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 openAccessibilityModal();
             });
@@ -1005,7 +805,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 loadAccessibilityPreferences();
                 renderContent('readme');
-                setupNavigation();
+                setupTabs();
                 
                 document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
                 document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);
@@ -1020,6 +820,10 @@
             });
             
             document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    e.preventDefault();
+                    openCommandPalette();
+                }
                 if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
                     e.preventDefault();
                     openCommandPalette();
