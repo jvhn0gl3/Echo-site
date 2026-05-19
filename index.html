@@ -318,25 +318,6 @@
             color: #89b4fa;
         }
 
-        /* Command hint */
-        .command-hint {
-            position: fixed;
-            bottom: 20px;
-            right: 24px;
-            background: #181825;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 11px;
-            color: #6c7086;
-            border: 1px solid #313244;
-            font-family: monospace;
-            z-index: 100;
-        }
-
-        .command-hint i {
-            margin-right: 6px;
-        }
-
         /* Modal styles */
         .modal {
             position: fixed;
@@ -493,11 +474,6 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
-            .command-hint {
-                bottom: 12px;
-                right: 12px;
-                font-size: 9px;
-            }
         }
     </style>
 </head>
@@ -536,11 +512,6 @@
         <div class="main-content" id="main-content">
             <!-- Content will be injected here -->
         </div>
-    </div>
-
-    <!-- Command Hint -->
-    <div class="command-hint">
-        <i class="fa-solid fa-terminal"></i> Ctrl+P or / to navigate
     </div>
 
     <!-- Command Palette Modal -->
@@ -611,8 +582,6 @@
     stack: ["React", "Node.js", "Python", "TypeScript"],
     philosophy: "code that serves a purpose, pixels that have meaning"
 };</code></pre>
-                    
-                    <p>→ Click icons on the left or press <code>Ctrl+P</code> / <code>/</code> to navigate</p>
                 `,
                 about: `
                     <div class="comment">// about.md — who am I</div>
