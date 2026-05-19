@@ -308,39 +308,6 @@
             color: #89b4fa;
         }
 
-        /* Status Bar */
-        .status-bar {
-            background: #181825;
-            border-top: 1px solid #313244;
-            padding: 6px 16px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: #6c7086;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .status-left {
-            display: flex;
-            gap: 16px;
-        }
-
-        .status-right {
-            display: flex;
-            gap: 16px;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .status-item:hover {
-            color: #89b4fa;
-        }
-
         /* Modal styles */
         .modal {
             position: fixed;
@@ -506,20 +473,6 @@
             <div class="editor-content" id="editor-content">
                 <!-- Content will be injected here -->
             </div>
-
-            <!-- Status Bar -->
-            <div class="status-bar">
-                <div class="status-left">
-                    <span class="status-item"><i class="fa-regular fa-code-branch"></i> main</span>
-                    <span class="status-item"><i class="fa-regular fa-check-circle"></i> 0 errors</span>
-                    <span class="status-item"><i class="fa-regular fa-clock"></i> UTF-8</span>
-                </div>
-                <div class="status-right">
-                    <span class="status-item" id="cursor-position">Ln 1, Col 1</span>
-                    <span class="status-item" id="command-palette-trigger"><i class="fa-solid fa-terminal"></i> Ctrl+P</span>
-                    <span class="status-item" id="accessibility-trigger"><i class="fa-solid fa-universal-access"></i> Accessibility</span>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -592,7 +545,7 @@
     philosophy: "code that serves a purpose, pixels that have meaning"
 };</code></pre>
                     
-                    <p>→ Check out my projects, read my insights, or reach out for collaboration.</p>
+                    <p>→ Press <code>Ctrl+P</code> or <code>/</code> to open command palette</p>
                 `,
                 about: `
                     <div class="comment">// about.md — personal background</div>
@@ -666,7 +619,6 @@
             
             // Update active UI elements
             function updateActiveUI(section) {
-                // Update tabs
                 document.querySelectorAll('.tab').forEach(tab => {
                     tab.classList.remove('active');
                     if (tab.getAttribute('data-section') === section) {
@@ -723,16 +675,6 @@
                 accessibilityModal?.classList.add('hidden');
                 document.body.style.overflow = '';
             };
-            
-            document.getElementById('command-palette-trigger')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                openCommandPalette();
-            });
-            
-            document.getElementById('accessibility-trigger')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                openAccessibilityModal();
-            });
             
             // Command items
             document.querySelectorAll('.command-item[data-section]').forEach(item => {
