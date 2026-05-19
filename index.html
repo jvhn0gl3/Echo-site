@@ -20,94 +20,31 @@
             background: #1e1e2e;
             color: #cdd6f4;
             line-height: 1.6;
-            height: 100vh;
-            overflow: hidden;
         }
 
-        /* Layout with Activity Bar */
-        .layout {
-            display: flex;
-            height: 100vh;
-        }
-
-        /* Activity Bar */
-        .activity-bar {
-            width: 56px;
-            background: #181825;
-            border-right: 1px solid #313244;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px 0;
-            gap: 8px;
-        }
-
-        .activity-icon {
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            color: #6c7086;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            font-size: 20px;
-            position: relative;
-        }
-
-        .activity-icon:hover {
-            color: #cdd6f4;
-            background: #313244;
-        }
-
-        .activity-icon.active {
-            color: #89b4fa;
-            background: #313244;
-        }
-
-        .activity-icon[data-tooltip]:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            left: 52px;
-            background: #181825;
-            color: #cdd6f4;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 100;
-            border: 1px solid #313244;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .activity-spacer {
-            flex: 1;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 48px 64px;
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 48px 32px;
         }
 
         /* Code-like Typography */
         h1 {
-            font-size: 32px;
-            font-weight: 600;
+            font-size: 36px;
+            font-weight: 700;
             margin-bottom: 16px;
             color: #89b4fa;
             font-family: 'JetBrains Mono', monospace;
         }
 
         h2 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 16px;
+            margin-top: 48px;
+            margin-bottom: 20px;
             padding-bottom: 8px;
-            border-bottom: 1px solid #313244;
+            border-bottom: 2px solid #313244;
             color: #cba6f7;
         }
 
@@ -189,7 +126,7 @@
         /* Service cards */
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin: 32px 0;
         }
@@ -318,6 +255,180 @@
             color: #89b4fa;
         }
 
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #313244;
+            text-align: center;
+            color: #6c7086;
+            font-size: 12px;
+        }
+
+        /* Accessibility Modes */
+        body.high-contrast { filter: contrast(150%); }
+        body.large-text { font-size: 120%; }
+        body.reduce-motion * { transition: none !important; animation: none !important; }
+        body.dyslexic-font { font-family: 'OpenDyslexic', monospace; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181825;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #313244;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #45475a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 32px 20px;
+            }
+            h1 { font-size: 28px; }
+            h2 { font-size: 20px; }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- README / Hero Section -->
+        <div class="comment">// echo/README.md — welcome to my digital workspace</div>
+        <h1>📄 John Ogletree <span style="color:#a6e3a1;">@jvhn0gl3</span></h1>
+        <p><strong>Full-Stack Digital Architect</strong> · 10+ years · building digital experiences that matter</p>
+        
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
+            <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
+            <div class="stat-item"><div class="stat-number">30+</div><div class="stat-label">Clients</div></div>
+            <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
+        </div>
+        
+        <p>I transform complex ideas into elegant, functional digital products. My approach combines technical excellence with creative innovation.</p>
+        
+        <pre><code>const echo = {
+    passion: "building beautiful software",
+    stack: ["React", "Node.js", "Python", "TypeScript"],
+    philosophy: "code that serves a purpose, pixels that have meaning"
+};</code></pre>
+
+        <!-- About Section -->
+        <h2><i class="fa-regular fa-user"></i> About Me</h2>
+        <p><strong>John Ogletree</strong> — a <code>Full-Stack Digital Architect</code> with over a decade of experience bridging the gap between complex backend logic and intuitive frontend experiences.</p>
+        <p>I started my journey as a self-taught developer, fascinated by the intersection of design and technology. Since then, I've worked with startups, agencies, and enterprises to deliver high-impact digital solutions.</p>
+        
+        <h3>🎯 Mission</h3>
+        <p>To create digital products that are not only functional but delightful to use — where every line of code serves a purpose and every pixel has meaning.</p>
+        
+        <h3>📍 Currently</h3>
+        <p>Working on AI-powered developer tools and open-source contributions. Available for freelance and consulting work.</p>
+
+        <!-- Skills Section -->
+        <h2><i class="fa-regular fa-cube"></i> Skills & Services</h2>
+        <div class="service-grid">
+            <div class="service-card"><i class="fa-solid fa-code"></i><h4>Web Development</h4><p>React, Vue, Node.js, Python</p></div>
+            <div class="service-card"><i class="fa-solid fa-palette"></i><h4>UI/UX Design</h4><p>Figma, Framer, prototyping</p></div>
+            <div class="service-card"><i class="fa-solid fa-mobile-alt"></i><h4>Mobile Apps</h4><p>React Native, Flutter</p></div>
+            <div class="service-card"><i class="fa-solid fa-cloud"></i><h4>Cloud & DevOps</h4><p>AWS, Docker, CI/CD</p></div>
+            <div class="service-card"><i class="fa-solid fa-database"></i><h4>Databases</h4><p>PostgreSQL, MongoDB, Redis</p></div>
+            <div class="service-card"><i class="fa-solid fa-robot"></i><h4>AI Integration</h4><p>OpenAI, LangChain, Vector DBs</p></div>
+        </div>
+
+        <!-- Projects Section -->
+        <h2><i class="fa-regular fa-folder"></i> Featured Projects</h2>
+        <ul class="project-list">
+            <li class="project-item">
+                <div class="project-title">Project Alpha</div>
+                <div class="project-desc">A revolutionary platform for digital creators to showcase and sell their work.</div>
+                <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">MongoDB</span></div>
+            </li>
+            <li class="project-item">
+                <div class="project-title">Project Beta</div>
+                <div class="project-desc">Cloud-based analytics dashboard for real-time business intelligence.</div>
+                <div class="project-tags"><span class="project-tag">Vue</span><span class="project-tag">Python</span><span class="project-tag">AWS</span></div>
+            </li>
+            <li class="project-item">
+                <div class="project-title">Project Gamma</div>
+                <div class="project-desc">AI-powered content generation tool for marketing teams.</div>
+                <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">OpenAI</span><span class="project-tag">PostgreSQL</span></div>
+            </li>
+        </ul>
+        <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" style="color:#89b4fa;">View all projects on GitHub</a></p>
+
+        <!-- Blog Section -->
+        <h2><i class="fa-regular fa-pen-fancy"></i> Latest Insights</h2>
+        <ul class="blog-list">
+            <li class="blog-item">
+                <div class="blog-title">The Future of Web Development</div>
+                <div class="blog-meta">Technology · 5 min read</div>
+            </li>
+            <li class="blog-item">
+                <div class="blog-title">Minimalist UI Principles</div>
+                <div class="blog-meta">Design · 4 min read</div>
+            </li>
+            <li class="blog-item">
+                <div class="blog-title">10 Years in Review</div>
+                <div class="blog-meta">Career · 7 min read</div>
+            </li>
+            <li class="blog-item">
+                <div class="blog-title">Why I Love Monospace Fonts</div>
+                <div class="blog-meta">Opinion · 3 min read</div>
+            </li>
+        </ul>
+        <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog" style="color:#89b4fa;">Read all posts</a></p>
+
+        <!-- Connect Section -->
+        <h2><i class="fa-regular fa-envelope"></i> Let's Connect</h2>
+        <p>Have a project in mind? Let's create something amazing together.</p>
+        <div class="social-links">
+            <a href="mailto:hello@echo.dev" class="social-link"><i class="fa-regular fa-envelope"></i> hello@echo.dev</a>
+            <a href="#" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> Twitter</a>
+            <a href="#" class="social-link"><i class="fa-brands fa-discord"></i> Discord</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Echo — Built with <i class="fa-regular fa-heart"></i> by jvhn0gl3</p>
+            <p style="margin-top: 8px;">
+                <a href="#" id="accessibility-trigger" style="color:#6c7086; text-decoration: none;">♿ Accessibility</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Accessibility Modal -->
+    <div id="accessibility-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-universal-access"></i> Accessibility</h3>
+                <button class="close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="access-item"><span>🔆 High Contrast</span><button id="btn-high-contrast">Toggle</button></div>
+                <div class="access-item"><span>🔤 Larger Text</span><button id="btn-large-text">Toggle</button></div>
+                <div class="access-item"><span>📖 Dyslexic Font</span><button id="btn-dyslexic-font">Toggle</button></div>
+                <div class="access-item"><span>🎬 Reduce Motion</span><button id="btn-reduce-motion">Toggle</button></div>
+            </div>
+            <div class="modal-footer">
+                <button id="reset-all-btn">Reset All</button>
+                <button id="modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
         /* Modal styles */
         .modal {
             position: fixed;
@@ -338,48 +449,20 @@
             border: 1px solid #313244;
             border-radius: 12px;
             width: 90%;
-            max-width: 540px;
+            max-width: 500px;
             overflow: hidden;
         }
         .modal-header {
             padding: 18px 24px;
             border-bottom: 1px solid #313244;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
         }
-        .modal-header input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            font-size: 15px;
-            outline: none;
-            color: #cdd6f4;
-            font-family: 'JetBrains Mono', monospace;
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
         }
-        .key-hint {
-            font-size: 11px;
-            padding: 4px 10px;
-            background: #313244;
-            border-radius: 6px;
-            color: #6c7086;
-        }
-        .modal-body { padding: 12px; }
-        .command-group {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #6c7086;
-            padding: 8px 14px;
-            letter-spacing: 0.5px;
-        }
-        .command-item {
-            padding: 12px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.1s;
-            font-size: 14px;
-        }
-        .command-item:hover { background: #313244; }
         .access-item {
             display: flex;
             justify-content: space-between;
@@ -432,274 +515,26 @@
             cursor: pointer;
             color: #6c7086;
         }
-
-        /* Accessibility Modes */
-        body.high-contrast { filter: contrast(150%); }
-        body.large-text { font-size: 120%; }
-        body.reduce-motion * { transition: none !important; animation: none !important; }
-        body.dyslexic-font { font-family: 'OpenDyslexic', monospace; }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #181825;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #313244;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #45475a;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 32px 24px;
-            }
-            .activity-bar {
-                width: 48px;
-            }
-            .activity-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-            h1 { font-size: 28px; }
-            h2 { font-size: 20px; }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-        }
+        .modal-body { padding: 0 24px; }
     </style>
-</head>
-<body>
-    <div class="layout">
-        <!-- Activity Bar -->
-        <div class="activity-bar">
-            <div class="activity-icon active" data-section="readme" data-tooltip="README.md">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-            <div class="activity-icon" data-section="about" data-tooltip="About">
-                <i class="fa-regular fa-user"></i>
-            </div>
-            <div class="activity-icon" data-section="skills" data-tooltip="Skills">
-                <i class="fa-regular fa-cube"></i>
-            </div>
-            <div class="activity-icon" data-section="projects" data-tooltip="Projects">
-                <i class="fa-regular fa-folder"></i>
-            </div>
-            <div class="activity-icon" data-section="blog" data-tooltip="Blog">
-                <i class="fa-regular fa-pen-fancy"></i>
-            </div>
-            <div class="activity-icon" data-section="connect" data-tooltip="Connect">
-                <i class="fa-regular fa-envelope"></i>
-            </div>
-            <div class="activity-spacer"></div>
-            <div class="activity-icon" id="accessibility-trigger" data-tooltip="Accessibility">
-                <i class="fa-solid fa-universal-access"></i>
-            </div>
-            <div class="activity-icon" id="command-palette-trigger" data-tooltip="Command Palette">
-                <i class="fa-solid fa-terminal"></i>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content" id="main-content">
-            <!-- Content will be injected here -->
-        </div>
-    </div>
-
-    <!-- Command Palette Modal -->
-    <div id="command-palette" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="fa-solid fa-terminal"></i>
-                <input type="text" id="command-input" placeholder="Type a command..." autocomplete="off">
-                <span class="key-hint">ESC</span>
-            </div>
-            <div class="modal-body">
-                <div class="command-group">Files</div>
-                <div class="command-item" data-section="readme">📄 README.md — Home</div>
-                <div class="command-item" data-section="about">👤 about.md — Background</div>
-                <div class="command-item" data-section="skills">🧊 skills.json — Technologies</div>
-                <div class="command-item" data-section="projects">📁 projects.tsx — Work</div>
-                <div class="command-item" data-section="blog">✍️ blog.md — Insights</div>
-                <div class="command-item" data-section="connect">✉️ connect.ts — Contact</div>
-                <div class="command-group">Commands</div>
-                <div class="command-item" id="cmd-accessibility">♿ Accessibility Settings</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Accessibility Modal -->
-    <div id="accessibility-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fa-solid fa-universal-access"></i> Accessibility</h3>
-                <button class="close-btn" id="close-modal-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="access-item"><span>🔆 High Contrast</span><button id="btn-high-contrast">Toggle</button></div>
-                <div class="access-item"><span>🔤 Larger Text</span><button id="btn-large-text">Toggle</button></div>
-                <div class="access-item"><span>📖 Dyslexic Font</span><button id="btn-dyslexic-font">Toggle</button></div>
-                <div class="access-item"><span>🎬 Reduce Motion</span><button id="btn-reduce-motion">Toggle</button></div>
-            </div>
-            <div class="modal-footer">
-                <button id="reset-all-btn">Reset All</button>
-                <button id="modal-close-btn">Close</button>
-            </div>
-        </div>
-    </div>
 
     <script>
         (function() {
             'use strict';
             
-            // Content for each section
-            const content = {
-                readme: `
-                    <div class="comment">// echo/README.md — welcome to my digital workspace</div>
-                    <h1>📄 John Ogletree <span style="color:#a6e3a1;">@jvhn0gl3</span></h1>
-                    <p><strong>Full-Stack Digital Architect</strong> · 10+ years · building digital experiences that matter</p>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
-                        <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
-                        <div class="stat-item"><div class="stat-number">30+</div><div class="stat-label">Clients</div></div>
-                        <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
-                    </div>
-                    
-                    <h2>🚀 Welcome</h2>
-                    <p>I transform complex ideas into elegant, functional digital products. My approach combines technical excellence with creative innovation.</p>
-                    
-                    <pre><code>const echo = {
-    passion: "building beautiful software",
-    stack: ["React", "Node.js", "Python", "TypeScript"],
-    philosophy: "code that serves a purpose, pixels that have meaning"
-};</code></pre>
-                `,
-                about: `
-                    <div class="comment">// about.md — who am I</div>
-                    <h1><i class="fa-regular fa-user"></i> About Me</h1>
-                    <p><strong>John Ogletree</strong> — a <code>Full-Stack Digital Architect</code> with over a decade of experience bridging the gap between complex backend logic and intuitive frontend experiences.</p>
-                    <p>I started my journey as a self-taught developer, fascinated by the intersection of design and technology. Since then, I've worked with startups, agencies, and enterprises to deliver high-impact digital solutions.</p>
-                    <h2>🎯 Mission</h2>
-                    <p>To create digital products that are not only functional but delightful to use — where every line of code serves a purpose and every pixel has meaning.</p>
-                    <h2>📍 Currently</h2>
-                    <p>Working on AI-powered developer tools and open-source contributions. Available for freelance and consulting work.</p>
-                `,
-                skills: `
-                    <div class="comment">// skills.json — technical capabilities</div>
-                    <h1><i class="fa-regular fa-cube"></i> Skills & Services</h1>
-                    <div class="service-grid">
-                        <div class="service-card"><i class="fa-solid fa-code"></i><h4>Web Development</h4><p>React, Vue, Node.js, Python</p></div>
-                        <div class="service-card"><i class="fa-solid fa-palette"></i><h4>UI/UX Design</h4><p>Figma, Framer, prototyping</p></div>
-                        <div class="service-card"><i class="fa-solid fa-mobile-alt"></i><h4>Mobile Apps</h4><p>React Native, Flutter</p></div>
-                        <div class="service-card"><i class="fa-solid fa-cloud"></i><h4>Cloud & DevOps</h4><p>AWS, Docker, CI/CD</p></div>
-                        <div class="service-card"><i class="fa-solid fa-database"></i><h4>Databases</h4><p>PostgreSQL, MongoDB, Redis</p></div>
-                        <div class="service-card"><i class="fa-solid fa-robot"></i><h4>AI Integration</h4><p>OpenAI, LangChain, Vector DBs</p></div>
-                    </div>
-                `,
-                projects: `
-                    <div class="comment">// projects.tsx — featured work</div>
-                    <h1><i class="fa-regular fa-folder"></i> Featured Projects</h1>
-                    <ul class="project-list">
-                        <li class="project-item"><div class="project-title">Project Alpha</div><div class="project-desc">A revolutionary platform for digital creators to showcase and sell their work.</div><div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">MongoDB</span></div></li>
-                        <li class="project-item"><div class="project-title">Project Beta</div><div class="project-desc">Cloud-based analytics dashboard for real-time business intelligence.</div><div class="project-tags"><span class="project-tag">Vue</span><span class="project-tag">Python</span><span class="project-tag">AWS</span></div></li>
-                        <li class="project-item"><div class="project-title">Project Gamma</div><div class="project-desc">AI-powered content generation tool for marketing teams.</div><div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">OpenAI</span><span class="project-tag">PostgreSQL</span></div></li>
-                    </ul>
-                    <p style="margin-top: 20px;">→ <a href="#" id="view-all-projects" style="color:#89b4fa;">View all projects on GitHub</a></p>
-                `,
-                blog: `
-                    <div class="comment">// blog.md — latest insights</div>
-                    <h1><i class="fa-regular fa-pen-fancy"></i> Latest Insights</h1>
-                    <ul class="blog-list">
-                        <li class="blog-item"><div class="blog-title">The Future of Web Development</div><div class="blog-meta">Technology · 5 min read</div></li>
-                        <li class="blog-item"><div class="blog-title">Minimalist UI Principles</div><div class="blog-meta">Design · 4 min read</div></li>
-                        <li class="blog-item"><div class="blog-title">10 Years in Review</div><div class="blog-meta">Career · 7 min read</div></li>
-                        <li class="blog-item"><div class="blog-title">Why I Love Monospace Fonts</div><div class="blog-meta">Opinion · 3 min read</div></li>
-                    </ul>
-                    <p style="margin-top: 20px;">→ <a href="#" id="view-all-blog" style="color:#89b4fa;">Read all posts</a></p>
-                `,
-                connect: `
-                    <div class="comment">// connect.ts — get in touch</div>
-                    <h1><i class="fa-regular fa-envelope"></i> Let's Connect</h1>
-                    <p>Have a project in mind? Let's create something amazing together.</p>
-                    <div class="social-links">
-                        <a href="mailto:hello@echo.dev" class="social-link"><i class="fa-regular fa-envelope"></i> hello@echo.dev</a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> Twitter</a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-discord"></i> Discord</a>
-                    </div>
-                `
-            };
+            // View all buttons
+            document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('View all projects on GitHub — coming soon!');
+            });
             
-            let currentSection = 'readme';
+            document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('All blog posts — coming soon!');
+            });
             
-            // Render content
-            function renderContent(section) {
-                const container = document.getElementById('main-content');
-                if (container && content[section]) {
-                    container.innerHTML = content[section];
-                    currentSection = section;
-                    updateActiveIcon(section);
-                    attachContentEvents();
-                }
-            }
-            
-            // Update active icon in activity bar
-            function updateActiveIcon(section) {
-                document.querySelectorAll('.activity-icon[data-section]').forEach(icon => {
-                    icon.classList.remove('active');
-                    if (icon.getAttribute('data-section') === section) {
-                        icon.classList.add('active');
-                    }
-                });
-            }
-            
-            // Attach content-specific event handlers
-            function attachContentEvents() {
-                document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('View all projects on GitHub — coming soon!');
-                });
-                document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('All blog posts — coming soon!');
-                });
-            }
-            
-            // Setup activity bar navigation
-            function setupActivityBar() {
-                document.querySelectorAll('.activity-icon[data-section]').forEach(icon => {
-                    icon.addEventListener('click', () => {
-                        const section = icon.getAttribute('data-section');
-                        renderContent(section);
-                    });
-                });
-            }
-            
-            // Modal elements
-            const commandPalette = document.getElementById('command-palette');
+            // Accessibility Modal
             const accessibilityModal = document.getElementById('accessibility-modal');
-            const commandInput = document.getElementById('command-input');
-            
-            window.openCommandPalette = () => {
-                commandPalette?.classList.remove('hidden');
-                commandInput?.focus();
-                document.body.style.overflow = 'hidden';
-            };
-            
-            window.closeCommandPalette = () => {
-                commandPalette?.classList.add('hidden');
-                document.body.style.overflow = '';
-            };
             
             window.openAccessibilityModal = () => {
                 accessibilityModal?.classList.remove('hidden');
@@ -712,26 +547,9 @@
                 document.body.style.overflow = '';
             };
             
-            document.getElementById('command-palette-trigger')?.addEventListener('click', () => {
-                openCommandPalette();
-            });
-            
-            document.getElementById('accessibility-trigger')?.addEventListener('click', () => {
+            document.getElementById('accessibility-trigger')?.addEventListener('click', (e) => {
+                e.preventDefault();
                 openAccessibilityModal();
-            });
-            
-            // Command items
-            document.querySelectorAll('.command-item[data-section]').forEach(item => {
-                item.addEventListener('click', () => {
-                    const section = item.getAttribute('data-section');
-                    renderContent(section);
-                    closeCommandPalette();
-                });
-            });
-            
-            document.getElementById('cmd-accessibility')?.addEventListener('click', () => {
-                openAccessibilityModal();
-                closeCommandPalette();
             });
             
             // Accessibility functions
@@ -790,8 +608,6 @@
             // Initialize
             document.addEventListener('DOMContentLoaded', () => {
                 loadAccessibilityPreferences();
-                renderContent('readme');
-                setupActivityBar();
                 
                 document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
                 document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);
@@ -801,22 +617,12 @@
                 document.getElementById('modal-close-btn')?.addEventListener('click', closeAccessibilityModal);
                 document.getElementById('close-modal-btn')?.addEventListener('click', closeAccessibilityModal);
                 
-                commandPalette?.addEventListener('click', (e) => { if (e.target === commandPalette) closeCommandPalette(); });
                 accessibilityModal?.addEventListener('click', (e) => { if (e.target === accessibilityModal) closeAccessibilityModal(); });
             });
             
             document.addEventListener('keydown', (e) => {
-                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-                    e.preventDefault();
-                    openCommandPalette();
-                }
-                if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
-                    e.preventDefault();
-                    openCommandPalette();
-                }
                 if (e.key === 'Escape') {
                     closeAccessibilityModal();
-                    closeCommandPalette();
                     document.body.style.overflow = '';
                 }
             });
