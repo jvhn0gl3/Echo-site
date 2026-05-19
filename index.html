@@ -53,10 +53,6 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .notification-banner.hidden {
-            display: none;
-        }
-
         .notification-content {
             display: flex;
             align-items: center;
@@ -138,27 +134,6 @@
         .notification-link:hover {
             text-decoration: underline;
             opacity: 0.8;
-        }
-
-        .notification-close {
-            position: absolute;
-            right: 64px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(137, 180, 250, 0.1);
-            border: 1px solid #313244;
-            border-radius: 6px;
-            color: #6c7086;
-            cursor: pointer;
-            font-size: 16px;
-            padding: 4px 10px;
-            transition: all 0.2s ease;
-        }
-
-        .notification-close:hover {
-            background: rgba(137, 180, 250, 0.2);
-            color: #89b4fa;
-            border-color: #89b4fa;
         }
 
         /* Indicator dots for multiple notifications */
@@ -592,9 +567,6 @@
             .notification-banner.scrolled {
                 padding: 8px 48px;
             }
-            .notification-close {
-                right: 48px;
-            }
             .projects-grid,
             .blog-grid {
                 gap: 24px;
@@ -621,14 +593,7 @@
             .notification-banner.scrolled {
                 padding: 8px 40px;
             }
-            .notification-close {
-                right: 16px;
-                top: auto;
-                bottom: 8px;
-                transform: none;
-            }
             .notification-content {
-                padding-right: 30px;
                 text-align: center;
             }
             .notification-indicators {
@@ -682,7 +647,7 @@
     </style>
 </head>
 <body>
-    <!-- Notification Banner with JSON configuration -->
+    <!-- Notification Banner - No Close Button -->
     <div id="notification-banner" class="notification-banner">
         <div class="notification-content">
             <div class="notification-icon" id="notification-icon">
@@ -694,7 +659,6 @@
                 <a href="#" class="notification-link" id="notification-link">Learn more →</a>
             </div>
         </div>
-        <button class="notification-close" id="close-notification">✕</button>
         <div class="notification-indicators" id="notification-indicators"></div>
     </div>
 
@@ -1022,7 +986,6 @@
             
             let currentNotificationIndex = 0;
             let notificationInterval = null;
-            let isDismissed = false;
             
             // DOM elements
             const banner = document.getElementById('notification-banner');
@@ -1031,19 +994,9 @@
             const messageElement = document.getElementById('notification-message');
             const linkElement = document.getElementById('notification-link');
             const indicatorsContainer = document.getElementById('notification-indicators');
-            const closeBtn = document.getElementById('close-notification');
-            
-            // Check if notification was dismissed before
-            const isNotificationDismissed = localStorage.getItem('notificationDismissed');
-            if (isNotificationDismissed === 'true') {
-                isDismissed = true;
-                banner?.classList.add('hidden');
-            }
             
             // Update notification display
             function updateNotification(index) {
-                if (isDismissed) return;
-                
                 const notification = notifications[index];
                 if (!notification) return;
                 
@@ -1089,7 +1042,7 @@
                         updateNotification(currentNotificationIndex);
                         // Restart auto-rotation after 10 seconds
                         setTimeout(() => {
-                            if (!notificationInterval && !isDismissed) {
+                            if (!notificationInterval) {
                                 startNotificationRotation();
                             }
                         }, 10000);
@@ -1102,23 +1055,9 @@
             function startNotificationRotation() {
                 if (notificationInterval) clearInterval(notificationInterval);
                 notificationInterval = setInterval(() => {
-                    if (isDismissed) return;
                     currentNotificationIndex = (currentNotificationIndex + 1) % notifications.length;
                     updateNotification(currentNotificationIndex);
                 }, notifications[currentNotificationIndex]?.duration || 8000);
-            }
-            
-            // Handle close button
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    isDismissed = true;
-                    banner.classList.add('hidden');
-                    localStorage.setItem('notificationDismissed', 'true');
-                    if (notificationInterval) {
-                        clearInterval(notificationInterval);
-                        notificationInterval = null;
-                    }
-                });
             }
             
             // Handle link click
@@ -1130,7 +1069,7 @@
             }
             
             // Initialize notification system
-            if (!isDismissed && banner) {
+            if (banner) {
                 createIndicators();
                 updateNotification(0);
                 startNotificationRotation();
