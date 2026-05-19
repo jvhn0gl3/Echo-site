@@ -22,14 +22,22 @@
         .bottom-actions { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
         .main { margin-left: 72px; width: calc(100% - 72px); }
         
-        /* Announcement Banner */
+        /* Announcement Banner - Sticky */
         .announcement-banner {
-            position: relative;
-            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
-            border-bottom: 1px solid rgba(99,102,241,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: linear-gradient(135deg, rgba(99,102,241,0.95), rgba(139,92,246,0.95));
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 12px 48px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .announcement-banner.scrolled {
+            padding: 8px 48px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.98), rgba(139,92,246,0.98));
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         .announcement-banner.hidden {
             display: none;
@@ -44,7 +52,7 @@
         .banner-icon {
             width: 24px;
             height: 24px;
-            background: rgba(99,102,241,0.2);
+            background: rgba(255,255,255,0.2);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
@@ -53,33 +61,37 @@
         }
         .banner-text {
             font-size: 14px;
-            color: #D4D4D8;
+            color: #FFFFFF;
         }
         .banner-link {
-            color: #818CF8;
+            color: #FFFFFF;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
         }
         .banner-link:hover {
-            color: #A5B4FC;
-            text-decoration: underline;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.25);
         }
         .banner-close {
             position: absolute;
             right: 48px;
             top: 50%;
             transform: translateY(-50%);
-            background: none;
+            background: rgba(255,255,255,0.1);
             border: none;
-            color: #71717A;
+            color: #FFFFFF;
             cursor: pointer;
             font-size: 18px;
-            padding: 4px 8px;
-            transition: color 0.2s ease;
+            padding: 4px 10px;
+            border-radius: 20px;
+            transition: background 0.2s ease;
         }
         .banner-close:hover {
-            color: #A1A1AA;
+            background: rgba(255,255,255,0.2);
         }
         
         section { padding: 80px 48px; width: 100%; }
@@ -184,7 +196,7 @@
     <!-- Main Content - All Sections Visible -->
     <main class="main">
         
-        <!-- Announcement Banner -->
+        <!-- Announcement Banner - Sticky on scroll -->
         <div id="announcement-banner" class="announcement-banner">
             <div class="banner-content">
                 <span class="banner-icon">✨</span>
@@ -381,8 +393,20 @@
         (function() {
             'use strict';
             
-            // Announcement Banner - Dismissible with localStorage
+            // Sticky banner scroll effect
             const banner = document.getElementById('announcement-banner');
+            
+            if (banner) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        banner.classList.add('scrolled');
+                    } else {
+                        banner.classList.remove('scrolled');
+                    }
+                });
+            }
+            
+            // Announcement Banner - Dismissible with localStorage
             const closeBannerBtn = document.getElementById('close-banner');
             
             // Check if banner was dismissed before
@@ -416,12 +440,14 @@
                 });
             });
             
-            // Update active nav on scroll
+            // Update active nav on scroll (accounting for sticky banner)
             const sections = ['home', 'about', 'services', 'projects', 'blog', 'connect'];
             const navLinks = document.querySelectorAll('.nav-link');
             
             function updateActiveNav() {
-                const scrollPos = window.scrollY + 100;
+                const bannerHeight = banner && !banner.classList.contains('hidden') ? (banner.offsetHeight || 50) : 0;
+                const scrollPos = window.scrollY + 100 + bannerHeight;
+                
                 sections.forEach(section => {
                     const element = document.getElementById(section);
                     if (element) {
