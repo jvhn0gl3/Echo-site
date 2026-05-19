@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Echo - Digital Creator Portfolio" />
-    <title>README | Echo</title>
+    <title>Echo - Visual Studio Code Portfolio</title>
     <link rel="icon" type="image/jpeg" href="logo.jpeg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
         * {
@@ -16,26 +16,30 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #ffffff;
-            color: #1f2937;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            background: #1e1e2e;
+            color: #cdd6f4;
             line-height: 1.6;
+            overflow: hidden;
+            height: 100vh;
         }
 
-        /* IDE-style Activity Bar Layout */
-        .activity-bar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 48px;
+        /* IDE Layout */
+        .ide-container {
+            display: flex;
             height: 100vh;
-            background: #252526;
+            width: 100%;
+        }
+
+        /* Activity Bar (Leftmost) */
+        .activity-bar {
+            width: 48px;
+            background: #181825;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 12px 0;
-            z-index: 100;
-            border-right: 1px solid #3e3e42;
+            border-right: 1px solid #313244;
         }
 
         .activity-icon {
@@ -44,209 +48,235 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #858585;
+            color: #cdd6f4;
             cursor: pointer;
-            transition: all 0.15s ease;
-            position: relative;
+            transition: all 0.1s ease;
             font-size: 20px;
+            position: relative;
         }
 
         .activity-icon:hover {
-            color: #ffffff;
+            color: #89b4fa;
         }
 
         .activity-icon.active {
-            color: #ffffff;
-            border-left: 2px solid #ffffff;
-            background: #2d2d30;
+            color: #89b4fa;
+            border-left: 2px solid #89b4fa;
+            background: #1e1e2e;
         }
 
         .activity-icon[data-tooltip]:hover::after {
             content: attr(data-tooltip);
             position: absolute;
-            left: 60px;
-            background: #252526;
-            color: #cccccc;
-            padding: 6px 12px;
+            left: 52px;
+            background: #313244;
+            color: #cdd6f4;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 11px;
             white-space: nowrap;
-            z-index: 101;
-            border: 1px solid #3e3e42;
+            z-index: 100;
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .spacer {
+        .activity-spacer {
             flex: 1;
         }
 
-        /* Main Content - shifted for activity bar */
-        .main-content {
-            margin-left: 48px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        .header {
-            border-bottom: 1px solid #e5e7eb;
-            padding: 48px 0 24px;
-            margin-bottom: 32px;
-        }
-
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .header p {
-            color: #6b7280;
-            font-size: 16px;
-        }
-
-        .header-badges {
+        /* Sidebar (File Explorer) */
+        .sidebar {
+            width: 260px;
+            background: #181825;
+            border-right: 1px solid #313244;
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 16px;
+            flex-direction: column;
+            overflow-y: auto;
         }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            background: #f3f4f6;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            color: #374151;
-            text-decoration: none;
-        }
-
-        .badge i {
-            font-size: 12px;
-        }
-
-        .badge:hover {
-            background: #e5e7eb;
-        }
-
-        /* Table of Contents */
-        .toc {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin: 32px 0;
-        }
-
-        .toc h3 {
-            font-size: 14px;
+        .sidebar-header {
+            padding: 12px 16px;
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: #6b7280;
-            margin-bottom: 12px;
+            color: #6c7086;
+            border-bottom: 1px solid #313244;
         }
 
-        .toc ul {
-            list-style: none;
+        .file-tree {
+            padding: 8px 0;
+        }
+
+        .file-item {
+            padding: 6px 16px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #cdd6f4;
+            font-size: 13px;
+            transition: all 0.1s ease;
         }
 
-        .toc li a {
-            color: #3b82f6;
-            text-decoration: none;
+        .file-item i {
             font-size: 14px;
-            font-weight: 500;
+            color: #89b4fa;
+            width: 20px;
         }
 
-        .toc li a:hover {
-            text-decoration: underline;
+        .file-item:hover {
+            background: #313244;
         }
 
-        /* Sections */
-        section {
-            scroll-margin-top: 24px;
-            margin-bottom: 48px;
+        .file-item.active {
+            background: #313244;
+            color: #89b4fa;
         }
 
-        h2 {
-            font-size: 24px;
-            font-weight: 700;
+        .folder-item {
+            padding: 6px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c7086;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .folder-item i {
+            font-size: 12px;
+        }
+
+        /* Main Editor Area */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Tabs Bar */
+        .tabs-bar {
+            background: #181825;
+            border-bottom: 1px solid #313244;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #181825;
+            border-right: 1px solid #313244;
+            cursor: pointer;
+            font-size: 13px;
+            color: #6c7086;
+            transition: all 0.1s ease;
+            white-space: nowrap;
+        }
+
+        .tab i {
+            font-size: 12px;
+        }
+
+        .tab.active {
+            background: #1e1e2e;
+            color: #89b4fa;
+            border-top: 1px solid #89b4fa;
+        }
+
+        .tab:hover {
+            background: #313244;
+        }
+
+        /* Editor Content */
+        .editor-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 32px;
+            background: #1e1e2e;
+        }
+
+        /* Code-like Typography */
+        .editor-content h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #89b4fa;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .editor-content h2 {
+            font-size: 20px;
+            font-weight: 600;
             margin-top: 32px;
             margin-bottom: 16px;
             padding-bottom: 8px;
-            border-bottom: 2px solid #e5e7eb;
-            letter-spacing: -0.01em;
+            border-bottom: 1px solid #313244;
+            color: #cba6f7;
         }
 
-        h3 {
-            font-size: 18px;
+        .editor-content h3 {
+            font-size: 16px;
             font-weight: 600;
-            margin-top: 24px;
+            margin-top: 20px;
             margin-bottom: 12px;
+            color: #a6e3a1;
         }
 
-        p {
+        .editor-content p {
             margin-bottom: 16px;
-            color: #374151;
+            color: #cdd6f4;
+            line-height: 1.7;
         }
 
-        /* Links */
-        a {
-            color: #3b82f6;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Code blocks */
-        code {
-            font-family: 'JetBrains Mono', 'SF Mono', monospace;
-            font-size: 13px;
-            background: #f3f4f6;
+        .editor-content code {
+            background: #313244;
             padding: 2px 6px;
-            border-radius: 6px;
-            color: #d97706;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #f9e2af;
         }
 
-        pre {
-            background: #1f2937;
+        .editor-content pre {
+            background: #181825;
             padding: 16px;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow-x: auto;
             margin: 16px 0;
+            border: 1px solid #313244;
         }
 
-        pre code {
+        .editor-content pre code {
             background: none;
-            color: #e5e7eb;
-            font-size: 13px;
             padding: 0;
+            color: #cdd6f4;
+        }
+
+        /* Comment style */
+        .comment {
+            color: #6c7086;
+            font-style: italic;
+            margin-bottom: 24px;
+            font-size: 13px;
         }
 
         /* Stats grid */
         .stats-grid {
-            display: flex;
-            gap: 32px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
             margin: 24px 0;
-            padding: 24px;
-            background: #f9fafb;
-            border-radius: 12px;
+            padding: 20px;
+            background: #181825;
+            border-radius: 8px;
+            border: 1px solid #313244;
         }
 
         .stat-item {
@@ -254,36 +284,75 @@
         }
 
         .stat-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: #3b82f6;
-            line-height: 1.2;
+            font-size: 28px;
+            font-weight: 700;
+            color: #89b4fa;
         }
 
         .stat-label {
-            font-size: 13px;
-            color: #6b7280;
+            font-size: 11px;
+            color: #6c7086;
+            margin-top: 4px;
         }
 
-        /* Project cards */
+        /* Service cards */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .service-card {
+            background: #181825;
+            border: 1px solid #313244;
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.1s ease;
+        }
+
+        .service-card:hover {
+            border-color: #89b4fa;
+            transform: translateY(-2px);
+        }
+
+        .service-card i {
+            font-size: 28px;
+            color: #89b4fa;
+            margin-bottom: 12px;
+        }
+
+        .service-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 12px;
+            color: #6c7086;
+            margin: 0;
+        }
+
+        /* Project list */
         .project-list {
             list-style: none;
         }
 
         .project-item {
-            padding: 16px 0;
-            border-bottom: 1px solid #f3f4f6;
+            padding: 12px 0;
+            border-bottom: 1px solid #313244;
         }
 
         .project-title {
             font-weight: 600;
-            font-size: 16px;
             margin-bottom: 4px;
+            color: #89b4fa;
         }
 
         .project-desc {
-            font-size: 14px;
-            color: #6b7280;
+            font-size: 12px;
+            color: #6c7086;
             margin-bottom: 8px;
         }
 
@@ -294,44 +363,12 @@
         }
 
         .project-tag {
-            font-size: 11px;
+            font-size: 10px;
             padding: 2px 8px;
-            background: #f3f4f6;
-            border-radius: 12px;
-            color: #4b5563;
+            background: #313244;
+            border-radius: 4px;
+            color: #a6e3a1;
             font-family: monospace;
-        }
-
-        /* Service grid */
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .service-card {
-            padding: 16px;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-        }
-
-        .service-card i {
-            font-size: 24px;
-            color: #3b82f6;
-            margin-bottom: 12px;
-        }
-
-        .service-card h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .service-card p {
-            font-size: 13px;
-            color: #6b7280;
-            margin: 0;
         }
 
         /* Blog list */
@@ -341,23 +378,31 @@
 
         .blog-item {
             padding: 12px 0;
-            border-bottom: 1px solid #f3f4f6;
+            border-bottom: 1px solid #313244;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        .blog-item:hover {
+            background: #313244;
+            padding-left: 8px;
         }
 
         .blog-title {
             font-weight: 600;
             margin-bottom: 4px;
+            color: #89b4fa;
         }
 
         .blog-meta {
-            font-size: 12px;
-            color: #9ca3af;
+            font-size: 11px;
+            color: #6c7086;
         }
 
         /* Social links */
         .social-links {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-top: 16px;
         }
@@ -365,57 +410,53 @@
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: #f3f4f6;
-            border-radius: 24px;
-            font-size: 14px;
-            color: #374151;
+            gap: 6px;
+            padding: 6px 12px;
+            background: #181825;
+            border: 1px solid #313244;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #cdd6f4;
             text-decoration: none;
+            transition: all 0.1s ease;
         }
 
         .social-link:hover {
-            background: #e5e7eb;
-            text-decoration: none;
+            border-color: #89b4fa;
+            color: #89b4fa;
         }
 
-        /* Footer */
-        .footer {
-            border-top: 1px solid #e5e7eb;
-            padding: 32px 0;
-            margin-top: 48px;
-            text-align: center;
-            color: #9ca3af;
-            font-size: 13px;
+        /* Status Bar */
+        .status-bar {
+            background: #181825;
+            border-top: 1px solid #313244;
+            padding: 6px 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #6c7086;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Back to top */
-        .back-to-top {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #1f2937;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .status-left {
+            display: flex;
+            gap: 16px;
+        }
+
+        .status-right {
+            display: flex;
+            gap: 16px;
+        }
+
+        .status-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            z-index: 99;
+            gap: 6px;
+            cursor: pointer;
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-        }
-
-        .back-to-top:hover {
-            background: #374151;
-            text-decoration: none;
+        .status-item:hover {
+            color: #89b4fa;
         }
 
         /* Modal styles */
@@ -427,23 +468,23 @@
             height: 100%;
             background: rgba(0,0,0,0.8);
             backdrop-filter: blur(4px);
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .modal.hidden { display: none; }
         .modal-content {
-            background: #fff;
-            border-radius: 16px;
+            background: #1e1e2e;
+            border: 1px solid #313244;
+            border-radius: 8px;
             width: 90%;
             max-width: 500px;
             overflow: hidden;
-            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
         }
         .modal-header {
             padding: 16px 20px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #313244;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -452,365 +493,195 @@
             flex: 1;
             background: transparent;
             border: none;
-            font-size: 16px;
+            font-size: 14px;
             outline: none;
-            font-family: inherit;
+            color: #cdd6f4;
+            font-family: 'JetBrains Mono', monospace;
         }
         .key-hint {
-            font-size: 11px;
+            font-size: 10px;
             padding: 4px 8px;
-            background: #f3f4f6;
-            border-radius: 6px;
-            color: #6b7280;
+            background: #313244;
+            border-radius: 4px;
+            color: #6c7086;
         }
         .modal-body { padding: 8px; }
         .command-group {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            color: #6b7280;
+            color: #6c7086;
             padding: 8px 12px;
         }
         .command-item {
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px 12px;
+            border-radius: 6px;
             cursor: pointer;
             transition: background 0.1s;
+            font-size: 13px;
         }
-        .command-item:hover { background: #f3f4f6; }
+        .command-item:hover { background: #313244; }
         .access-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #313244;
         }
         .access-item button {
-            padding: 6px 16px;
-            background: #f3f4f6;
+            padding: 4px 12px;
+            background: #313244;
             border: none;
-            border-radius: 20px;
+            border-radius: 4px;
             cursor: pointer;
-            font-family: inherit;
+            font-family: monospace;
+            color: #cdd6f4;
         }
         .access-item button.active {
-            background: #3b82f6;
-            color: white;
+            background: #89b4fa;
+            color: #1e1e2e;
         }
         .modal-footer {
             padding: 16px 20px;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid #313244;
             display: flex;
             gap: 12px;
         }
         .modal-footer button {
             flex: 1;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 8px;
+            border-radius: 6px;
             border: none;
             cursor: pointer;
+            font-family: monospace;
             font-weight: 500;
         }
         .modal-footer button:first-child {
-            background: #fee2e2;
-            color: #dc2626;
+            background: #f38ba8;
+            color: #1e1e2e;
         }
         .modal-footer button:last-child {
-            background: #eff6ff;
-            color: #2563eb;
+            background: #89b4fa;
+            color: #1e1e2e;
         }
         .close-btn {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
-            color: #6b7280;
+            color: #6c7086;
         }
 
         /* Accessibility Modes */
         body.high-contrast { filter: contrast(150%); }
         body.large-text { font-size: 120%; }
         body.reduce-motion * { transition: none !important; animation: none !important; }
-        body.dyslexic-font { font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif; }
+        body.dyslexic-font { font-family: 'OpenDyslexic', monospace; }
 
-        /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #0d1117;
-                color: #e6edf3;
-            }
-            .header {
-                border-bottom-color: #30363d;
-            }
-            .header p, .project-desc, .service-card p, .blog-meta {
-                color: #8b949e;
-            }
-            .badge, .toc, .stats-grid, .project-tag, .service-card, .social-link {
-                background: #161b22;
-                border-color: #30363d;
-                color: #e6edf3;
-            }
-            .badge:hover, .social-link:hover {
-                background: #1f242e;
-            }
-            .toc {
-                border-color: #30363d;
-            }
-            .toc li a {
-                color: #58a6ff;
-            }
-            code {
-                background: #161b22;
-                color: #f0883e;
-            }
-            pre {
-                background: #161b22;
-            }
-            .project-item, .blog-item {
-                border-bottom-color: #21262d;
-            }
-            .stat-number {
-                color: #58a6ff;
-            }
-            .service-card i {
-                color: #58a6ff;
-            }
-            a {
-                color: #58a6ff;
-            }
-            .modal-content {
-                background: #161b22;
-                border: 1px solid #30363d;
-            }
-            .modal-header {
-                border-bottom-color: #30363d;
-            }
-            .key-hint {
-                background: #21262d;
-                color: #8b949e;
-            }
-            .command-item:hover {
-                background: #21262d;
-            }
-            .access-item {
-                border-bottom-color: #21262d;
-            }
-            .access-item button {
-                background: #21262d;
-                color: #e6edf3;
-            }
-            .modal-footer {
-                border-top-color: #21262d;
-            }
-            .modal-footer button:first-child {
-                background: #3b1e1e;
-                color: #f87171;
-            }
-            .modal-footer button:last-child {
-                background: #1e2a3e;
-                color: #60a5fa;
-            }
-            .back-to-top {
-                background: #21262d;
-            }
-            .back-to-top:hover {
-                background: #30363d;
-            }
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
         }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .container {
-                padding: 0 16px;
-            }
-            h1 { font-size: 24px; }
-            h2 { font-size: 20px; }
-            .stats-grid { gap: 16px; }
-            .stat-number { font-size: 24px; }
-            .activity-icon[data-tooltip]:hover::after {
-                display: none;
-            }
+        ::-webkit-scrollbar-track {
+            background: #181825;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #313244;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #45475a;
         }
     </style>
 </head>
 <body>
+    <div class="ide-container">
+        <!-- Activity Bar -->
+        <div class="activity-bar">
+            <div class="activity-icon active" data-section="readme" data-tooltip="README.md">
+                <i class="fa-regular fa-file-lines"></i>
+            </div>
+            <div class="activity-icon" data-section="about" data-tooltip="about.md">
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="activity-icon" data-section="skills" data-tooltip="skills.json">
+                <i class="fa-regular fa-cube"></i>
+            </div>
+            <div class="activity-icon" data-section="projects" data-tooltip="projects.tsx">
+                <i class="fa-regular fa-folder"></i>
+            </div>
+            <div class="activity-icon" data-section="blog" data-tooltip="blog.md">
+                <i class="fa-regular fa-pen-fancy"></i>
+            </div>
+            <div class="activity-icon" data-section="connect" data-tooltip="connect.ts">
+                <i class="fa-regular fa-envelope"></i>
+            </div>
+            <div class="activity-spacer"></div>
+            <div class="activity-icon" id="accessibility-trigger-activity" data-tooltip="Settings">
+                <i class="fa-solid fa-universal-access"></i>
+            </div>
+            <div class="activity-icon" id="command-palette-trigger-activity" data-tooltip="Command Palette">
+                <i class="fa-solid fa-terminal"></i>
+            </div>
+        </div>
 
-    <!-- IDE-style Activity Bar -->
-    <div class="activity-bar">
-        <div class="activity-icon active" data-section="home" data-tooltip="README.md">
-            <i class="fa-regular fa-file-lines"></i>
+        <!-- File Explorer Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">EXPLORER</div>
+            <div class="file-tree">
+                <div class="folder-item"><i class="fa-regular fa-folder-open"></i> PORTFOLIO</div>
+                <div class="file-item active" data-section="readme">
+                    <i class="fa-regular fa-file-lines"></i> README.md
+                </div>
+                <div class="file-item" data-section="about">
+                    <i class="fa-regular fa-file"></i> about.md
+                </div>
+                <div class="file-item" data-section="skills">
+                    <i class="fa-regular fa-file-code"></i> skills.json
+                </div>
+                <div class="file-item" data-section="projects">
+                    <i class="fa-regular fa-file-code"></i> projects.tsx
+                </div>
+                <div class="file-item" data-section="blog">
+                    <i class="fa-regular fa-file"></i> blog.md
+                </div>
+                <div class="file-item" data-section="connect">
+                    <i class="fa-regular fa-file"></i> connect.ts
+                </div>
+                <div class="folder-item" style="margin-top: 16px;"><i class="fa-regular fa-folder"></i> config</div>
+                <div class="file-item"><i class="fa-regular fa-file"></i> package.json</div>
+                <div class="file-item"><i class="fa-regular fa-file"></i> tsconfig.json</div>
+            </div>
         </div>
-        <div class="activity-icon" data-section="about" data-tooltip="About">
-            <i class="fa-regular fa-user"></i>
-        </div>
-        <div class="activity-icon" data-section="skills" data-tooltip="Skills">
-            <i class="fa-regular fa-cube"></i>
-        </div>
-        <div class="activity-icon" data-section="projects" data-tooltip="Projects">
-            <i class="fa-regular fa-folder"></i>
-        </div>
-        <div class="activity-icon" data-section="blog" data-tooltip="Blog">
-            <i class="fa-regular fa-pen-fancy"></i>
-        </div>
-        <div class="activity-icon" data-section="connect" data-tooltip="Connect">
-            <i class="fa-regular fa-envelope"></i>
-        </div>
-        <div class="spacer"></div>
-        <div class="activity-icon" id="accessibility-trigger-activity" data-tooltip="Accessibility">
-            <i class="fa-solid fa-universal-access"></i>
-        </div>
-        <div class="activity-icon" id="command-palette-trigger-activity" data-tooltip="Command Palette">
-            <i class="fa-solid fa-terminal"></i>
-        </div>
-    </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <!-- Header -->
-            <div class="header">
-                <h1>📄 echo/README.md</h1>
-                <p>Digital creator, full-stack developer, and UI/UX designer. Building digital experiences that matter.</p>
-                <div class="header-badges">
-                    <span class="badge"><i class="fa-regular fa-user"></i> @jvhn0gl3</span>
-                    <span class="badge"><i class="fa-regular fa-building"></i> Independent</span>
-                    <span class="badge"><i class="fa-regular fa-clock"></i> 10+ years</span>
-                    <a href="https://github.com/jvhn0gl3" target="_blank" class="badge"><i class="fa-brands fa-github"></i> GitHub</a>
+        <!-- Editor Area -->
+        <div class="editor-area">
+            <!-- Tabs Bar -->
+            <div class="tabs-bar" id="tabs-bar">
+                <div class="tab active" data-section="readme">
+                    <i class="fa-regular fa-file-lines"></i> README.md
                 </div>
             </div>
 
-            <!-- Table of Contents -->
-            <div class="toc">
-                <h3>📑 Contents</h3>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#connect">Connect</a></li>
-                </ul>
+            <!-- Editor Content -->
+            <div class="editor-content" id="editor-content">
+                <!-- Content will be injected here -->
             </div>
 
-            <!-- About Section -->
-            <section id="about">
-                <h2><i class="fa-regular fa-user"></i> About</h2>
-                <p><strong>John Ogletree</strong> — a <code>Full-Stack Digital Architect</code> with over a decade of experience in software engineering and UI/UX design. I specialize in building high-performance, aesthetically pleasing digital products that make a difference.</p>
-                <p>I bridge the gap between complex backend logic and intuitive frontend experiences, ensuring every line of code serves a purpose and every pixel has meaning.</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support</div>
-                    </div>
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span class="status-item"><i class="fa-regular fa-code-branch"></i> main</span>
+                    <span class="status-item"><i class="fa-regular fa-check-circle"></i> 0 errors</span>
+                    <span class="status-item"><i class="fa-regular fa-clock"></i> UTF-8</span>
                 </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="skills">
-                <h2><i class="fa-regular fa-cube"></i> Skills & Services</h2>
-                <div class="service-grid">
-                    <div class="service-card">
-                        <i class="fa-solid fa-code"></i>
-                        <h4>Web Development</h4>
-                        <p>React, Vue, Node.js, Python — modern, responsive web apps.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fa-solid fa-palette"></i>
-                        <h4>UI/UX Design</h4>
-                        <p>Figma, Framer, user research, and prototyping.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fa-solid fa-mobile-alt"></i>
-                        <h4>Mobile Apps</h4>
-                        <p>React Native, Flutter — cross-platform iOS & Android.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fa-solid fa-cloud"></i>
-                        <h4>Cloud & DevOps</h4>
-                        <p>AWS, Vercel, Netlify, Docker, CI/CD pipelines.</p>
-                    </div>
+                <div class="status-right">
+                    <span class="status-item" id="cursor-position">Ln 1, Col 1</span>
+                    <span class="status-item"><i class="fa-regular fa-gear"></i> Spaces: 2</span>
                 </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects">
-                <h2><i class="fa-regular fa-folder"></i> Featured Projects</h2>
-                <ul class="project-list">
-                    <li class="project-item">
-                        <div class="project-title">Project Alpha</div>
-                        <div class="project-desc">A revolutionary platform for digital creators to showcase and sell their work.</div>
-                        <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">MongoDB</span></div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Project Beta</div>
-                        <div class="project-desc">Cloud-based analytics dashboard for real-time business intelligence.</div>
-                        <div class="project-tags"><span class="project-tag">Vue</span><span class="project-tag">Python</span><span class="project-tag">AWS</span></div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Project Gamma</div>
-                        <div class="project-desc">AI-powered content generation tool for marketing teams.</div>
-                        <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">OpenAI</span><span class="project-tag">PostgreSQL</span></div>
-                    </li>
-                </ul>
-                <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects">View all projects on GitHub</a></p>
-            </section>
-
-            <!-- Blog Section -->
-            <section id="blog">
-                <h2><i class="fa-regular fa-pen-fancy"></i> Latest Insights</h2>
-                <ul class="blog-list">
-                    <li class="blog-item">
-                        <div class="blog-title">The Future of Web Development</div>
-                        <div class="blog-meta">Technology · 5 min read</div>
-                    </li>
-                    <li class="blog-item">
-                        <div class="blog-title">Minimalist UI Principles</div>
-                        <div class="blog-meta">Design · 4 min read</div>
-                    </li>
-                    <li class="blog-item">
-                        <div class="blog-title">10 Years in Review</div>
-                        <div class="blog-meta">Career · 7 min read</div>
-                    </li>
-                </ul>
-                <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog">Read all posts</a></p>
-            </section>
-
-            <!-- Connect Section -->
-            <section id="connect">
-                <h2><i class="fa-regular fa-envelope"></i> Connect</h2>
-                <p>Have a project in mind? Let's create something amazing together.</p>
-                <div class="social-links">
-                    <a href="mailto:hello@echo.dev" class="social-link"><i class="fa-regular fa-envelope"></i> hello@echo.dev</a>
-                    <a href="#" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
-                    <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> Twitter</a>
-                    <a href="#" class="social-link"><i class="fa-brands fa-discord"></i> Discord</a>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <div class="footer">
-                <p>© 2024 Echo — Built with <i class="fa-regular fa-heart"></i> by jvhn0gl3</p>
-                <p style="margin-top: 8px; font-size: 12px;">
-                    <a href="#" id="accessibility-trigger">♿ Accessibility</a>
-                </p>
             </div>
         </div>
     </div>
-
-    <!-- Back to Top Button -->
-    <a href="#" id="back-to-top" class="back-to-top">↑</a>
 
     <!-- Command Palette Modal -->
     <div id="command-palette" class="modal hidden">
@@ -821,11 +692,15 @@
                 <span class="key-hint">ESC</span>
             </div>
             <div class="modal-body">
-                <div class="command-group">Quick Actions</div>
-                <div class="command-item" data-section="about">📄 Go to About</div>
-                <div class="command-item" data-section="projects">📁 View Projects</div>
-                <div class="command-item" data-section="blog">✍️ Read Blog</div>
-                <div class="command-item" id="cmd-accessibility">♿ Accessibility</div>
+                <div class="command-group">Files</div>
+                <div class="command-item" data-section="readme">📄 Open README.md</div>
+                <div class="command-item" data-section="about">👤 Open about.md</div>
+                <div class="command-item" data-section="skills">🧊 Open skills.json</div>
+                <div class="command-item" data-section="projects">📁 Open projects.tsx</div>
+                <div class="command-item" data-section="blog">✍️ Open blog.md</div>
+                <div class="command-item" data-section="connect">✉️ Open connect.ts</div>
+                <div class="command-group">Commands</div>
+                <div class="command-item" id="cmd-accessibility">♿ Open Accessibility Settings</div>
             </div>
         </div>
     </div>
@@ -854,104 +729,173 @@
         (function() {
             'use strict';
             
-            // Activity bar navigation
-            const activityIcons = document.querySelectorAll('.activity-icon[data-section]');
-            const sections = ['home', 'about', 'skills', 'projects', 'blog', 'connect'];
+            // Content for each section
+            const content = {
+                readme: `
+                    <div class="comment">// echo/README.md</div>
+                    <h1>📄 John Ogletree <span style="color:#a6e3a1;">@jvhn0gl3</span></h1>
+                    <p><strong>Full-Stack Digital Architect</strong> · over a decade of experience · building digital experiences that matter</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
+                        <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
+                        <div class="stat-item"><div class="stat-number">30+</div><div class="stat-label">Clients</div></div>
+                        <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
+                    </div>
+                    
+                    <h2>🚀 Welcome to my digital workspace</h2>
+                    <p>I'm a full-stack developer and UI/UX designer who transforms complex ideas into elegant, functional digital products. My approach combines technical excellence with creative innovation.</p>
+                    
+                    <pre><code>const echo = {
+    passion: "building beautiful software",
+    stack: ["React", "Node.js", "Python", "TypeScript"],
+    philosophy: "code that serves a purpose, pixels that have meaning"
+};</code></pre>
+                    
+                    <p>→ Check out my projects, read my insights, or reach out for collaboration.</p>
+                `,
+                about: `
+                    <div class="comment">// about.md — personal background</div>
+                    <h1><i class="fa-regular fa-user"></i> About Me</h1>
+                    <p><strong>John Ogletree</strong> — a <code>Full-Stack Digital Architect</code> with over a decade of experience bridging the gap between complex backend logic and intuitive frontend experiences.</p>
+                    <p>I started my journey as a self-taught developer, fascinated by the intersection of design and technology. Since then, I've worked with startups, agencies, and enterprises to deliver high-impact digital solutions.</p>
+                    <h2>🎯 Mission</h2>
+                    <p>To create digital products that are not only functional but delightful to use — where every line of code serves a purpose and every pixel has meaning.</p>
+                    <h2>📍 Currently</h2>
+                    <p>Working on AI-powered developer tools and open-source contributions. Available for freelance and consulting work.</p>
+                `,
+                skills: `
+                    <div class="comment">// skills.json — technical capabilities</div>
+                    <h1><i class="fa-regular fa-cube"></i> Skills & Services</h1>
+                    <div class="service-grid">
+                        <div class="service-card"><i class="fa-solid fa-code"></i><h4>Web Development</h4><p>React, Vue, Node.js, Python</p></div>
+                        <div class="service-card"><i class="fa-solid fa-palette"></i><h4>UI/UX Design</h4><p>Figma, Framer, prototyping</p></div>
+                        <div class="service-card"><i class="fa-solid fa-mobile-alt"></i><h4>Mobile Apps</h4><p>React Native, Flutter</p></div>
+                        <div class="service-card"><i class="fa-solid fa-cloud"></i><h4>Cloud & DevOps</h4><p>AWS, Docker, CI/CD</p></div>
+                        <div class="service-card"><i class="fa-solid fa-database"></i><h4>Databases</h4><p>PostgreSQL, MongoDB, Redis</p></div>
+                        <div class="service-card"><i class="fa-solid fa-robot"></i><h4>AI Integration</h4><p>OpenAI, LangChain, Vector DBs</p></div>
+                    </div>
+                `,
+                projects: `
+                    <div class="comment">// projects.tsx — featured work</div>
+                    <h1><i class="fa-regular fa-folder"></i> Featured Projects</h1>
+                    <ul class="project-list">
+                        <li class="project-item"><div class="project-title">Project Alpha</div><div class="project-desc">A revolutionary platform for digital creators to showcase and sell their work.</div><div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">MongoDB</span></div></li>
+                        <li class="project-item"><div class="project-title">Project Beta</div><div class="project-desc">Cloud-based analytics dashboard for real-time business intelligence.</div><div class="project-tags"><span class="project-tag">Vue</span><span class="project-tag">Python</span><span class="project-tag">AWS</span></div></li>
+                        <li class="project-item"><div class="project-title">Project Gamma</div><div class="project-desc">AI-powered content generation tool for marketing teams.</div><div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">OpenAI</span><span class="project-tag">PostgreSQL</span></div></li>
+                    </ul>
+                    <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" style="color:#89b4fa;">View all projects on GitHub</a></p>
+                `,
+                blog: `
+                    <div class="comment">// blog.md — latest insights</div>
+                    <h1><i class="fa-regular fa-pen-fancy"></i> Latest Insights</h1>
+                    <ul class="blog-list">
+                        <li class="blog-item"><div class="blog-title">The Future of Web Development</div><div class="blog-meta">Technology · 5 min read</div></li>
+                        <li class="blog-item"><div class="blog-title">Minimalist UI Principles</div><div class="blog-meta">Design · 4 min read</div></li>
+                        <li class="blog-item"><div class="blog-title">10 Years in Review</div><div class="blog-meta">Career · 7 min read</div></li>
+                        <li class="blog-item"><div class="blog-title">Why I Love Monospace Fonts</div><div class="blog-meta">Opinion · 3 min read</div></li>
+                    </ul>
+                    <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog" style="color:#89b4fa;">Read all posts</a></p>
+                `,
+                connect: `
+                    <div class="comment">// connect.ts — get in touch</div>
+                    <h1><i class="fa-regular fa-envelope"></i> Let's Connect</h1>
+                    <p>Have a project in mind? Let's create something amazing together.</p>
+                    <div class="social-links">
+                        <a href="mailto:hello@echo.dev" class="social-link"><i class="fa-regular fa-envelope"></i> hello@echo.dev</a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                `
+            };
             
-            function setActiveActivity(sectionId) {
-                activityIcons.forEach(icon => {
-                    const iconSection = icon.getAttribute('data-section');
-                    if (iconSection === sectionId) {
+            let currentSection = 'readme';
+            
+            // Render content
+            function renderContent(section) {
+                const editorContent = document.getElementById('editor-content');
+                if (editorContent && content[section]) {
+                    editorContent.innerHTML = content[section];
+                    currentSection = section;
+                    updateActiveUI(section);
+                    attachContentEvents();
+                }
+            }
+            
+            // Update active UI elements
+            function updateActiveUI(section) {
+                // Update activity bar
+                document.querySelectorAll('.activity-icon').forEach(icon => {
+                    icon.classList.remove('active');
+                    if (icon.getAttribute('data-section') === section) {
                         icon.classList.add('active');
-                    } else {
-                        icon.classList.remove('active');
+                    }
+                });
+                
+                // Update file tree
+                document.querySelectorAll('.file-item').forEach(file => {
+                    file.classList.remove('active');
+                    if (file.getAttribute('data-section') === section) {
+                        file.classList.add('active');
+                    }
+                });
+                
+                // Update tabs
+                const tabsBar = document.getElementById('tabs-bar');
+                const existingTab = Array.from(tabsBar.children).find(tab => tab.getAttribute('data-section') === section);
+                
+                if (!existingTab) {
+                    const newTab = document.createElement('div');
+                    newTab.className = 'tab active';
+                    newTab.setAttribute('data-section', section);
+                    const iconMap = { readme: 'fa-regular fa-file-lines', about: 'fa-regular fa-user', skills: 'fa-regular fa-cube', projects: 'fa-regular fa-folder', blog: 'fa-regular fa-pen-fancy', connect: 'fa-regular fa-envelope' };
+                    const labelMap = { readme: 'README.md', about: 'about.md', skills: 'skills.json', projects: 'projects.tsx', blog: 'blog.md', connect: 'connect.ts' };
+                    newTab.innerHTML = `<i class="${iconMap[section]}"></i> ${labelMap[section]}`;
+                    newTab.addEventListener('click', () => renderContent(section));
+                    tabsBar.appendChild(newTab);
+                }
+                
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.getAttribute('data-section') === section) {
+                        tab.classList.add('active');
                     }
                 });
             }
             
-            // Smooth scroll for activity icons
-            activityIcons.forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const sectionId = icon.getAttribute('data-section');
-                    if (sectionId === 'home') {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        setActiveActivity('home');
-                    } else {
-                        const target = document.getElementById(sectionId);
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            setActiveActivity(sectionId);
-                        }
-                    }
+            // Attach content-specific event handlers
+            function attachContentEvents() {
+                document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('View all projects on GitHub — coming soon!');
                 });
-            });
-            
-            // Update active activity on scroll
-            function updateActiveOnScroll() {
-                const scrollPos = window.scrollY + 100;
-                const homeOffset = window.scrollY < 200;
-                
-                if (homeOffset) {
-                    setActiveActivity('home');
-                    return;
-                }
-                
-                for (const section of sections.slice(1)) {
-                    const element = document.getElementById(section);
-                    if (element) {
-                        const top = element.offsetTop;
-                        const bottom = top + element.offsetHeight;
-                        if (scrollPos >= top && scrollPos < bottom) {
-                            setActiveActivity(section);
-                            break;
-                        }
-                    }
-                }
+                document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('All blog posts — coming soon!');
+                });
             }
             
-            window.addEventListener('scroll', updateActiveOnScroll);
-            updateActiveOnScroll();
-            
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        const sectionName = targetId.substring(1);
-                        setActiveActivity(sectionName);
-                    }
+            // Navigation event listeners
+            function setupNavigation() {
+                // Activity bar clicks
+                document.querySelectorAll('.activity-icon[data-section]').forEach(icon => {
+                    icon.addEventListener('click', () => {
+                        const section = icon.getAttribute('data-section');
+                        renderContent(section);
+                    });
                 });
-            });
-            
-            // Back to top button
-            const backToTop = document.getElementById('back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-            
-            backToTop.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setActiveActivity('home');
-            });
-            
-            // View all buttons
-            document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('View all projects on GitHub — coming soon!');
-            });
-            document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('All blog posts — coming soon!');
-            });
+                
+                // File tree clicks
+                document.querySelectorAll('.file-item[data-section]').forEach(file => {
+                    file.addEventListener('click', () => {
+                        const section = file.getAttribute('data-section');
+                        renderContent(section);
+                    });
+                });
+            }
             
             // Modal elements
             const commandPalette = document.getElementById('command-palette');
@@ -990,21 +934,12 @@
                 openAccessibilityModal();
             });
             
-            document.getElementById('accessibility-trigger')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                openAccessibilityModal();
-            });
-            
             // Command items
             document.querySelectorAll('.command-item[data-section]').forEach(item => {
                 item.addEventListener('click', () => {
                     const section = item.getAttribute('data-section');
-                    const target = document.getElementById(section);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        setActiveActivity(section);
-                        closeCommandPalette();
-                    }
+                    renderContent(section);
+                    closeCommandPalette();
                 });
             });
             
@@ -1066,8 +1001,11 @@
                 updateButtonStates();
             }
             
+            // Initialize
             document.addEventListener('DOMContentLoaded', () => {
                 loadAccessibilityPreferences();
+                renderContent('readme');
+                setupNavigation();
                 
                 document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
                 document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);
