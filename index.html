@@ -274,7 +274,91 @@
             font-size: 11px;
         }
 
-        /* Social links */
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #313244 0%, #181825 100%);
+            border: 1px solid #45475a;
+            border-radius: 8px;
+            color: #cdd6f4;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #45475a 0%, #313244 100%);
+            border-color: #89b4fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #89b4fa 0%, #cba6f7 100%);
+            border-color: #89b4fa;
+            color: #1e1e2e;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #9bc4ff 0%, #d4b8ff 100%);
+            border-color: #cba6f7;
+            color: #1e1e2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(137, 180, 250, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: #45475a;
+            color: #89b4fa;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(137, 180, 250, 0.1);
+            border-color: #89b4fa;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 11px;
+        }
+
+        .btn-lg {
+            padding: 14px 28px;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        /* View all link (preserved for "View all projects" etc) */
+        .view-all-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #89b4fa;
+            text-decoration: none;
+            font-size: 13px;
+            transition: gap 0.2s ease;
+        }
+
+        .view-all-link:hover {
+            gap: 10px;
+            text-decoration: underline;
+        }
+
+        /* Social links as buttons */
         .social-links {
             display: flex;
             gap: 16px;
@@ -293,12 +377,13 @@
             font-size: 13px;
             color: #cdd6f4;
             text-decoration: none;
-            transition: all 0.1s ease;
+            transition: all 0.15s ease;
         }
 
         .social-link:hover {
             border-color: #89b4fa;
             color: #89b4fa;
+            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -357,6 +442,12 @@
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
+            .button-group {
+                flex-direction: column;
+            }
+            .btn {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -381,6 +472,11 @@
     stack: ["React", "Node.js", "Python", "TypeScript"],
     philosophy: "code that serves a purpose, pixels that have meaning"
 };</code></pre>
+        
+        <div class="button-group">
+            <a href="#" class="btn btn-primary" id="explore-btn"><i class="fa-regular fa-rocket"></i> Explore Projects</a>
+            <a href="#" class="btn btn-secondary" id="contact-btn"><i class="fa-regular fa-paper-plane"></i> Contact Me</a>
+        </div>
 
         <!-- About Section -->
         <h2><i class="fa-regular fa-user"></i> About Me</h2>
@@ -444,7 +540,7 @@
                 <div class="project-tags"><span class="project-tag">WebSocket</span><span class="project-tag">Canvas</span><span class="project-tag">Phaser</span></div>
             </div>
         </div>
-        <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" style="color:#89b4fa;">View all projects on GitHub</a></p>
+        <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> View all projects on GitHub</a></p>
 
         <!-- Blog Section - 3x3 Grid -->
         <h2><i class="fa-regular fa-pen-fancy"></i> Latest Insights</h2>
@@ -486,7 +582,7 @@
                 <div class="blog-meta"><i class="fa-regular fa-calendar"></i> 6 min read</div>
             </div>
         </div>
-        <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog" style="color:#89b4fa;">Read all posts</a></p>
+        <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> Read all posts</a></p>
 
         <!-- Connect Section -->
         <h2><i class="fa-regular fa-envelope"></i> Let's Connect</h2>
@@ -631,6 +727,17 @@
             document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 alert('All blog posts — coming soon!');
+            });
+            
+            // Hero buttons
+            document.getElementById('explore-btn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.projects-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            
+            document.getElementById('contact-btn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.social-links')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
             
             // Blog card click handlers
