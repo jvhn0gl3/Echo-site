@@ -24,9 +24,70 @@
             overflow: hidden;
         }
 
-        /* Main Container */
-        .container {
+        /* Layout with Activity Bar */
+        .layout {
+            display: flex;
             height: 100vh;
+        }
+
+        /* Activity Bar */
+        .activity-bar {
+            width: 56px;
+            background: #181825;
+            border-right: 1px solid #313244;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 0;
+            gap: 8px;
+        }
+
+        .activity-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #6c7086;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .activity-icon:hover {
+            color: #cdd6f4;
+            background: #313244;
+        }
+
+        .activity-icon.active {
+            color: #89b4fa;
+            background: #313244;
+        }
+
+        .activity-icon[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 52px;
+            background: #181825;
+            color: #cdd6f4;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 100;
+            border: 1px solid #313244;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .activity-spacer {
+            flex: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
             overflow-y: auto;
             padding: 48px 64px;
         }
@@ -415,8 +476,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .container {
+            .main-content {
                 padding: 32px 24px;
+            }
+            .activity-bar {
+                width: 48px;
+            }
+            .activity-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
             }
             h1 { font-size: 28px; }
             h2 { font-size: 20px; }
@@ -433,8 +502,40 @@
     </style>
 </head>
 <body>
-    <div class="container" id="container">
-        <!-- Content will be injected here -->
+    <div class="layout">
+        <!-- Activity Bar -->
+        <div class="activity-bar">
+            <div class="activity-icon active" data-section="readme" data-tooltip="README.md">
+                <i class="fa-regular fa-file-lines"></i>
+            </div>
+            <div class="activity-icon" data-section="about" data-tooltip="About">
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="activity-icon" data-section="skills" data-tooltip="Skills">
+                <i class="fa-regular fa-cube"></i>
+            </div>
+            <div class="activity-icon" data-section="projects" data-tooltip="Projects">
+                <i class="fa-regular fa-folder"></i>
+            </div>
+            <div class="activity-icon" data-section="blog" data-tooltip="Blog">
+                <i class="fa-regular fa-pen-fancy"></i>
+            </div>
+            <div class="activity-icon" data-section="connect" data-tooltip="Connect">
+                <i class="fa-regular fa-envelope"></i>
+            </div>
+            <div class="activity-spacer"></div>
+            <div class="activity-icon" id="accessibility-trigger" data-tooltip="Accessibility">
+                <i class="fa-solid fa-universal-access"></i>
+            </div>
+            <div class="activity-icon" id="command-palette-trigger" data-tooltip="Command Palette">
+                <i class="fa-solid fa-terminal"></i>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Content will be injected here -->
+        </div>
     </div>
 
     <!-- Command Hint -->
@@ -511,7 +612,7 @@
     philosophy: "code that serves a purpose, pixels that have meaning"
 };</code></pre>
                     
-                    <p>→ Press <code>Ctrl+P</code> or <code>/</code> to open command palette and navigate</p>
+                    <p>→ Click icons on the left or press <code>Ctrl+P</code> / <code>/</code> to navigate</p>
                 `,
                 about: `
                     <div class="comment">// about.md — who am I</div>
@@ -574,12 +675,23 @@
             
             // Render content
             function renderContent(section) {
-                const container = document.getElementById('container');
+                const container = document.getElementById('main-content');
                 if (container && content[section]) {
                     container.innerHTML = content[section];
                     currentSection = section;
+                    updateActiveIcon(section);
                     attachContentEvents();
                 }
+            }
+            
+            // Update active icon in activity bar
+            function updateActiveIcon(section) {
+                document.querySelectorAll('.activity-icon[data-section]').forEach(icon => {
+                    icon.classList.remove('active');
+                    if (icon.getAttribute('data-section') === section) {
+                        icon.classList.add('active');
+                    }
+                });
             }
             
             // Attach content-specific event handlers
@@ -591,6 +703,16 @@
                 document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
                     e.preventDefault();
                     alert('All blog posts — coming soon!');
+                });
+            }
+            
+            // Setup activity bar navigation
+            function setupActivityBar() {
+                document.querySelectorAll('.activity-icon[data-section]').forEach(icon => {
+                    icon.addEventListener('click', () => {
+                        const section = icon.getAttribute('data-section');
+                        renderContent(section);
+                    });
                 });
             }
             
@@ -620,6 +742,14 @@
                 accessibilityModal?.classList.add('hidden');
                 document.body.style.overflow = '';
             };
+            
+            document.getElementById('command-palette-trigger')?.addEventListener('click', () => {
+                openCommandPalette();
+            });
+            
+            document.getElementById('accessibility-trigger')?.addEventListener('click', () => {
+                openAccessibilityModal();
+            });
             
             // Command items
             document.querySelectorAll('.command-item[data-section]').forEach(item => {
@@ -692,6 +822,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 loadAccessibilityPreferences();
                 renderContent('readme');
+                setupActivityBar();
                 
                 document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
                 document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);
