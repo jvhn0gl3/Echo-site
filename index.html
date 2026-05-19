@@ -24,7 +24,7 @@
 
         /* Main Container */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 48px 32px;
         }
@@ -162,27 +162,45 @@
             margin: 0;
         }
 
-        /* Project list */
-        .project-list {
-            list-style: none;
+        /* Projects Grid - 3x3 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
         }
 
-        .project-item {
-            padding: 16px 0;
-            border-bottom: 1px solid #313244;
+        .project-card {
+            background: #181825;
+            border: 1px solid #313244;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.15s ease;
+        }
+
+        .project-card:hover {
+            border-color: #89b4fa;
+            transform: translateY(-4px);
+        }
+
+        .project-icon {
+            font-size: 32px;
+            color: #89b4fa;
+            margin-bottom: 16px;
         }
 
         .project-title {
             font-weight: 600;
-            margin-bottom: 6px;
-            color: #89b4fa;
+            margin-bottom: 8px;
+            color: #cdd6f4;
             font-size: 16px;
         }
 
         .project-desc {
             font-size: 13px;
             color: #6c7086;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .project-tags {
@@ -288,6 +306,13 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 32px 20px;
@@ -296,6 +321,10 @@
             h2 { font-size: 20px; }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
                 gap: 16px;
             }
         }
@@ -345,25 +374,46 @@
             <div class="service-card"><i class="fa-solid fa-robot"></i><h4>AI Integration</h4><p>OpenAI, LangChain, Vector DBs</p></div>
         </div>
 
-        <!-- Projects Section -->
+        <!-- Projects Section - 3x3 Grid -->
         <h2><i class="fa-regular fa-folder"></i> Featured Projects</h2>
-        <ul class="project-list">
-            <li class="project-item">
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-cube"></i></div>
                 <div class="project-title">Project Alpha</div>
                 <div class="project-desc">A revolutionary platform for digital creators to showcase and sell their work.</div>
                 <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">MongoDB</span></div>
-            </li>
-            <li class="project-item">
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-cloud"></i></div>
                 <div class="project-title">Project Beta</div>
                 <div class="project-desc">Cloud-based analytics dashboard for real-time business intelligence.</div>
                 <div class="project-tags"><span class="project-tag">Vue</span><span class="project-tag">Python</span><span class="project-tag">AWS</span></div>
-            </li>
-            <li class="project-item">
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-robot"></i></div>
                 <div class="project-title">Project Gamma</div>
                 <div class="project-desc">AI-powered content generation tool for marketing teams.</div>
                 <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">OpenAI</span><span class="project-tag">PostgreSQL</span></div>
-            </li>
-        </ul>
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="project-title">Project Delta</div>
+                <div class="project-desc">Real-time analytics dashboard with predictive insights.</div>
+                <div class="project-tags"><span class="project-tag">D3.js</span><span class="project-tag">FastAPI</span><span class="project-tag">Redis</span></div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-shield"></i></div>
+                <div class="project-title">Project Epsilon</div>
+                <div class="project-desc">Enterprise-grade authentication and authorization system.</div>
+                <div class="project-tags"><span class="project-tag">Auth0</span><span class="project-tag">JWT</span><span class="project-tag">OAuth2</span></div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-gamepad"></i></div>
+                <div class="project-title">Project Zeta</div>
+                <div class="project-desc">Interactive web-based game with multiplayer support.</div>
+                <div class="project-tags"><span class="project-tag">WebSocket</span><span class="project-tag">Canvas</span><span class="project-tag">Phaser</span></div>
+            </div>
+        </div>
         <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" style="color:#89b4fa;">View all projects on GitHub</a></p>
 
         <!-- Blog Section -->
