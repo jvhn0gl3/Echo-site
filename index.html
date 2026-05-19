@@ -21,6 +21,67 @@
         .nav-link.active { background: rgba(99,102,241,0.15); color: #6366F1; }
         .bottom-actions { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
         .main { margin-left: 72px; width: calc(100% - 72px); }
+        
+        /* Announcement Banner */
+        .announcement-banner {
+            position: relative;
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+            border-bottom: 1px solid rgba(99,102,241,0.3);
+            padding: 12px 48px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .announcement-banner.hidden {
+            display: none;
+        }
+        .banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .banner-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(99,102,241,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .banner-text {
+            font-size: 14px;
+            color: #D4D4D8;
+        }
+        .banner-link {
+            color: #818CF8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .banner-link:hover {
+            color: #A5B4FC;
+            text-decoration: underline;
+        }
+        .banner-close {
+            position: absolute;
+            right: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #71717A;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px 8px;
+            transition: color 0.2s ease;
+        }
+        .banner-close:hover {
+            color: #A1A1AA;
+        }
+        
         section { padding: 80px 48px; width: 100%; }
         .hero { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #0A0A0A 0%, #0F0F0F 100%); }
         .hero-content { max-width: 900px; width: 100%; }
@@ -94,9 +155,9 @@
         body.reduce-motion * { transition: none !important; animation: none !important; }
         body.dyslexic-font { font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif; }
         
-        @media (max-width: 1024px) { section { padding: 60px 32px; } h1 { font-size: 56px; } h2 { font-size: 36px; } .services-grid, .projects-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .sidebar { width: 60px; } .main { margin-left: 60px; width: calc(100% - 60px); } section { padding: 50px 24px; } h1 { font-size: 40px; } h2 { font-size: 28px; } .about-grid { grid-template-columns: 1fr; } .services-grid, .projects-grid, .blog-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 480px) { .sidebar { width: 56px; } .main { margin-left: 56px; width: calc(100% - 56px); } section { padding: 40px 16px; } h1 { font-size: 32px; } .buttons { flex-direction: column; } .btn-primary, .btn-secondary { text-align: center; width: 100%; } }
+        @media (max-width: 1024px) { section { padding: 60px 32px; } h1 { font-size: 56px; } h2 { font-size: 36px; } .services-grid, .projects-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); } .announcement-banner { padding: 10px 20px; } .banner-close { right: 20px; } }
+        @media (max-width: 768px) { .sidebar { width: 60px; } .main { margin-left: 60px; width: calc(100% - 60px); } section { padding: 50px 24px; } h1 { font-size: 40px; } h2 { font-size: 28px; } .about-grid { grid-template-columns: 1fr; } .services-grid, .projects-grid, .blog-grid { grid-template-columns: 1fr; } .announcement-banner { padding: 8px 16px; } .banner-text { font-size: 12px; } }
+        @media (max-width: 480px) { .sidebar { width: 56px; } .main { margin-left: 56px; width: calc(100% - 56px); } section { padding: 40px 16px; } h1 { font-size: 32px; } .buttons { flex-direction: column; } .btn-primary, .btn-secondary { text-align: center; width: 100%; } .banner-content { gap: 8px; } .banner-text { font-size: 11px; } }
     </style>
 </head>
 <body>
@@ -122,6 +183,19 @@
 
     <!-- Main Content - All Sections Visible -->
     <main class="main">
+        
+        <!-- Announcement Banner -->
+        <div id="announcement-banner" class="announcement-banner">
+            <div class="banner-content">
+                <span class="banner-icon">✨</span>
+                <span class="banner-text">
+                    🚀 <strong>New:</strong> AI-powered development services now available
+                </span>
+                <a href="#connect" class="banner-link">Learn more →</a>
+            </div>
+            <button class="banner-close" id="close-banner">×</button>
+        </div>
+        
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
@@ -306,6 +380,26 @@
     <script>
         (function() {
             'use strict';
+            
+            // Announcement Banner - Dismissible with localStorage
+            const banner = document.getElementById('announcement-banner');
+            const closeBannerBtn = document.getElementById('close-banner');
+            
+            // Check if banner was dismissed before
+            const isBannerDismissed = localStorage.getItem('announcementBannerDismissed');
+            if (isBannerDismissed === 'true' && banner) {
+                banner.classList.add('hidden');
+            }
+            
+            // Close banner and save to localStorage
+            if (closeBannerBtn) {
+                closeBannerBtn.addEventListener('click', () => {
+                    if (banner) {
+                        banner.classList.add('hidden');
+                        localStorage.setItem('announcementBannerDismissed', 'true');
+                    }
+                });
+            }
             
             // Smooth scroll for navigation
             document.querySelectorAll('.nav-link, .command-item[data-section]').forEach(link => {
