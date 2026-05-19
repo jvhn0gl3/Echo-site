@@ -22,6 +22,76 @@
             line-height: 1.6;
         }
 
+        /* Notification Banner */
+        .notification-banner {
+            background: linear-gradient(135deg, #181825 0%, #1e1e2e 100%);
+            border-bottom: 1px solid #89b4fa;
+            padding: 12px 64px;
+            position: relative;
+            width: 100%;
+        }
+
+        .notification-banner.hidden {
+            display: none;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+            color: #89b4fa;
+        }
+
+        .notification-text {
+            font-size: 14px;
+            color: #cdd6f4;
+        }
+
+        .notification-text strong {
+            color: #89b4fa;
+        }
+
+        .notification-link {
+            color: #cba6f7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .notification-link:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .notification-close {
+            position: absolute;
+            right: 64px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(137, 180, 250, 0.1);
+            border: 1px solid #313244;
+            border-radius: 6px;
+            color: #6c7086;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px 10px;
+            transition: all 0.2s ease;
+        }
+
+        .notification-close:hover {
+            background: rgba(137, 180, 250, 0.2);
+            color: #89b4fa;
+            border-color: #89b4fa;
+        }
+
         /* Main Container - Full Width */
         .container {
             width: 100%;
@@ -421,6 +491,12 @@
             .container {
                 padding: 40px 48px;
             }
+            .notification-banner {
+                padding: 12px 48px;
+            }
+            .notification-close {
+                right: 48px;
+            }
             .projects-grid,
             .blog-grid {
                 gap: 24px;
@@ -440,6 +516,19 @@
         @media (max-width: 768px) {
             .container {
                 padding: 32px 24px;
+            }
+            .notification-banner {
+                padding: 10px 40px;
+            }
+            .notification-close {
+                right: 16px;
+                top: auto;
+                bottom: 8px;
+                transform: none;
+            }
+            .notification-content {
+                padding-right: 30px;
+                text-align: center;
             }
             h1 { font-size: 32px; }
             h2 { font-size: 22px; }
@@ -471,6 +560,12 @@
             .container {
                 padding: 24px 16px;
             }
+            .notification-banner {
+                padding: 8px 32px;
+            }
+            .notification-text {
+                font-size: 11px;
+            }
             h1 { font-size: 28px; }
             .stats-grid {
                 gap: 16px;
@@ -483,6 +578,20 @@
     </style>
 </head>
 <body>
+    <!-- Notification Banner -->
+    <div id="notification-banner" class="notification-banner">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+            <div class="notification-text">
+                <strong>✨ New:</strong> AI-powered development services now available! 
+                <a href="#" class="notification-link" id="notification-link">Learn more →</a>
+            </div>
+        </div>
+        <button class="notification-close" id="close-notification">✕</button>
+    </div>
+
     <div class="container">
         <!-- README / Hero Section -->
         <div class="comment">// echo/README.md — welcome to my digital workspace</div>
@@ -748,6 +857,35 @@
     <script>
         (function() {
             'use strict';
+            
+            // Notification Banner Dismiss
+            const notificationBanner = document.getElementById('notification-banner');
+            const closeNotification = document.getElementById('close-notification');
+            const notificationLink = document.getElementById('notification-link');
+            
+            // Check if notification was dismissed before
+            const isNotificationDismissed = localStorage.getItem('notificationDismissed');
+            if (isNotificationDismissed === 'true' && notificationBanner) {
+                notificationBanner.classList.add('hidden');
+            }
+            
+            // Close notification and save to localStorage
+            if (closeNotification) {
+                closeNotification.addEventListener('click', () => {
+                    if (notificationBanner) {
+                        notificationBanner.classList.add('hidden');
+                        localStorage.setItem('notificationDismissed', 'true');
+                    }
+                });
+            }
+            
+            // Notification link click
+            if (notificationLink) {
+                notificationLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Learn more about AI-powered development services — coming soon!');
+                });
+            }
             
             // View all buttons
             document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
