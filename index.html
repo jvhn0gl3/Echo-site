@@ -22,16 +22,29 @@
             line-height: 1.6;
         }
 
-        /* Notification Banner - Sticky */
+        /* Notification Banner - Sticky with type variants */
         .notification-banner {
             background: linear-gradient(135deg, #181825 0%, #1e1e2e 100%);
-            border-bottom: 1px solid #89b4fa;
+            border-bottom: 2px solid #89b4fa;
             padding: 12px 64px;
             position: sticky;
             top: 0;
             z-index: 1000;
             width: 100%;
             transition: all 0.3s ease;
+        }
+
+        .notification-banner.type-info {
+            border-bottom-color: #89b4fa;
+        }
+        .notification-banner.type-success {
+            border-bottom-color: #a6e3a1;
+        }
+        .notification-banner.type-warning {
+            border-bottom-color: #f9e2af;
+        }
+        .notification-banner.type-announcement {
+            border-bottom-color: #cba6f7;
         }
 
         .notification-banner.scrolled {
@@ -56,8 +69,20 @@
 
         .notification-icon {
             font-size: 20px;
-            color: #89b4fa;
             animation: pulse 2s infinite;
+        }
+
+        .type-info .notification-icon {
+            color: #89b4fa;
+        }
+        .type-success .notification-icon {
+            color: #a6e3a1;
+        }
+        .type-warning .notification-icon {
+            color: #f9e2af;
+        }
+        .type-announcement .notification-icon {
+            color: #cba6f7;
         }
 
         @keyframes pulse {
@@ -75,14 +100,39 @@
         }
 
         .notification-text strong {
+            color: inherit;
+        }
+
+        .type-info .notification-text strong {
             color: #89b4fa;
+        }
+        .type-success .notification-text strong {
+            color: #a6e3a1;
+        }
+        .type-warning .notification-text strong {
+            color: #f9e2af;
+        }
+        .type-announcement .notification-text strong {
+            color: #cba6f7;
         }
 
         .notification-link {
-            color: #cba6f7;
             text-decoration: none;
             font-weight: 500;
             transition: opacity 0.2s ease;
+        }
+
+        .type-info .notification-link {
+            color: #89b4fa;
+        }
+        .type-success .notification-link {
+            color: #a6e3a1;
+        }
+        .type-warning .notification-link {
+            color: #f9e2af;
+        }
+        .type-announcement .notification-link {
+            color: #cba6f7;
         }
 
         .notification-link:hover {
@@ -109,6 +159,32 @@
             background: rgba(137, 180, 250, 0.2);
             color: #89b4fa;
             border-color: #89b4fa;
+        }
+
+        /* Indicator dots for multiple notifications */
+        .notification-indicators {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1001;
+        }
+
+        .indicator-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #313244;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .indicator-dot.active {
+            background: #89b4fa;
+            width: 16px;
+            border-radius: 3px;
         }
 
         /* Main Container - Full Width */
@@ -555,6 +631,9 @@
                 padding-right: 30px;
                 text-align: center;
             }
+            .notification-indicators {
+                bottom: -6px;
+            }
             h1 { font-size: 32px; }
             h2 { font-size: 22px; }
             .stats-grid {
@@ -603,18 +682,20 @@
     </style>
 </head>
 <body>
-    <!-- Notification Banner - Sticky -->
+    <!-- Notification Banner with JSON configuration -->
     <div id="notification-banner" class="notification-banner">
         <div class="notification-content">
-            <div class="notification-icon">
+            <div class="notification-icon" id="notification-icon">
                 <i class="fa-regular fa-bell"></i>
             </div>
-            <div class="notification-text">
-                <strong>✨ New:</strong> AI-powered development services now available! 
+            <div class="notification-text" id="notification-text">
+                <strong id="notification-strong">✨ New:</strong> 
+                <span id="notification-message">AI-powered development services now available!</span>
                 <a href="#" class="notification-link" id="notification-link">Learn more →</a>
             </div>
         </div>
         <button class="notification-close" id="close-notification">✕</button>
+        <div class="notification-indicators" id="notification-indicators"></div>
     </div>
 
     <div class="container">
@@ -883,44 +964,186 @@
         (function() {
             'use strict';
             
-            // Sticky notification banner scroll effect
-            const notificationBanner = document.getElementById('notification-banner');
+            // ============================================
+            // NOTIFICATION CONFIGURATION - JSON CONST
+            // ============================================
+            const notifications = [
+                {
+                    id: 1,
+                    type: "announcement",
+                    icon: "fa-regular fa-bell",
+                    strong: "✨ New:",
+                    message: "AI-powered development services now available!",
+                    linkText: "Learn more →",
+                    linkUrl: "#",
+                    duration: 8000
+                },
+                {
+                    id: 2,
+                    type: "success",
+                    icon: "fa-regular fa-circle-check",
+                    strong: "🎉 Milestone:",
+                    message: "50+ projects completed! Thank you to all my clients.",
+                    linkText: "View portfolio →",
+                    linkUrl: "#",
+                    duration: 8000
+                },
+                {
+                    id: 3,
+                    type: "info",
+                    icon: "fa-regular fa-calendar",
+                    strong: "📅 Event:",
+                    message: "Free consultation slots open for December.",
+                    linkText: "Book now →",
+                    linkUrl: "#",
+                    duration: 8000
+                },
+                {
+                    id: 4,
+                    type: "warning",
+                    icon: "fa-regular fa-clock",
+                    strong: "⏰ Limited:",
+                    message: "Early bird pricing ends this Friday!",
+                    linkText: "Inquire today →",
+                    linkUrl: "#",
+                    duration: 8000
+                },
+                {
+                    id: 5,
+                    type: "announcement",
+                    icon: "fa-regular fa-gem",
+                    strong: "💎 Launch:",
+                    message: "New portfolio section now live! Check out my latest work.",
+                    linkText: "Explore projects →",
+                    linkUrl: "#",
+                    duration: 8000
+                }
+            ];
             
-            if (notificationBanner) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 10) {
-                        notificationBanner.classList.add('scrolled');
-                    } else {
-                        notificationBanner.classList.remove('scrolled');
-                    }
-                });
-            }
+            let currentNotificationIndex = 0;
+            let notificationInterval = null;
+            let isDismissed = false;
             
-            // Notification Banner Dismiss
-            const closeNotification = document.getElementById('close-notification');
-            const notificationLink = document.getElementById('notification-link');
+            // DOM elements
+            const banner = document.getElementById('notification-banner');
+            const iconElement = document.getElementById('notification-icon');
+            const strongElement = document.getElementById('notification-strong');
+            const messageElement = document.getElementById('notification-message');
+            const linkElement = document.getElementById('notification-link');
+            const indicatorsContainer = document.getElementById('notification-indicators');
+            const closeBtn = document.getElementById('close-notification');
             
             // Check if notification was dismissed before
             const isNotificationDismissed = localStorage.getItem('notificationDismissed');
-            if (isNotificationDismissed === 'true' && notificationBanner) {
-                notificationBanner.classList.add('hidden');
+            if (isNotificationDismissed === 'true') {
+                isDismissed = true;
+                banner?.classList.add('hidden');
             }
             
-            // Close notification and save to localStorage
-            if (closeNotification) {
-                closeNotification.addEventListener('click', () => {
-                    if (notificationBanner) {
-                        notificationBanner.classList.add('hidden');
-                        localStorage.setItem('notificationDismissed', 'true');
+            // Update notification display
+            function updateNotification(index) {
+                if (isDismissed) return;
+                
+                const notification = notifications[index];
+                if (!notification) return;
+                
+                // Update banner type class
+                banner.classList.remove('type-info', 'type-success', 'type-warning', 'type-announcement');
+                banner.classList.add(`type-${notification.type}`);
+                
+                // Update icon
+                iconElement.innerHTML = `<i class="${notification.icon}"></i>`;
+                
+                // Update text
+                strongElement.textContent = notification.strong;
+                messageElement.textContent = notification.message;
+                linkElement.textContent = notification.linkText;
+                linkElement.href = notification.linkUrl;
+                
+                // Update active indicator
+                document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
                     }
                 });
             }
             
-            // Notification link click
-            if (notificationLink) {
-                notificationLink.addEventListener('click', (e) => {
+            // Create indicator dots
+            function createIndicators() {
+                if (!indicatorsContainer) return;
+                
+                indicatorsContainer.innerHTML = '';
+                notifications.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'indicator-dot';
+                    if (index === currentNotificationIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        // Stop auto-rotation temporarily
+                        if (notificationInterval) {
+                            clearInterval(notificationInterval);
+                            notificationInterval = null;
+                        }
+                        currentNotificationIndex = index;
+                        updateNotification(currentNotificationIndex);
+                        // Restart auto-rotation after 10 seconds
+                        setTimeout(() => {
+                            if (!notificationInterval && !isDismissed) {
+                                startNotificationRotation();
+                            }
+                        }, 10000);
+                    });
+                    indicatorsContainer.appendChild(dot);
+                });
+            }
+            
+            // Start auto-rotation
+            function startNotificationRotation() {
+                if (notificationInterval) clearInterval(notificationInterval);
+                notificationInterval = setInterval(() => {
+                    if (isDismissed) return;
+                    currentNotificationIndex = (currentNotificationIndex + 1) % notifications.length;
+                    updateNotification(currentNotificationIndex);
+                }, notifications[currentNotificationIndex]?.duration || 8000);
+            }
+            
+            // Handle close button
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    isDismissed = true;
+                    banner.classList.add('hidden');
+                    localStorage.setItem('notificationDismissed', 'true');
+                    if (notificationInterval) {
+                        clearInterval(notificationInterval);
+                        notificationInterval = null;
+                    }
+                });
+            }
+            
+            // Handle link click
+            if (linkElement) {
+                linkElement.addEventListener('click', (e) => {
                     e.preventDefault();
-                    alert('Learn more about AI-powered development services — coming soon!');
+                    alert(`Notification clicked: ${messageElement.textContent} — Coming soon!`);
+                });
+            }
+            
+            // Initialize notification system
+            if (!isDismissed && banner) {
+                createIndicators();
+                updateNotification(0);
+                startNotificationRotation();
+            }
+            
+            // Sticky notification banner scroll effect
+            if (banner) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        banner.classList.add('scrolled');
+                    } else {
+                        banner.classList.remove('scrolled');
+                    }
                 });
             }
             
