@@ -22,44 +22,56 @@
             line-height: 1.6;
         }
 
-        /* Main Container */
+        /* Main Container - Full Width */
         .container {
-            max-width: 1200px;
+            width: 100%;
+            max-width: none;
+            padding: 48px 64px;
+        }
+
+        /* Content sections with max-width for readability */
+        .hero-section,
+        .about-section,
+        .skills-section,
+        .projects-section,
+        .blog-section,
+        .connect-section {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 48px 32px;
         }
 
         /* Code-like Typography */
         h1 {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             color: #89b4fa;
             font-family: 'JetBrains Mono', monospace;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
-            margin-top: 48px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
+            margin-top: 56px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #313244;
             color: #cba6f7;
         }
 
         h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
-            margin-top: 24px;
-            margin-bottom: 12px;
+            margin-top: 28px;
+            margin-bottom: 14px;
             color: #a6e3a1;
         }
 
         p {
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             color: #cdd6f4;
             line-height: 1.7;
+            font-size: 15px;
         }
 
         code {
@@ -73,10 +85,10 @@
 
         pre {
             background: #181825;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 12px;
             overflow-x: auto;
-            margin: 20px 0;
+            margin: 24px 0;
             border: 1px solid #313244;
         }
 
@@ -84,26 +96,26 @@
             background: none;
             padding: 0;
             color: #cdd6f4;
-            font-size: 13px;
+            font-size: 14px;
         }
 
         /* Comment style */
         .comment {
             color: #6c7086;
             font-style: italic;
-            margin-bottom: 24px;
-            font-size: 13px;
+            margin-bottom: 28px;
+            font-size: 14px;
         }
 
-        /* Stats grid */
+        /* Stats grid - Full width */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin: 32px 0;
-            padding: 24px;
+            gap: 24px;
+            margin: 40px 0;
+            padding: 32px;
             background: #181825;
-            border-radius: 12px;
+            border-radius: 16px;
             border: 1px solid #313244;
         }
 
@@ -112,69 +124,69 @@
         }
 
         .stat-number {
-            font-size: 32px;
+            font-size: 40px;
             font-weight: 700;
             color: #89b4fa;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 13px;
             color: #6c7086;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
-        /* Service cards */
+        /* Service cards - Full width responsive grid */
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 32px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
         }
 
         .service-card {
             background: #181825;
             border: 1px solid #313244;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
             transition: all 0.15s ease;
         }
 
         .service-card:hover {
             border-color: #89b4fa;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
         .service-card i {
-            font-size: 32px;
+            font-size: 36px;
             color: #89b4fa;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .service-card h4 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .service-card p {
-            font-size: 13px;
+            font-size: 14px;
             color: #6c7086;
             margin: 0;
         }
 
-        /* Projects Grid - 3x3 */
+        /* Projects Grid - 3x3 Full width */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 32px 0;
+            gap: 28px;
+            margin: 40px 0;
         }
 
         .project-card {
             background: #181825;
             border: 1px solid #313244;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
             transition: all 0.15s ease;
         }
 
@@ -184,22 +196,22 @@
         }
 
         .project-icon {
-            font-size: 32px;
+            font-size: 36px;
             color: #89b4fa;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .project-title {
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #cdd6f4;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .project-desc {
-            font-size: 13px;
+            font-size: 14px;
             color: #6c7086;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.5;
         }
 
@@ -210,27 +222,27 @@
         }
 
         .project-tag {
-            font-size: 10px;
-            padding: 3px 10px;
+            font-size: 11px;
+            padding: 4px 12px;
             background: #313244;
             border-radius: 6px;
             color: #a6e3a1;
             font-family: monospace;
         }
 
-        /* Blog Grid - 3x3 */
+        /* Blog Grid - 3x3 Full width */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 32px 0;
+            gap: 28px;
+            margin: 40px 0;
         }
 
         .blog-card {
             background: #181825;
             border: 1px solid #313244;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
             transition: all 0.15s ease;
             cursor: pointer;
         }
@@ -241,37 +253,33 @@
         }
 
         .blog-category {
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: #89b4fa;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .blog-title {
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #cdd6f4;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .blog-excerpt {
-            font-size: 13px;
+            font-size: 14px;
             color: #6c7086;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.5;
         }
 
         .blog-meta {
-            font-size: 11px;
+            font-size: 12px;
             color: #6c7086;
             display: flex;
             align-items: center;
             gap: 12px;
-        }
-
-        .blog-meta i {
-            font-size: 11px;
         }
 
         /* Button Styles */
@@ -279,13 +287,13 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: linear-gradient(135deg, #313244 0%, #181825 100%);
             border: 1px solid #45475a;
             border-radius: 8px;
             color: #cdd6f4;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -325,56 +333,46 @@
             transform: translateY(-2px);
         }
 
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 11px;
-        }
-
-        .btn-lg {
-            padding: 14px 28px;
-            font-size: 14px;
-        }
-
         .button-group {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-top: 24px;
+            margin-top: 32px;
         }
 
-        /* View all link (preserved for "View all projects" etc) */
+        /* View all link */
         .view-all-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             color: #89b4fa;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             transition: gap 0.2s ease;
         }
 
         .view-all-link:hover {
-            gap: 10px;
+            gap: 12px;
             text-decoration: underline;
         }
 
         /* Social links as buttons */
         .social-links {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 24px;
+            margin-top: 28px;
         }
 
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
+            gap: 10px;
+            padding: 10px 20px;
             background: #181825;
             border: 1px solid #313244;
             border-radius: 8px;
-            font-size: 13px;
+            font-size: 14px;
             color: #cdd6f4;
             text-decoration: none;
             transition: all 0.15s ease;
@@ -388,12 +386,12 @@
 
         /* Footer */
         .footer {
-            margin-top: 60px;
-            padding-top: 24px;
+            margin-top: 80px;
+            padding-top: 32px;
             border-top: 1px solid #313244;
             text-align: center;
             color: #6c7086;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         /* Accessibility Modes */
@@ -404,49 +402,82 @@
 
         /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
         }
         ::-webkit-scrollbar-track {
             background: #181825;
         }
         ::-webkit-scrollbar-thumb {
             background: #313244;
-            border-radius: 4px;
+            border-radius: 5px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #45475a;
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 40px 48px;
+            }
+            .projects-grid,
+            .blog-grid {
+                gap: 24px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .projects-grid,
             .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
             }
+            h1 { font-size: 40px; }
+            h2 { font-size: 26px; }
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 32px 20px;
+                padding: 32px 24px;
             }
-            h1 { font-size: 28px; }
-            h2 { font-size: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 22px; }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
+                gap: 20px;
+                padding: 24px;
+            }
+            .stat-number {
+                font-size: 32px;
             }
             .projects-grid,
             .blog-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
             .button-group {
                 flex-direction: column;
             }
             .btn {
                 justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 16px;
+            }
+            h1 { font-size: 28px; }
+            .stats-grid {
+                gap: 16px;
+                padding: 20px;
+            }
+            .stat-number {
+                font-size: 28px;
             }
         }
     </style>
@@ -598,7 +629,7 @@
         <!-- Footer -->
         <div class="footer">
             <p>© 2024 Echo — Built with <i class="fa-regular fa-heart"></i> by jvhn0gl3</p>
-            <p style="margin-top: 8px;">
+            <p style="margin-top: 12px;">
                 <a href="#" id="accessibility-trigger" style="color:#6c7086; text-decoration: none;">♿ Accessibility</a>
             </p>
         </div>
