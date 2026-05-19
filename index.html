@@ -136,7 +136,7 @@
             opacity: 0.8;
         }
 
-        /* Indicator dots for multiple notifications */
+        /* Indicator dots - visual only, non-interactive */
         .notification-indicators {
             position: absolute;
             bottom: -8px;
@@ -152,8 +152,7 @@
             height: 6px;
             border-radius: 50%;
             background: #313244;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .indicator-dot.active {
@@ -647,7 +646,7 @@
     </style>
 </head>
 <body>
-    <!-- Notification Banner - No Close Button -->
+    <!-- Notification Banner - Linear Loop -->
     <div id="notification-banner" class="notification-banner">
         <div class="notification-content">
             <div class="notification-icon" id="notification-icon">
@@ -929,7 +928,7 @@
             'use strict';
             
             // ============================================
-            // NOTIFICATION CONFIGURATION - JSON CONST
+            // NOTIFICATION CONFIGURATION - LINEAR LOOP
             // ============================================
             const notifications = [
                 {
@@ -1013,8 +1012,9 @@
                 linkElement.textContent = notification.linkText;
                 linkElement.href = notification.linkUrl;
                 
-                // Update active indicator
-                document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
+                // Update active indicator (visual only)
+                const dots = document.querySelectorAll('.indicator-dot');
+                dots.forEach((dot, i) => {
                     if (i === index) {
                         dot.classList.add('active');
                     } else {
@@ -1023,7 +1023,7 @@
                 });
             }
             
-            // Create indicator dots
+            // Create indicator dots (visual only, no click handlers)
             function createIndicators() {
                 if (!indicatorsContainer) return;
                 
@@ -1032,32 +1032,19 @@
                     const dot = document.createElement('div');
                     dot.className = 'indicator-dot';
                     if (index === currentNotificationIndex) dot.classList.add('active');
-                    dot.addEventListener('click', () => {
-                        // Stop auto-rotation temporarily
-                        if (notificationInterval) {
-                            clearInterval(notificationInterval);
-                            notificationInterval = null;
-                        }
-                        currentNotificationIndex = index;
-                        updateNotification(currentNotificationIndex);
-                        // Restart auto-rotation after 10 seconds
-                        setTimeout(() => {
-                            if (!notificationInterval) {
-                                startNotificationRotation();
-                            }
-                        }, 10000);
-                    });
+                    // No click handlers - visual only
                     indicatorsContainer.appendChild(dot);
                 });
             }
             
-            // Start auto-rotation
-            function startNotificationRotation() {
+            // Start linear infinite loop rotation
+            function startRotation() {
                 if (notificationInterval) clearInterval(notificationInterval);
                 notificationInterval = setInterval(() => {
+                    // Linear loop: 0,1,2,3,4,0,1,2,3,4...
                     currentNotificationIndex = (currentNotificationIndex + 1) % notifications.length;
                     updateNotification(currentNotificationIndex);
-                }, notifications[currentNotificationIndex]?.duration || 8000);
+                }, 8000); // Consistent 8-second interval for all notifications
             }
             
             // Handle link click
@@ -1072,7 +1059,7 @@
             if (banner) {
                 createIndicators();
                 updateNotification(0);
-                startNotificationRotation();
+                startRotation();
             }
             
             // Sticky notification banner scroll effect
