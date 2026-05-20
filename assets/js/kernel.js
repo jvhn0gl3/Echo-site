@@ -7,6 +7,9 @@
     async function loadNotifications() {
         try {
             const response = await fetch('assets/data/notifications.json');
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
             const data = await response.json();
             return data.notifications;
         } catch (error) {
@@ -14,16 +17,26 @@
             // Fallback notifications if JSON fails to load
             return [
                 { id: 1, icon: "fa-regular fa-circle-info", strong: "✨ NEW:", message: "AI-powered development services now available!", separator: true },
-                { id: 2, icon: "fa-regular fa-trophy", strong: "🎉 MILESTONE:", message: "50+ projects completed!", separator: false }
+                { id: 2, icon: "fa-regular fa-trophy", strong: "🎉 MILESTONE:", message: "50+ projects completed! Thank you to all my clients.", separator: true },
+                { id: 3, icon: "fa-regular fa-calendar", strong: "📅 EVENT:", message: "Free consultation slots open for December", separator: true },
+                { id: 4, icon: "fa-regular fa-clock", strong: "⏰ LIMITED:", message: "Early bird pricing ends this Friday!", separator: true },
+                { id: 5, icon: "fa-regular fa-gem", strong: "💎 LAUNCH:", message: "New portfolio section now live! Check out my latest work.", separator: false }
             ];
         }
     }
 
     // Build scrolling notification banner
     async function buildNotificationBanner() {
-        const notifications = await loadNotifications();
         const banner = document.querySelector('.notification-banner');
-        if (!banner) return;
+        if (!banner) {
+            console.error('Notification banner container not found');
+            return;
+        }
+
+        const notifications = await loadNotifications();
+        
+        // Clear banner
+        banner.innerHTML = '';
 
         // Create scrolling wrapper
         const wrapper = document.createElement('div');
@@ -31,7 +44,7 @@
 
         // Build first set of notifications
         let messageHTML = '';
-        notifications.forEach((notif, index) => {
+        notifications.forEach((notif) => {
             messageHTML += `
                 <div class="notification-message">
                     <strong>${notif.strong}</strong> ${notif.message}
@@ -43,7 +56,7 @@
 
         // Duplicate for seamless loop
         let duplicateHTML = '';
-        notifications.forEach((notif, index) => {
+        notifications.forEach((notif) => {
             duplicateHTML += `
                 <div class="notification-message">
                     <strong>${notif.strong}</strong> ${notif.message}
@@ -54,14 +67,17 @@
         });
 
         wrapper.innerHTML = messageHTML + duplicateHTML;
-        
-        // Clear existing content and add new wrapper
-        banner.innerHTML = '';
         banner.appendChild(wrapper);
     }
 
-    // Initialize notification banner
-    buildNotificationBanner();
+    // Initialize notification banner when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            buildNotificationBanner();
+        });
+    } else {
+        buildNotificationBanner();
+    }
     
     // View all buttons
     document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
@@ -164,7 +180,7 @@
         updateButtonStates();
     }
     
-    // Initialize
+    // Initialize accessibility
     document.addEventListener('DOMContentLoaded', () => {
         loadAccessibilityPreferences();
         
