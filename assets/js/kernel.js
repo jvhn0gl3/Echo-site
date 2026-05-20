@@ -1,6 +1,68 @@
 'use strict';
 
 (function() {
+    // ============================================
+    // LOAD NOTIFICATIONS FROM JSON
+    // ============================================
+    async function loadNotifications() {
+        try {
+            const response = await fetch('assets/data/notifications.json');
+            const data = await response.json();
+            return data.notifications;
+        } catch (error) {
+            console.error('Failed to load notifications:', error);
+            // Fallback notifications if JSON fails to load
+            return [
+                { id: 1, icon: "fa-regular fa-circle-info", strong: "✨ NEW:", message: "AI-powered development services now available!", separator: true },
+                { id: 2, icon: "fa-regular fa-trophy", strong: "🎉 MILESTONE:", message: "50+ projects completed!", separator: false }
+            ];
+        }
+    }
+
+    // Build scrolling notification banner
+    async function buildNotificationBanner() {
+        const notifications = await loadNotifications();
+        const banner = document.querySelector('.notification-banner');
+        if (!banner) return;
+
+        // Create scrolling wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'scrolling-wrapper';
+
+        // Build first set of notifications
+        let messageHTML = '';
+        notifications.forEach((notif, index) => {
+            messageHTML += `
+                <div class="notification-message">
+                    <strong>${notif.strong}</strong> ${notif.message}
+                    <i class="${notif.icon}"></i>
+                    ${notif.separator ? '<span class="separator"></span>' : ''}
+                </div>
+            `;
+        });
+
+        // Duplicate for seamless loop
+        let duplicateHTML = '';
+        notifications.forEach((notif, index) => {
+            duplicateHTML += `
+                <div class="notification-message">
+                    <strong>${notif.strong}</strong> ${notif.message}
+                    <i class="${notif.icon}"></i>
+                    ${notif.separator ? '<span class="separator"></span>' : ''}
+                </div>
+            `;
+        });
+
+        wrapper.innerHTML = messageHTML + duplicateHTML;
+        
+        // Clear existing content and add new wrapper
+        banner.innerHTML = '';
+        banner.appendChild(wrapper);
+    }
+
+    // Initialize notification banner
+    buildNotificationBanner();
+    
     // View all buttons
     document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
         e.preventDefault();
