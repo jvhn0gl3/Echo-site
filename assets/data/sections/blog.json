@@ -1,0 +1,44 @@
+{
+  "sectionIcon": "fa-regular fa-pen-fancy",
+  "title": "Latest Insights",
+  "subtitle": "Thoughts on technology, design, and creativity",
+  "viewAllText": "Read all posts",
+  "items": [
+    {
+      "category": "🚀 Technology",
+      "title": "The Future of Web Development",
+      "excerpt": "Exploring emerging trends and technologies shaping the future of the web in 2024 and beyond.",
+      "readTime": "5 min read"
+    },
+    {
+      "category": "🎨 Design",
+      "title": "Minimalist UI Principles",
+      "excerpt": "How less becomes more in modern interface design, and why simplicity wins.",
+      "readTime": "4 min read"
+    },
+    {
+      "category": "💼 Career",
+      "title": "10 Years in Review",
+      "excerpt": "Lessons learned from a decade of digital creation and software development.",
+      "readTime": "7 min read"
+    },
+    {
+      "category": "✍️ Opinion",
+      "title": "Why I Love Monospace Fonts",
+      "excerpt": "The beauty of consistent character widths in programming and design.",
+      "readTime": "3 min read"
+    },
+    {
+      "category": "🤖 AI",
+      "title": "Building with LLMs",
+      "excerpt": "Practical approaches to integrating large language models into your apps.",
+      "readTime": "8 min read"
+    },
+    {
+      "category": "🔧 Tools",
+      "title": "My Dev Setup 2024",
+      "excerpt": "A look at the tools, extensions, and configurations that boost my productivity.",
+      "readTime": "6 min read"
+    }
+  ]
+}

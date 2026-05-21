@@ -9,25 +9,25 @@
     "linkedin": {
       "name": "LinkedIn",
       "icon": "fa-brands fa-linkedin",
-      "url": "#",
+      "url": "https://linkedin.com/in/jvhn0gl3",
       "displayOrder": 2
     },
     "twitter": {
       "name": "Twitter",
       "icon": "fa-brands fa-twitter",
-      "url": "#",
+      "url": "https://twitter.com/jvhn0gl3",
       "displayOrder": 3
     },
     "instagram": {
       "name": "Instagram",
       "icon": "fa-brands fa-instagram",
-      "url": "#",
+      "url": "https://instagram.com/jvhn0gl3",
       "displayOrder": 4
     },
     "discord": {
       "name": "Discord",
       "icon": "fa-brands fa-discord",
-      "url": "#",
+      "url": "https://discord.gg/jvhn0gl3",
       "displayOrder": 5
     }
   }

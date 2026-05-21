@@ -1,0 +1,8 @@
+{
+  "sectionIcon": "fa-regular fa-envelope",
+  "title": "Let's Work Together",
+  "description": "Have a project in mind? Let's create something amazing together.",
+  "email": "hello@echo.dev",
+  "buttonText": "Email Me",
+  "socialsFile": "assets/data/socials.json"
+}

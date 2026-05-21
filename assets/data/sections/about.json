@@ -1,0 +1,16 @@
+{
+  "sectionIcon": "fa-regular fa-user",
+  "title": "About Me",
+  "intro": "<strong>John Ogletree</strong> — a <code>Full-Stack Digital Architect</code> with over a decade of experience bridging the gap between complex backend logic and intuitive frontend experiences.",
+  "journey": "I started my journey as a self-taught developer, fascinated by the intersection of design and technology. Since then, I've worked with startups, agencies, and enterprises to deliver high-impact digital solutions.",
+  "mission": {
+    "icon": "🎯",
+    "title": "Mission",
+    "text": "To create digital products that are not only functional but delightful to use — where every line of code serves a purpose and every pixel has meaning."
+  },
+  "currently": {
+    "icon": "📍",
+    "title": "Currently",
+    "text": "Working on AI-powered developer tools and open-source contributions. Available for freelance and consulting work."
+  }
+}

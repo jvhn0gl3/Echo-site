@@ -1,18 +1,27 @@
 'use strict';
 
 (function() {
-    let contentData = null;
-    let socialsData = null;
     let siteConfig = null;
+    let heroData = null;
+    let aboutData = null;
+    let skillsData = null;
+    let projectsData = null;
+    let blogData = null;
+    let connectData = null;
+    let accessibilityData = null;
+    let alertsData = null;
+    let notificationsData = null;
+    let footerData = null;
+    let socialsData = null;
 
     async function loadSiteConfig() {
         try {
             const response = await fetch('assets/data/site.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             siteConfig = await response.json();
-            // Set page title and meta tags
             document.title = siteConfig.site.title;
-            // Update meta description
+            
+            // Update or create meta tags
             let metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) {
                 metaDesc.setAttribute('content', siteConfig.site.description);
@@ -22,7 +31,7 @@
                 metaDesc.content = siteConfig.site.description;
                 document.head.appendChild(metaDesc);
             }
-            // Update meta author
+            
             let metaAuthor = document.querySelector('meta[name="author"]');
             if (metaAuthor) {
                 metaAuthor.setAttribute('content', siteConfig.site.author);
@@ -32,7 +41,7 @@
                 metaAuthor.content = siteConfig.site.author;
                 document.head.appendChild(metaAuthor);
             }
-            // Update meta keywords
+            
             let metaKeywords = document.querySelector('meta[name="keywords"]');
             if (metaKeywords) {
                 metaKeywords.setAttribute('content', siteConfig.site.keywords);
@@ -42,22 +51,22 @@
                 metaKeywords.content = siteConfig.site.keywords;
                 document.head.appendChild(metaKeywords);
             }
+            
             return siteConfig;
         } catch (error) {
             console.error('Failed to load site config:', error);
-            document.title = 'Echo - Developer Portfolio';
+            document.title = 'Echo - Digital Architect Portfolio';
             return null;
         }
     }
 
-    async function loadContent() {
+    async function loadSection(sectionName) {
         try {
-            const response = await fetch('assets/data/content.json');
+            const response = await fetch(`assets/data/sections/${sectionName}.json`);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            contentData = await response.json();
-            return contentData;
+            return await response.json();
         } catch (error) {
-            console.error('Failed to load content:', error);
+            console.error(`Failed to load ${sectionName}:`, error);
             return null;
         }
     }
@@ -74,10 +83,30 @@
         }
     }
 
-    function renderHero(data) {
-        const hero = data.hero;
+    async function loadAllSections() {
+        heroData = await loadSection('hero');
+        aboutData = await loadSection('about');
+        skillsData = await loadSection('skills');
+        projectsData = await loadSection('projects');
+        blogData = await loadSection('blog');
+        connectData = await loadSection('connect');
+        accessibilityData = await loadSection('accessibility');
+        alertsData = await loadSection('alerts');
+        notificationsData = await loadSection('notifications');
+        footerData = await loadSection('footer');
+    }
+
+    function renderHero() {
+        if (!heroData) return '';
+        const hero = heroData;
         return `
-            <h1>${hero.emoji} ${hero.name} <span style="color:#a6e3a1;">${hero.handle}</span></h1>
+            <div class="import-statement">
+                <span class="import-keyword">import</span> 
+                <span class="import-braces">{ ${hero.name.replace(' ', '') } }</span> 
+                <span class="import-keyword">from</span> 
+                <span class="import-path">'${hero.handle}/echo'</span>
+                <span class="import-semicolon">;</span>
+            </div>
             <p><strong>${hero.role}</strong> · ${hero.years} · ${hero.tagline}</p>
             
             <div class="stats-grid">
@@ -100,8 +129,9 @@
         `;
     }
 
-    function renderAbout(data) {
-        const about = data.about;
+    function renderAbout() {
+        if (!aboutData) return '';
+        const about = aboutData;
         return `
             <h2><i class="${about.sectionIcon}"></i> ${about.title}</h2>
             <p>${about.intro}</p>
@@ -115,8 +145,9 @@
         `;
     }
 
-    function renderSkills(data) {
-        const skills = data.skills;
+    function renderSkills() {
+        if (!skillsData) return '';
+        const skills = skillsData;
         return `
             <h2><i class="${skills.sectionIcon}"></i> ${skills.title}</h2>
             <div class="service-grid">
@@ -131,8 +162,9 @@
         `;
     }
 
-    function renderProjects(data) {
-        const projects = data.projects;
+    function renderProjects() {
+        if (!projectsData) return '';
+        const projects = projectsData;
         return `
             <h2><i class="${projects.sectionIcon}"></i> ${projects.title}</h2>
             <div class="projects-grid">
@@ -151,8 +183,9 @@
         `;
     }
 
-    function renderBlog(data) {
-        const blog = data.blog;
+    function renderBlog() {
+        if (!blogData) return '';
+        const blog = blogData;
         return `
             <h2><i class="${blog.sectionIcon}"></i> ${blog.title}</h2>
             <div class="blog-grid">
@@ -169,9 +202,10 @@
         `;
     }
 
-    function renderConnect(data, socials) {
-        const connect = data.connect;
-        const socialsArray = Object.values(socials.socials).sort((a, b) => a.displayOrder - b.displayOrder);
+    function renderConnect() {
+        if (!connectData || !socialsData) return '';
+        const connect = connectData;
+        const socialsArray = Object.values(socialsData.socials).sort((a, b) => a.displayOrder - b.displayOrder);
         
         return `
             <h2><i class="${connect.sectionIcon}"></i> ${connect.title}</h2>
@@ -179,18 +213,20 @@
             <div class="social-links">
                 <a href="mailto:${connect.email}" class="social-link"><i class="fa-regular fa-envelope"></i> ${connect.buttonText}</a>
                 ${socialsArray.map(social => `
-                    <a href="${social.url}" class="social-link"><i class="${social.icon}"></i> ${social.name}</a>
+                    <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="${social.icon}"></i> ${social.name}</a>
                 `).join('')}
             </div>
         `;
     }
 
-    function renderFooter(data) {
-        return `<p>${data.footer}</p>`;
+    function renderFooter() {
+        if (!footerData) return '';
+        return `<p>${footerData.text}</p>`;
     }
 
-    function renderAccessibilityModal(data) {
-        const acc = data.accessibility;
+    function renderAccessibilityModal() {
+        if (!accessibilityData) return;
+        const acc = accessibilityData;
         const modal = document.getElementById('accessibility-modal');
         if (!modal) return;
         
@@ -216,11 +252,11 @@
         `;
     }
 
-    async function buildNotificationBanner(data) {
+    async function buildNotificationBanner() {
         const banner = document.querySelector('.notification-banner');
-        if (!banner) return;
+        if (!banner || !notificationsData) return;
 
-        const notifications = data.notifications.items;
+        const notifications = notificationsData.items;
         banner.innerHTML = '';
 
         const wrapper = document.createElement('div');
@@ -259,45 +295,42 @@
         container.innerHTML = '<div style="text-align: center; padding: 100px;">Loading content...</div>';
 
         await loadSiteConfig();
-        const data = await loadContent();
-        const socials = await loadSocials();
-        
-        if (!data) {
-            container.innerHTML = '<div style="text-align: center; padding: 100px;">Failed to load content. Please refresh the page.</div>';
-            return;
-        }
+        await loadAllSections();
+        await loadSocials();
 
-        renderAccessibilityModal(data);
-        await buildNotificationBanner(data);
+        renderAccessibilityModal();
+        await buildNotificationBanner();
 
         const html = `
-            ${renderHero(data)}
-            ${renderAbout(data)}
-            ${renderSkills(data)}
-            ${renderProjects(data)}
-            ${renderBlog(data)}
-            ${renderConnect(data, socials)}
+            ${renderHero()}
+            ${renderAbout()}
+            ${renderSkills()}
+            ${renderProjects()}
+            ${renderBlog()}
+            ${renderConnect()}
             <div class="footer">
-                ${renderFooter(data)}
+                ${renderFooter()}
                 <p style="margin-top: 12px;">
-                    <a href="#" id="accessibility-trigger" style="color:#6c7086; text-decoration: none;">♿ ${data.accessibility.title}</a>
+                    <a href="#" id="accessibility-trigger" style="color:#6c7086; text-decoration: none;">♿ ${accessibilityData ? accessibilityData.title : 'Accessibility'}</a>
                 </p>
             </div>
         `;
 
         container.innerHTML = html;
-        attachEventListeners(data);
+        attachEventListeners();
     }
 
-    function attachEventListeners(data) {
+    function attachEventListeners() {
+        if (!alertsData) return;
+        
         document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
             e.preventDefault();
-            alert(data.alerts.viewAllProjects);
+            alert(alertsData.viewAllProjects);
         });
         
         document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
             e.preventDefault();
-            alert(data.alerts.viewAllBlog);
+            alert(alertsData.viewAllBlog);
         });
         
         document.getElementById('explore-btn')?.addEventListener('click', (e) => {
@@ -313,12 +346,12 @@
         document.querySelectorAll('.blog-card').forEach((card) => {
             card.addEventListener('click', () => {
                 const title = card.getAttribute('data-title') || card.querySelector('.blog-title')?.innerText || 'Blog post';
-                alert(data.alerts.readBlog.replace('{title}', title));
+                alert(alertsData.readBlog.replace('{title}', title));
             });
         });
     }
 
-    // Accessibility Modal
+    // Accessibility Modal Functions
     function updateButtonStates() {
         const btns = [
             { id: 'btn-high-contrast', active: document.body.classList.contains('high-contrast') },
@@ -415,6 +448,7 @@
         }
     });
     
+    // Security
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('dragstart', (e) => e.preventDefault());
     

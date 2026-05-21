@@ -1,0 +1,44 @@
+{
+  "sectionIcon": "fa-regular fa-folder",
+  "title": "Featured Projects",
+  "subtitle": "Some of my best work",
+  "viewAllText": "View all projects on GitHub",
+  "items": [
+    {
+      "icon": "fa-solid fa-cube",
+      "title": "Project Alpha",
+      "description": "A revolutionary platform for digital creators to showcase and sell their work.",
+      "tags": ["React", "Node.js", "MongoDB"]
+    },
+    {
+      "icon": "fa-solid fa-cloud",
+      "title": "Project Beta",
+      "description": "Cloud-based analytics dashboard for real-time business intelligence.",
+      "tags": ["Vue", "Python", "AWS"]
+    },
+    {
+      "icon": "fa-solid fa-robot",
+      "title": "Project Gamma",
+      "description": "AI-powered content generation tool for marketing teams.",
+      "tags": ["Next.js", "OpenAI", "PostgreSQL"]
+    },
+    {
+      "icon": "fa-solid fa-chart-line",
+      "title": "Project Delta",
+      "description": "Real-time analytics dashboard with predictive insights.",
+      "tags": ["D3.js", "FastAPI", "Redis"]
+    },
+    {
+      "icon": "fa-solid fa-shield",
+      "title": "Project Epsilon",
+      "description": "Enterprise-grade authentication and authorization system.",
+      "tags": ["Auth0", "JWT", "OAuth2"]
+    },
+    {
+      "icon": "fa-solid fa-gamepad",
+      "title": "Project Zeta",
+      "description": "Interactive web-based game with multiplayer support.",
+      "tags": ["WebSocket", "Canvas", "Phaser"]
+    }
+  ]
+}
