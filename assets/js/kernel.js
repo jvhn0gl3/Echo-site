@@ -2,6 +2,7 @@
 
 (function() {
     let contentData = null;
+    let socialsData = null;
 
     async function loadContent() {
         try {
@@ -12,6 +13,18 @@
         } catch (error) {
             console.error('Failed to load content:', error);
             return null;
+        }
+    }
+
+    async function loadSocials() {
+        try {
+            const response = await fetch('assets/data/socials.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            socialsData = await response.json();
+            return socialsData;
+        } catch (error) {
+            console.error('Failed to load socials:', error);
+            return { socials: {} };
         }
     }
 
@@ -110,14 +123,17 @@
         `;
     }
 
-    function renderConnect(data) {
+    function renderConnect(data, socials) {
         const connect = data.connect;
+        // Convert socials object to array and sort by displayOrder
+        const socialsArray = Object.values(socials.socials).sort((a, b) => a.displayOrder - b.displayOrder);
+        
         return `
             <h2><i class="${connect.sectionIcon}"></i> ${connect.title}</h2>
             <p>${connect.description}</p>
             <div class="social-links">
                 <a href="mailto:${connect.email}" class="social-link"><i class="fa-regular fa-envelope"></i> ${connect.buttonText}</a>
-                ${connect.social.map(social => `
+                ${socialsArray.map(social => `
                     <a href="${social.url}" class="social-link"><i class="${social.icon}"></i> ${social.name}</a>
                 `).join('')}
             </div>
@@ -198,6 +214,8 @@
         container.innerHTML = '<div style="text-align: center; padding: 100px;">Loading content...</div>';
 
         const data = await loadContent();
+        const socials = await loadSocials();
+        
         if (!data) {
             container.innerHTML = '<div style="text-align: center; padding: 100px;">Failed to load content. Please refresh the page.</div>';
             return;
@@ -212,7 +230,7 @@
             ${renderSkills(data)}
             ${renderProjects(data)}
             ${renderBlog(data)}
-            ${renderConnect(data)}
+            ${renderConnect(data, socials)}
             <div class="footer">
                 ${renderFooter(data)}
                 <p style="margin-top: 12px;">
@@ -324,7 +342,6 @@
         loadAccessibilityPreferences();
         await renderPage();
         
-        // Re-attach modal event listeners after render
         setTimeout(() => {
             document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
             document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);

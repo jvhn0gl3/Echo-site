@@ -156,12 +156,7 @@
     "description": "Have a project in mind? Let's create something amazing together.",
     "email": "hello@echo.dev",
     "buttonText": "Email Me",
-    "social": [
-      { "name": "GitHub", "icon": "fa-brands fa-github", "url": "#" },
-      { "name": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "#" },
-      { "name": "Twitter", "icon": "fa-brands fa-twitter", "url": "#" },
-      { "name": "Discord", "icon": "fa-brands fa-discord", "url": "#" }
-    ]
+    "socialsFile": "assets/data/socials.json"
   },
   "accessibility": {
     "title": "Accessibility",
