@@ -1,48 +1,170 @@
 'use strict';
 
 (function() {
-    // ============================================
-    // LOAD NOTIFICATIONS FROM JSON
-    // ============================================
-    async function loadNotifications() {
+    let contentData = null;
+
+    async function loadContent() {
         try {
-            const response = await fetch('assets/data/notifications.json');
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            const data = await response.json();
-            return data.notifications;
+            const response = await fetch('assets/data/content.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            contentData = await response.json();
+            return contentData;
         } catch (error) {
-            console.error('Failed to load notifications:', error);
-            // Fallback notifications if JSON fails to load
-            return [
-                { id: 1, icon: "fa-regular fa-circle-info", strong: "✨ NEW:", message: "AI-powered development services now available!", separator: true },
-                { id: 2, icon: "fa-regular fa-trophy", strong: "🎉 MILESTONE:", message: "50+ projects completed! Thank you to all my clients.", separator: true },
-                { id: 3, icon: "fa-regular fa-calendar", strong: "📅 EVENT:", message: "Free consultation slots open for December", separator: true },
-                { id: 4, icon: "fa-regular fa-clock", strong: "⏰ LIMITED:", message: "Early bird pricing ends this Friday!", separator: true },
-                { id: 5, icon: "fa-regular fa-gem", strong: "💎 LAUNCH:", message: "New portfolio section now live! Check out my latest work.", separator: false }
-            ];
+            console.error('Failed to load content:', error);
+            return null;
         }
     }
 
-    // Build scrolling notification banner
-    async function buildNotificationBanner() {
-        const banner = document.querySelector('.notification-banner');
-        if (!banner) {
-            console.error('Notification banner container not found');
-            return;
-        }
+    function renderHero(data) {
+        const hero = data.hero;
+        return `
+            <h1>${hero.emoji} ${hero.name} <span style="color:#a6e3a1;">${hero.handle}</span></h1>
+            <p><strong>${hero.role}</strong> · ${hero.years} · ${hero.tagline}</p>
+            
+            <div class="stats-grid">
+                ${hero.stats.map(stat => `
+                    <div class="stat-item">
+                        <div class="stat-number">${stat.number}</div>
+                        <div class="stat-label">${stat.label}</div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <p>${hero.description}</p>
+            
+            <pre><code>${hero.codeExample}</code></pre>
+            
+            <div class="button-group">
+                <a href="#" class="btn btn-primary" id="explore-btn"><i class="${hero.buttons.explore.icon}"></i> ${hero.buttons.explore.text}</a>
+                <a href="#" class="btn btn-secondary" id="contact-btn"><i class="${hero.buttons.contact.icon}"></i> ${hero.buttons.contact.text}</a>
+            </div>
+        `;
+    }
 
-        const notifications = await loadNotifications();
+    function renderAbout(data) {
+        const about = data.about;
+        return `
+            <h2><i class="${about.sectionIcon}"></i> ${about.title}</h2>
+            <p>${about.intro}</p>
+            <p>${about.journey}</p>
+            
+            <h3>${about.mission.icon} ${about.mission.title}</h3>
+            <p>${about.mission.text}</p>
+            
+            <h3>${about.currently.icon} ${about.currently.title}</h3>
+            <p>${about.currently.text}</p>
+        `;
+    }
+
+    function renderSkills(data) {
+        const skills = data.skills;
+        return `
+            <h2><i class="${skills.sectionIcon}"></i> ${skills.title}</h2>
+            <div class="service-grid">
+                ${skills.items.map(item => `
+                    <div class="service-card">
+                        <i class="${item.icon}"></i>
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderProjects(data) {
+        const projects = data.projects;
+        return `
+            <h2><i class="${projects.sectionIcon}"></i> ${projects.title}</h2>
+            <div class="projects-grid">
+                ${projects.items.map(project => `
+                    <div class="project-card">
+                        <div class="project-icon"><i class="${project.icon}"></i></div>
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-desc">${project.description}</div>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <p style="margin-top: 16px;">→ <a href="#" id="view-all-projects" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> ${projects.viewAllText}</a></p>
+        `;
+    }
+
+    function renderBlog(data) {
+        const blog = data.blog;
+        return `
+            <h2><i class="${blog.sectionIcon}"></i> ${blog.title}</h2>
+            <div class="blog-grid">
+                ${blog.items.map(item => `
+                    <div class="blog-card" data-title="${item.title.replace(/"/g, '&quot;')}">
+                        <div class="blog-category">${item.category}</div>
+                        <div class="blog-title">${item.title}</div>
+                        <div class="blog-excerpt">${item.excerpt}</div>
+                        <div class="blog-meta"><i class="fa-regular fa-calendar"></i> ${item.readTime}</div>
+                    </div>
+                `).join('')}
+            </div>
+            <p style="margin-top: 16px;">→ <a href="#" id="view-all-blog" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> ${blog.viewAllText}</a></p>
+        `;
+    }
+
+    function renderConnect(data) {
+        const connect = data.connect;
+        return `
+            <h2><i class="${connect.sectionIcon}"></i> ${connect.title}</h2>
+            <p>${connect.description}</p>
+            <div class="social-links">
+                <a href="mailto:${connect.email}" class="social-link"><i class="fa-regular fa-envelope"></i> ${connect.buttonText}</a>
+                ${connect.social.map(social => `
+                    <a href="${social.url}" class="social-link"><i class="${social.icon}"></i> ${social.name}</a>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderFooter(data) {
+        return `<p>${data.site.footer}</p>`;
+    }
+
+    function renderAccessibilityModal(data) {
+        const acc = data.accessibility;
+        const modal = document.getElementById('accessibility-modal');
+        if (!modal) return;
         
-        // Clear banner
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fa-solid fa-universal-access"></i> ${acc.title}</h3>
+                    <button class="close-btn" id="close-modal-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    ${acc.options.map(opt => `
+                        <div class="access-item">
+                            <span>${opt.emoji} ${opt.label}</span>
+                            <button id="${opt.id}">Toggle</button>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="modal-footer">
+                    <button id="reset-all-btn">${acc.resetButton}</button>
+                    <button id="modal-close-btn">${acc.closeButton}</button>
+                </div>
+            </div>
+        `;
+    }
+
+    async function buildNotificationBanner(data) {
+        const banner = document.querySelector('.notification-banner');
+        if (!banner) return;
+
+        const notifications = data.notifications.items;
         banner.innerHTML = '';
 
-        // Create scrolling wrapper
         const wrapper = document.createElement('div');
         wrapper.className = 'scrolling-wrapper';
 
-        // Build first set of notifications
         let messageHTML = '';
         notifications.forEach((notif) => {
             messageHTML += `
@@ -54,7 +176,6 @@
             `;
         });
 
-        // Duplicate for seamless loop
         let duplicateHTML = '';
         notifications.forEach((notif) => {
             duplicateHTML += `
@@ -70,64 +191,70 @@
         banner.appendChild(wrapper);
     }
 
-    // Initialize notification banner when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            buildNotificationBanner();
-        });
-    } else {
-        buildNotificationBanner();
+    async function renderPage() {
+        const container = document.querySelector('.container');
+        if (!container) return;
+
+        container.innerHTML = '<div style="text-align: center; padding: 100px;">Loading content...</div>';
+
+        const data = await loadContent();
+        if (!data) {
+            container.innerHTML = '<div style="text-align: center; padding: 100px;">Failed to load content. Please refresh the page.</div>';
+            return;
+        }
+
+        renderAccessibilityModal(data);
+        await buildNotificationBanner(data);
+
+        const html = `
+            ${renderHero(data)}
+            ${renderAbout(data)}
+            ${renderSkills(data)}
+            ${renderProjects(data)}
+            ${renderBlog(data)}
+            ${renderConnect(data)}
+            <div class="footer">
+                ${renderFooter(data)}
+                <p style="margin-top: 12px;">
+                    <a href="#" id="accessibility-trigger" style="color:#6c7086; text-decoration: none;">♿ ${data.accessibility.title}</a>
+                </p>
+            </div>
+        `;
+
+        container.innerHTML = html;
+        attachEventListeners(data);
     }
-    
-    // View all buttons
-    document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('View all projects on GitHub — coming soon!');
-    });
-    
-    document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('All blog posts — coming soon!');
-    });
-    
-    // Hero buttons
-    document.getElementById('explore-btn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.projects-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    
-    document.getElementById('contact-btn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.social-links')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    
-    // Blog card click handlers
-    document.querySelectorAll('.blog-card').forEach((card) => {
-        card.addEventListener('click', () => {
-            alert(`Reading: ${card.querySelector('.blog-title')?.innerText || 'Blog post'} — Coming soon!`);
+
+    function attachEventListeners(data) {
+        document.getElementById('view-all-projects')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert(data.alerts.viewAllProjects);
         });
-    });
-    
+        
+        document.getElementById('view-all-blog')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert(data.alerts.viewAllBlog);
+        });
+        
+        document.getElementById('explore-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.projects-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        document.getElementById('contact-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.social-links')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        document.querySelectorAll('.blog-card').forEach((card) => {
+            card.addEventListener('click', () => {
+                const title = card.getAttribute('data-title') || card.querySelector('.blog-title')?.innerText || 'Blog post';
+                alert(data.alerts.readBlog.replace('{title}', title));
+            });
+        });
+    }
+
     // Accessibility Modal
-    const accessibilityModal = document.getElementById('accessibility-modal');
-    
-    window.openAccessibilityModal = () => {
-        accessibilityModal?.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        updateButtonStates();
-    };
-    
-    window.closeAccessibilityModal = () => {
-        accessibilityModal?.classList.add('hidden');
-        document.body.style.overflow = '';
-    };
-    
-    document.getElementById('accessibility-trigger')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        openAccessibilityModal();
-    });
-    
-    // Accessibility functions
     function updateButtonStates() {
         const btns = [
             { id: 'btn-high-contrast', active: document.body.classList.contains('high-contrast') },
@@ -172,6 +299,19 @@
         closeAccessibilityModal();
     };
     
+    window.openAccessibilityModal = () => {
+        const modal = document.getElementById('accessibility-modal');
+        modal?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        updateButtonStates();
+    };
+    
+    window.closeAccessibilityModal = () => {
+        const modal = document.getElementById('accessibility-modal');
+        modal?.classList.add('hidden');
+        document.body.style.overflow = '';
+    };
+
     function loadAccessibilityPreferences() {
         if (localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
         if (localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
@@ -179,21 +319,31 @@
         if (localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
         updateButtonStates();
     }
-    
-    // Initialize accessibility
-    document.addEventListener('DOMContentLoaded', () => {
+
+    async function init() {
         loadAccessibilityPreferences();
+        await renderPage();
         
-        document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
-        document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);
-        document.getElementById('btn-dyslexic-font')?.addEventListener('click', window.toggleDyslexicFont);
-        document.getElementById('btn-reduce-motion')?.addEventListener('click', window.toggleReduceMotion);
-        document.getElementById('reset-all-btn')?.addEventListener('click', window.resetAllAccessibility);
-        document.getElementById('modal-close-btn')?.addEventListener('click', closeAccessibilityModal);
-        document.getElementById('close-modal-btn')?.addEventListener('click', closeAccessibilityModal);
-        
-        accessibilityModal?.addEventListener('click', (e) => { if (e.target === accessibilityModal) closeAccessibilityModal(); });
-    });
+        // Re-attach modal event listeners after render
+        setTimeout(() => {
+            document.getElementById('btn-high-contrast')?.addEventListener('click', window.toggleHighContrast);
+            document.getElementById('btn-large-text')?.addEventListener('click', window.toggleLargeText);
+            document.getElementById('btn-dyslexic-font')?.addEventListener('click', window.toggleDyslexicFont);
+            document.getElementById('btn-reduce-motion')?.addEventListener('click', window.toggleReduceMotion);
+            document.getElementById('reset-all-btn')?.addEventListener('click', window.resetAllAccessibility);
+            document.getElementById('modal-close-btn')?.addEventListener('click', closeAccessibilityModal);
+            document.getElementById('close-modal-btn')?.addEventListener('click', closeAccessibilityModal);
+            document.getElementById('accessibility-trigger')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                openAccessibilityModal();
+            });
+            
+            const accessibilityModal = document.getElementById('accessibility-modal');
+            accessibilityModal?.addEventListener('click', (e) => { 
+                if (e.target === accessibilityModal) closeAccessibilityModal(); 
+            });
+        }, 100);
+    }
     
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -202,10 +352,11 @@
         }
     });
     
-    // Security
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('dragstart', (e) => e.preventDefault());
     
     const noop = () => {};
     console.log = console.info = console.warn = console.debug = console.table = console.trace = noop;
+    
+    init();
 })();

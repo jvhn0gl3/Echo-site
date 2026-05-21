@@ -1,0 +1,182 @@
+{
+  "site": {
+    "title": "Echo - Developer Portfolio",
+    "description": "Echo - Digital Creator Portfolio",
+    "footer": "© 2024 Echo — Built with <i class=\"fa-regular fa-heart\"></i> by jvhn0gl3"
+  },
+  "notifications": {
+    "items": [
+      { "id": 1, "icon": "fa-regular fa-circle-info", "strong": "✨ NEW:", "message": "AI-powered development services now available!", "separator": true },
+      { "id": 2, "icon": "fa-regular fa-trophy", "strong": "🎉 MILESTONE:", "message": "50+ projects completed! Thank you to all my clients.", "separator": true },
+      { "id": 3, "icon": "fa-regular fa-calendar", "strong": "📅 EVENT:", "message": "Free consultation slots open for December", "separator": true },
+      { "id": 4, "icon": "fa-regular fa-clock", "strong": "⏰ LIMITED:", "message": "Early bird pricing ends this Friday!", "separator": true },
+      { "id": 5, "icon": "fa-regular fa-gem", "strong": "💎 LAUNCH:", "message": "New portfolio section now live! Check out my latest work.", "separator": false }
+    ]
+  },
+  "hero": {
+    "emoji": "📄",
+    "name": "John Ogletree",
+    "handle": "@jvhn0gl3",
+    "role": "Full-Stack Digital Architect",
+    "years": "10+ years",
+    "tagline": "building digital experiences that matter",
+    "stats": [
+      { "number": "10+", "label": "Years Experience" },
+      { "number": "50+", "label": "Projects" },
+      { "number": "30+", "label": "Clients" },
+      { "number": "24/7", "label": "Support" }
+    ],
+    "description": "I transform complex ideas into elegant, functional digital products. My approach combines technical excellence with creative innovation.",
+    "codeExample": "const echo = {\n    passion: \"building beautiful software\",\n    stack: [\"React\", \"Node.js\", \"Python\", \"TypeScript\"],\n    philosophy: \"code that serves a purpose, pixels that have meaning\"\n};",
+    "buttons": {
+      "explore": { "text": "Explore Projects", "icon": "fa-regular fa-rocket" },
+      "contact": { "text": "Contact Me", "icon": "fa-regular fa-paper-plane" }
+    }
+  },
+  "about": {
+    "sectionIcon": "fa-regular fa-user",
+    "title": "About Me",
+    "intro": "<strong>John Ogletree</strong> — a <code>Full-Stack Digital Architect</code> with over a decade of experience bridging the gap between complex backend logic and intuitive frontend experiences.",
+    "journey": "I started my journey as a self-taught developer, fascinated by the intersection of design and technology. Since then, I've worked with startups, agencies, and enterprises to deliver high-impact digital solutions.",
+    "mission": {
+      "icon": "🎯",
+      "title": "Mission",
+      "text": "To create digital products that are not only functional but delightful to use — where every line of code serves a purpose and every pixel has meaning."
+    },
+    "currently": {
+      "icon": "📍",
+      "title": "Currently",
+      "text": "Working on AI-powered developer tools and open-source contributions. Available for freelance and consulting work."
+    }
+  },
+  "skills": {
+    "sectionIcon": "fa-regular fa-cube",
+    "title": "Skills & Services",
+    "subtitle": "Comprehensive digital solutions for modern businesses",
+    "items": [
+      { "icon": "fa-solid fa-code", "title": "Web Development", "description": "React, Vue, Node.js, Python" },
+      { "icon": "fa-solid fa-palette", "title": "UI/UX Design", "description": "Figma, Framer, prototyping" },
+      { "icon": "fa-solid fa-mobile-alt", "title": "Mobile Apps", "description": "React Native, Flutter" },
+      { "icon": "fa-solid fa-cloud", "title": "Cloud & DevOps", "description": "AWS, Docker, CI/CD" },
+      { "icon": "fa-solid fa-database", "title": "Databases", "description": "PostgreSQL, MongoDB, Redis" },
+      { "icon": "fa-solid fa-robot", "title": "AI Integration", "description": "OpenAI, LangChain, Vector DBs" }
+    ]
+  },
+  "projects": {
+    "sectionIcon": "fa-regular fa-folder",
+    "title": "Featured Projects",
+    "subtitle": "Some of my best work",
+    "viewAllText": "View all projects on GitHub",
+    "items": [
+      {
+        "icon": "fa-solid fa-cube",
+        "title": "Project Alpha",
+        "description": "A revolutionary platform for digital creators to showcase and sell their work.",
+        "tags": ["React", "Node.js", "MongoDB"]
+      },
+      {
+        "icon": "fa-solid fa-cloud",
+        "title": "Project Beta",
+        "description": "Cloud-based analytics dashboard for real-time business intelligence.",
+        "tags": ["Vue", "Python", "AWS"]
+      },
+      {
+        "icon": "fa-solid fa-robot",
+        "title": "Project Gamma",
+        "description": "AI-powered content generation tool for marketing teams.",
+        "tags": ["Next.js", "OpenAI", "PostgreSQL"]
+      },
+      {
+        "icon": "fa-solid fa-chart-line",
+        "title": "Project Delta",
+        "description": "Real-time analytics dashboard with predictive insights.",
+        "tags": ["D3.js", "FastAPI", "Redis"]
+      },
+      {
+        "icon": "fa-solid fa-shield",
+        "title": "Project Epsilon",
+        "description": "Enterprise-grade authentication and authorization system.",
+        "tags": ["Auth0", "JWT", "OAuth2"]
+      },
+      {
+        "icon": "fa-solid fa-gamepad",
+        "title": "Project Zeta",
+        "description": "Interactive web-based game with multiplayer support.",
+        "tags": ["WebSocket", "Canvas", "Phaser"]
+      }
+    ]
+  },
+  "blog": {
+    "sectionIcon": "fa-regular fa-pen-fancy",
+    "title": "Latest Insights",
+    "subtitle": "Thoughts on technology, design, and creativity",
+    "viewAllText": "Read all posts",
+    "items": [
+      {
+        "category": "🚀 Technology",
+        "title": "The Future of Web Development",
+        "excerpt": "Exploring emerging trends and technologies shaping the future of the web in 2024 and beyond.",
+        "readTime": "5 min read"
+      },
+      {
+        "category": "🎨 Design",
+        "title": "Minimalist UI Principles",
+        "excerpt": "How less becomes more in modern interface design, and why simplicity wins.",
+        "readTime": "4 min read"
+      },
+      {
+        "category": "💼 Career",
+        "title": "10 Years in Review",
+        "excerpt": "Lessons learned from a decade of digital creation and software development.",
+        "readTime": "7 min read"
+      },
+      {
+        "category": "✍️ Opinion",
+        "title": "Why I Love Monospace Fonts",
+        "excerpt": "The beauty of consistent character widths in programming and design.",
+        "readTime": "3 min read"
+      },
+      {
+        "category": "🤖 AI",
+        "title": "Building with LLMs",
+        "excerpt": "Practical approaches to integrating large language models into your apps.",
+        "readTime": "8 min read"
+      },
+      {
+        "category": "🔧 Tools",
+        "title": "My Dev Setup 2024",
+        "excerpt": "A look at the tools, extensions, and configurations that boost my productivity.",
+        "readTime": "6 min read"
+      }
+    ]
+  },
+  "connect": {
+    "sectionIcon": "fa-regular fa-envelope",
+    "title": "Let's Work Together",
+    "description": "Have a project in mind? Let's create something amazing together.",
+    "email": "hello@echo.dev",
+    "buttonText": "Email Me",
+    "social": [
+      { "name": "GitHub", "icon": "fa-brands fa-github", "url": "#" },
+      { "name": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "#" },
+      { "name": "Twitter", "icon": "fa-brands fa-twitter", "url": "#" },
+      { "name": "Discord", "icon": "fa-brands fa-discord", "url": "#" }
+    ]
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "options": [
+      { "emoji": "🔆", "label": "High Contrast", "id": "btn-high-contrast" },
+      { "emoji": "🔤", "label": "Larger Text", "id": "btn-large-text" },
+      { "emoji": "📖", "label": "Dyslexic Font", "id": "btn-dyslexic-font" },
+      { "emoji": "🎬", "label": "Reduce Motion", "id": "btn-reduce-motion" }
+    ],
+    "resetButton": "Reset All",
+    "closeButton": "Close"
+  },
+  "alerts": {
+    "viewAllProjects": "View all projects on GitHub — coming soon!",
+    "viewAllBlog": "All blog posts — coming soon!",
+    "readBlog": "Reading: {title} — Coming soon!"
+  }
+}
