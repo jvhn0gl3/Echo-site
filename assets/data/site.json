@@ -1,0 +1,12 @@
+{
+  "site": {
+    "title": "Echo | Digital Creator",
+    "description": "Full-stack developer and digital architect crafting exceptional web experiences. Specializing in modern web development and UI/UX design.",
+    "author": "John Ogletree",
+    "keywords": "developer, portfolio, full-stack, web development, UI/UX, digital creator",
+    "ogTitle": "Echo - Digital Creator Portfolio",
+    "ogDescription": "Explore the portfolio of John Ogletree, a full-stack digital architect building exceptional web experiences.",
+    "twitterCard": "summary_large_image",
+    "twitterCreator": "@jvhn0gl3"
+  }
+}

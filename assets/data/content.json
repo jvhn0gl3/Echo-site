@@ -1,9 +1,4 @@
 {
-  "site": {
-    "title": "Echo - Developer Portfolio",
-    "description": "Echo - Digital Creator Portfolio",
-    "footer": "© 2024 Echo — Built with <i class=\"fa-regular fa-heart\"></i> by jvhn0gl3"
-  },
   "notifications": {
     "items": [
       { "id": 1, "icon": "fa-regular fa-circle-info", "strong": "✨ NEW:", "message": "AI-powered development services now available!", "separator": true },
@@ -173,5 +168,6 @@
     "viewAllProjects": "View all projects on GitHub — coming soon!",
     "viewAllBlog": "All blog posts — coming soon!",
     "readBlog": "Reading: {title} — Coming soon!"
-  }
+  },
+  "footer": "© 2024 Echo — Built with <i class=\"fa-regular fa-heart\"></i> by jvhn0gl3"
 }

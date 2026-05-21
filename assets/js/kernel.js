@@ -3,6 +3,52 @@
 (function() {
     let contentData = null;
     let socialsData = null;
+    let siteConfig = null;
+
+    async function loadSiteConfig() {
+        try {
+            const response = await fetch('assets/data/site.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            siteConfig = await response.json();
+            // Set page title and meta tags
+            document.title = siteConfig.site.title;
+            // Update meta description
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', siteConfig.site.description);
+            } else {
+                metaDesc = document.createElement('meta');
+                metaDesc.name = 'description';
+                metaDesc.content = siteConfig.site.description;
+                document.head.appendChild(metaDesc);
+            }
+            // Update meta author
+            let metaAuthor = document.querySelector('meta[name="author"]');
+            if (metaAuthor) {
+                metaAuthor.setAttribute('content', siteConfig.site.author);
+            } else {
+                metaAuthor = document.createElement('meta');
+                metaAuthor.name = 'author';
+                metaAuthor.content = siteConfig.site.author;
+                document.head.appendChild(metaAuthor);
+            }
+            // Update meta keywords
+            let metaKeywords = document.querySelector('meta[name="keywords"]');
+            if (metaKeywords) {
+                metaKeywords.setAttribute('content', siteConfig.site.keywords);
+            } else {
+                metaKeywords = document.createElement('meta');
+                metaKeywords.name = 'keywords';
+                metaKeywords.content = siteConfig.site.keywords;
+                document.head.appendChild(metaKeywords);
+            }
+            return siteConfig;
+        } catch (error) {
+            console.error('Failed to load site config:', error);
+            document.title = 'Echo - Developer Portfolio';
+            return null;
+        }
+    }
 
     async function loadContent() {
         try {
@@ -125,7 +171,6 @@
 
     function renderConnect(data, socials) {
         const connect = data.connect;
-        // Convert socials object to array and sort by displayOrder
         const socialsArray = Object.values(socials.socials).sort((a, b) => a.displayOrder - b.displayOrder);
         
         return `
@@ -141,7 +186,7 @@
     }
 
     function renderFooter(data) {
-        return `<p>${data.site.footer}</p>`;
+        return `<p>${data.footer}</p>`;
     }
 
     function renderAccessibilityModal(data) {
@@ -213,6 +258,7 @@
 
         container.innerHTML = '<div style="text-align: center; padding: 100px;">Loading content...</div>';
 
+        await loadSiteConfig();
         const data = await loadContent();
         const socials = await loadSocials();
         
