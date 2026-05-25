@@ -1,11 +1,18 @@
 import { loadData } from './data.js';
 import { renderHero, renderAbout, renderSkills, renderProjects, renderBlog, renderConnect, renderFooter, renderAccessibilityModal, buildNotificationBanner } from './render.js';
 import { attachEventListeners, initAccessibility, loadAccessibilityPreferences } from './events.js';
+import './console-customizer.js';
 
 let data = null;
 
 async function init() {
     loadAccessibilityPreferences();
+    
+    // Load custom content from localStorage if exists
+    const customContent = localStorage.getItem('customContent');
+    if (customContent) {
+        console.log('%c📦 Loading custom content from localStorage', 'color: #a6e3a1;');
+    }
     
     data = await loadData();
     if (!data) {
