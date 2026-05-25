@@ -172,11 +172,12 @@
   },
   "notifications": {
     "items": [
-      { "icon": "fa-regular fa-circle-info", "strong": "✨ NEW:", "message": "AI-powered development services now available!", "separator": true },
-      { "icon": "fa-regular fa-trophy", "strong": "🎉 MILESTONE:", "message": "50+ projects completed! Thank you to all my clients.", "separator": true },
-      { "icon": "fa-regular fa-calendar", "strong": "📅 EVENT:", "message": "Free consultation slots open for December", "separator": true },
-      { "icon": "fa-regular fa-clock", "strong": "⏰ LIMITED:", "message": "Early bird pricing ends this Friday!", "separator": true },
-      { "icon": "fa-regular fa-gem", "strong": "💎 LAUNCH:", "message": "New portfolio section now live! Check out my latest work.", "separator": false }
+      { "icon": "fa-regular fa-circle-info", "strong": "✨ NEW:", "message": "AI-powered development services now available!", "separator": true, "link": "#" },
+      { "icon": "fa-regular fa-trophy", "strong": "🎉 MILESTONE:", "message": "50+ projects completed! Thank you to all my clients.", "separator": true, "link": "#" },
+      { "icon": "fa-regular fa-calendar", "strong": "📅 EVENT:", "message": "Free consultation slots open for December", "separator": true, "link": "#" },
+      { "icon": "fa-regular fa-clock", "strong": "⏰ LIMITED:", "message": "Early bird pricing ends this Friday!", "separator": true, "link": "#" },
+      { "icon": "fa-regular fa-gem", "strong": "💎 LAUNCH:", "message": "New portfolio section now live! Check out my latest work.", "separator": true, "link": "#" },
+      { "icon": "fa-solid fa-android", "strong": "🔴 KEEP ANDROID OPEN:", "message": "Android will become a locked-down platform. Stand with us to keep it open!", "separator": false, "link": "https://keepandroidopen.org" }
     ]
   },
   "footer": {

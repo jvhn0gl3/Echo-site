@@ -9,7 +9,6 @@
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             data = await response.json();
             
-            // Set page metadata
             document.title = data.site.title;
             let metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.setAttribute('content', data.site.description);
@@ -185,24 +184,36 @@
 
         let messageHTML = '';
         notifications.forEach((notif) => {
-            messageHTML += `
+            const content = `
                 <div class="notification-message">
                     <strong>${notif.strong}</strong> ${notif.message}
                     <i class="${notif.icon}"></i>
                     ${notif.separator ? '<span class="separator"></span>' : ''}
                 </div>
             `;
+            
+            if (notif.link && notif.link !== '#') {
+                messageHTML += `<a href="${notif.link}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">${content}</a>`;
+            } else {
+                messageHTML += content;
+            }
         });
 
         let duplicateHTML = '';
         notifications.forEach((notif) => {
-            duplicateHTML += `
+            const content = `
                 <div class="notification-message">
                     <strong>${notif.strong}</strong> ${notif.message}
                     <i class="${notif.icon}"></i>
                     ${notif.separator ? '<span class="separator"></span>' : ''}
                 </div>
             `;
+            
+            if (notif.link && notif.link !== '#') {
+                duplicateHTML += `<a href="${notif.link}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">${content}</a>`;
+            } else {
+                duplicateHTML += content;
+            }
         });
 
         wrapper.innerHTML = messageHTML + duplicateHTML;
