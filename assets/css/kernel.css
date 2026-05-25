@@ -63,10 +63,6 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-.notification-banner:hover .scrolling-wrapper {
-    animation-play-state: paused;
-}
-
 /* Main Container */
 .container {
     width: 100%;
