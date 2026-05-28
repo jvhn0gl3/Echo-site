@@ -131,16 +131,23 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 60px);
-                background: #0a0a0a;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 gap: 2rem;
-                transition: left 0.3s;
+                transition: left 0.3s ease-in-out;
                 z-index: 99;
             }
             .nav-links.active {
                 left: 0;
+            }
+            .nav-links a {
+                font-size: 1.5rem;
+                font-weight: 600;
+                padding: 0.75rem 1.5rem;
+                display: inline-block;
             }
             .mobile-menu-btn {
                 display: block;
@@ -297,7 +304,7 @@
             transform: translateY(-3px);
         }
 
-        /* Hero Right Column - Visual Card (no animation) */
+        /* Hero Right Column - Visual Card */
         .hero-visual {
             position: relative;
             display: flex;
