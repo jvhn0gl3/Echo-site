@@ -154,7 +154,7 @@
         }
 
         /* Content Containers */
-        .hero-content,
+        .hero-container,
         .about-content,
         .skills-container,
         .projects-container,
@@ -165,62 +165,21 @@
             width: 100%;
         }
 
-        /* Hero Section - Revamped */
+        /* Hero Section - 1x2 Grid */
         .hero {
             min-height: calc(100vh - 7rem);
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Animated Background */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: -20%;
-            width: 80%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            right: -10%;
-            width: 60%;
-            height: 50%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(5%, 5%) rotate(5deg); }
-            66% { transform: translate(-5%, 10%) rotate(-5deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
+        /* Hero Left Column */
         .hero-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -231,13 +190,12 @@
             color: #3b82f6;
             margin-bottom: 1.5rem;
             font-weight: 500;
-            backdrop-filter: blur(4px);
         }
 
         .hero h1 {
-            font-size: 5.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.2;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #ffffff 0%, #3b82f6 50%, #8b5cf6 100%);
             -webkit-background-clip: text;
@@ -247,16 +205,15 @@
         }
 
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #a1a1aa;
-            max-width: 600px;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
 
         .hero-stats {
             display: flex;
-            gap: 3rem;
+            gap: 2rem;
             margin: 2rem 0 2.5rem;
         }
 
@@ -265,14 +222,14 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #3b82f6;
             line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #71717a;
             margin-top: 0.25rem;
         }
@@ -284,7 +241,7 @@
         }
 
         .btn {
-            padding: 0.875rem 2rem;
+            padding: 0.75rem 1.75rem;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
@@ -312,7 +269,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(255, 255, 255, 0.03);
             color: white;
-            backdrop-filter: blur(4px);
         }
 
         .btn-outline:hover {
@@ -321,32 +277,94 @@
             transform: translateY(-3px);
         }
 
+        /* Hero Right Column - Visual Card */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 28px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 380px;
+            backdrop-filter: blur(10px);
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .floating-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-card p {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            color: #a1a1aa;
+        }
+
         @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 4rem;
+                font-size: 3rem;
             }
-            .hero-description {
-                font-size: 1.1rem;
+            .hero-container {
+                gap: 2rem;
             }
         }
 
         @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             .hero-description {
                 font-size: 1rem;
             }
             .hero-stats {
-                gap: 1.5rem;
-                flex-wrap: wrap;
+                justify-content: center;
             }
-            .stat-number {
-                font-size: 1.8rem;
+            .stat {
+                text-align: center;
             }
-            .btn {
-                padding: 0.7rem 1.5rem;
-                font-size: 0.85rem;
+            .btn-group {
+                justify-content: center;
+            }
+            .floating-card {
+                max-width: 100%;
             }
         }
 
@@ -412,9 +430,6 @@
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 2rem;
-            }
-            .section-header h2 {
-                font-size: 1.8rem;
             }
         }
 
@@ -788,32 +803,52 @@
     </nav>
 
     <main>
-        <!-- Hero Section - Revamped -->
+        <!-- Hero Section - 1x2 Grid -->
         <section id="home" class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-code"></i> Full-Stack Digital Architect
+            <div class="hero-container">
+                <!-- Left Column - Text Content -->
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <i class="fas fa-code"></i> Full-Stack Digital Architect
+                    </div>
+                    <h1>Building digital<br>experiences that<br><span style="color:#3b82f6;">actually matter</span></h1>
+                    <p class="hero-description">I'm John Ogletree, a full-stack digital architect who transforms complex ideas into elegant, functional products that users love.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">30+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Work</a>
+                        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                    </div>
                 </div>
-                <h1>Building digital<br>experiences that<br><span style="color:#3b82f6;">actually matter</span></h1>
-                <p class="hero-description">I'm John Ogletree, a full-stack digital architect who transforms complex ideas into elegant, functional products that users love.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Years Experience</div>
+
+                <!-- Right Column - Visual Card -->
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <div class="card-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>Currently Building</h3>
+                        <p>AI-powered developer tools and open-source contributions that push the boundaries of what's possible.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">TypeScript</span>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Work</a>
-                    <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
                 </div>
             </div>
         </section>
