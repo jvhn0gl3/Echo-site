@@ -1,6 +1,0 @@
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,#313244 0%,#181825 100%);border:1px solid #45475a;border-radius:8px;color:#cdd6f4;text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.2s ease;font-family:'JetBrains Mono',monospace;}
-.btn:hover{background:linear-gradient(135deg,#45475a 0%,#313244 100%);border-color:#89b4fa;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
-.btn-primary{background:linear-gradient(135deg,#89b4fa 0%,#cba6f7 100%);border-color:#89b4fa;color:#1e1e2e;}
-.btn-primary:hover{background:linear-gradient(135deg,#9bc4ff 0%,#d4b8ff 100%);border-color:#cba6f7;color:#1e1e2e;transform:translateY(-2px);box-shadow:0 4px 12px rgba(137,180,250,0.3);}
-.btn-secondary{background:transparent;border-color:#45475a;color:#89b4fa;}
-.btn-secondary:hover{background:rgba(137,180,250,0.1);border-color:#89b4fa;transform:translateY(-2px);}
