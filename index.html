@@ -119,6 +119,11 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -1077,19 +1082,33 @@
                 `).join('');
             }
 
-            // Mobile menu
+            // Mobile menu with icon toggle
             const mobileBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.getElementById('navLinks');
+            let menuIcon = null;
+
             if (mobileBtn) {
+                menuIcon = mobileBtn.querySelector('i');
+                
                 mobileBtn.addEventListener('click', () => {
                     navLinks.classList.toggle('active');
+                    
+                    // Toggle icon between hamburger and X
+                    if (navLinks.classList.contains('active')) {
+                        menuIcon.className = 'fas fa-times';
+                    } else {
+                        menuIcon.className = 'fas fa-bars';
+                    }
                 });
             }
 
-            // Close mobile menu when clicking a link
+            // Close mobile menu when clicking a link and reset icon
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
+                    if (menuIcon) {
+                        menuIcon.className = 'fas fa-bars';
+                    }
                 });
             });
 
