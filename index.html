@@ -8,9 +8,17 @@
     <title>John Ogletree | Digital Architect</title>
     <link rel="icon" type="image/jpeg" href="logo.jpeg" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
+        /* Local Font Declaration */
+        @font-face {
+            font-family: 'Major Mono Display';
+            src: url('/MajorMonoDisplay-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -59,7 +67,7 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
             z-index: 100;
@@ -149,7 +157,7 @@
 
         @media (max-width: 768px) {
             main {
-                padding: 5rem 1.5rem 3rem;
+                padding: 6rem 1.5rem 3rem;
             }
         }
 
@@ -1098,12 +1106,16 @@
             function openModal() {
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                updateButtonStates();
             }
 
             function closeModal() {
                 modal.classList.remove('active');
                 document.body.style.overflow = '';
             }
+
+            window.openAccessibilityModal = openModal;
+            window.closeAccessibilityModal = closeModal;
 
             if (openBtn) openBtn.addEventListener('click', openModal);
             if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -1115,10 +1127,16 @@
 
             // Accessibility functions
             function updateButtonStates() {
-                document.getElementById('highContrastBtn').classList.toggle('active', document.body.classList.contains('high-contrast'));
-                document.getElementById('largeTextBtn').classList.toggle('active', document.body.classList.contains('large-text'));
-                document.getElementById('dyslexicFontBtn').classList.toggle('active', document.body.classList.contains('dyslexic-font'));
-                document.getElementById('reduceMotionBtn').classList.toggle('active', document.body.classList.contains('reduce-motion'));
+                const btns = [
+                    { id: 'highContrastBtn', active: document.body.classList.contains('high-contrast') },
+                    { id: 'largeTextBtn', active: document.body.classList.contains('large-text') },
+                    { id: 'dyslexicFontBtn', active: document.body.classList.contains('dyslexic-font') },
+                    { id: 'reduceMotionBtn', active: document.body.classList.contains('reduce-motion') }
+                ];
+                btns.forEach(({ id, active }) => {
+                    const btn = document.getElementById(id);
+                    if (btn) btn.classList.toggle('active', active);
+                });
             }
 
             document.getElementById('highContrastBtn')?.addEventListener('click', () => {
