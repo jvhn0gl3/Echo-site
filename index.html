@@ -297,7 +297,7 @@
             transform: translateY(-3px);
         }
 
-        /* Hero Right Column - Visual Card */
+        /* Hero Right Column - Visual Card (no animation) */
         .hero-visual {
             position: relative;
             display: flex;
@@ -313,13 +313,7 @@
             width: 100%;
             max-width: 380px;
             backdrop-filter: blur(10px);
-            animation: floatCard 6s ease-in-out infinite;
             text-align: center;
-        }
-
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
         }
 
         .card-icon {
