@@ -22,6 +22,7 @@
             color: #ededed;
             line-height: 1.5;
             scroll-behavior: smooth;
+            text-align: center;
         }
 
         /* Custom Cursor */
@@ -70,6 +71,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            text-align: left;
         }
 
         .logo {
@@ -165,7 +167,7 @@
             width: 100%;
         }
 
-        /* Hero Section - 1x2 Grid */
+        /* Hero Section - Centered */
         .hero {
             min-height: calc(100vh - 7rem);
             display: flex;
@@ -177,6 +179,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+        }
+
+        .hero-left {
+            text-align: center;
         }
 
         .hero-badge {
@@ -208,16 +214,20 @@
             color: #a1a1aa;
             margin-bottom: 2rem;
             line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-stats {
             display: flex;
             gap: 2rem;
             margin: 2rem 0 2.5rem;
+            justify-content: center;
         }
 
         .stat {
-            text-align: left;
+            text-align: center;
         }
 
         .stat-number {
@@ -237,6 +247,7 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
@@ -293,6 +304,7 @@
             max-width: 380px;
             backdrop-filter: blur(10px);
             animation: floatCard 6s ease-in-out infinite;
+            text-align: center;
         }
 
         @keyframes floatCard {
@@ -322,6 +334,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            justify-content: center;
         }
 
         .tech-tag {
@@ -344,7 +357,6 @@
         @media (max-width: 768px) {
             .hero-container {
                 grid-template-columns: 1fr;
-                text-align: center;
                 gap: 3rem;
             }
             .hero h1 {
@@ -353,21 +365,12 @@
             .hero-description {
                 font-size: 1rem;
             }
-            .hero-stats {
-                justify-content: center;
-            }
-            .stat {
-                text-align: center;
-            }
-            .btn-group {
-                justify-content: center;
-            }
             .floating-card {
                 max-width: 100%;
             }
         }
 
-        /* Section Headers */
+        /* Section Headers - Centered */
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -383,7 +386,7 @@
             color: #71717a;
         }
 
-        /* About Section */
+        /* About Section - Centered */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -391,22 +394,30 @@
             align-items: center;
         }
 
+        .about-text {
+            text-align: center;
+        }
+
         .about-text p {
             color: #a1a1aa;
             margin-bottom: 1rem;
             line-height: 1.6;
             font-size: 1rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .about-image {
             position: relative;
+            display: flex;
+            justify-content: center;
         }
 
         .about-image img {
             width: 100%;
             max-width: 400px;
             border-radius: 20px;
-            margin: 0 auto;
             display: block;
             border: 2px solid rgba(59, 130, 246, 0.3);
         }
@@ -415,9 +426,10 @@
             content: '';
             position: absolute;
             top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             border-radius: 25px;
             opacity: 0.1;
@@ -427,12 +439,11 @@
         @media (max-width: 768px) {
             .about-content {
                 grid-template-columns: 1fr;
-                text-align: center;
                 gap: 2rem;
             }
         }
 
-        /* Skills Grid */
+        /* Skills Grid - Centered */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -489,7 +500,7 @@
             }
         }
 
-        /* Projects Grid */
+        /* Projects Grid - Centered */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -502,6 +513,7 @@
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s;
+            text-align: center;
         }
 
         .project-card:hover {
@@ -540,6 +552,7 @@
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .tag {
@@ -562,7 +575,7 @@
             }
         }
 
-        /* Blog Grid */
+        /* Blog Grid - Centered */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -576,6 +589,7 @@
             padding: 1.5rem;
             transition: all 0.3s;
             cursor: pointer;
+            text-align: center;
         }
 
         .blog-card:hover {
@@ -605,6 +619,7 @@
         .blog-meta {
             font-size: 0.8rem;
             color: #52525b;
+            display: inline-block;
         }
 
         @media (max-width: 1024px) {
@@ -619,7 +634,7 @@
             }
         }
 
-        /* Contact Section */
+        /* Contact Section - Centered */
         .contact-content {
             text-align: center;
             max-width: 600px;
@@ -656,7 +671,7 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
+        /* Footer - Centered */
         .footer {
             text-align: center;
             padding: 2rem;
@@ -719,6 +734,7 @@
             padding: 2rem;
             max-width: 400px;
             width: 90%;
+            text-align: center;
         }
 
         .modal-header {
@@ -746,6 +762,7 @@
             align-items: center;
             padding: 1rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: left;
         }
 
         .accessibility-option button {
@@ -802,10 +819,9 @@
     </nav>
 
     <main>
-        <!-- Hero Section - 1x2 Grid -->
+        <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-container">
-                <!-- Left Column - Text Content -->
                 <div class="hero-left">
                     <div class="hero-badge">
                         <i class="fas fa-code"></i> Full-Stack Digital Architect
@@ -832,7 +848,6 @@
                     </div>
                 </div>
 
-                <!-- Right Column - Visual Card -->
                 <div class="hero-visual">
                     <div class="floating-card">
                         <div class="card-icon">
@@ -855,7 +870,7 @@
         <section id="about">
             <div class="about-content">
                 <div class="about-text">
-                    <div class="section-header" style="text-align: left; margin-bottom: 1.5rem;">
+                    <div class="section-header" style="margin-bottom: 1.5rem;">
                         <h2>About Me</h2>
                         <p>Get to know the person behind the code</p>
                     </div>
