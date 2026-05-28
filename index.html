@@ -572,7 +572,7 @@
             }
         }
 
-        /* Skills Grid */
+        /* Skills Grid - Keep grid on all non-narrow screens */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -611,25 +611,29 @@
             margin: 0;
         }
 
-        @media (max-width: 1024px) {
+        /* Tablet breakpoint - still grid, just fewer columns */
+        @media (max-width: 900px) {
             .skills-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
             }
         }
 
+        /* Mobile - two columns on medium phones */
         @media (max-width: 640px) {
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
+        /* Narrow mobile - single column */
         @media (max-width: 480px) {
             .skills-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Projects Grid */
+        /* Projects Grid - Keep grid on all non-narrow screens */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -693,19 +697,22 @@
             color: #a1a1aa;
         }
 
-        @media (max-width: 1024px) {
+        /* Tablet - 2 columns */
+        @media (max-width: 900px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
         }
 
+        /* Mobile - single column only on narrow screens */
         @media (max-width: 640px) {
             .projects-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Blog Grid */
+        /* Blog Grid - Keep grid on all non-narrow screens */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -752,12 +759,15 @@
             display: inline-block;
         }
 
-        @media (max-width: 1024px) {
+        /* Tablet - 2 columns */
+        @media (max-width: 900px) {
             .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
         }
 
+        /* Mobile - single column only on narrow screens */
         @media (max-width: 640px) {
             .blog-grid {
                 grid-template-columns: 1fr;
@@ -1001,7 +1011,7 @@
         </section>
 
         <!-- Continuous Page Scroll-Progress Divider 1 -->
-        <div class="section-divider" id="divider1" data-target="about">
+        <div class="section-divider" id="divider1">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress1"></div>
             </div>
@@ -1030,7 +1040,7 @@
         </section>
 
         <!-- Continuous Page Scroll-Progress Divider 2 -->
-        <div class="section-divider-alt" id="divider2" data-target="skills">
+        <div class="section-divider-alt" id="divider2">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress2"></div>
             </div>
@@ -1053,7 +1063,7 @@
         </section>
 
         <!-- Continuous Page Scroll-Progress Divider 3 -->
-        <div class="section-divider" id="divider3" data-target="projects">
+        <div class="section-divider" id="divider3">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress3"></div>
             </div>
@@ -1077,7 +1087,7 @@
         </section>
 
         <!-- Continuous Page Scroll-Progress Divider 4 -->
-        <div class="section-divider-alt" id="divider4" data-target="blog">
+        <div class="section-divider-alt" id="divider4">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress4"></div>
             </div>
@@ -1101,7 +1111,7 @@
         </section>
 
         <!-- Continuous Page Scroll-Progress Divider 5 -->
-        <div class="section-divider" id="divider5" data-target="contact">
+        <div class="section-divider" id="divider5">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress5"></div>
             </div>
@@ -1278,11 +1288,11 @@
                 
                 // Update each divider to show the same overall progress
                 const dividers = [
-                    { id: 'progress1', percentId: 'percent1', dividerId: 'divider1' },
-                    { id: 'progress2', percentId: 'percent2', dividerId: 'divider2' },
-                    { id: 'progress3', percentId: 'percent3', dividerId: 'divider3' },
-                    { id: 'progress4', percentId: 'percent4', dividerId: 'divider4' },
-                    { id: 'progress5', percentId: 'percent5', dividerId: 'divider5' }
+                    { id: 'progress1', percentId: 'percent1' },
+                    { id: 'progress2', percentId: 'percent2' },
+                    { id: 'progress3', percentId: 'percent3' },
+                    { id: 'progress4', percentId: 'percent4' },
+                    { id: 'progress5', percentId: 'percent5' }
                 ];
 
                 dividers.forEach(divider => {
