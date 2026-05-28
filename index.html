@@ -193,7 +193,7 @@
             width: 100%;
         }
 
-        /* Scroll-Progress Section Divider */
+        /* Continuous Page Scroll-Progress Divider */
         .section-divider {
             width: 100%;
             margin: 2rem auto;
@@ -246,14 +246,6 @@
             letter-spacing: 1px;
         }
 
-        .divider-label span:first-child {
-            text-align: left;
-        }
-
-        .divider-label span:last-child {
-            text-align: right;
-        }
-
         .divider-percentage {
             position: absolute;
             top: -20px;
@@ -265,6 +257,7 @@
             padding: 0.1rem 0.4rem;
             border-radius: 4px;
             font-family: monospace;
+            transition: color 0.3s ease;
         }
 
         /* Alternate divider style */
@@ -1007,7 +1000,7 @@
             </div>
         </section>
 
-        <!-- Scroll-Progress Divider 1 -->
+        <!-- Continuous Page Scroll-Progress Divider 1 -->
         <div class="section-divider" id="divider1" data-target="about">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress1"></div>
@@ -1036,7 +1029,7 @@
             </div>
         </section>
 
-        <!-- Scroll-Progress Divider 2 -->
+        <!-- Continuous Page Scroll-Progress Divider 2 -->
         <div class="section-divider-alt" id="divider2" data-target="skills">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress2"></div>
@@ -1059,7 +1052,7 @@
             </div>
         </section>
 
-        <!-- Scroll-Progress Divider 3 -->
+        <!-- Continuous Page Scroll-Progress Divider 3 -->
         <div class="section-divider" id="divider3" data-target="projects">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress3"></div>
@@ -1083,7 +1076,7 @@
             </div>
         </section>
 
-        <!-- Scroll-Progress Divider 4 -->
+        <!-- Continuous Page Scroll-Progress Divider 4 -->
         <div class="section-divider-alt" id="divider4" data-target="blog">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress4"></div>
@@ -1107,7 +1100,7 @@
             </div>
         </section>
 
-        <!-- Scroll-Progress Divider 5 -->
+        <!-- Continuous Page Scroll-Progress Divider 5 -->
         <div class="section-divider" id="divider5" data-target="contact">
             <div class="progress-bar-container">
                 <div class="progress-fill" id="progress5"></div>
@@ -1273,59 +1266,42 @@
                 }
             }
 
-            // Scroll Progress Dividers
+            // Continuous Page Scroll Progress Dividers
             function updateProgressDividers() {
-                const dividers = [
-                    { id: 'progress1', percentId: 'percent1', targetId: 'about', dividerId: 'divider1' },
-                    { id: 'progress2', percentId: 'percent2', targetId: 'skills', dividerId: 'divider2' },
-                    { id: 'progress3', percentId: 'percent3', targetId: 'projects', dividerId: 'divider3' },
-                    { id: 'progress4', percentId: 'percent4', targetId: 'blog', dividerId: 'divider4' },
-                    { id: 'progress5', percentId: 'percent5', targetId: 'contact', dividerId: 'divider5' }
-                ];
-
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const windowHeight = window.innerHeight;
                 const docHeight = document.documentElement.scrollHeight;
                 const totalScrollable = docHeight - windowHeight;
-                const scrollPercent = (scrollTop / totalScrollable) * 100;
+                
+                // Overall page scroll percentage (0-100)
+                const overallProgress = totalScrollable > 0 ? (scrollTop / totalScrollable) * 100 : 0;
+                
+                // Update each divider to show the same overall progress
+                const dividers = [
+                    { id: 'progress1', percentId: 'percent1', dividerId: 'divider1' },
+                    { id: 'progress2', percentId: 'percent2', dividerId: 'divider2' },
+                    { id: 'progress3', percentId: 'percent3', dividerId: 'divider3' },
+                    { id: 'progress4', percentId: 'percent4', dividerId: 'divider4' },
+                    { id: 'progress5', percentId: 'percent5', dividerId: 'divider5' }
+                ];
 
                 dividers.forEach(divider => {
-                    const targetSection = document.getElementById(divider.targetId);
-                    const dividerElement = document.getElementById(divider.dividerId);
+                    const progressFill = document.getElementById(divider.id);
+                    const percentSpan = document.getElementById(divider.percentId);
                     
-                    if (targetSection && dividerElement) {
-                        const sectionTop = targetSection.offsetTop;
-                        const sectionBottom = sectionTop + targetSection.offsetHeight;
-                        const viewportMid = scrollTop + windowHeight / 2;
+                    if (progressFill) {
+                        progressFill.style.width = overallProgress + '%';
+                    }
+                    if (percentSpan) {
+                        percentSpan.textContent = Math.floor(overallProgress) + '%';
                         
-                        let progress = 0;
-                        
-                        if (viewportMid >= sectionTop && viewportMid <= sectionBottom) {
-                            const sectionProgress = (viewportMid - sectionTop) / targetSection.offsetHeight;
-                            progress = Math.min(100, Math.max(0, sectionProgress * 100));
-                        } else if (viewportMid > sectionBottom) {
-                            progress = 100;
+                        // Color based on progress
+                        if (overallProgress >= 100) {
+                            percentSpan.style.color = '#a6e3a1';
+                        } else if (overallProgress > 0) {
+                            percentSpan.style.color = '#89b4fa';
                         } else {
-                            progress = 0;
-                        }
-                        
-                        const progressFill = document.getElementById(divider.id);
-                        const percentSpan = document.getElementById(divider.percentId);
-                        
-                        if (progressFill) {
-                            progressFill.style.width = progress + '%';
-                        }
-                        if (percentSpan) {
-                            percentSpan.textContent = Math.floor(progress) + '%';
-                            
-                            // Change color when complete
-                            if (progress >= 100) {
-                                percentSpan.style.color = '#a6e3a1';
-                            } else if (progress > 0) {
-                                percentSpan.style.color = '#89b4fa';
-                            } else {
-                                percentSpan.style.color = '#6c7086';
-                            }
+                            percentSpan.style.color = '#6c7086';
                         }
                     }
                 });
