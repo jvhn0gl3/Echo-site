@@ -51,7 +51,7 @@
             .cursor, .cursor-follower { display: none; }
         }
 
-        /* Navigation - Full Width */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -135,7 +135,7 @@
             }
         }
 
-        /* Main Content - Full Width */
+        /* Main Content */
         main {
             width: 100%;
             max-width: none;
@@ -153,7 +153,7 @@
             width: 100%;
         }
 
-        /* Content Containers for readability */
+        /* Content Containers */
         .hero-content,
         .about-content,
         .skills-container,
@@ -165,52 +165,116 @@
             width: 100%;
         }
 
-        /* Hero Section - Full Width */
+        /* Hero Section - Revamped */
         .hero {
-            min-height: 80vh;
+            min-height: calc(100vh - 7rem);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -20%;
+            width: 80%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: -10%;
+            width: 60%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(5%, 5%) rotate(5deg); }
+            66% { transform: translate(-5%, 10%) rotate(-5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 5.5rem;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff, #3b82f6, #8b5cf6);
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 50%, #8b5cf6 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            max-width: 900px;
+            letter-spacing: -0.02em;
         }
 
-        .hero p {
+        .hero-description {
             font-size: 1.25rem;
             color: #a1a1aa;
             max-width: 600px;
             margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
         .hero-stats {
             display: flex;
-            gap: 4rem;
-            margin: 2rem 0;
+            gap: 3rem;
+            margin: 2rem 0 2.5rem;
         }
 
         .stat {
-            text-align: center;
+            text-align: left;
         }
 
         .stat-number {
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #3b82f6;
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #71717a;
+            margin-top: 0.25rem;
         }
 
         .btn-group {
@@ -220,37 +284,70 @@
         }
 
         .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             color: white;
             border: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
         .btn-outline {
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background: transparent;
+            background: rgba(255, 255, 255, 0.03);
             color: white;
+            backdrop-filter: blur(4px);
         }
 
         .btn-outline:hover {
             border-color: #3b82f6;
             background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .hero-description {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+            }
+            .hero-stats {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
+            }
         }
 
         /* Section Headers */
@@ -269,7 +366,7 @@
             color: #71717a;
         }
 
-        /* About Section - Full Width */
+        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -316,21 +413,12 @@
                 text-align: center;
                 gap: 2rem;
             }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .hero-stats {
-                gap: 1.5rem;
-            }
-            .stat-number {
-                font-size: 1.5rem;
+            .section-header h2 {
+                font-size: 1.8rem;
             }
         }
 
-        /* Skills Grid - Full Width */
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -387,7 +475,7 @@
             }
         }
 
-        /* Projects Grid - Full Width */
+        /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -460,7 +548,7 @@
             }
         }
 
-        /* Blog Grid - Full Width */
+        /* Blog Grid */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -517,7 +605,7 @@
             }
         }
 
-        /* Contact Section - Full Width */
+        /* Contact Section */
         .contact-content {
             text-align: center;
             max-width: 600px;
@@ -700,15 +788,28 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section - Revamped -->
         <section id="home" class="hero">
+            <div class="hero-bg"></div>
             <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-code"></i> Full-Stack Digital Architect
+                </div>
                 <h1>Building digital<br>experiences that<br><span style="color:#3b82f6;">actually matter</span></h1>
-                <p>I'm John Ogletree, a full-stack digital architect who transforms complex ideas into elegant, functional products.</p>
+                <p class="hero-description">I'm John Ogletree, a full-stack digital architect who transforms complex ideas into elegant, functional products that users love.</p>
                 <div class="hero-stats">
-                    <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
-                    <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
-                    <div class="stat"><div class="stat-number">30+</div><div class="stat-label">Happy Clients</div></div>
+                    <div class="stat">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
                 </div>
                 <div class="btn-group">
                     <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Work</a>
