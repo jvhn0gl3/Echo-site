@@ -7,9 +7,6 @@
   },
   "hero": {
     "importStatement": "import { JohnOgletree } from '@jvhn0gl3/echo';",
-    "role": "Full-Stack Digital Architect",
-    "years": "10+ years",
-    "tagline": "building digital experiences that matter",
     "stats": [
       { "number": "10+", "label": "Years Experience" },
       { "number": "50+", "label": "Projects" },

@@ -8,7 +8,6 @@ export function renderHero(data) {
             <span class="import-path">'@jvhn0gl3/echo'</span>
             <span class="import-semicolon">;</span>
         </div>
-        <p><strong>${hero.role}</strong> · ${hero.years} · ${hero.tagline}</p>
         <div class="stats-grid">
             ${hero.stats.map(stat => `
                 <div class="stat-item">
