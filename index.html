@@ -51,7 +51,7 @@
             .cursor, .cursor-follower { display: none; }
         }
 
-        /* Navigation */
+        /* Navigation - Full Width */
         .navbar {
             position: fixed;
             top: 0;
@@ -65,7 +65,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -135,10 +135,10 @@
             }
         }
 
-        /* Main Content */
+        /* Main Content - Full Width */
         main {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: none;
             padding: 7rem 2rem 4rem;
         }
 
@@ -150,9 +150,22 @@
 
         section {
             margin-bottom: 6rem;
+            width: 100%;
         }
 
-        /* Hero Section */
+        /* Content Containers for readability */
+        .hero-content,
+        .about-content,
+        .skills-container,
+        .projects-container,
+        .blog-container,
+        .contact-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero Section - Full Width */
         .hero {
             min-height: 80vh;
             display: flex;
@@ -161,7 +174,7 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.5rem;
@@ -169,6 +182,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            max-width: 900px;
         }
 
         .hero p {
@@ -180,7 +194,7 @@
 
         .hero-stats {
             display: flex;
-            gap: 3rem;
+            gap: 4rem;
             margin: 2rem 0;
         }
 
@@ -189,13 +203,13 @@
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: #3b82f6;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #71717a;
         }
 
@@ -255,11 +269,11 @@
             color: #71717a;
         }
 
-        /* About Section */
+        /* About Section - Full Width */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
@@ -267,6 +281,7 @@
             color: #a1a1aa;
             margin-bottom: 1rem;
             line-height: 1.6;
+            font-size: 1rem;
         }
 
         .about-image {
@@ -299,6 +314,7 @@
             .about-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
             }
             .hero h1 {
                 font-size: 2.5rem;
@@ -314,10 +330,10 @@
             }
         }
 
-        /* Skills Grid - Compact */
+        /* Skills Grid - Full Width */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 1rem;
         }
 
@@ -342,7 +358,7 @@
         }
 
         .skill-card h3 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 0.25rem;
             font-weight: 600;
         }
@@ -353,10 +369,15 @@
             margin: 0;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
             }
         }
 
@@ -366,10 +387,10 @@
             }
         }
 
-        /* Projects Grid */
+        /* Projects Grid - Full Width */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
@@ -427,10 +448,22 @@
             color: #a1a1aa;
         }
 
-        /* Blog Section */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Blog Grid - Full Width */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
@@ -458,6 +491,7 @@
 
         .blog-card h3 {
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .blog-card p {
@@ -471,7 +505,19 @@
             color: #52525b;
         }
 
-        /* Contact Section */
+        @media (max-width: 1024px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Contact Section - Full Width */
         .contact-content {
             text-align: center;
             max-width: 600px;
@@ -656,27 +702,29 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <h1>Building digital<br>experiences that<br><span style="color:#3b82f6;">actually matter</span></h1>
-            <p>I'm John Ogletree, a full-stack digital architect who transforms complex ideas into elegant, functional products.</p>
-            <div class="hero-stats">
-                <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
-                <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
-                <div class="stat"><div class="stat-number">30+</div><div class="stat-label">Happy Clients</div></div>
-            </div>
-            <div class="btn-group">
-                <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Work</a>
-                <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+            <div class="hero-content">
+                <h1>Building digital<br>experiences that<br><span style="color:#3b82f6;">actually matter</span></h1>
+                <p>I'm John Ogletree, a full-stack digital architect who transforms complex ideas into elegant, functional products.</p>
+                <div class="hero-stats">
+                    <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
+                    <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
+                    <div class="stat"><div class="stat-number">30+</div><div class="stat-label">Happy Clients</div></div>
+                </div>
+                <div class="btn-group">
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Work</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about">
-            <div class="section-header">
-                <h2>About Me</h2>
-                <p>Get to know the person behind the code</p>
-            </div>
             <div class="about-content">
                 <div class="about-text">
+                    <div class="section-header" style="text-align: left; margin-bottom: 1.5rem;">
+                        <h2>About Me</h2>
+                        <p>Get to know the person behind the code</p>
+                    </div>
                     <p>I'm a self-taught developer who turned a fascination with technology into a decade-long career. I've worked with startups, agencies, and enterprises to build products that people actually love to use.</p>
                     <p>My philosophy is simple: every line of code should serve a purpose, and every pixel should have meaning. I believe in creating digital experiences that are not just functional, but genuinely delightful.</p>
                 </div>
@@ -688,29 +736,35 @@
 
         <!-- Skills Section -->
         <section id="skills">
-            <div class="section-header">
-                <h2>Skills & Services</h2>
-                <p>What I bring to the table</p>
+            <div class="skills-container">
+                <div class="section-header">
+                    <h2>Skills & Services</h2>
+                    <p>What I bring to the table</p>
+                </div>
+                <div class="skills-grid" id="skillsGrid"></div>
             </div>
-            <div class="skills-grid" id="skillsGrid"></div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects">
-            <div class="section-header">
-                <h2>Featured Projects</h2>
-                <p>Some of my best work</p>
+            <div class="projects-container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>Some of my best work</p>
+                </div>
+                <div class="projects-grid" id="projectsGrid"></div>
             </div>
-            <div class="projects-grid" id="projectsGrid"></div>
         </section>
 
         <!-- Blog Section -->
         <section id="blog">
-            <div class="section-header">
-                <h2>Latest Insights</h2>
-                <p>Thoughts on technology, design, and creativity</p>
+            <div class="blog-container">
+                <div class="section-header">
+                    <h2>Latest Insights</h2>
+                    <p>Thoughts on technology, design, and creativity</p>
+                </div>
+                <div class="blog-grid" id="blogGrid"></div>
             </div>
-            <div class="blog-grid" id="blogGrid"></div>
         </section>
 
         <!-- Contact Section -->
