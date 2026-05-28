@@ -13,7 +13,6 @@
       { "number": "30+", "label": "Clients" },
       { "number": "24/7", "label": "Support" }
     ],
-    "description": "I transform complex ideas into elegant, functional digital products. My approach combines technical excellence with creative innovation.",
     "codeExample": "const echo = {\n    passion: \"building beautiful software\",\n    stack: [\"React\", \"Node.js\", \"Python\", \"TypeScript\"],\n    philosophy: \"code that serves a purpose, pixels that have meaning\"\n};",
     "buttons": {
       "explore": { "text": "Explore Projects", "icon": "fa-regular fa-rocket" },

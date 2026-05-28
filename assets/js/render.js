@@ -16,7 +16,6 @@ export function renderHero(data) {
                 </div>
             `).join('')}
         </div>
-        <p>${hero.description}</p>
         <pre><code>${hero.codeExample}</code></pre>
         <div class="button-group">
             <a href="#" class="btn btn-primary" id="explore-btn"><i class="${hero.buttons.explore.icon}"></i> ${hero.buttons.explore.text}</a>
