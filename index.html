@@ -193,62 +193,106 @@
             width: 100%;
         }
 
-        /* Custom Section Divider */
+        /* Scroll-Progress Section Divider */
         .section-divider {
             width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(59, 130, 246, 0.3) 20%,
-                rgba(139, 92, 246, 0.5) 50%,
-                rgba(59, 130, 246, 0.3) 80%,
-                transparent 100%);
             margin: 2rem auto;
             position: relative;
+            cursor: pointer;
         }
 
-        .section-divider::before {
-            content: '✦';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: #0a0a0a;
-            color: #3b82f6;
-            padding: 0 1rem;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-
-        /* Alternate divider style for some sections */
-        .section-divider-alt {
-            width: 100px;
+        .progress-bar-container {
+            width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            margin: 2rem auto;
+            background: rgba(59, 130, 246, 0.1);
             border-radius: 3px;
+            overflow: hidden;
             position: relative;
         }
 
-        .section-divider-alt::before {
-            content: '◆';
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 3px;
+            transition: width 0.3s ease-out;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
             position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: #0a0a0a;
-            color: #8b5cf6;
-            padding: 0 0.5rem;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            filter: blur(2px);
+            animation: glow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .divider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.65rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider-label span:first-child {
+            text-align: left;
+        }
+
+        .divider-label span:last-child {
+            text-align: right;
+        }
+
+        .divider-percentage {
+            position: absolute;
+            top: -20px;
+            right: 0;
             font-size: 0.7rem;
+            color: #3b82f6;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* Alternate divider style */
+        .section-divider-alt {
+            width: 100%;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .section-divider-alt .progress-bar-container {
+            height: 2px;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .section-divider-alt .progress-fill {
+            background: linear-gradient(90deg, #8b5cf6, #cba6f7);
         }
 
         @media (max-width: 768px) {
             .section-divider {
                 margin: 1.5rem auto;
             }
-            .section-divider::before {
-                font-size: 0.7rem;
-                padding: 0 0.75rem;
+            .divider-label {
+                font-size: 0.55rem;
+            }
+            .divider-percentage {
+                font-size: 0.6rem;
+                top: -18px;
             }
         }
 
@@ -963,8 +1007,17 @@
             </div>
         </section>
 
-        <!-- Section Divider -->
-        <div class="section-divider"></div>
+        <!-- Scroll-Progress Divider 1 -->
+        <div class="section-divider" id="divider1" data-target="about">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress1"></div>
+            </div>
+            <div class="divider-label">
+                <span>✦ EXPLORE</span>
+                <span>CONTINUE →</span>
+            </div>
+            <div class="divider-percentage" id="percent1">0%</div>
+        </div>
 
         <!-- About Section -->
         <section id="about">
@@ -983,8 +1036,17 @@
             </div>
         </section>
 
-        <!-- Section Divider -->
-        <div class="section-divider-alt"></div>
+        <!-- Scroll-Progress Divider 2 -->
+        <div class="section-divider-alt" id="divider2" data-target="skills">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress2"></div>
+            </div>
+            <div class="divider-label">
+                <span>◆ DISCOVER</span>
+                <span>NEXT →</span>
+            </div>
+            <div class="divider-percentage" id="percent2">0%</div>
+        </div>
 
         <!-- Skills Section -->
         <section id="skills">
@@ -997,8 +1059,17 @@
             </div>
         </section>
 
-        <!-- Section Divider -->
-        <div class="section-divider"></div>
+        <!-- Scroll-Progress Divider 3 -->
+        <div class="section-divider" id="divider3" data-target="projects">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress3"></div>
+            </div>
+            <div class="divider-label">
+                <span>✦ BUILD</span>
+                <span>FORWARD →</span>
+            </div>
+            <div class="divider-percentage" id="percent3">0%</div>
+        </div>
 
         <!-- Projects Section -->
         <section id="projects">
@@ -1012,8 +1083,17 @@
             </div>
         </section>
 
-        <!-- Section Divider -->
-        <div class="section-divider-alt"></div>
+        <!-- Scroll-Progress Divider 4 -->
+        <div class="section-divider-alt" id="divider4" data-target="blog">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress4"></div>
+            </div>
+            <div class="divider-label">
+                <span>◆ SHARE</span>
+                <span>GROW →</span>
+            </div>
+            <div class="divider-percentage" id="percent4">0%</div>
+        </div>
 
         <!-- Blog Section -->
         <section id="blog">
@@ -1027,8 +1107,17 @@
             </div>
         </section>
 
-        <!-- Section Divider -->
-        <div class="section-divider"></div>
+        <!-- Scroll-Progress Divider 5 -->
+        <div class="section-divider" id="divider5" data-target="contact">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress5"></div>
+            </div>
+            <div class="divider-label">
+                <span>✦ CONNECT</span>
+                <span>REACH OUT →</span>
+            </div>
+            <div class="divider-percentage" id="percent5">0%</div>
+        </div>
 
         <!-- Contact Section -->
         <section id="contact">
@@ -1182,6 +1271,64 @@
                         <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="${social.icon}"></i> ${social.name}</a>
                     `).join('');
                 }
+            }
+
+            // Scroll Progress Dividers
+            function updateProgressDividers() {
+                const dividers = [
+                    { id: 'progress1', percentId: 'percent1', targetId: 'about', dividerId: 'divider1' },
+                    { id: 'progress2', percentId: 'percent2', targetId: 'skills', dividerId: 'divider2' },
+                    { id: 'progress3', percentId: 'percent3', targetId: 'projects', dividerId: 'divider3' },
+                    { id: 'progress4', percentId: 'percent4', targetId: 'blog', dividerId: 'divider4' },
+                    { id: 'progress5', percentId: 'percent5', targetId: 'contact', dividerId: 'divider5' }
+                ];
+
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight;
+                const totalScrollable = docHeight - windowHeight;
+                const scrollPercent = (scrollTop / totalScrollable) * 100;
+
+                dividers.forEach(divider => {
+                    const targetSection = document.getElementById(divider.targetId);
+                    const dividerElement = document.getElementById(divider.dividerId);
+                    
+                    if (targetSection && dividerElement) {
+                        const sectionTop = targetSection.offsetTop;
+                        const sectionBottom = sectionTop + targetSection.offsetHeight;
+                        const viewportMid = scrollTop + windowHeight / 2;
+                        
+                        let progress = 0;
+                        
+                        if (viewportMid >= sectionTop && viewportMid <= sectionBottom) {
+                            const sectionProgress = (viewportMid - sectionTop) / targetSection.offsetHeight;
+                            progress = Math.min(100, Math.max(0, sectionProgress * 100));
+                        } else if (viewportMid > sectionBottom) {
+                            progress = 100;
+                        } else {
+                            progress = 0;
+                        }
+                        
+                        const progressFill = document.getElementById(divider.id);
+                        const percentSpan = document.getElementById(divider.percentId);
+                        
+                        if (progressFill) {
+                            progressFill.style.width = progress + '%';
+                        }
+                        if (percentSpan) {
+                            percentSpan.textContent = Math.floor(progress) + '%';
+                            
+                            // Change color when complete
+                            if (progress >= 100) {
+                                percentSpan.style.color = '#a6e3a1';
+                            } else if (progress > 0) {
+                                percentSpan.style.color = '#89b4fa';
+                            } else {
+                                percentSpan.style.color = '#6c7086';
+                            }
+                        }
+                    }
+                });
             }
 
             // Mobile menu with icon toggle
@@ -1345,6 +1492,11 @@
             renderBlog();
             renderSocials();
             loadAccessibilityPreferences();
+            
+            // Add scroll listener for progress dividers
+            window.addEventListener('scroll', updateProgressDividers);
+            window.addEventListener('resize', updateProgressDividers);
+            updateProgressDividers();
 
             // Security
             document.addEventListener('contextmenu', (e) => e.preventDefault());
