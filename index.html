@@ -193,6 +193,65 @@
             width: 100%;
         }
 
+        /* Custom Section Divider */
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(59, 130, 246, 0.3) 20%,
+                rgba(139, 92, 246, 0.5) 50%,
+                rgba(59, 130, 246, 0.3) 80%,
+                transparent 100%);
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #0a0a0a;
+            color: #3b82f6;
+            padding: 0 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* Alternate divider style for some sections */
+        .section-divider-alt {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            margin: 2rem auto;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .section-divider-alt::before {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #0a0a0a;
+            color: #8b5cf6;
+            padding: 0 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-divider {
+                margin: 1.5rem auto;
+            }
+            .section-divider::before {
+                font-size: 0.7rem;
+                padding: 0 0.75rem;
+            }
+        }
+
         /* Content Containers */
         .hero-container,
         .about-content,
@@ -904,6 +963,9 @@
             </div>
         </section>
 
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
         <!-- About Section -->
         <section id="about">
             <div class="about-content">
@@ -921,6 +983,9 @@
             </div>
         </section>
 
+        <!-- Section Divider -->
+        <div class="section-divider-alt"></div>
+
         <!-- Skills Section -->
         <section id="skills">
             <div class="skills-container">
@@ -931,6 +996,9 @@
                 <div class="skills-grid" id="skillsGrid"></div>
             </div>
         </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
 
         <!-- Projects Section -->
         <section id="projects">
@@ -944,6 +1012,9 @@
             </div>
         </section>
 
+        <!-- Section Divider -->
+        <div class="section-divider-alt"></div>
+
         <!-- Blog Section -->
         <section id="blog">
             <div class="blog-container">
@@ -955,6 +1026,9 @@
                 <p style="margin-top: 1rem;">→ <a href="#" id="view-all-blog" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> Read all posts</a></p>
             </div>
         </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
 
         <!-- Contact Section -->
         <section id="contact">
