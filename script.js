@@ -27,8 +27,8 @@
     ];
     
     const socials = [
-        { name: "Email", icon: "fa-regular fa-envelope", url: "mailto:hello@john.dev" },
-        { name: "GitHub", icon: "fa-brands fa-github", url: "https://github.com/jvhn0gl3" },
+        { name: "Email", icon: "fa-regular fa-envelope", url: "mailto:hello@v3.dev" },
+        { name: "GitHub", icon: "fa-brands fa-github", url: "https://github.com/v3" },
         { name: "LinkedIn", icon: "fa-brands fa-linkedin", url: "#" },
         { name: "Twitter", icon: "fa-brands fa-twitter", url: "#" },
         { name: "Discord", icon: "fa-brands fa-discord", url: "#" }
