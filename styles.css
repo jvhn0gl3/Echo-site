@@ -67,12 +67,6 @@ body {
     text-align: left;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
 .logo {
     font-size: 1.25rem;
     font-weight: 700;
@@ -83,65 +77,6 @@ body {
     text-decoration: none;
     font-family: 'Major Mono Display', monospace;
     letter-spacing: 2px;
-}
-
-.commit-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.7rem;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-    background: rgba(59, 130, 246, 0.1);
-    padding: 0.25rem 0.75rem;
-    border-radius: 50px;
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    color: #a1a1aa;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.commit-info:hover {
-    background: rgba(59, 130, 246, 0.2);
-    border-color: rgba(59, 130, 246, 0.4);
-    transform: translateY(-1px);
-}
-
-.commit-info i {
-    font-size: 0.65rem;
-    color: #3b82f6;
-}
-
-.commit-separator {
-    color: #52525b;
-    margin: 0 0.1rem;
-}
-
-#commitHash {
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-#commitDate {
-    font-size: 0.65rem;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-.commit-info.loading {
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-@media (max-width: 768px) {
-    .commit-info {
-        display: none;
-    }
 }
 
 .nav-links {
