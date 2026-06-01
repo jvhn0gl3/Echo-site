@@ -1,0 +1,8 @@
+[
+    { "category": "Technology", "title": "Future of Web Dev", "excerpt": "Exploring emerging trends.", "readTime": "5 min" },
+    { "category": "Design", "title": "Minimalist UI", "excerpt": "Why simplicity wins.", "readTime": "4 min" },
+    { "category": "Career", "title": "10 Years in Review", "excerpt": "Lessons from a decade.", "readTime": "7 min" },
+    { "category": "Tools", "title": "My Dev Setup 2024", "excerpt": "Tools that boost productivity.", "readTime": "6 min" },
+    { "category": "Opinion", "title": "Why I Love Monospace", "excerpt": "The beauty of consistent widths.", "readTime": "3 min" },
+    { "category": "Performance", "title": "Web Performance", "excerpt": "Make sites load faster.", "readTime": "8 min" }
+]

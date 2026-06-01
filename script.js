@@ -1,44 +1,40 @@
 (function() {
-    // Data
-    const skills = [
-        { icon: "fa-solid fa-code", title: "Web Dev", desc: "React, Vue, Node, Python" },
-        { icon: "fa-solid fa-palette", title: "UI/UX", desc: "Figma, Framer, prototyping" },
-        { icon: "fa-solid fa-mobile-alt", title: "Mobile", desc: "React Native, Flutter" },
-        { icon: "fa-solid fa-cloud", title: "Cloud", desc: "AWS, Docker, CI/CD" },
-        { icon: "fa-solid fa-database", title: "DB", desc: "PostgreSQL, MongoDB, Redis" }
-    ];
+    // Data storage
+    let skillsData = [];
+    let projectsData = [];
+    let blogData = [];
+    let socialsData = [];
 
-    const projects = [
-        { icon: "fa-solid fa-cube", title: "Project Alpha", desc: "Platform for digital creators.", tags: ["React", "Node.js", "MongoDB"] },
-        { icon: "fa-solid fa-cloud", title: "Project Beta", desc: "Cloud analytics dashboard.", tags: ["Vue", "Python", "AWS"] },
-        { icon: "fa-solid fa-robot", title: "Project Gamma", desc: "Automation platform.", tags: ["Next.js", "PostgreSQL", "Redis"] },
-        { icon: "fa-solid fa-chart-line", title: "Project Delta", desc: "Real-time analytics.", tags: ["D3.js", "FastAPI", "Redis"] },
-        { icon: "fa-solid fa-shield", title: "Project Epsilon", desc: "Auth & authorization.", tags: ["Auth0", "JWT", "OAuth2"] },
-        { icon: "fa-solid fa-gamepad", title: "Project Zeta", desc: "Multiplayer game.", tags: ["WebSocket", "Canvas", "Phaser"] }
-    ];
-
-    const blogPosts = [
-        { category: "Technology", title: "Future of Web Dev", excerpt: "Exploring emerging trends.", readTime: "5 min" },
-        { category: "Design", title: "Minimalist UI", excerpt: "Why simplicity wins.", readTime: "4 min" },
-        { category: "Career", title: "10 Years in Review", excerpt: "Lessons from a decade.", readTime: "7 min" },
-        { category: "Tools", title: "My Dev Setup 2024", excerpt: "Tools that boost productivity.", readTime: "6 min" },
-        { category: "Opinion", title: "Why I Love Monospace", excerpt: "The beauty of consistent widths.", readTime: "3 min" },
-        { category: "Performance", title: "Web Performance", excerpt: "Make sites load faster.", readTime: "8 min" }
-    ];
-
-    const socials = [
-        { name: "Email", icon: "fa-regular fa-envelope", url: "mailto:hello@v3.dev" },
-        { name: "GitHub", icon: "fa-brands fa-github", url: "https://github.com/v3" },
-        { name: "LinkedIn", icon: "fa-brands fa-linkedin", url: "#" },
-        { name: "Twitter", icon: "fa-brands fa-twitter", url: "#" },
-        { name: "Discord", icon: "fa-brands fa-discord", url: "#" }
-    ];
+    // Fetch data from JSON files
+    async function loadData() {
+        try {
+            const [skillsRes, projectsRes, blogRes, socialsRes] = await Promise.all([
+                fetch('data/skills.json'),
+                fetch('data/projects.json'),
+                fetch('data/blog.json'),
+                fetch('data/socials.json')
+            ]);
+            
+            skillsData = await skillsRes.json();
+            projectsData = await projectsRes.json();
+            blogData = await blogRes.json();
+            socialsData = await socialsRes.json();
+            
+            // Render after data is loaded
+            renderSkills();
+            renderProjects();
+            renderBlog();
+            renderSocials();
+        } catch (error) {
+            console.error('Error loading data:', error);
+        }
+    }
 
     // Render functions
     function renderSkills() {
         const container = document.getElementById('skillsGrid');
-        if (container) {
-            container.innerHTML = skills.map(skill => `
+        if (container && skillsData.length) {
+            container.innerHTML = skillsData.map(skill => `
                 <div class="skill-card">
                     <div class="skill-icon"><i class="${skill.icon}"></i></div>
                     <h3>${skill.title}</h3>
@@ -50,8 +46,8 @@
 
     function renderProjects() {
         const container = document.getElementById('projectsGrid');
-        if (container) {
-            container.innerHTML = projects.map(project => `
+        if (container && projectsData.length) {
+            container.innerHTML = projectsData.map(project => `
                 <div class="project-card">
                     <div class="project-image"><i class="${project.icon}"></i></div>
                     <div class="project-info">
@@ -66,8 +62,8 @@
 
     function renderBlog() {
         const container = document.getElementById('blogGrid');
-        if (container) {
-            container.innerHTML = blogPosts.map(post => `
+        if (container && blogData.length) {
+            container.innerHTML = blogData.map(post => `
                 <div class="blog-card">
                     <div class="blog-category">${post.category}</div>
                     <h3>${post.title}</h3>
@@ -80,8 +76,8 @@
 
     function renderSocials() {
         const container = document.getElementById('socialLinks');
-        if (container) {
-            container.innerHTML = socials.map(social => `
+        if (container && socialsData.length) {
+            container.innerHTML = socialsData.map(social => `
                 <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="${social.icon}"></i> ${social.name}</a>
             `).join('');
         }
@@ -175,11 +171,12 @@
         alert('Coming soon!');
     });
 
-    // Blog card click handlers
-    document.querySelectorAll('.blog-card').forEach((card) => {
-        card.addEventListener('click', () => {
+    // Blog card click handlers (delegation since content loads dynamically)
+    document.getElementById('blogGrid')?.addEventListener('click', (e) => {
+        const blogCard = e.target.closest('.blog-card');
+        if (blogCard) {
             alert('Coming soon!');
-        });
+        }
     });
 
     // Custom cursor
@@ -281,11 +278,8 @@
     });
 
     // Initialize
-    renderSkills();
-    renderProjects();
-    renderBlog();
-    renderSocials();
     loadAccessibilityPreferences();
+    loadData();
     
     window.addEventListener('scroll', updateProgressDividers);
     window.addEventListener('resize', updateProgressDividers);

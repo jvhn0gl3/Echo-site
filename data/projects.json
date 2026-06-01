@@ -1,0 +1,8 @@
+[
+    { "icon": "fa-solid fa-cube", "title": "Project Alpha", "desc": "Platform for digital creators.", "tags": ["React", "Node.js", "MongoDB"] },
+    { "icon": "fa-solid fa-cloud", "title": "Project Beta", "desc": "Cloud analytics dashboard.", "tags": ["Vue", "Python", "AWS"] },
+    { "icon": "fa-solid fa-robot", "title": "Project Gamma", "desc": "Automation platform.", "tags": ["Next.js", "PostgreSQL", "Redis"] },
+    { "icon": "fa-solid fa-chart-line", "title": "Project Delta", "desc": "Real-time analytics.", "tags": ["D3.js", "FastAPI", "Redis"] },
+    { "icon": "fa-solid fa-shield", "title": "Project Epsilon", "desc": "Auth & authorization.", "tags": ["Auth0", "JWT", "OAuth2"] },
+    { "icon": "fa-solid fa-gamepad", "title": "Project Zeta", "desc": "Multiplayer game.", "tags": ["WebSocket", "Canvas", "Phaser"] }
+]
