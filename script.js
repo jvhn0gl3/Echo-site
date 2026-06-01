@@ -1,11 +1,21 @@
 (function() {
     // Inline data
     const skillsData = [
-        { icon: "fa-solid fa-code", title: "Web Dev", desc: "React, Vue, Node, Python" },
-        { icon: "fa-solid fa-palette", title: "UI/UX", desc: "Figma, Framer, prototyping" },
-        { icon: "fa-solid fa-mobile-alt", title: "Mobile", desc: "React Native, Flutter" },
-        { icon: "fa-solid fa-cloud", title: "Cloud", desc: "AWS, Docker, CI/CD" },
-        { icon: "fa-solid fa-database", title: "DB", desc: "PostgreSQL, MongoDB, Redis" }
+        { icon: "fa-solid fa-code", title: "Frontend", desc: "React, Vue, Angular, TypeScript" },
+        { icon: "fa-solid fa-server", title: "Backend", desc: "Node.js, Python, Go, Java" },
+        { icon: "fa-solid fa-database", title: "Database", desc: "PostgreSQL, MongoDB, Redis" },
+        { icon: "fa-solid fa-cloud", title: "Cloud", desc: "AWS, Azure, GCP, Docker" },
+        { icon: "fa-solid fa-mobile-alt", title: "Mobile", desc: "React Native, Flutter, Swift" },
+        { icon: "fa-solid fa-code-branch", title: "DevOps", desc: "CI/CD, Jenkins, GitHub Actions" }
+    ];
+
+    const servicesData = [
+        { icon: "fa-solid fa-laptop-code", title: "Web Development", desc: "Full-stack web applications with modern frameworks and best practices." },
+        { icon: "fa-solid fa-palette", title: "UI/UX Design", desc: "Beautiful, intuitive interfaces focused on user experience." },
+        { icon: "fa-solid fa-chart-line", title: "Technical Consulting", desc: "Expert advice on architecture, scalability, and technology decisions." },
+        { icon: "fa-solid fa-rocket", title: "Performance Optimization", desc: "Speed up your applications and improve user experience." },
+        { icon: "fa-solid fa-shield-alt", title: "Security Audits", desc: "Identify vulnerabilities and secure your applications." },
+        { icon: "fa-solid fa-headset", title: "Maintenance & Support", desc: "Ongoing support and continuous improvement for your projects." }
     ];
 
     const projectsData = [
@@ -43,6 +53,19 @@
                     <div class="skill-icon"><i class="${skill.icon}"></i></div>
                     <h3>${skill.title}</h3>
                     <p>${skill.desc}</p>
+                </div>
+            `).join('');
+        }
+    }
+
+    function renderServices() {
+        const container = document.getElementById('servicesGrid');
+        if (container) {
+            container.innerHTML = servicesData.map(service => `
+                <div class="service-card">
+                    <div class="service-icon"><i class="${service.icon}"></i></div>
+                    <h3>${service.title}</h3>
+                    <p>${service.desc}</p>
                 </div>
             `).join('');
         }
@@ -95,9 +118,10 @@
         const totalScrollable = docHeight - windowHeight;
         const overallProgress = totalScrollable > 0 ? (scrollTop / totalScrollable) * 100 : 0;
         
-        for (let i = 1; i <= 5; i++) {
-            const progressFill = document.getElementById(`progress${i}`);
-            const percentSpan = document.getElementById(`percent${i}`);
+        const dividers = ['1', 'Skills', '2', '3', '4', '5'];
+        dividers.forEach(num => {
+            const progressFill = document.getElementById(`progress${num}`);
+            const percentSpan = document.getElementById(`percent${num}`);
             if (progressFill) {
                 progressFill.style.width = overallProgress + '%';
             }
@@ -105,7 +129,7 @@
                 percentSpan.textContent = Math.floor(overallProgress) + '%';
                 percentSpan.style.color = overallProgress >= 100 ? '#a6e3a1' : overallProgress > 0 ? '#89b4fa' : '#6c7086';
             }
-        }
+        });
     }
 
     // Mobile menu
@@ -281,6 +305,7 @@
     // Initialize everything
     function init() {
         renderSkills();
+        renderServices();
         renderProjects();
         renderBlog();
         renderSocials();

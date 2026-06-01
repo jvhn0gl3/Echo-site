@@ -262,6 +262,7 @@ section {
 /* Content Containers - Responsive */
 .about-content,
 .skills-container,
+.services-container,
 .projects-container,
 .blog-container,
 .contact-content {
@@ -389,6 +390,48 @@ section {
 .skill-card p {
     color: #71717a;
     font-size: 0.65rem;
+    margin: 0;
+}
+
+/* Services Grid - Responsive */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+.service-card {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.5);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+}
+
+.service-icon {
+    font-size: 1.5rem;
+    color: #3b82f6;
+    margin-bottom: 0.75rem;
+}
+
+.service-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.service-card p {
+    color: #a1a1aa;
+    font-size: 0.75rem;
+    line-height: 1.4;
     margin: 0;
 }
 
@@ -714,6 +757,7 @@ body.high-contrast {
 body.high-contrast .navbar,
 body.high-contrast .modal-content,
 body.high-contrast .skill-card,
+body.high-contrast .service-card,
 body.high-contrast .project-card,
 body.high-contrast .blog-card,
 body.high-contrast .social-link,
@@ -735,6 +779,7 @@ body.large-text p,
 body.large-text .hero-description,
 body.large-text .about-text p,
 body.large-text .skill-card p,
+body.large-text .service-card p,
 body.large-text .project-info p,
 body.large-text .blog-card p {
     font-size: 1rem;
