@@ -345,20 +345,6 @@ section {
     border: 2px solid rgba(59, 130, 246, 0.3);
 }
 
-.about-image::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% + 16px);
-    height: calc(100% + 16px);
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    border-radius: 20px;
-    opacity: 0.1;
-    z-index: -1;
-}
-
 @media (max-width: 768px) {
     .about-content {
         grid-template-columns: 1fr;
