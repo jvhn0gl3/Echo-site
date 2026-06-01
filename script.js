@@ -10,6 +10,7 @@
     ];
 
     const servicesData = [
+        { icon: "fa-solid fa-pen-nib", title: "Logo Design", desc: "Custom, memorable brand identities that stand out and tell your story." },
         { icon: "fa-solid fa-laptop-code", title: "Web Development", desc: "Full-stack web applications with modern frameworks and best practices." },
         { icon: "fa-solid fa-palette", title: "UI/UX Design", desc: "Beautiful, intuitive interfaces focused on user experience." },
         { icon: "fa-solid fa-chart-line", title: "Technical Consulting", desc: "Expert advice on architecture, scalability, and technology decisions." },
