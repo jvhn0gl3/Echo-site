@@ -1,6 +1,7 @@
 (function() {
     // Main configuration object
-    let siteConfig = {};
+    let siteConfig = null;
+    let contentLoaded = false;
     
     // Fallback content in case JSON fails to load
     function getFallbackContent() {
@@ -118,8 +119,6 @@
     
     // Fetch all content from single JSON file
     async function loadContent() {
-        const mainContainer = document.getElementById('dynamicContent');
-        
         try {
             // Try to fetch the JSON file
             const response = await fetch('data/content.json');
@@ -134,23 +133,12 @@
         } catch (error) {
             console.warn('⚠️ Failed to load JSON, using fallback content:', error);
             siteConfig = getFallbackContent();
-            
-            // Show warning to user but still display content
-            if (mainContainer) {
-                const warning = document.createElement('div');
-                warning.style.cssText = 'background: rgba(255,100,0,0.1); border: 1px solid rgba(255,100,0,0.3); border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem; text-align: center; font-size: 0.85rem; color: #ffa500;';
-                warning.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Using fallback content. Could not load data/content.json';
-                mainContainer.innerHTML = '';
-                mainContainer.appendChild(warning);
-            }
         }
         
         // Verify we have data
         if (!siteConfig || Object.keys(siteConfig).length === 0) {
             console.error('❌ No configuration data available');
-            if (mainContainer) {
-                mainContainer.innerHTML = '<div style="text-align: center; padding: 3rem; color: #ff4444;"><i class="fas fa-exclamation-circle" style="font-size: 2rem;"></i><p style="margin-top: 1rem;">Failed to load content. Please check the console.</p></div>';
-            }
+            showErrorMessage();
             return;
         }
         
@@ -160,6 +148,20 @@
         renderSections();
         renderFooter();
         renderAccessibilityModal();
+        contentLoaded = true;
+    }
+    
+    function showErrorMessage() {
+        const mainContainer = document.getElementById('dynamicContent');
+        if (mainContainer) {
+            mainContainer.innerHTML = `
+                <div style="text-align: center; padding: 3rem; background: rgba(255,0,0,0.1); border-radius: 10px; margin: 2rem;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff4444;"></i>
+                    <h2 style="margin-top: 1rem;">Failed to Load Content</h2>
+                    <p>Unable to load content. Please check the console for errors.</p>
+                </div>
+            `;
+        }
     }
     
     // Render meta data
@@ -195,10 +197,6 @@
                     if (navLinksEl) navLinksEl.classList.remove('active');
                     const menuIcon = document.querySelector('#mobileMenuBtn i');
                     if (menuIcon) menuIcon.className = 'fas fa-bars';
-                    
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
         }
@@ -214,13 +212,9 @@
         
         if (!siteConfig.sections || siteConfig.sections.length === 0) {
             console.error('No sections found in config');
+            mainContainer.innerHTML = '<p style="text-align:center; padding:2rem;">No content sections configured.</p>';
             return;
         }
-        
-        // Clear existing content but keep any warning messages
-        const warningElement = mainContainer.querySelector('.warning-message');
-        mainContainer.innerHTML = '';
-        if (warningElement) mainContainer.appendChild(warningElement);
         
         let html = '';
         
@@ -272,7 +266,7 @@
             }
         });
         
-        mainContainer.innerHTML += html;
+        mainContainer.innerHTML = html;
         
         // Re-attach event listeners for dynamic content
         setTimeout(() => {
@@ -281,6 +275,8 @@
             document.querySelectorAll('section').forEach(section => {
                 if (observer) observer.observe(section);
             });
+            // Update progress dividers after content is loaded
+            updateProgressDividers();
         }, 100);
     }
     
@@ -398,7 +394,7 @@
                     <h2>${data.title || 'Blog'}</h2>
                     <p>${data.subtitle || ''}</p>
                 </div>
-                <div class="blog-grid" id="blogGrid">
+                <div class="blog-grid">
                     ${(data.items || []).map(post => `
                         <div class="blog-card" data-blog-id="${post.id || ''}">
                             <div class="blog-category">${post.category || ''}</div>
@@ -472,9 +468,7 @@
             }
             if (percentSpan) {
                 percentSpan.textContent = Math.floor(overallProgress) + '%';
-                if (percentSpan) {
-                    percentSpan.style.color = overallProgress >= 100 ? '#a6e3a1' : overallProgress > 0 ? '#89b4fa' : '#6c7086';
-                }
+                percentSpan.style.color = overallProgress >= 100 ? '#a6e3a1' : overallProgress > 0 ? '#89b4fa' : '#6c7086';
             }
         }
     }
@@ -514,19 +508,17 @@
     
     if (mobileBtn) {
         menuIcon = mobileBtn.querySelector('i');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                if (navLinksEl) {
-                    navLinksEl.classList.toggle('active');
-                    if (menuIcon) {
-                        menuIcon.className = navLinksEl.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
-                    }
+        mobileBtn.addEventListener('click', () => {
+            if (navLinksEl) {
+                navLinksEl.classList.toggle('active');
+                if (menuIcon) {
+                    menuIcon.className = navLinksEl.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
                 }
-            });
-        }
+            }
+        });
     }
     
-    // Close mobile menu when clicking on a link (delegation)
+    // Close mobile menu when clicking on a link
     document.addEventListener('click', function(e) {
         if (navLinksEl && navLinksEl.classList.contains('active')) {
             const isNavLink = e.target.closest('.nav-links a');
@@ -662,5 +654,4 @@
     
     window.addEventListener('scroll', updateProgressDividers);
     window.addEventListener('resize', updateProgressDividers);
-    updateProgressDividers();
 })();
