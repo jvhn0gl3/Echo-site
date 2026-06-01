@@ -11,6 +11,8 @@ body {
     line-height: 1.4;
     scroll-behavior: smooth;
     text-align: center;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Custom Cursor */
@@ -40,12 +42,13 @@ body {
     .cursor, .cursor-follower { display: none; }
 }
 
-/* Navigation */
+/* Navigation - Full Width */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
     padding: 0.75rem 2rem;
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(10px);
@@ -54,8 +57,10 @@ body {
 }
 
 .nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -155,11 +160,12 @@ body {
     }
 }
 
-/* Main Content */
+/* Main Content - Full Width */
 main {
     width: 100%;
-    max-width: none;
+    max-width: 100%;
     padding: 5rem 2rem 3rem;
+    overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
@@ -173,7 +179,7 @@ section {
     width: 100%;
 }
 
-/* Continuous Page Scroll-Progress Divider */
+/* Continuous Page Scroll-Progress Divider - Full Width */
 .section-divider {
     width: 100%;
     margin: 2rem auto;
@@ -269,23 +275,36 @@ section {
     }
 }
 
-/* Content Containers */
+/* Content Containers - Full Width with inner padding */
 .hero-container,
 .about-content,
 .skills-container,
 .projects-container,
 .blog-container,
 .contact-content {
-    max-width: 1400px;
-    margin: 0 auto;
     width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-/* Hero Section */
+@media (max-width: 768px) {
+    .hero-container,
+    .about-content,
+    .skills-container,
+    .projects-container,
+    .blog-container,
+    .contact-content {
+        padding: 0 1rem;
+    }
+}
+
+/* Hero Section - Full Width */
 .hero {
     min-height: calc(100vh - 5rem);
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .hero-container {
@@ -495,7 +514,7 @@ section {
     font-size: 0.8rem;
 }
 
-/* About Section */
+/* About Section - Full Width */
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -552,11 +571,12 @@ section {
     }
 }
 
-/* Skills Grid - Keep grid on all non-narrow screens */
+/* Skills Grid - Full Width Responsive */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.75rem;
+    width: 100%;
 }
 
 .skill-card {
@@ -591,7 +611,6 @@ section {
     margin: 0;
 }
 
-/* Tablet breakpoint - still grid, just fewer columns */
 @media (max-width: 900px) {
     .skills-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -599,25 +618,24 @@ section {
     }
 }
 
-/* Mobile - two columns on medium phones */
 @media (max-width: 640px) {
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Narrow mobile - single column */
 @media (max-width: 480px) {
     .skills-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* Projects Grid - Keep grid on all non-narrow screens */
+/* Projects Grid - Full Width */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    width: 100%;
 }
 
 .project-card {
@@ -677,7 +695,6 @@ section {
     color: #a1a1aa;
 }
 
-/* Tablet - 2 columns */
 @media (max-width: 900px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -685,18 +702,18 @@ section {
     }
 }
 
-/* Mobile - single column only on narrow screens */
 @media (max-width: 640px) {
     .projects-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* Blog Grid - Keep grid on all non-narrow screens */
+/* Blog Grid - Full Width */
 .blog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    width: 100%;
 }
 
 .blog-card {
@@ -739,7 +756,6 @@ section {
     display: inline-block;
 }
 
-/* Tablet - 2 columns */
 @media (max-width: 900px) {
     .blog-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -747,14 +763,13 @@ section {
     }
 }
 
-/* Mobile - single column only on narrow screens */
 @media (max-width: 640px) {
     .blog-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* Contact Section */
+/* Contact Section - Full Width */
 .contact-content {
     text-align: center;
     max-width: 500px;
@@ -793,13 +808,14 @@ section {
     transform: translateY(-2px);
 }
 
-/* Footer */
+/* Footer - Full Width */
 .footer {
     text-align: center;
     padding: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     color: #52525b;
     font-size: 0.7rem;
+    width: 100%;
 }
 
 /* Accessibility Button */
