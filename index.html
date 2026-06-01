@@ -23,14 +23,23 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="navLinks">
-                <!-- Navigation items will be populated from JSON -->
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <main>
-        <!-- All sections will be populated from JSON -->
-        <div id="dynamicContent"></div>
+        <div id="dynamicContent">
+            <!-- Content will be loaded dynamically -->
+            <div style="text-align: center; padding: 3rem;">
+                <i class="fas fa-spinner fa-pulse" style="font-size: 2rem; color: #3b82f6;"></i>
+                <p style="margin-top: 1rem;">Loading content...</p>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -50,19 +59,19 @@
             </div>
             <div class="accessibility-option">
                 <span>🔆 <span id="highContrastLabel">High Contrast</span></span>
-                <button id="highContrastBtn"><span id="toggleLabel">Toggle</span></button>
+                <button id="highContrastBtn">Toggle</button>
             </div>
             <div class="accessibility-option">
                 <span>🔤 <span id="largeTextLabel">Larger Text</span></span>
-                <button id="largeTextBtn"><span id="toggleLabel2">Toggle</span></button>
+                <button id="largeTextBtn">Toggle</button>
             </div>
             <div class="accessibility-option">
                 <span>📖 <span id="dyslexicFontLabel">Dyslexic Font</span></span>
-                <button id="dyslexicFontBtn"><span id="toggleLabel3">Toggle</span></button>
+                <button id="dyslexicFontBtn">Toggle</button>
             </div>
             <div class="accessibility-option">
                 <span>🎬 <span id="reduceMotionLabel">Reduce Motion</span></span>
-                <button id="reduceMotionBtn"><span id="toggleLabel4">Toggle</span></button>
+                <button id="reduceMotionBtn">Toggle</button>
             </div>
         </div>
     </div>
