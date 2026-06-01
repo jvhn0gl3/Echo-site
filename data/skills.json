@@ -1,7 +1,0 @@
-[
-    { "icon": "fa-solid fa-code", "title": "Web Dev", "desc": "React, Vue, Node, Python" },
-    { "icon": "fa-solid fa-palette", "title": "UI/UX", "desc": "Figma, Framer, prototyping" },
-    { "icon": "fa-solid fa-mobile-alt", "title": "Mobile", "desc": "React Native, Flutter" },
-    { "icon": "fa-solid fa-cloud", "title": "Cloud", "desc": "AWS, Docker, CI/CD" },
-    { "icon": "fa-solid fa-database", "title": "DB", "desc": "PostgreSQL, MongoDB, Redis" }
-]

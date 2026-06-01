@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "title": "V3 | Digital Architect",
+    "description": "V3 - Digital Architect & Full-Stack Developer",
+    "author": "V3"
+  },
+  "branding": {
+    "logoText": "V3",
+    "favicon": "https://cdn.john-ogletree.me/images/branding/logo.png"
+  },
+  "navigation": [
+    { "href": "#about", "label": "About" },
+    { "href": "#skills", "label": "Skills" },
+    { "href": "#projects", "label": "Projects" },
+    { "href": "#blog", "label": "Blog" },
+    { "href": "#contact", "label": "Contact" }
+  ],
+  "dividerSettings": {
+    "leftLabel": "✦ EXPLORE",
+    "rightLabel": "CONTINUE →"
+  },
+  "sections": [
+    {
+      "id": "about",
+      "type": "about",
+      "title": "About V3",
+      "subtitle": "Behind the code",
+      "paragraphs": [
+        "Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.",
+        "Every line of code serves a purpose, every pixel has meaning."
+      ],
+      "imageUrl": "https://cdn.john-ogletree.me/images/branding/logo.png",
+      "imageFallback": "https://john-ogletree.github.io/JHNOGTREMEDA/images/branding/logo.png",
+      "imageAlt": "V3"
+    },
+    {
+      "id": "skills",
+      "type": "skills",
+      "title": "Skills & Services",
+      "subtitle": "What I bring",
+      "items": [
+        { "icon": "fa-solid fa-code", "title": "Web Dev", "description": "React, Vue, Node, Python" },
+        { "icon": "fa-solid fa-palette", "title": "UI/UX", "description": "Figma, Framer, prototyping" },
+        { "icon": "fa-solid fa-mobile-alt", "title": "Mobile", "description": "React Native, Flutter" },
+        { "icon": "fa-solid fa-cloud", "title": "Cloud", "description": "AWS, Docker, CI/CD" },
+        { "icon": "fa-solid fa-database", "title": "DB", "description": "PostgreSQL, MongoDB, Redis" }
+      ]
+    },
+    {
+      "id": "projects",
+      "type": "projects",
+      "title": "Featured Projects",
+      "subtitle": "Some of my best work",
+      "viewAllId": "view-all-projects",
+      "viewAllText": "View all projects on GitHub",
+      "items": [
+        { "icon": "fa-solid fa-cube", "title": "Project Alpha", "description": "Platform for digital creators.", "tags": ["React", "Node.js", "MongoDB"] },
+        { "icon": "fa-solid fa-cloud", "title": "Project Beta", "description": "Cloud analytics dashboard.", "tags": ["Vue", "Python", "AWS"] },
+        { "icon": "fa-solid fa-robot", "title": "Project Gamma", "description": "Automation platform.", "tags": ["Next.js", "PostgreSQL", "Redis"] },
+        { "icon": "fa-solid fa-chart-line", "title": "Project Delta", "description": "Real-time analytics.", "tags": ["D3.js", "FastAPI", "Redis"] },
+        { "icon": "fa-solid fa-shield", "title": "Project Epsilon", "description": "Auth & authorization.", "tags": ["Auth0", "JWT", "OAuth2"] },
+        { "icon": "fa-solid fa-gamepad", "title": "Project Zeta", "description": "Multiplayer game.", "tags": ["WebSocket", "Canvas", "Phaser"] }
+      ]
+    },
+    {
+      "id": "blog",
+      "type": "blog",
+      "title": "Latest Insights",
+      "subtitle": "Thoughts on tech & design",
+      "viewAllId": "view-all-blog",
+      "viewAllText": "Read all posts",
+      "items": [
+        { "id": 1, "category": "Technology", "title": "Future of Web Dev", "excerpt": "Exploring emerging trends.", "readTime": "5 min" },
+        { "id": 2, "category": "Design", "title": "Minimalist UI", "excerpt": "Why simplicity wins.", "readTime": "4 min" },
+        { "id": 3, "category": "Career", "title": "10 Years in Review", "excerpt": "Lessons from a decade.", "readTime": "7 min" },
+        { "id": 4, "category": "Tools", "title": "My Dev Setup 2024", "excerpt": "Tools that boost productivity.", "readTime": "6 min" },
+        { "id": 5, "category": "Opinion", "title": "Why I Love Monospace", "excerpt": "The beauty of consistent widths.", "readTime": "3 min" },
+        { "id": 6, "category": "Performance", "title": "Web Performance", "excerpt": "Make sites load faster.", "readTime": "8 min" }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "title": "Let's Work Together",
+      "subtitle": "Have a project in mind?",
+      "description": "Feel free to reach out through any of these platforms.",
+      "socialLinks": [
+        { "name": "Email", "icon": "fa-regular fa-envelope", "url": "mailto:hello@v3.dev" },
+        { "name": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/v3" },
+        { "name": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "#" },
+        { "name": "Twitter", "icon": "fa-brands fa-twitter", "url": "#" },
+        { "name": "Discord", "icon": "fa-brands fa-discord", "url": "#" }
+      ]
+    }
+  ],
+  "footer": {
+    "text": "© 2024 V3 — Built with <i class=\"fas fa-heart\" style=\"color: #3b82f6;\"></i>"
+  },
+  "accessibility": {
+    "modalTitle": "Accessibility",
+    "highContrast": "High Contrast",
+    "largeText": "Larger Text",
+    "dyslexicFont": "Dyslexic Font",
+    "reduceMotion": "Reduce Motion",
+    "toggleButton": "Toggle"
+  },
+  "messages": {
+    "comingSoon": "Coming soon!",
+    "blogComingSoon": "Blog post coming soon!"
+  }
+}
