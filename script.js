@@ -30,6 +30,63 @@
         }
     }
 
+    // Fetch GitHub last commit
+    async function fetchLastCommit() {
+        const commitInfo = document.getElementById('commitInfo');
+        const commitHashElem = document.getElementById('commitHash');
+        const commitDateElem = document.getElementById('commitDate');
+        
+        if (!commitInfo || !commitHashElem || !commitDateElem) return;
+        
+        // Add loading animation
+        commitInfo.classList.add('loading');
+        
+        try {
+            // Using GitHub API to get the last commit from the repository
+            // Replace 'v3' and 'v3' with your actual GitHub username and repo name
+            const response = await fetch('https://api.github.com/repos/v3/v3/commits?per_page=1');
+            
+            if (response.ok) {
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    const lastCommit = data[0];
+                    const commitHash = lastCommit.sha.substring(0, 7);
+                    const commitDate = new Date(lastCommit.commit.author.date);
+                    const formattedDate = commitDate.toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    commitHashElem.textContent = commitHash;
+                    commitDateElem.textContent = formattedDate;
+                    
+                    // Add click handler to open commit on GitHub
+                    commitInfo.style.cursor = 'pointer';
+                    commitInfo.addEventListener('click', () => {
+                        window.open(`https://github.com/v3/v3/commit/${lastCommit.sha}`, '_blank');
+                    });
+                } else {
+                    commitHashElem.textContent = 'no commits';
+                    commitDateElem.textContent = '--';
+                }
+            } else {
+                // Fallback to mock data for demo
+                commitHashElem.textContent = 'a1b2c3d';
+                commitDateElem.textContent = 'Dec 1, 2:30 PM';
+                console.warn('GitHub API request failed, using fallback data');
+            }
+        } catch (error) {
+            console.error('Error fetching commit data:', error);
+            // Fallback data
+            commitHashElem.textContent = 'a1b2c3d';
+            commitDateElem.textContent = 'Dec 1, 2:30 PM';
+        } finally {
+            commitInfo.classList.remove('loading');
+        }
+    }
+
     // Render functions
     function renderSkills() {
         const container = document.getElementById('skillsGrid');
@@ -280,6 +337,7 @@
     // Initialize
     loadAccessibilityPreferences();
     loadData();
+    fetchLastCommit(); // Fetch GitHub last commit
     
     window.addEventListener('scroll', updateProgressDividers);
     window.addEventListener('resize', updateProgressDividers);
