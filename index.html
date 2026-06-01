@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" id="metaDescription" />
-    <meta name="author" content="" id="metaAuthor" />
-    <title id="pageTitle">V3 | Digital Architect</title>
+    <meta name="description" content="V3 - Digital Architect & Full-Stack Developer" />
+    <meta name="author" content="V3" />
+    <title>V3 | Digital Architect</title>
     <link rel="icon" type="image/png" href="https://cdn.john-ogletree.me/images/branding/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
@@ -18,7 +18,7 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo" id="logoText">V3</a>
+            <a href="#" class="logo">V3</a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
@@ -33,11 +33,133 @@
     </nav>
 
     <main>
-        <div id="dynamicContent"></div>
+        <!-- About Section -->
+        <section id="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>About V3</h2>
+                        <p>Behind the code</p>
+                    </div>
+                    <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+                    <p>Every line of code serves a purpose, every pixel has meaning.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://cdn.john-ogletree.me/images/branding/logo.png" alt="V3" onerror="this.onerror=null; this.src='https://john-ogletree.github.io/JHNOGTREMEDA/images/branding/logo.png'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider" id="divider1">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress1"></div>
+            </div>
+            <div class="divider-label">
+                <span>✦ EXPLORE</span>
+                <span>CONTINUE →</span>
+            </div>
+            <div class="divider-percentage" id="percent1">0%</div>
+        </div>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="skills-container">
+                <div class="section-header">
+                    <h2>Skills & Services</h2>
+                    <p>What I bring</p>
+                </div>
+                <div class="skills-grid" id="skillsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider-alt" id="divider2">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress2"></div>
+            </div>
+            <div class="divider-label">
+                <span>◆ DISCOVER</span>
+                <span>NEXT →</span>
+            </div>
+            <div class="divider-percentage" id="percent2">0%</div>
+        </div>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="projects-container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>Some of my best work</p>
+                </div>
+                <div class="projects-grid" id="projectsGrid"></div>
+                <p style="margin-top: 1rem;">→ <a href="#" id="view-all-projects" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> View all projects on GitHub</a></p>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider" id="divider3">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress3"></div>
+            </div>
+            <div class="divider-label">
+                <span>✦ BUILD</span>
+                <span>FORWARD →</span>
+            </div>
+            <div class="divider-percentage" id="percent3">0%</div>
+        </div>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <div class="blog-container">
+                <div class="section-header">
+                    <h2>Latest Insights</h2>
+                    <p>Thoughts on tech & design</p>
+                </div>
+                <div class="blog-grid" id="blogGrid"></div>
+                <p style="margin-top: 1rem;">→ <a href="#" id="view-all-blog" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> Read all posts</a></p>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider-alt" id="divider4">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress4"></div>
+            </div>
+            <div class="divider-label">
+                <span>◆ SHARE</span>
+                <span>GROW →</span>
+            </div>
+            <div class="divider-percentage" id="percent4">0%</div>
+        </div>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-content">
+                <div class="section-header">
+                    <h2>Let's Work Together</h2>
+                    <p>Have a project in mind?</p>
+                </div>
+                <p>Feel free to reach out through any of these platforms.</p>
+                <div class="social-links" id="socialLinks"></div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider" id="divider5">
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress5"></div>
+            </div>
+            <div class="divider-label">
+                <span>✦ CONNECT</span>
+                <span>REACH OUT →</span>
+            </div>
+            <div class="divider-percentage" id="percent5">0%</div>
+        </div>
     </main>
 
     <footer class="footer">
-        <p id="footerText">© 2024 V3 — Built with <i class="fas fa-heart" style="color: #3b82f6;"></i></p>
+        <p>© 2026 V3 — Built with <i class="fas fa-heart" style="color: #3b82f6;"></i></p>
     </footer>
 
     <button class="accessibility-btn" id="accessibilityBtn">
@@ -48,23 +170,23 @@
     <div id="accessibilityModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-universal-access"></i> <span id="modalTitle">Accessibility</span></h3>
+                <h3><i class="fas fa-universal-access"></i> Accessibility</h3>
                 <button class="modal-close" id="closeModalBtn">&times;</button>
             </div>
             <div class="accessibility-option">
-                <span>🔆 <span id="highContrastLabel">High Contrast</span></span>
+                <span>🔆 High Contrast</span>
                 <button id="highContrastBtn">Toggle</button>
             </div>
             <div class="accessibility-option">
-                <span>🔤 <span id="largeTextLabel">Larger Text</span></span>
+                <span>🔤 Larger Text</span>
                 <button id="largeTextBtn">Toggle</button>
             </div>
             <div class="accessibility-option">
-                <span>📖 <span id="dyslexicFontLabel">Dyslexic Font</span></span>
+                <span>📖 Dyslexic Font</span>
                 <button id="dyslexicFontBtn">Toggle</button>
             </div>
             <div class="accessibility-option">
-                <span>🎬 <span id="reduceMotionLabel">Reduce Motion</span></span>
+                <span>🎬 Reduce Motion</span>
                 <button id="reduceMotionBtn">Toggle</button>
             </div>
         </div>
