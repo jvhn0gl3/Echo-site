@@ -46,9 +46,9 @@
         main{margin-left:72px;padding:4rem 5% 3rem;overflow-x:hidden;position:relative;width:calc(100% - 72px);max-width:100%;flex:1;}
         @media(max-width:768px){main{margin-left:56px;padding:4rem 4% 2rem;width:calc(100% - 56px);}}
         @media(max-width:480px){main{margin-left:48px;padding:4rem 3% 2rem;width:calc(100% - 48px);}}
-        section{margin-bottom:clamp(3rem,10vw,5rem);overflow-x:hidden;}
+        section{margin-bottom:clamp(3rem,10vw,5rem);overflow-x:visible;}
         
-        .container{max-width:1400px;margin:0 auto;overflow-x:hidden;}
+        .container{max-width:1400px;margin:0 auto;overflow-x:visible;}
         .section-header{margin-bottom:2rem;}
         @media(max-width:768px){.section-header{text-align:center;}}
         .section-header h2{font-size:clamp(1.5rem,6vw,2rem);font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#fff,#00d4ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
@@ -62,27 +62,27 @@
         .about-image img{width:100%;max-width:min(320px,80%);border-radius:24px;border:2px solid rgba(0,212,255,.4);box-shadow:0 20px 35px -10px rgba(0,212,255,.2);transition:transform .3s;}
         .about-image img:hover{transform:scale(1.02);}
         
-        .grid{display:grid;gap:1.25rem;}
+        .grid{display:grid;gap:1.25rem;width:100%;}
         .skills-grid{grid-template-columns:repeat(2,1fr);}
         .services-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .projects-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .blog-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         
-        @media(max-width:640px){
-            .skills-grid{grid-template-columns:repeat(2,1fr);}
-            .services-grid{grid-template-columns:repeat(2,1fr);}
-            .projects-grid{grid-template-columns:repeat(2,1fr);}
-            .blog-grid{grid-template-columns:repeat(2,1fr);}
+        @media(max-width:768px){
+            .skills-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+            .services-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+            .projects-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+            .blog-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
         }
         
         @media(max-width:480px){
-            .skills-grid{grid-template-columns:repeat(2,1fr);}
-            .services-grid{grid-template-columns:repeat(2,1fr);}
-            .projects-grid{grid-template-columns:repeat(2,1fr);}
-            .blog-grid{grid-template-columns:repeat(2,1fr);}
+            .skills-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
+            .services-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
+            .projects-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
+            .blog-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
         }
         
-        .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:1.5rem;transition:all .3s;text-align:center;}
+        .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:1.5rem;transition:all .3s;text-align:center;overflow:hidden;word-wrap:break-word;width:100%;}
         .card:focus-within{outline:2px solid #00d4ff;outline-offset:2px;}
         .card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.5);box-shadow:0 15px 30px -10px rgba(0,212,255,.15);background:rgba(255,255,255,.05);}
         .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
@@ -98,6 +98,18 @@
         .tag{font-size:.65rem;padding:.25rem .75rem;background:rgba(0,212,255,.1);border-radius:30px;color:#00d4ff;font-weight:500;}
         .blog-cat{font-size:.7rem;color:#00d4ff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem;font-weight:600;}
         .blog-meta{font-size:.7rem;color:#666;display:inline-block;margin-top:.75rem;}
+        
+        @media(max-width:640px){
+            .card{padding:1rem;}
+            .card-icon{font-size:1.4rem;}
+            .service-card .card-icon{font-size:1.6rem;}
+            .card h3{font-size:0.9rem;}
+            .card p{font-size:0.75rem;}
+            .project-img{height:120px;}
+            .project-img i{font-size:2.2rem;}
+            .tag{font-size:0.55rem;padding:0.2rem 0.5rem;}
+            .blog-cat{font-size:0.6rem;}
+        }
         
         .contact{max-width:600px;margin:0;}
         @media(max-width:768px){.contact{text-align:center;margin:0 auto;}}
