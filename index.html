@@ -143,25 +143,47 @@
         @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
         .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
         
+        /* HIGH CONTRAST MODE - Complete */
         body.high-contrast{background:#000;color:#fff;}
-        body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a{background:#000;border-color:#fff;}
+        body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a,body.high-contrast .a11y-btn{background:#000;border-color:#fff;}
         body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
         body.high-contrast .ide-item.active{background:#fff;color:#000;}
         body.high-contrast .ide-item.active i{color:#000;}
         body.high-contrast .tag,body.high-contrast .blog-cat,body.high-contrast .card-icon,body.high-contrast .project-img i{color:#fff;}
         body.high-contrast .tag{background:#333;color:#fff;}
+        body.high-contrast .view-link,body.high-contrast .social a:hover{color:#fff;}
+        body.high-contrast .btn-primary{background:#fff;color:#000;}
+        body.high-contrast .progress-bar{background:#333;}
+        body.high-contrast .progress-fill{background:#fff;}
+        body.high-contrast .divider-label{color:#aaa;}
+        body.high-contrast .divider-percent{color:#fff;background:#000;}
+        body.high-contrast .card p,body.high-contrast .about-text p,body.high-contrast .contact p{color:#ddd;}
+        body.high-contrast footer{color:#aaa;border-top-color:#fff;}
         
+        /* LARGER TEXT MODE - Complete */
         body.large-text{font-size:1.2rem;}
-        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p{font-size:1rem;}
+        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .divider-label{font-size:1rem;}
         body.large-text .card h3{font-size:1.3rem;}
         body.large-text .section-header h2{font-size:clamp(1.8rem,7vw,2.5rem);}
         body.large-text .ide-logo{font-size:32px;}
         body.large-text .ide-item{font-size:24px;}
-        body.large-text .modal-content,.large-text .opt,.large-text .opt button{font-size:1rem;}
+        body.large-text .modal-header h3{font-size:1.4rem;}
+        body.large-text .view-link{font-size:1rem;}
+        body.large-text .btn{font-size:1rem;padding:0.6rem 1.4rem;}
+        body.large-text .tag{padding:0.3rem 0.8rem;}
         
-        body.dyslexic-font{font-family:'OpenDyslexic','Comic Sans MS','Chalkboard SE',sans-serif;letter-spacing:0.05em;word-spacing:0.1em;}
+        /* DYSLEXIC FONT MODE - Complete */
+        body.dyslexic-font,body.dyslexic-font *{font-family:'OpenDyslexic','Comic Sans MS','Chalkboard SE',sans-serif !important;}
+        body.dyslexic-font p,body.dyslexic-font li,body.dyslexic-font a,body.dyslexic-font .card p{letter-spacing:0.05em;word-spacing:0.1em;line-height:1.6;}
+        body.dyslexic-font h1,body.dyslexic-font h2,body.dyslexic-font h3{letter-spacing:0.03em;font-weight:700;}
         
-        body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
+        /* REDUCE MOTION MODE - Complete */
+        body.reduce-motion,body.reduce-motion *{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
+        body.reduce-motion .card:hover{transform:none!important;}
+        body.reduce-motion .fade-in{animation:none!important;opacity:1!important;transform:none!important;}
+        body.reduce-motion .progress-fill::after{animation:none!important;}
+        body.reduce-motion .ide-item:hover{transform:none!important;}
+        body.reduce-motion .social a:hover{transform:none!important;}
         
         @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}}
     </style>
