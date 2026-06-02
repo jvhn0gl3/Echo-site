@@ -7,12 +7,9 @@
     <meta name="author" content="V3" />
     <title>V3 | Digital Architect</title>
     <link rel="icon" type="image/png" href="https://cdn.john-ogletree.me/images/branding/logo.png" />
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <!-- Major Mono Display Font -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     <style>
-        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -29,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== CUSTOM CURSOR ===== */
         .cursor {
             width: 8px;
             height: 8px;
@@ -54,7 +50,6 @@
             .cursor, .cursor-follower { display: none; }
         }
 
-        /* ===== NAVIGATION ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -147,7 +142,6 @@
             .mobile-menu-btn { display: block; }
         }
 
-        /* ===== MAIN CONTENT ===== */
         main {
             width: 100%;
             padding: 5rem 5% 3rem;
@@ -157,7 +151,6 @@
         @media (max-width: 480px) { main { padding: 5rem 3% 2rem; } }
         section { margin-bottom: clamp(2rem, 8vw, 3rem); width: 100%; }
 
-        /* ===== PROGRESS DIVIDERS ===== */
         .section-divider, .section-divider-alt {
             width: 100%;
             margin: clamp(1rem, 5vw, 2rem) auto;
@@ -219,7 +212,6 @@
         .section-divider-alt .progress-fill { background: linear-gradient(90deg, #8b5cf6, #cba6f7); }
         @media (max-width: 768px) { .divider-percentage { top: -18px; } }
 
-        /* ===== CONTAINERS ===== */
         .about-content, .skills-container, .services-container, .projects-container, .blog-container, .contact-content {
             width: 100%;
             margin: 0 auto;
@@ -239,7 +231,6 @@
             font-size: clamp(0.7rem, 3vw, 0.8rem);
         }
 
-        /* ===== ABOUT ===== */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -270,7 +261,6 @@
         }
         @media (max-width: 768px) { .about-content { grid-template-columns: 1fr; gap: 1.5rem; } }
 
-        /* ===== SKILLS & SERVICES GRIDS ===== */
         .skills-grid, .services-grid, .projects-grid, .blog-grid {
             display: grid;
             gap: 0.75rem;
@@ -356,7 +346,6 @@
             margin-top: 0.5rem;
         }
 
-        /* ===== CONTACT ===== */
         .contact-content {
             text-align: left;
             max-width: 500px;
@@ -393,7 +382,6 @@
             transform: translateY(-2px);
         }
 
-        /* ===== FOOTER & BUTTONS ===== */
         .footer {
             text-align: center;
             padding: 1.5rem;
@@ -414,7 +402,6 @@
         }
         .view-all-link:hover { gap: 10px; text-decoration: underline; }
 
-        /* ===== ACCESSIBILITY ===== */
         .accessibility-btn {
             position: fixed;
             bottom: 1.5rem;
@@ -493,14 +480,12 @@
         }
         .accessibility-option button.active { background: #3b82f6; }
 
-        /* Animations */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .fade-in { animation: fadeInUp 0.4s ease forwards; }
 
-        /* Accessibility mode overrides */
         body.high-contrast { background: #000; color: #fff; }
         body.high-contrast .navbar, body.high-contrast .modal-content,
         body.high-contrast .skill-card, body.high-contrast .service-card,
@@ -541,7 +526,6 @@
 </nav>
 
 <main>
-    <!-- About Section -->
     <section id="about">
         <div class="about-content">
             <div class="about-text">
@@ -564,7 +548,6 @@
         <div class="divider-percentage" id="percent1">0%</div>
     </div>
 
-    <!-- Skills Section -->
     <section id="skills">
         <div class="skills-container">
             <div class="section-header"><h2>Technical Skills</h2><p>Technologies I work with</p></div>
@@ -578,7 +561,6 @@
         <div class="divider-percentage" id="percentSkills">0%</div>
     </div>
 
-    <!-- Services Section -->
     <section id="services">
         <div class="services-container">
             <div class="section-header"><h2>Professional Services</h2><p>What I offer</p></div>
@@ -592,7 +574,6 @@
         <div class="divider-percentage" id="percent2">0%</div>
     </div>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="projects-container">
             <div class="section-header"><h2>Featured Projects</h2><p>Some of my best work</p></div>
@@ -607,7 +588,6 @@
         <div class="divider-percentage" id="percent3">0%</div>
     </div>
 
-    <!-- Blog Section -->
     <section id="blog">
         <div class="blog-container">
             <div class="section-header"><h2>Latest Insights</h2><p>Thoughts on tech & design</p></div>
@@ -622,7 +602,6 @@
         <div class="divider-percentage" id="percent4">0%</div>
     </div>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="contact-content">
             <div class="section-header"><h2>Let's Work Together</h2><p>Have a project in mind?</p></div>
@@ -654,7 +633,6 @@
 
 <script>
     (function() {
-        // ---------- DATA ----------
         const skillsData = [
             { icon: "fa-solid fa-code", title: "Frontend", desc: "React, Vue, Angular, TypeScript" },
             { icon: "fa-solid fa-server", title: "Backend", desc: "Node.js, Python, Go, Java" },
@@ -700,7 +678,6 @@
             { name: "Discord", icon: "fa-brands fa-discord", url: "#" }
         ];
 
-        // ---------- RENDER FUNCTIONS ----------
         function renderSkills() {
             const container = document.getElementById('skillsGrid');
             if (container) {
@@ -766,7 +743,6 @@
             }
         }
 
-        // ---------- PROGRESS DIVIDERS ----------
         function updateProgressDividers() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
@@ -785,7 +761,6 @@
             });
         }
 
-        // ---------- MOBILE MENU ----------
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         let menuIcon = null;
@@ -803,7 +778,6 @@
             });
         });
 
-        // ---------- SMOOTH SCROLL ----------
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -812,9 +786,7 @@
             });
         });
 
-        // ---------- REVAMPED VIEW ALL BUTTONS (modal/dialog) ----------
         function showComingSoonModal(message) {
-            // Create a simple modal overlay dynamically
             const overlay = document.createElement('div');
             overlay.style.position = 'fixed';
             overlay.style.top = '0';
@@ -873,7 +845,6 @@
             });
         }
 
-        // Blog card click handler (individual posts)
         const blogGrid = document.getElementById('blogGrid');
         if (blogGrid) {
             blogGrid.addEventListener('click', (e) => {
@@ -882,7 +853,6 @@
             });
         }
 
-        // ---------- CUSTOM CURSOR ----------
         const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
         if (cursor && follower) {
@@ -892,7 +862,6 @@
             });
         }
 
-        // ---------- ACCESSIBILITY MODAL ----------
         const modal = document.getElementById('accessibilityModal');
         const openA11yBtn = document.getElementById('accessibilityBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
@@ -932,7 +901,6 @@
             updateButtonStates();
         }
 
-        // ---------- INTERSECTION OBSERVER (fade-in) ----------
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -942,7 +910,6 @@
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 
-        // ---------- INIT ----------
         function init() {
             renderSkills();
             renderServices();
@@ -957,7 +924,6 @@
         }
         init();
 
-        // Optional security: disable right-click and drag on images (can be removed if not needed)
         document.addEventListener('contextmenu', (e) => e.preventDefault());
         document.addEventListener('dragstart', (e) => e.preventDefault());
     })();
