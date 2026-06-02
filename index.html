@@ -104,7 +104,6 @@
         .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
         .service-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.6);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));box-shadow:0 15px 30px -10px rgba(0,212,255,.2);}
         
-        /* Pricing Card Specific Styles */
         .pricing-card{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.05));border-color:rgba(0,212,255,.2);position:relative;}
         .pricing-card.featured{border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,.2);transform:scale(1.02);}
         .pricing-card.featured:hover{transform:scale(1.02) translateY(-5px);}
@@ -119,11 +118,11 @@
         .pricing-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
         .pricing-card.featured .pricing-btn{background:#00ff41;color:#000;}
         
-        /* Products Card Specific Styles */
         .product-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(255,255,255,.03));border-color:rgba(0,212,255,.15);}
         .product-image{height:200px;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
         .product-image i{font-size:4rem;color:#00d4ff;}
         .product-price{font-size:1.5rem;font-weight:700;color:#00d4ff;margin:0.5rem 0;}
+        .product-original-price{font-size:0.8rem;color:#888;text-decoration:line-through;margin-left:0.5rem;}
         .product-badge{display:inline-block;background:rgba(0,212,255,.2);color:#00d4ff;padding:4px 10px;border-radius:30px;font-size:0.7rem;margin-bottom:1rem;}
         .external-badge{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(0,255,65,.15);color:#00ff41;padding:4px 10px;border-radius:30px;font-size:0.65rem;margin-top:0.5rem;}
         .product-btn{display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;border-radius:50px;color:#fff;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;}
@@ -190,7 +189,6 @@
         @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
         .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
         
-        /* HIGH CONTRAST MODE */
         body.high-contrast{background:#000;color:#fff;}
         body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a{background:#000;border-color:#fff;}
         body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
@@ -204,7 +202,6 @@
         body.high-contrast .pricing-features li i.fa-check{color:#00ff41;}
         body.high-contrast .external-badge{background:#333;color:#00ff41;}
         
-        /* LARGER TEXT MODE */
         body.large-text{font-size:1.2rem;}
         body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li,body.large-text .external-badge{font-size:1rem;}
         body.large-text .card h3{font-size:1.3rem;}
@@ -218,12 +215,10 @@
         body.large-text .product-price{font-size:1.8rem;}
         body.large-text .tag{padding:0.3rem 0.8rem;}
         
-        /* DYSLEXIC FONT MODE */
         body.dyslexic-font,body.dyslexic-font *{font-family:'OpenDyslexic','Comic Sans MS','Chalkboard SE',sans-serif !important;}
         body.dyslexic-font p,body.dyslexic-font li,body.dyslexic-font a,body.dyslexic-font .card p{letter-spacing:0.05em;word-spacing:0.1em;line-height:1.6;}
         body.dyslexic-font h1,body.dyslexic-font h2,body.dyslexic-font h3{letter-spacing:0.03em;font-weight:700;}
         
-        /* REDUCE MOTION MODE */
         body.reduce-motion,body.reduce-motion *{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
         body.reduce-motion .card:hover{transform:none!important;}
         body.reduce-motion .fade-in{animation:none!important;opacity:1!important;transform:none!important;}
@@ -377,15 +372,19 @@
                 <p>Payment and shipping handled securely by our partners</p>
             </div>
             <div class="grid products-grid">
-                <!-- Zazzle T-Shirt -->
+                <!-- Product 1: Static Snow Metallic Button (Zazzle) -->
                 <div class="card product-card">
-                    <div class="product-image"><i class="fa-solid fa-shirt"></i></div>
-                    <h3>V3 Logo T-Shirt</h3>
-                    <div class="product-price">$24.99</div>
-                    <div class="product-badge">🌐 Powered by Zazzle</div>
-                    <p>Premium cotton t-shirt with embroidered V3 logo. Available in multiple colors and sizes.</p>
+                    <div class="product-image"><i class="fa-solid fa-circle"></i></div>
+                    <h3>Static Snow - Metallic Button</h3>
+                    <div class="product-price">
+                        $3.24
+                        <span class="product-original-price">$3.60</span>
+                        <span style="font-size:0.7rem; color:#00ff41;"> (Save 10%)</span>
+                    </div>
+                    <div class="product-badge">✨ Powered by Zazzle</div>
+                    <p>Custom metallic button featuring the "Static Snow" design. 2-inch square button, perfect for bags, jackets, or collectors.</p>
                     <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Zazzle</div>
-                    <a href="https://www.zazzle.com/v3_logo_tshirt" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
                 </div>
 
                 <!-- Redbubble Poster -->
