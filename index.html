@@ -66,29 +66,34 @@
         .skills-grid{grid-template-columns:repeat(2,1fr);}
         .services-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .pricing-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+        .products-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
         .projects-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .blog-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         
         @media(max-width:900px){
             .pricing-grid{grid-template-columns:repeat(2,1fr);}
+            .products-grid{grid-template-columns:repeat(2,1fr);}
         }
         
         @media(max-width:768px){
             .skills-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .services-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .pricing-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+            .products-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .projects-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .blog-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
         }
         
         @media(max-width:640px){
             .pricing-grid{grid-template-columns:1fr;}
+            .products-grid{grid-template-columns:1fr;}
         }
         
         @media(max-width:480px){
             .skills-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .services-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .pricing-grid{grid-template-columns:1fr;gap:1rem;}
+            .products-grid{grid-template-columns:1fr;gap:1rem;}
             .projects-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .blog-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
         }
@@ -114,6 +119,16 @@
         .pricing-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
         .pricing-card.featured .pricing-btn{background:#00ff41;color:#000;}
         
+        /* Products Card Specific Styles */
+        .product-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(255,255,255,.03));border-color:rgba(0,212,255,.15);}
+        .product-image{height:200px;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+        .product-image i{font-size:4rem;color:#00d4ff;}
+        .product-price{font-size:1.5rem;font-weight:700;color:#00d4ff;margin:0.5rem 0;}
+        .product-badge{display:inline-block;background:rgba(0,212,255,.2);color:#00d4ff;padding:4px 10px;border-radius:30px;font-size:0.7rem;margin-bottom:1rem;}
+        .external-badge{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(0,255,65,.15);color:#00ff41;padding:4px 10px;border-radius:30px;font-size:0.65rem;margin-top:0.5rem;}
+        .product-btn{display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;border-radius:50px;color:#fff;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;}
+        .product-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
+        
         .card-icon{font-size:1.8rem;color:#00d4ff;margin-bottom:1rem;}
         .service-card .card-icon{font-size:2rem;}
         .card h3{font-size:1.1rem;margin-bottom:.75rem;font-weight:700;color:#fff;}
@@ -138,6 +153,9 @@
             .blog-cat{font-size:0.6rem;}
             .price{font-size:1.8rem;}
             .pricing-features li{font-size:0.75rem;}
+            .product-image{height:150px;}
+            .product-image i{font-size:3rem;}
+            .product-price{font-size:1.2rem;}
         }
         
         .contact{max-width:600px;margin:0;}
@@ -178,24 +196,26 @@
         body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
         body.high-contrast .ide-item.active{background:#fff;color:#000;}
         body.high-contrast .ide-item.active i{color:#000;}
-        body.high-contrast .tag,body.high-contrast .blog-cat,body.high-contrast .card-icon,body.high-contrast .project-img i{color:#fff;}
+        body.high-contrast .tag,body.high-contrast .blog-cat,body.high-contrast .card-icon,body.high-contrast .project-img i,body.high-contrast .product-image i{color:#fff;}
         body.high-contrast .tag{background:#333;color:#fff;}
         body.high-contrast .view-link,body.high-contrast .social a:hover{color:#fff;}
-        body.high-contrast .pricing-btn{background:#fff;color:#000;}
+        body.high-contrast .pricing-btn,body.high-contrast .product-btn{background:#fff;color:#000;}
         body.high-contrast .price{color:#fff;}
         body.high-contrast .pricing-features li i.fa-check{color:#00ff41;}
+        body.high-contrast .external-badge{background:#333;color:#00ff41;}
         
         /* LARGER TEXT MODE */
         body.large-text{font-size:1.2rem;}
-        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li{font-size:1rem;}
+        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li,body.large-text .external-badge{font-size:1rem;}
         body.large-text .card h3{font-size:1.3rem;}
         body.large-text .section-header h2{font-size:clamp(1.8rem,7vw,2.5rem);}
         body.large-text .ide-logo{font-size:32px;}
         body.large-text .ide-item{font-size:24px;}
         body.large-text .modal-header h3{font-size:1.4rem;}
         body.large-text .view-link{font-size:1rem;}
-        body.large-text .btn,.large-text .pricing-btn{font-size:1rem;padding:0.6rem 1.4rem;}
+        body.large-text .btn,.large-text .pricing-btn,.large-text .product-btn{font-size:1rem;padding:0.6rem 1.4rem;}
         body.large-text .price{font-size:2.8rem;}
+        body.large-text .product-price{font-size:1.8rem;}
         body.large-text .tag{padding:0.3rem 0.8rem;}
         
         /* DYSLEXIC FONT MODE */
@@ -228,6 +248,7 @@
         <div class="ide-item" data-section="skills" role="listitem" tabindex="0" aria-label="Skills section"><i class="fas fa-code" aria-hidden="true"></i><span class="visually-hidden">Skills</span></div>
         <div class="ide-item" data-section="services" role="listitem" tabindex="0" aria-label="Services section"><i class="fas fa-cogs" aria-hidden="true"></i><span class="visually-hidden">Services</span></div>
         <div class="ide-item" data-section="pricing" role="listitem" tabindex="0" aria-label="Pricing section"><i class="fas fa-tag" aria-hidden="true"></i><span class="visually-hidden">Pricing</span></div>
+        <div class="ide-item" data-section="products" role="listitem" tabindex="0" aria-label="Products section"><i class="fas fa-tshirt" aria-hidden="true"></i><span class="visually-hidden">Products</span></div>
         <div class="ide-item" data-section="projects" role="listitem" tabindex="0" aria-label="Projects section"><i class="fas fa-folder" aria-hidden="true"></i><span class="visually-hidden">Projects</span></div>
         <div class="ide-item" data-section="blog" role="listitem" tabindex="0" aria-label="Blog section"><i class="fas fa-newspaper" aria-hidden="true"></i><span class="visually-hidden">Blog</span></div>
         <div class="ide-item" data-section="contact" role="listitem" tabindex="0" aria-label="Contact section"><i class="fas fa-envelope" aria-hidden="true"></i><span class="visually-hidden">Contact</span></div>
@@ -291,11 +312,10 @@
                 <p>Choose the plan that fits your needs</p>
             </div>
             <div class="grid pricing-grid">
-                <!-- Starter Plan -->
                 <div class="card pricing-card">
                     <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
                     <h3>Starter</h3>
-                    <div class="price">$499<span class="price-period"></span></div>
+                    <div class="price">$499</div>
                     <p>Perfect for small businesses and startups</p>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> Custom 5-page website</li>
@@ -309,12 +329,11 @@
                     <button class="pricing-btn" data-plan="Starter">Get Started</button>
                 </div>
 
-                <!-- Professional Plan (Featured) -->
                 <div class="card pricing-card featured">
                     <div class="featured-badge">Most Popular</div>
                     <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
                     <h3>Professional</h3>
-                    <div class="price">$1,499<span class="price-period"></span></div>
+                    <div class="price">$1,499</div>
                     <p>Ideal for growing businesses</p>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> Custom 15-page website</li>
@@ -329,11 +348,10 @@
                     <button class="pricing-btn" data-plan="Professional">Get Started</button>
                 </div>
 
-                <!-- Enterprise Plan -->
                 <div class="card pricing-card">
                     <div class="card-icon"><i class="fa-solid fa-building"></i></div>
                     <h3>Enterprise</h3>
-                    <div class="price">Custom<span class="price-period"></span></div>
+                    <div class="price">Custom</div>
                     <p>For large organizations</p>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> Unlimited pages</li>
@@ -346,6 +364,83 @@
                         <li><i class="fas fa-check"></i> Custom SLAs</li>
                     </ul>
                     <button class="pricing-btn" data-plan="Enterprise">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION - Direct to Zazzle, Redbubble, etc. -->
+    <section id="products" aria-labelledby="products-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="products-heading">Official Merchandise</h2>
+                <p>Payment and shipping handled securely by our partners</p>
+            </div>
+            <div class="grid products-grid">
+                <!-- Zazzle T-Shirt -->
+                <div class="card product-card">
+                    <div class="product-image"><i class="fa-solid fa-shirt"></i></div>
+                    <h3>V3 Logo T-Shirt</h3>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-badge">🌐 Powered by Zazzle</div>
+                    <p>Premium cotton t-shirt with embroidered V3 logo. Available in multiple colors and sizes.</p>
+                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Zazzle</div>
+                    <a href="https://www.zazzle.com/v3_logo_tshirt" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                </div>
+
+                <!-- Redbubble Poster -->
+                <div class="card product-card">
+                    <div class="product-image"><i class="fa-solid fa-poster"></i></div>
+                    <h3>V3 Poster</h3>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-badge">🎨 Powered by Redbubble</div>
+                    <p>High-quality art print of the V3 logo design. Perfect for your workspace or studio.</p>
+                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Redbubble</div>
+                    <a href="https://www.redbubble.com/people/v3/shop" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                </div>
+
+                <!-- Printful Mug -->
+                <div class="card product-card">
+                    <div class="product-image"><i class="fa-solid fa-mug-hot"></i></div>
+                    <h3>V3 Coffee Mug</h3>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-badge">☕ Powered by Printful</div>
+                    <p>Start your day with V3. Ceramic mug with V3 branding. Dishwasher and microwave safe.</p>
+                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Printful</div>
+                    <a href="https://www.printful.com/listing/v3-mug" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                </div>
+
+                <!-- Spring Sticker -->
+                <div class="card product-card">
+                    <div class="product-image"><i class="fa-solid fa-sticker"></i></div>
+                    <h3>V3 Sticker Pack</h3>
+                    <div class="product-price">$8.99</div>
+                    <div class="product-badge">📦 Powered by Spring</div>
+                    <p>Vinyl sticker pack featuring the V3 logo. Weatherproof and durable for laptops, water bottles, and more.</p>
+                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Spring</div>
+                    <a href="https://teespring.com/v3-sticker-pack" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                </div>
+
+                <!-- Fourthwall Hoodie -->
+                <div class="card product-card">
+                    <div class="product-image"><i class="fa-solid fa-hoodie"></i></div>
+                    <h3>V3 Hoodie</h3>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-badge">🧥 Powered by Fourthwall</div>
+                    <p>Premium fleece hoodie with embroidered V3 logo. Available in multiple colors S-XXL.</p>
+                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Fourthwall</div>
+                    <a href="https://fourthwall.com/v3-hoodie" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                </div>
+
+                <!-- Shopify Hat -->
+                <div class="card product-card">
+                    <div class="product-image"><i class="fa-solid fa-hat-cowboy"></i></div>
+                    <h3>V3 Snapback Hat</h3>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-badge">🧢 Powered by Shopify</div>
+                    <p>Structured snapback hat with embroidered V3 logo. One size fits most, adjustable back.</p>
+                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Shopify</div>
+                    <a href="https://v3-merch.myshopify.com/products/hat" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
                 </div>
             </div>
         </div>
@@ -417,7 +512,7 @@
         
         let homeLogo=document.getElementById('homeLogoLink');if(homeLogo){homeLogo.addEventListener('click',(e)=>{e.preventDefault();scrollToSection('about');});homeLogo.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();scrollToSection('about');}});}
         
-        window.addEventListener('scroll',()=>{let scrollPos=window.scrollY+100;let sections=['about','skills','services','pricing','projects','blog','contact'];let current='';for(let s of sections){let sec=document.getElementById(s);if(sec&&sec.offsetTop<=scrollPos)current=s;}if(current)setActive(current);});
+        window.addEventListener('scroll',()=>{let scrollPos=window.scrollY+100;let sections=['about','skills','services','pricing','products','projects','blog','contact'];let current='';for(let s of sections){let sec=document.getElementById(s);if(sec&&sec.offsetTop<=scrollPos)current=s;}if(current)setActive(current);});
         setActive('about');
         
         let a11yNavBtn=document.getElementById('a11yNavBtn');if(a11yNavBtn){a11yNavBtn.addEventListener('click',()=>{document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();});a11yNavBtn.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();}});}
@@ -429,7 +524,7 @@
         let viewProjects=document.getElementById('view-projects');if(viewProjects){viewProjects.addEventListener('click',(e)=>{e.preventDefault();window.open('https://github.com/v3','_blank');});}
         let viewBlog=document.getElementById('view-blog');if(viewBlog){viewBlog.addEventListener('click',(e)=>{e.preventDefault();modal('All Blog Posts');});}
         
-        function modal(msg){let o=document.createElement('div');o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Information modal');o.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;';o.innerHTML=`<div style="background:#0f0f0f;border:1px solid rgba(0,212,255,.3);border-radius:24px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 25px 40px -12px rgba(0,212,255,.2);"><i class="fas fa-code-branch" style="font-size:3rem;color:#00d4ff;margin-bottom:1rem;" aria-hidden="true"></i><h3 style="margin-bottom:.5rem;color:#fff;">${msg}</h3><p style="color:#a0a0a0;margin-bottom:1.5rem;">This feature is currently under development. Stay tuned!</p><button id="closeModalBtn" style="background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;padding:.6rem 1.8rem;border-radius:40px;color:#fff;font-weight:600;cursor:pointer;" aria-label="Close modal">Got it</button></div>`;document.body.appendChild(o);setTimeout(()=>o.style.opacity='1',10);let close=o.querySelector('#closeModalBtn');let rm=()=>{o.style.opacity='0';setTimeout(()=>o.remove(),200);};close.onclick=rm;close.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();rm();}});o.onclick=e=>{if(e.target===o)rm();};}
+        function modal(msg){let o=document.createElement('div');o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Information modal');o.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;';o.innerHTML=`<div style="background:#0f0f0f;border:1px solid rgba(0,212,255,.3);border-radius:24px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 25px 40px -12px rgba(0,212,255,.2);"><i class="fas fa-code-branch" style="font-size:3rem;color:#00d4ff;margin-bottom:1rem;" aria-hidden="true"></i><h3 style="margin-bottom:.5rem;color:#fff;">${msg}</h3><p style="color:#a0a0a0;margin-bottom:1.5rem;">Redirecting you to our partner's store...</p><button id="closeModalBtn" style="background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;padding:.6rem 1.8rem;border-radius:40px;color:#fff;font-weight:600;cursor:pointer;" aria-label="Close modal">Got it</button></div>`;document.body.appendChild(o);setTimeout(()=>o.style.opacity='1',10);let close=o.querySelector('#closeModalBtn');let rm=()=>{o.style.opacity='0';setTimeout(()=>o.remove(),200);};close.onclick=rm;close.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();rm();}});o.onclick=e=>{if(e.target===o)rm();};}
         
         let cursor=document.querySelector('.cursor'),follower=document.querySelector('.cursor-follower');if(cursor&&follower)document.addEventListener('mousemove',e=>{cursor.style.transform=`translate(${e.clientX-4}px,${e.clientY-4}px)`;follower.style.transform=`translate(${e.clientX-20}px,${e.clientY-20}px)`;});
         
