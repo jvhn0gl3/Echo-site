@@ -111,8 +111,8 @@
         .modal-close{background:none;border:none;color:#aaa;font-size:1.5rem;cursor:pointer;}
         .modal-close:hover{color:#00d4ff;}
         .opt{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;}
-        .opt button{padding:.25rem 1rem;background:rgba(255,255,255,.1);border:none;border-radius:30px;color:#fff;cursor:pointer;font-size:.8rem;}
-        .opt button.active{background:#00d4ff;color:#000;}
+        .opt button{padding:.25rem 1rem;background:rgba(255,255,255,.1);border:none;border-radius:30px;color:#fff;cursor:pointer;font-size:.8rem;transition:all .2s;font-weight:500;}
+        .opt button.active{background:#00ff41;color:#000;box-shadow:0 0 8px rgba(0,255,65,.3);}
         
         @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
         .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
@@ -278,10 +278,10 @@
 <div id="a11yModal" class="modal">
     <div class="modal-content">
         <div class="modal-header"><h3><i class="fas fa-universal-access"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn">&times;</button></div>
-        <div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn">Toggle</button></div>
-        <div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn">Toggle</button></div>
-        <div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Toggle</button></div>
-        <div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Toggle</button></div>
+        <div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn">Off</button></div>
+        <div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn">Off</button></div>
+        <div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Off</button></div>
+        <div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Off</button></div>
     </div>
 </div>
 
@@ -301,8 +301,6 @@
         
         let a11yNavBtn=document.getElementById('a11yNavBtn');if(a11yNavBtn){a11yNavBtn.addEventListener('click',()=>{document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();});}
         
-        function openLink(url){if(url&&url!=='#'){window.open(url,'_blank');}else{modal('Coming Soon');}}
-        
         document.querySelectorAll('.project-card-link').forEach(card=>{card.addEventListener('click',()=>{modal('Project Details');});});
         document.querySelectorAll('.blog-card-link').forEach(card=>{card.addEventListener('click',()=>{modal('Full Article');});});
         
@@ -317,8 +315,20 @@
         let closeModal=()=>{modalEl.classList.remove('active');document.body.style.overflow='';};
         closeBtn?.addEventListener('click',closeModal);modalEl?.addEventListener('click',e=>{if(e.target===modalEl)closeModal();});
         
-        function updateBtns(){['highContrastBtn','largeTextBtn','dyslexicFontBtn','reduceMotionBtn'].forEach(id=>{let btn=document.getElementById(id);if(btn)btn.classList.toggle('active',document.body.classList.contains(id.replace('Btn','').replace(/([A-Z])/g,'-$1').toLowerCase().slice(1)));});}
         let hc=document.getElementById('highContrastBtn'),lt=document.getElementById('largeTextBtn'),df=document.getElementById('dyslexicFontBtn'),rm=document.getElementById('reduceMotionBtn');
+        
+        function updateBtns(){
+            let highContrastActive=document.body.classList.contains('high-contrast');
+            let largeTextActive=document.body.classList.contains('large-text');
+            let dyslexicActive=document.body.classList.contains('dyslexic-font');
+            let reduceMotionActive=document.body.classList.contains('reduce-motion');
+            
+            if(hc){hc.textContent=highContrastActive?'On':'Off';hc.classList.toggle('active',highContrastActive);}
+            if(lt){lt.textContent=largeTextActive?'On':'Off';lt.classList.toggle('active',largeTextActive);}
+            if(df){df.textContent=dyslexicActive?'On':'Off';df.classList.toggle('active',dyslexicActive);}
+            if(rm){rm.textContent=reduceMotionActive?'On':'Off';rm.classList.toggle('active',reduceMotionActive);}
+        }
+        
         hc?.addEventListener('click',()=>{document.body.classList.toggle('high-contrast');localStorage.setItem('highContrast',document.body.classList.contains('high-contrast'));updateBtns();});
         lt?.addEventListener('click',()=>{document.body.classList.toggle('large-text');localStorage.setItem('largeText',document.body.classList.contains('large-text'));updateBtns();});
         df?.addEventListener('click',()=>{document.body.classList.toggle('dyslexic-font');localStorage.setItem('dyslexicFont',document.body.classList.contains('dyslexic-font'));updateBtns();});
