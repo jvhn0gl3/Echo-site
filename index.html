@@ -65,19 +65,30 @@
         .grid{display:grid;gap:1.25rem;width:100%;}
         .skills-grid{grid-template-columns:repeat(2,1fr);}
         .services-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+        .pricing-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
         .projects-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .blog-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+        
+        @media(max-width:900px){
+            .pricing-grid{grid-template-columns:repeat(2,1fr);}
+        }
         
         @media(max-width:768px){
             .skills-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .services-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+            .pricing-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .projects-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .blog-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+        }
+        
+        @media(max-width:640px){
+            .pricing-grid{grid-template-columns:1fr;}
         }
         
         @media(max-width:480px){
             .skills-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .services-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
+            .pricing-grid{grid-template-columns:1fr;gap:1rem;}
             .projects-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .blog-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
         }
@@ -87,6 +98,22 @@
         .card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.5);box-shadow:0 15px 30px -10px rgba(0,212,255,.15);background:rgba(255,255,255,.05);}
         .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
         .service-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.6);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));box-shadow:0 15px 30px -10px rgba(0,212,255,.2);}
+        
+        /* Pricing Card Specific Styles */
+        .pricing-card{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.05));border-color:rgba(0,212,255,.2);position:relative;}
+        .pricing-card.featured{border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,.2);transform:scale(1.02);}
+        .pricing-card.featured:hover{transform:scale(1.02) translateY(-5px);}
+        .featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#00d4ff;color:#000;padding:4px 12px;border-radius:30px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+        .price{font-size:2.5rem;font-weight:800;color:#00d4ff;margin:1rem 0 0.5rem;}
+        .price small{font-size:0.9rem;color:#888;font-weight:400;}
+        .pricing-features{list-style:none;margin:1.5rem 0;text-align:left;}
+        .pricing-features li{padding:0.5rem 0;color:#a0a0a0;font-size:0.85rem;display:flex;align-items:center;gap:0.5rem;}
+        .pricing-features li i{color:#00ff41;font-size:0.8rem;width:20px;}
+        .pricing-features li i.fa-times{color:#ff4444;}
+        .pricing-btn{margin-top:1rem;padding:0.75rem 1.5rem;background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;border-radius:50px;color:#fff;font-weight:600;cursor:pointer;transition:all .3s;width:100%;}
+        .pricing-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
+        .pricing-card.featured .pricing-btn{background:#00ff41;color:#000;}
+        
         .card-icon{font-size:1.8rem;color:#00d4ff;margin-bottom:1rem;}
         .service-card .card-icon{font-size:2rem;}
         .card h3{font-size:1.1rem;margin-bottom:.75rem;font-weight:700;color:#fff;}
@@ -109,6 +136,8 @@
             .project-img i{font-size:2.2rem;}
             .tag{font-size:0.55rem;padding:0.2rem 0.5rem;}
             .blog-cat{font-size:0.6rem;}
+            .price{font-size:1.8rem;}
+            .pricing-features li{font-size:0.75rem;}
         }
         
         .contact{max-width:600px;margin:0;}
@@ -143,47 +172,44 @@
         @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
         .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
         
-        /* HIGH CONTRAST MODE - Complete */
+        /* HIGH CONTRAST MODE */
         body.high-contrast{background:#000;color:#fff;}
-        body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a,body.high-contrast .a11y-btn{background:#000;border-color:#fff;}
+        body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a{background:#000;border-color:#fff;}
         body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
         body.high-contrast .ide-item.active{background:#fff;color:#000;}
         body.high-contrast .ide-item.active i{color:#000;}
         body.high-contrast .tag,body.high-contrast .blog-cat,body.high-contrast .card-icon,body.high-contrast .project-img i{color:#fff;}
         body.high-contrast .tag{background:#333;color:#fff;}
         body.high-contrast .view-link,body.high-contrast .social a:hover{color:#fff;}
-        body.high-contrast .btn-primary{background:#fff;color:#000;}
-        body.high-contrast .progress-bar{background:#333;}
-        body.high-contrast .progress-fill{background:#fff;}
-        body.high-contrast .divider-label{color:#aaa;}
-        body.high-contrast .divider-percent{color:#fff;background:#000;}
-        body.high-contrast .card p,body.high-contrast .about-text p,body.high-contrast .contact p{color:#ddd;}
-        body.high-contrast footer{color:#aaa;border-top-color:#fff;}
+        body.high-contrast .pricing-btn{background:#fff;color:#000;}
+        body.high-contrast .price{color:#fff;}
+        body.high-contrast .pricing-features li i.fa-check{color:#00ff41;}
         
-        /* LARGER TEXT MODE - Complete */
+        /* LARGER TEXT MODE */
         body.large-text{font-size:1.2rem;}
-        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .divider-label{font-size:1rem;}
+        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li{font-size:1rem;}
         body.large-text .card h3{font-size:1.3rem;}
         body.large-text .section-header h2{font-size:clamp(1.8rem,7vw,2.5rem);}
         body.large-text .ide-logo{font-size:32px;}
         body.large-text .ide-item{font-size:24px;}
         body.large-text .modal-header h3{font-size:1.4rem;}
         body.large-text .view-link{font-size:1rem;}
-        body.large-text .btn{font-size:1rem;padding:0.6rem 1.4rem;}
+        body.large-text .btn,.large-text .pricing-btn{font-size:1rem;padding:0.6rem 1.4rem;}
+        body.large-text .price{font-size:2.8rem;}
         body.large-text .tag{padding:0.3rem 0.8rem;}
         
-        /* DYSLEXIC FONT MODE - Complete */
+        /* DYSLEXIC FONT MODE */
         body.dyslexic-font,body.dyslexic-font *{font-family:'OpenDyslexic','Comic Sans MS','Chalkboard SE',sans-serif !important;}
         body.dyslexic-font p,body.dyslexic-font li,body.dyslexic-font a,body.dyslexic-font .card p{letter-spacing:0.05em;word-spacing:0.1em;line-height:1.6;}
         body.dyslexic-font h1,body.dyslexic-font h2,body.dyslexic-font h3{letter-spacing:0.03em;font-weight:700;}
         
-        /* REDUCE MOTION MODE - Complete */
+        /* REDUCE MOTION MODE */
         body.reduce-motion,body.reduce-motion *{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
         body.reduce-motion .card:hover{transform:none!important;}
         body.reduce-motion .fade-in{animation:none!important;opacity:1!important;transform:none!important;}
-        body.reduce-motion .progress-fill::after{animation:none!important;}
         body.reduce-motion .ide-item:hover{transform:none!important;}
         body.reduce-motion .social a:hover{transform:none!important;}
+        body.reduce-motion .pricing-card.featured{transform:none!important;}
         
         @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}}
     </style>
@@ -201,6 +227,7 @@
         <div class="ide-item" data-section="about" role="listitem" tabindex="0" aria-label="About section"><i class="fas fa-user" aria-hidden="true"></i><span class="visually-hidden">About</span></div>
         <div class="ide-item" data-section="skills" role="listitem" tabindex="0" aria-label="Skills section"><i class="fas fa-code" aria-hidden="true"></i><span class="visually-hidden">Skills</span></div>
         <div class="ide-item" data-section="services" role="listitem" tabindex="0" aria-label="Services section"><i class="fas fa-cogs" aria-hidden="true"></i><span class="visually-hidden">Services</span></div>
+        <div class="ide-item" data-section="pricing" role="listitem" tabindex="0" aria-label="Pricing section"><i class="fas fa-tag" aria-hidden="true"></i><span class="visually-hidden">Pricing</span></div>
         <div class="ide-item" data-section="projects" role="listitem" tabindex="0" aria-label="Projects section"><i class="fas fa-folder" aria-hidden="true"></i><span class="visually-hidden">Projects</span></div>
         <div class="ide-item" data-section="blog" role="listitem" tabindex="0" aria-label="Blog section"><i class="fas fa-newspaper" aria-hidden="true"></i><span class="visually-hidden">Blog</span></div>
         <div class="ide-item" data-section="contact" role="listitem" tabindex="0" aria-label="Contact section"><i class="fas fa-envelope" aria-hidden="true"></i><span class="visually-hidden">Contact</span></div>
@@ -252,6 +279,74 @@
                 <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div><h3>Performance Optimization</h3><p>Speed up your applications and improve user experience.</p></div>
                 <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-shield-alt" aria-hidden="true"></i></div><h3>Security Audits</h3><p>Identify vulnerabilities and secure your applications.</p></div>
                 <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div><h3>Maintenance & Support</h3><p>Ongoing support and continuous improvement for your projects.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING PLANS SECTION -->
+    <section id="pricing" aria-labelledby="pricing-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="pricing-heading">Simple, Transparent Pricing</h2>
+                <p>Choose the plan that fits your needs</p>
+            </div>
+            <div class="grid pricing-grid">
+                <!-- Starter Plan -->
+                <div class="card pricing-card">
+                    <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h3>Starter</h3>
+                    <div class="price">$499<span class="price-period"></span></div>
+                    <p>Perfect for small businesses and startups</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Custom 5-page website</li>
+                        <li><i class="fas fa-check"></i> Mobile responsive design</li>
+                        <li><i class="fas fa-check"></i> SEO optimization</li>
+                        <li><i class="fas fa-check"></i> Contact form integration</li>
+                        <li><i class="fas fa-check"></i> 1 month support</li>
+                        <li><i class="fas fa-times"></i> E-commerce functionality</li>
+                        <li><i class="fas fa-times"></i> Custom backend</li>
+                    </ul>
+                    <button class="pricing-btn" data-plan="Starter">Get Started</button>
+                </div>
+
+                <!-- Professional Plan (Featured) -->
+                <div class="card pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Professional</h3>
+                    <div class="price">$1,499<span class="price-period"></span></div>
+                    <p>Ideal for growing businesses</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Custom 15-page website</li>
+                        <li><i class="fas fa-check"></i> Mobile responsive design</li>
+                        <li><i class="fas fa-check"></i> Advanced SEO optimization</li>
+                        <li><i class="fas fa-check"></i> Custom contact forms + CRM</li>
+                        <li><i class="fas fa-check"></i> 3 months support</li>
+                        <li><i class="fas fa-check"></i> E-commerce ready</li>
+                        <li><i class="fas fa-check"></i> API integrations</li>
+                        <li><i class="fas fa-check"></i> Performance analytics</li>
+                    </ul>
+                    <button class="pricing-btn" data-plan="Professional">Get Started</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="card pricing-card">
+                    <div class="card-icon"><i class="fa-solid fa-building"></i></div>
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom<span class="price-period"></span></div>
+                    <p>For large organizations</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited pages</li>
+                        <li><i class="fas fa-check"></i> Full-stack custom development</li>
+                        <li><i class="fas fa-check"></i> Enterprise-grade security</li>
+                        <li><i class="fas fa-check"></i> Scalable cloud infrastructure</li>
+                        <li><i class="fas fa-check"></i> Dedicated support team</li>
+                        <li><i class="fas fa-check"></i> 12 months support + maintenance</li>
+                        <li><i class="fas fa-check"></i> Team training sessions</li>
+                        <li><i class="fas fa-check"></i> Custom SLAs</li>
+                    </ul>
+                    <button class="pricing-btn" data-plan="Enterprise">Contact Us</button>
+                </div>
             </div>
         </div>
     </section>
@@ -322,12 +417,14 @@
         
         let homeLogo=document.getElementById('homeLogoLink');if(homeLogo){homeLogo.addEventListener('click',(e)=>{e.preventDefault();scrollToSection('about');});homeLogo.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();scrollToSection('about');}});}
         
-        window.addEventListener('scroll',()=>{let scrollPos=window.scrollY+100;let sections=['about','skills','services','projects','blog','contact'];let current='';for(let s of sections){let sec=document.getElementById(s);if(sec&&sec.offsetTop<=scrollPos)current=s;}if(current)setActive(current);});
+        window.addEventListener('scroll',()=>{let scrollPos=window.scrollY+100;let sections=['about','skills','services','pricing','projects','blog','contact'];let current='';for(let s of sections){let sec=document.getElementById(s);if(sec&&sec.offsetTop<=scrollPos)current=s;}if(current)setActive(current);});
         setActive('about');
         
         let a11yNavBtn=document.getElementById('a11yNavBtn');if(a11yNavBtn){a11yNavBtn.addEventListener('click',()=>{document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();});a11yNavBtn.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();}});}
         
         document.querySelectorAll('.project-card-link, .blog-card-link').forEach(card=>{card.addEventListener('click',()=>{modal('Project Details');});card.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();modal('Project Details');}});});
+        
+        document.querySelectorAll('.pricing-btn').forEach(btn=>{btn.addEventListener('click',()=>{let plan=btn.getAttribute('data-plan');modal(plan + ' Plan - Get in touch for details!');});});
         
         let viewProjects=document.getElementById('view-projects');if(viewProjects){viewProjects.addEventListener('click',(e)=>{e.preventDefault();window.open('https://github.com/v3','_blank');});}
         let viewBlog=document.getElementById('view-blog');if(viewBlog){viewBlog.addEventListener('click',(e)=>{e.preventDefault();modal('All Blog Posts');});}
