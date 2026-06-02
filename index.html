@@ -103,9 +103,6 @@
         .view-link{display:inline-flex;align-items:center;gap:8px;color:#00d4ff;text-decoration:none;font-size:.85rem;font-weight:500;transition:gap .3s;cursor:pointer;}
         .view-link:hover{gap:12px;text-decoration:underline;}
         
-        .a11y-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:#1a1a1a;border:1px solid rgba(0,212,255,.3);border-radius:50%;color:#00d4ff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:100;font-size:1.2rem;}
-        .a11y-btn:hover{border-color:#00d4ff;transform:scale(1.05);background:#00d4ff10;}
-        
         .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;}
         .modal.active{opacity:1;visibility:visible;}
         .modal-content{background:#0f0f0f;border:1px solid rgba(0,212,255,.2);border-radius:24px;padding:2rem;max-width:380px;width:90%;text-align:center;}
@@ -121,7 +118,7 @@
         .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
         
         body.high-contrast{background:#000;color:#fff;}
-        body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a,body.high-contrast .a11y-btn{background:#000;border-color:#fff;}
+        body.high-contrast .ide-bar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a{background:#000;border-color:#fff;}
         body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
         body.large-text{font-size:1.2rem;}
         body.large-text p,body.large-text .card p{font-size:1rem;}
@@ -278,8 +275,6 @@
 
 <footer><p>© 2024 V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i></p></footer>
 
-<button class="a11y-btn" id="a11yBtn"><i class="fas fa-universal-access"></i></button>
-
 <div id="a11yModal" class="modal">
     <div class="modal-content">
         <div class="modal-header"><h3><i class="fas fa-universal-access"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn">&times;</button></div>
@@ -318,10 +313,9 @@
         
         let cursor=document.querySelector('.cursor'),follower=document.querySelector('.cursor-follower');if(cursor&&follower)document.addEventListener('mousemove',e=>{cursor.style.transform=`translate(${e.clientX-4}px,${e.clientY-4}px)`;follower.style.transform=`translate(${e.clientX-20}px,${e.clientY-20}px)`;});
         
-        let modalEl=document.getElementById('a11yModal'),openBtn=document.getElementById('a11yBtn'),closeBtn=document.getElementById('closeModalBtn');
-        let openModal=()=>{modalEl.classList.add('active');document.body.style.overflow='hidden';updateBtns();};
+        let modalEl=document.getElementById('a11yModal'),closeBtn=document.getElementById('closeModalBtn');
         let closeModal=()=>{modalEl.classList.remove('active');document.body.style.overflow='';};
-        openBtn?.addEventListener('click',openModal);closeBtn?.addEventListener('click',closeModal);modalEl?.addEventListener('click',e=>{if(e.target===modalEl)closeModal();});
+        closeBtn?.addEventListener('click',closeModal);modalEl?.addEventListener('click',e=>{if(e.target===modalEl)closeModal();});
         
         function updateBtns(){['highContrastBtn','largeTextBtn','dyslexicFontBtn','reduceMotionBtn'].forEach(id=>{let btn=document.getElementById(id);if(btn)btn.classList.toggle('active',document.body.classList.contains(id.replace('Btn','').replace(/([A-Z])/g,'-$1').toLowerCase().slice(1)));});}
         let hc=document.getElementById('highContrastBtn'),lt=document.getElementById('largeTextBtn'),df=document.getElementById('dyslexicFontBtn'),rm=document.getElementById('reduceMotionBtn');
