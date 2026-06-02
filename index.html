@@ -10,538 +10,116 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#050505;color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;line-height:1.5;scroll-behavior:smooth;width:100%;overflow-x:hidden;}
+        
+        .cursor{width:8px;height:8px;background:#00d4ff;border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .1s;}
+        .cursor-follower{width:40px;height:40px;border:2px solid rgba(0,212,255,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform .2s;}
+        @media(max-width:768px){.cursor,.cursor-follower{display:none;}}
+        
+        nav{position:fixed;top:0;left:0;right:0;padding:1rem 5%;background:rgba(5,5,5,.85);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(0,212,255,.2);display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-size:clamp(1.2rem,5vw,1.5rem);font-weight:800;background:linear-gradient(135deg,#00d4ff,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;font-family:'Major Mono Display',monospace;letter-spacing:2px;}
+        .nav-links{display:flex;gap:clamp(1rem,3vw,2rem);list-style:none;}
+        .nav-links a{color:#a0a0a0;text-decoration:none;font-weight:500;transition:.3s;font-size:clamp(.75rem,3vw,.9rem);white-space:nowrap;position:relative;}
+        .nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,#00d4ff,#7c3aed);transition:width .3s;}
+        .nav-links a:hover::after{width:100%;}
+        .nav-links a:hover{color:#00d4ff;}
+        .mobile-btn{display:none;background:none;border:none;color:#fff;font-size:clamp(1.2rem,5vw,1.5rem);cursor:pointer;}
+        @media(max-width:768px){
+            nav{padding:1rem 5%;}
+            .nav-links{position:fixed;top:65px;left:-100%;width:100%;height:calc(100vh - 65px);background:rgba(5,5,5,.98);backdrop-filter:blur(20px);flex-direction:column;gap:1.5rem;padding:2rem;transition:left .3s;z-index:99;align-items:center;justify-content:center;}
+            .nav-links.active{left:0;}
+            .nav-links a{font-size:1.3rem;padding:.75rem;display:block;background:rgba(255,255,255,.03);border-radius:12px;}
+            .mobile-btn{display:block;}
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
-            background: #050505;
-            color: #e8e8e8;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .cursor {
-            width: 8px;
-            height: 8px;
-            background: #00d4ff;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-        }
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease;
-        }
-        @media (max-width: 768px) {
-            .cursor, .cursor-follower { display: none; }
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        .nav-container {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            font-family: 'Major Mono Display', monospace;
-            letter-spacing: 2px;
-        }
-        .nav-links {
-            display: flex;
-            gap: clamp(1rem, 3vw, 2rem);
-            list-style: none;
-        }
-        .nav-links a {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: clamp(0.75rem, 3vw, 0.9rem);
-            white-space: nowrap;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, #00d4ff, #7c3aed);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: #00d4ff; }
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        .mobile-menu-btn:hover { transform: scale(1.1); }
-
-        @media (max-width: 768px) {
-            .navbar { padding: 1rem 5%; }
-            .nav-links {
-                position: fixed;
-                top: 65px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 65px);
-                background: rgba(5, 5, 5, 0.98);
-                backdrop-filter: blur(20px);
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 2rem;
-                transition: left 0.3s ease-in-out;
-                z-index: 99;
-                align-items: center;
-                justify-content: center;
-            }
-            .nav-links.active { left: 0; }
-            .nav-links li { width: 100%; text-align: center; }
-            .nav-links a {
-                font-size: 1.3rem;
-                font-weight: 600;
-                padding: 0.75rem;
-                display: block;
-                background: rgba(255, 255, 255, 0.03);
-                border-radius: 12px;
-                white-space: normal;
-            }
-            .nav-links a:hover {
-                background: rgba(0, 212, 255, 0.1);
-                color: #00d4ff;
-                transform: translateY(-2px);
-            }
-            .mobile-menu-btn { display: block; }
-        }
-
-        main {
-            width: 100%;
-            padding: 6rem 5% 3rem;
-            overflow-x: hidden;
-        }
-        @media (max-width: 640px) { main { padding: 6rem 4% 2rem; } }
-        @media (max-width: 480px) { main { padding: 6rem 3% 2rem; } }
-        section { margin-bottom: clamp(3rem, 10vw, 5rem); width: 100%; }
-
-        .section-divider, .section-divider-alt {
-            width: 100%;
-            margin: clamp(2rem, 6vw, 3rem) auto;
-            position: relative;
-            cursor: pointer;
-        }
-        .progress-bar-container {
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #00d4ff, #7c3aed);
-            border-radius: 2px;
-            transition: width 0.4s ease-out;
-            position: relative;
-        }
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            filter: blur(2px);
-            animation: glow 1.5s ease-in-out infinite;
-        }
-        @keyframes glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        .divider-label {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.75rem;
-            font-size: clamp(0.55rem, 3vw, 0.7rem);
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-        }
-        .divider-percentage {
-            position: absolute;
-            top: -24px;
-            right: 0;
-            font-size: clamp(0.65rem, 3vw, 0.75rem);
-            color: #00d4ff;
-            font-weight: 700;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 0.15rem 0.5rem;
-            border-radius: 20px;
-            font-family: monospace;
-            backdrop-filter: blur(4px);
-        }
-        .section-divider-alt .progress-bar-container { background: rgba(124, 58, 237, 0.1); }
-        .section-divider-alt .progress-fill { background: linear-gradient(90deg, #7c3aed, #c084fc); }
-        @media (max-width: 768px) { .divider-percentage { top: -20px; } }
-
-        .about-content, .skills-container, .services-container, .projects-container, .blog-container, .contact-content {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .section-header {
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-        @media (max-width: 768px) { .section-header { text-align: center; } }
-        .section-header h2 {
-            font-size: clamp(1.5rem, 6vw, 2rem);
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ffffff, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .section-header p {
-            color: #888;
-            font-size: clamp(0.8rem, 3.5vw, 0.95rem);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(2rem, 6vw, 4rem);
-            align-items: center;
-        }
-        .about-text { text-align: left; }
-        @media (max-width: 768px) { .about-text { text-align: center; } }
-        .about-text p {
-            color: #c0c0c0;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-            font-size: clamp(0.9rem, 4vw, 1rem);
-            max-width: 500px;
-        }
-        @media (max-width: 768px) { .about-text p { margin-left: auto; margin-right: auto; } }
-        .about-image {
-            display: flex;
-            justify-content: flex-end;
-        }
-        @media (max-width: 768px) { .about-image { justify-content: center; } }
-        .about-image img {
-            width: 100%;
-            max-width: min(320px, 80%);
-            border-radius: 24px;
-            display: block;
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            box-shadow: 0 20px 35px -10px rgba(0, 212, 255, 0.2);
-            transition: transform 0.3s ease;
-        }
-        .about-image img:hover { transform: scale(1.02); }
-        @media (max-width: 768px) { .about-content { grid-template-columns: 1fr; gap: 2rem; } }
-
-        .skills-grid, .services-grid, .projects-grid, .blog-grid {
-            display: grid;
-            gap: 1.25rem;
-            width: 100%;
-        }
-        .skills-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
-        .services-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.5rem; }
-        .projects-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1.5rem; }
-        .blog-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem; }
-
-        .skill-card, .service-card, .project-card, .blog-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-            text-align: center;
-            backdrop-filter: blur(4px);
-        }
-        .skill-card:hover, .project-card:hover, .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 15px 30px -10px rgba(0, 212, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .service-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-color: rgba(0, 212, 255, 0.15);
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.6);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            box-shadow: 0 15px 30px -10px rgba(0, 212, 255, 0.2);
-        }
-        .skill-icon, .service-icon {
-            font-size: 1.8rem;
-            color: #00d4ff;
-            margin-bottom: 1rem;
-        }
-        .service-icon { font-size: 2rem; }
-        .skill-card h3, .service-card h3, .project-card h3, .blog-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        .skill-card p, .service-card p, .project-card p, .blog-card p {
-            color: #a0a0a0;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-        .project-image {
-            height: 160px;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 16px;
-            margin-bottom: 1.25rem;
-        }
-        .project-image i { font-size: 3rem; color: #00d4ff; }
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 0.75rem;
-        }
-        .tag {
-            font-size: 0.65rem;
-            padding: 0.25rem 0.75rem;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 30px;
-            color: #00d4ff;
-            font-weight: 500;
-        }
-        .blog-category {
-            font-size: 0.7rem;
-            color: #00d4ff;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-        .blog-meta {
-            font-size: 0.7rem;
-            color: #666;
-            display: inline-block;
-            margin-top: 0.75rem;
-        }
-
-        .contact-content {
-            text-align: left;
-            max-width: 600px;
-            margin: 0;
-        }
-        @media (max-width: 768px) { .contact-content { text-align: center; margin: 0 auto; } }
-        .contact-content p {
-            color: #c0c0c0;
-            margin-bottom: 2rem;
-            font-size: clamp(0.9rem, 4vw, 1rem);
-        }
-        .social-links {
-            display: flex;
-            justify-content: flex-start;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        @media (max-width: 768px) { .social-links { justify-content: center; } }
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.6rem 1.2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: clamp(0.8rem, 3.5vw, 0.9rem);
-            font-weight: 500;
-        }
-        .social-link:hover {
-            border-color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateY(-3px);
-            color: #00d4ff;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #666;
-            font-size: clamp(0.7rem, 3vw, 0.8rem);
-            width: 100%;
-        }
-        .view-all-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: gap 0.3s ease;
-            cursor: pointer;
-        }
-        .view-all-link:hover { gap: 12px; text-decoration: underline; }
-
-        .accessibility-btn {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 44px;
-            height: 44px;
-            background: #1a1a1a;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 50%;
-            color: #00d4ff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            z-index: 100;
-            font-size: 1.2rem;
-        }
-        .accessibility-btn:hover { border-color: #00d4ff; transform: scale(1.05); background: #00d4ff10; }
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background: #0f0f0f;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-            max-width: 380px;
-            width: 90%;
-            text-align: center;
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .modal-header h3 { font-size: 1.2rem; color: #00d4ff; }
-        .modal-close {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .modal-close:hover { color: #00d4ff; }
-        .accessibility-option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: left;
-            font-size: 0.9rem;
-        }
-        .accessibility-option button {
-            padding: 0.25rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 30px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.8rem;
-        }
-        .accessibility-option button.active { background: #00d4ff; color: #000; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in { animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
-
-        body.high-contrast { background: #000; color: #fff; }
-        body.high-contrast .navbar, body.high-contrast .modal-content,
-        body.high-contrast .skill-card, body.high-contrast .service-card,
-        body.high-contrast .project-card, body.high-contrast .blog-card,
-        body.high-contrast .social-link, body.high-contrast .accessibility-btn {
-            background: #000; border-color: #fff;
-        }
-        body.high-contrast .logo, body.high-contrast .section-header h2 { background: none; color: #fff; -webkit-background-clip: unset; background-clip: unset; }
-        body.high-contrast .btn-primary { background: #fff; color: #000; }
-        body.large-text { font-size: 1.2rem; }
-        body.large-text p, body.large-text .about-text p, body.large-text .skill-card p,
-        body.large-text .service-card p, body.large-text .project-info p,
-        body.large-text .blog-card p { font-size: 1rem; }
-        body.dyslexic-font { font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif; }
-        body.reduce-motion * {
-            animation-duration: 0.01ms !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
+        
+        main{padding:6rem 5% 3rem;width:100%;}
+        @media(max-width:640px){main{padding:6rem 4% 2rem;}}
+        @media(max-width:480px){main{padding:6rem 3% 2rem;}}
+        section{margin-bottom:clamp(3rem,10vw,5rem);}
+        
+        .divider{width:100%;margin:clamp(2rem,6vw,3rem) auto;position:relative;}
+        .progress-bar{width:100%;height:2px;background:rgba(0,212,255,.1);border-radius:2px;overflow:hidden;}
+        .progress-fill{width:0;height:100%;background:linear-gradient(90deg,#00d4ff,#7c3aed);transition:width .4s;position:relative;}
+        .progress-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:rgba(255,255,255,.6);filter:blur(2px);animation:glow 1.5s infinite;}
+        @keyframes glow{0%,100%{opacity:.5;}50%{opacity:1;}}
+        .divider-label{display:flex;justify-content:space-between;margin-top:.75rem;font-size:clamp(.55rem,3vw,.7rem);color:#666;text-transform:uppercase;letter-spacing:2px;}
+        .divider-percent{position:absolute;top:-24px;right:0;font-size:clamp(.65rem,3vw,.75rem);color:#00d4ff;font-weight:700;background:rgba(0,0,0,.6);padding:.15rem .5rem;border-radius:20px;font-family:monospace;}
+        .divider-alt .progress-bar{background:rgba(124,58,237,.1);}
+        .divider-alt .progress-fill{background:linear-gradient(90deg,#7c3aed,#c084fc);}
+        
+        .container{max-width:1400px;margin:0 auto;}
+        .section-header{margin-bottom:2rem;}
+        @media(max-width:768px){.section-header{text-align:center;}}
+        .section-header h2{font-size:clamp(1.5rem,6vw,2rem);font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#fff,#00d4ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+        .section-header p{color:#888;font-size:clamp(.8rem,3.5vw,.95rem);}
+        
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,4rem);align-items:center;}
+        .about-text p{color:#c0c0c0;margin-bottom:1rem;font-size:clamp(.9rem,4vw,1rem);max-width:500px;}
+        @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem;text-align:center;}.about-text p{margin-left:auto;margin-right:auto;}}
+        .about-image{display:flex;justify-content:flex-end;}
+        @media(max-width:768px){.about-image{justify-content:center;}}
+        .about-image img{width:100%;max-width:min(320px,80%);border-radius:24px;border:2px solid rgba(0,212,255,.4);box-shadow:0 20px 35px -10px rgba(0,212,255,.2);transition:transform .3s;}
+        .about-image img:hover{transform:scale(1.02);}
+        
+        .grid{display:grid;gap:1.25rem;}
+        .skills-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+        .services-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+        .projects-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;}
+        .blog-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+        
+        .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:1.5rem;transition:all .3s;text-align:center;}
+        .card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.5);box-shadow:0 15px 30px -10px rgba(0,212,255,.15);background:rgba(255,255,255,.05);}
+        .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
+        .service-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.6);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));box-shadow:0 15px 30px -10px rgba(0,212,255,.2);}
+        .card-icon{font-size:1.8rem;color:#00d4ff;margin-bottom:1rem;}
+        .service-card .card-icon{font-size:2rem;}
+        .card h3{font-size:1.1rem;margin-bottom:.75rem;font-weight:700;color:#fff;}
+        .card p{color:#a0a0a0;font-size:.85rem;line-height:1.5;}
+        
+        .project-img{height:160px;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));display:flex;align-items:center;justify-content:center;border-radius:16px;margin-bottom:1.25rem;}
+        .project-img i{font-size:3rem;color:#00d4ff;}
+        .tags{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem;}
+        .tag{font-size:.65rem;padding:.25rem .75rem;background:rgba(0,212,255,.1);border-radius:30px;color:#00d4ff;font-weight:500;}
+        .blog-cat{font-size:.7rem;color:#00d4ff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem;font-weight:600;}
+        .blog-meta{font-size:.7rem;color:#666;display:inline-block;margin-top:.75rem;}
+        
+        .contact{max-width:600px;margin:0;}
+        @media(max-width:768px){.contact{text-align:center;margin:0 auto;}}
+        .contact p{color:#c0c0c0;margin-bottom:2rem;font-size:clamp(.9rem,4vw,1rem);}
+        .social{display:flex;gap:1rem;flex-wrap:wrap;}
+        @media(max-width:768px){.social{justify-content:center;}}
+        .social a{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1.2rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:50px;color:#e0e0e0;text-decoration:none;transition:all .3s;font-size:clamp(.8rem,3.5vw,.9rem);font-weight:500;}
+        .social a:hover{border-color:#00d4ff;background:rgba(0,212,255,.1);transform:translateY(-3px);color:#00d4ff;}
+        
+        footer{text-align:center;padding:2rem;border-top:1px solid rgba(255,255,255,.05);color:#666;font-size:clamp(.7rem,3vw,.8rem);}
+        .view-link{display:inline-flex;align-items:center;gap:8px;color:#00d4ff;text-decoration:none;font-size:.85rem;font-weight:500;transition:gap .3s;cursor:pointer;}
+        .view-link:hover{gap:12px;text-decoration:underline;}
+        
+        .a11y-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:#1a1a1a;border:1px solid rgba(0,212,255,.3);border-radius:50%;color:#00d4ff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:100;font-size:1.2rem;}
+        .a11y-btn:hover{border-color:#00d4ff;transform:scale(1.05);background:#00d4ff10;}
+        
+        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;}
+        .modal.active{opacity:1;visibility:visible;}
+        .modal-content{background:#0f0f0f;border:1px solid rgba(0,212,255,.2);border-radius:24px;padding:2rem;max-width:380px;width:90%;text-align:center;}
+        .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+        .modal-header h3{font-size:1.2rem;color:#00d4ff;}
+        .modal-close{background:none;border:none;color:#aaa;font-size:1.5rem;cursor:pointer;}
+        .modal-close:hover{color:#00d4ff;}
+        .opt{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;}
+        .opt button{padding:.25rem 1rem;background:rgba(255,255,255,.1);border:none;border-radius:30px;color:#fff;cursor:pointer;font-size:.8rem;}
+        .opt button.active{background:#00d4ff;color:#000;}
+        
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+        .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
+        
+        body.high-contrast{background:#000;color:#fff;}
+        body.high-contrast nav,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a,body.high-contrast .a11y-btn{background:#000;border-color:#fff;}
+        body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
+        body.large-text{font-size:1.2rem;}
+        body.large-text p,body.large-text .card p{font-size:1rem;}
+        body.dyslexic-font{font-family:'OpenDyslexic','Comic Sans MS','Chalkboard SE',sans-serif;}
+        body.reduce-motion *{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
     </style>
 </head>
 <body>
@@ -549,24 +127,22 @@
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="#" class="logo">V3</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
+<nav>
+    <a href="#" class="logo">V3</a>
+    <button class="mobile-btn" id="mobileBtn"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
 <main>
     <section id="about">
-        <div class="about-content">
+        <div class="container about-grid">
             <div class="about-text">
                 <div class="section-header">
                     <h2>About V3</h2>
@@ -581,390 +157,146 @@
         </div>
     </section>
 
-    <div class="section-divider" id="divider1">
-        <div class="progress-bar-container"><div class="progress-fill" id="progress1"></div></div>
+    <div class="divider" id="divider1">
+        <div class="progress-bar"><div class="progress-fill" id="progress1"></div></div>
         <div class="divider-label"><span>✦ EXPLORE</span><span>CONTINUE →</span></div>
-        <div class="divider-percentage" id="percent1">0%</div>
+        <div class="divider-percent" id="percent1">0%</div>
     </div>
 
     <section id="skills">
-        <div class="skills-container">
+        <div class="container">
             <div class="section-header"><h2>Technical Skills</h2><p>Technologies I work with</p></div>
-            <div class="skills-grid" id="skillsGrid"></div>
+            <div class="grid skills-grid" id="skillsGrid"></div>
         </div>
     </section>
 
-    <div class="section-divider-alt" id="dividerSkills">
-        <div class="progress-bar-container"><div class="progress-fill" id="progressSkills"></div></div>
+    <div class="divider divider-alt" id="dividerSkills">
+        <div class="progress-bar"><div class="progress-fill" id="progressSkills"></div></div>
         <div class="divider-label"><span>◆ EXPERTISE</span><span>NEXT →</span></div>
-        <div class="divider-percentage" id="percentSkills">0%</div>
+        <div class="divider-percent" id="percentSkills">0%</div>
     </div>
 
     <section id="services">
-        <div class="services-container">
+        <div class="container">
             <div class="section-header"><h2>Professional Services</h2><p>What I offer</p></div>
-            <div class="services-grid" id="servicesGrid"></div>
+            <div class="grid services-grid" id="servicesGrid"></div>
         </div>
     </section>
 
-    <div class="section-divider" id="divider2">
-        <div class="progress-bar-container"><div class="progress-fill" id="progress2"></div></div>
+    <div class="divider" id="divider2">
+        <div class="progress-bar"><div class="progress-fill" id="progress2"></div></div>
         <div class="divider-label"><span>✦ BUILD</span><span>FORWARD →</span></div>
-        <div class="divider-percentage" id="percent2">0%</div>
+        <div class="divider-percent" id="percent2">0%</div>
     </div>
 
     <section id="projects">
-        <div class="projects-container">
+        <div class="container">
             <div class="section-header"><h2>Featured Projects</h2><p>Some of my best work</p></div>
-            <div class="projects-grid" id="projectsGrid"></div>
-            <p style="margin-top: 1.5rem;">→ <span id="view-all-projects" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> View all projects on GitHub</span></p>
+            <div class="grid projects-grid" id="projectsGrid"></div>
+            <p style="margin-top:1.5rem;">→ <span id="view-projects" class="view-link"><i class="fa-regular fa-arrow-right"></i> View all projects on GitHub</span></p>
         </div>
     </section>
 
-    <div class="section-divider-alt" id="divider3">
-        <div class="progress-bar-container"><div class="progress-fill" id="progress3"></div></div>
+    <div class="divider divider-alt" id="divider3">
+        <div class="progress-bar"><div class="progress-fill" id="progress3"></div></div>
         <div class="divider-label"><span>◆ SHARE</span><span>GROW →</span></div>
-        <div class="divider-percentage" id="percent3">0%</div>
+        <div class="divider-percent" id="percent3">0%</div>
     </div>
 
     <section id="blog">
-        <div class="blog-container">
+        <div class="container">
             <div class="section-header"><h2>Latest Insights</h2><p>Thoughts on tech & design</p></div>
-            <div class="blog-grid" id="blogGrid"></div>
-            <p style="margin-top: 1.5rem;">→ <span id="view-all-blog" class="view-all-link"><i class="fa-regular fa-arrow-right"></i> Read all posts</span></p>
+            <div class="grid blog-grid" id="blogGrid"></div>
+            <p style="margin-top:1.5rem;">→ <span id="view-blog" class="view-link"><i class="fa-regular fa-arrow-right"></i> Read all posts</span></p>
         </div>
     </section>
 
-    <div class="section-divider" id="divider4">
-        <div class="progress-bar-container"><div class="progress-fill" id="progress4"></div></div>
+    <div class="divider" id="divider4">
+        <div class="progress-bar"><div class="progress-fill" id="progress4"></div></div>
         <div class="divider-label"><span>✦ CONNECT</span><span>REACH OUT →</span></div>
-        <div class="divider-percentage" id="percent4">0%</div>
+        <div class="divider-percent" id="percent4">0%</div>
     </div>
 
     <section id="contact">
-        <div class="contact-content">
+        <div class="container contact">
             <div class="section-header"><h2>Let's Work Together</h2><p>Have a project in mind?</p></div>
             <p>Feel free to reach out through any of these platforms.</p>
-            <div class="social-links" id="socialLinks"></div>
+            <div class="social" id="socialLinks"></div>
         </div>
     </section>
 
-    <div class="section-divider-alt" id="divider5">
-        <div class="progress-bar-container"><div class="progress-fill" id="progress5"></div></div>
+    <div class="divider divider-alt" id="divider5">
+        <div class="progress-bar"><div class="progress-fill" id="progress5"></div></div>
         <div class="divider-label"><span>◆ THANK YOU</span><span>END →</span></div>
-        <div class="divider-percentage" id="percent5">0%</div>
+        <div class="divider-percent" id="percent5">0%</div>
     </div>
 </main>
 
-<footer class="footer"><p>© 2024 V3 — Built with <i class="fas fa-heart" style="color: #00d4ff;"></i></p></footer>
+<footer><p>© 2024 V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i></p></footer>
 
-<button class="accessibility-btn" id="accessibilityBtn"><i class="fas fa-universal-access"></i></button>
+<button class="a11y-btn" id="a11yBtn"><i class="fas fa-universal-access"></i></button>
 
-<div id="accessibilityModal" class="modal">
+<div id="a11yModal" class="modal">
     <div class="modal-content">
         <div class="modal-header"><h3><i class="fas fa-universal-access"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn">&times;</button></div>
-        <div class="accessibility-option"><span>🔆 High Contrast</span><button id="highContrastBtn">Toggle</button></div>
-        <div class="accessibility-option"><span>🔤 Larger Text</span><button id="largeTextBtn">Toggle</button></div>
-        <div class="accessibility-option"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Toggle</button></div>
-        <div class="accessibility-option"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Toggle</button></div>
+        <div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn">Toggle</button></div>
+        <div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn">Toggle</button></div>
+        <div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Toggle</button></div>
+        <div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Toggle</button></div>
     </div>
 </div>
 
 <script>
-    (function() {
-        const skillsData = [
-            { icon: "fa-brands fa-react", title: "Frontend", desc: "React, Vue, Angular, TypeScript" },
-            { icon: "fa-solid fa-server", title: "Backend", desc: "Node.js, Python, Go, Java" },
-            { icon: "fa-solid fa-database", title: "Database", desc: "PostgreSQL, MongoDB, Redis" },
-            { icon: "fa-solid fa-cloud", title: "Cloud", desc: "AWS, Azure, GCP, Docker" },
-            { icon: "fa-solid fa-mobile-alt", title: "Mobile", desc: "React Native, Flutter, Swift" },
-            { icon: "fa-solid fa-code-branch", title: "DevOps", desc: "CI/CD, Jenkins, GitHub Actions" }
-        ];
-
-        const servicesData = [
-            { icon: "fa-solid fa-pen-nib", title: "Logo Design", desc: "Custom, memorable brand identities that stand out and tell your story." },
-            { icon: "fa-solid fa-laptop-code", title: "Web Development", desc: "Full-stack web applications with modern frameworks and best practices." },
-            { icon: "fa-solid fa-palette", title: "UI/UX Design", desc: "Beautiful, intuitive interfaces focused on user experience." },
-            { icon: "fa-solid fa-chart-line", title: "Technical Consulting", desc: "Expert advice on architecture, scalability, and technology decisions." },
-            { icon: "fa-solid fa-rocket", title: "Performance Optimization", desc: "Speed up your applications and improve user experience." },
-            { icon: "fa-solid fa-shield-alt", title: "Security Audits", desc: "Identify vulnerabilities and secure your applications." },
-            { icon: "fa-solid fa-headset", title: "Maintenance & Support", desc: "Ongoing support and continuous improvement for your projects." }
-        ];
-
-        const projectsData = [
-            { icon: "fa-solid fa-cube", title: "Project Alpha", desc: "Platform for digital creators.", tags: ["React", "Node.js", "MongoDB"] },
-            { icon: "fa-solid fa-cloud", title: "Project Beta", desc: "Cloud analytics dashboard.", tags: ["Vue", "Python", "AWS"] },
-            { icon: "fa-solid fa-robot", title: "Project Gamma", desc: "Automation platform.", tags: ["Next.js", "PostgreSQL", "Redis"] },
-            { icon: "fa-solid fa-chart-line", title: "Project Delta", desc: "Real-time analytics.", tags: ["D3.js", "FastAPI", "Redis"] },
-            { icon: "fa-solid fa-shield", title: "Project Epsilon", desc: "Auth & authorization.", tags: ["Auth0", "JWT", "OAuth2"] },
-            { icon: "fa-solid fa-gamepad", title: "Project Zeta", desc: "Multiplayer game.", tags: ["WebSocket", "Canvas", "Phaser"] }
-        ];
-
-        const blogData = [
-            { category: "Technology", title: "Future of Web Dev", excerpt: "Exploring emerging trends.", readTime: "5 min" },
-            { category: "Design", title: "Minimalist UI", excerpt: "Why simplicity wins.", readTime: "4 min" },
-            { category: "Career", title: "10 Years in Review", excerpt: "Lessons from a decade.", readTime: "7 min" },
-            { category: "Tools", title: "My Dev Setup 2024", excerpt: "Tools that boost productivity.", readTime: "6 min" },
-            { category: "Opinion", title: "Why I Love Monospace", excerpt: "The beauty of consistent widths.", readTime: "3 min" },
-            { category: "Performance", title: "Web Performance", excerpt: "Make sites load faster.", readTime: "8 min" }
-        ];
-
-        const socialsData = [
-            { name: "Email", icon: "fa-regular fa-envelope", url: "mailto:hello@v3.dev" },
-            { name: "GitHub", icon: "fa-brands fa-github", url: "https://github.com/v3" },
-            { name: "LinkedIn", icon: "fa-brands fa-linkedin", url: "#" },
-            { name: "Twitter", icon: "fa-brands fa-twitter", url: "#" },
-            { name: "Discord", icon: "fa-brands fa-discord", url: "#" }
-        ];
-
-        function renderSkills() {
-            const container = document.getElementById('skillsGrid');
-            if (container) {
-                container.innerHTML = skillsData.map(skill => `
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="${skill.icon}"></i></div>
-                        <h3>${skill.title}</h3>
-                        <p>${skill.desc}</p>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderServices() {
-            const container = document.getElementById('servicesGrid');
-            if (container) {
-                container.innerHTML = servicesData.map(service => `
-                    <div class="service-card">
-                        <div class="service-icon"><i class="${service.icon}"></i></div>
-                        <h3>${service.title}</h3>
-                        <p>${service.desc}</p>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderProjects() {
-            const container = document.getElementById('projectsGrid');
-            if (container) {
-                container.innerHTML = projectsData.map(project => `
-                    <div class="project-card">
-                        <div class="project-image"><i class="${project.icon}"></i></div>
-                        <div class="project-info">
-                            <h3>${project.title}</h3>
-                            <p>${project.desc}</p>
-                            <div class="project-tags">${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderBlog() {
-            const container = document.getElementById('blogGrid');
-            if (container) {
-                container.innerHTML = blogData.map(post => `
-                    <div class="blog-card">
-                        <div class="blog-category">${post.category}</div>
-                        <h3>${post.title}</h3>
-                        <p>${post.excerpt}</p>
-                        <div class="blog-meta"><i class="fas fa-clock"></i> ${post.readTime}</div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderSocials() {
-            const container = document.getElementById('socialLinks');
-            if (container) {
-                container.innerHTML = socialsData.map(social => `
-                    <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="${social.icon}"></i> ${social.name}</a>
-                `).join('');
-            }
-        }
-
-        function updateProgressDividers() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const windowHeight = window.innerHeight;
-            const docHeight = document.documentElement.scrollHeight;
-            const totalScrollable = docHeight - windowHeight;
-            const overallProgress = totalScrollable > 0 ? (scrollTop / totalScrollable) * 100 : 0;
-            const ids = ['1', 'Skills', '2', '3', '4', '5'];
-            ids.forEach(id => {
-                const fill = document.getElementById(`progress${id}`);
-                const percentSpan = document.getElementById(`percent${id}`);
-                if (fill) fill.style.width = overallProgress + '%';
-                if (percentSpan) {
-                    percentSpan.textContent = Math.floor(overallProgress) + '%';
-                    percentSpan.style.color = overallProgress >= 100 ? '#a6e3a1' : overallProgress > 0 ? '#00d4ff' : '#6c7086';
-                }
-            });
-        }
-
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        let menuIcon = null;
-        if (mobileBtn) {
-            menuIcon = mobileBtn.querySelector('i');
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                if (menuIcon) menuIcon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
-            });
-        }
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                if (menuIcon) menuIcon.className = 'fas fa-bars';
-            });
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        function showComingSoonModal(message) {
-            const overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0,0,0,0.95)';
-            overlay.style.backdropFilter = 'blur(12px)';
-            overlay.style.zIndex = '10000';
-            overlay.style.display = 'flex';
-            overlay.style.alignItems = 'center';
-            overlay.style.justifyContent = 'center';
-            overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.2s ease';
-
-            const card = document.createElement('div');
-            card.style.backgroundColor = '#0f0f0f';
-            card.style.border = '1px solid rgba(0,212,255,0.3)';
-            card.style.borderRadius = '24px';
-            card.style.padding = '2rem';
-            card.style.maxWidth = '420px';
-            card.style.width = '90%';
-            card.style.textAlign = 'center';
-            card.style.boxShadow = '0 25px 40px -12px rgba(0,212,255,0.2)';
-            card.innerHTML = `
-                <i class="fas fa-code-branch" style="font-size: 3rem; color: #00d4ff; margin-bottom: 1rem; display: inline-block;"></i>
-                <h3 style="margin-bottom: 0.5rem; color: #fff;">${message}</h3>
-                <p style="color: #a0a0a0; margin-bottom: 1.5rem;">This feature is currently under development. Stay tuned for updates!</p>
-                <button id="closeComingSoonBtn" style="background: linear-gradient(135deg, #00d4ff, #7c3aed); border: none; padding: 0.6rem 1.8rem; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.2s;">Got it</button>
-            `;
-            overlay.appendChild(card);
-            document.body.appendChild(overlay);
-            requestAnimationFrame(() => { overlay.style.opacity = '1'; });
-
-            const closeBtn = card.querySelector('#closeComingSoonBtn');
-            const removeOverlay = () => {
-                overlay.style.opacity = '0';
-                setTimeout(() => overlay.remove(), 200);
-            };
-            closeBtn.addEventListener('click', removeOverlay);
-            overlay.addEventListener('click', (e) => { if (e.target === overlay) removeOverlay(); });
-        }
-
-        const projectsViewBtn = document.getElementById('view-all-projects');
-        const blogViewBtn = document.getElementById('view-all-blog');
-        if (projectsViewBtn) {
-            projectsViewBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showComingSoonModal('All Projects');
-            });
-        }
-        if (blogViewBtn) {
-            blogViewBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showComingSoonModal('All Blog Posts');
-            });
-        }
-
-        const blogGrid = document.getElementById('blogGrid');
-        if (blogGrid) {
-            blogGrid.addEventListener('click', (e) => {
-                const card = e.target.closest('.blog-card');
-                if (card) showComingSoonModal('Full Article');
-            });
-        }
-
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        if (cursor && follower) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
-                follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
-            });
-        }
-
-        const modal = document.getElementById('accessibilityModal');
-        const openA11yBtn = document.getElementById('accessibilityBtn');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        function openModal() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; updateButtonStates(); }
-        function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
-        if (openA11yBtn) openA11yBtn.addEventListener('click', openModal);
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-        if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-        function updateButtonStates() {
-            const btns = [
-                { id: 'highContrastBtn', active: document.body.classList.contains('high-contrast') },
-                { id: 'largeTextBtn', active: document.body.classList.contains('large-text') },
-                { id: 'dyslexicFontBtn', active: document.body.classList.contains('dyslexic-font') },
-                { id: 'reduceMotionBtn', active: document.body.classList.contains('reduce-motion') }
-            ];
-            btns.forEach(({ id, active }) => {
-                const btn = document.getElementById(id);
-                if (btn) btn.classList.toggle('active', active);
-            });
-        }
-
-        const highBtn = document.getElementById('highContrastBtn');
-        const largeBtn = document.getElementById('largeTextBtn');
-        const dysBtn = document.getElementById('dyslexicFontBtn');
-        const reduceBtn = document.getElementById('reduceMotionBtn');
-        if (highBtn) highBtn.addEventListener('click', () => { document.body.classList.toggle('high-contrast'); localStorage.setItem('highContrast', document.body.classList.contains('high-contrast')); updateButtonStates(); });
-        if (largeBtn) largeBtn.addEventListener('click', () => { document.body.classList.toggle('large-text'); localStorage.setItem('largeText', document.body.classList.contains('large-text')); updateButtonStates(); });
-        if (dysBtn) dysBtn.addEventListener('click', () => { document.body.classList.toggle('dyslexic-font'); localStorage.setItem('dyslexicFont', document.body.classList.contains('dyslexic-font')); updateButtonStates(); });
-        if (reduceBtn) reduceBtn.addEventListener('click', () => { document.body.classList.toggle('reduce-motion'); localStorage.setItem('reduceMotion', document.body.classList.contains('reduce-motion')); updateButtonStates(); });
-
-        function loadAccessibilityPreferences() {
-            if (localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
-            if (localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
-            if (localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
-            if (localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
-            updateButtonStates();
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-        function init() {
-            renderSkills();
-            renderServices();
-            renderProjects();
-            renderBlog();
-            renderSocials();
-            loadAccessibilityPreferences();
-            document.querySelectorAll('section').forEach(section => observer.observe(section));
-            window.addEventListener('scroll', updateProgressDividers);
-            window.addEventListener('resize', updateProgressDividers);
-            updateProgressDividers();
-        }
-        init();
-
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-        document.addEventListener('dragstart', (e) => e.preventDefault());
+    (function(){
+        const skills=[{icon:"fa-brands fa-react",title:"Frontend",desc:"React, Vue, Angular, TypeScript"},{icon:"fa-solid fa-server",title:"Backend",desc:"Node.js, Python, Go, Java"},{icon:"fa-solid fa-database",title:"Database",desc:"PostgreSQL, MongoDB, Redis"},{icon:"fa-solid fa-cloud",title:"Cloud",desc:"AWS, Azure, GCP, Docker"},{icon:"fa-solid fa-mobile-alt",title:"Mobile",desc:"React Native, Flutter, Swift"},{icon:"fa-solid fa-code-branch",title:"DevOps",desc:"CI/CD, Jenkins, GitHub Actions"}];
+        const services=[{icon:"fa-solid fa-pen-nib",title:"Logo Design",desc:"Custom, memorable brand identities that stand out and tell your story."},{icon:"fa-solid fa-laptop-code",title:"Web Development",desc:"Full-stack web applications with modern frameworks and best practices."},{icon:"fa-solid fa-palette",title:"UI/UX Design",desc:"Beautiful, intuitive interfaces focused on user experience."},{icon:"fa-solid fa-chart-line",title:"Technical Consulting",desc:"Expert advice on architecture, scalability, and technology decisions."},{icon:"fa-solid fa-rocket",title:"Performance Optimization",desc:"Speed up your applications and improve user experience."},{icon:"fa-solid fa-shield-alt",title:"Security Audits",desc:"Identify vulnerabilities and secure your applications."},{icon:"fa-solid fa-headset",title:"Maintenance & Support",desc:"Ongoing support and continuous improvement for your projects."}];
+        const projects=[{icon:"fa-solid fa-cube",title:"Project Alpha",desc:"Platform for digital creators.",tags:["React","Node.js","MongoDB"]},{icon:"fa-solid fa-cloud",title:"Project Beta",desc:"Cloud analytics dashboard.",tags:["Vue","Python","AWS"]},{icon:"fa-solid fa-robot",title:"Project Gamma",desc:"Automation platform.",tags:["Next.js","PostgreSQL","Redis"]},{icon:"fa-solid fa-chart-line",title:"Project Delta",desc:"Real-time analytics.",tags:["D3.js","FastAPI","Redis"]},{icon:"fa-solid fa-shield",title:"Project Epsilon",desc:"Auth & authorization.",tags:["Auth0","JWT","OAuth2"]},{icon:"fa-solid fa-gamepad",title:"Project Zeta",desc:"Multiplayer game.",tags:["WebSocket","Canvas","Phaser"]}];
+        const blog=[{category:"Technology",title:"Future of Web Dev",excerpt:"Exploring emerging trends.",readTime:"5 min"},{category:"Design",title:"Minimalist UI",excerpt:"Why simplicity wins.",readTime:"4 min"},{category:"Career",title:"10 Years in Review",excerpt:"Lessons from a decade.",readTime:"7 min"},{category:"Tools",title:"My Dev Setup 2024",excerpt:"Tools that boost productivity.",readTime:"6 min"},{category:"Opinion",title:"Why I Love Monospace",excerpt:"The beauty of consistent widths.",readTime:"3 min"},{category:"Performance",title:"Web Performance",excerpt:"Make sites load faster.",readTime:"8 min"}];
+        const socials=[{name:"Email",icon:"fa-regular fa-envelope",url:"mailto:hello@v3.dev"},{name:"GitHub",icon:"fa-brands fa-github",url:"https://github.com/v3"},{name:"LinkedIn",icon:"fa-brands fa-linkedin",url:"#"},{name:"Twitter",icon:"fa-brands fa-twitter",url:"#"},{name:"Discord",icon:"fa-brands fa-discord",url:"#"}];
+        
+        function render(selector,items,template){let el=document.getElementById(selector);if(el)el.innerHTML=items.map(template).join('');}
+        render('skillsGrid',skills,s=>`<div class="card"><div class="card-icon"><i class="${s.icon}"></i></div><h3>${s.title}</h3><p>${s.desc}</p></div>`);
+        render('servicesGrid',services,s=>`<div class="card service-card"><div class="card-icon"><i class="${s.icon}"></i></div><h3>${s.title}</h3><p>${s.desc}</p></div>`);
+        render('projectsGrid',projects,p=>`<div class="card"><div class="project-img"><i class="${p.icon}"></i></div><h3>${p.title}</h3><p>${p.desc}</p><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`);
+        render('blogGrid',blog,b=>`<div class="card"><div class="blog-cat">${b.category}</div><h3>${b.title}</h3><p>${b.excerpt}</p><div class="blog-meta"><i class="fas fa-clock"></i> ${b.readTime}</div></div>`);
+        render('socialLinks',socials,s=>`<a href="${s.url}" target="_blank" rel="noopener"><i class="${s.icon}"></i> ${s.name}</a>`);
+        
+        function updateProgress(){let scrollTop=window.scrollY,winH=window.innerHeight,docH=document.documentElement.scrollHeight,total=docH-winH,progress=total>0?(scrollTop/total)*100:0,ids=['1','Skills','2','3','4','5'];ids.forEach(id=>{let fill=document.getElementById(`progress${id}`),percent=document.getElementById(`percent${id}`);if(fill)fill.style.width=progress+'%';if(percent){percent.textContent=Math.floor(progress)+'%';percent.style.color=progress>=100?'#a6e3a1':progress>0?'#00d4ff':'#6c7086';}});}
+        
+        let mobileBtn=document.getElementById('mobileBtn'),nav=document.getElementById('navLinks'),menuIcon=null;if(mobileBtn){menuIcon=mobileBtn.querySelector('i');mobileBtn.onclick=()=>{nav.classList.toggle('active');menuIcon.className=nav.classList.contains('active')?'fas fa-times':'fas fa-bars';};}
+        document.querySelectorAll('.nav-links a').forEach(l=>l.onclick=()=>{nav.classList.remove('active');if(menuIcon)menuIcon.className='fas fa-bars';});
+        document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=e=>{e.preventDefault();let t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});
+        
+        function modal(msg){let o=document.createElement('div');o.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;';o.innerHTML=`<div style="background:#0f0f0f;border:1px solid rgba(0,212,255,.3);border-radius:24px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 25px 40px -12px rgba(0,212,255,.2);"><i class="fas fa-code-branch" style="font-size:3rem;color:#00d4ff;margin-bottom:1rem;"></i><h3 style="margin-bottom:.5rem;color:#fff;">${msg}</h3><p style="color:#a0a0a0;margin-bottom:1.5rem;">This feature is currently under development. Stay tuned!</p><button id="closeModalBtn" style="background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;padding:.6rem 1.8rem;border-radius:40px;color:#fff;font-weight:600;cursor:pointer;">Got it</button></div>`;document.body.appendChild(o);setTimeout(()=>o.style.opacity='1',10);let close=o.querySelector('#closeModalBtn');let rm=()=>{o.style.opacity='0';setTimeout(()=>o.remove(),200);};close.onclick=rm;o.onclick=e=>{if(e.target===o)rm();};}
+        
+        document.getElementById('view-projects')?.onclick=e=>{e.preventDefault();modal('All Projects');};
+        document.getElementById('view-blog')?.onclick=e=>{e.preventDefault();modal('All Blog Posts');};
+        document.getElementById('blogGrid')?.onclick=e=>{if(e.target.closest('.card'))modal('Full Article');};
+        
+        let cursor=document.querySelector('.cursor'),follower=document.querySelector('.cursor-follower');if(cursor&&follower)document.addEventListener('mousemove',e=>{cursor.style.transform=`translate(${e.clientX-4}px,${e.clientY-4}px)`;follower.style.transform=`translate(${e.clientX-20}px,${e.clientY-20}px)`;});
+        
+        let modalEl=document.getElementById('a11yModal'),openBtn=document.getElementById('a11yBtn'),closeBtn=document.getElementById('closeModalBtn');
+        let openModal=()=>{modalEl.classList.add('active');document.body.style.overflow='hidden';updateBtns();};
+        let closeModal=()=>{modalEl.classList.remove('active');document.body.style.overflow='';};
+        openBtn?.addEventListener('click',openModal);closeBtn?.addEventListener('click',closeModal);modalEl?.addEventListener('click',e=>{if(e.target===modalEl)closeModal();});
+        
+        function updateBtns(){['highContrastBtn','largeTextBtn','dyslexicFontBtn','reduceMotionBtn'].forEach(id=>{let btn=document.getElementById(id);if(btn)btn.classList.toggle('active',document.body.classList.contains(id.replace('Btn','').replace(/([A-Z])/g,'-$1').toLowerCase().slice(1)));});}
+        let hc=document.getElementById('highContrastBtn'),lt=document.getElementById('largeTextBtn'),df=document.getElementById('dyslexicFontBtn'),rm=document.getElementById('reduceMotionBtn');
+        hc?.addEventListener('click',()=>{document.body.classList.toggle('high-contrast');localStorage.setItem('highContrast',document.body.classList.contains('high-contrast'));updateBtns();});
+        lt?.addEventListener('click',()=>{document.body.classList.toggle('large-text');localStorage.setItem('largeText',document.body.classList.contains('large-text'));updateBtns();});
+        df?.addEventListener('click',()=>{document.body.classList.toggle('dyslexic-font');localStorage.setItem('dyslexicFont',document.body.classList.contains('dyslexic-font'));updateBtns();});
+        rm?.addEventListener('click',()=>{document.body.classList.toggle('reduce-motion');localStorage.setItem('reduceMotion',document.body.classList.contains('reduce-motion'));updateBtns();});
+        
+        if(localStorage.getItem('highContrast')==='true')document.body.classList.add('high-contrast');
+        if(localStorage.getItem('largeText')==='true')document.body.classList.add('large-text');
+        if(localStorage.getItem('dyslexicFont')==='true')document.body.classList.add('dyslexic-font');
+        if(localStorage.getItem('reduceMotion')==='true')document.body.classList.add('reduce-motion');
+        updateBtns();
+        
+        let observer=new IntersectionObserver(e=>{e.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('fade-in');observer.unobserve(entry.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+        document.querySelectorAll('section').forEach(s=>observer.observe(s));
+        window.addEventListener('scroll',updateProgress);window.addEventListener('resize',updateProgress);updateProgress();
+        document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('dragstart',e=>e.preventDefault());
     })();
 </script>
 </body>
