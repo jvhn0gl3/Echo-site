@@ -65,7 +65,7 @@
         .grid{display:grid;gap:1.25rem;width:100%;}
         .skills-grid{grid-template-columns:repeat(2,1fr);}
         .services-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
-        .pricing-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+        .pricing-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;}
         .products-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
         .projects-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .blog-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
@@ -104,10 +104,11 @@
         .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
         .service-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.6);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));box-shadow:0 15px 30px -10px rgba(0,212,255,.2);}
         
-        .pricing-card{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.05));border-color:rgba(0,212,255,.2);position:relative;}
-        .pricing-card.featured{border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,.2);transform:scale(1.02);}
+        /* FIXED Pricing Card Styles - Badge no longer cut off */
+        .pricing-card{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.05));border-color:rgba(0,212,255,.2);position:relative;overflow:visible;margin-top:1rem;}
+        .pricing-card.featured{border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,.2);transform:scale(1.02);margin-top:0;}
         .pricing-card.featured:hover{transform:scale(1.02) translateY(-5px);}
-        .featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#00d4ff;color:#000;padding:4px 12px;border-radius:30px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+        .featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#00d4ff;color:#000;padding:4px 12px;border-radius:30px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
         .price{font-size:2.5rem;font-weight:800;color:#00d4ff;margin:1rem 0 0.5rem;}
         .price small{font-size:0.9rem;color:#888;font-weight:400;}
         .pricing-features{list-style:none;margin:1.5rem 0;text-align:left;}
@@ -155,6 +156,7 @@
             .product-image{height:150px;}
             .product-image i{font-size:3rem;}
             .product-price{font-size:1.2rem;}
+            .featured-badge{font-size:0.6rem;padding:3px 8px;top:-10px;}
         }
         
         .contact{max-width:600px;margin:0;}
@@ -201,6 +203,7 @@
         body.high-contrast .price{color:#fff;}
         body.high-contrast .pricing-features li i.fa-check{color:#00ff41;}
         body.high-contrast .external-badge{background:#333;color:#00ff41;}
+        body.high-contrast .featured-badge{background:#fff;color:#000;}
         
         body.large-text{font-size:1.2rem;}
         body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li,body.large-text .external-badge{font-size:1rem;}
@@ -364,7 +367,7 @@
         </div>
     </section>
 
-    <!-- PRODUCTS SECTION - Direct to Zazzle, Redbubble, etc. -->
+    <!-- PRODUCTS SECTION -->
     <section id="products" aria-labelledby="products-heading">
         <div class="container">
             <div class="section-header">
@@ -372,7 +375,6 @@
                 <p>Payment and shipping handled securely by our partners</p>
             </div>
             <div class="grid products-grid">
-                <!-- Product 1: Static Snow Metallic Button (Zazzle) -->
                 <div class="card product-card">
                     <div class="product-image"><i class="fa-solid fa-circle"></i></div>
                     <h3>Static Snow - Metallic Button</h3>
@@ -387,7 +389,6 @@
                     <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
                 </div>
 
-                <!-- Redbubble Poster -->
                 <div class="card product-card">
                     <div class="product-image"><i class="fa-solid fa-poster"></i></div>
                     <h3>V3 Poster</h3>
@@ -398,7 +399,6 @@
                     <a href="https://www.redbubble.com/people/v3/shop" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
                 </div>
 
-                <!-- Printful Mug -->
                 <div class="card product-card">
                     <div class="product-image"><i class="fa-solid fa-mug-hot"></i></div>
                     <h3>V3 Coffee Mug</h3>
@@ -407,39 +407,6 @@
                     <p>Start your day with V3. Ceramic mug with V3 branding. Dishwasher and microwave safe.</p>
                     <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Printful</div>
                     <a href="https://www.printful.com/listing/v3-mug" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
-                </div>
-
-                <!-- Spring Sticker -->
-                <div class="card product-card">
-                    <div class="product-image"><i class="fa-solid fa-sticker"></i></div>
-                    <h3>V3 Sticker Pack</h3>
-                    <div class="product-price">$8.99</div>
-                    <div class="product-badge">📦 Powered by Spring</div>
-                    <p>Vinyl sticker pack featuring the V3 logo. Weatherproof and durable for laptops, water bottles, and more.</p>
-                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Spring</div>
-                    <a href="https://teespring.com/v3-sticker-pack" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
-                </div>
-
-                <!-- Fourthwall Hoodie -->
-                <div class="card product-card">
-                    <div class="product-image"><i class="fa-solid fa-hoodie"></i></div>
-                    <h3>V3 Hoodie</h3>
-                    <div class="product-price">$49.99</div>
-                    <div class="product-badge">🧥 Powered by Fourthwall</div>
-                    <p>Premium fleece hoodie with embroidered V3 logo. Available in multiple colors S-XXL.</p>
-                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Fourthwall</div>
-                    <a href="https://fourthwall.com/v3-hoodie" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
-                </div>
-
-                <!-- Shopify Hat -->
-                <div class="card product-card">
-                    <div class="product-image"><i class="fa-solid fa-hat-cowboy"></i></div>
-                    <h3>V3 Snapback Hat</h3>
-                    <div class="product-price">$29.99</div>
-                    <div class="product-badge">🧢 Powered by Shopify</div>
-                    <p>Structured snapback hat with embroidered V3 logo. One size fits most, adjustable back.</p>
-                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Shopify</div>
-                    <a href="https://v3-merch.myshopify.com/products/hat" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
                 </div>
             </div>
         </div>
