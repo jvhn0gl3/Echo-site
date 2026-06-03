@@ -67,12 +67,14 @@
         .services-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .pricing-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;}
         .products-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+        .roadmap-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
         .projects-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         .blog-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
         
         @media(max-width:900px){
             .pricing-grid{grid-template-columns:repeat(2,1fr);}
             .products-grid{grid-template-columns:repeat(2,1fr);}
+            .roadmap-grid{grid-template-columns:repeat(2,1fr);}
         }
         
         @media(max-width:768px){
@@ -80,6 +82,7 @@
             .services-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .pricing-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .products-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
+            .roadmap-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .projects-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
             .blog-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}
         }
@@ -87,6 +90,7 @@
         @media(max-width:640px){
             .pricing-grid{grid-template-columns:1fr;}
             .products-grid{grid-template-columns:1fr;}
+            .roadmap-grid{grid-template-columns:1fr;}
         }
         
         @media(max-width:480px){
@@ -94,6 +98,7 @@
             .services-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .pricing-grid{grid-template-columns:1fr;gap:1rem;}
             .products-grid{grid-template-columns:1fr;gap:1rem;}
+            .roadmap-grid{grid-template-columns:1fr;gap:1rem;}
             .projects-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
             .blog-grid{grid-template-columns:repeat(2,1fr);gap:0.75rem;}
         }
@@ -128,6 +133,16 @@
         .product-btn{display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;border-radius:50px;color:#fff;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;}
         .product-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
         
+        .roadmap-card{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(124,58,237,.08));border-color:rgba(0,212,255,.25);border-left-width:4px;border-left-color:#00d4ff;text-align:left;}
+        .roadmap-status{display:inline-block;padding:4px 12px;border-radius:30px;font-size:0.7rem;font-weight:600;margin-bottom:1rem;}
+        .status-in-progress{background:#ffaa0022;color:#ffaa00;border:1px solid #ffaa00;}
+        .status-planning{background:#88888822;color:#aaa;border:1px solid #aaa;}
+        .status-completed{background:#00ff4122;color:#00ff41;border:1px solid #00ff41;}
+        .roadmap-features{list-style:none;margin-top:1rem;}
+        .roadmap-features li{padding:0.4rem 0;color:#a0a0a0;font-size:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+        .roadmap-features li i{color:#00d4ff;width:20px;}
+        .roadmap-icon{font-size:2rem;color:#00d4ff;margin-bottom:0.5rem;}
+        
         .card-icon{font-size:1.8rem;color:#00d4ff;margin-bottom:1rem;}
         .service-card .card-icon{font-size:2rem;}
         .card h3{font-size:1.1rem;margin-bottom:.75rem;font-weight:700;color:#fff;}
@@ -156,6 +171,7 @@
             .product-image i{font-size:3rem;}
             .product-price{font-size:1.2rem;}
             .featured-badge{font-size:0.6rem;padding:3px 8px;top:-10px;}
+            .roadmap-features li{font-size:0.7rem;}
         }
         
         .contact{max-width:600px;margin:0;}
@@ -203,9 +219,13 @@
         body.high-contrast .pricing-features li i.fa-check{color:#00ff41;}
         body.high-contrast .external-badge{background:#333;color:#00ff41;}
         body.high-contrast .featured-badge{background:#fff;color:#000;}
+        body.high-contrast .roadmap-card{border-left-color:#fff;}
+        body.high-contrast .status-in-progress{background:#333;color:#ffaa00;border-color:#ffaa00;}
+        body.high-contrast .status-planning{background:#333;color:#aaa;border-color:#aaa;}
+        body.high-contrast .status-completed{background:#333;color:#00ff41;border-color:#00ff41;}
         
         body.large-text{font-size:1.2rem;}
-        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li,body.large-text .external-badge{font-size:1rem;}
+        body.large-text p,body.large-text .about-text p,body.large-text .card p,body.large-text .section-header p,body.large-text .contact p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-cat,body.large-text .blog-meta,body.large-text footer p,body.large-text .opt,body.large-text .opt button,body.large-text .modal-content p,body.large-text .pricing-features li,body.large-text .external-badge,body.large-text .roadmap-features li{font-size:1rem;}
         body.large-text .card h3{font-size:1.3rem;}
         body.large-text .section-header h2{font-size:clamp(1.8rem,7vw,2.5rem);}
         body.large-text .ide-logo{font-size:32px;}
@@ -246,6 +266,7 @@
         <div class="ide-item" data-section="services" role="listitem" tabindex="0" aria-label="Services section"><i class="fas fa-cogs" aria-hidden="true"></i><span class="visually-hidden">Services</span></div>
         <div class="ide-item" data-section="pricing" role="listitem" tabindex="0" aria-label="Pricing section"><i class="fas fa-tag" aria-hidden="true"></i><span class="visually-hidden">Pricing</span></div>
         <div class="ide-item" data-section="products" role="listitem" tabindex="0" aria-label="Products section"><i class="fas fa-tshirt" aria-hidden="true"></i><span class="visually-hidden">Products</span></div>
+        <div class="ide-item" data-section="roadmap" role="listitem" tabindex="0" aria-label="Roadmap section"><i class="fas fa-map" aria-hidden="true"></i><span class="visually-hidden">Roadmap</span></div>
         <div class="ide-item" data-section="projects" role="listitem" tabindex="0" aria-label="Projects section"><i class="fas fa-folder" aria-hidden="true"></i><span class="visually-hidden">Projects</span></div>
         <div class="ide-item" data-section="blog" role="listitem" tabindex="0" aria-label="Blog section"><i class="fas fa-newspaper" aria-hidden="true"></i><span class="visually-hidden">Blog</span></div>
         <div class="ide-item" data-section="contact" role="listitem" tabindex="0" aria-label="Contact section"><i class="fas fa-envelope" aria-hidden="true"></i><span class="visually-hidden">Contact</span></div>
@@ -409,6 +430,60 @@
         </div>
     </section>
 
+    <!-- ROADMAP SECTION -->
+    <section id="roadmap" aria-labelledby="roadmap-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="roadmap-heading">Development Roadmap</h2>
+                <p>Building a more resilient infrastructure</p>
+            </div>
+            <div class="grid roadmap-grid">
+                <!-- Card 1: Multi-Source Image Failover -->
+                <div class="card roadmap-card">
+                    <div class="roadmap-icon"><i class="fas fa-images"></i></div>
+                    <span class="roadmap-status status-in-progress">🔄 IN PROGRESS</span>
+                    <h3>Multi-Source Image Failover</h3>
+                    <p>Implementing automatic fallback for image assets across multiple CDN providers and local paths.</p>
+                    <ul class="roadmap-features">
+                        <li><i class="fas fa-check-circle"></i> Relative path support (<code>/images/logo.png</code>)</li>
+                        <li><i class="fas fa-check-circle"></i> Primary CDN: Cloudflare Pages</li>
+                        <li><i class="fas fa-spinner fa-pulse"></i> Secondary CDN: GitHub Pages</li>
+                        <li><i class="fas fa-clock"></i> Tertiary: Netlify CDN (planned)</li>
+                        <li><i class="fas fa-clock"></i> Local storage cache fallback (planned)</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Asset Health Checking -->
+                <div class="card roadmap-card">
+                    <div class="roadmap-icon"><i class="fas fa-heartbeat"></i></div>
+                    <span class="roadmap-status status-in-progress">🔧 IN PROGRESS</span>
+                    <h3>Asset Health Monitoring</h3>
+                    <p>Real-time health checks to detect broken images and automatically switch to working sources.</p>
+                    <ul class="roadmap-features">
+                        <li><i class="fas fa-check-circle"></i> Failed load detection</li>
+                        <li><i class="fas fa-check-circle"></i> Automatic source rotation</li>
+                        <li><i class="fas fa-spinner fa-pulse"></i> Latency-based source selection</li>
+                        <li><i class="fas fa-clock"></i> User dashboard for asset status</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Geo-Aware CDN Routing -->
+                <div class="card roadmap-card">
+                    <div class="roadmap-icon"><i class="fas fa-globe-americas"></i></div>
+                    <span class="roadmap-status status-planning">📋 PLANNING</span>
+                    <h3>Geo-Aware CDN Routing</h3>
+                    <p>Serve images from the closest CDN based on user's geographic location for faster loading.</p>
+                    <ul class="roadmap-features">
+                        <li><i class="fas fa-check-circle"></i> Region detection via Cloudflare</li>
+                        <li><i class="fas fa-clock"></i> US East: Cloudflare</li>
+                        <li><i class="fas fa-clock"></i> Europe: Bunny.net</li>
+                        <li><i class="fas fa-clock"></i> Asia: Fastly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects" aria-labelledby="projects-heading">
         <div class="container">
             <div class="section-header"><h2 id="projects-heading">Featured Projects</h2><p>Some of my best work</p></div>
@@ -475,7 +550,7 @@
         
         let homeLogo=document.getElementById('homeLogoLink');if(homeLogo){homeLogo.addEventListener('click',(e)=>{e.preventDefault();scrollToSection('about');});homeLogo.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();scrollToSection('about');}});}
         
-        window.addEventListener('scroll',()=>{let scrollPos=window.scrollY+100;let sections=['about','skills','services','pricing','products','projects','blog','contact'];let current='';for(let s of sections){let sec=document.getElementById(s);if(sec&&sec.offsetTop<=scrollPos)current=s;}if(current)setActive(current);});
+        window.addEventListener('scroll',()=>{let scrollPos=window.scrollY+100;let sections=['about','skills','services','pricing','products','roadmap','projects','blog','contact'];let current='';for(let s of sections){let sec=document.getElementById(s);if(sec&&sec.offsetTop<=scrollPos)current=s;}if(current)setActive(current);});
         setActive('about');
         
         let a11yNavBtn=document.getElementById('a11yNavBtn');if(a11yNavBtn){a11yNavBtn.addEventListener('click',()=>{document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();});a11yNavBtn.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();document.getElementById('a11yModal').classList.add('active');document.body.style.overflow='hidden';updateBtns();}});}
