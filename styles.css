@@ -236,20 +236,32 @@ section {
     width: 100%;
 }
 
-.skills-grid,
-.services-grid,
-.projects-grid,
+.skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.services-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .blog-grid {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.pricing-grid,
+.pricing-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
 .products-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
 }
 
 .roadmap-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
 }
 
 .card {
