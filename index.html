@@ -9,8 +9,935 @@
     <link rel="icon" type="image/png" href="/images/branding/v3.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
-    <link rel="stylesheet" href="styles.css" />
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #050505;
+            color: #e8e8e8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            position: relative;
+            touch-action: pan-y pinch-zoom;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        .cursor {
+            width: 8px;
+            height: 8px;
+            background: #00d4ff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #00d4ff;
+            color: #000;
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+            text-decoration: none;
+            z-index: 1001;
+            border-radius: 0 0 4px 0;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .ide-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: clamp(48px, 8vw, 72px);
+            background: #1e1e2e;
+            border-right: 1px solid #2a2a3a;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: clamp(1rem, 3vw, 1.5rem) 0;
+            gap: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        .ide-logo {
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            font-family: 'Major Mono Display', monospace;
+            letter-spacing: 2px;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+        }
+
+        .ide-nav {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            flex: 1;
+        }
+
+        .ide-item {
+            width: clamp(36px, 6vw, 48px);
+            height: clamp(36px, 6vw, 48px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #7e7e8e;
+            font-size: clamp(1rem, 3vw, 1.375rem);
+            position: relative;
+        }
+
+        .ide-item:hover {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .ide-item.active {
+            color: #00d4ff;
+            border-left: 3px solid #00d4ff;
+            background: rgba(0, 212, 255, 0.15);
+            border-radius: 12px 0 0 12px;
+        }
+
+        .ide-item.active::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 20px;
+            background: #00d4ff;
+            border-radius: 3px;
+        }
+
+        .ide-bottom {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.75rem, 2vw, 1rem);
+        }
+
+        main {
+            margin-left: clamp(48px, 8vw, 72px);
+            padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 3rem);
+            overflow-x: hidden;
+            position: relative;
+            width: calc(100% - clamp(48px, 8vw, 72px));
+            max-width: 100%;
+            flex: 1;
+        }
+
+        section {
+            margin-bottom: clamp(2rem, 8vw, 4rem);
+            overflow-x: visible;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: visible;
+        }
+
+        .section-header {
+            margin-bottom: clamp(1rem, 4vw, 2rem);
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-header p {
+            color: #888;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(1.5rem, 5vw, 3rem);
+            align-items: center;
+        }
+
+        .about-text p {
+            color: #c0c0c0;
+            margin-bottom: 1rem;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            max-width: 500px;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: clamp(200px, 30vw, 320px);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(0, 212, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .grid {
+            display: grid;
+            gap: clamp(0.75rem, 2vw, 1.25rem);
+            width: 100%;
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .blog-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .pricing-grid {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: clamp(0.75rem, 2vw, 1.25rem);
+            padding: clamp(0.75rem, 2.5vw, 1.5rem);
+            transition: all 0.3s;
+            text-align: center;
+            overflow: hidden;
+            word-wrap: break-word;
+            width: 100%;
+        }
+
+        .card:focus-within {
+            outline: 2px solid #00d4ff;
+            outline-offset: 2px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 15px 30px -10px rgba(0, 212, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
+            border-color: rgba(0, 212, 255, 0.15);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.6);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            box-shadow: 0 15px 30px -10px rgba(0, 212, 255, 0.2);
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 212, 255, 0.05));
+            border-color: rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: visible;
+            margin-top: 1rem;
+        }
+
+        .pricing-card.featured {
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+            transform: scale(1.02);
+            margin-top: 0;
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00d4ff;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .price {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: #00d4ff;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .price small {
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            color: #888;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: #a0a0a0;
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-features li i {
+            color: #00ff41;
+            font-size: 0.8rem;
+            width: 20px;
+        }
+
+        .pricing-features li i.fa-times {
+            color: #ff4444;
+        }
+
+        .pricing-btn {
+            margin-top: 1rem;
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .pricing-card.featured .pricing-btn {
+            background: #00ff41;
+            color: #000;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 255, 255, 0.03));
+            border-color: rgba(0, 212, 255, 0.15);
+        }
+
+        .product-image {
+            height: clamp(150px, 25vw, 200px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .product-price {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 700;
+            color: #00d4ff;
+            margin: 0.5rem 0;
+        }
+
+        .product-original-price {
+            font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            margin-bottom: 1rem;
+        }
+
+        .external-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(0, 255, 65, 0.15);
+            color: #00ff41;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: clamp(0.55rem, 1.8vw, 0.65rem);
+            margin-top: 0.5rem;
+        }
+
+        .product-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .card-icon {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .card-icon {
+            font-size: clamp(1.4rem, 5vw, 2rem);
+        }
+
+        .card h3 {
+            font-size: clamp(0.8rem, 3vw, 1.1rem);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card p {
+            color: #a0a0a0;
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            line-height: 1.5;
+        }
+
+        .project-img {
+            height: clamp(120px, 20vw, 160px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-img i {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: #00d4ff;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.75rem;
+        }
+
+        .tag {
+            font-size: clamp(0.5rem, 2vw, 0.65rem);
+            padding: 0.2rem 0.6rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 30px;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .blog-cat {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .blog-meta {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+            display: inline-block;
+            margin-top: 0.75rem;
+        }
+
+        .contact {
+            max-width: 600px;
+            margin: 0;
+        }
+
+        .contact p {
+            color: #c0c0c0;
+            margin-bottom: 2rem;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+        }
+
+        .social {
+            display: flex;
+            gap: clamp(0.5rem, 2vw, 1rem);
+            flex-wrap: wrap;
+        }
+
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            font-weight: 500;
+        }
+
+        .social a:focus-visible {
+            outline: 2px solid #00d4ff;
+            outline-offset: 2px;
+        }
+
+        .social a:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+            color: #00d4ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: clamp(1rem, 3vw, 2rem);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #666;
+            font-size: clamp(0.6rem, 2vw, 0.8rem);
+            margin-left: clamp(48px, 8vw, 72px);
+            width: calc(100% - clamp(48px, 8vw, 72px));
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .view-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            font-weight: 500;
+            transition: gap 0.3s;
+            cursor: pointer;
+        }
+
+        .view-link:focus-visible {
+            outline: 2px solid #00d4ff;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .view-link:hover {
+            gap: 12px;
+            text-decoration: underline;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #0f0f0f;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 24px;
+            padding: clamp(1rem, 4vw, 2rem);
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: #00d4ff;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-close:focus-visible {
+            outline: 2px solid #00d4ff;
+            border-radius: 4px;
+        }
+
+        .modal-close:hover {
+            color: #00d4ff;
+        }
+
+        .opt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        .opt button {
+            padding: 0.25rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .opt button:focus-visible {
+            outline: 2px solid #00d4ff;
+            outline-offset: 2px;
+        }
+
+        .opt button.active {
+            background: #00ff41;
+            color: #000;
+            box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+
+        body.high-contrast {
+            background: #000;
+            color: #fff;
+        }
+
+        body.high-contrast .ide-bar,
+        body.high-contrast .modal-content,
+        body.high-contrast .card,
+        body.high-contrast .social a {
+            background: #000;
+            border-color: #fff;
+        }
+
+        body.high-contrast .logo,
+        body.high-contrast .section-header h2 {
+            background: none;
+            color: #fff;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        body.high-contrast .ide-item.active {
+            background: #fff;
+            color: #000;
+        }
+
+        body.high-contrast .ide-item.active i {
+            color: #000;
+        }
+
+        body.high-contrast .tag,
+        body.high-contrast .blog-cat,
+        body.high-contrast .card-icon,
+        body.high-contrast .project-img i,
+        body.high-contrast .product-image i {
+            color: #fff;
+        }
+
+        body.high-contrast .tag {
+            background: #333;
+            color: #fff;
+        }
+
+        body.high-contrast .view-link,
+        body.high-contrast .social a:hover {
+            color: #fff;
+        }
+
+        body.high-contrast .pricing-btn,
+        body.high-contrast .product-btn {
+            background: #fff;
+            color: #000;
+        }
+
+        body.high-contrast .price {
+            color: #fff;
+        }
+
+        body.high-contrast .pricing-features li i.fa-check {
+            color: #00ff41;
+        }
+
+        body.high-contrast .external-badge {
+            background: #333;
+            color: #00ff41;
+        }
+
+        body.high-contrast .featured-badge {
+            background: #fff;
+            color: #000;
+        }
+
+        body.large-text {
+            font-size: 1.2rem;
+        }
+
+        body.large-text p,
+        body.large-text .about-text p,
+        body.large-text .card p,
+        body.large-text .section-header p,
+        body.large-text .contact p,
+        body.large-text .social a,
+        body.large-text .view-link,
+        body.large-text .tag,
+        body.large-text .blog-cat,
+        body.large-text .blog-meta,
+        body.large-text footer p,
+        body.large-text .opt,
+        body.large-text .opt button,
+        body.large-text .modal-content p,
+        body.large-text .pricing-features li,
+        body.large-text .external-badge {
+            font-size: 1rem;
+        }
+
+        body.large-text .card h3 {
+            font-size: 1.3rem;
+        }
+
+        body.large-text .section-header h2 {
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
+        }
+
+        body.large-text .ide-logo {
+            font-size: 32px;
+        }
+
+        body.large-text .ide-item {
+            font-size: 24px;
+        }
+
+        body.large-text .modal-header h3 {
+            font-size: 1.4rem;
+        }
+
+        body.large-text .view-link {
+            font-size: 1rem;
+        }
+
+        body.large-text .btn,
+        body.large-text .pricing-btn,
+        body.large-text .product-btn {
+            font-size: 1rem;
+            padding: 0.6rem 1.4rem;
+        }
+
+        body.large-text .price {
+            font-size: 2.8rem;
+        }
+
+        body.large-text .product-price {
+            font-size: 1.8rem;
+        }
+
+        body.large-text .tag {
+            padding: 0.3rem 0.8rem;
+        }
+
+        body.dyslexic-font,
+        body.dyslexic-font * {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+        }
+
+        body.dyslexic-font p,
+        body.dyslexic-font li,
+        body.dyslexic-font a,
+        body.dyslexic-font .card p {
+            letter-spacing: 0.05em;
+            word-spacing: 0.1em;
+            line-height: 1.6;
+        }
+
+        body.dyslexic-font h1,
+        body.dyslexic-font h2,
+        body.dyslexic-font h3 {
+            letter-spacing: 0.03em;
+            font-weight: 700;
+        }
+
+        body.reduce-motion,
+        body.reduce-motion * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        body.reduce-motion .card:hover {
+            transform: none !important;
+        }
+
+        body.reduce-motion .fade-in {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        body.reduce-motion .ide-item:hover {
+            transform: none !important;
+        }
+
+        body.reduce-motion .social a:hover {
+            transform: none !important;
+        }
+
+        body.reduce-motion .pricing-card.featured {
+            transform: none !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* Boot-up loading overlay */
         .boot-overlay {
             position: fixed;
@@ -27,12 +954,12 @@
             font-family: 'Courier New', monospace;
             transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
         }
-        
+
         .boot-overlay.hide {
             opacity: 0;
             visibility: hidden;
         }
-        
+
         .boot-terminal {
             width: 90%;
             max-width: 600px;
@@ -42,7 +969,7 @@
             padding: 1.5rem;
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
         }
-        
+
         .boot-header {
             display: flex;
             align-items: center;
@@ -51,35 +978,40 @@
             margin-bottom: 1rem;
             border-bottom: 1px solid rgba(0, 212, 255, 0.3);
         }
-        
+
         .boot-dots {
             display: flex;
             gap: 6px;
         }
-        
+
         .boot-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background: #00d4ff;
         }
-        
-        .boot-dot:nth-child(2) { background: #7c3aed; }
-        .boot-dot:nth-child(3) { background: #00ff41; }
-        
+
+        .boot-dot:nth-child(2) {
+            background: #7c3aed;
+        }
+
+        .boot-dot:nth-child(3) {
+            background: #00ff41;
+        }
+
         .boot-title {
             color: #00d4ff;
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
         }
-        
+
         .boot-content {
             color: #00d4ff;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
         }
-        
+
         .boot-line {
             margin: 0.5rem 0;
             white-space: nowrap;
@@ -87,19 +1019,40 @@
             width: 0;
             animation: typing 1.5s steps(40, end) forwards;
         }
-        
-        .boot-line:nth-child(1) { animation-delay: 0s; }
-        .boot-line:nth-child(2) { animation-delay: 0.8s; }
-        .boot-line:nth-child(3) { animation-delay: 1.6s; }
-        .boot-line:nth-child(4) { animation-delay: 2.4s; }
-        .boot-line:nth-child(5) { animation-delay: 3.2s; }
-        .boot-line:nth-child(6) { animation-delay: 4s; }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+
+        .boot-line:nth-child(1) {
+            animation-delay: 0s;
         }
-        
+
+        .boot-line:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+
+        .boot-line:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+
+        .boot-line:nth-child(4) {
+            animation-delay: 2.4s;
+        }
+
+        .boot-line:nth-child(5) {
+            animation-delay: 3.2s;
+        }
+
+        .boot-line:nth-child(6) {
+            animation-delay: 4s;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
         .boot-progress {
             margin-top: 1.5rem;
             width: 100%;
@@ -108,14 +1061,14 @@
             border-radius: 2px;
             overflow: hidden;
         }
-        
+
         .boot-progress-bar {
             width: 0%;
             height: 100%;
             background: linear-gradient(90deg, #00d4ff, #7c3aed, #00ff41);
             animation: progressLoad 4.5s ease-out forwards;
         }
-        
+
         @keyframes progressLoad {
             0% { width: 0%; }
             10% { width: 5%; }
@@ -125,7 +1078,7 @@
             85% { width: 85%; }
             100% { width: 100%; }
         }
-        
+
         .boot-cursor {
             display: inline-block;
             width: 8px;
@@ -135,19 +1088,19 @@
             margin-left: 2px;
             animation: blink 1s step-end infinite;
         }
-        
+
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        
+
         .boot-status {
             margin-top: 1rem;
             color: #00ff41;
             font-size: 0.8rem;
             text-align: center;
         }
-        
+
         @media (max-width: 640px) {
             .boot-terminal {
                 padding: 1rem;
@@ -261,7 +1214,7 @@
 </div>
 
 <script>
-    (function(){
+    (function() {
         // ============================================================
         // BOOT LOADER
         // ============================================================
@@ -284,7 +1237,6 @@
             }
         }, 750);
         
-        // Hide boot overlay after animations complete
         setTimeout(() => {
             if (bootOverlay) {
                 bootOverlay.classList.add('hide');
@@ -307,7 +1259,6 @@
                 { icon: "fa-solid fa-mobile-alt", title: "Mobile", desc: "React Native, Flutter, Swift" },
                 { icon: "fa-solid fa-code-branch", title: "DevOps", desc: "CI/CD, Jenkins, GitHub Actions" }
             ],
-            
             services: [
                 { icon: "fa-solid fa-pen-nib", title: "Logo Design", desc: "Custom, memorable brand identities that stand out and tell your story." },
                 { icon: "fa-solid fa-laptop-code", title: "Web Development", desc: "Full-stack web applications with modern frameworks and best practices." },
@@ -317,9 +1268,7 @@
                 { icon: "fa-solid fa-shield-alt", title: "Security Audits", desc: "Identify vulnerabilities and secure your applications." },
                 { icon: "fa-solid fa-headset", title: "Maintenance & Support", desc: "Ongoing support and continuous improvement for your projects." }
             ],
-            
-            pricing: [
-                {
+            pricing: [{
                     icon: "fa-solid fa-seedling",
                     title: "Starter",
                     price: "$499",
@@ -374,22 +1323,18 @@
                     featured: false
                 }
             ],
-            
-            products: [
-                {
-                    image: "/images/products/staticsnow.jpg",
-                    title: "Static Snow - Metallic Button",
-                    price: "$3.24",
-                    originalPrice: "$3.60",
-                    savings: "10%",
-                    badge: "✨ Powered by Zazzle",
-                    description: "Custom metallic button featuring the \"Static Snow\" design. 2-inch square button, perfect for bags, jackets, or collectors.",
-                    externalBadge: "Payment & Shipping via Zazzle",
-                    buttonText: "Shop Now →",
-                    buttonUrl: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965"
-                }
-            ],
-            
+            products: [{
+                image: "/images/products/staticsnow.jpg",
+                title: "Static Snow - Metallic Button",
+                price: "$3.24",
+                originalPrice: "$3.60",
+                savings: "10%",
+                badge: "✨ Powered by Zazzle",
+                description: "Custom metallic button featuring the \"Static Snow\" design. 2-inch square button, perfect for bags, jackets, or collectors.",
+                externalBadge: "Payment & Shipping via Zazzle",
+                buttonText: "Shop Now →",
+                buttonUrl: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965"
+            }],
             projects: [
                 { icon: "fa-solid fa-cube", title: "Project Alpha", desc: "Platform for digital creators.", tags: ["React", "Node.js", "MongoDB"] },
                 { icon: "fa-solid fa-cloud", title: "Project Beta", desc: "Cloud analytics dashboard.", tags: ["Vue", "Python", "AWS"] },
@@ -398,7 +1343,6 @@
                 { icon: "fa-solid fa-shield", title: "Project Epsilon", desc: "Auth & authorization.", tags: ["Auth0", "JWT", "OAuth2"] },
                 { icon: "fa-solid fa-gamepad", title: "Project Zeta", desc: "Multiplayer game.", tags: ["WebSocket", "Canvas", "Phaser"] }
             ],
-            
             blog: [
                 { category: "Technology", title: "Future of Web Dev", excerpt: "Exploring emerging trends.", readTime: "5 min" },
                 { category: "Design", title: "Minimalist UI", excerpt: "Why simplicity wins.", readTime: "4 min" },
@@ -407,7 +1351,6 @@
                 { category: "Opinion", title: "Why I Love Monospace", excerpt: "The beauty of consistent widths.", readTime: "3 min" },
                 { category: "Performance", title: "Web Performance", excerpt: "Make sites load faster.", readTime: "8 min" }
             ],
-            
             socials: [
                 { name: "Email", icon: "fa-regular fa-envelope", url: "mailto:hello@v3.dev" },
                 { name: "GitHub", icon: "fa-brands fa-github", url: "https://github.com/v3" },
@@ -420,11 +1363,9 @@
         // ============================================================
         // RENDER FUNCTIONS
         // ============================================================
-        
         function renderSkills() {
             const container = document.getElementById('skills-container');
             if (!container) return;
-            
             let html = `<section id="skills" aria-labelledby="skills-heading">
                 <div class="container">
                     <div class="section-header">
@@ -432,7 +1373,6 @@
                         <p>Technologies I work with</p>
                     </div>
                     <div class="grid skills-grid">`;
-            
             SITE_DATA.skills.forEach(skill => {
                 html += `<div class="card" tabindex="0">
                             <div class="card-icon"><i class="${skill.icon}" aria-hidden="true"></i></div>
@@ -440,7 +1380,6 @@
                             <p>${skill.desc}</p>
                         </div>`;
             });
-            
             html += `</div></div></section>`;
             container.innerHTML = html;
         }
@@ -448,7 +1387,6 @@
         function renderServices() {
             const container = document.getElementById('services-container');
             if (!container) return;
-            
             let html = `<section id="services" aria-labelledby="services-heading">
                 <div class="container">
                     <div class="section-header">
@@ -456,7 +1394,6 @@
                         <p>What I offer</p>
                     </div>
                     <div class="grid services-grid">`;
-            
             SITE_DATA.services.forEach(service => {
                 html += `<div class="card service-card" tabindex="0">
                             <div class="card-icon"><i class="${service.icon}" aria-hidden="true"></i></div>
@@ -464,7 +1401,6 @@
                             <p>${service.desc}</p>
                         </div>`;
             });
-            
             html += `</div></div></section>`;
             container.innerHTML = html;
         }
@@ -472,7 +1408,6 @@
         function renderPricing() {
             const container = document.getElementById('pricing-container');
             if (!container) return;
-            
             let html = `<section id="pricing" aria-labelledby="pricing-heading">
                 <div class="container">
                     <div class="section-header">
@@ -480,11 +1415,9 @@
                         <p>Choose the plan that fits your needs</p>
                     </div>
                     <div class="grid pricing-grid">`;
-            
             SITE_DATA.pricing.forEach(plan => {
                 const featuredClass = plan.featured ? ' featured' : '';
                 const badgeHtml = plan.badge ? `<div class="featured-badge">${plan.badge}</div>` : '';
-                
                 html += `<div class="card pricing-card${featuredClass}">
                             ${badgeHtml}
                             <div class="card-icon"><i class="${plan.icon}" aria-hidden="true"></i></div>
@@ -492,15 +1425,12 @@
                             <div class="price">${plan.price}</div>
                             <p>${plan.description}</p>
                             <ul class="pricing-features">`;
-                
                 plan.features.forEach(feature => {
                     const iconClass = feature.type === 'check' ? 'fas fa-check' : 'fas fa-times';
                     html += `<li><i class="${iconClass}"></i> ${feature.text}</li>`;
                 });
-                
                 html += `</ul><button class="pricing-btn" data-plan="${plan.title}">${plan.buttonText}</button></div>`;
             });
-            
             html += `</div></div></section>`;
             container.innerHTML = html;
         }
@@ -508,7 +1438,6 @@
         function renderProducts() {
             const container = document.getElementById('products-container');
             if (!container) return;
-            
             let html = `<section id="products" aria-labelledby="products-heading">
                 <div class="container">
                     <div class="section-header">
@@ -516,7 +1445,6 @@
                         <p>Payment and shipping handled securely by our partners</p>
                     </div>
                     <div class="grid products-grid">`;
-            
             SITE_DATA.products.forEach(product => {
                 html += `<div class="card product-card">
                             <div class="product-image">
@@ -534,7 +1462,6 @@
                             <a href="${product.buttonUrl}" target="_blank" class="product-btn" rel="noopener">${product.buttonText}</a>
                         </div>`;
             });
-            
             html += `</div></div></section>`;
             container.innerHTML = html;
         }
@@ -542,7 +1469,6 @@
         function renderProjects() {
             const container = document.getElementById('projects-container');
             if (!container) return;
-            
             let html = `<section id="projects" aria-labelledby="projects-heading">
                 <div class="container">
                     <div class="section-header">
@@ -550,7 +1476,6 @@
                         <p>Some of my best work</p>
                     </div>
                     <div class="grid projects-grid">`;
-            
             SITE_DATA.projects.forEach(project => {
                 const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
                 html += `<div class="card project-card-link" data-project="${project.title.toLowerCase().replace(/\s/g, '-')}" tabindex="0" role="button" aria-label="${project.title}: ${project.desc}">
@@ -560,7 +1485,6 @@
                             <div class="tags">${tagsHtml}</div>
                         </div>`;
             });
-            
             html += `</div><p style="margin-top:1.5rem;">→ <a href="https://github.com/v3" target="_blank" class="view-link" id="view-projects" aria-label="View all projects on GitHub (opens in new tab)"><i class="fa-regular fa-arrow-right" aria-hidden="true"></i> View all projects on GitHub</a></p></div></section>`;
             container.innerHTML = html;
         }
@@ -568,7 +1492,6 @@
         function renderBlog() {
             const container = document.getElementById('blog-container');
             if (!container) return;
-            
             let html = `<section id="blog" aria-labelledby="blog-heading">
                 <div class="container">
                     <div class="section-header">
@@ -576,7 +1499,6 @@
                         <p>Thoughts on tech & design</p>
                     </div>
                     <div class="grid blog-grid">`;
-            
             SITE_DATA.blog.forEach(post => {
                 html += `<div class="card blog-card-link" data-blog="${post.title.toLowerCase().replace(/\s/g, '-')}" tabindex="0" role="button" aria-label="Read article: ${post.title}">
                             <div class="blog-cat">${post.category}</div>
@@ -585,7 +1507,6 @@
                             <div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> ${post.readTime}</div>
                         </div>`;
             });
-            
             html += `</div><p style="margin-top:1.5rem;">→ <a href="#" class="view-link" id="view-blog" aria-label="Read all blog posts"><i class="fa-regular fa-arrow-right" aria-hidden="true"></i> Read all posts</a></p></div></section>`;
             container.innerHTML = html;
         }
@@ -593,7 +1514,6 @@
         function renderSocials() {
             const container = document.getElementById('social-links');
             if (!container) return;
-            
             let html = '';
             SITE_DATA.socials.forEach(social => {
                 html += `<a href="${social.url}" target="_blank" rel="noopener" aria-label="Visit ${social.name} profile (opens in new tab)">
@@ -606,7 +1526,6 @@
         // ============================================================
         // EVENT HANDLERS & INTERACTIVITY
         // ============================================================
-        
         let navItems = document.querySelectorAll('.ide-item[data-section]');
         
         function setActive(sectionId) {
@@ -878,9 +1797,7 @@
             renderProjects();
             renderBlog();
             renderSocials();
-            
             document.querySelectorAll('section').forEach(s => observer.observe(s));
-            
             setTimeout(() => {
                 let viewProjectsBtn = document.getElementById('view-projects');
                 if (viewProjectsBtn) {
