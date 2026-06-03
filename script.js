@@ -61,8 +61,6 @@
     if(localStorage.getItem('reduceMotion')==='true')document.body.classList.add('reduce-motion');
     updateBtns();
     
-    let images=document.querySelectorAll('img[data-fallback]');images.forEach(img=>{let currentSrc=img.src;let primary=currentSrc;let fallback1=img.getAttribute('data-fallback');let fallback2=img.getAttribute('data-fallback2');let attempt=0;img.addEventListener('error',function(){if(attempt===0&&fallback1){this.src=fallback1;attempt=1;}else if(attempt===1&&fallback2){this.src=fallback2;attempt=2;}else{console.warn('All image sources failed:',primary,fallback1,fallback2);}});});
-    
     let observer=new IntersectionObserver(e=>{e.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('fade-in');observer.unobserve(entry.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
     document.querySelectorAll('section').forEach(s=>observer.observe(s));
     
