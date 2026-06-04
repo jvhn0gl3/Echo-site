@@ -3,180 +3,316 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
-    <meta name="description" content="V3 - Digital Architect & Full-Stack Developer" />
+    <meta name="description" content="V3 OS - Virtual Operating System" />
     <meta name="author" content="V3" />
-    <title>V3 | Digital Architect</title>
+    <title>V3 OS - Virtual Desktop Environment</title>
     <link rel="icon" type="image/png" href="v3.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html,body{overflow:hidden;width:100%;height:100%;}
+        body{background:#0a0a0a;color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;line-height:1.5;overflow:hidden;display:flex;flex-direction:column;height:100vh;font-size:clamp(.875rem,2vw,1rem);}
+        
+        /* OS Taskbar */
+        .taskbar{position:fixed;bottom:0;left:0;right:0;height:clamp(40px,5vh,48px);background:rgba(30,30,46,0.95);backdrop-filter:blur(20px);border-top:1px solid rgba(0,212,255,0.2);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(0.5rem,2vw,1rem);}
+        .taskbar-start{display:flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#00d4ff,#7c3aed);padding:clamp(0.2rem,1vw,0.4rem) clamp(0.6rem,2vw,1rem);border-radius:8px;cursor:pointer;transition:all .2s;}
+        .taskbar-start:hover{transform:scale(1.02);box-shadow:0 0 10px rgba(0,212,255,0.3);}
+        .taskbar-start i{font-size:clamp(1rem,2vw,1.2rem);color:#fff;}
+        .start-text{font-weight:600;font-size:clamp(0.7rem,1.5vw,0.85rem);color:#fff;}
+        .taskbar-time{font-family:monospace;font-size:clamp(0.7rem,1.5vw,0.85rem);color:#00d4ff;background:rgba(0,212,255,0.1);padding:clamp(0.2rem,1vw,0.4rem) clamp(0.5rem,1.5vw,0.8rem);border-radius:6px;}
+        
+        /* Windows/Apps Container */
+        .desktop{position:fixed;top:0;left:0;right:0;bottom:clamp(40px,5vh,48px);overflow-y:auto;overflow-x:hidden;padding:clamp(0.5rem,2vw,1rem);background:#0a0a0a;}
+        
+        /* Window styling */
+        .window{display:none;position:fixed;top:10%;left:10%;width:80%;height:80%;background:#1e1e2e;border:1px solid rgba(0,212,255,0.3);border-radius:12px;z-index:1000;flex-direction:column;box-shadow:0 20px 40px rgba(0,0,0,0.5);resize:both;overflow:hidden;min-width:300px;min-height:200px;}
+        .window.active{display:flex;}
+        .window-header{display:flex;align-items:center;justify-content:space-between;padding:clamp(0.5rem,1.5vw,0.75rem);background:rgba(0,212,255,0.1);border-bottom:1px solid rgba(0,212,255,0.2);cursor:move;}
+        .window-title{font-weight:600;color:#00d4ff;font-size:clamp(0.8rem,2vw,0.9rem);}
+        .window-controls{display:flex;gap:0.5rem;}
+        .window-control{width:clamp(24px,3vw,28px);height:clamp(24px,3vw,28px);display:flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;transition:all .2s;color:#aaa;}
+        .window-control:hover{background:rgba(255,255,255,0.1);}
+        .window-control.close:hover{background:#ff4444;color:#fff;}
+        .window-content{padding:clamp(1rem,3vw,1.5rem);overflow-y:auto;flex:1;}
+        
+        /* Desktop Icons */
+        .desktop-icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,100px));gap:clamp(0.5rem,2vw,1rem);padding:clamp(0.5rem,2vw,1rem);}
+        .desktop-icon{display:flex;flex-direction:column;align-items:center;gap:0.5rem;padding:clamp(0.5rem,1.5vw,0.75rem);border-radius:8px;cursor:pointer;transition:all .2s;}
+        .desktop-icon:hover{background:rgba(0,212,255,0.1);transform:translateY(-2px);}
+        .desktop-icon i{font-size:clamp(1.5rem,4vw,2rem);color:#00d4ff;}
+        .desktop-icon span{font-size:clamp(0.6rem,1.5vw,0.7rem);text-align:center;color:#e0e0e0;}
+        
+        /* Start Menu */
+        .start-menu{position:fixed;bottom:clamp(40px,5vh,48px);left:0;width:clamp(250px,30vw,320px);background:#1e1e2e;border:1px solid rgba(0,212,255,0.3);border-radius:12px;z-index:1001;transform:translateY(100%);transition:transform 0.2s;backdrop-filter:blur(20px);}
+        .start-menu.open{transform:translateY(0);}
+        .start-header{padding:clamp(0.75rem,2vw,1rem);border-bottom:1px solid rgba(0,212,255,0.2);display:flex;align-items:center;gap:0.75rem;}
+        .start-header i{font-size:clamp(1.2rem,3vw,1.5rem);color:#00d4ff;}
+        .start-header h3{color:#fff;font-size:clamp(0.9rem,2vw,1rem);}
+        .start-items{list-style:none;padding:clamp(0.5rem,1.5vw,0.75rem);}
+        .start-items li{display:flex;align-items:center;gap:0.75rem;padding:clamp(0.5rem,1.5vw,0.75rem);border-radius:8px;cursor:pointer;transition:all .2s;color:#e0e0e0;}
+        .start-items li:hover{background:rgba(0,212,255,0.2);color:#00d4ff;}
+        .start-items li i{width:clamp(20px,4vw,24px);}
+        
+        /* Boot overlay - keeping original */
+        .boot-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#0a0a0a;z-index:10000;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;transition:opacity .8s,visibility .8s;}
+        .boot-overlay.hide{opacity:0;visibility:hidden;}
+        .boot-terminal{width:90%;max-width:600px;background:#0a0a0a;border:1px solid #00d4ff;border-radius:8px;padding:1.5rem;box-shadow:0 0 30px rgba(0,212,255,.2);}
+        .boot-header{display:flex;align-items:center;gap:.5rem;padding-bottom:.75rem;margin-bottom:1rem;border-bottom:1px solid rgba(0,212,255,.3);}
+        .boot-dots{display:flex;gap:6px;}
+        .boot-dot{width:12px;height:12px;border-radius:50%;background:#00d4ff;}
+        .boot-dot:nth-child(2){background:#7c3aed;}
+        .boot-dot:nth-child(3){background:#00ff41;}
+        .boot-title{color:#00d4ff;font-size:.9rem;font-weight:600;letter-spacing:1px;}
+        .boot-content{color:#00d4ff;font-family:'Courier New',monospace;font-size:.9rem;}
+        .boot-line{margin:.5rem 0;white-space:nowrap;overflow:hidden;width:0;animation:typing 1.5s steps(40,end) forwards;}
+        .boot-line:nth-child(1){animation-delay:0s;}
+        .boot-line:nth-child(2){animation-delay:.8s;}
+        .boot-line:nth-child(3){animation-delay:1.6s;}
+        .boot-line:nth-child(4){animation-delay:2.4s;}
+        .boot-line:nth-child(5){animation-delay:3.2s;}
+        .boot-line:nth-child(6){animation-delay:4s;}
+        @keyframes typing{from{width:0;}to{width:100%;}}
+        .boot-progress{margin-top:1.5rem;width:100%;height:2px;background:rgba(0,212,255,.2);border-radius:2px;overflow:hidden;}
+        .boot-progress-bar{width:0%;height:100%;background:linear-gradient(90deg,#00d4ff,#7c3aed,#00ff41);animation:progressLoad 4.5s ease-out forwards;}
+        @keyframes progressLoad{0%{width:0%;}10%{width:5%;}30%{width:25%;}50%{width:45%;}70%{width:70%;}85%{width:85%;}100%{width:100%;}}
+        .boot-cursor{display:inline-block;width:8px;height:14px;background:#00d4ff;vertical-align:middle;margin-left:2px;animation:blink 1s step-end infinite;}
+        @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+        .boot-status{margin-top:1rem;color:#00ff41;font-size:.8rem;text-align:center;}
+        @media (max-width:640px){.boot-terminal{padding:1rem;}.boot-line{font-size:.7rem;white-space:normal;word-break:break-word;animation:none;width:100%;}.boot-content{font-size:.7rem;}}
+        
+        /* Window content styles - keep existing styling */
+        .grid{display:grid;gap:clamp(.75rem,2vw,1.25rem);width:100%;}
+        .grid-2{grid-template-columns:repeat(2,1fr);}
+        .grid-auto{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));}
+        .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:clamp(.75rem,2vw,1.25rem);padding:clamp(.75rem,2.5vw,1.5rem);transition:all .3s;text-align:center;width:100%;}
+        .card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.5);box-shadow:0 15px 30px -10px rgba(0,212,255,.15);background:rgba(255,255,255,.05);}
+        .card i{font-size:clamp(1.2rem,4vw,1.8rem);color:#00d4ff;margin-bottom:1rem;}
+        .card h3{font-size:clamp(.8rem,3vw,1.1rem);margin-bottom:.75rem;font-weight:700;color:#fff;}
+        .card p{color:#a0a0a0;font-size:clamp(.7rem,2.5vw,.85rem);line-height:1.5;}
+        .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
+        .pricing-card{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.05));border-color:rgba(0,212,255,.2);position:relative;overflow:visible;margin-top:1rem;}
+        .featured{border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,.2);transform:scale(1.02);margin-top:0;}
+        .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#00d4ff;color:#000;padding:4px 12px;border-radius:30px;font-size:clamp(.6rem,2vw,.7rem);font-weight:700;}
+        .price{font-size:clamp(1.5rem,5vw,2.5rem);font-weight:800;color:#00d4ff;margin:1rem 0 .5rem;}
+        .features{list-style:none;margin:1.5rem 0;text-align:left;}
+        .features li{padding:.5rem 0;color:#a0a0a0;font-size:clamp(.7rem,2vw,.85rem);display:flex;align-items:center;gap:.5rem;}
+        .features li i{font-size:.8rem;width:20px;margin-bottom:0;}
+        .fa-check{color:#00ff41;}
+        .fa-times{color:#ff4444;}
+        .btn{margin-top:1rem;padding:clamp(.5rem,2vw,.75rem) clamp(1rem,3vw,1.5rem);background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;border-radius:50px;color:#fff;font-weight:600;cursor:pointer;transition:all .3s;width:100%;display:inline-block;text-align:center;text-decoration:none;}
+        .btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
+        .featured .btn{background:#00ff41;color:#000;}
+        .product-img{height:clamp(150px,25vw,200px);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;overflow:hidden;}
+        .product-img img{width:100%;height:100%;object-fit:cover;}
+        .product-price{font-size:clamp(1rem,4vw,1.5rem);font-weight:700;color:#00d4ff;margin:.5rem 0;}
+        .original-price{font-size:clamp(.6rem,2.5vw,.8rem);color:#888;text-decoration:line-through;margin-left:.5rem;}
+        .badge-sm{display:inline-block;background:rgba(0,212,255,.2);color:#00d4ff;padding:4px 10px;border-radius:30px;font-size:clamp(.6rem,2vw,.7rem);margin-bottom:1rem;}
+        .external-badge{display:inline-flex;align-items:center;gap:.3rem;background:rgba(0,255,65,.15);color:#00ff41;padding:4px 10px;border-radius:30px;font-size:clamp(.55rem,1.8vw,.65rem);margin-top:.5rem;}
+        .project-img{height:clamp(120px,20vw,160px);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));display:flex;align-items:center;justify-content:center;border-radius:16px;margin-bottom:1.25rem;}
+        .project-img i{font-size:clamp(1.8rem,5vw,3rem);color:#00d4ff;margin-bottom:0;}
+        .tags{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem;}
+        .tag{font-size:clamp(.5rem,2vw,.65rem);padding:.2rem .6rem;background:rgba(0,212,255,.1);border-radius:30px;color:#00d4ff;font-weight:500;}
+        .blog-cat{font-size:clamp(.6rem,2vw,.7rem);color:#00d4ff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem;font-weight:600;}
+        .blog-meta{font-size:clamp(.6rem,2vw,.7rem);color:#666;display:inline-block;margin-top:.75rem;}
+        .section-header{margin-bottom:clamp(1rem,4vw,2rem);}
+        .section-header h2{font-size:clamp(1.5rem,5vw,2rem);font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#fff,#00d4ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+        .section-header p{color:#888;font-size:clamp(.8rem,2.5vw,.95rem);}
+        
+        /* Accessibility Modal */
+        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;}
+        .modal.active{opacity:1;visibility:visible;}
+        .modal-content{background:#0f0f0f;border:1px solid rgba(0,212,255,.2);border-radius:24px;padding:clamp(1rem,4vw,2rem);max-width:380px;width:90%;text-align:center;}
+        .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+        .modal-header h3{font-size:clamp(1rem,4vw,1.2rem);color:#00d4ff;}
+        .modal-close{background:none;border:none;color:#aaa;font-size:1.5rem;cursor:pointer;}
+        .opt{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:clamp(.8rem,2.5vw,.9rem);}
+        .opt button{padding:.25rem 1rem;background:rgba(255,255,255,.1);border:none;border-radius:30px;color:#fff;cursor:pointer;font-size:clamp(.7rem,2.5vw,.8rem);}
+        .opt button.active{background:#00ff41;color:#000;box-shadow:0 0 8px rgba(0,255,65,.3);}
+        
+        .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    </style>
 </head>
 <body>
 
 <div id="bootOverlay" class="boot-overlay">
     <div class="boot-terminal">
-        <div class="boot-header">
-            <div class="boot-dots"><div class="boot-dot"></div><div class="boot-dot"></div><div class="boot-dot"></div></div>
-            <div class="boot-title">V3 OS Terminal v3.0.0</div>
-        </div>
-        <div class="boot-content">
-            <div class="boot-line">> initializing V3 virtual environment...</div>
-            <div class="boot-line">> loading kernel modules...</div>
-            <div class="boot-line">> mounting file systems...</div>
-            <div class="boot-line">> establishing secure connections...</div>
-            <div class="boot-line">> loading user interface...</div>
-            <div class="boot-line">> starting window manager...<span class="boot-cursor"></span></div>
-        </div>
+        <div class="boot-header"><div class="boot-dots"><div class="boot-dot"></div><div class="boot-dot"></div><div class="boot-dot"></div></div><div class="boot-title">V3 OS v3.0.0</div></div>
+        <div class="boot-content"><div class="boot-line">> Booting V3 Virtual Operating System...</div><div class="boot-line">> Loading kernel modules...</div><div class="boot-line">> Initializing desktop environment...</div><div class="boot-line">> Starting window manager...</div><div class="boot-line">> Loading user applications...</div><div class="boot-line">> System ready.<span class="boot-cursor"></span></div></div>
         <div class="boot-progress"><div class="boot-progress-bar"></div></div>
         <div class="boot-status" id="bootStatus">[ SYSTEM INITIALIZING... ]</div>
     </div>
 </div>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<!-- Taskbar -->
+<div class="taskbar">
+    <div class="taskbar-start" id="startBtn"><i class="fas fa-window"></i><span class="start-text">START</span></div>
+    <div class="taskbar-time" id="taskbarTime"></div>
+</div>
 
-<div class="sidebar">
-    <a href="#" class="logo" id="homeLogoLink">V3</a>
-    <div class="nav">
-        <div class="nav-item" data-section="about"><i class="fas fa-user"></i><span class="visually-hidden">About</span></div>
-        <div class="nav-item" data-section="skills"><i class="fas fa-code"></i><span class="visually-hidden">Skills</span></div>
-        <div class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span class="visually-hidden">Services</span></div>
-        <div class="nav-item" data-section="pricing"><i class="fas fa-tag"></i><span class="visually-hidden">Pricing</span></div>
-        <div class="nav-item" data-section="products"><i class="fas fa-tshirt"></i><span class="visually-hidden">Products</span></div>
-        <div class="nav-item" data-section="projects"><i class="fas fa-folder"></i><span class="visually-hidden">Projects</span></div>
-        <div class="nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span class="visually-hidden">Blog</span></div>
-        <div class="nav-item" data-section="contact"><i class="fas fa-envelope"></i><span class="visually-hidden">Contact</span></div>
-    </div>
-    <div class="sidebar-bottom">
-        <div class="nav-item" id="a11yNavBtn"><i class="fas fa-universal-access"></i><span class="visually-hidden">Accessibility</span></div>
+<!-- Start Menu -->
+<div class="start-menu" id="startMenu">
+    <div class="start-header"><i class="fas fa-microchip"></i><h3>V3 OS</h3></div>
+    <ul class="start-items">
+        <li data-app="about"><i class="fas fa-user"></i> About V3</li>
+        <li data-app="skills"><i class="fas fa-code"></i> Skills</li>
+        <li data-app="services"><i class="fas fa-cogs"></i> Services</li>
+        <li data-app="pricing"><i class="fas fa-tag"></i> Pricing</li>
+        <li data-app="products"><i class="fas fa-tshirt"></i> Merchandise</li>
+        <li data-app="projects"><i class="fas fa-folder"></i> Projects</li>
+        <li data-app="blog"><i class="fas fa-newspaper"></i> Blog</li>
+        <li data-app="contact"><i class="fas fa-envelope"></i> Contact</li>
+        <li id="accessibilityStartBtn"><i class="fas fa-universal-access"></i> Accessibility</li>
+    </ul>
+</div>
+
+<!-- Desktop Icons -->
+<div class="desktop" id="desktop">
+    <div class="desktop-icons">
+        <div class="desktop-icon" data-app="about"><i class="fas fa-user"></i><span>About</span></div>
+        <div class="desktop-icon" data-app="skills"><i class="fas fa-code"></i><span>Skills</span></div>
+        <div class="desktop-icon" data-app="services"><i class="fas fa-cogs"></i><span>Services</span></div>
+        <div class="desktop-icon" data-app="pricing"><i class="fas fa-tag"></i><span>Pricing</span></div>
+        <div class="desktop-icon" data-app="products"><i class="fas fa-tshirt"></i><span>Merch</span></div>
+        <div class="desktop-icon" data-app="projects"><i class="fas fa-folder"></i><span>Projects</span></div>
+        <div class="desktop-icon" data-app="blog"><i class="fas fa-newspaper"></i><span>Blog</span></div>
+        <div class="desktop-icon" data-app="contact"><i class="fas fa-envelope"></i><span>Contact</span></div>
     </div>
 </div>
 
-<main id="main-content">
-    <section id="about">
-        <div class="container about">
-            <div class="about-text">
-                <div class="section-header"><h2>About V3</h2><p>Behind the code</p></div>
-                <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-                <p>Every line of code serves a purpose, every pixel has meaning.</p>
-            </div>
-            <div class="about-img"><img src="v3.png" alt="V3 brand logo"></div>
-        </div>
-    </section>
+<!-- Application Windows -->
+<div id="winAbout" class="window"><div class="window-header"><div class="window-title">📄 About V3</div><div class="window-controls"><div class="window-control close" data-app="about"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>About V3</h2><p>Behind the code</p></div><p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p><p style="margin-top:1rem;">Every line of code serves a purpose, every pixel has meaning.</p><div class="about-img" style="margin-top:1.5rem;"><img src="v3.png" alt="V3 brand logo" style="max-width:200px;border-radius:16px;"></div></div></div>
 
-    <section id="skills">
-        <div class="container">
-            <div class="section-header"><h2>Technical Skills</h2><p>Technologies I work with</p></div>
-            <div class="grid grid-2">
-                <div class="card"><i class="fa-brands fa-react"></i><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div>
-                <div class="card"><i class="fa-solid fa-server"></i><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div>
-                <div class="card"><i class="fa-solid fa-database"></i><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div>
-                <div class="card"><i class="fa-solid fa-cloud"></i><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div>
-                <div class="card"><i class="fa-solid fa-mobile-alt"></i><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div>
-                <div class="card"><i class="fa-solid fa-code-branch"></i><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div>
-            </div>
-        </div>
-    </section>
+<div id="winSkills" class="window"><div class="window-header"><div class="window-title">💻 Technical Skills</div><div class="window-controls"><div class="window-control close" data-app="skills"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Technical Skills</h2><p>Technologies I work with</p></div><div class="grid grid-2"><div class="card"><i class="fa-brands fa-react"></i><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div><div class="card"><i class="fa-solid fa-server"></i><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div><div class="card"><i class="fa-solid fa-database"></i><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div><div class="card"><i class="fa-solid fa-cloud"></i><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div><div class="card"><i class="fa-solid fa-mobile-alt"></i><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div><div class="card"><i class="fa-solid fa-code-branch"></i><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div></div></div>
 
-    <section id="services">
-        <div class="container">
-            <div class="section-header"><h2>Professional Services</h2><p>What I offer</p></div>
-            <div class="grid grid-2">
-                <div class="card service-card"><i class="fa-solid fa-pen-nib"></i><h3>Logo Design</h3><p>Custom, memorable brand identities that stand out and tell your story.</p></div>
-                <div class="card service-card"><i class="fa-solid fa-laptop-code"></i><h3>Web Development</h3><p>Full-stack web applications with modern frameworks.</p></div>
-                <div class="card service-card"><i class="fa-solid fa-palette"></i><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces focused on user experience.</p></div>
-                <div class="card service-card"><i class="fa-solid fa-chart-line"></i><h3>Technical Consulting</h3><p>Expert advice on architecture, scalability, and technology.</p></div>
-                <div class="card service-card"><i class="fa-solid fa-rocket"></i><h3>Performance Optimization</h3><p>Speed up your applications and improve user experience.</p></div>
-                <div class="card service-card"><i class="fa-solid fa-shield-alt"></i><h3>Security Audits</h3><p>Identify vulnerabilities and secure your applications.</p></div>
-                <div class="card service-card"><i class="fa-solid fa-headset"></i><h3>Maintenance & Support</h3><p>Ongoing support and continuous improvement for your projects.</p></div>
-            </div>
-        </div>
-    </section>
+<div id="winServices" class="window"><div class="window-header"><div class="window-title">⚙️ Professional Services</div><div class="window-controls"><div class="window-control close" data-app="services"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Professional Services</h2><p>What I offer</p></div><div class="grid grid-2"><div class="card service-card"><i class="fa-solid fa-pen-nib"></i><h3>Logo Design</h3><p>Custom, memorable brand identities.</p></div><div class="card service-card"><i class="fa-solid fa-laptop-code"></i><h3>Web Development</h3><p>Full-stack applications.</p></div><div class="card service-card"><i class="fa-solid fa-palette"></i><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces.</p></div><div class="card service-card"><i class="fa-solid fa-chart-line"></i><h3>Technical Consulting</h3><p>Expert architecture advice.</p></div></div></div></div>
 
-    <section id="pricing">
-        <div class="container">
-            <div class="section-header"><h2>Simple, Transparent Pricing</h2><p>Choose the plan that fits your needs</p></div>
-            <div class="grid grid-auto">
-                <div class="card pricing-card"><i class="fa-solid fa-seedling"></i><h3>Starter</h3><div class="price">$499</div><p>Perfect for small businesses and startups</p><ul class="features"><li><i class="fas fa-check"></i> Custom 5-page website</li><li><i class="fas fa-check"></i> Mobile responsive design</li><li><i class="fas fa-check"></i> SEO optimization</li><li><i class="fas fa-check"></i> Contact form integration</li><li><i class="fas fa-check"></i> 1 month support</li><li><i class="fas fa-times"></i> E-commerce functionality</li><li><i class="fas fa-times"></i> Custom backend</li></ul><button class="btn" data-plan="Starter">Get Started</button></div>
-                <div class="card pricing-card featured"><div class="badge">Most Popular</div><i class="fa-solid fa-rocket"></i><h3>Professional</h3><div class="price">$1,499</div><p>Ideal for growing businesses</p><ul class="features"><li><i class="fas fa-check"></i> Custom 15-page website</li><li><i class="fas fa-check"></i> Mobile responsive design</li><li><i class="fas fa-check"></i> Advanced SEO optimization</li><li><i class="fas fa-check"></i> Custom contact forms + CRM</li><li><i class="fas fa-check"></i> 3 months support</li><li><i class="fas fa-check"></i> E-commerce ready</li><li><i class="fas fa-check"></i> API integrations</li><li><i class="fas fa-check"></i> Performance analytics</li></ul><button class="btn" data-plan="Professional">Get Started</button></div>
-                <div class="card pricing-card"><i class="fa-solid fa-building"></i><h3>Enterprise</h3><div class="price">Custom</div><p>For large organizations</p><ul class="features"><li><i class="fas fa-check"></i> Unlimited pages</li><li><i class="fas fa-check"></i> Full-stack custom development</li><li><i class="fas fa-check"></i> Enterprise-grade security</li><li><i class="fas fa-check"></i> Scalable cloud infrastructure</li><li><i class="fas fa-check"></i> Dedicated support team</li><li><i class="fas fa-check"></i> 12 months support + maintenance</li><li><i class="fas fa-check"></i> Team training sessions</li><li><i class="fas fa-check"></i> Custom SLAs</li></ul><button class="btn" data-plan="Enterprise">Contact Us</button></div>
-            </div>
-        </div>
-    </section>
+<div id="winPricing" class="window"><div class="window-header"><div class="window-title">💰 Pricing Plans</div><div class="window-controls"><div class="window-control close" data-app="pricing"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Simple, Transparent Pricing</h2><p>Choose your plan</p></div><div class="grid grid-auto"><div class="card pricing-card"><i class="fa-solid fa-seedling"></i><h3>Starter</h3><div class="price">$499</div><ul class="features"><li><i class="fas fa-check"></i> Custom 5-page website</li><li><i class="fas fa-check"></i> Mobile responsive</li><li><i class="fas fa-check"></i> SEO optimization</li><li><i class="fas fa-check"></i> 1 month support</li></ul><button class="btn" data-plan="Starter">Get Started</button></div><div class="card pricing-card featured"><div class="badge">Popular</div><i class="fa-solid fa-rocket"></i><h3>Professional</h3><div class="price">$1,499</div><ul class="features"><li><i class="fas fa-check"></i> Custom 15-page website</li><li><i class="fas fa-check"></i> Advanced SEO</li><li><i class="fas fa-check"></i> E-commerce ready</li><li><i class="fas fa-check"></i> 3 months support</li></ul><button class="btn" data-plan="Professional">Get Started</button></div><div class="card pricing-card"><i class="fa-solid fa-building"></i><h3>Enterprise</h3><div class="price">Custom</div><ul class="features"><li><i class="fas fa-check"></i> Unlimited pages</li><li><i class="fas fa-check"></i> Full-stack custom dev</li><li><i class="fas fa-check"></i> Dedicated support</li><li><i class="fas fa-check"></i> 12 months support</li></ul><button class="btn" data-plan="Enterprise">Contact Us</button></div></div></div></div>
 
-    <section id="products">
-        <div class="container">
-            <div class="section-header"><h2>Official Merchandise</h2><p>Payment and shipping handled securely by our partners</p></div>
-            <div class="grid grid-auto">
-                <div class="card product-card">
-                    <div class="product-img"><img src="staticsnow.jpg" alt="Static Snow Metallic Button"></div>
-                    <h3>Static Snow - Metallic Button</h3>
-                    <div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:.7rem;color:#00ff41;"> (Save 10%)</span></div>
-                    <div class="badge-sm">✨ Powered by Zazzle</div>
-                    <p>Custom metallic button featuring the "Static Snow" design. 2-inch square button, perfect for bags, jackets, or collectors.</p>
-                    <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Zazzle</div>
-                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="btn" rel="noopener">Shop Now →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<div id="winProducts" class="window"><div class="window-header"><div class="window-title">🛍️ Official Merchandise</div><div class="window-controls"><div class="window-control close" data-app="products"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Official Merchandise</h2><p>Payment handled by partners</p></div><div class="grid grid-auto"><div class="card product-card"><div class="product-img"><img src="staticsnow.jpg" alt="Static Snow Button"></div><h3>Static Snow - Metallic Button</h3><div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:.7rem;color:#00ff41;"> Save 10%</span></div><div class="badge-sm">✨ Zazzle</div><div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment via Zazzle</div><a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="btn">Shop Now →</a></div></div></div></div>
 
-    <section id="projects">
-        <div class="container">
-            <div class="section-header"><h2>Featured Projects</h2><p>Some of my best work</p></div>
-            <div class="grid grid-2">
-                <div class="card project-card-link" data-project="alpha"><div class="project-img"><i class="fa-solid fa-cube"></i></div><h3>Project Alpha</h3><p>Platform for digital creators.</p><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div></div>
-                <div class="card project-card-link" data-project="beta"><div class="project-img"><i class="fa-solid fa-cloud"></i></div><h3>Project Beta</h3><p>Cloud analytics dashboard.</p><div class="tags"><span class="tag">Vue</span><span class="tag">Python</span><span class="tag">AWS</span></div></div>
-                <div class="card project-card-link" data-project="gamma"><div class="project-img"><i class="fa-solid fa-robot"></i></div><h3>Project Gamma</h3><p>Automation platform.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div></div>
-                <div class="card project-card-link" data-project="delta"><div class="project-img"><i class="fa-solid fa-chart-line"></i></div><h3>Project Delta</h3><p>Real-time analytics.</p><div class="tags"><span class="tag">D3.js</span><span class="tag">FastAPI</span><span class="tag">Redis</span></div></div>
-                <div class="card project-card-link" data-project="epsilon"><div class="project-img"><i class="fa-solid fa-shield"></i></div><h3>Project Epsilon</h3><p>Auth & authorization.</p><div class="tags"><span class="tag">Auth0</span><span class="tag">JWT</span><span class="tag">OAuth2</span></div></div>
-                <div class="card project-card-link" data-project="zeta"><div class="project-img"><i class="fa-solid fa-gamepad"></i></div><h3>Project Zeta</h3><p>Multiplayer game.</p><div class="tags"><span class="tag">WebSocket</span><span class="tag">Canvas</span><span class="tag">Phaser</span></div></div>
-            </div>
-            <p style="margin-top:1.5rem;">→ <a href="https://github.com/v3" target="_blank" class="view-link" id="view-projects"><i class="fa-regular fa-arrow-right"></i> View all projects on GitHub</a></p>
-        </div>
-    </section>
+<div id="winProjects" class="window"><div class="window-header"><div class="window-title">📁 Featured Projects</div><div class="window-controls"><div class="window-control close" data-app="projects"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Featured Projects</h2><p>Some of my best work</p></div><div class="grid grid-2"><div class="card project-card-link" data-project="alpha"><div class="project-img"><i class="fa-solid fa-cube"></i></div><h3>Project Alpha</h3><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span></div></div><div class="card project-card-link" data-project="beta"><div class="project-img"><i class="fa-solid fa-cloud"></i></div><h3>Project Beta</h3><div class="tags"><span class="tag">Vue</span><span class="tag">AWS</span></div></div></div><p style="margin-top:1rem;">→ <a href="https://github.com/v3" target="_blank" class="view-link">View all on GitHub</a></p></div></div>
 
-    <section id="blog">
-        <div class="container">
-            <div class="section-header"><h2>Latest Insights</h2><p>Thoughts on tech & design</p></div>
-            <div class="grid grid-2">
-                <div class="card blog-card-link" data-blog="future-web"><div class="blog-cat">Technology</div><h3>Future of Web Dev</h3><p>Exploring emerging trends.</p><div class="blog-meta"><i class="fas fa-clock"></i> 5 min</div></div>
-                <div class="card blog-card-link" data-blog="minimalist-ui"><div class="blog-cat">Design</div><h3>Minimalist UI</h3><p>Why simplicity wins.</p><div class="blog-meta"><i class="fas fa-clock"></i> 4 min</div></div>
-                <div class="card blog-card-link" data-blog="10-years"><div class="blog-cat">Career</div><h3>10 Years in Review</h3><p>Lessons from a decade.</p><div class="blog-meta"><i class="fas fa-clock"></i> 7 min</div></div>
-                <div class="card blog-card-link" data-blog="dev-setup"><div class="blog-cat">Tools</div><h3>My Dev Setup 2024</h3><p>Tools that boost productivity.</p><div class="blog-meta"><i class="fas fa-clock"></i> 6 min</div></div>
-                <div class="card blog-card-link" data-blog="monospace"><div class="blog-cat">Opinion</div><h3>Why I Love Monospace</h3><p>The beauty of consistent widths.</p><div class="blog-meta"><i class="fas fa-clock"></i> 3 min</div></div>
-                <div class="card blog-card-link" data-blog="web-perf"><div class="blog-cat">Performance</div><h3>Web Performance</h3><p>Make sites load faster.</p><div class="blog-meta"><i class="fas fa-clock"></i> 8 min</div></div>
-            </div>
-            <p style="margin-top:1.5rem;">→ <a href="#" class="view-link" id="view-blog"><i class="fa-regular fa-arrow-right"></i> Read all posts</a></p>
-        </div>
-    </section>
+<div id="winBlog" class="window"><div class="window-header"><div class="window-title">📝 Latest Insights</div><div class="window-controls"><div class="window-control close" data-app="blog"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Latest Insights</h2><p>Thoughts on tech & design</p></div><div class="grid grid-2"><div class="card blog-card-link"><div class="blog-cat">Technology</div><h3>Future of Web Dev</h3><div class="blog-meta">5 min read</div></div><div class="card blog-card-link"><div class="blog-cat">Design</div><h3>Minimalist UI</h3><div class="blog-meta">4 min read</div></div></div></div></div>
 
-    <section id="contact">
-        <div class="container contact">
-            <div class="section-header"><h2>Let's Work Together</h2><p>Have a project in mind?</p></div>
-            <p>Feel free to reach out through any of these platforms.</p>
-            <div class="social">
-                <a href="mailto:hello@v3.dev" target="_blank"><i class="fa-regular fa-envelope"></i> Email</a>
-                <a href="https://github.com/v3" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="https://linkedin.com/in/v3" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://twitter.com/v3" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a>
-                <a href="https://discord.gg/v3" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
-            </div>
-        </div>
-    </section>
-</main>
+<div id="winContact" class="window"><div class="window-header"><div class="window-title">✉️ Contact</div><div class="window-controls"><div class="window-control close" data-app="contact"><i class="fas fa-times"></i></div></div></div><div class="window-content"><div class="section-header"><h2>Let's Work Together</h2><p>Have a project in mind?</p></div><p>Feel free to reach out through any of these platforms.</p><div class="social" style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;"><a href="mailto:hello@v3.dev" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border-radius:50px;color:#e0e0e0;text-decoration:none;"><i class="fa-regular fa-envelope"></i> Email</a><a href="https://github.com/v3" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border-radius:50px;color:#e0e0e0;text-decoration:none;"><i class="fa-brands fa-github"></i> GitHub</a><a href="https://linkedin.com/in/v3" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border-radius:50px;color:#e0e0e0;text-decoration:none;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a><a href="https://twitter.com/v3" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border-radius:50px;color:#e0e0e0;text-decoration:none;"><i class="fa-brands fa-twitter"></i> Twitter</a><a href="https://discord.gg/v3" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border-radius:50px;color:#e0e0e0;text-decoration:none;"><i class="fa-brands fa-discord"></i> Discord</a></div></div></div>
 
-<footer><p id="footerText"></p></footer>
+<div id="a11yModal" class="modal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-universal-access"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn">&times;</button></div><div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn">Off</button></div><div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn">Off</button></div><div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Off</button></div><div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Off</button></div></div></div>
 
-<div id="a11yModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header"><h3><i class="fas fa-universal-access"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn">&times;</button></div>
-        <div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn">Off</button></div>
-        <div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn">Off</button></div>
-        <div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Off</button></div>
-        <div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Off</button></div>
-    </div>
-</div>
-
-<script src="script.js"></script>
+<script>
+(function(){
+    // Boot loader
+    const bootOverlay = document.getElementById('bootOverlay');
+    const bootStatus = document.getElementById('bootStatus');
+    const bootMessages = ["[ SYSTEM INITIALIZING... ]","[ LOADING KERNEL... ]","[ MOUNTING FILE SYSTEMS... ]","[ STARTING DESKTOP... ]","[ LOADING APPLICATIONS... ]","[ V3 OS READY ]"];
+    let msgIndex = 0;
+    const statusInterval = setInterval(() => { msgIndex++; if(msgIndex < bootMessages.length && bootStatus) bootStatus.textContent = bootMessages[msgIndex]; }, 750);
+    setTimeout(() => { if(bootOverlay){ bootOverlay.classList.add('hide'); setTimeout(()=> bootOverlay.style.display='none',800); } clearInterval(statusInterval); }, 5300);
+    
+    // Taskbar time
+    function updateTime(){ const now=new Date(); document.getElementById('taskbarTime').innerHTML=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+    updateTime(); setInterval(updateTime,1000);
+    
+    // Start menu
+    const startBtn = document.getElementById('startBtn');
+    const startMenu = document.getElementById('startMenu');
+    startBtn.addEventListener('click', (e)=>{ e.stopPropagation(); startMenu.classList.toggle('open'); });
+    document.addEventListener('click', ()=>{ startMenu.classList.remove('open'); });
+    startMenu.addEventListener('click', (e)=> e.stopPropagation());
+    
+    // Window management
+    const windows = {
+        about: document.getElementById('winAbout'),
+        skills: document.getElementById('winSkills'),
+        services: document.getElementById('winServices'),
+        pricing: document.getElementById('winPricing'),
+        products: document.getElementById('winProducts'),
+        projects: document.getElementById('winProjects'),
+        blog: document.getElementById('winBlog'),
+        contact: document.getElementById('winContact')
+    };
+    
+    let activeWindow = null;
+    let offsetX = 0, offsetY = 0;
+    
+    function openWindow(appId){
+        for(let id in windows){ windows[id].classList.remove('active'); }
+        if(windows[appId]){ windows[appId].classList.add('active'); activeWindow = windows[appId]; bringToFront(appId); }
+    }
+    function closeWindow(appId){ if(windows[appId]) windows[appId].classList.remove('active'); }
+    function bringToFront(appId){ for(let id in windows){ windows[id].style.zIndex = 1000; } if(windows[appId]) windows[appId].style.zIndex = 1001; }
+    
+    // Drag windows
+    document.querySelectorAll('.window-header').forEach(header=>{
+        const win = header.parentElement;
+        header.addEventListener('mousedown', (e)=>{
+            if(e.target.closest('.window-controls')) return;
+            activeWindow = win;
+            bringToFront(win.id.replace('win','').toLowerCase());
+            let rect = win.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            function onMouseMove(e){
+                let newLeft = e.clientX - offsetX;
+                let newTop = e.clientY - offsetY;
+                newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - win.offsetWidth));
+                newTop = Math.max(0, Math.min(newTop, window.innerHeight - win.offsetHeight - 48));
+                win.style.left = newLeft + 'px';
+                win.style.top = newTop + 'px';
+                win.style.right = 'auto';
+                win.style.bottom = 'auto';
+            }
+            function onMouseUp(){ document.removeEventListener('mousemove', onMouseMove); document.removeEventListener('mouseup', onMouseUp); }
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+            e.preventDefault();
+        });
+    });
+    
+    // Desktop icons & start menu items
+    document.querySelectorAll('.desktop-icon, .start-items li[data-app]').forEach(el=>{
+        el.addEventListener('click', (e)=>{ e.stopPropagation(); let app = el.getAttribute('data-app'); if(app) openWindow(app); });
+    });
+    
+    document.querySelectorAll('.window-control.close').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{ e.stopPropagation(); let app = btn.getAttribute('data-app'); if(app) closeWindow(app); });
+    });
+    
+    // Accessibility modal
+    const a11yModal = document.getElementById('a11yModal');
+    const a11yNavBtn = document.getElementById('accessibilityStartBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    a11yNavBtn.addEventListener('click', ()=>{ a11yModal.classList.add('active'); document.body.style.overflow='hidden'; updateBtns(); });
+    closeModalBtn.addEventListener('click', ()=>{ a11yModal.classList.remove('active'); document.body.style.overflow=''; });
+    
+    // Accessibility buttons
+    let hc=document.getElementById('highContrastBtn'), lt=document.getElementById('largeTextBtn'), df=document.getElementById('dyslexicFontBtn'), rm=document.getElementById('reduceMotionBtn');
+    function updateBtns(){ let ha=document.body.classList.contains('high-contrast'), la=document.body.classList.contains('large-text'), da=document.body.classList.contains('dyslexic-font'), ra=document.body.classList.contains('reduce-motion'); if(hc){ hc.textContent=ha?'On':'Off'; hc.classList.toggle('active',ha); } if(lt){ lt.textContent=la?'On':'Off'; lt.classList.toggle('active',la); } if(df){ df.textContent=da?'On':'Off'; df.classList.toggle('active',da); } if(rm){ rm.textContent=ra?'On':'Off'; rm.classList.toggle('active',ra); } }
+    function applyHigh(e){ if(e) document.body.classList.add('high-contrast'); else document.body.classList.remove('high-contrast'); localStorage.setItem('highContrast',e); updateBtns(); }
+    function applyLarge(e){ if(e) document.body.classList.add('large-text'); else document.body.classList.remove('large-text'); localStorage.setItem('largeText',e); updateBtns(); }
+    function applyDys(e){ if(e) document.body.classList.add('dyslexic-font'); else document.body.classList.remove('dyslexic-font'); localStorage.setItem('dyslexicFont',e); updateBtns(); }
+    function applyReduce(e){ if(e) document.body.classList.add('reduce-motion'); else document.body.classList.remove('reduce-motion'); localStorage.setItem('reduceMotion',e); updateBtns(); }
+    if(hc){ hc.addEventListener('click',()=>applyHigh(!document.body.classList.contains('high-contrast'))); }
+    if(lt){ lt.addEventListener('click',()=>applyLarge(!document.body.classList.contains('large-text'))); }
+    if(df){ df.addEventListener('click',()=>applyDys(!document.body.classList.contains('dyslexic-font'))); }
+    if(rm){ rm.addEventListener('click',()=>applyReduce(!document.body.classList.contains('reduce-motion'))); }
+    if(localStorage.getItem('highContrast')==='true') document.body.classList.add('high-contrast');
+    if(localStorage.getItem('largeText')==='true') document.body.classList.add('large-text');
+    if(localStorage.getItem('dyslexicFont')==='true') document.body.classList.add('dyslexic-font');
+    if(localStorage.getItem('reduceMotion')==='true') document.body.classList.add('reduce-motion');
+    updateBtns();
+    
+    // Pricing button modals
+    document.querySelectorAll('.pricing-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{ let plan=btn.getAttribute('data-plan'); alert(plan+' Plan - Get in touch for details!'); });
+    });
+    document.querySelectorAll('.project-card-link, .blog-card-link').forEach(card=>{
+        card.addEventListener('click',()=>{ alert('Project Details - Coming soon!'); });
+    });
+    document.getElementById('view-projects')?.addEventListener('click',(e)=>{ e.preventDefault(); window.open('https://github.com/v3','_blank'); });
+    document.getElementById('view-blog')?.addEventListener('click',(e)=>{ e.preventDefault(); alert('All Blog Posts - Coming soon!'); });
+})();
+</script>
 </body>
 </html>
