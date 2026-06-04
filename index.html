@@ -337,7 +337,7 @@
     </section>
 </main>
 
-<footer><p>© 2024 V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i><span class="visually-hidden"> love</span></p></footer>
+<footer><p id="footerText"></p></footer>
 
 <div id="a11yModal" class="modal">
     <div class="modal-content">
@@ -351,6 +351,20 @@
 
 <script>
     (function(){
+        // Set current date in footer
+        const footerText = document.getElementById('footerText');
+        if (footerText) {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            footerText.innerHTML = `© ${year} V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i><span class="visually-hidden"> love</span> | ${dateString}`;
+        }
+        
         const bootOverlay = document.getElementById('bootOverlay');
         const bootStatus = document.getElementById('bootStatus');
         const bootMessages = ["[ SYSTEM INITIALIZING... ]","[ LOADING KERNEL... ]","[ MOUNTING FILE SYSTEMS... ]","[ ESTABLISHING SECURE CONNECTIONS... ]","[ LOADING UI COMPONENTS... ]","[ V3 OS READY ]"];
