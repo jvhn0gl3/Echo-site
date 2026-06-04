@@ -10,1103 +10,185 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            overflow-x: hidden;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        body {
-            background: #050505;
-            color: #e8e8e8;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            position: relative;
-            touch-action: pan-y pinch-zoom;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            font-size: clamp(0.875rem, 2vw, 1rem);
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #00d4ff;
-            color: #000;
-            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-            text-decoration: none;
-            z-index: 1001;
-            border-radius: 0 0 4px 0;
-            font-weight: 600;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-
-        .ide-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: clamp(48px, 8vw, 72px);
-            background: #1e1e2e;
-            border-right: 1px solid #2a2a3a;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: clamp(1rem, 3vw, 1.5rem) 0;
-            gap: clamp(1rem, 3vw, 1.5rem);
-        }
-
-        .ide-logo {
-            font-size: clamp(1.25rem, 5vw, 1.75rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            font-family: 'Major Mono Display', monospace;
-            letter-spacing: 2px;
-            margin-bottom: clamp(0.5rem, 2vw, 1rem);
-        }
-
-        .ide-nav {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(0.75rem, 2vw, 1rem);
-            flex: 1;
-        }
-
-        .ide-item {
-            width: clamp(36px, 6vw, 48px);
-            height: clamp(36px, 6vw, 48px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: #7e7e8e;
-            font-size: clamp(1rem, 3vw, 1.375rem);
-            position: relative;
-        }
-
-        .ide-item:hover {
-            color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        .ide-item.active {
-            color: #00d4ff;
-            border-left: 3px solid #00d4ff;
-            background: rgba(0, 212, 255, 0.15);
-            border-radius: 12px 0 0 12px;
-        }
-
-        .ide-item.active::before {
-            content: '';
-            position: absolute;
-            left: -12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 20px;
-            background: #00d4ff;
-            border-radius: 3px;
-        }
-
-        .ide-bottom {
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(0.75rem, 2vw, 1rem);
-        }
-
-        main {
-            margin-left: clamp(48px, 8vw, 72px);
-            padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 3rem);
-            overflow-x: hidden;
-            position: relative;
-            width: calc(100% - clamp(48px, 8vw, 72px));
-            max-width: 100%;
-            flex: 1;
-        }
-
-        section {
-            margin-bottom: clamp(2rem, 8vw, 4rem);
-            overflow-x: visible;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            overflow-x: visible;
-        }
-
-        .section-header {
-            margin-bottom: clamp(1rem, 4vw, 2rem);
-        }
-
-        .section-header h2 {
-            font-size: clamp(1.5rem, 5vw, 2rem);
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .section-header p {
-            color: #888;
-            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(1.5rem, 5vw, 3rem);
-            align-items: center;
-        }
-
-        .about-text p {
-            color: #c0c0c0;
-            margin-bottom: 1rem;
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
-            max-width: 500px;
-        }
-
-        .about-image {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .about-image img {
-            width: 100%;
-            max-width: clamp(200px, 30vw, 320px);
-            border-radius: 24px;
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            box-shadow: 0 20px 35px -10px rgba(0, 212, 255, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .about-image img:hover {
-            transform: scale(1.02);
-        }
-
-        .grid {
-            display: grid;
-            gap: clamp(0.75rem, 2vw, 1.25rem);
-            width: 100%;
-        }
-
-        .skills-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .services-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .blog-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .pricing-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-        }
-
-        .products-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: clamp(0.75rem, 2vw, 1.25rem);
-            padding: clamp(0.75rem, 2.5vw, 1.5rem);
-            transition: all 0.3s;
-            text-align: center;
-            overflow: hidden;
-            word-wrap: break-word;
-            width: 100%;
-        }
-
-        .card:focus-within {
-            outline: 2px solid #00d4ff;
-            outline-offset: 2px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 15px 30px -10px rgba(0, 212, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-color: rgba(0, 212, 255, 0.15);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.6);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            box-shadow: 0 15px 30px -10px rgba(0, 212, 255, 0.2);
-        }
-
-        .pricing-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 212, 255, 0.05));
-            border-color: rgba(0, 212, 255, 0.2);
-            position: relative;
-            overflow: visible;
-            margin-top: 1rem;
-        }
-
-        .pricing-card.featured {
-            border-color: #00d4ff;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-            transform: scale(1.02);
-            margin-top: 0;
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.02) translateY(-5px);
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #00d4ff;
-            color: #000;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: clamp(0.6rem, 2vw, 0.7rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            z-index: 10;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .price {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            font-weight: 800;
-            color: #00d4ff;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .price small {
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: #888;
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: #a0a0a0;
-            font-size: clamp(0.7rem, 2vw, 0.85rem);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pricing-features li i {
-            color: #00ff41;
-            font-size: 0.8rem;
-            width: 20px;
-        }
-
-        .pricing-features li i.fa-times {
-            color: #ff4444;
-        }
-
-        .pricing-btn {
-            margin-top: 1rem;
-            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            border: none;
-            border-radius: 50px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .pricing-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .pricing-card.featured .pricing-btn {
-            background: #00ff41;
-            color: #000;
-        }
-
-        .product-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 255, 255, 0.03));
-            border-color: rgba(0, 212, 255, 0.15);
-        }
-
-        .product-image {
-            height: clamp(150px, 25vw, 200px);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-        }
-
-        .product-price {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            font-weight: 700;
-            color: #00d4ff;
-            margin: 0.5rem 0;
-        }
-
-        .product-original-price {
-            font-size: clamp(0.6rem, 2.5vw, 0.8rem);
-            color: #888;
-            text-decoration: line-through;
-            margin-left: 0.5rem;
-        }
-
-        .product-badge {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.2);
-            color: #00d4ff;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: clamp(0.6rem, 2vw, 0.7rem);
-            margin-bottom: 1rem;
-        }
-
-        .external-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            background: rgba(0, 255, 65, 0.15);
-            color: #00ff41;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: clamp(0.55rem, 1.8vw, 0.65rem);
-            margin-top: 0.5rem;
-        }
-
-        .product-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem);
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            border: none;
-            border-radius: 50px;
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .product-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .card-icon {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            color: #00d4ff;
-            margin-bottom: 1rem;
-        }
-
-        .service-card .card-icon {
-            font-size: clamp(1.4rem, 5vw, 2rem);
-        }
-
-        .card h3 {
-            font-size: clamp(0.8rem, 3vw, 1.1rem);
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .card p {
-            color: #a0a0a0;
-            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-            line-height: 1.5;
-        }
-
-        .project-img {
-            height: clamp(120px, 20vw, 160px);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 16px;
-            margin-bottom: 1.25rem;
-        }
-
-        .project-img i {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            color: #00d4ff;
-        }
-
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 0.75rem;
-        }
-
-        .tag {
-            font-size: clamp(0.5rem, 2vw, 0.65rem);
-            padding: 0.2rem 0.6rem;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 30px;
-            color: #00d4ff;
-            font-weight: 500;
-        }
-
-        .blog-cat {
-            font-size: clamp(0.6rem, 2vw, 0.7rem);
-            color: #00d4ff;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-
-        .blog-meta {
-            font-size: clamp(0.6rem, 2vw, 0.7rem);
-            color: #666;
-            display: inline-block;
-            margin-top: 0.75rem;
-        }
-
-        .contact {
-            max-width: 600px;
-            margin: 0;
-        }
-
-        .contact p {
-            color: #c0c0c0;
-            margin-bottom: 2rem;
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
-        }
-
-        .social {
-            display: flex;
-            gap: clamp(0.5rem, 2vw, 1rem);
-            flex-wrap: wrap;
-        }
-
-        .social a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
-            font-weight: 500;
-        }
-
-        .social a:focus-visible {
-            outline: 2px solid #00d4ff;
-            outline-offset: 2px;
-        }
-
-        .social a:hover {
-            border-color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateY(-3px);
-            color: #00d4ff;
-        }
-
-        footer {
-            text-align: center;
-            padding: clamp(1rem, 3vw, 2rem);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #666;
-            font-size: clamp(0.6rem, 2vw, 0.8rem);
-            margin-left: clamp(48px, 8vw, 72px);
-            width: calc(100% - clamp(48px, 8vw, 72px));
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .view-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-            font-weight: 500;
-            transition: gap 0.3s;
-            cursor: pointer;
-        }
-
-        .view-link:focus-visible {
-            outline: 2px solid #00d4ff;
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        .view-link:hover {
-            gap: 12px;
-            text-decoration: underline;
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: #0f0f0f;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 24px;
-            padding: clamp(1rem, 4vw, 2rem);
-            max-width: 380px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h3 {
-            font-size: clamp(1rem, 4vw, 1.2rem);
-            color: #00d4ff;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-close:focus-visible {
-            outline: 2px solid #00d4ff;
-            border-radius: 4px;
-        }
-
-        .modal-close:hover {
-            color: #00d4ff;
-        }
-
-        .opt {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-        }
-
-        .opt button {
-            padding: 0.25rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 30px;
-            color: #fff;
-            cursor: pointer;
-            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
-            transition: all 0.2s;
-            font-weight: 500;
-        }
-
-        .opt button:focus-visible {
-            outline: 2px solid #00d4ff;
-            outline-offset: 2px;
-        }
-
-        .opt button.active {
-            background: #00ff41;
-            color: #000;
-            box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-        }
-
-        body.high-contrast {
-            background: #000;
-            color: #fff;
-        }
-
-        body.high-contrast .ide-bar,
-        body.high-contrast .modal-content,
-        body.high-contrast .card,
-        body.high-contrast .social a {
-            background: #000;
-            border-color: #fff;
-        }
-
-        body.high-contrast .logo,
-        body.high-contrast .section-header h2 {
-            background: none;
-            color: #fff;
-            -webkit-background-clip: unset;
-            background-clip: unset;
-        }
-
-        body.high-contrast .ide-item.active {
-            background: #fff;
-            color: #000;
-        }
-
-        body.high-contrast .ide-item.active i {
-            color: #000;
-        }
-
-        body.high-contrast .tag,
-        body.high-contrast .blog-cat,
-        body.high-contrast .card-icon,
-        body.high-contrast .project-img i,
-        body.high-contrast .product-image i {
-            color: #fff;
-        }
-
-        body.high-contrast .tag {
-            background: #333;
-            color: #fff;
-        }
-
-        body.high-contrast .view-link,
-        body.high-contrast .social a:hover {
-            color: #fff;
-        }
-
-        body.high-contrast .pricing-btn,
-        body.high-contrast .product-btn {
-            background: #fff;
-            color: #000;
-        }
-
-        body.high-contrast .price {
-            color: #fff;
-        }
-
-        body.high-contrast .pricing-features li i.fa-check {
-            color: #00ff41;
-        }
-
-        body.high-contrast .external-badge {
-            background: #333;
-            color: #00ff41;
-        }
-
-        body.high-contrast .featured-badge {
-            background: #fff;
-            color: #000;
-        }
-
-        body.large-text {
-            font-size: 1.2rem;
-        }
-
-        body.large-text p,
-        body.large-text .about-text p,
-        body.large-text .card p,
-        body.large-text .section-header p,
-        body.large-text .contact p,
-        body.large-text .social a,
-        body.large-text .view-link,
-        body.large-text .tag,
-        body.large-text .blog-cat,
-        body.large-text .blog-meta,
-        body.large-text footer p,
-        body.large-text .opt,
-        body.large-text .opt button,
-        body.large-text .modal-content p,
-        body.large-text .pricing-features li,
-        body.large-text .external-badge {
-            font-size: 1rem;
-        }
-
-        body.large-text .card h3 {
-            font-size: 1.3rem;
-        }
-
-        body.large-text .section-header h2 {
-            font-size: clamp(1.8rem, 7vw, 2.5rem);
-        }
-
-        body.large-text .ide-logo {
-            font-size: 32px;
-        }
-
-        body.large-text .ide-item {
-            font-size: 24px;
-        }
-
-        body.large-text .modal-header h3 {
-            font-size: 1.4rem;
-        }
-
-        body.large-text .view-link {
-            font-size: 1rem;
-        }
-
-        body.large-text .btn,
-        body.large-text .pricing-btn,
-        body.large-text .product-btn {
-            font-size: 1rem;
-            padding: 0.6rem 1.4rem;
-        }
-
-        body.large-text .price {
-            font-size: 2.8rem;
-        }
-
-        body.large-text .product-price {
-            font-size: 1.8rem;
-        }
-
-        body.large-text .tag {
-            padding: 0.3rem 0.8rem;
-        }
-
-        body.dyslexic-font,
-        body.dyslexic-font * {
-            font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
-        }
-
-        body.dyslexic-font p,
-        body.dyslexic-font li,
-        body.dyslexic-font a,
-        body.dyslexic-font .card p {
-            letter-spacing: 0.05em;
-            word-spacing: 0.1em;
-            line-height: 1.6;
-        }
-
-        body.dyslexic-font h1,
-        body.dyslexic-font h2,
-        body.dyslexic-font h3 {
-            letter-spacing: 0.03em;
-            font-weight: 700;
-        }
-
-        body.reduce-motion,
-        body.reduce-motion * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
-
-        body.reduce-motion .card:hover {
-            transform: none !important;
-        }
-
-        body.reduce-motion .fade-in {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-        }
-
-        body.reduce-motion .ide-item:hover {
-            transform: none !important;
-        }
-
-        body.reduce-motion .social a:hover {
-            transform: none !important;
-        }
-
-        body.reduce-motion .pricing-card.featured {
-            transform: none !important;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Boot-up loading overlay */
-        .boot-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0a;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Courier New', monospace;
-            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
-        }
-
-        .boot-overlay.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .boot-terminal {
-            width: 90%;
-            max-width: 600px;
-            background: #0a0a0a;
-            border: 1px solid #00d4ff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
-        }
-
-        .boot-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding-bottom: 0.75rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .boot-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .boot-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #00d4ff;
-        }
-
-        .boot-dot:nth-child(2) {
-            background: #7c3aed;
-        }
-
-        .boot-dot:nth-child(3) {
-            background: #00ff41;
-        }
-
-        .boot-title {
-            color: #00d4ff;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .boot-content {
-            color: #00d4ff;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .boot-line {
-            margin: 0.5rem 0;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 1.5s steps(40, end) forwards;
-        }
-
-        .boot-line:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .boot-line:nth-child(2) {
-            animation-delay: 0.8s;
-        }
-
-        .boot-line:nth-child(3) {
-            animation-delay: 1.6s;
-        }
-
-        .boot-line:nth-child(4) {
-            animation-delay: 2.4s;
-        }
-
-        .boot-line:nth-child(5) {
-            animation-delay: 3.2s;
-        }
-
-        .boot-line:nth-child(6) {
-            animation-delay: 4s;
-        }
-
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        .boot-progress {
-            margin-top: 1.5rem;
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 212, 255, 0.2);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .boot-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #00d4ff, #7c3aed, #00ff41);
-            animation: progressLoad 4.5s ease-out forwards;
-        }
-
-        @keyframes progressLoad {
-            0% { width: 0%; }
-            10% { width: 5%; }
-            30% { width: 25%; }
-            50% { width: 45%; }
-            70% { width: 70%; }
-            85% { width: 85%; }
-            100% { width: 100%; }
-        }
-
-        .boot-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 14px;
-            background: #00d4ff;
-            vertical-align: middle;
-            margin-left: 2px;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .boot-status {
-            margin-top: 1rem;
-            color: #00ff41;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-
-        @media (max-width: 640px) {
-            .boot-terminal {
-                padding: 1rem;
-            }
-            .boot-line {
-                font-size: 0.7rem;
-                white-space: normal;
-                word-break: break-word;
-                animation: none;
-                width: 100%;
-            }
-            .boot-content {
-                font-size: 0.7rem;
-            }
-        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html,body{overflow-x:hidden;width:100%;height:100%;}
+        body{background:#050505;color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;line-height:1.5;scroll-behavior:smooth;display:flex;flex-direction:column;min-height:100vh;font-size:clamp(.875rem,2vw,1rem);}
+        
+        .skip-link{position:absolute;top:-40px;left:0;background:#00d4ff;color:#000;padding:clamp(.5rem,2vw,.75rem) clamp(1rem,3vw,1.5rem);text-decoration:none;z-index:1001;border-radius:0 0 4px 0;font-weight:600;}
+        .skip-link:focus{top:0;}
+        .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+        
+        /* Sidebar */
+        .sidebar{position:fixed;top:0;left:0;bottom:0;width:clamp(48px,8vw,72px);background:#1e1e2e;border-right:1px solid #2a2a3a;z-index:100;display:flex;flex-direction:column;align-items:center;padding:clamp(1rem,3vw,1.5rem) 0;gap:clamp(1rem,3vw,1.5rem);}
+        .logo{font-size:clamp(1.25rem,5vw,1.75rem);font-weight:800;background:linear-gradient(135deg,#00d4ff,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;font-family:'Major Mono Display',monospace;letter-spacing:2px;}
+        .nav{display:flex;flex-direction:column;gap:clamp(.75rem,2vw,1rem);flex:1;}
+        .nav-item{width:clamp(36px,6vw,48px);height:clamp(36px,6vw,48px);display:flex;align-items:center;justify-content:center;border-radius:12px;cursor:pointer;transition:all .2s;color:#7e7e8e;font-size:clamp(1rem,3vw,1.375rem);position:relative;}
+        .nav-item:hover{color:#00d4ff;background:rgba(0,212,255,.1);}
+        .nav-item.active{color:#00d4ff;border-left:3px solid #00d4ff;background:rgba(0,212,255,.15);border-radius:12px 0 0 12px;}
+        .nav-item.active::before{content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:#00d4ff;border-radius:3px;}
+        .sidebar-bottom{margin-top:auto;display:flex;flex-direction:column;gap:clamp(.75rem,2vw,1rem);}
+        
+        /* Main content */
+        main{margin-left:clamp(48px,8vw,72px);padding:clamp(2rem,6vw,4rem) clamp(1rem,4vw,3rem);flex:1;}
+        section{margin-bottom:clamp(2rem,8vw,4rem);}
+        .container{max-width:1400px;margin:0 auto;}
+        
+        /* Headers */
+        .section-header{margin-bottom:clamp(1rem,4vw,2rem);}
+        .section-header h2{font-size:clamp(1.5rem,5vw,2rem);font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#fff,#00d4ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+        .section-header p{color:#888;font-size:clamp(.8rem,2.5vw,.95rem);}
+        
+        /* About */
+        .about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,3rem);align-items:center;}
+        .about-text p{color:#c0c0c0;margin-bottom:1rem;font-size:clamp(.85rem,2.5vw,1rem);max-width:500px;}
+        .about-img{display:flex;justify-content:flex-end;}
+        .about-img img{width:100%;max-width:clamp(200px,30vw,320px);border-radius:24px;border:2px solid rgba(0,212,255,.4);box-shadow:0 20px 35px -10px rgba(0,212,255,.2);transition:transform .3s;}
+        .about-img img:hover{transform:scale(1.02);}
+        
+        /* Grid System - single grid class for everything */
+        .grid{display:grid;gap:clamp(.75rem,2vw,1.25rem);width:100%;}
+        .grid-2{grid-template-columns:repeat(2,1fr);}
+        .grid-auto{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));}
+        
+        /* Cards - single card class */
+        .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:clamp(.75rem,2vw,1.25rem);padding:clamp(.75rem,2.5vw,1.5rem);transition:all .3s;text-align:center;width:100%;}
+        .card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.5);box-shadow:0 15px 30px -10px rgba(0,212,255,.15);background:rgba(255,255,255,.05);}
+        .card i{font-size:clamp(1.2rem,4vw,1.8rem);color:#00d4ff;margin-bottom:1rem;}
+        .card h3{font-size:clamp(.8rem,3vw,1.1rem);margin-bottom:.75rem;font-weight:700;color:#fff;}
+        .card p{color:#a0a0a0;font-size:clamp(.7rem,2.5vw,.85rem);line-height:1.5;}
+        
+        /* Service card variant */
+        .service-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(124,58,237,.05));border-color:rgba(0,212,255,.15);}
+        
+        /* Pricing card */
+        .pricing-card{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.05));border-color:rgba(0,212,255,.2);position:relative;overflow:visible;margin-top:1rem;}
+        .featured{border-color:#00d4ff;box-shadow:0 0 20px rgba(0,212,255,.2);transform:scale(1.02);margin-top:0;}
+        .featured:hover{transform:scale(1.02) translateY(-5px);}
+        .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#00d4ff;color:#000;padding:4px 12px;border-radius:30px;font-size:clamp(.6rem,2vw,.7rem);font-weight:700;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+        .price{font-size:clamp(1.5rem,5vw,2.5rem);font-weight:800;color:#00d4ff;margin:1rem 0 .5rem;}
+        
+        /* Features list */
+        .features{list-style:none;margin:1.5rem 0;text-align:left;}
+        .features li{padding:.5rem 0;color:#a0a0a0;font-size:clamp(.7rem,2vw,.85rem);display:flex;align-items:center;gap:.5rem;}
+        .features li i{font-size:.8rem;width:20px;margin-bottom:0;}
+        .fa-check{color:#00ff41;}
+        .fa-times{color:#ff4444;}
+        
+        /* Buttons */
+        .btn{margin-top:1rem;padding:clamp(.5rem,2vw,.75rem) clamp(1rem,3vw,1.5rem);background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;border-radius:50px;color:#fff;font-weight:600;cursor:pointer;transition:all .3s;width:100%;display:inline-block;text-align:center;text-decoration:none;}
+        .btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,212,255,.3);}
+        .featured .btn{background:#00ff41;color:#000;}
+        
+        /* Product card */
+        .product-img{height:clamp(150px,25vw,200px);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;overflow:hidden;}
+        .product-img img{width:100%;height:100%;object-fit:cover;}
+        .product-price{font-size:clamp(1rem,4vw,1.5rem);font-weight:700;color:#00d4ff;margin:.5rem 0;}
+        .original-price{font-size:clamp(.6rem,2.5vw,.8rem);color:#888;text-decoration:line-through;margin-left:.5rem;}
+        .badge-sm{display:inline-block;background:rgba(0,212,255,.2);color:#00d4ff;padding:4px 10px;border-radius:30px;font-size:clamp(.6rem,2vw,.7rem);margin-bottom:1rem;}
+        .external-badge{display:inline-flex;align-items:center;gap:.3rem;background:rgba(0,255,65,.15);color:#00ff41;padding:4px 10px;border-radius:30px;font-size:clamp(.55rem,1.8vw,.65rem);margin-top:.5rem;}
+        
+        /* Project card */
+        .project-img{height:clamp(120px,20vw,160px);background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));display:flex;align-items:center;justify-content:center;border-radius:16px;margin-bottom:1.25rem;}
+        .project-img i{font-size:clamp(1.8rem,5vw,3rem);color:#00d4ff;margin-bottom:0;}
+        .tags{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem;}
+        .tag{font-size:clamp(.5rem,2vw,.65rem);padding:.2rem .6rem;background:rgba(0,212,255,.1);border-radius:30px;color:#00d4ff;font-weight:500;}
+        
+        /* Blog card */
+        .blog-cat{font-size:clamp(.6rem,2vw,.7rem);color:#00d4ff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem;font-weight:600;}
+        .blog-meta{font-size:clamp(.6rem,2vw,.7rem);color:#666;display:inline-block;margin-top:.75rem;}
+        
+        /* Contact */
+        .contact{max-width:600px;margin:0;}
+        .contact p{color:#c0c0c0;margin-bottom:2rem;font-size:clamp(.85rem,2.5vw,1rem);}
+        .social{display:flex;gap:clamp(.5rem,2vw,1rem);flex-wrap:wrap;}
+        .social a{display:inline-flex;align-items:center;gap:.6rem;padding:clamp(.4rem,1.5vw,.6rem) clamp(.8rem,3vw,1.2rem);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:50px;color:#e0e0e0;text-decoration:none;transition:all .3s;font-size:clamp(.7rem,2.5vw,.9rem);font-weight:500;}
+        .social a:hover{border-color:#00d4ff;background:rgba(0,212,255,.1);transform:translateY(-3px);color:#00d4ff;}
+        
+        /* Footer */
+        footer{text-align:center;padding:clamp(1rem,3vw,2rem);border-top:1px solid rgba(255,255,255,.05);color:#666;font-size:clamp(.6rem,2vw,.8rem);margin-left:clamp(48px,8vw,72px);}
+        .view-link{display:inline-flex;align-items:center;gap:8px;color:#00d4ff;text-decoration:none;font-size:clamp(.7rem,2.5vw,.85rem);font-weight:500;transition:gap .3s;cursor:pointer;}
+        .view-link:hover{gap:12px;text-decoration:underline;}
+        
+        /* Modal */
+        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;}
+        .modal.active{opacity:1;visibility:visible;}
+        .modal-content{background:#0f0f0f;border:1px solid rgba(0,212,255,.2);border-radius:24px;padding:clamp(1rem,4vw,2rem);max-width:380px;width:90%;text-align:center;}
+        .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+        .modal-header h3{font-size:clamp(1rem,4vw,1.2rem);color:#00d4ff;}
+        .modal-close{background:none;border:none;color:#aaa;font-size:1.5rem;cursor:pointer;}
+        .opt{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:clamp(.8rem,2.5vw,.9rem);}
+        .opt button{padding:.25rem 1rem;background:rgba(255,255,255,.1);border:none;border-radius:30px;color:#fff;cursor:pointer;font-size:clamp(.7rem,2.5vw,.8rem);}
+        .opt button.active{background:#00ff41;color:#000;box-shadow:0 0 8px rgba(0,255,65,.3);}
+        
+        /* Animations */
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+        .fade-in{animation:fadeInUp .6s cubic-bezier(0.2,0.9,0.4,1.1) forwards;}
+        
+        /* Responsive */
+        @media (max-width: 768px){.about{grid-template-columns:1fr;text-align:center;}.about-text p{margin-left:auto;margin-right:auto;}.about-img{justify-content:center;}}
+        @media (max-width: 640px){.grid-2{grid-template-columns:1fr;}.grid-auto{grid-template-columns:1fr;}}
+        
+        /* Accessibility Modes */
+        body.high-contrast{background:#000;color:#fff;}
+        body.high-contrast .sidebar,body.high-contrast .modal-content,body.high-contrast .card,body.high-contrast .social a{background:#000;border-color:#fff;}
+        body.high-contrast .logo,body.high-contrast .section-header h2{background:none;color:#fff;-webkit-background-clip:unset;background-clip:unset;}
+        body.high-contrast .nav-item.active{background:#fff;color:#000;}
+        body.high-contrast .nav-item.active i{color:#000;}
+        body.high-contrast .tag,body.high-contrast .blog-cat,body.high-contrast .card i,body.high-contrast .project-img i{color:#fff;}
+        body.high-contrast .tag{background:#333;}
+        body.high-contrast .btn{background:#fff;color:#000;}
+        body.high-contrast .price,body.high-contrast .product-price{color:#fff;}
+        body.high-contrast .featured .btn{background:#00ff41;color:#000;}
+        
+        body.large-text{font-size:1.2rem;}
+        body.large-text p,body.large-text .card p,body.large-text .social a,body.large-text .view-link,body.large-text .tag,body.large-text .blog-meta,body.large-text .features li{font-size:1rem;}
+        body.large-text .card h3{font-size:1.3rem;}
+        body.large-text .section-header h2{font-size:clamp(1.8rem,7vw,2.5rem);}
+        body.large-text .logo{font-size:32px;}
+        body.large-text .nav-item{font-size:24px;}
+        body.large-text .price{font-size:2.8rem;}
+        
+        body.dyslexic-font,body.dyslexic-font *{font-family:'OpenDyslexic','Comic Sans MS','Chalkboard SE',sans-serif !important;}
+        body.dyslexic-font p,body.dyslexic-font li,body.dyslexic-font a{letter-spacing:.05em;word-spacing:.1em;line-height:1.6;}
+        
+        body.reduce-motion,body.reduce-motion *{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+        body.reduce-motion .card:hover,body.reduce-motion .featured{transform:none!important;}
+        body.reduce-motion .fade-in{animation:none!important;opacity:1!important;transform:none!important;}
+        
+        /* Boot overlay */
+        .boot-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#0a0a0a;z-index:10000;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;transition:opacity .8s,visibility .8s;}
+        .boot-overlay.hide{opacity:0;visibility:hidden;}
+        .boot-terminal{width:90%;max-width:600px;background:#0a0a0a;border:1px solid #00d4ff;border-radius:8px;padding:1.5rem;box-shadow:0 0 30px rgba(0,212,255,.2);}
+        .boot-header{display:flex;align-items:center;gap:.5rem;padding-bottom:.75rem;margin-bottom:1rem;border-bottom:1px solid rgba(0,212,255,.3);}
+        .boot-dots{display:flex;gap:6px;}
+        .boot-dot{width:12px;height:12px;border-radius:50%;background:#00d4ff;}
+        .boot-dot:nth-child(2){background:#7c3aed;}
+        .boot-dot:nth-child(3){background:#00ff41;}
+        .boot-title{color:#00d4ff;font-size:.9rem;font-weight:600;letter-spacing:1px;}
+        .boot-content{color:#00d4ff;font-family:'Courier New',monospace;font-size:.9rem;}
+        .boot-line{margin:.5rem 0;white-space:nowrap;overflow:hidden;width:0;animation:typing 1.5s steps(40,end) forwards;}
+        .boot-line:nth-child(1){animation-delay:0s;}
+        .boot-line:nth-child(2){animation-delay:.8s;}
+        .boot-line:nth-child(3){animation-delay:1.6s;}
+        .boot-line:nth-child(4){animation-delay:2.4s;}
+        .boot-line:nth-child(5){animation-delay:3.2s;}
+        .boot-line:nth-child(6){animation-delay:4s;}
+        @keyframes typing{from{width:0;}to{width:100%;}}
+        .boot-progress{margin-top:1.5rem;width:100%;height:2px;background:rgba(0,212,255,.2);border-radius:2px;overflow:hidden;}
+        .boot-progress-bar{width:0%;height:100%;background:linear-gradient(90deg,#00d4ff,#7c3aed,#00ff41);animation:progressLoad 4.5s ease-out forwards;}
+        @keyframes progressLoad{0%{width:0%;}10%{width:5%;}30%{width:25%;}50%{width:45%;}70%{width:70%;}85%{width:85%;}100%{width:100%;}}
+        .boot-cursor{display:inline-block;width:8px;height:14px;background:#00d4ff;vertical-align:middle;margin-left:2px;animation:blink 1s step-end infinite;}
+        @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+        .boot-status{margin-top:1rem;color:#00ff41;font-size:.8rem;text-align:center;}
+        @media (max-width:640px){.boot-terminal{padding:1rem;}.boot-line{font-size:.7rem;white-space:normal;word-break:break-word;animation:none;width:100%;}.boot-content{font-size:.7rem;}}
     </style>
 </head>
 <body>
 
-<!-- Boot-up Loading Overlay -->
 <div id="bootOverlay" class="boot-overlay">
     <div class="boot-terminal">
         <div class="boot-header">
-            <div class="boot-dots">
-                <div class="boot-dot"></div>
-                <div class="boot-dot"></div>
-                <div class="boot-dot"></div>
-            </div>
+            <div class="boot-dots"><div class="boot-dot"></div><div class="boot-dot"></div><div class="boot-dot"></div></div>
             <div class="boot-title">V3 OS Terminal v3.0.0</div>
         </div>
         <div class="boot-content">
@@ -1117,556 +199,206 @@
             <div class="boot-line">> loading user interface...</div>
             <div class="boot-line">> starting window manager...<span class="boot-cursor"></span></div>
         </div>
-        <div class="boot-progress">
-            <div class="boot-progress-bar"></div>
-        </div>
+        <div class="boot-progress"><div class="boot-progress-bar"></div></div>
         <div class="boot-status" id="bootStatus">[ SYSTEM INITIALIZING... ]</div>
     </div>
 </div>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<div class="ide-bar" role="navigation" aria-label="Main navigation sidebar">
-    <a href="#" class="ide-logo" id="homeLogoLink" aria-label="V3 Home - scroll to top">V3</a>
-    <div class="ide-nav" role="list">
-        <div class="ide-item" data-section="about" role="listitem" tabindex="0" aria-label="About section"><i class="fas fa-user" aria-hidden="true"></i><span class="visually-hidden">About</span></div>
-        <div class="ide-item" data-section="skills" role="listitem" tabindex="0" aria-label="Skills section"><i class="fas fa-code" aria-hidden="true"></i><span class="visually-hidden">Skills</span></div>
-        <div class="ide-item" data-section="services" role="listitem" tabindex="0" aria-label="Services section"><i class="fas fa-cogs" aria-hidden="true"></i><span class="visually-hidden">Services</span></div>
-        <div class="ide-item" data-section="pricing" role="listitem" tabindex="0" aria-label="Pricing section"><i class="fas fa-tag" aria-hidden="true"></i><span class="visually-hidden">Pricing</span></div>
-        <div class="ide-item" data-section="products" role="listitem" tabindex="0" aria-label="Products section"><i class="fas fa-tshirt" aria-hidden="true"></i><span class="visually-hidden">Products</span></div>
-        <div class="ide-item" data-section="projects" role="listitem" tabindex="0" aria-label="Projects section"><i class="fas fa-folder" aria-hidden="true"></i><span class="visually-hidden">Projects</span></div>
-        <div class="ide-item" data-section="blog" role="listitem" tabindex="0" aria-label="Blog section"><i class="fas fa-newspaper" aria-hidden="true"></i><span class="visually-hidden">Blog</span></div>
-        <div class="ide-item" data-section="contact" role="listitem" tabindex="0" aria-label="Contact section"><i class="fas fa-envelope" aria-hidden="true"></i><span class="visually-hidden">Contact</span></div>
+<div class="sidebar">
+    <a href="#" class="logo" id="homeLogoLink">V3</a>
+    <div class="nav">
+        <div class="nav-item" data-section="about"><i class="fas fa-user"></i><span class="visually-hidden">About</span></div>
+        <div class="nav-item" data-section="skills"><i class="fas fa-code"></i><span class="visually-hidden">Skills</span></div>
+        <div class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span class="visually-hidden">Services</span></div>
+        <div class="nav-item" data-section="pricing"><i class="fas fa-tag"></i><span class="visually-hidden">Pricing</span></div>
+        <div class="nav-item" data-section="products"><i class="fas fa-tshirt"></i><span class="visually-hidden">Products</span></div>
+        <div class="nav-item" data-section="projects"><i class="fas fa-folder"></i><span class="visually-hidden">Projects</span></div>
+        <div class="nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span class="visually-hidden">Blog</span></div>
+        <div class="nav-item" data-section="contact"><i class="fas fa-envelope"></i><span class="visually-hidden">Contact</span></div>
     </div>
-    <div class="ide-bottom">
-        <div class="ide-item" id="a11yNavBtn" role="button" tabindex="0" aria-label="Open accessibility options" aria-haspopup="dialog"><i class="fas fa-universal-access" aria-hidden="true"></i><span class="visually-hidden">Accessibility</span></div>
+    <div class="sidebar-bottom">
+        <div class="nav-item" id="a11yNavBtn"><i class="fas fa-universal-access"></i><span class="visually-hidden">Accessibility</span></div>
     </div>
 </div>
 
 <main id="main-content">
-    <!-- About Section -->
-    <section id="about" aria-labelledby="about-heading">
-        <div class="container about-grid">
+    <section id="about">
+        <div class="container about">
             <div class="about-text">
-                <div class="section-header">
-                    <h2 id="about-heading">About V3</h2>
-                    <p>Behind the code</p>
-                </div>
+                <div class="section-header"><h2>About V3</h2><p>Behind the code</p></div>
                 <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
-            <div class="about-image">
-                <img src="/images/branding/v3.png" alt="V3 brand logo">
+            <div class="about-img"><img src="/images/branding/v3.png" alt="V3 brand logo"></div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header"><h2>Technical Skills</h2><p>Technologies I work with</p></div>
+            <div class="grid grid-2">
+                <div class="card"><i class="fa-brands fa-react"></i><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div>
+                <div class="card"><i class="fa-solid fa-server"></i><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div>
+                <div class="card"><i class="fa-solid fa-database"></i><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div>
+                <div class="card"><i class="fa-solid fa-cloud"></i><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div>
+                <div class="card"><i class="fa-solid fa-mobile-alt"></i><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div>
+                <div class="card"><i class="fa-solid fa-code-branch"></i><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" aria-labelledby="skills-heading">
+    <section id="services">
         <div class="container">
-            <div class="section-header">
-                <h2 id="skills-heading">Technical Skills</h2>
-                <p>Technologies I work with</p>
-            </div>
-            <div class="grid skills-grid">
-                <div class="card" tabindex="0"><div class="card-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div>
-                <div class="card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div>
-                <div class="card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div>
-                <div class="card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div>
-                <div class="card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-mobile-alt" aria-hidden="true"></i></div><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div>
-                <div class="card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div>
+            <div class="section-header"><h2>Professional Services</h2><p>What I offer</p></div>
+            <div class="grid grid-2">
+                <div class="card service-card"><i class="fa-solid fa-pen-nib"></i><h3>Logo Design</h3><p>Custom, memorable brand identities that stand out and tell your story.</p></div>
+                <div class="card service-card"><i class="fa-solid fa-laptop-code"></i><h3>Web Development</h3><p>Full-stack web applications with modern frameworks.</p></div>
+                <div class="card service-card"><i class="fa-solid fa-palette"></i><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces focused on user experience.</p></div>
+                <div class="card service-card"><i class="fa-solid fa-chart-line"></i><h3>Technical Consulting</h3><p>Expert advice on architecture, scalability, and technology.</p></div>
+                <div class="card service-card"><i class="fa-solid fa-rocket"></i><h3>Performance Optimization</h3><p>Speed up your applications and improve user experience.</p></div>
+                <div class="card service-card"><i class="fa-solid fa-shield-alt"></i><h3>Security Audits</h3><p>Identify vulnerabilities and secure your applications.</p></div>
+                <div class="card service-card"><i class="fa-solid fa-headset"></i><h3>Maintenance & Support</h3><p>Ongoing support and continuous improvement for your projects.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" aria-labelledby="services-heading">
+    <section id="pricing">
         <div class="container">
-            <div class="section-header">
-                <h2 id="services-heading">Professional Services</h2>
-                <p>What I offer</p>
-            </div>
-            <div class="grid services-grid">
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i></div><h3>Logo Design</h3><p>Custom, memorable brand identities that stand out and tell your story.</p></div>
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></div><h3>Web Development</h3><p>Full-stack web applications with modern frameworks and best practices.</p></div>
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-palette" aria-hidden="true"></i></div><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces focused on user experience.</p></div>
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div><h3>Technical Consulting</h3><p>Expert advice on architecture, scalability, and technology decisions.</p></div>
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div><h3>Performance Optimization</h3><p>Speed up your applications and improve user experience.</p></div>
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-shield-alt" aria-hidden="true"></i></div><h3>Security Audits</h3><p>Identify vulnerabilities and secure your applications.</p></div>
-                <div class="card service-card" tabindex="0"><div class="card-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div><h3>Maintenance & Support</h3><p>Ongoing support and continuous improvement for your projects.</p></div>
+            <div class="section-header"><h2>Simple, Transparent Pricing</h2><p>Choose the plan that fits your needs</p></div>
+            <div class="grid grid-auto">
+                <div class="card pricing-card"><i class="fa-solid fa-seedling"></i><h3>Starter</h3><div class="price">$499</div><p>Perfect for small businesses and startups</p><ul class="features"><li><i class="fas fa-check"></i> Custom 5-page website</li><li><i class="fas fa-check"></i> Mobile responsive design</li><li><i class="fas fa-check"></i> SEO optimization</li><li><i class="fas fa-check"></i> Contact form integration</li><li><i class="fas fa-check"></i> 1 month support</li><li><i class="fas fa-times"></i> E-commerce functionality</li><li><i class="fas fa-times"></i> Custom backend</li></ul><button class="btn" data-plan="Starter">Get Started</button></div>
+                <div class="card pricing-card featured"><div class="badge">Most Popular</div><i class="fa-solid fa-rocket"></i><h3>Professional</h3><div class="price">$1,499</div><p>Ideal for growing businesses</p><ul class="features"><li><i class="fas fa-check"></i> Custom 15-page website</li><li><i class="fas fa-check"></i> Mobile responsive design</li><li><i class="fas fa-check"></i> Advanced SEO optimization</li><li><i class="fas fa-check"></i> Custom contact forms + CRM</li><li><i class="fas fa-check"></i> 3 months support</li><li><i class="fas fa-check"></i> E-commerce ready</li><li><i class="fas fa-check"></i> API integrations</li><li><i class="fas fa-check"></i> Performance analytics</li></ul><button class="btn" data-plan="Professional">Get Started</button></div>
+                <div class="card pricing-card"><i class="fa-solid fa-building"></i><h3>Enterprise</h3><div class="price">Custom</div><p>For large organizations</p><ul class="features"><li><i class="fas fa-check"></i> Unlimited pages</li><li><i class="fas fa-check"></i> Full-stack custom development</li><li><i class="fas fa-check"></i> Enterprise-grade security</li><li><i class="fas fa-check"></i> Scalable cloud infrastructure</li><li><i class="fas fa-check"></i> Dedicated support team</li><li><i class="fas fa-check"></i> 12 months support + maintenance</li><li><i class="fas fa-check"></i> Team training sessions</li><li><i class="fas fa-check"></i> Custom SLAs</li></ul><button class="btn" data-plan="Enterprise">Contact Us</button></div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" aria-labelledby="pricing-heading">
+    <section id="products">
         <div class="container">
-            <div class="section-header">
-                <h2 id="pricing-heading">Simple, Transparent Pricing</h2>
-                <p>Choose the plan that fits your needs</p>
-            </div>
-            <div class="grid pricing-grid">
-                <div class="card pricing-card">
-                    <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
-                    <h3>Starter</h3>
-                    <div class="price">$499</div>
-                    <p>Perfect for small businesses and startups</p>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Custom 5-page website</li>
-                        <li><i class="fas fa-check"></i> Mobile responsive design</li>
-                        <li><i class="fas fa-check"></i> SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Contact form integration</li>
-                        <li><i class="fas fa-check"></i> 1 month support</li>
-                        <li><i class="fas fa-times"></i> E-commerce functionality</li>
-                        <li><i class="fas fa-times"></i> Custom backend</li>
-                    </ul>
-                    <button class="pricing-btn" data-plan="Starter">Get Started</button>
-                </div>
-
-                <div class="card pricing-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
-                    <h3>Professional</h3>
-                    <div class="price">$1,499</div>
-                    <p>Ideal for growing businesses</p>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Custom 15-page website</li>
-                        <li><i class="fas fa-check"></i> Mobile responsive design</li>
-                        <li><i class="fas fa-check"></i> Advanced SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Custom contact forms + CRM</li>
-                        <li><i class="fas fa-check"></i> 3 months support</li>
-                        <li><i class="fas fa-check"></i> E-commerce ready</li>
-                        <li><i class="fas fa-check"></i> API integrations</li>
-                        <li><i class="fas fa-check"></i> Performance analytics</li>
-                    </ul>
-                    <button class="pricing-btn" data-plan="Professional">Get Started</button>
-                </div>
-
-                <div class="card pricing-card">
-                    <div class="card-icon"><i class="fa-solid fa-building"></i></div>
-                    <h3>Enterprise</h3>
-                    <div class="price">Custom</div>
-                    <p>For large organizations</p>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Unlimited pages</li>
-                        <li><i class="fas fa-check"></i> Full-stack custom development</li>
-                        <li><i class="fas fa-check"></i> Enterprise-grade security</li>
-                        <li><i class="fas fa-check"></i> Scalable cloud infrastructure</li>
-                        <li><i class="fas fa-check"></i> Dedicated support team</li>
-                        <li><i class="fas fa-check"></i> 12 months support + maintenance</li>
-                        <li><i class="fas fa-check"></i> Team training sessions</li>
-                        <li><i class="fas fa-check"></i> Custom SLAs</li>
-                    </ul>
-                    <button class="pricing-btn" data-plan="Enterprise">Contact Us</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" aria-labelledby="products-heading">
-        <div class="container">
-            <div class="section-header">
-                <h2 id="products-heading">Official Merchandise</h2>
-                <p>Payment and shipping handled securely by our partners</p>
-            </div>
-            <div class="grid products-grid">
+            <div class="section-header"><h2>Official Merchandise</h2><p>Payment and shipping handled securely by our partners</p></div>
+            <div class="grid grid-auto">
                 <div class="card product-card">
-                    <div class="product-image">
-                        <img src="/images/products/staticsnow.jpg" alt="Static Snow Metallic Button" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
-                    </div>
+                    <div class="product-img"><img src="/images/products/staticsnow.jpg" alt="Static Snow Metallic Button"></div>
                     <h3>Static Snow - Metallic Button</h3>
-                    <div class="product-price">
-                        $3.24
-                        <span class="product-original-price">$3.60</span>
-                        <span style="font-size:0.7rem; color:#00ff41;"> (Save 10%)</span>
-                    </div>
-                    <div class="product-badge">✨ Powered by Zazzle</div>
+                    <div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:.7rem;color:#00ff41;"> (Save 10%)</span></div>
+                    <div class="badge-sm">✨ Powered by Zazzle</div>
                     <p>Custom metallic button featuring the "Static Snow" design. 2-inch square button, perfect for bags, jackets, or collectors.</p>
                     <div class="external-badge"><i class="fas fa-external-link-alt"></i> Payment & Shipping via Zazzle</div>
-                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="product-btn" rel="noopener">Shop Now →</a>
+                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="btn" rel="noopener">Shop Now →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" aria-labelledby="projects-heading">
+    <section id="projects">
         <div class="container">
-            <div class="section-header">
-                <h2 id="projects-heading">Featured Projects</h2>
-                <p>Some of my best work</p>
+            <div class="section-header"><h2>Featured Projects</h2><p>Some of my best work</p></div>
+            <div class="grid grid-2">
+                <div class="card project-card-link" data-project="alpha"><div class="project-img"><i class="fa-solid fa-cube"></i></div><h3>Project Alpha</h3><p>Platform for digital creators.</p><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div></div>
+                <div class="card project-card-link" data-project="beta"><div class="project-img"><i class="fa-solid fa-cloud"></i></div><h3>Project Beta</h3><p>Cloud analytics dashboard.</p><div class="tags"><span class="tag">Vue</span><span class="tag">Python</span><span class="tag">AWS</span></div></div>
+                <div class="card project-card-link" data-project="gamma"><div class="project-img"><i class="fa-solid fa-robot"></i></div><h3>Project Gamma</h3><p>Automation platform.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div></div>
+                <div class="card project-card-link" data-project="delta"><div class="project-img"><i class="fa-solid fa-chart-line"></i></div><h3>Project Delta</h3><p>Real-time analytics.</p><div class="tags"><span class="tag">D3.js</span><span class="tag">FastAPI</span><span class="tag">Redis</span></div></div>
+                <div class="card project-card-link" data-project="epsilon"><div class="project-img"><i class="fa-solid fa-shield"></i></div><h3>Project Epsilon</h3><p>Auth & authorization.</p><div class="tags"><span class="tag">Auth0</span><span class="tag">JWT</span><span class="tag">OAuth2</span></div></div>
+                <div class="card project-card-link" data-project="zeta"><div class="project-img"><i class="fa-solid fa-gamepad"></i></div><h3>Project Zeta</h3><p>Multiplayer game.</p><div class="tags"><span class="tag">WebSocket</span><span class="tag">Canvas</span><span class="tag">Phaser</span></div></div>
             </div>
-            <div class="grid projects-grid">
-                <div class="card project-card-link" data-project="alpha" tabindex="0" role="button" aria-label="Project Alpha: Platform for digital creators"><div class="project-img"><i class="fa-solid fa-cube" aria-hidden="true"></i></div><h3>Project Alpha</h3><p>Platform for digital creators.</p><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div></div>
-                <div class="card project-card-link" data-project="beta" tabindex="0" role="button" aria-label="Project Beta: Cloud analytics dashboard"><div class="project-img"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div><h3>Project Beta</h3><p>Cloud analytics dashboard.</p><div class="tags"><span class="tag">Vue</span><span class="tag">Python</span><span class="tag">AWS</span></div></div>
-                <div class="card project-card-link" data-project="gamma" tabindex="0" role="button" aria-label="Project Gamma: Automation platform"><div class="project-img"><i class="fa-solid fa-robot" aria-hidden="true"></i></div><h3>Project Gamma</h3><p>Automation platform.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div></div>
-                <div class="card project-card-link" data-project="delta" tabindex="0" role="button" aria-label="Project Delta: Real-time analytics"><div class="project-img"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div><h3>Project Delta</h3><p>Real-time analytics.</p><div class="tags"><span class="tag">D3.js</span><span class="tag">FastAPI</span><span class="tag">Redis</span></div></div>
-                <div class="card project-card-link" data-project="epsilon" tabindex="0" role="button" aria-label="Project Epsilon: Auth and authorization"><div class="project-img"><i class="fa-solid fa-shield" aria-hidden="true"></i></div><h3>Project Epsilon</h3><p>Auth & authorization.</p><div class="tags"><span class="tag">Auth0</span><span class="tag">JWT</span><span class="tag">OAuth2</span></div></div>
-                <div class="card project-card-link" data-project="zeta" tabindex="0" role="button" aria-label="Project Zeta: Multiplayer game"><div class="project-img"><i class="fa-solid fa-gamepad" aria-hidden="true"></i></div><h3>Project Zeta</h3><p>Multiplayer game.</p><div class="tags"><span class="tag">WebSocket</span><span class="tag">Canvas</span><span class="tag">Phaser</span></div></div>
-            </div>
-            <p style="margin-top:1.5rem;">→ <a href="https://github.com/v3" target="_blank" class="view-link" id="view-projects" aria-label="View all projects on GitHub (opens in new tab)"><i class="fa-regular fa-arrow-right" aria-hidden="true"></i> View all projects on GitHub</a></p>
+            <p style="margin-top:1.5rem;">→ <a href="https://github.com/v3" target="_blank" class="view-link" id="view-projects"><i class="fa-regular fa-arrow-right"></i> View all projects on GitHub</a></p>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" aria-labelledby="blog-heading">
+    <section id="blog">
         <div class="container">
-            <div class="section-header">
-                <h2 id="blog-heading">Latest Insights</h2>
-                <p>Thoughts on tech & design</p>
+            <div class="section-header"><h2>Latest Insights</h2><p>Thoughts on tech & design</p></div>
+            <div class="grid grid-2">
+                <div class="card blog-card-link" data-blog="future-web"><div class="blog-cat">Technology</div><h3>Future of Web Dev</h3><p>Exploring emerging trends.</p><div class="blog-meta"><i class="fas fa-clock"></i> 5 min</div></div>
+                <div class="card blog-card-link" data-blog="minimalist-ui"><div class="blog-cat">Design</div><h3>Minimalist UI</h3><p>Why simplicity wins.</p><div class="blog-meta"><i class="fas fa-clock"></i> 4 min</div></div>
+                <div class="card blog-card-link" data-blog="10-years"><div class="blog-cat">Career</div><h3>10 Years in Review</h3><p>Lessons from a decade.</p><div class="blog-meta"><i class="fas fa-clock"></i> 7 min</div></div>
+                <div class="card blog-card-link" data-blog="dev-setup"><div class="blog-cat">Tools</div><h3>My Dev Setup 2024</h3><p>Tools that boost productivity.</p><div class="blog-meta"><i class="fas fa-clock"></i> 6 min</div></div>
+                <div class="card blog-card-link" data-blog="monospace"><div class="blog-cat">Opinion</div><h3>Why I Love Monospace</h3><p>The beauty of consistent widths.</p><div class="blog-meta"><i class="fas fa-clock"></i> 3 min</div></div>
+                <div class="card blog-card-link" data-blog="web-perf"><div class="blog-cat">Performance</div><h3>Web Performance</h3><p>Make sites load faster.</p><div class="blog-meta"><i class="fas fa-clock"></i> 8 min</div></div>
             </div>
-            <div class="grid blog-grid">
-                <div class="card blog-card-link" data-blog="future-web" tabindex="0" role="button" aria-label="Read article: Future of Web Dev"><div class="blog-cat">Technology</div><h3>Future of Web Dev</h3><p>Exploring emerging trends.</p><div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> 5 min</div></div>
-                <div class="card blog-card-link" data-blog="minimalist-ui" tabindex="0" role="button" aria-label="Read article: Minimalist UI"><div class="blog-cat">Design</div><h3>Minimalist UI</h3><p>Why simplicity wins.</p><div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> 4 min</div></div>
-                <div class="card blog-card-link" data-blog="10-years" tabindex="0" role="button" aria-label="Read article: 10 Years in Review"><div class="blog-cat">Career</div><h3>10 Years in Review</h3><p>Lessons from a decade.</p><div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> 7 min</div></div>
-                <div class="card blog-card-link" data-blog="dev-setup" tabindex="0" role="button" aria-label="Read article: My Dev Setup 2024"><div class="blog-cat">Tools</div><h3>My Dev Setup 2024</h3><p>Tools that boost productivity.</p><div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> 6 min</div></div>
-                <div class="card blog-card-link" data-blog="monospace" tabindex="0" role="button" aria-label="Read article: Why I Love Monospace"><div class="blog-cat">Opinion</div><h3>Why I Love Monospace</h3><p>The beauty of consistent widths.</p><div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> 3 min</div></div>
-                <div class="card blog-card-link" data-blog="web-perf" tabindex="0" role="button" aria-label="Read article: Web Performance"><div class="blog-cat">Performance</div><h3>Web Performance</h3><p>Make sites load faster.</p><div class="blog-meta"><i class="fas fa-clock" aria-hidden="true"></i> 8 min</div></div>
-            </div>
-            <p style="margin-top:1.5rem;">→ <a href="#" class="view-link" id="view-blog" aria-label="Read all blog posts"><i class="fa-regular fa-arrow-right" aria-hidden="true"></i> Read all posts</a></p>
+            <p style="margin-top:1.5rem;">→ <a href="#" class="view-link" id="view-blog"><i class="fa-regular fa-arrow-right"></i> Read all posts</a></p>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" aria-labelledby="contact-heading">
+    <section id="contact">
         <div class="container contact">
-            <div class="section-header">
-                <h2 id="contact-heading">Let's Work Together</h2>
-                <p>Have a project in mind?</p>
-            </div>
+            <div class="section-header"><h2>Let's Work Together</h2><p>Have a project in mind?</p></div>
             <p>Feel free to reach out through any of these platforms.</p>
             <div class="social">
-                <a href="mailto:hello@v3.dev" target="_blank" rel="noopener" aria-label="Send email to hello@v3.dev (opens email client)"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email</a>
-                <a href="https://github.com/v3" target="_blank" rel="noopener" aria-label="Visit GitHub profile (opens in new tab)"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
-                <a href="https://linkedin.com/in/v3" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile (opens in new tab)"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
-                <a href="https://twitter.com/v3" target="_blank" rel="noopener" aria-label="Visit Twitter profile (opens in new tab)"><i class="fa-brands fa-twitter" aria-hidden="true"></i> Twitter</a>
-                <a href="https://discord.gg/v3" target="_blank" rel="noopener" aria-label="Join Discord server (opens in new tab)"><i class="fa-brands fa-discord" aria-hidden="true"></i> Discord</a>
+                <a href="mailto:hello@v3.dev" target="_blank"><i class="fa-regular fa-envelope"></i> Email</a>
+                <a href="https://github.com/v3" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/v3" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://twitter.com/v3" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                <a href="https://discord.gg/v3" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
             </div>
         </div>
     </section>
 </main>
 
-<footer><p>© 2024 V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;" aria-hidden="true"></i><span class="visually-hidden"> love</span></p></footer>
+<footer><p>© 2024 V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i><span class="visually-hidden"> love</span></p></footer>
 
-<div id="a11yModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
+<div id="a11yModal" class="modal">
     <div class="modal-content">
-        <div class="modal-header"><h3 id="a11y-modal-title"><i class="fas fa-universal-access" aria-hidden="true"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn" aria-label="Close accessibility menu">&times;</button></div>
-        <div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn" aria-label="Toggle high contrast mode">Off</button></div>
-        <div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn" aria-label="Toggle larger text mode">Off</button></div>
-        <div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn" aria-label="Toggle dyslexic friendly font">Off</button></div>
-        <div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn" aria-label="Toggle reduced motion">Off</button></div>
+        <div class="modal-header"><h3><i class="fas fa-universal-access"></i> Accessibility</h3><button class="modal-close" id="closeModalBtn">&times;</button></div>
+        <div class="opt"><span>🔆 High Contrast</span><button id="highContrastBtn">Off</button></div>
+        <div class="opt"><span>🔤 Larger Text</span><button id="largeTextBtn">Off</button></div>
+        <div class="opt"><span>📖 Dyslexic Font</span><button id="dyslexicFontBtn">Off</button></div>
+        <div class="opt"><span>🎬 Reduce Motion</span><button id="reduceMotionBtn">Off</button></div>
     </div>
 </div>
 
 <script>
-    (function() {
-        // ============================================================
-        // BOOT LOADER
-        // ============================================================
+    (function(){
         const bootOverlay = document.getElementById('bootOverlay');
         const bootStatus = document.getElementById('bootStatus');
-        const bootMessages = [
-            "[ SYSTEM INITIALIZING... ]",
-            "[ LOADING KERNEL... ]",
-            "[ MOUNTING FILE SYSTEMS... ]",
-            "[ ESTABLISHING SECURE CONNECTIONS... ]",
-            "[ LOADING UI COMPONENTS... ]",
-            "[ V3 OS READY ]"
-        ];
+        const bootMessages = ["[ SYSTEM INITIALIZING... ]","[ LOADING KERNEL... ]","[ MOUNTING FILE SYSTEMS... ]","[ ESTABLISHING SECURE CONNECTIONS... ]","[ LOADING UI COMPONENTS... ]","[ V3 OS READY ]"];
+        let msgIndex = 0;
+        const statusInterval = setInterval(() => { msgIndex++; if(msgIndex < bootMessages.length && bootStatus) bootStatus.textContent = bootMessages[msgIndex]; }, 750);
+        setTimeout(() => { if(bootOverlay){ bootOverlay.classList.add('hide'); setTimeout(()=> bootOverlay.style.display='none',800); } clearInterval(statusInterval); }, 5300);
         
-        let messageIndex = 0;
-        const statusInterval = setInterval(() => {
-            messageIndex++;
-            if (messageIndex < bootMessages.length && bootStatus) {
-                bootStatus.textContent = bootMessages[messageIndex];
-            }
-        }, 750);
+        let navItems = document.querySelectorAll('.nav-item[data-section]');
+        function setActive(id){ navItems.forEach(i=>{ if(i.getAttribute('data-section')===id) i.classList.add('active'); else i.classList.remove('active'); }); }
+        function scrollTo(id){ let el = document.getElementById(id); if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); setActive(id); } }
+        navItems.forEach(i=>{ i.addEventListener('click',()=>{ let s=i.getAttribute('data-section'); scrollTo(s); }); i.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); scrollTo(i.getAttribute('data-section')); } }); });
+        let home = document.getElementById('homeLogoLink'); if(home){ home.addEventListener('click',e=>{ e.preventDefault(); scrollTo('about'); }); home.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); scrollTo('about'); } }); }
+        window.addEventListener('scroll',()=>{ let pos=window.scrollY+100; let secs=['about','skills','services','pricing','products','projects','blog','contact']; let cur=''; for(let s of secs){ let sec=document.getElementById(s); if(sec&&sec.offsetTop<=pos) cur=s; } if(cur) setActive(cur); }); setActive('about');
         
-        setTimeout(() => {
-            if (bootOverlay) {
-                bootOverlay.classList.add('hide');
-                setTimeout(() => {
-                    bootOverlay.style.display = 'none';
-                }, 800);
-            }
-            clearInterval(statusInterval);
-        }, 5300);
+        let a11yBtn = document.getElementById('a11yNavBtn'); if(a11yBtn){ a11yBtn.addEventListener('click',()=>{ document.getElementById('a11yModal').classList.add('active'); document.body.style.overflow='hidden'; updateBtns(); }); a11yBtn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); document.getElementById('a11yModal').classList.add('active'); document.body.style.overflow='hidden'; updateBtns(); } }); }
         
-        // ============================================================
-        // EVENT HANDLERS & INTERACTIVITY
-        // ============================================================
-        let navItems = document.querySelectorAll('.ide-item[data-section]');
+        function modal(msg){ let o=document.createElement('div'); o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;'; o.innerHTML=`<div style="background:#0f0f0f;border:1px solid rgba(0,212,255,.3);border-radius:24px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 25px 40px -12px rgba(0,212,255,.2);"><i class="fas fa-code-branch" style="font-size:3rem;color:#00d4ff;margin-bottom:1rem;"></i><h3 style="margin-bottom:.5rem;color:#fff;">${msg}</h3><p style="color:#a0a0a0;margin-bottom:1.5rem;">This feature is currently under development. Stay tuned!</p><button id="closeModalBtn" style="background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;padding:.6rem 1.8rem;border-radius:40px;color:#fff;font-weight:600;cursor:pointer;">Got it</button></div>`; document.body.appendChild(o); setTimeout(()=>o.style.opacity='1',10); let close=o.querySelector('#closeModalBtn'); let rm=()=>{ o.style.opacity='0'; setTimeout(()=>o.remove(),200); }; close.onclick=rm; close.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') rm(); }); o.onclick=e=>{ if(e.target===o) rm(); }; }
         
-        function setActive(sectionId) {
-            navItems.forEach(item => {
-                let btnSection = item.getAttribute('data-section');
-                if (btnSection === sectionId) item.classList.add('active');
-                else item.classList.remove('active');
-            });
-        }
+        document.addEventListener('click',e=>{ if(e.target.closest('.project-card-link')||e.target.closest('.blog-card-link')) modal('Project Details'); if(e.target.closest('.pricing-btn')){ let plan=e.target.closest('.pricing-btn').getAttribute('data-plan'); modal(plan+' Plan - Get in touch for details!'); } });
         
-        function scrollToSection(sectionId) {
-            let el = document.getElementById(sectionId);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setActive(sectionId);
-            }
-        }
+        let viewProj = document.getElementById('view-projects'); if(viewProj) viewProj.addEventListener('click',e=>{ e.preventDefault(); window.open('https://github.com/v3','_blank'); });
+        let viewBlog = document.getElementById('view-blog'); if(viewBlog) viewBlog.addEventListener('click',e=>{ e.preventDefault(); modal('All Blog Posts'); });
         
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                let section = item.getAttribute('data-section');
-                scrollToSection(section);
-            });
-            item.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    let section = item.getAttribute('data-section');
-                    scrollToSection(section);
-                }
-            });
-        });
+        let modalEl = document.getElementById('a11yModal'), closeBtn = document.getElementById('closeModalBtn');
+        let closeModal = ()=>{ modalEl.classList.remove('active'); document.body.style.overflow=''; };
+        if(closeBtn){ closeBtn.addEventListener('click',closeModal); closeBtn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') closeModal(); }); }
+        if(modalEl) modalEl.addEventListener('click',e=>{ if(e.target===modalEl) closeModal(); });
         
-        let homeLogo = document.getElementById('homeLogoLink');
-        if (homeLogo) {
-            homeLogo.addEventListener('click', (e) => {
-                e.preventDefault();
-                scrollToSection('about');
-            });
-            homeLogo.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    scrollToSection('about');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', () => {
-            let scrollPos = window.scrollY + 100;
-            let sections = ['about', 'skills', 'services', 'pricing', 'products', 'projects', 'blog', 'contact'];
-            let current = '';
-            for (let s of sections) {
-                let sec = document.getElementById(s);
-                if (sec && sec.offsetTop <= scrollPos) current = s;
-            }
-            if (current) setActive(current);
-        });
-        setActive('about');
-        
-        let a11yNavBtn = document.getElementById('a11yNavBtn');
-        if (a11yNavBtn) {
-            a11yNavBtn.addEventListener('click', () => {
-                document.getElementById('a11yModal').classList.add('active');
-                document.body.style.overflow = 'hidden';
-                updateBtns();
-            });
-            a11yNavBtn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    document.getElementById('a11yModal').classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    updateBtns();
-                }
-            });
-        }
-        
-        function modal(msg) {
-            let o = document.createElement('div');
-            o.setAttribute('role', 'dialog');
-            o.setAttribute('aria-modal', 'true');
-            o.setAttribute('aria-label', 'Information modal');
-            o.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;';
-            o.innerHTML = `<div style="background:#0f0f0f;border:1px solid rgba(0,212,255,.3);border-radius:24px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 25px 40px -12px rgba(0,212,255,.2);"><i class="fas fa-code-branch" style="font-size:3rem;color:#00d4ff;margin-bottom:1rem;" aria-hidden="true"></i><h3 style="margin-bottom:.5rem;color:#fff;">${msg}</h3><p style="color:#a0a0a0;margin-bottom:1.5rem;">This feature is currently under development. Stay tuned!</p><button id="closeModalBtn" style="background:linear-gradient(135deg,#00d4ff,#7c3aed);border:none;padding:.6rem 1.8rem;border-radius:40px;color:#fff;font-weight:600;cursor:pointer;" aria-label="Close modal">Got it</button></div>`;
-            document.body.appendChild(o);
-            setTimeout(() => o.style.opacity = '1', 10);
-            let close = o.querySelector('#closeModalBtn');
-            let rm = () => {
-                o.style.opacity = '0';
-                setTimeout(() => o.remove(), 200);
-            };
-            close.onclick = rm;
-            close.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    rm();
-                }
-            });
-            o.onclick = e => { if (e.target === o) rm(); };
-        }
-        
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.project-card-link') || e.target.closest('.blog-card-link')) {
-                modal('Project Details');
-            }
-            if (e.target.closest('.pricing-btn')) {
-                let plan = e.target.closest('.pricing-btn').getAttribute('data-plan');
-                modal(plan + ' Plan - Get in touch for details!');
-            }
-        });
-        
-        let viewProjects = document.getElementById('view-projects');
-        if (viewProjects) {
-            viewProjects.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.open('https://github.com/v3', '_blank');
-            });
-        }
-        
-        let viewBlog = document.getElementById('view-blog');
-        if (viewBlog) {
-            viewBlog.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal('All Blog Posts');
-            });
-        }
-        
-        let modalEl = document.getElementById('a11yModal');
-        let closeModalBtn = document.getElementById('closeModalBtn');
-        let closeModal = () => {
-            modalEl.classList.remove('active');
-            document.body.style.overflow = '';
-        };
-        if (closeModalBtn) {
-            closeModalBtn.addEventListener('click', closeModal);
-            closeModalBtn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    closeModal();
-                }
-            });
-        }
-        if (modalEl) {
-            modalEl.addEventListener('click', e => { if (e.target === modalEl) closeModal(); });
-        }
-        
-        let hc = document.getElementById('highContrastBtn');
-        let lt = document.getElementById('largeTextBtn');
-        let df = document.getElementById('dyslexicFontBtn');
-        let rm = document.getElementById('reduceMotionBtn');
-        
-        function updateBtns() {
-            let highContrastActive = document.body.classList.contains('high-contrast');
-            let largeTextActive = document.body.classList.contains('large-text');
-            let dyslexicActive = document.body.classList.contains('dyslexic-font');
-            let reduceMotionActive = document.body.classList.contains('reduce-motion');
-            
-            if (hc) {
-                hc.textContent = highContrastActive ? 'On' : 'Off';
-                hc.classList.toggle('active', highContrastActive);
-                hc.setAttribute('aria-label', highContrastActive ? 'Disable high contrast mode' : 'Enable high contrast mode');
-            }
-            if (lt) {
-                lt.textContent = largeTextActive ? 'On' : 'Off';
-                lt.classList.toggle('active', largeTextActive);
-                lt.setAttribute('aria-label', largeTextActive ? 'Disable larger text mode' : 'Enable larger text mode');
-            }
-            if (df) {
-                df.textContent = dyslexicActive ? 'On' : 'Off';
-                df.classList.toggle('active', dyslexicActive);
-                df.setAttribute('aria-label', dyslexicActive ? 'Disable dyslexic font mode' : 'Enable dyslexic font mode');
-            }
-            if (rm) {
-                rm.textContent = reduceMotionActive ? 'On' : 'Off';
-                rm.classList.toggle('active', reduceMotionActive);
-                rm.setAttribute('aria-label', reduceMotionActive ? 'Disable reduced motion mode' : 'Enable reduced motion mode');
-            }
-        }
-        
-        function applyHighContrast(enabled) {
-            if (enabled) document.body.classList.add('high-contrast');
-            else document.body.classList.remove('high-contrast');
-            localStorage.setItem('highContrast', enabled);
-            updateBtns();
-        }
-        function applyLargeText(enabled) {
-            if (enabled) document.body.classList.add('large-text');
-            else document.body.classList.remove('large-text');
-            localStorage.setItem('largeText', enabled);
-            updateBtns();
-        }
-        function applyDyslexicFont(enabled) {
-            if (enabled) document.body.classList.add('dyslexic-font');
-            else document.body.classList.remove('dyslexic-font');
-            localStorage.setItem('dyslexicFont', enabled);
-            updateBtns();
-        }
-        function applyReduceMotion(enabled) {
-            if (enabled) document.body.classList.add('reduce-motion');
-            else document.body.classList.remove('reduce-motion');
-            localStorage.setItem('reduceMotion', enabled);
-            updateBtns();
-        }
-        
-        if (hc) {
-            hc.addEventListener('click', () => { applyHighContrast(!document.body.classList.contains('high-contrast')); });
-            hc.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    applyHighContrast(!document.body.classList.contains('high-contrast'));
-                }
-            });
-        }
-        if (lt) {
-            lt.addEventListener('click', () => { applyLargeText(!document.body.classList.contains('large-text')); });
-            lt.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    applyLargeText(!document.body.classList.contains('large-text'));
-                }
-            });
-        }
-        if (df) {
-            df.addEventListener('click', () => { applyDyslexicFont(!document.body.classList.contains('dyslexic-font')); });
-            df.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    applyDyslexicFont(!document.body.classList.contains('dyslexic-font'));
-                }
-            });
-        }
-        if (rm) {
-            rm.addEventListener('click', () => { applyReduceMotion(!document.body.classList.contains('reduce-motion')); });
-            rm.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    applyReduceMotion(!document.body.classList.contains('reduce-motion'));
-                }
-            });
-        }
-        
-        if (localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
-        if (localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
-        if (localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
-        if (localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
+        let hc=document.getElementById('highContrastBtn'), lt=document.getElementById('largeTextBtn'), df=document.getElementById('dyslexicFontBtn'), rm=document.getElementById('reduceMotionBtn');
+        function updateBtns(){ let ha=document.body.classList.contains('high-contrast'), la=document.body.classList.contains('large-text'), da=document.body.classList.contains('dyslexic-font'), ra=document.body.classList.contains('reduce-motion'); if(hc){ hc.textContent=ha?'On':'Off'; hc.classList.toggle('active',ha); } if(lt){ lt.textContent=la?'On':'Off'; lt.classList.toggle('active',la); } if(df){ df.textContent=da?'On':'Off'; df.classList.toggle('active',da); } if(rm){ rm.textContent=ra?'On':'Off'; rm.classList.toggle('active',ra); } }
+        function applyHigh(e){ if(e) document.body.classList.add('high-contrast'); else document.body.classList.remove('high-contrast'); localStorage.setItem('highContrast',e); updateBtns(); }
+        function applyLarge(e){ if(e) document.body.classList.add('large-text'); else document.body.classList.remove('large-text'); localStorage.setItem('largeText',e); updateBtns(); }
+        function applyDys(e){ if(e) document.body.classList.add('dyslexic-font'); else document.body.classList.remove('dyslexic-font'); localStorage.setItem('dyslexicFont',e); updateBtns(); }
+        function applyReduce(e){ if(e) document.body.classList.add('reduce-motion'); else document.body.classList.remove('reduce-motion'); localStorage.setItem('reduceMotion',e); updateBtns(); }
+        if(hc){ hc.addEventListener('click',()=>applyHigh(!document.body.classList.contains('high-contrast'))); hc.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') applyHigh(!document.body.classList.contains('high-contrast')); }); }
+        if(lt){ lt.addEventListener('click',()=>applyLarge(!document.body.classList.contains('large-text'))); lt.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') applyLarge(!document.body.classList.contains('large-text')); }); }
+        if(df){ df.addEventListener('click',()=>applyDys(!document.body.classList.contains('dyslexic-font'))); df.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') applyDys(!document.body.classList.contains('dyslexic-font')); }); }
+        if(rm){ rm.addEventListener('click',()=>applyReduce(!document.body.classList.contains('reduce-motion'))); rm.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') applyReduce(!document.body.classList.contains('reduce-motion')); }); }
+        if(localStorage.getItem('highContrast')==='true') document.body.classList.add('high-contrast');
+        if(localStorage.getItem('largeText')==='true') document.body.classList.add('large-text');
+        if(localStorage.getItem('dyslexicFont')==='true') document.body.classList.add('dyslexic-font');
+        if(localStorage.getItem('reduceMotion')==='true') document.body.classList.add('reduce-motion');
         updateBtns();
         
-        let observer = new IntersectionObserver(e => {
-            e.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        let observer = new IntersectionObserver(e=>{ e.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }); },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+        document.querySelectorAll('section').forEach(s=>observer.observe(s));
         
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
-        
-        let touchStartX = 0;
-        document.body.addEventListener('touchstart', function(e) {
-            touchStartX = e.touches[0].clientX;
-        }, { passive: false });
-        document.body.addEventListener('touchmove', function(e) {
-            let touchCurrentX = e.touches[0].clientX;
-            let diff = touchCurrentX - touchStartX;
-            if (Math.abs(diff) > 10) {
-                if ((diff > 0 && window.scrollX === 0) || (diff < 0 && (window.scrollX + window.innerWidth) >= document.documentElement.scrollWidth)) {
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('dragstart', e => e.preventDefault());
+        let touchX=0; document.body.addEventListener('touchstart',e=>{ touchX=e.touches[0].clientX; },{passive:false}); document.body.addEventListener('touchmove',e=>{ let curX=e.touches[0].clientX, diff=curX-touchX; if(Math.abs(diff)>10){ if((diff>0&&window.scrollX===0)||(diff<0&&(window.scrollX+window.innerWidth)>=document.documentElement.scrollWidth)) e.preventDefault(); } },{passive:false}); document.addEventListener('contextmenu',e=>e.preventDefault()); document.addEventListener('dragstart',e=>e.preventDefault());
     })();
 </script>
 </body>
