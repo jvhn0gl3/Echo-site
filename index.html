@@ -50,33 +50,41 @@
             max-width: 100%;
         }
 
-        /* Container - full width */
+        /* Container - full width with consistent alignment */
         .container {
             max-width: 100%;
             margin: 0 auto;
+            width: 100%;
         }
 
-        /* Section spacing */
+        /* Section spacing - consistent top/bottom margins */
         section {
-            margin-bottom: 32px;
+            margin-bottom: 40px;
+            width: 100%;
         }
 
-        /* Section Headers - code syntax import style */
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Section Headers - code syntax import style - FULL WIDTH */
         .section-header {
-            margin-bottom: 16px;
-            padding: 12px 12px;
+            margin-bottom: 20px;
+            padding: 12px 16px;
             background: rgba(0, 212, 255, 0.05);
             border-left: 3px solid #00d4ff;
             border-radius: 0 12px 12px 0;
             font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            width: 100%;
         }
 
         .section-header h2 {
             font-size: 15px;
             font-weight: 500;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: #00d4ff;
             letter-spacing: -0.3px;
+            word-break: break-word;
         }
 
         .section-header h2 .keyword {
@@ -106,13 +114,18 @@
             color: #5c6370;
         }
 
-        /* About Section - mobile layout */
+        /* About Section - centered alignment */
         .about {
             display: flex;
             flex-direction: column;
             gap: 24px;
             align-items: center;
             text-align: center;
+            width: 100%;
+        }
+
+        .about-text {
+            width: 100%;
         }
 
         .about-text p {
@@ -120,12 +133,13 @@
             margin-bottom: 12px;
             font-size: 15px;
             line-height: 1.5;
-            max-width: 100%;
+            width: 100%;
         }
 
         .about-img {
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
         .about-img img {
@@ -137,11 +151,12 @@
             object-fit: cover;
         }
 
-        /* Skills Section - mobile grid */
+        /* Skills Section - consistent grid alignment */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
+            width: 100%;
         }
 
         .skill-card {
@@ -151,6 +166,7 @@
             padding: 16px 12px;
             text-align: center;
             transition: all 0.2s ease;
+            width: 100%;
         }
 
         .skill-card:active {
@@ -162,6 +178,7 @@
             font-size: 28px;
             color: #00d4ff;
             margin-bottom: 10px;
+            display: block;
         }
 
         .skill-card h3 {
@@ -177,11 +194,12 @@
             line-height: 1.3;
         }
 
-        /* Services Section - mobile grid */
+        /* Services Section - consistent grid alignment */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
+            width: 100%;
         }
 
         .service-card {
@@ -191,6 +209,10 @@
             padding: 16px 12px;
             text-align: center;
             transition: all 0.2s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .service-card:active {
@@ -202,6 +224,7 @@
             font-size: 28px;
             color: #00d4ff;
             margin-bottom: 10px;
+            display: block;
         }
 
         .service-card h3 {
@@ -218,12 +241,12 @@
             margin-bottom: 12px;
         }
 
-        /* View More Button */
+        /* View More Button - consistent width and alignment */
         .view-more-btn {
             background: rgba(0, 212, 255, 0.15);
             border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 30px;
-            padding: 6px 12px;
+            padding: 8px 12px;
             font-size: 10px;
             font-weight: 500;
             color: #00d4ff;
@@ -279,6 +302,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
+            width: 100%;
         }
 
         .service-modal-header h3 {
@@ -306,12 +330,14 @@
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .service-modal-features {
             text-align: left;
             margin: 16px 0;
             padding-left: 20px;
+            list-style: none;
         }
 
         .service-modal-features li {
@@ -333,7 +359,7 @@
             margin-top: 16px;
         }
 
-        /* Bottom Navigation Bar - Native iOS/Android style */
+        /* Bottom Navigation Bar - consistent spacing */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -362,6 +388,8 @@
             border-radius: 12px;
             transition: all 0.2s ease;
             cursor: pointer;
+            flex: 1;
+            max-width: 80px;
         }
 
         .bottom-nav-item i {
@@ -416,6 +444,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            width: 100%;
         }
 
         .modal-header h3 {
@@ -439,6 +468,7 @@
             padding: 14px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 15px;
+            width: 100%;
         }
 
         .opt button {
@@ -818,7 +848,7 @@
                     '✓ 24/7 monitoring',
                     '✓ Bug fixes & patches',
                     '✓ Regular updates',
-                    ✓ 'Performance monitoring',
+                    '✓ Performance monitoring',
                     '✓ Emergency response'
                 ]
             },
