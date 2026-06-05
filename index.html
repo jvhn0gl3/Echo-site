@@ -167,6 +167,9 @@
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .skill-card:active {
@@ -192,6 +195,7 @@
             color: #a0a0a0;
             font-size: 11px;
             line-height: 1.3;
+            margin-bottom: 12px;
         }
 
         /* Services Section - consistent grid alignment */
@@ -435,43 +439,90 @@
             color: #fff;
         }
 
-        /* Additional Button Style - For any future buttons */
-        .btn-primary {
+        /* Skill Detail Modal */
+        .skill-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skill-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .skill-modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+
+        .skill-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .skill-modal-header h3 {
+            font-size: 20px;
+            color: #00d4ff;
+        }
+
+        .skill-modal-icon {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 16px;
+        }
+
+        .skill-modal-description {
+            color: #c0c0c0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .skill-modal-tech {
+            text-align: left;
+            margin: 16px 0;
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .skill-modal-tech li {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .skill-modal-contact {
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
             border: none;
-            border-radius: 30px;
-            padding: 12px 24px;
+            border-radius: 14px;
+            padding: 12px 20px;
             color: #fff;
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
-            transition: all 0.25s ease;
             width: 100%;
-            text-align: center;
-        }
-
-        .btn-primary:active {
-            transform: scale(0.96);
-            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
-            padding: 12px 24px;
-            color: #e0e0e0;
-            font-weight: 500;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn-secondary:active {
-            transform: scale(0.96);
-            background: rgba(255, 255, 255, 0.1);
+            margin-top: 16px;
         }
 
         /* Service Detail Modal */
@@ -664,6 +715,7 @@
         body.high-contrast .skill-card,
         body.high-contrast .service-card,
         body.high-contrast .service-modal-content,
+        body.high-contrast .skill-modal-content,
         body.high-contrast .section-header {
             background: #000;
             border-color: #fff;
@@ -757,35 +809,41 @@
                 <p><span class="comment">// Technologies I work with daily</span></p>
             </div>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card" data-skill="frontend">
                     <i class="fa-brands fa-react"></i>
                     <h3>Frontend</h3>
                     <p>React, Vue, Angular, TypeScript</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="backend">
                     <i class="fa-solid fa-server"></i>
                     <h3>Backend</h3>
                     <p>Node.js, Python, Go, Java</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="database">
                     <i class="fa-solid fa-database"></i>
                     <h3>Database</h3>
                     <p>PostgreSQL, MongoDB, Redis</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="cloud">
                     <i class="fa-solid fa-cloud"></i>
                     <h3>Cloud</h3>
                     <p>AWS, Azure, GCP, Docker</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="mobile">
                     <i class="fa-solid fa-mobile-alt"></i>
                     <h3>Mobile</h3>
                     <p>React Native, Flutter, Swift</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="devops">
                     <i class="fa-solid fa-code-branch"></i>
                     <h3>DevOps</h3>
                     <p>CI/CD, Jenkins, GitHub Actions</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -875,6 +933,30 @@
     </div>
 </div>
 
+<!-- Skill Detail Modal -->
+<div id="skillModal" class="skill-modal">
+    <div class="skill-modal-content">
+        <div class="skill-modal-header">
+            <h3 id="skillModalTitle">Frontend</h3>
+            <button class="service-modal-close" id="closeSkillModalBtn">&times;</button>
+        </div>
+        <div id="skillModalIcon" class="skill-modal-icon"><i class="fa-brands fa-react"></i></div>
+        <div id="skillModalDescription" class="skill-modal-description">
+            Modern frontend development with cutting-edge technologies.
+        </div>
+        <ul id="skillModalTech" class="skill-modal-tech">
+            <li>✓ React.js & Next.js</li>
+            <li>✓ Vue.js & Nuxt.js</li>
+            <li>✓ Angular</li>
+            <li>✓ TypeScript</li>
+            <li>✓ Tailwind CSS</li>
+        </ul>
+        <button class="skill-modal-contact" onclick="window.location.href='mailto:hello@v3.dev'">
+            Hire Me → 
+        </button>
+    </div>
+</div>
+
 <!-- Service Detail Modal -->
 <div id="serviceModal" class="service-modal">
     <div class="service-modal-content">
@@ -900,6 +982,88 @@
 
 <script>
     (function(){
+        // Skill details database
+        const skillDetails = {
+            'frontend': {
+                title: 'Frontend Development',
+                icon: 'fa-brands fa-react',
+                description: 'Expert frontend development using the latest frameworks and best practices.',
+                tech: [
+                    '✓ React.js & Next.js',
+                    '✓ Vue.js & Nuxt.js',
+                    '✓ Angular',
+                    '✓ TypeScript',
+                    '✓ Tailwind CSS / SCSS',
+                    '✓ State Management (Redux, Vuex, NgRx)'
+                ]
+            },
+            'backend': {
+                title: 'Backend Development',
+                icon: 'fa-solid fa-server',
+                description: 'Robust and scalable backend systems to power your applications.',
+                tech: [
+                    '✓ Node.js / Express',
+                    '✓ Python / Django / FastAPI',
+                    '✓ Go / Gin',
+                    '✓ Java / Spring Boot',
+                    '✓ RESTful APIs & GraphQL',
+                    '✓ Microservices Architecture'
+                ]
+            },
+            'database': {
+                title: 'Database Engineering',
+                icon: 'fa-solid fa-database',
+                description: 'Efficient data storage and retrieval with modern database solutions.',
+                tech: [
+                    '✓ PostgreSQL',
+                    '✓ MongoDB',
+                    '✓ Redis',
+                    '✓ MySQL',
+                    '✓ Database Design & Optimization',
+                    '✓ Data Migration & Backup'
+                ]
+            },
+            'cloud': {
+                title: 'Cloud Architecture',
+                icon: 'fa-solid fa-cloud',
+                description: 'Expert cloud infrastructure and deployment strategies.',
+                tech: [
+                    '✓ AWS (EC2, S3, Lambda, RDS)',
+                    '✓ Azure',
+                    '✓ Google Cloud Platform',
+                    '✓ Docker & Kubernetes',
+                    '✓ Infrastructure as Code (Terraform)',
+                    '✓ Serverless Architecture'
+                ]
+            },
+            'mobile': {
+                title: 'Mobile Development',
+                icon: 'fa-solid fa-mobile-alt',
+                description: 'Cross-platform mobile applications with native performance.',
+                tech: [
+                    '✓ React Native',
+                    '✓ Flutter',
+                    '✓ Swift (iOS)',
+                    '✓ Kotlin (Android)',
+                    '✓ App Store & Play Store Deployment',
+                    '✓ Mobile UI/UX Best Practices'
+                ]
+            },
+            'devops': {
+                title: 'DevOps & CI/CD',
+                icon: 'fa-solid fa-code-branch',
+                description: 'Streamlined development workflows and automated deployments.',
+                tech: [
+                    '✓ CI/CD Pipelines',
+                    '✓ Jenkins / GitHub Actions',
+                    '✓ Git & Version Control',
+                    '✓ Automated Testing',
+                    '✓ Monitoring & Logging',
+                    '✓ Performance Optimization'
+                ]
+            }
+        };
+        
         // Service details database
         const serviceDetails = {
             'logo-design': {
@@ -1000,8 +1164,15 @@
             }
         };
         
-        // Setup View More buttons
-        const viewMoreBtns = document.querySelectorAll('.view-more-btn');
+        // Skill Modal elements
+        const skillModal = document.getElementById('skillModal');
+        const closeSkillModalBtn = document.getElementById('closeSkillModalBtn');
+        const skillModalTitle = document.getElementById('skillModalTitle');
+        const skillModalIcon = document.getElementById('skillModalIcon');
+        const skillModalDescription = document.getElementById('skillModalDescription');
+        const skillModalTech = document.getElementById('skillModalTech');
+        
+        // Service Modal elements
         const serviceModal = document.getElementById('serviceModal');
         const closeServiceModalBtn = document.getElementById('closeServiceModalBtn');
         const serviceModalTitle = document.getElementById('serviceModalTitle');
@@ -1009,6 +1180,28 @@
         const serviceModalDescription = document.getElementById('serviceModalDescription');
         const serviceModalFeatures = document.getElementById('serviceModalFeatures');
         
+        // Open Skill Modal
+        function openSkillModal(skillId) {
+            const details = skillDetails[skillId];
+            if (details && skillModal) {
+                skillModalTitle.textContent = details.title;
+                skillModalIcon.innerHTML = `<i class="${details.icon}"></i>`;
+                skillModalDescription.textContent = details.description;
+                skillModalTech.innerHTML = details.tech.map(t => `<li>${t}</li>`).join('');
+                skillModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Close Skill Modal
+        function closeSkillModal() {
+            if (skillModal) {
+                skillModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Open Service Modal
         function openServiceModal(serviceId) {
             const details = serviceDetails[serviceId];
             if (details && serviceModal) {
@@ -1021,6 +1214,7 @@
             }
         }
         
+        // Close Service Modal
         function closeServiceModal() {
             if (serviceModal) {
                 serviceModal.classList.remove('active');
@@ -1028,9 +1222,22 @@
             }
         }
         
-        // Attach click handlers to each service card's view more button
+        // Attach click handlers to skill cards
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach((card) => {
+            const btn = card.querySelector('.view-more-btn');
+            const skillId = card.getAttribute('data-skill');
+            if (btn && skillId) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openSkillModal(skillId);
+                });
+            }
+        });
+        
+        // Attach click handlers to service cards
         const serviceCards = document.querySelectorAll('.service-card');
-        serviceCards.forEach((card, index) => {
+        serviceCards.forEach((card) => {
             const btn = card.querySelector('.view-more-btn');
             const serviceId = card.getAttribute('data-service');
             if (btn && serviceId) {
@@ -1041,10 +1248,20 @@
             }
         });
         
+        // Close buttons
+        if (closeSkillModalBtn) {
+            closeSkillModalBtn.addEventListener('click', closeSkillModal);
+        }
         if (closeServiceModalBtn) {
             closeServiceModalBtn.addEventListener('click', closeServiceModal);
         }
         
+        // Close modals when clicking outside
+        if (skillModal) {
+            skillModal.addEventListener('click', (e) => {
+                if (e.target === skillModal) closeSkillModal();
+            });
+        }
         if (serviceModal) {
             serviceModal.addEventListener('click', (e) => {
                 if (e.target === serviceModal) closeServiceModal();
