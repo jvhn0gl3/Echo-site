@@ -44,11 +44,10 @@
         /* Main content - full width like a mobile app */
         main {
             margin-left: 0;
-            padding: 20px 16px 20px 16px;
+            padding: 20px 16px 80px 16px;
             flex: 1;
             width: 100%;
             max-width: 100%;
-            padding-bottom: 100px; /* Space for footer + nav */
         }
 
         /* Container - full width */
@@ -154,19 +153,6 @@
             color: #a0a0a0;
             font-size: 11px;
             line-height: 1.3;
-        }
-
-        /* Footer - above nav, no border */
-        footer {
-            text-align: center;
-            padding: 16px 20px;
-            color: #666;
-            font-size: 11px;
-            margin-left: 0;
-            width: 100%;
-            background: #050505;
-            position: relative;
-            bottom: 0;
         }
 
         /* Bottom Navigation Bar - Native iOS/Android style */
@@ -445,8 +431,6 @@
     </section>
 </main>
 
-<footer><p id="footerText"></p></footer>
-
 <!-- Bottom Navigation Bar - Mobile App Style -->
 <div class="bottom-nav">
     <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
@@ -466,20 +450,6 @@
 
 <script>
     (function(){
-        // Set current date in footer
-        const footerText = document.getElementById('footerText');
-        if (footerText) {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            footerText.innerHTML = `© ${year} V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i><span class="visually-hidden"> love</span> | ${dateString}`;
-        }
-        
         // Bottom navigation active state
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id){
@@ -604,8 +574,7 @@
         
         // Prevent context menu and drag
         document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-        document.addEventListener('dragstart', function(e){ e.preventDefault();
-        });
+        document.addEventListener('dragstart', function(e){ e.preventDefault(); });
     })();
 </script>
 </body>
