@@ -120,47 +120,6 @@
             object-fit: cover;
         }
 
-        /* Contact section - mobile */
-        .contact {
-            max-width: 100%;
-            margin: 0;
-            text-align: center;
-        }
-
-        .contact p {
-            color: #c0c0c0;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .social {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .social a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 40px;
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .social a:active {
-            transform: scale(0.96);
-            background: rgba(0, 212, 255, 0.15);
-            border-color: #00d4ff;
-        }
-
         /* Footer - app style fixed at bottom */
         footer {
             text-align: center;
@@ -340,8 +299,7 @@
             color: #fff;
         }
 
-        body.high-contrast .modal-content,
-        body.high-contrast .social a {
+        body.high-contrast .modal-content {
             background: #000;
             border-color: #fff;
         }
@@ -362,8 +320,7 @@
             font-size: 18px;
         }
 
-        body.large-text p,
-        body.large-text .social a {
+        body.large-text p {
             font-size: 16px;
         }
 
@@ -406,19 +363,6 @@
             </div>
         </div>
     </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header"><h2>Let's Connect</h2><p>Have a project in mind?</p></div>
-            <div class="social">
-                <a href="mailto:hello@v3.dev" target="_blank"><i class="fa-regular fa-envelope"></i> Email</a>
-                <a href="https://github.com/v3" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="https://linkedin.com/in/v3" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://twitter.com/v3" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a>
-                <a href="https://discord.gg/v3" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
-            </div>
-        </div>
-    </section>
 </main>
 
 <footer><p id="footerText"></p></footer>
@@ -426,7 +370,6 @@
 <!-- Bottom Navigation Bar - Mobile App Style -->
 <div class="bottom-nav">
     <button class="bottom-nav-item active" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-    <button class="bottom-nav-item" data-section="contact"><i class="fas fa-envelope"></i><span>Contact</span></button>
     <button class="bottom-nav-item" id="a11yNavBtn"><i class="fas fa-universal-access"></i><span>Access</span></button>
 </div>
 
