@@ -245,12 +245,25 @@
             margin-bottom: 12px;
         }
 
-        /* Products Section - store style */
+        /* Products Section - store style (responsive grid) */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             width: 100%;
+        }
+
+        /* On larger screens, allow more columns */
+        @media (min-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .product-card {
@@ -1104,6 +1117,19 @@
                     <div class="trending-badge">🔥 Trending · 21+ views</div>
                     <div class="zazzle-badge">✨ Powered by Zazzle</div>
                     <a href="https://www.zazzle.com/his_queen_and_her_king_coffee_mug_set-256179400998196026" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 5: Front Top Pouch "You + Me Forever" -->
+                <div class="product-card" data-product="you-me-pouch">
+                    <div class="product-image">
+                        <img src="images/products/Front Top Pouch You Me Forever.jpg" alt="Front Top Pouch You + Me Forever" onerror="this.parentElement.innerHTML='<i class=\'fas fa-bag-shopping\'></i>'">
+                    </div>
+                    <h3>You + Me Forever Pouch</h3>
+                    <p>Front top pouch bag</p>
+                    <div class="product-price">$17.26<span class="original-price">$20.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
+                    <div class="trending-badge">🔥 Trending · 18+ views</div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/front_top_pouch_you_me_forever-235142252792957341" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
                 </div>
             </div>
         </div>
