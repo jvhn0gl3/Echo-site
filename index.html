@@ -215,6 +215,122 @@
             color: #a0a0a0;
             font-size: 11px;
             line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        /* View More Button */
+        .view-more-btn {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 30px;
+            padding: 6px 12px;
+            font-size: 10px;
+            font-weight: 500;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .view-more-btn:active {
+            transform: scale(0.96);
+            background: rgba(0, 212, 255, 0.25);
+        }
+
+        /* Service Detail Modal */
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .service-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+
+        .service-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .service-modal-header h3 {
+            font-size: 20px;
+            color: #00d4ff;
+        }
+
+        .service-modal-close {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .service-modal-icon {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 16px;
+        }
+
+        .service-modal-description {
+            color: #c0c0c0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .service-modal-features {
+            text-align: left;
+            margin: 16px 0;
+            padding-left: 20px;
+        }
+
+        .service-modal-features li {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .service-modal-contact {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 14px;
+            padding: 12px 20px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
         }
 
         /* Bottom Navigation Bar - Native iOS/Android style */
@@ -262,7 +378,7 @@
             transform: scale(0.92);
         }
 
-        /* Modal - full screen app style */
+        /* Accessibility Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -316,7 +432,6 @@
             padding: 0;
         }
 
-        /* Accessibility options - mobile native */
         .opt {
             display: flex;
             justify-content: space-between;
@@ -357,7 +472,7 @@
             animation: fadeInUp 0.4s ease-out forwards;
         }
 
-        /* Skip link - mobile friendly */
+        /* Skip link */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -385,6 +500,7 @@
         body.high-contrast .modal-content,
         body.high-contrast .skill-card,
         body.high-contrast .service-card,
+        body.high-contrast .service-modal-content,
         body.high-contrast .section-header {
             background: #000;
             border-color: #fff;
@@ -433,7 +549,8 @@
 
         body.reduce-motion .bottom-nav-item:active,
         body.reduce-motion .skill-card:active,
-        body.reduce-motion .service-card:active {
+        body.reduce-motion .service-card:active,
+        body.reduce-motion .view-more-btn:active {
             transform: none !important;
         }
     </style>
@@ -523,45 +640,53 @@
                 <p><span class="comment">// What I offer as a digital architect</span></p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-service="logo-design">
                     <i class="fa-solid fa-pen-nib"></i>
                     <h3>Logo Design</h3>
-                    <p>Custom brand identities</p>
+                    <p>Custom brand identities that stand out</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="web-dev">
                     <i class="fa-solid fa-laptop-code"></i>
                     <h3>Web Development</h3>
-                    <p>Full-stack modern apps</p>
+                    <p>Full-stack modern web applications</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="ui-ux">
                     <i class="fa-solid fa-palette"></i>
                     <h3>UI/UX Design</h3>
-                    <p>Beautiful interfaces</p>
+                    <p>Beautiful, intuitive interfaces</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="consulting">
                     <i class="fa-solid fa-chart-line"></i>
                     <h3>Tech Consulting</h3>
-                    <p>Expert architecture advice</p>
+                    <p>Expert architecture & strategy advice</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="performance">
                     <i class="fa-solid fa-rocket"></i>
                     <h3>Performance</h3>
-                    <p>Speed optimization</p>
+                    <p>Speed optimization & scaling</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="security">
                     <i class="fa-solid fa-shield-alt"></i>
                     <h3>Security Audits</h3>
-                    <p>Vulnerability assessment</p>
+                    <p>Vulnerability assessment & fixes</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="maintenance">
                     <i class="fa-solid fa-headset"></i>
                     <h3>Maintenance</h3>
-                    <p>Ongoing support</p>
+                    <p>Ongoing support & updates</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="cloud">
                     <i class="fa-solid fa-cloud-upload-alt"></i>
                     <h3>Cloud Migration</h3>
-                    <p>AWS, Azure, GCP</p>
+                    <p>AWS, Azure, GCP expertise</p>
+                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -586,8 +711,182 @@
     </div>
 </div>
 
+<!-- Service Detail Modal -->
+<div id="serviceModal" class="service-modal">
+    <div class="service-modal-content">
+        <div class="service-modal-header">
+            <h3 id="serviceModalTitle">Logo Design</h3>
+            <button class="service-modal-close" id="closeServiceModalBtn">&times;</button>
+        </div>
+        <div id="serviceModalIcon" class="service-modal-icon"><i class="fa-solid fa-pen-nib"></i></div>
+        <div id="serviceModalDescription" class="service-modal-description">
+            Professional logo design that captures your brand's essence.
+        </div>
+        <ul id="serviceModalFeatures" class="service-modal-features">
+            <li>✓ Custom concept development</li>
+            <li>✓ Multiple revision rounds</li>
+            <li>✓ Vector files + all formats</li>
+            <li>✓ Brand guidelines included</li>
+        </ul>
+        <button class="service-modal-contact" onclick="window.location.href='mailto:hello@v3.dev'">
+            Get Quote → 
+        </button>
+    </div>
+</div>
+
 <script>
     (function(){
+        // Service details database
+        const serviceDetails = {
+            'logo-design': {
+                title: 'Logo Design',
+                icon: 'fa-pen-nib',
+                description: 'Professional logo design that captures your brand\'s essence and makes a lasting impression.',
+                features: [
+                    '✓ Custom concept development',
+                    '✓ Multiple revision rounds',
+                    '✓ Vector files + all formats',
+                    '✓ Brand guidelines included',
+                    '✓ Color palette suggestions'
+                ]
+            },
+            'web-dev': {
+                title: 'Web Development',
+                icon: 'fa-laptop-code',
+                description: 'Full-stack web development using modern frameworks and best practices.',
+                features: [
+                    '✓ Responsive mobile-first design',
+                    '✓ Modern frameworks (React, Vue, Angular)',
+                    '✓ Backend APIs (Node.js, Python, Go)',
+                    '✓ Database integration',
+                    '✓ Performance optimization'
+                ]
+            },
+            'ui-ux': {
+                title: 'UI/UX Design',
+                icon: 'fa-palette',
+                description: 'Beautiful, intuitive interfaces designed with user experience at the core.',
+                features: [
+                    '✓ User research & personas',
+                    '✓ Wireframing & prototyping',
+                    '✓ High-fidelity mockups',
+                    '✓ Usability testing',
+                    '✓ Design systems & components'
+                ]
+            },
+            'consulting': {
+                title: 'Tech Consulting',
+                icon: 'fa-chart-line',
+                description: 'Expert technical advice to help you make the right architectural decisions.',
+                features: [
+                    '✓ Architecture review',
+                    '✓ Technology stack selection',
+                    '✓ Scalability planning',
+                    '✓ Code quality assessment',
+                    '✓ Team mentorship'
+                ]
+            },
+            'performance': {
+                title: 'Performance Optimization',
+                icon: 'fa-rocket',
+                description: 'Speed up your applications and improve user experience with performance tuning.',
+                features: [
+                    '✓ Load time analysis',
+                    '✓ Core Web Vitals optimization',
+                    '✓ Code splitting & lazy loading',
+                    '✓ Caching strategies',
+                    '✓ Database query optimization'
+                ]
+            },
+            'security': {
+                title: 'Security Audits',
+                icon: 'fa-shield-alt',
+                description: 'Comprehensive security assessments to identify and fix vulnerabilities.',
+                features: [
+                    '✓ Vulnerability scanning',
+                    '✓ Penetration testing',
+                    '✓ Code security review',
+                    '✓ Dependency analysis',
+                    '✓ Security best practices implementation'
+                ]
+            },
+            'maintenance': {
+                title: 'Maintenance & Support',
+                icon: 'fa-headset',
+                description: 'Ongoing support to keep your applications running smoothly.',
+                features: [
+                    '✓ 24/7 monitoring',
+                    '✓ Bug fixes & patches',
+                    '✓ Regular updates',
+                    ✓ 'Performance monitoring',
+                    '✓ Emergency response'
+                ]
+            },
+            'cloud': {
+                title: 'Cloud Migration',
+                icon: 'fa-cloud-upload-alt',
+                description: 'Seamless migration to cloud platforms with minimal downtime.',
+                features: [
+                    '✓ AWS, Azure, GCP expertise',
+                    '✓ Migration strategy planning',
+                    '✓ Cost optimization',
+                    '✓ Infrastructure as Code',
+                    '✓ CI/CD pipeline setup'
+                ]
+            }
+        };
+        
+        // Setup View More buttons
+        const viewMoreBtns = document.querySelectorAll('.view-more-btn');
+        const serviceModal = document.getElementById('serviceModal');
+        const closeServiceModalBtn = document.getElementById('closeServiceModalBtn');
+        const serviceModalTitle = document.getElementById('serviceModalTitle');
+        const serviceModalIcon = document.getElementById('serviceModalIcon');
+        const serviceModalDescription = document.getElementById('serviceModalDescription');
+        const serviceModalFeatures = document.getElementById('serviceModalFeatures');
+        
+        function openServiceModal(serviceId) {
+            const details = serviceDetails[serviceId];
+            if (details && serviceModal) {
+                serviceModalTitle.textContent = details.title;
+                serviceModalIcon.innerHTML = `<i class="fa-solid ${details.icon}"></i>`;
+                serviceModalDescription.textContent = details.description;
+                serviceModalFeatures.innerHTML = details.features.map(f => `<li>${f}</li>`).join('');
+                serviceModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeServiceModal() {
+            if (serviceModal) {
+                serviceModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Attach click handlers to each service card's view more button
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            const btn = card.querySelector('.view-more-btn');
+            const serviceId = card.getAttribute('data-service');
+            if (btn && serviceId) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openServiceModal(serviceId);
+                });
+            }
+        });
+        
+        if (closeServiceModalBtn) {
+            closeServiceModalBtn.addEventListener('click', closeServiceModal);
+        }
+        
+        if (serviceModal) {
+            serviceModal.addEventListener('click', (e) => {
+                if (e.target === serviceModal) closeServiceModal();
+            });
+        }
+        
         // Bottom navigation active state
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id){
@@ -597,7 +896,6 @@
             });
         }
         
-        // Scroll to section function
         function scrollTo(id){
             let el = document.getElementById(id);
             if(el){
@@ -606,7 +904,6 @@
             }
         }
         
-        // Setup bottom nav click handlers
         bottomNavItems.forEach(i=>{
             i.addEventListener('click',()=>{
                 let s = i.getAttribute('data-section');
@@ -614,7 +911,6 @@
             });
         });
         
-        // Set default active on page load based on visible section
         function setActiveOnScroll(){
             let sections = ['about', 'skills', 'services'];
             let scrollPos = window.scrollY + 100;
@@ -674,7 +970,6 @@
             });
         }
         
-        // Accessibility settings
         let hc = document.getElementById('highContrastBtn');
         let lt = document.getElementById('largeTextBtn');
         let df = document.getElementById('dyslexicFontBtn');
@@ -696,7 +991,6 @@
         if(localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
         updateBtns();
         
-        // Intersection Observer for fade-in animations
         let observer = new IntersectionObserver(function(entries){
             entries.forEach(function(entry){
                 if(entry.isIntersecting){
@@ -710,7 +1004,6 @@
             observer.observe(s);
         });
         
-        // Prevent context menu and drag
         document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
         document.addEventListener('dragstart', function(e){ e.preventDefault(); });
     })();
