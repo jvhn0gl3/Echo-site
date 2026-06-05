@@ -151,11 +151,15 @@
             object-fit: cover;
         }
 
-        /* Skills Section - consistent grid alignment */
+        /* ============================================
+           MASONRY GRID STYLES - Applied to ALL sections
+           Google Photos / Pinterest style waterfall layout
+           ============================================ */
+
+        /* Skills Section - Masonry layout */
         .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            column-count: 2;
+            column-gap: 12px;
             width: 100%;
         }
 
@@ -167,9 +171,12 @@
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
-            display: flex;
+            display: inline-flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         .skill-card:active {
@@ -195,14 +202,12 @@
             color: #a0a0a0;
             font-size: 11px;
             line-height: 1.3;
-            margin-bottom: 12px;
         }
 
-        /* Services Section - consistent grid alignment */
+        /* Services Section - Masonry layout */
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            column-count: 2;
+            column-gap: 12px;
             width: 100%;
         }
 
@@ -214,9 +219,12 @@
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
-            display: flex;
+            display: inline-flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         .service-card:active {
@@ -242,27 +250,13 @@
             color: #a0a0a0;
             font-size: 11px;
             line-height: 1.3;
-            margin-bottom: 12px;
         }
 
-        /* Products Section - Masonry/Google Photos style */
+        /* Products Section - Masonry layout */
         .products-grid {
             column-count: 2;
             column-gap: 12px;
             width: 100%;
-        }
-
-        /* On larger screens, use more columns */
-        @media (min-width: 600px) {
-            .products-grid {
-                column-count: 3;
-            }
-        }
-
-        @media (min-width: 900px) {
-            .products-grid {
-                column-count: 4;
-            }
         }
 
         .product-card {
@@ -284,6 +278,23 @@
         .product-card:active {
             transform: scale(0.96);
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Responsive column counts for ALL sections */
+        @media (min-width: 600px) {
+            .skills-grid,
+            .services-grid,
+            .products-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .skills-grid,
+            .services-grid,
+            .products-grid {
+                column-count: 4;
+            }
         }
 
         .product-image {
@@ -961,37 +972,31 @@
                     <i class="fa-brands fa-react"></i>
                     <h3>Frontend</h3>
                     <p>React, Vue, Angular, TypeScript</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="backend">
                     <i class="fa-solid fa-server"></i>
                     <h3>Backend</h3>
                     <p>Node.js, Python, Go, Java</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="database">
                     <i class="fa-solid fa-database"></i>
                     <h3>Database</h3>
                     <p>PostgreSQL, MongoDB, Redis</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="cloud">
                     <i class="fa-solid fa-cloud"></i>
                     <h3>Cloud</h3>
                     <p>AWS, Azure, GCP, Docker</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="mobile">
                     <i class="fa-solid fa-mobile-alt"></i>
                     <h3>Mobile</h3>
                     <p>React Native, Flutter, Swift</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="devops">
                     <i class="fa-solid fa-code-branch"></i>
                     <h3>DevOps</h3>
                     <p>CI/CD, Jenkins, GitHub Actions</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
             </div>
         </div>
@@ -1014,49 +1019,41 @@
                     <i class="fa-solid fa-pen-nib"></i>
                     <h3>Logo Design</h3>
                     <p>Custom brand identities that stand out</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="web-dev">
                     <i class="fa-solid fa-laptop-code"></i>
                     <h3>Web Development</h3>
                     <p>Full-stack modern web applications</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="ui-ux">
                     <i class="fa-solid fa-palette"></i>
                     <h3>UI/UX Design</h3>
                     <p>Beautiful, intuitive interfaces</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="consulting">
                     <i class="fa-solid fa-chart-line"></i>
                     <h3>Tech Consulting</h3>
                     <p>Expert architecture & strategy advice</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="performance">
                     <i class="fa-solid fa-rocket"></i>
                     <h3>Performance</h3>
                     <p>Speed optimization & scaling</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="security">
                     <i class="fa-solid fa-shield-alt"></i>
                     <h3>Security Audits</h3>
                     <p>Vulnerability assessment & fixes</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="maintenance">
                     <i class="fa-solid fa-headset"></i>
                     <h3>Maintenance</h3>
                     <p>Ongoing support & updates</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="cloud">
                     <i class="fa-solid fa-cloud-upload-alt"></i>
                     <h3>Cloud Migration</h3>
                     <p>AWS, Azure, GCP expertise</p>
-                    <button class="view-more-btn">View More</button>
                 </div>
             </div>
         </div>
@@ -1429,6 +1426,32 @@
         const serviceModalFeatures = document.getElementById('serviceModalFeatures');
         const getQuoteBtn = document.getElementById('getQuoteBtn');
         
+        // Attach click handlers to skill cards
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach((card) => {
+            const skillId = card.getAttribute('data-skill');
+            if (skillId) {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('view-more-btn')) {
+                        openSkillModal(skillId);
+                    }
+                });
+            }
+        });
+        
+        // Attach click handlers to service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card) => {
+            const serviceId = card.getAttribute('data-service');
+            if (serviceId) {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('view-more-btn')) {
+                        openServiceModal(serviceId);
+                    }
+                });
+            }
+        });
+        
         // Open Skill Modal
         function openSkillModal(skillId) {
             const details = skillDetails[skillId];
@@ -1492,32 +1515,6 @@
                 sendInquiry(subject, body);
             });
         }
-        
-        // Attach click handlers to skill cards
-        const skillCards = document.querySelectorAll('.skill-card');
-        skillCards.forEach((card) => {
-            const btn = card.querySelector('.view-more-btn');
-            const skillId = card.getAttribute('data-skill');
-            if (btn && skillId) {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openSkillModal(skillId);
-                });
-            }
-        });
-        
-        // Attach click handlers to service cards
-        const serviceCards = document.querySelectorAll('.service-card');
-        serviceCards.forEach((card) => {
-            const btn = card.querySelector('.view-more-btn');
-            const serviceId = card.getAttribute('data-service');
-            if (btn && serviceId) {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openServiceModal(serviceId);
-                });
-            }
-        });
         
         // Close buttons
         if (closeSkillModalBtn) {
