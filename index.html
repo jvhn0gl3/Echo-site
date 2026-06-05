@@ -280,6 +280,13 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .product-image i {
@@ -309,6 +316,16 @@
             margin-left: 6px;
         }
 
+        .zazzle-badge {
+            font-size: 9px;
+            color: #00ff41;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
         .buy-btn {
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
             border: none;
@@ -321,6 +338,9 @@
             transition: all 0.2s ease;
             width: 100%;
             margin-top: 8px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
         .buy-btn:active {
@@ -993,44 +1013,18 @@
                     <span class="keyword">from</span>
                     <span class="string">'@v3/shop'</span>
                 </h2>
-                <p><span class="comment">// Official merchandise and digital products</span></p>
+                <p><span class="comment">// Official merchandise · Payment & shipping via Zazzle</span></p>
             </div>
             <div class="products-grid">
-                <div class="product-card" data-product="static-snow">
+                <div class="product-card" data-product="wwys-tie">
                     <div class="product-image">
-                        <i class="fas fa-tshirt"></i>
+                        <img src="images/products/WWYSTIE.jpeg" alt="Watch What You Say Tie" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tie\'></i>'">
                     </div>
-                    <h3>Static Snow Tee</h3>
-                    <p>Premium cotton t-shirt</p>
-                    <div class="product-price">$29.99<span class="original-price">$39.99</span></div>
-                    <button class="buy-btn">Buy Now</button>
-                </div>
-                <div class="product-card" data-product="v3-hoodie">
-                    <div class="product-image">
-                        <i class="fas fa-hoodie"></i>
-                    </div>
-                    <h3>V3 Hoodie</h3>
-                    <p>Comfortable fleece hoodie</p>
-                    <div class="product-price">$49.99<span class="original-price">$69.99</span></div>
-                    <button class="buy-btn">Buy Now</button>
-                </div>
-                <div class="product-card" data-product="v3-mug">
-                    <div class="product-image">
-                        <i class="fas fa-mug-hot"></i>
-                    </div>
-                    <h3>V3 Coffee Mug</h3>
-                    <p>Ceramic 11oz mug</p>
-                    <div class="product-price">$14.99<span class="original-price">$19.99</span></div>
-                    <button class="buy-btn">Buy Now</button>
-                </div>
-                <div class="product-card" data-product="v3-sticker">
-                    <div class="product-image">
-                        <i class="fas fa-sticker-mule"></i>
-                    </div>
-                    <h3>V3 Sticker Pack</h3>
-                    <p>5 vinyl stickers</p>
-                    <div class="product-price">$9.99<span class="original-price">$14.99</span></div>
-                    <button class="buy-btn">Buy Now</button>
+                    <h3>Watch What You Say Tie</h3>
+                    <p>Premium silk-blend tie</p>
+                    <div class="product-price">$28.58<span class="original-price">$31.75</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/watch_what_you_say_tie-256210376330991604" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
                 </div>
             </div>
         </div>
@@ -1108,28 +1102,6 @@
             const encodedBody = encodeURIComponent(body);
             window.location.href = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
         }
-        
-        // Product email handler
-        function sendProductInquiry(productName, price) {
-            const subject = `Product Inquiry: ${productName}`;
-            const body = `Hello V3,%0D%0A%0D%0AI'm interested in purchasing the ${productName} (${price}).%0D%0A%0D%0APlease send me more information about:%0D%0A- Shipping options%0D%0A- Payment methods%0D%0A- Estimated delivery time%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
-            sendInquiry(subject, body);
-        }
-        
-        // Attach product buy buttons
-        const productCards = document.querySelectorAll('.product-card');
-        productCards.forEach((card) => {
-            const buyBtn = card.querySelector('.buy-btn');
-            const productName = card.querySelector('h3')?.textContent || 'Product';
-            const priceElement = card.querySelector('.product-price');
-            const price = priceElement ? priceElement.textContent.trim() : '';
-            if (buyBtn) {
-                buyBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    sendProductInquiry(productName, price);
-                });
-            }
-        });
         
         // Skill details database
         const skillDetails = {
