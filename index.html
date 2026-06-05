@@ -61,27 +61,49 @@
             margin-bottom: 32px;
         }
 
-        /* Section Headers - app style */
+        /* Section Headers - code syntax import style */
         .section-header {
             margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 12px;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid #00d4ff;
+            border-radius: 0 12px 12px 0;
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
         }
 
         .section-header h2 {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 500;
             margin-bottom: 4px;
-            background: linear-gradient(135deg, #fff, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #00d4ff;
+            letter-spacing: -0.3px;
+        }
+
+        .section-header h2 .keyword {
+            color: #c678dd;
+        }
+
+        .section-header h2 .string {
+            color: #98c379;
+        }
+
+        .section-header h2 .variable {
+            color: #e06c75;
+        }
+
+        .section-header h2 .function {
+            color: #61afef;
         }
 
         .section-header p {
-            color: #888;
-            font-size: 13px;
-            letter-spacing: 0.3px;
+            color: #7e8a9a;
+            font-size: 11px;
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            letter-spacing: -0.2px;
+        }
+
+        .section-header p .comment {
+            color: #5c6370;
         }
 
         /* About Section - mobile layout */
@@ -321,16 +343,14 @@
         }
 
         body.high-contrast .modal-content,
-        body.high-contrast .skill-card {
+        body.high-contrast .skill-card,
+        body.high-contrast .section-header {
             background: #000;
             border-color: #fff;
         }
 
         body.high-contrast .section-header h2 {
-            background: none;
             color: #fff;
-            -webkit-background-clip: unset;
-            background-clip: unset;
         }
 
         body.high-contrast .bottom-nav-item.active {
@@ -352,7 +372,7 @@
         }
 
         body.large-text .section-header h2 {
-            font-size: 26px;
+            font-size: 17px;
         }
 
         body.dyslexic-font,
@@ -385,7 +405,15 @@
                 <img src="images/logos/V3.png" alt="V3 brand logo">
             </div>
             <div class="about-text">
-                <div class="section-header"><h2>About V3</h2><p>Digital Architect</p></div>
+                <div class="section-header">
+                    <h2>
+                        <span class="keyword">import</span>
+                        <span class="string">{ about }</span>
+                        <span class="keyword">from</span>
+                        <span class="string">'@v3/profile'</span>
+                    </h2>
+                    <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
+                </div>
                 <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
@@ -394,7 +422,15 @@
 
     <section id="skills">
         <div class="container">
-            <div class="section-header"><h2>Technical Skills</h2><p>Technologies I work with</p></div>
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">const</span>
+                    <span class="variable">techStack</span>
+                    <span class="keyword">=</span>
+                    <span class="function">useSkills</span>()
+                </h2>
+                <p><span class="comment">// Technologies I work with daily</span></p>
+            </div>
             <div class="skills-grid">
                 <div class="skill-card">
                     <i class="fa-brands fa-react"></i>
