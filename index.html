@@ -241,27 +241,237 @@
             margin-bottom: 12px;
         }
 
-        /* View More Button - consistent width and alignment */
+        /* ============================================
+           REVAMPED BUTTONS
+           ============================================ */
+
+        /* View More Button - Glass morphism style */
         .view-more-btn {
-            background: rgba(0, 212, 255, 0.15);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.08);
+            border: 1.5px solid rgba(0, 212, 255, 0.4);
             border-radius: 30px;
-            padding: 8px 12px;
-            font-size: 10px;
-            font-weight: 500;
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: 600;
             color: #00d4ff;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             width: 100%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .view-more-btn:active::before {
+            width: 200%;
+            height: 200%;
         }
 
         .view-more-btn:active {
+            transform: scale(0.94);
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .view-more-btn i {
+            font-size: 11px;
+            transition: transform 0.2s ease;
+        }
+
+        .view-more-btn:active i {
+            transform: translateX(4px);
+        }
+
+        /* Get Quote Button - Gradient pulse style */
+        .service-modal-contact {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 14px;
+            padding: 14px 20px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-modal-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-modal-contact:hover::before {
+            left: 100%;
+        }
+
+        .service-modal-contact:active {
             transform: scale(0.96);
-            background: rgba(0, 212, 255, 0.25);
+            background: linear-gradient(135deg, #00b8e6, #6a2fc9);
+        }
+
+        /* Bottom Navigation Items - Sleek modern style */
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: #7e7e8e;
+            font-size: 10px;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .bottom-nav-item i {
+            font-size: 22px;
+            margin-bottom: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .bottom-nav-item span {
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item.active {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.15);
+        }
+
+        .bottom-nav-item.active i {
+            transform: translateY(-2px);
+        }
+
+        .bottom-nav-item:active {
+            transform: scale(0.92);
+        }
+
+        .bottom-nav-item:active i {
+            transform: scale(0.9);
+        }
+
+        /* Accessibility Modal Buttons - Toggle switch style */
+        .opt button {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .opt button:active {
+            transform: scale(0.94);
+        }
+
+        .opt button.active {
+            background: #00ff41;
+            border-color: #00ff41;
+            color: #000;
+            box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
+        }
+
+        /* Modal Close Button - Minimal round style */
+        .modal-close,
+        .service-modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:active,
+        .service-modal-close:active {
+            transform: scale(0.9);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Additional Button Style - For any future buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 30px;
+            padding: 12px 24px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 12px 24px;
+            color: #e0e0e0;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Service Detail Modal */
@@ -310,15 +520,6 @@
             color: #00d4ff;
         }
 
-        .service-modal-close {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-        }
-
         .service-modal-icon {
             font-size: 48px;
             color: #00d4ff;
@@ -346,20 +547,7 @@
             margin-bottom: 8px;
         }
 
-        .service-modal-contact {
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            border: none;
-            border-radius: 14px;
-            padding: 12px 20px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 16px;
-        }
-
-        /* Bottom Navigation Bar - consistent spacing */
+        /* Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -373,37 +561,6 @@
             align-items: center;
             padding: 8px 16px 20px;
             z-index: 100;
-        }
-
-        .bottom-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            background: none;
-            border: none;
-            color: #7e7e8e;
-            font-size: 10px;
-            padding: 6px 12px;
-            border-radius: 12px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            flex: 1;
-            max-width: 80px;
-        }
-
-        .bottom-nav-item i {
-            font-size: 22px;
-            margin-bottom: 0;
-        }
-
-        .bottom-nav-item.active {
-            color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        .bottom-nav-item:active {
-            transform: scale(0.92);
         }
 
         /* Accessibility Modal */
@@ -452,15 +609,6 @@
             color: #00d4ff;
         }
 
-        .modal-close {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-        }
-
         .opt {
             display: flex;
             justify-content: space-between;
@@ -469,21 +617,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 15px;
             width: 100%;
-        }
-
-        .opt button {
-            padding: 6px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 30px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .opt button.active {
-            background: #00ff41;
-            color: #000;
         }
 
         /* Animations */
@@ -580,7 +713,8 @@
         body.reduce-motion .bottom-nav-item:active,
         body.reduce-motion .skill-card:active,
         body.reduce-motion .service-card:active,
-        body.reduce-motion .view-more-btn:active {
+        body.reduce-motion .view-more-btn:active,
+        body.reduce-motion .service-modal-contact:active {
             transform: none !important;
         }
     </style>
