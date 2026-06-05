@@ -246,10 +246,10 @@
         }
 
         /* ============================================
-           REVAMPED BUTTONS
+           REVAMPED BUTTONS - NO ARROWS
            ============================================ */
 
-        /* View More Button - Glass morphism style */
+        /* View More Button - Glass morphism style (no arrow) */
         .view-more-btn {
             background: rgba(0, 212, 255, 0.08);
             border: 1.5px solid rgba(0, 212, 255, 0.4);
@@ -264,7 +264,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 0;
             backdrop-filter: blur(4px);
             letter-spacing: 0.5px;
             position: relative;
@@ -295,17 +295,9 @@
             border-color: #00d4ff;
         }
 
-        .view-more-btn i {
-            font-size: 11px;
-            transition: transform 0.2s ease;
-        }
-
-        .view-more-btn:active i {
-            transform: translateX(4px);
-        }
-
         /* Get Quote Button - Gradient pulse style */
-        .service-modal-contact {
+        .service-modal-contact,
+        .skill-modal-contact {
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
             border: none;
             border-radius: 14px;
@@ -323,7 +315,8 @@
             letter-spacing: 1px;
         }
 
-        .service-modal-contact::before {
+        .service-modal-contact::before,
+        .skill-modal-contact::before {
             content: '';
             position: absolute;
             top: 0;
@@ -334,11 +327,13 @@
             transition: left 0.5s ease;
         }
 
-        .service-modal-contact:hover::before {
+        .service-modal-contact:hover::before,
+        .skill-modal-contact:hover::before {
             left: 100%;
         }
 
-        .service-modal-contact:active {
+        .service-modal-contact:active,
+        .skill-modal-contact:active {
             transform: scale(0.96);
             background: linear-gradient(135deg, #00b8e6, #6a2fc9);
         }
@@ -510,19 +505,6 @@
             color: #a0a0a0;
             font-size: 13px;
             margin-bottom: 8px;
-        }
-
-        .skill-modal-contact {
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            border: none;
-            border-radius: 14px;
-            padding: 12px 20px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 16px;
         }
 
         /* Service Detail Modal */
@@ -766,7 +748,8 @@
         body.reduce-motion .skill-card:active,
         body.reduce-motion .service-card:active,
         body.reduce-motion .view-more-btn:active,
-        body.reduce-motion .service-modal-contact:active {
+        body.reduce-motion .service-modal-contact:active,
+        body.reduce-motion .skill-modal-contact:active {
             transform: none !important;
         }
     </style>
@@ -813,37 +796,37 @@
                     <i class="fa-brands fa-react"></i>
                     <h3>Frontend</h3>
                     <p>React, Vue, Angular, TypeScript</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="backend">
                     <i class="fa-solid fa-server"></i>
                     <h3>Backend</h3>
                     <p>Node.js, Python, Go, Java</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="database">
                     <i class="fa-solid fa-database"></i>
                     <h3>Database</h3>
                     <p>PostgreSQL, MongoDB, Redis</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="cloud">
                     <i class="fa-solid fa-cloud"></i>
                     <h3>Cloud</h3>
                     <p>AWS, Azure, GCP, Docker</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="mobile">
                     <i class="fa-solid fa-mobile-alt"></i>
                     <h3>Mobile</h3>
                     <p>React Native, Flutter, Swift</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="skill-card" data-skill="devops">
                     <i class="fa-solid fa-code-branch"></i>
                     <h3>DevOps</h3>
                     <p>CI/CD, Jenkins, GitHub Actions</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
             </div>
         </div>
@@ -866,49 +849,49 @@
                     <i class="fa-solid fa-pen-nib"></i>
                     <h3>Logo Design</h3>
                     <p>Custom brand identities that stand out</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="web-dev">
                     <i class="fa-solid fa-laptop-code"></i>
                     <h3>Web Development</h3>
                     <p>Full-stack modern web applications</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="ui-ux">
                     <i class="fa-solid fa-palette"></i>
                     <h3>UI/UX Design</h3>
                     <p>Beautiful, intuitive interfaces</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="consulting">
                     <i class="fa-solid fa-chart-line"></i>
                     <h3>Tech Consulting</h3>
                     <p>Expert architecture & strategy advice</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="performance">
                     <i class="fa-solid fa-rocket"></i>
                     <h3>Performance</h3>
                     <p>Speed optimization & scaling</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="security">
                     <i class="fa-solid fa-shield-alt"></i>
                     <h3>Security Audits</h3>
                     <p>Vulnerability assessment & fixes</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="maintenance">
                     <i class="fa-solid fa-headset"></i>
                     <h3>Maintenance</h3>
                     <p>Ongoing support & updates</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
                 <div class="service-card" data-service="cloud">
                     <i class="fa-solid fa-cloud-upload-alt"></i>
                     <h3>Cloud Migration</h3>
                     <p>AWS, Azure, GCP expertise</p>
-                    <button class="view-more-btn">View More <i class="fas fa-arrow-right"></i></button>
+                    <button class="view-more-btn">View More</button>
                 </div>
             </div>
         </div>
@@ -952,7 +935,7 @@
             <li>✓ Tailwind CSS</li>
         </ul>
         <button class="skill-modal-contact" onclick="window.location.href='mailto:hello@v3.dev'">
-            Hire Me → 
+            Hire Me
         </button>
     </div>
 </div>
@@ -975,7 +958,7 @@
             <li>✓ Brand guidelines included</li>
         </ul>
         <button class="service-modal-contact" onclick="window.location.href='mailto:hello@v3.dev'">
-            Get Quote → 
+            Get Quote
         </button>
     </div>
 </div>
