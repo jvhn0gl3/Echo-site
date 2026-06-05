@@ -934,9 +934,7 @@
             <li>✓ TypeScript</li>
             <li>✓ Tailwind CSS</li>
         </ul>
-        <button class="skill-modal-contact" onclick="window.location.href='mailto:hello@v3.dev'">
-            Hire Me
-        </button>
+        <button class="skill-modal-contact" id="hireMeBtn">Hire Me</button>
     </div>
 </div>
 
@@ -957,14 +955,20 @@
             <li>✓ Vector files + all formats</li>
             <li>✓ Brand guidelines included</li>
         </ul>
-        <button class="service-modal-contact" onclick="window.location.href='mailto:hello@v3.dev'">
-            Get Quote
-        </button>
+        <button class="service-modal-contact" id="getQuoteBtn">Get Quote</button>
     </div>
 </div>
 
 <script>
     (function(){
+        // Helper function to open email client with pre-filled content
+        function sendInquiry(subject, body) {
+            const email = 'jo783750@gmail.com';
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            window.location.href = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
+        }
+        
         // Skill details database
         const skillDetails = {
             'frontend': {
@@ -1147,6 +1151,10 @@
             }
         };
         
+        // Track current modal context for email pre-fill
+        let currentSkillTitle = '';
+        let currentServiceTitle = '';
+        
         // Skill Modal elements
         const skillModal = document.getElementById('skillModal');
         const closeSkillModalBtn = document.getElementById('closeSkillModalBtn');
@@ -1154,6 +1162,7 @@
         const skillModalIcon = document.getElementById('skillModalIcon');
         const skillModalDescription = document.getElementById('skillModalDescription');
         const skillModalTech = document.getElementById('skillModalTech');
+        const hireMeBtn = document.getElementById('hireMeBtn');
         
         // Service Modal elements
         const serviceModal = document.getElementById('serviceModal');
@@ -1162,11 +1171,13 @@
         const serviceModalIcon = document.getElementById('serviceModalIcon');
         const serviceModalDescription = document.getElementById('serviceModalDescription');
         const serviceModalFeatures = document.getElementById('serviceModalFeatures');
+        const getQuoteBtn = document.getElementById('getQuoteBtn');
         
         // Open Skill Modal
         function openSkillModal(skillId) {
             const details = skillDetails[skillId];
             if (details && skillModal) {
+                currentSkillTitle = details.title;
                 skillModalTitle.textContent = details.title;
                 skillModalIcon.innerHTML = `<i class="${details.icon}"></i>`;
                 skillModalDescription.textContent = details.description;
@@ -1181,6 +1192,7 @@
             if (skillModal) {
                 skillModal.classList.remove('active');
                 document.body.style.overflow = '';
+                currentSkillTitle = '';
             }
         }
         
@@ -1188,6 +1200,7 @@
         function openServiceModal(serviceId) {
             const details = serviceDetails[serviceId];
             if (details && serviceModal) {
+                currentServiceTitle = details.title;
                 serviceModalTitle.textContent = details.title;
                 serviceModalIcon.innerHTML = `<i class="fa-solid ${details.icon}"></i>`;
                 serviceModalDescription.textContent = details.description;
@@ -1202,7 +1215,26 @@
             if (serviceModal) {
                 serviceModal.classList.remove('active');
                 document.body.style.overflow = '';
+                currentServiceTitle = '';
             }
+        }
+        
+        // Hire Me button handler - pre-filled email
+        if (hireMeBtn) {
+            hireMeBtn.addEventListener('click', function() {
+                const subject = `Inquiry about ${currentSkillTitle || 'Development Services'}`;
+                const body = `Hello V3,%0D%0A%0D%0AI'm interested in learning more about your ${currentSkillTitle || 'development services'}.%0D%0A%0D%0AHere's a bit about my project:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AProject Description: %0D%0ATimeline: %0D%0ABudget: %0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0ALooking forward to hearing from you!%0D%0A%0D%0ABest regards`;
+                sendInquiry(subject, body);
+            });
+        }
+        
+        // Get Quote button handler - pre-filled email
+        if (getQuoteBtn) {
+            getQuoteBtn.addEventListener('click', function() {
+                const subject = `Quote Request: ${currentServiceTitle || 'Service Inquiry'}`;
+                const body = `Hello V3,%0D%0A%0D%0AI'd like to request a quote for your ${currentServiceTitle || 'services'}.%0D%0A%0D%0AHere are my requirements:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AProject Details: %0D%0ABudget Range: %0D%0ATarget Date: %0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+                sendInquiry(subject, body);
+            });
         }
         
         // Attach click handlers to skill cards
@@ -1370,6 +1402,12 @@
         
         document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
         document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+        
+        // Helper function to send email
+        function sendInquiry(subject, body) {
+            const email = 'jo783750@gmail.com';
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        }
     })();
 </script>
 </body>
