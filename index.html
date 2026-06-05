@@ -245,6 +245,88 @@
             margin-bottom: 12px;
         }
 
+        /* Products Section - store style */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 14px 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .product-image i {
+            font-size: 40px;
+            color: #00d4ff;
+            margin-bottom: 0;
+        }
+
+        .product-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin: 6px 0;
+        }
+
+        .original-price {
+            font-size: 11px;
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 30px;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.94);
+        }
+
         /* ============================================
            REVAMPED BUTTONS - NO ARROWS
            ============================================ */
@@ -696,6 +778,7 @@
         body.high-contrast .modal-content,
         body.high-contrast .skill-card,
         body.high-contrast .service-card,
+        body.high-contrast .product-card,
         body.high-contrast .service-modal-content,
         body.high-contrast .skill-modal-content,
         body.high-contrast .section-header {
@@ -718,12 +801,14 @@
 
         body.large-text p,
         body.large-text .skill-card p,
-        body.large-text .service-card p {
+        body.large-text .service-card p,
+        body.large-text .product-card p {
             font-size: 14px;
         }
 
         body.large-text .skill-card h3,
-        body.large-text .service-card h3 {
+        body.large-text .service-card h3,
+        body.large-text .product-card h3 {
             font-size: 17px;
         }
 
@@ -747,7 +832,9 @@
         body.reduce-motion .bottom-nav-item:active,
         body.reduce-motion .skill-card:active,
         body.reduce-motion .service-card:active,
+        body.reduce-motion .product-card:active,
         body.reduce-motion .view-more-btn:active,
+        body.reduce-motion .buy-btn:active,
         body.reduce-motion .service-modal-contact:active,
         body.reduce-motion .skill-modal-contact:active {
             transform: none !important;
@@ -896,6 +983,58 @@
             </div>
         </div>
     </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">import</span>
+                    <span class="string">{ merchandise }</span>
+                    <span class="keyword">from</span>
+                    <span class="string">'@v3/shop'</span>
+                </h2>
+                <p><span class="comment">// Official merchandise and digital products</span></p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-product="static-snow">
+                    <div class="product-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Static Snow Tee</h3>
+                    <p>Premium cotton t-shirt</p>
+                    <div class="product-price">$29.99<span class="original-price">$39.99</span></div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="product-card" data-product="v3-hoodie">
+                    <div class="product-image">
+                        <i class="fas fa-hoodie"></i>
+                    </div>
+                    <h3>V3 Hoodie</h3>
+                    <p>Comfortable fleece hoodie</p>
+                    <div class="product-price">$49.99<span class="original-price">$69.99</span></div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="product-card" data-product="v3-mug">
+                    <div class="product-image">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <h3>V3 Coffee Mug</h3>
+                    <p>Ceramic 11oz mug</p>
+                    <div class="product-price">$14.99<span class="original-price">$19.99</span></div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="product-card" data-product="v3-sticker">
+                    <div class="product-image">
+                        <i class="fas fa-sticker-mule"></i>
+                    </div>
+                    <h3>V3 Sticker Pack</h3>
+                    <p>5 vinyl stickers</p>
+                    <div class="product-price">$9.99<span class="original-price">$14.99</span></div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 <!-- Bottom Navigation Bar - Mobile App Style -->
@@ -903,6 +1042,7 @@
     <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
     <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
+    <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
     <button class="bottom-nav-item" id="a11yNavBtn"><i class="fas fa-universal-access"></i><span>Access</span></button>
 </div>
 
@@ -968,6 +1108,28 @@
             const encodedBody = encodeURIComponent(body);
             window.location.href = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
         }
+        
+        // Product email handler
+        function sendProductInquiry(productName, price) {
+            const subject = `Product Inquiry: ${productName}`;
+            const body = `Hello V3,%0D%0A%0D%0AI'm interested in purchasing the ${productName} (${price}).%0D%0A%0D%0APlease send me more information about:%0D%0A- Shipping options%0D%0A- Payment methods%0D%0A- Estimated delivery time%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+            sendInquiry(subject, body);
+        }
+        
+        // Attach product buy buttons
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach((card) => {
+            const buyBtn = card.querySelector('.buy-btn');
+            const productName = card.querySelector('h3')?.textContent || 'Product';
+            const priceElement = card.querySelector('.product-price');
+            const price = priceElement ? priceElement.textContent.trim() : '';
+            if (buyBtn) {
+                buyBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    sendProductInquiry(productName, price);
+                });
+            }
+        });
         
         // Skill details database
         const skillDetails = {
@@ -1308,7 +1470,7 @@
         });
         
         function setActiveOnScroll(){
-            let sections = ['about', 'skills', 'services'];
+            let sections = ['about', 'skills', 'services', 'products'];
             let scrollPos = window.scrollY + 100;
             let current = '';
             for(let s of sections){
@@ -1402,12 +1564,6 @@
         
         document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
         document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-        
-        // Helper function to send email
-        function sendInquiry(subject, body) {
-            const email = 'jo783750@gmail.com';
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-        }
     })();
 </script>
 </body>
