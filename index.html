@@ -12,8 +12,382 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
-    <!-- Primary CSS - fallbacks handled by script.js -->
-    <link rel="stylesheet" href="https://john-ogletree.github.io/Asset-barn/styles.css" id="mainCss">
+    <style>
+        /* ============================================
+           MOBILE APPLICATION STYLES
+           iOS/Android app feel - no desktop styles
+           ============================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #050505;
+        }
+
+        body {
+            background: #050505;
+            color: #e8e8e8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hide sidebar - mobile apps don't have fixed sidebars */
+        .sidebar {
+            display: none;
+        }
+
+        /* Main content - full width like a mobile app */
+        main {
+            margin-left: 0;
+            padding: 20px 16px 80px 16px;
+            flex: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Container - full width */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Section spacing */
+        section {
+            margin-bottom: 32px;
+        }
+
+        /* Section Headers - app style */
+        .section-header {
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #fff, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-header p {
+            color: #888;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+
+        /* About Section - mobile layout */
+        .about {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-text p {
+            color: #c0c0c0;
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            max-width: 100%;
+        }
+
+        .about-img {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-img img {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
+            object-fit: cover;
+        }
+
+        /* Contact section - mobile */
+        .contact {
+            max-width: 100%;
+            margin: 0;
+            text-align: center;
+        }
+
+        .contact p {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .social {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .social a:active {
+            transform: scale(0.96);
+            background: rgba(0, 212, 255, 0.15);
+            border-color: #00d4ff;
+        }
+
+        /* Footer - app style fixed at bottom */
+        footer {
+            text-align: center;
+            padding: 16px 20px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: #666;
+            font-size: 11px;
+            margin-left: 0;
+            width: 100%;
+            background: #050505;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Bottom Navigation Bar - Native iOS/Android style */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 16px 20px;
+            z-index: 100;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: #7e7e8e;
+            font-size: 10px;
+            padding: 6px 12px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .bottom-nav-item i {
+            font-size: 22px;
+            margin-bottom: 0;
+        }
+
+        .bottom-nav-item.active {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .bottom-nav-item:active {
+            transform: scale(0.92);
+        }
+
+        /* Modal - full screen app style */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            color: #00d4ff;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        /* Accessibility options - mobile native */
+        .opt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 15px;
+        }
+
+        .opt button {
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .opt button.active {
+            background: #00ff41;
+            color: #000;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        /* Skip link - mobile friendly */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 16px;
+            background: #00d4ff;
+            color: #000;
+            padding: 10px 16px;
+            text-decoration: none;
+            z-index: 1001;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+
+        /* Accessibility Modes */
+        body.high-contrast {
+            background: #000;
+            color: #fff;
+        }
+
+        body.high-contrast .modal-content,
+        body.high-contrast .social a {
+            background: #000;
+            border-color: #fff;
+        }
+
+        body.high-contrast .section-header h2 {
+            background: none;
+            color: #fff;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        body.high-contrast .bottom-nav-item.active {
+            background: #fff;
+            color: #000;
+        }
+
+        body.large-text {
+            font-size: 18px;
+        }
+
+        body.large-text p,
+        body.large-text .social a {
+            font-size: 16px;
+        }
+
+        body.large-text .section-header h2 {
+            font-size: 26px;
+        }
+
+        body.dyslexic-font,
+        body.dyslexic-font * {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+            letter-spacing: 0.05em;
+            word-spacing: 0.1em;
+            line-height: 1.6;
+        }
+
+        body.reduce-motion * {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+
+        body.reduce-motion .bottom-nav-item:active {
+            transform: none !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,12 +397,28 @@
     <section id="about">
         <div class="container about">
             <div class="about-img">
-                <img src="https://john-ogletree.github.io/Asset-barn/v3.png" alt="V3 brand logo" id="mainLogo">
+                <!-- Image from asset-barn with fallback -->
+                <img src="https://john-ogletree.github.io/Asset-barn/v3.png" 
+                     alt="V3 brand logo"
+                     onerror="this.onerror=null; this.src='https://cdn.john-ogletree.me/v3.png'">
             </div>
             <div class="about-text">
                 <div class="section-header"><h2>About V3</h2><p>Digital Architect</p></div>
                 <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header"><h2>Let's Connect</h2><p>Have a project in mind?</p></div>
+            <div class="social">
+                <a href="mailto:hello@v3.dev" target="_blank"><i class="fa-regular fa-envelope"></i> Email</a>
+                <a href="https://github.com/v3" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/v3" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://twitter.com/v3" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                <a href="https://discord.gg/v3" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
             </div>
         </div>
     </section>
@@ -39,7 +429,7 @@
 <!-- Bottom Navigation Bar - Mobile App Style -->
 <div class="bottom-nav">
     <button class="bottom-nav-item active" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-    <button class="bottom-nav-item" data-section="contact" id="contactNavBtn"><i class="fas fa-envelope"></i><span>Contact</span></button>
+    <button class="bottom-nav-item" data-section="contact"><i class="fas fa-envelope"></i><span>Contact</span></button>
     <button class="bottom-nav-item" id="a11yNavBtn"><i class="fas fa-universal-access"></i><span>Access</span></button>
 </div>
 
@@ -53,22 +443,132 @@
     </div>
 </div>
 
-<!-- Contact Modal (simple) -->
-<div id="contactModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header"><h3><i class="fas fa-envelope"></i> Contact V3</h3><button class="modal-close" id="closeContactModalBtn">&times;</button></div>
-        <p style="margin-bottom: 20px; color: #c0c0c0;">Reach out through any of these platforms.</p>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-            <a href="mailto:hello@v3.dev" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 14px; color: #00d4ff; text-decoration: none;"><i class="fa-regular fa-envelope"></i> hello@v3.dev</a>
-            <a href="https://github.com/v3" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 14px; color: #00d4ff; text-decoration: none;"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://linkedin.com/in/v3" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 14px; color: #00d4ff; text-decoration: none;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-            <a href="https://twitter.com/v3" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 14px; color: #00d4ff; text-decoration: none;"><i class="fa-brands fa-twitter"></i> Twitter</a>
-            <a href="https://discord.gg/v3" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 14px; color: #00d4ff; text-decoration: none;"><i class="fa-brands fa-discord"></i> Discord</a>
-        </div>
-    </div>
-</div>
-
-<!-- Primary script - fallbacks handled internally -->
-<script src="https://john-ogletree.github.io/Asset-barn/script.js" id="mainScript"></script>
+<script>
+    (function(){
+        // Set current date in footer
+        const footerText = document.getElementById('footerText');
+        if (footerText) {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            footerText.innerHTML = `© ${year} V3 — Built with <i class="fas fa-heart" style="color:#00d4ff;"></i><span class="visually-hidden"> love</span> | ${dateString}`;
+        }
+        
+        // Bottom navigation active state
+        let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
+        function setActiveNav(id){
+            bottomNavItems.forEach(i=>{
+                if(i.getAttribute('data-section') === id) i.classList.add('active');
+                else i.classList.remove('active');
+            });
+        }
+        
+        // Scroll to section function
+        function scrollTo(id){
+            let el = document.getElementById(id);
+            if(el){
+                el.scrollIntoView({behavior:'smooth',block:'start'});
+                setActiveNav(id);
+            }
+        }
+        
+        // Setup bottom nav click handlers
+        bottomNavItems.forEach(i=>{
+            i.addEventListener('click',()=>{
+                let s = i.getAttribute('data-section');
+                scrollTo(s);
+            });
+        });
+        
+        // Accessibility modal handling
+        let a11yBtn = document.getElementById('a11yNavBtn');
+        let modalEl = document.getElementById('a11yModal');
+        let closeBtn = document.getElementById('closeModalBtn');
+        
+        function updateBtns(){
+            let hc = document.getElementById('highContrastBtn');
+            let lt = document.getElementById('largeTextBtn');
+            let df = document.getElementById('dyslexicFontBtn');
+            let rm = document.getElementById('reduceMotionBtn');
+            let ha = document.body.classList.contains('high-contrast');
+            let la = document.body.classList.contains('large-text');
+            let da = document.body.classList.contains('dyslexic-font');
+            let ra = document.body.classList.contains('reduce-motion');
+            if(hc){ hc.textContent = ha ? 'On' : 'Off'; hc.classList.toggle('active', ha); }
+            if(lt){ lt.textContent = la ? 'On' : 'Off'; lt.classList.toggle('active', la); }
+            if(df){ df.textContent = da ? 'On' : 'Off'; df.classList.toggle('active', da); }
+            if(rm){ rm.textContent = ra ? 'On' : 'Off'; rm.classList.toggle('active', ra); }
+        }
+        
+        if(a11yBtn && modalEl){
+            a11yBtn.addEventListener('click', function(){
+                modalEl.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateBtns();
+            });
+        }
+        
+        function closeModal(){
+            if(modalEl){
+                modalEl.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        if(closeBtn){
+            closeBtn.addEventListener('click', closeModal);
+        }
+        if(modalEl){
+            modalEl.addEventListener('click', function(e){
+                if(e.target === modalEl) closeModal();
+            });
+        }
+        
+        // Accessibility settings
+        let hc = document.getElementById('highContrastBtn');
+        let lt = document.getElementById('largeTextBtn');
+        let df = document.getElementById('dyslexicFontBtn');
+        let rm = document.getElementById('reduceMotionBtn');
+        
+        function applyHigh(e){ if(e) document.body.classList.add('high-contrast'); else document.body.classList.remove('high-contrast'); localStorage.setItem('highContrast', e); updateBtns(); }
+        function applyLarge(e){ if(e) document.body.classList.add('large-text'); else document.body.classList.remove('large-text'); localStorage.setItem('largeText', e); updateBtns(); }
+        function applyDys(e){ if(e) document.body.classList.add('dyslexic-font'); else document.body.classList.remove('dyslexic-font'); localStorage.setItem('dyslexicFont', e); updateBtns(); }
+        function applyReduce(e){ if(e) document.body.classList.add('reduce-motion'); else document.body.classList.remove('reduce-motion'); localStorage.setItem('reduceMotion', e); updateBtns(); }
+        
+        if(hc){ hc.addEventListener('click', () => applyHigh(!document.body.classList.contains('high-contrast'))); }
+        if(lt){ lt.addEventListener('click', () => applyLarge(!document.body.classList.contains('large-text'))); }
+        if(df){ df.addEventListener('click', () => applyDys(!document.body.classList.contains('dyslexic-font'))); }
+        if(rm){ rm.addEventListener('click', () => applyReduce(!document.body.classList.contains('reduce-motion'))); }
+        
+        if(localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
+        if(localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
+        if(localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
+        if(localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
+        updateBtns();
+        
+        // Intersection Observer for fade-in animations
+        let observer = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting){
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.1, rootMargin: '0px 0px -30px 0px'});
+        
+        document.querySelectorAll('section').forEach(function(s){
+            observer.observe(s);
+        });
+        
+        // Prevent context menu and drag
+        document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+        document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    })();
+</script>
 </body>
 </html>
