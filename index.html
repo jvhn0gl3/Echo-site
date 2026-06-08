@@ -252,32 +252,37 @@
             line-height: 1.3;
         }
 
-        /* Products Section - Full width temporary */
+        /* Products Section - Empty state styling */
         .products-grid {
             column-count: 1 !important;
             column-gap: 12px;
             width: 100%;
         }
 
-        .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 14px 12px;
+        .empty-store {
             text-align: center;
-            transition: all 0.2s ease;
-            width: 100%;
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 12px;
-            break-inside: avoid;
-            page-break-inside: avoid;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            border: 1px dashed rgba(0, 212, 255, 0.3);
+            color: #7e8a9a;
         }
 
-        .product-card:active {
-            transform: scale(0.96);
-            background: rgba(255, 255, 255, 0.08);
+        .empty-store i {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-store p {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .empty-store small {
+            font-size: 11px;
+            color: #5c6370;
         }
 
         /* Responsive column counts for Skills and Services only */
@@ -293,125 +298,6 @@
             .services-grid {
                 column-count: 4;
             }
-        }
-
-        .product-image {
-            width: 100%;
-            height: auto;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .product-image i {
-            font-size: 50px;
-            color: #00d4ff;
-            margin-bottom: 0;
-            padding: 20px;
-        }
-
-        .sold-out-badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #ff4444;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 12px;
-            backdrop-filter: blur(4px);
-            border: 1px solid #ff4444;
-            z-index: 2;
-        }
-
-        .product-card h3 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: #fff;
-        }
-
-        .product-price {
-            font-size: 16px;
-            font-weight: 700;
-            color: #00d4ff;
-            margin: 6px 0;
-        }
-
-        .original-price {
-            font-size: 11px;
-            color: #888;
-            text-decoration: line-through;
-            margin-left: 6px;
-        }
-
-        .sold-out-price {
-            color: #888;
-        }
-
-        .zazzle-badge {
-            font-size: 9px;
-            color: #00ff41;
-            background: rgba(0, 255, 65, 0.1);
-            padding: 3px 8px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        .trending-badge {
-            font-size: 9px;
-            color: #ff9800;
-            background: rgba(255, 152, 0, 0.15);
-            padding: 3px 8px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        .buy-btn {
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            border: none;
-            border-radius: 30px;
-            padding: 8px 12px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 100%;
-            margin-top: 8px;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .buy-btn:active {
-            transform: scale(0.94);
-        }
-
-        .sold-out-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #888;
-            cursor: not-allowed;
-        }
-
-        .sold-out-btn:active {
-            transform: none;
         }
 
         /* ============================================
@@ -865,7 +751,6 @@
         body.high-contrast .modal-content,
         body.high-contrast .skill-card,
         body.high-contrast .service-card,
-        body.high-contrast .product-card,
         body.high-contrast .service-modal-content,
         body.high-contrast .skill-modal-content,
         body.high-contrast .section-header {
@@ -888,14 +773,12 @@
 
         body.large-text p,
         body.large-text .skill-card p,
-        body.large-text .service-card p,
-        body.large-text .product-card p {
+        body.large-text .service-card p {
             font-size: 14px;
         }
 
         body.large-text .skill-card h3,
-        body.large-text .service-card h3,
-        body.large-text .product-card h3 {
+        body.large-text .service-card h3 {
             font-size: 17px;
         }
 
@@ -919,9 +802,7 @@
         body.reduce-motion .bottom-nav-item:active,
         body.reduce-motion .skill-card:active,
         body.reduce-motion .service-card:active,
-        body.reduce-motion .product-card:active,
         body.reduce-motion .view-more-btn:active,
-        body.reduce-motion .buy-btn:active,
         body.reduce-motion .service-modal-contact:active,
         body.reduce-motion .skill-modal-contact:active {
             transform: none !important;
@@ -1066,142 +947,13 @@
                     <span class="keyword">from</span>
                     <span class="string">'@v3/shop'</span>
                 </h2>
-                <p><span class="comment">// Official merchandise · Payment & shipping via Zazzle</span></p>
+                <p><span class="comment">// Official merchandise · Coming soon</span></p>
             </div>
             <div class="products-grid">
-                <!-- Product 1: Static Snow Metallic Button -->
-                <div class="product-card" data-product="static-snow-button">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/static_snow_metallic_button-r45305ba713774b24af999c9e4fadc6ad_ix7scz_1024.jpg?rlvnet=1&max_dim=325" alt="Static Snow metallic button" onerror="this.parentElement.innerHTML='<i class=\'fas fa-circle\'></i>'">
-                    </div>
-                    <h3>Static Snow Metallic Button</h3>
-                    <p>2" square metallic button</p>
-                    <div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 2: JIMHMAMHMM Pattern White T-Shirt -->
-                <div class="product-card" data-product="jimhmamhmm-tshirt">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/jimhmamhmm_pattern_white_t_shirt-re7a872e533b84b5e96c5d4def68f0ed7_k2gm8_1024.jpg?max_dim=325" alt="JIMHMAMHMM Pattern White T-Shirt" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
-                    </div>
-                    <h3>JIMHMAMHMM Pattern T-Shirt</h3>
-                    <p>White pattern t-shirt</p>
-                    <div class="product-price">$21.04<span class="original-price">$26.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 20%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jimhmamhmm_pattern_white_t_shirt-256846965567827904" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 3: JIMHMAMHMM All White T-Shirt -->
-                <div class="product-card" data-product="jimhmamhmm-allwhite">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/jimhmamhmm_all_white_t_shirt-r6ffbb54eda5a441aba75d7c3e8fd779b_k2gm8_1024.jpg?max_dim=325" alt="JIMHMAMHMM All White T-Shirt" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
-                    </div>
-                    <h3>JIMHMAMHMM All White T-Shirt</h3>
-                    <p>All white pattern t-shirt</p>
-                    <div class="product-price">$21.04<span class="original-price">$26.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 20%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 4: JISMHMAMHMM Pattern All Black Round Pillow -->
-                <div class="product-card" data-product="jismhmamhmm-pillow">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/jismhmamhmm_pattern_all_black_round_pillow-re733a4ceb833406488bfb570113b1dce_z6i0e_1024.jpg?rlvnet=1&max_dim=325" alt="JISMHMAMHMM Pattern All Black Round Pillow" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
-                    </div>
-                    <h3>JISMHMAMHMM Black Round Pillow</h3>
-                    <p>All black pattern round pillow</p>
-                    <div class="product-price">$40.50<span class="original-price">$45.00</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 5: Jesus Is My Helmet Coffee Mug -->
-                <div class="product-card" data-product="jesus-helmet-mug">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-rf9749951bd8e4774bd0df6764c553039_x7jg5_8byvr_1024.jpg?max_dim=325" alt="Jesus Is My Helmet Coffee Mug" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mug-hot\'></i>'">
-                    </div>
-                    <h3>Jesus Is My Helmet Coffee Mug</h3>
-                    <p>My Armor, My Heart, My Mind design</p>
-                    <div class="product-price">$13.56<span class="original-price">$15.95</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-256496112367869316" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 6: I'm Not A Robot Wrapping Paper Sheets -->
-                <div class="product-card" data-product="not-a-robot-wrapping">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/im_not_a_robot_wrapping_paper_sheets-rf533767ed29d4c1487f1e249eb0e5418_qky7a_1024.jpg?rlvnet=1&max_dim=325" alt="I'm Not A Robot Wrapping Paper" onerror="this.parentElement.innerHTML='<i class=\'fas fa-gift\'></i>'">
-                    </div>
-                    <h3>I'm Not A Robot Wrapping Paper</h3>
-                    <p>Set of 3 wrapping paper sheets</p>
-                    <div class="product-price">$7.79<span class="original-price">$8.65</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="trending-badge">🔥 Trending · 14+ views</div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/im_not_a_robot_wrapping_paper_sheets-256535853045480459" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 7: M Monogram Coffee Mug -->
-                <div class="product-card" data-product="m-monogram-mug">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/m_monogram_coffee_mug-r21f8fa2cc54e4982a142d88e9ab65fc3_x7jg9_8byvr_1024.jpg?max_dim=325" alt="M Monogram Coffee Mug" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mug-hot\'></i>'">
-                    </div>
-                    <h3>M Monogram Coffee Mug</h3>
-                    <p>Classic ceramic mug</p>
-                    <div class="product-price">$13.56<span class="original-price">$15.95</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 8: Watch What You Say Wireless Charger (Sold Out) -->
-                <div class="product-card" data-product="watch-what-you-say-charger">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/watch_what_you_say_wireless_charger-r4fc6624fae0b457e9849ec6f7afaa4ba_s5511_1024.jpg?rlvnet=1&max_dim=325" alt="Watch What You Say Wireless Charger" onerror="this.parentElement.innerHTML='<i class=\'fas fa-charging-station\'></i>'">
-                        <div class="sold-out-badge">SOLD OUT</div>
-                    </div>
-                    <h3>Watch What You Say Wireless Charger</h3>
-                    <p>Qi-enabled fast charging pad</p>
-                    <div class="product-price sold-out-price">$38.66<span class="original-price">$42.95</span><span style="font-size:10px;color:#888; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/watch_what_you_say_wireless_charger-256239440038678708" target="_blank" class="buy-btn sold-out-btn" rel="noopener">Sold Out - Notify Me</a>
-                </div>
-
-                <!-- Product 9: Death Is Only The Beginning Wireless Charger (Sold Out) -->
-                <div class="product-card" data-product="death-is-beginning-charger">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/death_is_only_the_beginning_wireless_charger-r1ef09e7755f94cb386b165e4f2cd2f73_s551g_1024.jpg?rlvnet=1&max_dim=325" alt="Death Is Only The Beginning Wireless Charger" onerror="this.parentElement.innerHTML='<i class=\'fas fa-charging-station\'></i>'">
-                        <div class="sold-out-badge">SOLD OUT</div>
-                    </div>
-                    <h3>Death Is Only The Beginning Charger</h3>
-                    <p>Wireless charging pad</p>
-                    <div class="product-price sold-out-price">$38.66<span class="original-price">$42.95</span><span style="font-size:10px;color:#888; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/death_is_only_the_beginning_wireless_charger-256201869212628736" target="_blank" class="buy-btn sold-out-btn" rel="noopener">Sold Out - Notify Me</a>
-                </div>
-
-                <!-- Product 10: Death Is Only The Beginning Mouse Pad -->
-                <div class="product-card" data-product="death-is-beginning-mousepad">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/death_is_only_the_beginning_mouse_pad-r6d509c2bf9934c0db2318a8bf5c9131d_x74vi_8byvr_1024.jpg?max_dim=325" alt="Death Is Only The Beginning Mouse Pad" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mouse-pointer\'></i>'">
-                    </div>
-                    <h3>Death Is Only The Beginning Mouse Pad</h3>
-                    <p>Desktop mouse pad</p>
-                    <div class="product-price">$11.34<span class="original-price">$12.60</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/death_is_only_the_beginning_mouse_pad-256894035422871959" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
-                </div>
-
-                <!-- Product 11: Death Is Only The Begining Throw Pillow -->
-                <div class="product-card" data-product="death-is-beginning-pillow">
-                    <div class="product-image">
-                        <img src="https://rlv.zcache.com/death_is_only_the_begining_throw_pillow-rff1b1f9d99c44a4db12d7b08e777fabf_4gu9g_8byvr_1024.jpg?max_dim=325" alt="Death Is Only The Begining Throw Pillow" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
-                    </div>
-                    <h3>Death Is Only The Begining Pillow</h3>
-                    <p>16" throw pillow</p>
-                    <div class="product-price">$31.01<span class="original-price">$34.45</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                <div class="empty-store">
+                    <i class="fas fa-box-open"></i>
+                    <p>No products available at the moment</p>
+                    <small>Check back soon for new merchandise</small>
                 </div>
             </div>
         </div>
