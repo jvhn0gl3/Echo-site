@@ -11,7 +11,492 @@
     <title>V3 | Digital Architect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
-    <link rel="stylesheet" href="kernel.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #050505;
+        }
+
+        body {
+            background: #050505;
+            color: #e8e8e8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        main {
+            margin-left: 0;
+            padding: 20px 16px 80px 16px;
+            flex: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        section {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid #00d4ff;
+            border-radius: 0 12px 12px 0;
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            width: 100%;
+        }
+
+        .section-header h2 {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #00d4ff;
+            letter-spacing: -0.3px;
+            word-break: break-word;
+        }
+
+        .section-header h2 .keyword { color: #c678dd; }
+        .section-header h2 .string { color: #98c379; }
+        .section-header h2 .variable { color: #e06c75; }
+        .section-header h2 .function { color: #61afef; }
+        .section-header p { color: #7e8a9a; font-size: 11px; font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; letter-spacing: -0.2px; }
+        .section-header p .comment { color: #5c6370; }
+
+        .about {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .about-text { width: 100%; }
+        .about-text p { color: #c0c0c0; margin-bottom: 12px; font-size: 15px; line-height: 1.5; width: 100%; }
+        .about-img { display: flex; justify-content: center; width: 100%; }
+        .about-img img { width: 140px; height: 140px; border-radius: 32px; border: 2px solid rgba(0, 212, 255, 0.4); box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2); object-fit: cover; }
+
+        .skills-grid { column-count: 2; column-gap: 12px; width: 100%; }
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .skill-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.08); }
+        .skill-card i { font-size: 28px; color: #00d4ff; margin-bottom: 10px; display: block; }
+        .skill-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #fff; }
+        .skill-card p { color: #a0a0a0; font-size: 11px; line-height: 1.3; }
+
+        .services-grid { column-count: 2; column-gap: 12px; width: 100%; }
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 20px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .service-card:active { transform: scale(0.96); background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(124, 58, 237, 0.12)); }
+        .service-card i { font-size: 28px; color: #00d4ff; margin-bottom: 10px; display: block; }
+        .service-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #fff; }
+        .service-card p { color: #a0a0a0; font-size: 11px; line-height: 1.3; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 10px 8px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .product-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.08); }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-image img { width: 100%; height: auto; object-fit: contain; display: block; }
+        .product-image i { font-size: 40px; color: #00d4ff; margin-bottom: 0; padding: 20px; }
+
+        .sold-out-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ff4444;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ff4444;
+            z-index: 2;
+        }
+
+        .product-card h3 { font-size: 11px; font-weight: 600; margin-bottom: 3px; color: #fff; line-height: 1.3; }
+        .product-card p { font-size: 9px; color: #a0a0a0; margin-bottom: 4px; }
+        .product-price { font-size: 12px; font-weight: 700; color: #00d4ff; margin: 4px 0; }
+        .sold-out-price { color: #888; }
+        .zazzle-badge { font-size: 7px; color: #00ff41; background: rgba(0, 255, 65, 0.1); padding: 2px 6px; border-radius: 12px; display: inline-block; margin-bottom: 5px; }
+        
+        .buy-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 20px;
+            padding: 6px 8px;
+            font-size: 9px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 6px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .buy-btn:active { transform: scale(0.94); }
+        .sold-out-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #888; cursor: not-allowed; }
+        .sold-out-btn:active { transform: none; }
+
+        @media (max-width: 480px) { .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+        @media (min-width: 600px) { .skills-grid, .services-grid { column-count: 3; } }
+        @media (min-width: 900px) { .skills-grid, .services-grid { column-count: 4; } }
+
+        .view-more-btn {
+            background: rgba(0, 212, 255, 0.08);
+            border: 1.5px solid rgba(0, 212, 255, 0.4);
+            border-radius: 30px;
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .view-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+        .view-more-btn:active::before { width: 200%; height: 200%; }
+        .view-more-btn:active { transform: scale(0.94); background: rgba(0, 212, 255, 0.2); border-color: #00d4ff; }
+
+        .service-modal-contact, .skill-modal-contact {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 14px;
+            padding: 14px 20px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .service-modal-contact::before, .skill-modal-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        .service-modal-contact:hover::before, .skill-modal-contact:hover::before { left: 100%; }
+        .service-modal-contact:active, .skill-modal-contact:active { transform: scale(0.96); background: linear-gradient(135deg, #00b8e6, #6a2fc9); }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: #7e7e8e;
+            font-size: 10px;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+        .bottom-nav-item i { font-size: 22px; margin-bottom: 0; transition: transform 0.2s ease; }
+        .bottom-nav-item span { font-weight: 500; transition: all 0.2s ease; }
+        .bottom-nav-item.active { color: #00d4ff; background: rgba(0, 212, 255, 0.15); }
+        .bottom-nav-item.active i { transform: translateY(-2px); }
+        .bottom-nav-item:active { transform: scale(0.92); }
+        .bottom-nav-item:active i { transform: scale(0.9); }
+
+        .opt button {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        .opt button:active { transform: scale(0.94); }
+        .opt button.active { background: #00ff41; border-color: #00ff41; color: #000; box-shadow: 0 0 12px rgba(0, 255, 65, 0.3); }
+
+        .modal-close, .service-modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .modal-close:active, .service-modal-close:active { transform: scale(0.9); background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+        .skill-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .skill-modal.active { opacity: 1; visibility: visible; }
+        .skill-modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+        .skill-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%; }
+        .skill-modal-header h3 { font-size: 20px; color: #00d4ff; }
+        .skill-modal-icon { font-size: 48px; color: #00d4ff; margin-bottom: 16px; }
+        .skill-modal-description { color: #c0c0c0; font-size: 14px; line-height: 1.5; margin-bottom: 20px; text-align: center; }
+        .skill-modal-tech { text-align: left; margin: 16px 0; padding-left: 20px; list-style: none; }
+        .skill-modal-tech li { color: #a0a0a0; font-size: 13px; margin-bottom: 8px; }
+
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .service-modal.active { opacity: 1; visibility: visible; }
+        .service-modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+        .service-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%; }
+        .service-modal-header h3 { font-size: 20px; color: #00d4ff; }
+        .service-modal-icon { font-size: 48px; color: #00d4ff; margin-bottom: 16px; }
+        .service-modal-description { color: #c0c0c0; font-size: 14px; line-height: 1.5; margin-bottom: 20px; text-align: center; }
+        .service-modal-features { text-align: left; margin: 16px 0; padding-left: 20px; list-style: none; }
+        .service-modal-features li { color: #a0a0a0; font-size: 13px; margin-bottom: 8px; }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 16px 20px;
+            z-index: 100;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%; }
+        .modal-header h3 { font-size: 18px; color: #00d4ff; }
+        .opt { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 15px; width: 100%; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeInUp 0.4s ease-out forwards; }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 16px;
+            background: #00d4ff;
+            color: #000;
+            padding: 10px 16px;
+            text-decoration: none;
+            z-index: 1001;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .skip-link:focus { top: 16px; }
+
+        body.high-contrast { background: #000; color: #fff; }
+        body.high-contrast .modal-content, body.high-contrast .skill-card, body.high-contrast .service-card,
+        body.high-contrast .product-card, body.high-contrast .service-modal-content, body.high-contrast .skill-modal-content,
+        body.high-contrast .section-header { background: #000; border-color: #fff; }
+        body.high-contrast .section-header h2 { color: #fff; }
+        body.high-contrast .bottom-nav-item.active { background: #fff; color: #000; }
+
+        body.large-text { font-size: 18px; }
+        body.large-text p, body.large-text .skill-card p, body.large-text .service-card p, body.large-text .product-card p { font-size: 14px; }
+        body.large-text .skill-card h3, body.large-text .service-card h3, body.large-text .product-card h3 { font-size: 17px; }
+        body.large-text .section-header h2 { font-size: 17px; }
+
+        body.dyslexic-font, body.dyslexic-font * {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+            letter-spacing: 0.05em; word-spacing: 0.1em; line-height: 1.6;
+        }
+
+        body.reduce-motion * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        body.reduce-motion .bottom-nav-item:active, body.reduce-motion .skill-card:active,
+        body.reduce-motion .service-card:active, body.reduce-motion .product-card:active,
+        body.reduce-motion .view-more-btn:active, body.reduce-motion .buy-btn:active,
+        body.reduce-motion .service-modal-contact:active, body.reduce-motion .skill-modal-contact:active { transform: none !important; }
+    </style>
 </head>
 <body>
 
@@ -141,12 +626,28 @@
             </div>
         </div>
     </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">import</span>
+                    <span class="string">{ merchandise }</span>
+                    <span class="keyword">from</span>
+                    <span class="string">'@v3/shop'</span>
+                </h2>
+                <p><span class="comment">// Official merchandise · Payment & shipping via Zazzle</span></p>
+            </div>
+            <div id="products-grid" class="products-grid"></div>
+        </div>
+    </section>
 </main>
 
 <div class="bottom-nav">
     <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
     <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
+    <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
     <button class="bottom-nav-item" id="a11yNavBtn"><i class="fas fa-universal-access"></i><span>Access</span></button>
 </div>
 
@@ -201,6 +702,451 @@
     </div>
 </div>
 
-<script src="module.js"></script>
+<script>
+    (function(){
+        function sendInquiry(subject, body) {
+            const email = 'jo783750@gmail.com';
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            window.location.href = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
+        }
+        
+        // ============================================
+        // PRODUCTS DATA - All 85 products
+        // ============================================
+        const products = [
+            { link: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965", title: "Static Snow Metallic Button", type: "Button", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/jimhmamhmm_pattern_white_t_shirt-256846965567827904", title: "JIMHMAMHMM Pattern White T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862", title: "JIMHMAMHMM All White T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223", title: "JISMHMAMHMM Pattern All Black Round Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-256496112367869316", title: "Jesus Is My Helmet Coffee Mug", type: "Mug", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/im_not_a_robot_wrapping_paper_sheets-256535853045480459", title: "I'm Not A Robot Wrapping Paper Sheets", type: "Wrapping Paper", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539", title: "M Monogram Coffee Mug", type: "Mug", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_wireless_charger-256239440038678708", title: "Watch What You Say Wireless Charger", type: "Charger", price: 0, image: "", soldOut: true },
+            { link: "https://www.zazzle.com/death_is_only_the_beginning_wireless_charger-256201869212628736", title: "Death Is Only The Beginning Wireless Charger", type: "Charger", price: 0, image: "", soldOut: true },
+            { link: "https://www.zazzle.com/death_is_only_the_beginning_mouse_pad-256894035422871959", title: "Death Is Only The Beginning Mouse Pad", type: "Mouse Pad", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667", title: "Death Is Only The Beginning Throw Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_tie-256210376330991604", title: "Watch What You Say Tie", type: "Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/im_not_a_robot_captcha_fabric-256985055880444710", title: "I'm Not A Robot Captcha Fabric", type: "Fabric", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_4_line_text_poker_cards-256611362164464667", title: "Watch What You Say 4 Line Text Poker Cards", type: "Cards", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_poker_cards-256951472395743252", title: "Watch What You Say Poker Cards", type: "Cards", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_love_you_so_so_much_coffee_mug-256203417022956864", title: "I Love You So So Much Coffee Mug", type: "Mug", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_love_you_so_so_much_front_and_back_ceramic_ornament-256571974715744071", title: "I Love You So So Much Ceramic Ornament", type: "Ornament", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_love_you_so_so_much_front_and_back_t_shirt-256744533427395244", title: "I Love You So So Much T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_4_line_text_front_and_back_t_shirt-256526643824061258", title: "Watch What You Say 4 Line Text T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_4_line_text_front_only_t_shirt-256869427045008775", title: "Watch What You Say 4 Line Text Front Only T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_ceramic_ornament-256959332566536614", title: "Watch What You Say Ceramic Ornament", type: "Ornament", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_wooden_box_sign-256691370904926186", title: "Watch What You Say Wooden Box Sign", type: "Sign", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/everthing_in_the_woeld_is_crap_samsung_galaxy_case-256018039848411234", title: "Everything In The World Is Crap Galaxy Case", type: "Phone Case", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/expecting_mothers_full_skin_print_samsung_galaxy_case-256758192296393462", title: "Expecting Mothers Galaxy Case", type: "Phone Case", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_full_skin_print_samsung_galaxy_case-256558590887608644", title: "God Bless America Galaxy Case", type: "Phone Case", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/wwys_1_line_verical_text_samsung_galaxy_case-256717246721964914", title: "WWYS 1 Line Text Galaxy Case", type: "Phone Case", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_full_skin_print_samsung_galaxy_case-256802419788239687", title: "Watch What You Say Galaxy Case", type: "Phone Case", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_2_line_text_throw_pillow-256666483632542406", title: "Watch What You Say 2 Line Text Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_throw_pillow-256492761717329133", title: "Watch What You Say Throw Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_full_body_front_only_t_shirt-256195563263137072", title: "Watch What You Say Front Only T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_mug-256227253574840268", title: "Watch What You Say Mug", type: "Mug", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/watch_what_you_say_tote_bag-256246016225925019", title: "Watch What You Say Tote Bag", type: "Bag", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_photo_block-256420344080490382", title: "God Bless America Photo Block", type: "Home Decor", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_photo_block-256960076522433871", title: "Fallen Angel Photo Block", type: "Home Decor", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlomw_photo_block-256735039931581120", title: "Hyyatlomw Photo Block", type: "Home Decor", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/happy_4th_self_inking_stamp-256070578584052905", title: "Happy 4th Self Inking Stamp", type: "Stamp", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/burn_it_down_license_plate_frame-256789676019457673", title: "Burn It Down License Plate Frame", type: "Auto Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_love_my_little_blueberry_license_plate_frame-256771542918487388", title: "I Love My Little Blueberry License Plate Frame", type: "Auto Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_love_my_family_license_plate_frame-256783691989959552", title: "I Love My Family License Plate Frame", type: "Auto Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_light_switch_cover-256429915719898076", title: "God Bless America Light Switch Cover", type: "Home Decor", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/everything_in_the_world_is_crap_magnet-256179370027187127", title: "Everything In The World Is Crap Magnet", type: "Magnet", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/everything_in_the_world_is_crap_hitch_cover-256779718468369557", title: "Everything In The World Is Crap Hitch Cover", type: "Auto Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlomw_hitch_cover-256767385424092478", title: "Hyyatlomw Hitch Cover", type: "Auto Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_hitch_cover-256322904215056534", title: "Fallen Angel Hitch Cover", type: "Auto Accessory", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_light_switch_cover-256523432973259031", title: "Fallen Angel Light Switch Cover", type: "Home Decor", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlomw_wooden_box_sign-256815593265065859", title: "Hyyatlomw Wooden Box Sign", type: "Sign", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlomw_label-256307373182445198", title: "Hyyatlomw Label", type: "Label", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlofw_pedestal_sign-256987176430092823", title: "Hyyatlofw Pedestal Sign", type: "Sign", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlofw_magnet-256870773475785054", title: "Hyyatlofw Magnet", type: "Magnet", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlofw_travel_mug-256496526247927011", title: "Hyyatlofw Travel Mug", type: "Mug", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlofw_poker_cards-256544687790613852", title: "Hyyatlofw Poker Cards", type: "Cards", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlofw_ceramic_ornament-256314620269812366", title: "Hyyatlofw Ceramic Ornament", type: "Ornament", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hyyatlofw_t_shirt-256580372444268199", title: "Hyyatlofw T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_label-106444684856757554", title: "Fallen Angel Label", type: "Label", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_label-106901253639677464", title: "God Bless America Label", type: "Label", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_ceramic_ornament-175984196882577449", title: "God Bless America Ceramic Ornament", type: "Ornament", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_monogram_t_shirt-235758197923840418", title: "I Monogram T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_monogram_envelope-121644575881363624", title: "I Monogram Envelope", type: "Stationery", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/happy_retirement_envelope-121787503408507784", title: "Happy Retirement Envelope", type: "Stationery", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_envelope-121394265653064055", title: "God Bless America Envelope", type: "Stationery", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_envelope-121232475884350818", title: "Fallen Angel Envelope", type: "Stationery", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/i_love_you_envelope-121135338722766244", title: "I Love You Envelope", type: "Stationery", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/sorry_envelope-121147209523249341", title: "Sorry Envelope", type: "Stationery", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hold_my_beer_poker_cards-256344655047523059", title: "Hold My Beer Poker Cards", type: "Cards", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hold_my_beer_throw_pillow-189747408975160873", title: "Hold My Beer Throw Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/hold_my_beer_can_cooler-256000783304782261", title: "Hold My Beer Can Cooler", type: "Drinkware", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/dear_mom_wine_box-256846292813958774", title: "Dear Mom Wine Box", type: "Gift Box", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/naughty_or_nice_tissue_paper-256490849775660251", title: "Naughty Or Nice Tissue Paper", type: "Gift Wrap", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/naughty_or_nice_wrapping_paper-256042755312188861", title: "Naughty Or Nice Wrapping Paper", type: "Gift Wrap", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/naughty_or_nice_reversible_body_pillow-256541273094484399", title: "Naughty Or Nice Reversible Body Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_t_shirt-235946782900073331", title: "God Bless America T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/god_bless_america_magnet-147642412187215042", title: "God Bless America Magnet", type: "Magnet", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/everything_in_the_world_is_crap_throw_pillow-189073688817034795", title: "Everything In The World Is Crap Throw Pillow", type: "Pillow", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/her_king_keychain-146951892928944005", title: "Her King Keychain", type: "Keychain", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/his_queen_and_her_king_coffee_mug_set-256179400998196026", title: "His Queen And Her King Coffee Mug Set", type: "Mug", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/expecting_mothers_tote_bag-149017355874121163", title: "Expecting Mothers Tote Bag", type: "Bag", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/expecting_mothers_t_shirt-235973211856124933", title: "Expecting Mothers T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/expecting_mothers_stone_coaster-256112753074030227", title: "Expecting Mothers Stone Coaster", type: "Coaster", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_stone_coaster-256507420035106812", title: "Fallen Angel Stone Coaster", type: "Coaster", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_t_shirt-235576069848535595", title: "Fallen Angel T-Shirt", type: "T-Shirt", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_magnet-147961343117198778", title: "Fallen Angel Magnet", type: "Magnet", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/fallen_angel_trucker_hat-148359683752533213", title: "Fallen Angel Trucker Hat", type: "Hat", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/to_my_wife_photo_block-256336618613332862", title: "To My Wife Photo Block", type: "Home Decor", price: 0, image: "", soldOut: false },
+            { link: "https://www.zazzle.com/front_top_pouch_you_me_forever-235142252792957341", title: "Front Top Pouch You + Me Forever", type: "Pouch", price: 0, image: "", soldOut: false }
+        ];
+
+        function renderProducts() {
+            const container = document.getElementById('products-grid');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const imageHtml = product.image ? 
+                    `<img src="${product.image}" alt="${product.title.replace(/[<>]/g, '')}" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-box\\'></i>'">` : 
+                    `<i class="fas fa-box"></i>`;
+                
+                const btnClass = product.soldOut ? 'buy-btn sold-out-btn' : 'buy-btn';
+                const btnText = product.soldOut ? 'Sold Out' : 'Shop →';
+                const btnLink = product.soldOut ? 'javascript:void(0)' : product.link;
+                const priceDisplay = product.price > 0 ? `$${product.price.toFixed(2)}` : 'Price on Zazzle';
+                const priceClass = product.soldOut ? 'product-price sold-out-price' : 'product-price';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        ${imageHtml}
+                        ${product.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
+                    </div>
+                    <h3>${product.title.length > 30 ? product.title.substring(0, 27) + '...' : product.title}</h3>
+                    <p>${product.type}</p>
+                    <div class="${priceClass}">${priceDisplay}</div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="${btnLink}" target="_blank" class="${btnClass}" rel="noopener">${btnText}</a>
+                `;
+                
+                container.appendChild(productCard);
+            });
+        }
+        
+        renderProducts();
+        
+        const skillDetails = {
+            'frontend': {
+                title: 'Frontend Development',
+                icon: 'fa-brands fa-react',
+                description: 'Expert frontend development using the latest frameworks and best practices.',
+                tech: ['✓ React.js & Next.js', '✓ Vue.js & Nuxt.js', '✓ Angular', '✓ TypeScript', '✓ Tailwind CSS / SCSS', '✓ State Management (Redux, Vuex, NgRx)']
+            },
+            'backend': {
+                title: 'Backend Development',
+                icon: 'fa-solid fa-server',
+                description: 'Robust and scalable backend systems to power your applications.',
+                tech: ['✓ Node.js / Express', '✓ Python / Django / FastAPI', '✓ Go / Gin', '✓ Java / Spring Boot', '✓ RESTful APIs & GraphQL', '✓ Microservices Architecture']
+            },
+            'database': {
+                title: 'Database Engineering',
+                icon: 'fa-solid fa-database',
+                description: 'Efficient data storage and retrieval with modern database solutions.',
+                tech: ['✓ PostgreSQL', '✓ MongoDB', '✓ Redis', '✓ MySQL', '✓ Database Design & Optimization', '✓ Data Migration & Backup']
+            },
+            'cloud': {
+                title: 'Cloud Architecture',
+                icon: 'fa-solid fa-cloud',
+                description: 'Expert cloud infrastructure and deployment strategies.',
+                tech: ['✓ AWS (EC2, S3, Lambda, RDS)', '✓ Azure', '✓ Google Cloud Platform', '✓ Docker & Kubernetes', '✓ Infrastructure as Code (Terraform)', '✓ Serverless Architecture']
+            },
+            'mobile': {
+                title: 'Mobile Development',
+                icon: 'fa-solid fa-mobile-alt',
+                description: 'Cross-platform mobile applications with native performance.',
+                tech: ['✓ React Native', '✓ Flutter', '✓ Swift (iOS)', '✓ Kotlin (Android)', '✓ App Store & Play Store Deployment', '✓ Mobile UI/UX Best Practices']
+            },
+            'devops': {
+                title: 'DevOps & CI/CD',
+                icon: 'fa-solid fa-code-branch',
+                description: 'Streamlined development workflows and automated deployments.',
+                tech: ['✓ CI/CD Pipelines', '✓ Jenkins / GitHub Actions', '✓ Git & Version Control', '✓ Automated Testing', '✓ Monitoring & Logging', '✓ Performance Optimization']
+            }
+        };
+        
+        const serviceDetails = {
+            'logo-design': {
+                title: 'Logo Design',
+                icon: 'fa-pen-nib',
+                description: 'Professional logo design that captures your brand\'s essence and makes a lasting impression.',
+                features: ['✓ Custom concept development', '✓ Multiple revision rounds', '✓ Vector files + all formats', '✓ Brand guidelines included', '✓ Color palette suggestions']
+            },
+            'web-dev': {
+                title: 'Web Development',
+                icon: 'fa-laptop-code',
+                description: 'Full-stack web development using modern frameworks and best practices.',
+                features: ['✓ Responsive mobile-first design', '✓ Modern frameworks (React, Vue, Angular)', '✓ Backend APIs (Node.js, Python, Go)', '✓ Database integration', '✓ Performance optimization']
+            },
+            'ui-ux': {
+                title: 'UI/UX Design',
+                icon: 'fa-palette',
+                description: 'Beautiful, intuitive interfaces designed with user experience at the core.',
+                features: ['✓ User research & personas', '✓ Wireframing & prototyping', '✓ High-fidelity mockups', '✓ Usability testing', '✓ Design systems & components']
+            },
+            'consulting': {
+                title: 'Tech Consulting',
+                icon: 'fa-chart-line',
+                description: 'Expert technical advice to help you make the right architectural decisions.',
+                features: ['✓ Architecture review', '✓ Technology stack selection', '✓ Scalability planning', '✓ Code quality assessment', '✓ Team mentorship']
+            },
+            'performance': {
+                title: 'Performance Optimization',
+                icon: 'fa-rocket',
+                description: 'Speed up your applications and improve user experience with performance tuning.',
+                features: ['✓ Load time analysis', '✓ Core Web Vitals optimization', '✓ Code splitting & lazy loading', '✓ Caching strategies', '✓ Database query optimization']
+            },
+            'security': {
+                title: 'Security Audits',
+                icon: 'fa-shield-alt',
+                description: 'Comprehensive security assessments to identify and fix vulnerabilities.',
+                features: ['✓ Vulnerability scanning', '✓ Penetration testing', '✓ Code security review', '✓ Dependency analysis', '✓ Security best practices implementation']
+            },
+            'maintenance': {
+                title: 'Maintenance & Support',
+                icon: 'fa-headset',
+                description: 'Ongoing support to keep your applications running smoothly.',
+                features: ['✓ 24/7 monitoring', '✓ Bug fixes & patches', '✓ Regular updates', '✓ Performance monitoring', '✓ Emergency response']
+            },
+            'cloud-migration': {
+                title: 'Cloud Migration',
+                icon: 'fa-cloud-upload-alt',
+                description: 'Seamless migration to cloud platforms with minimal downtime.',
+                features: ['✓ AWS, Azure, GCP expertise', '✓ Migration strategy planning', '✓ Cost optimization', '✓ Infrastructure as Code', '✓ CI/CD pipeline setup']
+            }
+        };
+        
+        let currentSkillTitle = '';
+        let currentServiceTitle = '';
+        
+        const skillModal = document.getElementById('skillModal');
+        const closeSkillModalBtn = document.getElementById('closeSkillModalBtn');
+        const skillModalTitle = document.getElementById('skillModalTitle');
+        const skillModalIcon = document.getElementById('skillModalIcon');
+        const skillModalDescription = document.getElementById('skillModalDescription');
+        const skillModalTech = document.getElementById('skillModalTech');
+        const hireMeBtn = document.getElementById('hireMeBtn');
+        
+        const serviceModal = document.getElementById('serviceModal');
+        const closeServiceModalBtn = document.getElementById('closeServiceModalBtn');
+        const serviceModalTitle = document.getElementById('serviceModalTitle');
+        const serviceModalIcon = document.getElementById('serviceModalIcon');
+        const serviceModalDescription = document.getElementById('serviceModalDescription');
+        const serviceModalFeatures = document.getElementById('serviceModalFeatures');
+        const getQuoteBtn = document.getElementById('getQuoteBtn');
+        
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach((card) => {
+            const skillId = card.getAttribute('data-skill');
+            if (skillId) {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('view-more-btn')) {
+                        openSkillModal(skillId);
+                    }
+                });
+            }
+        });
+        
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card) => {
+            const serviceId = card.getAttribute('data-service');
+            if (serviceId) {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('view-more-btn')) {
+                        openServiceModal(serviceId);
+                    }
+                });
+            }
+        });
+        
+        function openSkillModal(skillId) {
+            const details = skillDetails[skillId];
+            if (details && skillModal) {
+                currentSkillTitle = details.title;
+                skillModalTitle.textContent = details.title;
+                skillModalIcon.innerHTML = `<i class="${details.icon}"></i>`;
+                skillModalDescription.textContent = details.description;
+                skillModalTech.innerHTML = details.tech.map(t => `<li>${t}</li>`).join('');
+                skillModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeSkillModal() {
+            if (skillModal) {
+                skillModal.classList.remove('active');
+                document.body.style.overflow = '';
+                currentSkillTitle = '';
+            }
+        }
+        
+        function openServiceModal(serviceId) {
+            const details = serviceDetails[serviceId];
+            if (details && serviceModal) {
+                currentServiceTitle = details.title;
+                serviceModalTitle.textContent = details.title;
+                serviceModalIcon.innerHTML = `<i class="fa-solid ${details.icon}"></i>`;
+                serviceModalDescription.textContent = details.description;
+                serviceModalFeatures.innerHTML = details.features.map(f => `<li>${f}</li>`).join('');
+                serviceModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeServiceModal() {
+            if (serviceModal) {
+                serviceModal.classList.remove('active');
+                document.body.style.overflow = '';
+                currentServiceTitle = '';
+            }
+        }
+        
+        if (hireMeBtn) {
+            hireMeBtn.addEventListener('click', function() {
+                const subject = `Inquiry about ${currentSkillTitle || 'Development Services'}`;
+                const body = `Hello V3,%0D%0A%0D%0AI'm interested in learning more about your ${currentSkillTitle || 'development services'}.%0D%0A%0D%0AHere's a bit about my project:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AProject Description: %0D%0ATimeline: %0D%0ABudget: %0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0ALooking forward to hearing from you!%0D%0A%0D%0ABest regards`;
+                sendInquiry(subject, body);
+            });
+        }
+        
+        if (getQuoteBtn) {
+            getQuoteBtn.addEventListener('click', function() {
+                const subject = `Quote Request: ${currentServiceTitle || 'Service Inquiry'}`;
+                const body = `Hello V3,%0D%0A%0D%0AI'd like to request a quote for your ${currentServiceTitle || 'services'}.%0D%0A%0D%0AHere are my requirements:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AProject Details: %0D%0ABudget Range: %0D%0ATarget Date: %0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+                sendInquiry(subject, body);
+            });
+        }
+        
+        if (closeSkillModalBtn) closeSkillModalBtn.addEventListener('click', closeSkillModal);
+        if (closeServiceModalBtn) closeServiceModalBtn.addEventListener('click', closeServiceModal);
+        if (skillModal) skillModal.addEventListener('click', (e) => { if (e.target === skillModal) closeSkillModal(); });
+        if (serviceModal) serviceModal.addEventListener('click', (e) => { if (e.target === serviceModal) closeServiceModal(); });
+        
+        let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
+        function setActiveNav(id){
+            bottomNavItems.forEach(i=>{
+                if(i.getAttribute('data-section') === id) i.classList.add('active');
+                else i.classList.remove('active');
+            });
+        }
+        
+        function scrollTo(id){
+            let el = document.getElementById(id);
+            if(el){
+                el.scrollIntoView({behavior:'smooth',block:'start'});
+                setActiveNav(id);
+            }
+        }
+        
+        bottomNavItems.forEach(i=>{
+            i.addEventListener('click',()=>{
+                let s = i.getAttribute('data-section');
+                scrollTo(s);
+            });
+        });
+        
+        function setActiveOnScroll(){
+            let sections = ['about', 'skills', 'services', 'products'];
+            let scrollPos = window.scrollY + 100;
+            let current = '';
+            for(let s of sections){
+                let sec = document.getElementById(s);
+                if(sec && sec.offsetTop <= scrollPos) current = s;
+            }
+            if(current) setActiveNav(current);
+            else setActiveNav('about');
+        }
+        
+        window.addEventListener('scroll', setActiveOnScroll);
+        setActiveOnScroll();
+        
+        let a11yBtn = document.getElementById('a11yNavBtn');
+        let modalEl = document.getElementById('a11yModal');
+        let closeBtn = document.getElementById('closeModalBtn');
+        
+        function updateBtns(){
+            let hc = document.getElementById('highContrastBtn');
+            let lt = document.getElementById('largeTextBtn');
+            let df = document.getElementById('dyslexicFontBtn');
+            let rm = document.getElementById('reduceMotionBtn');
+            let ha = document.body.classList.contains('high-contrast');
+            let la = document.body.classList.contains('large-text');
+            let da = document.body.classList.contains('dyslexic-font');
+            let ra = document.body.classList.contains('reduce-motion');
+            if(hc){ hc.textContent = ha ? 'On' : 'Off'; hc.classList.toggle('active', ha); }
+            if(lt){ lt.textContent = la ? 'On' : 'Off'; lt.classList.toggle('active', la); }
+            if(df){ df.textContent = da ? 'On' : 'Off'; df.classList.toggle('active', da); }
+            if(rm){ rm.textContent = ra ? 'On' : 'Off'; rm.classList.toggle('active', ra); }
+        }
+        
+        if(a11yBtn && modalEl){
+            a11yBtn.addEventListener('click', function(){
+                modalEl.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateBtns();
+            });
+        }
+        
+        function closeModal(){
+            if(modalEl){
+                modalEl.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        if(closeBtn) closeBtn.addEventListener('click', closeModal);
+        if(modalEl) modalEl.addEventListener('click', function(e){ if(e.target === modalEl) closeModal(); });
+        
+        let hc = document.getElementById('highContrastBtn');
+        let lt = document.getElementById('largeTextBtn');
+        let df = document.getElementById('dyslexicFontBtn');
+        let rm = document.getElementById('reduceMotionBtn');
+        
+        function applyHigh(e){ if(e) document.body.classList.add('high-contrast'); else document.body.classList.remove('high-contrast'); localStorage.setItem('highContrast', e); updateBtns(); }
+        function applyLarge(e){ if(e) document.body.classList.add('large-text'); else document.body.classList.remove('large-text'); localStorage.setItem('largeText', e); updateBtns(); }
+        function applyDys(e){ if(e) document.body.classList.add('dyslexic-font'); else document.body.classList.remove('dyslexic-font'); localStorage.setItem('dyslexicFont', e); updateBtns(); }
+        function applyReduce(e){ if(e) document.body.classList.add('reduce-motion'); else document.body.classList.remove('reduce-motion'); localStorage.setItem('reduceMotion', e); updateBtns(); }
+        
+        if(hc) hc.addEventListener('click', () => applyHigh(!document.body.classList.contains('high-contrast')));
+        if(lt) lt.addEventListener('click', () => applyLarge(!document.body.classList.contains('large-text')));
+        if(df) df.addEventListener('click', () => applyDys(!document.body.classList.contains('dyslexic-font')));
+        if(rm) rm.addEventListener('click', () => applyReduce(!document.body.classList.contains('reduce-motion')));
+        
+        if(localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
+        if(localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
+        if(localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
+        if(localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
+        updateBtns();
+        
+        let observer = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting){
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.1, rootMargin: '0px 0px -30px 0px'});
+        
+        document.querySelectorAll('section').forEach(function(s){
+            observer.observe(s);
+        });
+        
+        document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+        document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    })();
+</script>
 </body>
 </html>
