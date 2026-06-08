@@ -141,12 +141,65 @@
         .service-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #fff; }
         .service-card p { color: #a0a0a0; font-size: 11px; line-height: 1.3; }
 
-        /* Products Section - Text-only minimalist grid */
+        /* Products Section - Responsive grid that increases columns on larger screens */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
             gap: 8px;
             width: 100%;
+        }
+
+        /* Default: 2 columns (43 rows) - Mobile portrait */
+        .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* Small Tablet: 3 columns (29 rows) */
+        @media (min-width: 500px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Tablet/Laptop: 4 columns (22 rows) */
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Small Desktop: 5 columns (17 rows) */
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        /* Large Desktop: 6 columns (15 rows) */
+        @media (min-width: 1280px) {
+            .products-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* Ultrawide: 7 columns (13 rows) */
+        @media (min-width: 1600px) {
+            .products-grid {
+                grid-template-columns: repeat(7, 1fr);
+            }
+        }
+
+        /* Extreme Ultrawide: 8 columns (11 rows) */
+        @media (min-width: 1920px) {
+            .products-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
+        /* 4K and beyond: 9 columns (10 rows) */
+        @media (min-width: 2560px) {
+            .products-grid {
+                grid-template-columns: repeat(9, 1fr);
+            }
         }
 
         .product-card {
@@ -190,12 +243,6 @@
             text-decoration: line-through;
         }
 
-        .sold-out-text {
-            color: #ff4444;
-            font-size: 9px;
-            font-weight: bold;
-        }
-
         .zazzle-badge {
             font-size: 7px;
             color: #5c6370;
@@ -223,7 +270,7 @@
         .sold-out-btn { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #666; cursor: not-allowed; }
         .sold-out-btn:active { transform: none; }
 
-        @media (max-width: 480px) { .products-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+        /* Skills & Services responsive columns */
         @media (min-width: 600px) { .skills-grid, .services-grid { column-count: 3; } }
         @media (min-width: 900px) { .skills-grid, .services-grid { column-count: 4; } }
 
