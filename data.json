@@ -1,0 +1,330 @@
+{
+  "site": {
+    "title": "V3 | Digital Architect",
+    "description": "V3 - Digital Architect & Full-Stack Developer",
+    "author": "V3",
+    "themeColor": "#050505"
+  },
+  "about": {
+    "sectionHeader": {
+      "keyword": "import",
+      "string": "{ about }",
+      "from": "from",
+      "path": "'@v3/profile'"
+    },
+    "comment": "// Digital Architect · Full-Stack Developer · 10+ years experience",
+    "paragraphs": [
+      "Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.",
+      "Every line of code serves a purpose, every pixel has meaning."
+    ],
+    "imagePath": "images/logos/V3.png",
+    "imageAlt": "V3 brand logo"
+  },
+  "skills": {
+    "sectionHeader": {
+      "keyword": "const",
+      "variable": "techStack",
+      "equals": "=",
+      "function": "useSkills()"
+    },
+    "comment": "// Technologies I work with daily",
+    "items": [
+      {
+        "id": "frontend",
+        "icon": "fa-brands fa-react",
+        "title": "Frontend",
+        "description": "React, Vue, Angular, TypeScript"
+      },
+      {
+        "id": "backend",
+        "icon": "fa-solid fa-server",
+        "title": "Backend",
+        "description": "Node.js, Python, Go, Java"
+      },
+      {
+        "id": "database",
+        "icon": "fa-solid fa-database",
+        "title": "Database",
+        "description": "PostgreSQL, MongoDB, Redis"
+      },
+      {
+        "id": "cloud",
+        "icon": "fa-solid fa-cloud",
+        "title": "Cloud",
+        "description": "AWS, Azure, GCP, Docker"
+      },
+      {
+        "id": "mobile",
+        "icon": "fa-solid fa-mobile-alt",
+        "title": "Mobile",
+        "description": "React Native, Flutter, Swift"
+      },
+      {
+        "id": "devops",
+        "icon": "fa-solid fa-code-branch",
+        "title": "DevOps",
+        "description": "CI/CD, Jenkins, GitHub Actions"
+      }
+    ]
+  },
+  "services": {
+    "sectionHeader": {
+      "keyword": "export",
+      "const": "const",
+      "variable": "services",
+      "equals": "=",
+      "function": "provide()"
+    },
+    "comment": "// What I offer as a digital architect",
+    "items": [
+      {
+        "id": "logo-design",
+        "icon": "fa-solid fa-pen-nib",
+        "title": "Logo Design",
+        "description": "Custom brand identities that stand out"
+      },
+      {
+        "id": "web-dev",
+        "icon": "fa-solid fa-laptop-code",
+        "title": "Web Development",
+        "description": "Full-stack modern web applications"
+      },
+      {
+        "id": "ui-ux",
+        "icon": "fa-solid fa-palette",
+        "title": "UI/UX Design",
+        "description": "Beautiful, intuitive interfaces"
+      },
+      {
+        "id": "consulting",
+        "icon": "fa-solid fa-chart-line",
+        "title": "Tech Consulting",
+        "description": "Expert architecture & strategy advice"
+      },
+      {
+        "id": "performance",
+        "icon": "fa-solid fa-rocket",
+        "title": "Performance",
+        "description": "Speed optimization & scaling"
+      },
+      {
+        "id": "security",
+        "icon": "fa-solid fa-shield-alt",
+        "title": "Security Audits",
+        "description": "Vulnerability assessment & fixes"
+      },
+      {
+        "id": "maintenance",
+        "icon": "fa-solid fa-headset",
+        "title": "Maintenance",
+        "description": "Ongoing support & updates"
+      },
+      {
+        "id": "cloud",
+        "icon": "fa-solid fa-cloud-upload-alt",
+        "title": "Cloud Migration",
+        "description": "AWS, Azure, GCP expertise"
+      }
+    ]
+  },
+  "skillDetails": {
+    "frontend": {
+      "title": "Frontend Development",
+      "icon": "fa-brands fa-react",
+      "description": "Expert frontend development using the latest frameworks and best practices.",
+      "tech": [
+        "✓ React.js & Next.js",
+        "✓ Vue.js & Nuxt.js",
+        "✓ Angular",
+        "✓ TypeScript",
+        "✓ Tailwind CSS / SCSS",
+        "✓ State Management (Redux, Vuex, NgRx)"
+      ]
+    },
+    "backend": {
+      "title": "Backend Development",
+      "icon": "fa-solid fa-server",
+      "description": "Robust and scalable backend systems to power your applications.",
+      "tech": [
+        "✓ Node.js / Express",
+        "✓ Python / Django / FastAPI",
+        "✓ Go / Gin",
+        "✓ Java / Spring Boot",
+        "✓ RESTful APIs & GraphQL",
+        "✓ Microservices Architecture"
+      ]
+    },
+    "database": {
+      "title": "Database Engineering",
+      "icon": "fa-solid fa-database",
+      "description": "Efficient data storage and retrieval with modern database solutions.",
+      "tech": [
+        "✓ PostgreSQL",
+        "✓ MongoDB",
+        "✓ Redis",
+        "✓ MySQL",
+        "✓ Database Design & Optimization",
+        "✓ Data Migration & Backup"
+      ]
+    },
+    "cloud": {
+      "title": "Cloud Architecture",
+      "icon": "fa-solid fa-cloud",
+      "description": "Expert cloud infrastructure and deployment strategies.",
+      "tech": [
+        "✓ AWS (EC2, S3, Lambda, RDS)",
+        "✓ Azure",
+        "✓ Google Cloud Platform",
+        "✓ Docker & Kubernetes",
+        "✓ Infrastructure as Code (Terraform)",
+        "✓ Serverless Architecture"
+      ]
+    },
+    "mobile": {
+      "title": "Mobile Development",
+      "icon": "fa-solid fa-mobile-alt",
+      "description": "Cross-platform mobile applications with native performance.",
+      "tech": [
+        "✓ React Native",
+        "✓ Flutter",
+        "✓ Swift (iOS)",
+        "✓ Kotlin (Android)",
+        "✓ App Store & Play Store Deployment",
+        "✓ Mobile UI/UX Best Practices"
+      ]
+    },
+    "devops": {
+      "title": "DevOps & CI/CD",
+      "icon": "fa-solid fa-code-branch",
+      "description": "Streamlined development workflows and automated deployments.",
+      "tech": [
+        "✓ CI/CD Pipelines",
+        "✓ Jenkins / GitHub Actions",
+        "✓ Git & Version Control",
+        "✓ Automated Testing",
+        "✓ Monitoring & Logging",
+        "✓ Performance Optimization"
+      ]
+    }
+  },
+  "serviceDetails": {
+    "logo-design": {
+      "title": "Logo Design",
+      "icon": "fa-pen-nib",
+      "description": "Professional logo design that captures your brand's essence and makes a lasting impression.",
+      "features": [
+        "✓ Custom concept development",
+        "✓ Multiple revision rounds",
+        "✓ Vector files + all formats",
+        "✓ Brand guidelines included",
+        "✓ Color palette suggestions"
+      ]
+    },
+    "web-dev": {
+      "title": "Web Development",
+      "icon": "fa-laptop-code",
+      "description": "Full-stack web development using modern frameworks and best practices.",
+      "features": [
+        "✓ Responsive mobile-first design",
+        "✓ Modern frameworks (React, Vue, Angular)",
+        "✓ Backend APIs (Node.js, Python, Go)",
+        "✓ Database integration",
+        "✓ Performance optimization"
+      ]
+    },
+    "ui-ux": {
+      "title": "UI/UX Design",
+      "icon": "fa-palette",
+      "description": "Beautiful, intuitive interfaces designed with user experience at the core.",
+      "features": [
+        "✓ User research & personas",
+        "✓ Wireframing & prototyping",
+        "✓ High-fidelity mockups",
+        "✓ Usability testing",
+        "✓ Design systems & components"
+      ]
+    },
+    "consulting": {
+      "title": "Tech Consulting",
+      "icon": "fa-chart-line",
+      "description": "Expert technical advice to help you make the right architectural decisions.",
+      "features": [
+        "✓ Architecture review",
+        "✓ Technology stack selection",
+        "✓ Scalability planning",
+        "✓ Code quality assessment",
+        "✓ Team mentorship"
+      ]
+    },
+    "performance": {
+      "title": "Performance Optimization",
+      "icon": "fa-rocket",
+      "description": "Speed up your applications and improve user experience with performance tuning.",
+      "features": [
+        "✓ Load time analysis",
+        "✓ Core Web Vitals optimization",
+        "✓ Code splitting & lazy loading",
+        "✓ Caching strategies",
+        "✓ Database query optimization"
+      ]
+    },
+    "security": {
+      "title": "Security Audits",
+      "icon": "fa-shield-alt",
+      "description": "Comprehensive security assessments to identify and fix vulnerabilities.",
+      "features": [
+        "✓ Vulnerability scanning",
+        "✓ Penetration testing",
+        "✓ Code security review",
+        "✓ Dependency analysis",
+        "✓ Security best practices implementation"
+      ]
+    },
+    "maintenance": {
+      "title": "Maintenance & Support",
+      "icon": "fa-headset",
+      "description": "Ongoing support to keep your applications running smoothly.",
+      "features": [
+        "✓ 24/7 monitoring",
+        "✓ Bug fixes & patches",
+        "✓ Regular updates",
+        "✓ Performance monitoring",
+        "✓ Emergency response"
+      ]
+    },
+    "cloud-migration": {
+      "title": "Cloud Migration",
+      "icon": "fa-cloud-upload-alt",
+      "description": "Seamless migration to cloud platforms with minimal downtime.",
+      "features": [
+        "✓ AWS, Azure, GCP expertise",
+        "✓ Migration strategy planning",
+        "✓ Cost optimization",
+        "✓ Infrastructure as Code",
+        "✓ CI/CD pipeline setup"
+      ]
+    }
+  },
+  "products": {
+    "enabled": false,
+    "sectionHeader": {
+      "keyword": "import",
+      "string": "{ merchandise }",
+      "from": "from",
+      "path": "'@v3/shop'"
+    },
+    "comment": "// Official merchandise · Coming soon",
+    "emptyMessage": "No products available at the moment",
+    "emptySubMessage": "Check back soon for new merchandise",
+    "items": []
+  },
+  "contact": {
+    "email": "jo783750@gmail.com"
+  },
+  "accessibility": {
+    "highContrast": "High Contrast",
+    "largerText": "Larger Text",
+    "dyslexicFont": "Dyslexic Font",
+    "reduceMotion": "Reduce Motion"
+  }
+}
