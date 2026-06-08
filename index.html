@@ -100,41 +100,36 @@
         .about-img img { width: 140px; height: 140px; border-radius: 32px; border: 2px solid rgba(0, 212, 255, 0.4); box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2); object-fit: cover; }
 
         /* ============================================
-           SKILLS GRID - Responsive Masonry
+           SKILLS GRID - Text-only minimal style
            ============================================ */
         .skills-grid {
             display: grid;
-            gap: 12px;
+            gap: 8px;
             width: 100%;
         }
 
-        /* Default: 2 columns (mobile) */
         .skills-grid {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        /* Tablet: 3 columns */
         @media (min-width: 600px) {
             .skills-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        /* Desktop: 4 columns */
         @media (min-width: 900px) {
             .skills-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        /* Large Desktop: 5 columns */
         @media (min-width: 1200px) {
             .skills-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
         }
 
-        /* Ultrawide: 6 columns */
         @media (min-width: 1600px) {
             .skills-grid {
                 grid-template-columns: repeat(6, 1fr);
@@ -142,58 +137,71 @@
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            padding: 16px 12px;
+            border-radius: 12px;
+            padding: 12px 8px;
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 4px;
         }
-        .skill-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.08); }
-        .skill-card i { font-size: 28px; color: #00d4ff; margin-bottom: 10px; display: block; }
-        .skill-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #fff; }
-        .skill-card p { color: #a0a0a0; font-size: 11px; line-height: 1.3; }
+        .skill-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.06); }
+
+        .skill-card i {
+            font-size: 20px;
+            color: #5c6370;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .skill-card h3 {
+            font-size: 11px;
+            font-weight: 500;
+            color: #e0e0e0;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        .skill-card p {
+            font-size: 9px;
+            color: #5c6370;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
 
         /* ============================================
-           SERVICES GRID - Responsive Masonry
+           SERVICES GRID - Text-only minimal style
            ============================================ */
         .services-grid {
             display: grid;
-            gap: 12px;
+            gap: 8px;
             width: 100%;
         }
 
-        /* Default: 2 columns (mobile) */
         .services-grid {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        /* Tablet: 3 columns */
         @media (min-width: 600px) {
             .services-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        /* Desktop: 4 columns */
         @media (min-width: 900px) {
             .services-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        /* Large Desktop: 5 columns */
         @media (min-width: 1200px) {
             .services-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
         }
 
-        /* Ultrawide: 6 columns */
         @media (min-width: 1600px) {
             .services-grid {
                 grid-template-columns: repeat(6, 1fr);
@@ -201,24 +209,43 @@
         }
 
         .service-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 20px;
-            padding: 16px 12px;
+            background: rgba(0, 212, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 8px;
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 4px;
         }
-        .service-card:active { transform: scale(0.96); background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(124, 58, 237, 0.12)); }
-        .service-card i { font-size: 28px; color: #00d4ff; margin-bottom: 10px; display: block; }
-        .service-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #fff; }
-        .service-card p { color: #a0a0a0; font-size: 11px; line-height: 1.3; }
+        .service-card:active { transform: scale(0.96); background: rgba(0, 212, 255, 0.06); }
+
+        .service-card i {
+            font-size: 20px;
+            color: #00d4ff;
+            margin-bottom: 4px;
+            display: block;
+            opacity: 0.6;
+        }
+
+        .service-card h3 {
+            font-size: 11px;
+            font-weight: 500;
+            color: #e0e0e0;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        .service-card p {
+            font-size: 9px;
+            color: #5c6370;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
 
         /* ============================================
-           PRODUCTS GRID - Responsive (most columns)
+           PRODUCTS GRID - Text-only minimal style
            ============================================ */
         .products-grid {
             display: grid;
@@ -226,54 +253,46 @@
             width: 100%;
         }
 
-        /* Default: 2 columns (43 rows) - Mobile portrait */
         .products-grid {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        /* Small Tablet: 3 columns (29 rows) */
         @media (min-width: 500px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        /* Tablet/Laptop: 4 columns (22 rows) */
         @media (min-width: 768px) {
             .products-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        /* Small Desktop: 5 columns (17 rows) */
         @media (min-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
         }
 
-        /* Large Desktop: 6 columns (15 rows) */
         @media (min-width: 1280px) {
             .products-grid {
                 grid-template-columns: repeat(6, 1fr);
             }
         }
 
-        /* Ultrawide: 7 columns (13 rows) */
         @media (min-width: 1600px) {
             .products-grid {
                 grid-template-columns: repeat(7, 1fr);
             }
         }
 
-        /* Extreme Ultrawide: 8 columns (11 rows) */
         @media (min-width: 1920px) {
             .products-grid {
                 grid-template-columns: repeat(8, 1fr);
             }
         }
 
-        /* 4K and beyond: 9 columns (10 rows) */
         @media (min-width: 2560px) {
             .products-grid {
                 grid-template-columns: repeat(9, 1fr);
