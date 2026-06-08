@@ -35,8 +35,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Desktop Spotlight Search Overlay - for tablets and desktop */
-        .spotlight-overlay {
+        /* ============================================
+           DESKTOP SPOTLIGHT - Center modal (Cmd+K)
+           ============================================ */
+        .desktop-spotlight {
             position: fixed;
             top: 0;
             left: 0;
@@ -53,12 +55,12 @@
             transition: all 0.3s ease;
         }
 
-        .spotlight-overlay.active {
+        .desktop-spotlight.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .spotlight-container {
+        .desktop-spotlight-container {
             width: 90%;
             max-width: 700px;
             margin-top: 15vh;
@@ -69,46 +71,106 @@
             overflow: hidden;
         }
 
-        .spotlight-input-wrapper {
-            padding: 16px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+        /* ============================================
+           TABLET SPOTLIGHT - Slide-down overlay
+           ============================================ */
+        .tablet-spotlight {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 30, 46, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            z-index: 2000;
+            transform: translateY(-100%);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 0 0 24px 24px;
         }
 
-        .spotlight-input {
-            width: 100%;
+        .tablet-spotlight.active {
+            transform: translateY(0);
+        }
+
+        .tablet-spotlight-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tablet-spotlight-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px 20px;
+        }
+
+        .tablet-spotlight-input-wrapper i {
+            color: #5c6370;
+            font-size: 1.2rem;
+        }
+
+        .tablet-spotlight-input {
+            flex: 1;
             background: transparent;
             border: none;
             outline: none;
             color: #fff;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-family: 'SF Mono', 'Fira Code', monospace;
-            padding: 8px 0;
         }
 
-        .spotlight-input::placeholder {
+        .tablet-spotlight-input::placeholder {
             color: #5c6370;
         }
 
-        .spotlight-shortcut {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.7rem;
-            color: #5c6370;
+        .tablet-spotlight-close {
             background: rgba(255, 255, 255, 0.1);
-            padding: 4px 8px;
-            border-radius: 8px;
-            font-family: monospace;
+            border: none;
+            border-radius: 24px;
+            padding: 8px 16px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
         }
 
-        .spotlight-results {
-            max-height: 400px;
+        .tablet-spotlight-results {
+            flex: 1;
             overflow-y: auto;
+            padding: 16px 0;
         }
 
-        /* Mobile Spotlight - Bottom Sheet Drawer - ONLY on phones (<480px) */
+        /* Pull-to-search indicator */
+        .pull-indicator {
+            position: fixed;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: #00d4ff;
+            font-family: monospace;
+            z-index: 1999;
+            transition: top 0.2s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .pull-indicator.visible {
+            top: 10px;
+        }
+
+        /* ============================================
+           MOBILE SPOTLIGHT - Bottom sheet
+           ============================================ */
         .mobile-spotlight {
             position: fixed;
             bottom: 0;
@@ -188,11 +250,12 @@
             padding: 8px 0;
         }
 
+        /* Shared result styles */
         .spotlight-section {
             padding: 12px 0;
         }
 
-        .spotlight-section-title, .mobile-spotlight-section-title {
+        .spotlight-section-title {
             padding: 8px 20px;
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -201,107 +264,89 @@
             font-family: 'SF Mono', monospace;
         }
 
-        .spotlight-result-item, .mobile-spotlight-result-item {
-            padding: 10px 20px;
+        .spotlight-result-item {
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             cursor: pointer;
             transition: all 0.15s ease;
             font-family: 'SF Mono', monospace;
         }
 
-        .mobile-spotlight-result-item {
-            padding: 12px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .tablet-spotlight .spotlight-result-item {
+            padding: 14px 24px;
         }
 
         .spotlight-result-item:hover,
         .spotlight-result-item.selected,
-        .mobile-spotlight-result-item:active {
+        .mobile-spotlight-result-item:active,
+        .tablet-spotlight .spotlight-result-item:active {
             background: rgba(0, 212, 255, 0.15);
         }
 
-        .spotlight-result-icon, .mobile-spotlight-result-icon {
-            width: 28px;
-            font-size: 0.9rem;
-            color: #00d4ff;
-        }
-
-        .mobile-spotlight-result-icon {
+        .spotlight-result-icon {
             width: 32px;
             font-size: 1rem;
+            color: #00d4ff;
             text-align: center;
         }
 
-        .spotlight-result-content, .mobile-spotlight-result-content {
+        .spotlight-result-content {
             flex: 1;
         }
 
-        .spotlight-result-title, .mobile-spotlight-result-title {
-            font-size: 0.85rem;
+        .spotlight-result-title {
+            font-size: 0.9rem;
             color: #fff;
         }
 
-        .spotlight-result-subtitle, .mobile-spotlight-result-subtitle {
+        .spotlight-result-subtitle {
             font-size: 0.7rem;
             color: #5c6370;
         }
 
-        .spotlight-result-type, .mobile-spotlight-result-type {
+        .spotlight-result-type {
             font-size: 0.65rem;
             color: #00d4ff;
             background: rgba(0, 212, 255, 0.1);
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
         }
 
-        .mobile-spotlight-result-type {
-            font-size: 0.6rem;
-        }
-
-        .spotlight-no-results, .mobile-spotlight-no-results {
-            padding: 40px 20px;
+        .spotlight-no-results {
+            padding: 60px 20px;
             text-align: center;
             color: #5c6370;
             font-family: monospace;
         }
 
-        /* Device-specific visibility - PHONES ONLY (<480px) */
+        /* Device-specific visibility */
         @media (max-width: 480px) {
-            .mobile-spotlight {
-                display: flex;
-            }
+            .desktop-spotlight { display: none; }
+            .tablet-spotlight { display: none; }
+            .mobile-spotlight { display: flex; }
+            .pull-indicator { display: none; }
+            .tablet-search-btn { display: none !important; }
         }
 
-        @media (min-width: 481px) {
-            .mobile-spotlight {
-                display: none;
-            }
+        @media (min-width: 481px) and (max-width: 1024px) {
+            .desktop-spotlight { display: none; }
+            .mobile-spotlight { display: none; }
+            .tablet-spotlight { display: flex; }
+            .desktop-search-hint { display: none; }
         }
 
-        /* Desktop Spotlight - TABLETS AND DESKTOP ONLY (>480px) */
-        @media (max-width: 480px) {
-            .spotlight-overlay {
-                display: none;
-            }
-        }
-
-        @media (min-width: 481px) {
-            .spotlight-overlay {
-                display: flex;
-            }
-        }
-
-        /* Hide search button on tablets/desktop */
-        @media (min-width: 481px) {
-            #mobileSearchBtn {
-                display: none;
-            }
+        @media (min-width: 1025px) {
+            .desktop-spotlight { display: flex; }
+            .mobile-spotlight { display: none; }
+            .tablet-spotlight { display: none; }
+            .tablet-search-btn { display: none !important; }
+            .pull-indicator { display: none; }
         }
 
         /* Keyboard shortcut hint - desktop only */
-        .spotlight-hint {
+        .desktop-search-hint {
             position: fixed;
             bottom: 80px;
             right: 16px;
@@ -316,8 +361,8 @@
             pointer-events: none;
         }
 
-        @media (max-width: 768px) {
-            .spotlight-hint {
+        @media (max-width: 1024px) {
+            .desktop-search-hint {
                 display: none;
             }
         }
@@ -566,18 +611,35 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Desktop Spotlight Search Overlay (Cmd+K / Ctrl+K) - tablets and desktop -->
-<div id="spotlightOverlay" class="spotlight-overlay">
-    <div class="spotlight-container">
-        <div class="spotlight-input-wrapper">
-            <input type="text" id="spotlightInput" class="spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
-            <span class="spotlight-shortcut">ESC</span>
+<!-- Pull-to-search indicator (tablet) -->
+<div id="pullIndicator" class="pull-indicator">
+    <i class="fas fa-chevron-down"></i> Pull down to search
+</div>
+
+<!-- DESKTOP SPOTLIGHT - Center modal (Cmd+K) -->
+<div id="desktopSpotlight" class="desktop-spotlight">
+    <div class="desktop-spotlight-container">
+        <div class="spotlight-input-wrapper" style="padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: relative;">
+            <input type="text" id="desktopSpotlightInput" class="spotlight-input" placeholder="Search products, skills, services..." autocomplete="off" style="width:100%; background:transparent; border:none; outline:none; color:#fff; font-size:1.25rem; font-family:'SF Mono','Fira Code',monospace; padding:8px 0;">
+            <span class="spotlight-shortcut" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:0.7rem; color:#5c6370; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:8px;">ESC</span>
         </div>
-        <div id="spotlightResults" class="spotlight-results"></div>
+        <div id="desktopSpotlightResults" class="spotlight-results"></div>
     </div>
 </div>
 
-<!-- Mobile Spotlight - Bottom Sheet Drawer (phones only) -->
+<!-- TABLET SPOTLIGHT - Slide-down overlay -->
+<div id="tabletSpotlight" class="tablet-spotlight">
+    <div class="tablet-spotlight-header">
+        <div class="tablet-spotlight-input-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="tabletSpotlightInput" class="tablet-spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
+            <button id="tabletSpotlightClose" class="tablet-spotlight-close">Cancel</button>
+        </div>
+    </div>
+    <div id="tabletSpotlightResults" class="tablet-spotlight-results"></div>
+</div>
+
+<!-- MOBILE SPOTLIGHT - Bottom sheet -->
 <div id="mobileSpotlight" class="mobile-spotlight">
     <div class="mobile-spotlight-handle"></div>
     <div class="mobile-spotlight-header">
@@ -591,7 +653,7 @@
 </div>
 
 <!-- Keyboard shortcut hint (desktop only) -->
-<div class="spotlight-hint">
+<div class="desktop-search-hint">
     <i class="fas fa-search"></i> <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd>
 </div>
 
@@ -727,13 +789,14 @@
     <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
     <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
     <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
-    <button class="bottom-nav-item" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
+    <button class="bottom-nav-item tablet-search-btn" id="tabletSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
+    <button class="bottom-nav-item mobile-search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
 </div>
 
 <script>
     (function(){
         // ============================================
-        // PRODUCTS DATA - All 85 products
+        // PRODUCTS DATA - All 85 products (same as before)
         // ============================================
         const products = [
             { link: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965", title: "Static Snow Metallic Button", type: "Button", price: 0, soldOut: false, search: "static snow metallic button" },
@@ -822,10 +885,9 @@
             { link: "https://www.zazzle.com/front_top_pouch_you_me_forever-235142252792957341", title: "Front Top Pouch You + Me Forever", type: "Pouch", price: 0, soldOut: false, search: "you me forever pouch" }
         ];
 
-        // Searchable items for both desktop and mobile Spotlight
+        // Searchable items
         const searchableItems = [];
 
-        // Add skills to search
         document.querySelectorAll('.skill-card').forEach(card => {
             const title = card.querySelector('h3')?.innerText || '';
             const desc = card.querySelector('p')?.innerText || '';
@@ -840,7 +902,6 @@
             });
         });
 
-        // Add services to search
         document.querySelectorAll('.service-card').forEach(card => {
             const title = card.querySelector('h3')?.innerText || '';
             const desc = card.querySelector('p')?.innerText || '';
@@ -855,7 +916,6 @@
             });
         });
 
-        // Add products to search
         products.forEach(product => {
             searchableItems.push({
                 type: 'product',
@@ -869,107 +929,6 @@
             });
         });
 
-        // Helper functions for both spotlights
-        function renderSpotlightResults(results, containerId, isMobile = false) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            
-            if (!results.length) {
-                container.innerHTML = `<div class="${isMobile ? 'mobile-spotlight-no-results' : 'spotlight-no-results'}">No results found</div>`;
-                return;
-            }
-            
-            const grouped = { products: [], skills: [], services: [] };
-            results.forEach(item => {
-                if (item.type === 'product') grouped.products.push(item);
-                else if (item.type === 'skill') grouped.skills.push(item);
-                else if (item.type === 'service') grouped.services.push(item);
-            });
-            
-            let html = '';
-            const sectionTitleClass = isMobile ? 'mobile-spotlight-section-title' : 'spotlight-section-title';
-            const resultItemClass = isMobile ? 'mobile-spotlight-result-item' : 'spotlight-result-item';
-            const resultIconClass = isMobile ? 'mobile-spotlight-result-icon' : 'spotlight-result-icon';
-            const resultContentClass = isMobile ? 'mobile-spotlight-result-content' : 'spotlight-result-content';
-            const resultTitleClass = isMobile ? 'mobile-spotlight-result-title' : 'spotlight-result-title';
-            const resultSubtitleClass = isMobile ? 'mobile-spotlight-result-subtitle' : 'spotlight-result-subtitle';
-            const resultTypeClass = isMobile ? 'mobile-spotlight-result-type' : 'spotlight-result-type';
-            
-            if (grouped.products.length) {
-                html += `<div class="spotlight-section"><div class="${sectionTitleClass}">Products</div>`;
-                grouped.products.forEach(item => {
-                    html += `
-                        <div class="${resultItemClass}" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}" data-section="${item.sectionId || ''}">
-                            <div class="${resultIconClass}"><i class="fas ${item.icon}"></i></div>
-                            <div class="${resultContentClass}">
-                                <div class="${resultTitleClass}">${escapeHtml(item.title)}</div>
-                                <div class="${resultSubtitleClass}">${item.subtitle}</div>
-                            </div>
-                            <div class="${resultTypeClass}">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
-            }
-            
-            if (grouped.skills.length) {
-                html += `<div class="spotlight-section"><div class="${sectionTitleClass}">Skills</div>`;
-                grouped.skills.forEach(item => {
-                    html += `
-                        <div class="${resultItemClass}" data-type="skill" data-section="${item.sectionId || ''}">
-                            <div class="${resultIconClass}"><i class="fas ${item.icon}"></i></div>
-                            <div class="${resultContentClass}">
-                                <div class="${resultTitleClass}">${escapeHtml(item.title)}</div>
-                                <div class="${resultSubtitleClass}">${item.subtitle}</div>
-                            </div>
-                            <div class="${resultTypeClass}">Skill</div>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
-            }
-            
-            if (grouped.services.length) {
-                html += `<div class="spotlight-section"><div class="${sectionTitleClass}">Services</div>`;
-                grouped.services.forEach(item => {
-                    html += `
-                        <div class="${resultItemClass}" data-type="service" data-section="${item.sectionId || ''}">
-                            <div class="${resultIconClass}"><i class="fas ${item.icon}"></i></div>
-                            <div class="${resultContentClass}">
-                                <div class="${resultTitleClass}">${escapeHtml(item.title)}</div>
-                                <div class="${resultSubtitleClass}">${item.subtitle}</div>
-                            </div>
-                            <div class="${resultTypeClass}">Service</div>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
-            }
-            
-            container.innerHTML = html;
-            
-            // Attach click handlers
-            container.querySelectorAll(`.${resultItemClass.replace(/\s/g, '.')}`).forEach(el => {
-                el.addEventListener('click', () => {
-                    const type = el.getAttribute('data-type');
-                    const link = el.getAttribute('data-link');
-                    const soldOut = el.getAttribute('data-soldout') === 'true';
-                    const sectionId = el.getAttribute('data-section');
-                    
-                    if (type === 'product' && link && !soldOut) {
-                        window.open(link, '_blank');
-                    } else if ((type === 'skill' || type === 'service') && sectionId) {
-                        const section = document.getElementById(sectionId);
-                        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    
-                    // Close both spotlights
-                    closeDesktopSpotlight();
-                    closeMobileSpotlight();
-                });
-            });
-        }
-        
         function escapeHtml(str) {
             return str.replace(/[&<>]/g, function(m) {
                 if (m === '&') return '&amp;';
@@ -978,98 +937,324 @@
                 return m;
             });
         }
-        
-        function performSearchDesktop(query) {
-            const lowerQuery = query.toLowerCase().trim();
-            if (!lowerQuery) {
-                renderSpotlightResults([], 'spotlightResults', false);
-                return;
-            }
-            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
-            renderSpotlightResults(results, 'spotlightResults', false);
-        }
-        
-        function performSearchMobile(query) {
-            const lowerQuery = query.toLowerCase().trim();
-            if (!lowerQuery) {
-                renderSpotlightResults([], 'mobileSpotlightResults', true);
-                return;
-            }
-            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
-            renderSpotlightResults(results, 'mobileSpotlightResults', true);
-        }
-        
+
         // Desktop Spotlight
-        const desktopOverlay = document.getElementById('spotlightOverlay');
-        const desktopInput = document.getElementById('spotlightInput');
-        
+        const desktopOverlay = document.getElementById('desktopSpotlight');
+        const desktopInput = document.getElementById('desktopSpotlightInput');
+        const desktopResults = document.getElementById('desktopSpotlightResults');
+
+        function renderDesktopResults(results) {
+            if (!desktopResults) return;
+            if (!results.length) {
+                desktopResults.innerHTML = '<div class="spotlight-no-results">No results found</div>';
+                return;
+            }
+            const grouped = { products: [], skills: [], services: [] };
+            results.forEach(item => {
+                if (item.type === 'product') grouped.products.push(item);
+                else if (item.type === 'skill') grouped.skills.push(item);
+                else if (item.type === 'service') grouped.services.push(item);
+            });
+            let html = '';
+            if (grouped.products.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
+                grouped.products.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            if (grouped.skills.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
+                grouped.skills.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">Skill</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            if (grouped.services.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
+                grouped.services.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">Service</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            desktopResults.innerHTML = html;
+            desktopResults.querySelectorAll('.spotlight-result-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const type = el.getAttribute('data-type');
+                    const link = el.getAttribute('data-link');
+                    const soldOut = el.getAttribute('data-soldout') === 'true';
+                    const sectionId = el.getAttribute('data-section');
+                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
+                    else if ((type === 'skill' || type === 'service') && sectionId) {
+                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    closeDesktopSpotlight();
+                });
+            });
+        }
+
+        function performDesktopSearch(query) {
+            const lowerQuery = query.toLowerCase().trim();
+            if (!lowerQuery) { renderDesktopResults([]); return; }
+            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
+            renderDesktopResults(results);
+        }
+
         function openDesktopSpotlight() {
             desktopOverlay.classList.add('active');
             desktopInput.value = '';
-            performSearchDesktop('');
+            performDesktopSearch('');
             setTimeout(() => desktopInput.focus(), 100);
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeDesktopSpotlight() {
             desktopOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
+        if (desktopInput) desktopInput.addEventListener('input', (e) => performDesktopSearch(e.target.value));
+        if (desktopOverlay) desktopOverlay.addEventListener('click', (e) => { if (e.target === desktopOverlay) closeDesktopSpotlight(); });
+
+        // Tablet Spotlight
+        const tabletOverlay = document.getElementById('tabletSpotlight');
+        const tabletInput = document.getElementById('tabletSpotlightInput');
+        const tabletResults = document.getElementById('tabletSpotlightResults');
+        const tabletCloseBtn = document.getElementById('tabletSpotlightClose');
+        const tabletSearchBtn = document.getElementById('tabletSearchBtn');
+        const pullIndicator = document.getElementById('pullIndicator');
+        let pullStartY = 0;
+        let isPulling = false;
+
+        function renderTabletResults(results) {
+            if (!tabletResults) return;
+            if (!results.length) {
+                tabletResults.innerHTML = '<div class="spotlight-no-results">No results found</div>';
+                return;
+            }
+            const grouped = { products: [], skills: [], services: [] };
+            results.forEach(item => {
+                if (item.type === 'product') grouped.products.push(item);
+                else if (item.type === 'skill') grouped.skills.push(item);
+                else if (item.type === 'service') grouped.services.push(item);
+            });
+            let html = '';
+            if (grouped.products.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
+                grouped.products.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            if (grouped.skills.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
+                grouped.skills.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">Skill</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            if (grouped.services.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
+                grouped.services.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">Service</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            tabletResults.innerHTML = html;
+            tabletResults.querySelectorAll('.spotlight-result-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const type = el.getAttribute('data-type');
+                    const link = el.getAttribute('data-link');
+                    const soldOut = el.getAttribute('data-soldout') === 'true';
+                    const sectionId = el.getAttribute('data-section');
+                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
+                    else if ((type === 'skill' || type === 'service') && sectionId) {
+                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    closeTabletSpotlight();
+                });
+            });
+        }
+
+        function performTabletSearch(query) {
+            const lowerQuery = query.toLowerCase().trim();
+            if (!lowerQuery) { renderTabletResults([]); return; }
+            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
+            renderTabletResults(results);
+        }
+
+        function openTabletSpotlight() {
+            tabletOverlay.classList.add('active');
+            tabletInput.value = '';
+            performTabletSearch('');
+            setTimeout(() => tabletInput.focus(), 100);
+            document.body.style.overflow = 'hidden';
+            if (pullIndicator) pullIndicator.classList.remove('visible');
+        }
+
+        function closeTabletSpotlight() {
+            tabletOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (tabletInput) tabletInput.addEventListener('input', (e) => performTabletSearch(e.target.value));
+        if (tabletCloseBtn) tabletCloseBtn.addEventListener('click', closeTabletSpotlight);
+        if (tabletSearchBtn) tabletSearchBtn.addEventListener('click', openTabletSpotlight);
+        if (tabletOverlay) tabletOverlay.addEventListener('click', (e) => { if (e.target === tabletOverlay) closeTabletSpotlight(); });
+
+        // Pull-to-search for tablets
+        let touchStartY = 0;
+        document.addEventListener('touchstart', (e) => {
+            if (window.innerWidth >= 481 && window.innerWidth <= 1024 && !tabletOverlay.classList.contains('active')) {
+                touchStartY = e.touches[0].clientY;
+                if (touchStartY < 30 && pullIndicator) pullIndicator.classList.add('visible');
+            }
+        });
+        document.addEventListener('touchmove', (e) => {
+            if (window.innerWidth >= 481 && window.innerWidth <= 1024 && !tabletOverlay.classList.contains('active')) {
+                const currentY = e.touches[0].clientY;
+                if (touchStartY < 30 && currentY > touchStartY + 50) {
+                    openTabletSpotlight();
+                    if (pullIndicator) pullIndicator.classList.remove('visible');
+                }
+            }
+        });
+        document.addEventListener('touchend', () => {
+            if (pullIndicator) setTimeout(() => pullIndicator.classList.remove('visible'), 500);
+        });
+
         // Mobile Spotlight
         const mobileOverlay = document.getElementById('mobileSpotlight');
         const mobileInput = document.getElementById('mobileSpotlightInput');
+        const mobileResults = document.getElementById('mobileSpotlightResults');
         const mobileCloseBtn = document.getElementById('mobileSpotlightClose');
         const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-        
+
+        function renderMobileResults(results) {
+            if (!mobileResults) return;
+            if (!results.length) {
+                mobileResults.innerHTML = '<div class="spotlight-no-results">No results found</div>';
+                return;
+            }
+            const grouped = { products: [], skills: [], services: [] };
+            results.forEach(item => {
+                if (item.type === 'product') grouped.products.push(item);
+                else if (item.type === 'skill') grouped.skills.push(item);
+                else if (item.type === 'service') grouped.services.push(item);
+            });
+            let html = '';
+            if (grouped.products.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
+                grouped.products.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            if (grouped.skills.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
+                grouped.skills.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">Skill</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            if (grouped.services.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
+                grouped.services.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
+                        <div class="spotlight-result-type">Service</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            mobileResults.innerHTML = html;
+            mobileResults.querySelectorAll('.spotlight-result-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const type = el.getAttribute('data-type');
+                    const link = el.getAttribute('data-link');
+                    const soldOut = el.getAttribute('data-soldout') === 'true';
+                    const sectionId = el.getAttribute('data-section');
+                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
+                    else if ((type === 'skill' || type === 'service') && sectionId) {
+                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    closeMobileSpotlight();
+                });
+            });
+        }
+
+        function performMobileSearch(query) {
+            const lowerQuery = query.toLowerCase().trim();
+            if (!lowerQuery) { renderMobileResults([]); return; }
+            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
+            renderMobileResults(results);
+        }
+
         function openMobileSpotlight() {
             mobileOverlay.classList.add('active');
             mobileInput.value = '';
-            performSearchMobile('');
+            performMobileSearch('');
             setTimeout(() => mobileInput.focus(), 100);
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeMobileSpotlight() {
             mobileOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
-        // Event listeners
-        if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', openMobileSpotlight);
+
+        if (mobileInput) mobileInput.addEventListener('input', (e) => performMobileSearch(e.target.value));
         if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeMobileSpotlight);
-        if (mobileInput) mobileInput.addEventListener('input', (e) => performSearchMobile(e.target.value));
-        
-        // Close mobile spotlight on swipe down (simple click on handle area)
-        const handle = document.querySelector('.mobile-spotlight-handle');
-        if (handle) {
-            handle.addEventListener('click', closeMobileSpotlight);
-        }
-        
-        // Desktop input
-        if (desktopInput) desktopInput.addEventListener('input', (e) => performSearchDesktop(e.target.value));
-        
-        // Keyboard shortcuts
+        if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', openMobileSpotlight);
+        if (mobileOverlay) mobileOverlay.addEventListener('click', (e) => { if (e.target === mobileOverlay) closeMobileSpotlight(); });
+        document.querySelector('.mobile-spotlight-handle')?.addEventListener('click', closeMobileSpotlight);
+
+        // Keyboard shortcuts for desktop
         document.addEventListener('keydown', (e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
                 e.preventDefault();
-                openDesktopSpotlight();
+                if (window.innerWidth >= 1025) openDesktopSpotlight();
             }
-            if (e.key === 'Escape' && desktopOverlay.classList.contains('active')) {
-                closeDesktopSpotlight();
+            if (e.key === 'Escape') {
+                if (desktopOverlay.classList.contains('active')) closeDesktopSpotlight();
+                if (tabletOverlay.classList.contains('active')) closeTabletSpotlight();
+                if (mobileOverlay.classList.contains('active')) closeMobileSpotlight();
             }
         });
-        
-        // Close desktop overlay on outside click
-        desktopOverlay.addEventListener('click', (e) => {
-            if (e.target === desktopOverlay) closeDesktopSpotlight();
-        });
-        
-        // Close mobile spotlight on outside click (backdrop)
-        mobileOverlay.addEventListener('click', (e) => {
-            if (e.target === mobileOverlay) closeMobileSpotlight();
-        });
-        
+
         function renderProducts() {
             const container = document.getElementById('products-grid');
             if (!container) return;
@@ -1092,9 +1277,8 @@
                 container.appendChild(productCard);
             });
         }
-        
         renderProducts();
-        
+
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id) {
             bottomNavItems.forEach(i => {
@@ -1102,7 +1286,6 @@
                 else i.classList.remove('active');
             });
         }
-        
         function scrollTo(id) {
             const el = document.getElementById(id);
             if (el) {
@@ -1110,14 +1293,12 @@
                 setActiveNav(id);
             }
         }
-        
         bottomNavItems.forEach(i => {
             i.addEventListener('click', () => {
                 const s = i.getAttribute('data-section');
                 if (s) scrollTo(s);
             });
         });
-        
         function setActiveOnScroll() {
             const sections = ['about', 'skills', 'services', 'products'];
             const scrollPos = window.scrollY + 100;
@@ -1128,21 +1309,12 @@
             }
             setActiveNav(current || 'about');
         }
-        
         window.addEventListener('scroll', setActiveOnScroll);
         setActiveOnScroll();
-        
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } });
         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-        
         document.querySelectorAll('section').forEach(s => observer.observe(s));
-        
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
