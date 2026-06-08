@@ -235,26 +235,25 @@
             line-height: 1.3;
         }
 
+        /* Products Section - 3x3 Grid Layout */
         .products-grid {
-            column-count: 1 !important;
-            column-gap: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
             width: 100%;
         }
 
         .product-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 14px 12px;
+            border-radius: 16px;
+            padding: 10px 8px;
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
-            display: inline-flex;
+            display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 12px;
-            break-inside: avoid;
-            page-break-inside: avoid;
         }
 
         .product-card:active {
@@ -266,11 +265,11 @@
             width: 100%;
             height: auto;
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-            border-radius: 16px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             overflow: hidden;
             position: relative;
         }
@@ -283,71 +282,72 @@
         }
 
         .product-image i {
-            font-size: 50px;
+            font-size: 40px;
             color: #00d4ff;
             margin-bottom: 0;
             padding: 20px;
         }
 
         .product-card h3 {
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             color: #fff;
+            line-height: 1.3;
         }
 
         .product-card p {
-            font-size: 11px;
+            font-size: 9px;
             color: #a0a0a0;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .product-price {
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 700;
             color: #00d4ff;
-            margin: 6px 0;
+            margin: 4px 0;
         }
 
         .original-price {
-            font-size: 11px;
+            font-size: 9px;
             color: #888;
             text-decoration: line-through;
-            margin-left: 6px;
+            margin-left: 4px;
         }
 
         .trending-badge {
-            font-size: 9px;
+            font-size: 7px;
             color: #ff9800;
             background: rgba(255, 152, 0, 0.15);
-            padding: 3px 8px;
-            border-radius: 20px;
+            padding: 2px 6px;
+            border-radius: 12px;
             display: inline-block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .zazzle-badge {
-            font-size: 9px;
+            font-size: 7px;
             color: #00ff41;
             background: rgba(0, 255, 65, 0.1);
-            padding: 3px 8px;
-            border-radius: 20px;
+            padding: 2px 6px;
+            border-radius: 12px;
             display: inline-block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .buy-btn {
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
             border: none;
-            border-radius: 30px;
-            padding: 8px 12px;
-            font-size: 11px;
+            border-radius: 20px;
+            padding: 6px 8px;
+            font-size: 9px;
             font-weight: 600;
             color: #fff;
             cursor: pointer;
             transition: all 0.2s ease;
             width: 100%;
-            margin-top: 8px;
+            margin-top: 6px;
             text-decoration: none;
             display: inline-block;
             text-align: center;
@@ -355,6 +355,13 @@
 
         .buy-btn:active {
             transform: scale(0.94);
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
 
         @media (min-width: 600px) {
@@ -1015,11 +1022,11 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/static_snow_metallic_button-r45305ba713774b24af999c9e4fadc6ad_ix7scz_1024.jpg?rlvnet=1&max_dim=325" alt="'Static Snow' metallic button" onerror="this.parentElement.innerHTML='<i class=\'fas fa-circle\'></i>'">
                     </div>
-                    <h3>'Static Snow' Metallic Button</h3>
-                    <p>2" square metallic button</p>
-                    <div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>'Static Snow' Button</h3>
+                    <p>2" metallic</p>
+                    <div class="product-price">$3.24<span class="original-price">$3.60</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
 
                 <!-- Product 2: JIMHMAMHMM Pattern White T-Shirt -->
@@ -1027,11 +1034,11 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/jimhmamhmm_pattern_white_t_shirt-re7a872e533b84b5e96c5d4def68f0ed7_k2gm8_1024.jpg?max_dim=325" alt="JIMHMAMHMM Pattern White T-Shirt" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
                     </div>
-                    <h3>JIMHMAMHMM Pattern White T-Shirt</h3>
-                    <p>White pattern t-shirt</p>
-                    <div class="product-price">$21.04<span class="original-price">$26.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 20%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jimhmamhmm_pattern_white_t_shirt-256846965567827904" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>JIMHMAMHMM Pattern</h3>
+                    <p>White T-Shirt</p>
+                    <div class="product-price">$21.04<span class="original-price">$26.30</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/jimhmamhmm_pattern_white_t_shirt-256846965567827904" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
 
                 <!-- Product 3: JIMHMAMHMM All White T-Shirt -->
@@ -1039,11 +1046,11 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/jimhmamhmm_all_white_t_shirt-r6ffbb54eda5a441aba75d7c3e8fd779b_k2gm8_1024.jpg?max_dim=325" alt="JIMHMAMHMM All White T-Shirt" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
                     </div>
-                    <h3>JIMHMAMHMM All White T-Shirt</h3>
-                    <p>All white pattern t-shirt</p>
-                    <div class="product-price">$21.04<span class="original-price">$26.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 20%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>JIMHMAMHMM All White</h3>
+                    <p>T-Shirt</p>
+                    <div class="product-price">$21.04<span class="original-price">$26.30</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
 
                 <!-- Product 4: JISMHMAMHMM Pattern All Black Round Pillow -->
@@ -1051,11 +1058,11 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/jismhmamhmm_pattern_all_black_round_pillow-re733a4ceb833406488bfb570113b1dce_z6i0e_1024.jpg?rlvnet=1&max_dim=325" alt="JISMHMAMHMM Pattern All Black Round Pillow" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
                     </div>
-                    <h3>JISMHMAMHMM Black Round Pillow</h3>
-                    <p>All black pattern round pillow</p>
-                    <div class="product-price">$40.50<span class="original-price">$45.00</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>JISMHMAMHMM Pillow</h3>
+                    <p>Black round pillow</p>
+                    <div class="product-price">$40.50<span class="original-price">$45.00</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
 
                 <!-- Product 5: Jesus Is My Helmet Coffee Mug -->
@@ -1063,11 +1070,11 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-rf9749951bd8e4774bd0df6764c553039_x7jg5_8byvr_1024.jpg?max_dim=325" alt="Jesus Is My Helmet Coffee Mug" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mug-hot\'></i>'">
                     </div>
-                    <h3>Jesus Is My Helmet Coffee Mug</h3>
-                    <p>My Armor, My Heart, My Mind design</p>
-                    <div class="product-price">$13.56<span class="original-price">$15.95</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-256496112367869316" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>Jesus Is My Helmet</h3>
+                    <p>Coffee Mug</p>
+                    <div class="product-price">$13.56<span class="original-price">$15.95</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-256496112367869316" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
 
                 <!-- Product 6: I'm Not A Robot Wrapping Paper Sheets -->
@@ -1075,12 +1082,12 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/im_not_a_robot_wrapping_paper_sheets-rf533767ed29d4c1487f1e249eb0e5418_qky7a_1024.jpg?rlvnet=1&max_dim=325" alt="I'm Not A Robot Wrapping Paper" onerror="this.parentElement.innerHTML='<i class=\'fas fa-gift\'></i>'">
                     </div>
-                    <h3>I'm Not A Robot Wrapping Paper</h3>
-                    <p>Set of 3 wrapping paper sheets</p>
-                    <div class="product-price">$7.79<span class="original-price">$8.65</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
-                    <div class="trending-badge">🔥 Trending · 14+ views</div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/im_not_a_robot_wrapping_paper_sheets-256535853045480459" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>I'm Not A Robot</h3>
+                    <p>Wrapping Paper</p>
+                    <div class="product-price">$7.79<span class="original-price">$8.65</span></div>
+                    <div class="trending-badge">🔥 Trending</div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/im_not_a_robot_wrapping_paper_sheets-256535853045480459" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
 
                 <!-- Product 7: M Monogram Coffee Mug -->
@@ -1088,11 +1095,11 @@
                     <div class="product-image">
                         <img src="https://rlv.zcache.com/m_monogram_coffee_mug-r21f8fa2cc54e4982a142d88e9ab65fc3_x7jg9_8byvr_1024.jpg?max_dim=325" alt="M Monogram Coffee Mug" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mug-hot\'></i>'">
                     </div>
-                    <h3>M Monogram Coffee Mug</h3>
-                    <p>Classic ceramic mug</p>
-                    <div class="product-price">$13.56<span class="original-price">$15.95</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
-                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
-                    <a href="https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                    <h3>M Monogram</h3>
+                    <p>Coffee Mug</p>
+                    <div class="product-price">$13.56<span class="original-price">$15.95</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
                 </div>
             </div>
         </div>
