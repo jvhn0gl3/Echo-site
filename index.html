@@ -13,11 +13,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
-        /* ============================================
-           MOBILE APPLICATION STYLES
-           iOS/Android app feel - no desktop styles
-           ============================================ */
-
         * {
             margin: 0;
             padding: 0;
@@ -41,7 +36,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Main content - full width like a mobile app */
         main {
             margin-left: 0;
             padding: 20px 16px 80px 16px;
@@ -50,14 +44,12 @@
             max-width: 100%;
         }
 
-        /* Container - full width with consistent alignment */
         .container {
             max-width: 100%;
             margin: 0 auto;
             width: 100%;
         }
 
-        /* Section spacing - consistent top/bottom margins */
         section {
             margin-bottom: 40px;
             width: 100%;
@@ -67,7 +59,6 @@
             margin-bottom: 0;
         }
 
-        /* Section Headers - code syntax import style - FULL WIDTH */
         .section-header {
             margin-bottom: 20px;
             padding: 12px 16px;
@@ -114,7 +105,6 @@
             color: #5c6370;
         }
 
-        /* About Section - centered alignment */
         .about {
             display: flex;
             flex-direction: column;
@@ -151,12 +141,6 @@
             object-fit: cover;
         }
 
-        /* ============================================
-           MASONRY GRID STYLES - Applied to ALL sections
-           Google Photos / Pinterest style waterfall layout
-           ============================================ */
-
-        /* Skills Section - Masonry layout */
         .skills-grid {
             column-count: 2;
             column-gap: 12px;
@@ -204,7 +188,6 @@
             line-height: 1.3;
         }
 
-        /* Services Section - Masonry layout */
         .services-grid {
             column-count: 2;
             column-gap: 12px;
@@ -252,7 +235,6 @@
             line-height: 1.3;
         }
 
-        /* Products Section - Full width grid */
         .products-grid {
             column-count: 1 !important;
             column-gap: 12px;
@@ -314,6 +296,12 @@
             color: #fff;
         }
 
+        .product-card p {
+            font-size: 11px;
+            color: #a0a0a0;
+            margin-bottom: 6px;
+        }
+
         .product-price {
             font-size: 16px;
             font-weight: 700;
@@ -359,7 +347,6 @@
             transform: scale(0.94);
         }
 
-        /* Responsive column counts for Skills and Services only */
         @media (min-width: 600px) {
             .skills-grid,
             .services-grid {
@@ -374,11 +361,6 @@
             }
         }
 
-        /* ============================================
-           REVAMPED BUTTONS - NO ARROWS
-           ============================================ */
-
-        /* View More Button - Glass morphism style (no arrow) */
         .view-more-btn {
             background: rgba(0, 212, 255, 0.08);
             border: 1.5px solid rgba(0, 212, 255, 0.4);
@@ -424,7 +406,6 @@
             border-color: #00d4ff;
         }
 
-        /* Get Quote Button - Gradient pulse style */
         .service-modal-contact,
         .skill-modal-contact {
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
@@ -467,7 +448,6 @@
             background: linear-gradient(135deg, #00b8e6, #6a2fc9);
         }
 
-        /* Bottom Navigation Items - Sleek modern style */
         .bottom-nav-item {
             display: flex;
             flex-direction: column;
@@ -514,7 +494,6 @@
             transform: scale(0.9);
         }
 
-        /* Accessibility Modal Buttons - Toggle switch style */
         .opt button {
             padding: 8px 20px;
             background: rgba(255, 255, 255, 0.08);
@@ -539,7 +518,6 @@
             box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
         }
 
-        /* Modal Close Button - Minimal round style */
         .modal-close,
         .service-modal-close {
             background: rgba(255, 255, 255, 0.05);
@@ -563,7 +541,6 @@
             color: #fff;
         }
 
-        /* Skill Detail Modal */
         .skill-modal {
             position: fixed;
             top: 0;
@@ -636,7 +613,6 @@
             margin-bottom: 8px;
         }
 
-        /* Service Detail Modal */
         .service-modal {
             position: fixed;
             top: 0;
@@ -709,7 +685,6 @@
             margin-bottom: 8px;
         }
 
-        /* Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -725,7 +700,6 @@
             z-index: 100;
         }
 
-        /* Accessibility Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -781,7 +755,6 @@
             width: 100%;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -797,7 +770,6 @@
             animation: fadeInUp 0.4s ease-out forwards;
         }
 
-        /* Skip link */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -816,7 +788,6 @@
             top: 16px;
         }
 
-        /* Accessibility Modes */
         body.high-contrast {
             background: #000;
             color: #fff;
@@ -1064,12 +1035,23 @@
                     <div class="zazzle-badge">✨ Powered by Zazzle</div>
                     <a href="https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
                 </div>
+
+                <!-- Product 4: JISMHMAMHMM Pattern All Black Round Pillow -->
+                <div class="product-card" data-product="jismhmamhmm-pillow">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/jismhmamhmm_pattern_all_black_round_pillow-re733a4ceb833406488bfb570113b1dce_z6i0e_1024.jpg?rlvnet=1&max_dim=325" alt="JISMHMAMHMM Pattern All Black Round Pillow" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
+                    </div>
+                    <h3>JISMHMAMHMM Black Round Pillow</h3>
+                    <p>All black pattern round pillow</p>
+                    <div class="product-price">$40.50<span class="original-price">$45.00</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
-<!-- Bottom Navigation Bar - Mobile App Style -->
 <div class="bottom-nav">
     <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
@@ -1088,7 +1070,6 @@
     </div>
 </div>
 
-<!-- Skill Detail Modal -->
 <div id="skillModal" class="skill-modal">
     <div class="skill-modal-content">
         <div class="skill-modal-header">
@@ -1110,7 +1091,6 @@
     </div>
 </div>
 
-<!-- Service Detail Modal -->
 <div id="serviceModal" class="service-modal">
     <div class="service-modal-content">
         <div class="service-modal-header">
@@ -1133,7 +1113,6 @@
 
 <script>
     (function(){
-        // Helper function to open email client with pre-filled content
         function sendInquiry(subject, body) {
             const email = 'jo783750@gmail.com';
             const encodedSubject = encodeURIComponent(subject);
@@ -1141,7 +1120,6 @@
             window.location.href = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
         }
         
-        // Skill details database
         const skillDetails = {
             'frontend': {
                 title: 'Frontend Development',
@@ -1223,7 +1201,6 @@
             }
         };
         
-        // Service details database
         const serviceDetails = {
             'logo-design': {
                 title: 'Logo Design',
@@ -1323,11 +1300,9 @@
             }
         };
         
-        // Track current modal context for email pre-fill
         let currentSkillTitle = '';
         let currentServiceTitle = '';
         
-        // Skill Modal elements
         const skillModal = document.getElementById('skillModal');
         const closeSkillModalBtn = document.getElementById('closeSkillModalBtn');
         const skillModalTitle = document.getElementById('skillModalTitle');
@@ -1336,7 +1311,6 @@
         const skillModalTech = document.getElementById('skillModalTech');
         const hireMeBtn = document.getElementById('hireMeBtn');
         
-        // Service Modal elements
         const serviceModal = document.getElementById('serviceModal');
         const closeServiceModalBtn = document.getElementById('closeServiceModalBtn');
         const serviceModalTitle = document.getElementById('serviceModalTitle');
@@ -1345,7 +1319,6 @@
         const serviceModalFeatures = document.getElementById('serviceModalFeatures');
         const getQuoteBtn = document.getElementById('getQuoteBtn');
         
-        // Attach click handlers to skill cards
         const skillCards = document.querySelectorAll('.skill-card');
         skillCards.forEach((card) => {
             const skillId = card.getAttribute('data-skill');
@@ -1358,7 +1331,6 @@
             }
         });
         
-        // Attach click handlers to service cards
         const serviceCards = document.querySelectorAll('.service-card');
         serviceCards.forEach((card) => {
             const serviceId = card.getAttribute('data-service');
@@ -1371,7 +1343,6 @@
             }
         });
         
-        // Open Skill Modal
         function openSkillModal(skillId) {
             const details = skillDetails[skillId];
             if (details && skillModal) {
@@ -1385,7 +1356,6 @@
             }
         }
         
-        // Close Skill Modal
         function closeSkillModal() {
             if (skillModal) {
                 skillModal.classList.remove('active');
@@ -1394,7 +1364,6 @@
             }
         }
         
-        // Open Service Modal
         function openServiceModal(serviceId) {
             const details = serviceDetails[serviceId];
             if (details && serviceModal) {
@@ -1408,7 +1377,6 @@
             }
         }
         
-        // Close Service Modal
         function closeServiceModal() {
             if (serviceModal) {
                 serviceModal.classList.remove('active');
@@ -1417,7 +1385,6 @@
             }
         }
         
-        // Hire Me button handler - pre-filled email
         if (hireMeBtn) {
             hireMeBtn.addEventListener('click', function() {
                 const subject = `Inquiry about ${currentSkillTitle || 'Development Services'}`;
@@ -1426,7 +1393,6 @@
             });
         }
         
-        // Get Quote button handler - pre-filled email
         if (getQuoteBtn) {
             getQuoteBtn.addEventListener('click', function() {
                 const subject = `Quote Request: ${currentServiceTitle || 'Service Inquiry'}`;
@@ -1435,7 +1401,6 @@
             });
         }
         
-        // Close buttons
         if (closeSkillModalBtn) {
             closeSkillModalBtn.addEventListener('click', closeSkillModal);
         }
@@ -1443,7 +1408,6 @@
             closeServiceModalBtn.addEventListener('click', closeServiceModal);
         }
         
-        // Close modals when clicking outside
         if (skillModal) {
             skillModal.addEventListener('click', (e) => {
                 if (e.target === skillModal) closeSkillModal();
@@ -1455,7 +1419,6 @@
             });
         }
         
-        // Bottom navigation active state
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id){
             bottomNavItems.forEach(i=>{
@@ -1494,7 +1457,6 @@
         window.addEventListener('scroll', setActiveOnScroll);
         setActiveOnScroll();
         
-        // Accessibility modal handling
         let a11yBtn = document.getElementById('a11yNavBtn');
         let modalEl = document.getElementById('a11yModal');
         let closeBtn = document.getElementById('closeModalBtn');
