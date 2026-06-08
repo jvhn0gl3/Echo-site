@@ -11,7 +11,922 @@
     <title>V3 | Digital Architect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
-    <link rel="stylesheet" href="kernel.css" />
+    
+    <style>
+        /* ============================================
+           MOBILE APPLICATION STYLES
+           iOS/Android app feel - no desktop styles
+           ============================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #050505;
+        }
+
+        body {
+            background: #050505;
+            color: #e8e8e8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Main content - full width like a mobile app */
+        main {
+            margin-left: 0;
+            padding: 20px 16px 80px 16px;
+            flex: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Container - full width with consistent alignment */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Section spacing - consistent top/bottom margins */
+        section {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Section Headers - code syntax import style - FULL WIDTH */
+        .section-header {
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid #00d4ff;
+            border-radius: 0 12px 12px 0;
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            width: 100%;
+        }
+
+        .section-header h2 {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #00d4ff;
+            letter-spacing: -0.3px;
+            word-break: break-word;
+        }
+
+        .section-header h2 .keyword {
+            color: #c678dd;
+        }
+
+        .section-header h2 .string {
+            color: #98c379;
+        }
+
+        .section-header h2 .variable {
+            color: #e06c75;
+        }
+
+        .section-header h2 .function {
+            color: #61afef;
+        }
+
+        .section-header p {
+            color: #7e8a9a;
+            font-size: 11px;
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            letter-spacing: -0.2px;
+        }
+
+        .section-header p .comment {
+            color: #5c6370;
+        }
+
+        /* About Section - centered alignment */
+        .about {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .about-text {
+            width: 100%;
+        }
+
+        .about-text p {
+            color: #c0c0c0;
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            width: 100%;
+        }
+
+        .about-img {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .about-img img {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
+            object-fit: cover;
+        }
+
+        /* ============================================
+           MASONRY GRID STYLES - Applied to ALL sections
+           Google Photos / Pinterest style waterfall layout
+           ============================================ */
+
+        /* Skills Section - Masonry layout */
+        .skills-grid {
+            column-count: 2;
+            column-gap: 12px;
+            width: 100%;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .skill-card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .skill-card i {
+            font-size: 28px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .skill-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .skill-card p {
+            color: #a0a0a0;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        /* Services Section - Masonry layout */
+        .services-grid {
+            column-count: 2;
+            column-gap: 12px;
+            width: 100%;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 20px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .service-card:active {
+            transform: scale(0.96);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(124, 58, 237, 0.12));
+        }
+
+        .service-card i {
+            font-size: 28px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .service-card p {
+            color: #a0a0a0;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        /* Products Section - Full width temporary */
+        .products-grid {
+            column-count: 1 !important;
+            column-gap: 12px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 14px 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .product-card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Responsive column counts for Skills and Services only */
+        @media (min-width: 600px) {
+            .skills-grid,
+            .services-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .skills-grid,
+            .services-grid {
+                column-count: 4;
+            }
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .product-image i {
+            font-size: 50px;
+            color: #00d4ff;
+            margin-bottom: 0;
+            padding: 20px;
+        }
+
+        .sold-out-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ff4444;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ff4444;
+            z-index: 2;
+        }
+
+        .product-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin: 6px 0;
+        }
+
+        .original-price {
+            font-size: 11px;
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .sold-out-price {
+            color: #888;
+        }
+
+        .zazzle-badge {
+            font-size: 9px;
+            color: #00ff41;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .trending-badge {
+            font-size: 9px;
+            color: #ff9800;
+            background: rgba(255, 152, 0, 0.15);
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 30px;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 8px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.94);
+        }
+
+        .sold-out-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        .sold-out-btn:active {
+            transform: none;
+        }
+
+        /* ============================================
+           REVAMPED BUTTONS - NO ARROWS
+           ============================================ */
+
+        /* View More Button - Glass morphism style (no arrow) */
+        .view-more-btn {
+            background: rgba(0, 212, 255, 0.08);
+            border: 1.5px solid rgba(0, 212, 255, 0.4);
+            border-radius: 30px;
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .view-more-btn:active::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        .view-more-btn:active {
+            transform: scale(0.94);
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        /* Get Quote Button - Gradient pulse style */
+        .service-modal-contact,
+        .skill-modal-contact {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 14px;
+            padding: 14px 20px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-modal-contact::before,
+        .skill-modal-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-modal-contact:hover::before,
+        .skill-modal-contact:hover::before {
+            left: 100%;
+        }
+
+        .service-modal-contact:active,
+        .skill-modal-contact:active {
+            transform: scale(0.96);
+            background: linear-gradient(135deg, #00b8e6, #6a2fc9);
+        }
+
+        /* Bottom Navigation Items - Sleek modern style */
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: #7e7e8e;
+            font-size: 10px;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            flex: 1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .bottom-nav-item i {
+            font-size: 22px;
+            margin-bottom: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .bottom-nav-item span {
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item.active {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.15);
+        }
+
+        .bottom-nav-item.active i {
+            transform: translateY(-2px);
+        }
+
+        .bottom-nav-item:active {
+            transform: scale(0.92);
+        }
+
+        .bottom-nav-item:active i {
+            transform: scale(0.9);
+        }
+
+        /* Accessibility Modal Buttons - Toggle switch style */
+        .opt button {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .opt button:active {
+            transform: scale(0.94);
+        }
+
+        .opt button.active {
+            background: #00ff41;
+            border-color: #00ff41;
+            color: #000;
+            box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
+        }
+
+        /* Modal Close Button - Minimal round style */
+        .modal-close,
+        .service-modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:active,
+        .service-modal-close:active {
+            transform: scale(0.9);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Skill Detail Modal */
+        .skill-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skill-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .skill-modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+
+        .skill-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .skill-modal-header h3 {
+            font-size: 20px;
+            color: #00d4ff;
+        }
+
+        .skill-modal-icon {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 16px;
+        }
+
+        .skill-modal-description {
+            color: #c0c0c0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .skill-modal-tech {
+            text-align: left;
+            margin: 16px 0;
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .skill-modal-tech li {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        /* Service Detail Modal */
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .service-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+
+        .service-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .service-modal-header h3 {
+            font-size: 20px;
+            color: #00d4ff;
+        }
+
+        .service-modal-icon {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 16px;
+        }
+
+        .service-modal-description {
+            color: #c0c0c0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .service-modal-features {
+            text-align: left;
+            margin: 16px 0;
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .service-modal-features li {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 16px 20px;
+            z-index: 100;
+        }
+
+        /* Accessibility Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 28px;
+            padding: 24px 20px;
+            max-width: 320px;
+            width: 85%;
+            text-align: center;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            color: #00d4ff;
+        }
+
+        .opt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 15px;
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        /* Skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 16px;
+            background: #00d4ff;
+            color: #000;
+            padding: 10px 16px;
+            text-decoration: none;
+            z-index: 1001;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+
+        /* Accessibility Modes */
+        body.high-contrast {
+            background: #000;
+            color: #fff;
+        }
+
+        body.high-contrast .modal-content,
+        body.high-contrast .skill-card,
+        body.high-contrast .service-card,
+        body.high-contrast .product-card,
+        body.high-contrast .service-modal-content,
+        body.high-contrast .skill-modal-content,
+        body.high-contrast .section-header {
+            background: #000;
+            border-color: #fff;
+        }
+
+        body.high-contrast .section-header h2 {
+            color: #fff;
+        }
+
+        body.high-contrast .bottom-nav-item.active {
+            background: #fff;
+            color: #000;
+        }
+
+        body.large-text {
+            font-size: 18px;
+        }
+
+        body.large-text p,
+        body.large-text .skill-card p,
+        body.large-text .service-card p,
+        body.large-text .product-card p {
+            font-size: 14px;
+        }
+
+        body.large-text .skill-card h3,
+        body.large-text .service-card h3,
+        body.large-text .product-card h3 {
+            font-size: 17px;
+        }
+
+        body.large-text .section-header h2 {
+            font-size: 17px;
+        }
+
+        body.dyslexic-font,
+        body.dyslexic-font * {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+            letter-spacing: 0.05em;
+            word-spacing: 0.1em;
+            line-height: 1.6;
+        }
+
+        body.reduce-motion * {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+
+        body.reduce-motion .bottom-nav-item:active,
+        body.reduce-motion .skill-card:active,
+        body.reduce-motion .service-card:active,
+        body.reduce-motion .product-card:active,
+        body.reduce-motion .view-more-btn:active,
+        body.reduce-motion .buy-btn:active,
+        body.reduce-motion .service-modal-contact:active,
+        body.reduce-motion .skill-modal-contact:active {
+            transform: none !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -151,13 +1066,142 @@
                     <span class="keyword">from</span>
                     <span class="string">'@v3/shop'</span>
                 </h2>
-                <p><span class="comment">// Official merchandise · Coming soon</span></p>
+                <p><span class="comment">// Official merchandise · Payment & shipping via Zazzle</span></p>
             </div>
             <div class="products-grid">
-                <div class="empty-store">
-                    <i class="fas fa-store"></i>
-                    <p>No products available at the moment.</p>
-                    <p style="font-size: 12px; margin-top: 8px;">Check back soon for new merchandise!</p>
+                <!-- Product 1: Static Snow Metallic Button -->
+                <div class="product-card" data-product="static-snow-button">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/static_snow_metallic_button-r45305ba713774b24af999c9e4fadc6ad_ix7scz_1024.jpg?rlvnet=1&max_dim=325" alt="Static Snow metallic button" onerror="this.parentElement.innerHTML='<i class=\'fas fa-circle\'></i>'">
+                    </div>
+                    <h3>Static Snow Metallic Button</h3>
+                    <p>2" square metallic button</p>
+                    <div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 2: JIMHMAMHMM Pattern White T-Shirt -->
+                <div class="product-card" data-product="jimhmamhmm-tshirt">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/jimhmamhmm_pattern_white_t_shirt-re7a872e533b84b5e96c5d4def68f0ed7_k2gm8_1024.jpg?max_dim=325" alt="JIMHMAMHMM Pattern White T-Shirt" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
+                    </div>
+                    <h3>JIMHMAMHMM Pattern T-Shirt</h3>
+                    <p>White pattern t-shirt</p>
+                    <div class="product-price">$21.04<span class="original-price">$26.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 20%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/jimhmamhmm_pattern_white_t_shirt-256846965567827904" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 3: JIMHMAMHMM All White T-Shirt -->
+                <div class="product-card" data-product="jimhmamhmm-allwhite">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/jimhmamhmm_all_white_t_shirt-r6ffbb54eda5a441aba75d7c3e8fd779b_k2gm8_1024.jpg?max_dim=325" alt="JIMHMAMHMM All White T-Shirt" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
+                    </div>
+                    <h3>JIMHMAMHMM All White T-Shirt</h3>
+                    <p>All white pattern t-shirt</p>
+                    <div class="product-price">$21.04<span class="original-price">$26.30</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 20%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 4: JISMHMAMHMM Pattern All Black Round Pillow -->
+                <div class="product-card" data-product="jismhmamhmm-pillow">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/jismhmamhmm_pattern_all_black_round_pillow-re733a4ceb833406488bfb570113b1dce_z6i0e_1024.jpg?rlvnet=1&max_dim=325" alt="JISMHMAMHMM Pattern All Black Round Pillow" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
+                    </div>
+                    <h3>JISMHMAMHMM Black Round Pillow</h3>
+                    <p>All black pattern round pillow</p>
+                    <div class="product-price">$40.50<span class="original-price">$45.00</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 5: Jesus Is My Helmet Coffee Mug -->
+                <div class="product-card" data-product="jesus-helmet-mug">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-rf9749951bd8e4774bd0df6764c553039_x7jg5_8byvr_1024.jpg?max_dim=325" alt="Jesus Is My Helmet Coffee Mug" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mug-hot\'></i>'">
+                    </div>
+                    <h3>Jesus Is My Helmet Coffee Mug</h3>
+                    <p>My Armor, My Heart, My Mind design</p>
+                    <div class="product-price">$13.56<span class="original-price">$15.95</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-256496112367869316" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 6: I'm Not A Robot Wrapping Paper Sheets -->
+                <div class="product-card" data-product="not-a-robot-wrapping">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/im_not_a_robot_wrapping_paper_sheets-rf533767ed29d4c1487f1e249eb0e5418_qky7a_1024.jpg?rlvnet=1&max_dim=325" alt="I'm Not A Robot Wrapping Paper" onerror="this.parentElement.innerHTML='<i class=\'fas fa-gift\'></i>'">
+                    </div>
+                    <h3>I'm Not A Robot Wrapping Paper</h3>
+                    <p>Set of 3 wrapping paper sheets</p>
+                    <div class="product-price">$7.79<span class="original-price">$8.65</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="trending-badge">🔥 Trending · 14+ views</div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/im_not_a_robot_wrapping_paper_sheets-256535853045480459" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 7: M Monogram Coffee Mug -->
+                <div class="product-card" data-product="m-monogram-mug">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/m_monogram_coffee_mug-r21f8fa2cc54e4982a142d88e9ab65fc3_x7jg9_8byvr_1024.jpg?max_dim=325" alt="M Monogram Coffee Mug" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mug-hot\'></i>'">
+                    </div>
+                    <h3>M Monogram Coffee Mug</h3>
+                    <p>Classic ceramic mug</p>
+                    <div class="product-price">$13.56<span class="original-price">$15.95</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 15%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 8: Watch What You Say Wireless Charger (Sold Out) -->
+                <div class="product-card" data-product="watch-what-you-say-charger">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/watch_what_you_say_wireless_charger-r4fc6624fae0b457e9849ec6f7afaa4ba_s5511_1024.jpg?rlvnet=1&max_dim=325" alt="Watch What You Say Wireless Charger" onerror="this.parentElement.innerHTML='<i class=\'fas fa-charging-station\'></i>'">
+                        <div class="sold-out-badge">SOLD OUT</div>
+                    </div>
+                    <h3>Watch What You Say Wireless Charger</h3>
+                    <p>Qi-enabled fast charging pad</p>
+                    <div class="product-price sold-out-price">$38.66<span class="original-price">$42.95</span><span style="font-size:10px;color:#888; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/watch_what_you_say_wireless_charger-256239440038678708" target="_blank" class="buy-btn sold-out-btn" rel="noopener">Sold Out - Notify Me</a>
+                </div>
+
+                <!-- Product 9: Death Is Only The Beginning Wireless Charger (Sold Out) -->
+                <div class="product-card" data-product="death-is-beginning-charger">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/death_is_only_the_beginning_wireless_charger-r1ef09e7755f94cb386b165e4f2cd2f73_s551g_1024.jpg?rlvnet=1&max_dim=325" alt="Death Is Only The Beginning Wireless Charger" onerror="this.parentElement.innerHTML='<i class=\'fas fa-charging-station\'></i>'">
+                        <div class="sold-out-badge">SOLD OUT</div>
+                    </div>
+                    <h3>Death Is Only The Beginning Charger</h3>
+                    <p>Wireless charging pad</p>
+                    <div class="product-price sold-out-price">$38.66<span class="original-price">$42.95</span><span style="font-size:10px;color:#888; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/death_is_only_the_beginning_wireless_charger-256201869212628736" target="_blank" class="buy-btn sold-out-btn" rel="noopener">Sold Out - Notify Me</a>
+                </div>
+
+                <!-- Product 10: Death Is Only The Beginning Mouse Pad -->
+                <div class="product-card" data-product="death-is-beginning-mousepad">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/death_is_only_the_beginning_mouse_pad-r6d509c2bf9934c0db2318a8bf5c9131d_x74vi_8byvr_1024.jpg?max_dim=325" alt="Death Is Only The Beginning Mouse Pad" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mouse-pointer\'></i>'">
+                    </div>
+                    <h3>Death Is Only The Beginning Mouse Pad</h3>
+                    <p>Desktop mouse pad</p>
+                    <div class="product-price">$11.34<span class="original-price">$12.60</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/death_is_only_the_beginning_mouse_pad-256894035422871959" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
+                </div>
+
+                <!-- Product 11: Death Is Only The Begining Throw Pillow -->
+                <div class="product-card" data-product="death-is-beginning-pillow">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/death_is_only_the_begining_throw_pillow-rff1b1f9d99c44a4db12d7b08e777fabf_4gu9g_8byvr_1024.jpg?max_dim=325" alt="Death Is Only The Begining Throw Pillow" onerror="this.parentElement.innerHTML='<i class=\'fas fa-tshirt\'></i>'">
+                    </div>
+                    <h3>Death Is Only The Begining Pillow</h3>
+                    <p>16" throw pillow</p>
+                    <div class="product-price">$31.01<span class="original-price">$34.45</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
                 </div>
             </div>
         </div>
@@ -226,6 +1270,450 @@
     </div>
 </div>
 
-<script src="module.js"></script>
+<script>
+    (function(){
+        // Helper function to open email client with pre-filled content
+        function sendInquiry(subject, body) {
+            const email = 'jo783750@gmail.com';
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            window.location.href = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
+        }
+        
+        // Skill details database
+        const skillDetails = {
+            'frontend': {
+                title: 'Frontend Development',
+                icon: 'fa-brands fa-react',
+                description: 'Expert frontend development using the latest frameworks and best practices.',
+                tech: [
+                    '✓ React.js & Next.js',
+                    '✓ Vue.js & Nuxt.js',
+                    '✓ Angular',
+                    '✓ TypeScript',
+                    '✓ Tailwind CSS / SCSS',
+                    '✓ State Management (Redux, Vuex, NgRx)'
+                ]
+            },
+            'backend': {
+                title: 'Backend Development',
+                icon: 'fa-solid fa-server',
+                description: 'Robust and scalable backend systems to power your applications.',
+                tech: [
+                    '✓ Node.js / Express',
+                    '✓ Python / Django / FastAPI',
+                    '✓ Go / Gin',
+                    '✓ Java / Spring Boot',
+                    '✓ RESTful APIs & GraphQL',
+                    '✓ Microservices Architecture'
+                ]
+            },
+            'database': {
+                title: 'Database Engineering',
+                icon: 'fa-solid fa-database',
+                description: 'Efficient data storage and retrieval with modern database solutions.',
+                tech: [
+                    '✓ PostgreSQL',
+                    '✓ MongoDB',
+                    '✓ Redis',
+                    '✓ MySQL',
+                    '✓ Database Design & Optimization',
+                    '✓ Data Migration & Backup'
+                ]
+            },
+            'cloud': {
+                title: 'Cloud Architecture',
+                icon: 'fa-solid fa-cloud',
+                description: 'Expert cloud infrastructure and deployment strategies.',
+                tech: [
+                    '✓ AWS (EC2, S3, Lambda, RDS)',
+                    '✓ Azure',
+                    '✓ Google Cloud Platform',
+                    '✓ Docker & Kubernetes',
+                    '✓ Infrastructure as Code (Terraform)',
+                    '✓ Serverless Architecture'
+                ]
+            },
+            'mobile': {
+                title: 'Mobile Development',
+                icon: 'fa-solid fa-mobile-alt',
+                description: 'Cross-platform mobile applications with native performance.',
+                tech: [
+                    '✓ React Native',
+                    '✓ Flutter',
+                    '✓ Swift (iOS)',
+                    '✓ Kotlin (Android)',
+                    '✓ App Store & Play Store Deployment',
+                    '✓ Mobile UI/UX Best Practices'
+                ]
+            },
+            'devops': {
+                title: 'DevOps & CI/CD',
+                icon: 'fa-solid fa-code-branch',
+                description: 'Streamlined development workflows and automated deployments.',
+                tech: [
+                    '✓ CI/CD Pipelines',
+                    '✓ Jenkins / GitHub Actions',
+                    '✓ Git & Version Control',
+                    '✓ Automated Testing',
+                    '✓ Monitoring & Logging',
+                    '✓ Performance Optimization'
+                ]
+            }
+        };
+        
+        // Service details database
+        const serviceDetails = {
+            'logo-design': {
+                title: 'Logo Design',
+                icon: 'fa-pen-nib',
+                description: 'Professional logo design that captures your brand\'s essence and makes a lasting impression.',
+                features: [
+                    '✓ Custom concept development',
+                    '✓ Multiple revision rounds',
+                    '✓ Vector files + all formats',
+                    '✓ Brand guidelines included',
+                    '✓ Color palette suggestions'
+                ]
+            },
+            'web-dev': {
+                title: 'Web Development',
+                icon: 'fa-laptop-code',
+                description: 'Full-stack web development using modern frameworks and best practices.',
+                features: [
+                    '✓ Responsive mobile-first design',
+                    '✓ Modern frameworks (React, Vue, Angular)',
+                    '✓ Backend APIs (Node.js, Python, Go)',
+                    '✓ Database integration',
+                    '✓ Performance optimization'
+                ]
+            },
+            'ui-ux': {
+                title: 'UI/UX Design',
+                icon: 'fa-palette',
+                description: 'Beautiful, intuitive interfaces designed with user experience at the core.',
+                features: [
+                    '✓ User research & personas',
+                    '✓ Wireframing & prototyping',
+                    '✓ High-fidelity mockups',
+                    '✓ Usability testing',
+                    '✓ Design systems & components'
+                ]
+            },
+            'consulting': {
+                title: 'Tech Consulting',
+                icon: 'fa-chart-line',
+                description: 'Expert technical advice to help you make the right architectural decisions.',
+                features: [
+                    '✓ Architecture review',
+                    '✓ Technology stack selection',
+                    '✓ Scalability planning',
+                    '✓ Code quality assessment',
+                    '✓ Team mentorship'
+                ]
+            },
+            'performance': {
+                title: 'Performance Optimization',
+                icon: 'fa-rocket',
+                description: 'Speed up your applications and improve user experience with performance tuning.',
+                features: [
+                    '✓ Load time analysis',
+                    '✓ Core Web Vitals optimization',
+                    '✓ Code splitting & lazy loading',
+                    '✓ Caching strategies',
+                    '✓ Database query optimization'
+                ]
+            },
+            'security': {
+                title: 'Security Audits',
+                icon: 'fa-shield-alt',
+                description: 'Comprehensive security assessments to identify and fix vulnerabilities.',
+                features: [
+                    '✓ Vulnerability scanning',
+                    '✓ Penetration testing',
+                    '✓ Code security review',
+                    '✓ Dependency analysis',
+                    '✓ Security best practices implementation'
+                ]
+            },
+            'maintenance': {
+                title: 'Maintenance & Support',
+                icon: 'fa-headset',
+                description: 'Ongoing support to keep your applications running smoothly.',
+                features: [
+                    '✓ 24/7 monitoring',
+                    '✓ Bug fixes & patches',
+                    '✓ Regular updates',
+                    '✓ Performance monitoring',
+                    '✓ Emergency response'
+                ]
+            },
+            'cloud': {
+                title: 'Cloud Migration',
+                icon: 'fa-cloud-upload-alt',
+                description: 'Seamless migration to cloud platforms with minimal downtime.',
+                features: [
+                    '✓ AWS, Azure, GCP expertise',
+                    '✓ Migration strategy planning',
+                    '✓ Cost optimization',
+                    '✓ Infrastructure as Code',
+                    '✓ CI/CD pipeline setup'
+                ]
+            }
+        };
+        
+        // Track current modal context for email pre-fill
+        let currentSkillTitle = '';
+        let currentServiceTitle = '';
+        
+        // Skill Modal elements
+        const skillModal = document.getElementById('skillModal');
+        const closeSkillModalBtn = document.getElementById('closeSkillModalBtn');
+        const skillModalTitle = document.getElementById('skillModalTitle');
+        const skillModalIcon = document.getElementById('skillModalIcon');
+        const skillModalDescription = document.getElementById('skillModalDescription');
+        const skillModalTech = document.getElementById('skillModalTech');
+        const hireMeBtn = document.getElementById('hireMeBtn');
+        
+        // Service Modal elements
+        const serviceModal = document.getElementById('serviceModal');
+        const closeServiceModalBtn = document.getElementById('closeServiceModalBtn');
+        const serviceModalTitle = document.getElementById('serviceModalTitle');
+        const serviceModalIcon = document.getElementById('serviceModalIcon');
+        const serviceModalDescription = document.getElementById('serviceModalDescription');
+        const serviceModalFeatures = document.getElementById('serviceModalFeatures');
+        const getQuoteBtn = document.getElementById('getQuoteBtn');
+        
+        // Attach click handlers to skill cards
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach((card) => {
+            const skillId = card.getAttribute('data-skill');
+            if (skillId) {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('view-more-btn')) {
+                        openSkillModal(skillId);
+                    }
+                });
+            }
+        });
+        
+        // Attach click handlers to service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card) => {
+            const serviceId = card.getAttribute('data-service');
+            if (serviceId) {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('view-more-btn')) {
+                        openServiceModal(serviceId);
+                    }
+                });
+            }
+        });
+        
+        // Open Skill Modal
+        function openSkillModal(skillId) {
+            const details = skillDetails[skillId];
+            if (details && skillModal) {
+                currentSkillTitle = details.title;
+                skillModalTitle.textContent = details.title;
+                skillModalIcon.innerHTML = `<i class="${details.icon}"></i>`;
+                skillModalDescription.textContent = details.description;
+                skillModalTech.innerHTML = details.tech.map(t => `<li>${t}</li>`).join('');
+                skillModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Close Skill Modal
+        function closeSkillModal() {
+            if (skillModal) {
+                skillModal.classList.remove('active');
+                document.body.style.overflow = '';
+                currentSkillTitle = '';
+            }
+        }
+        
+        // Open Service Modal
+        function openServiceModal(serviceId) {
+            const details = serviceDetails[serviceId];
+            if (details && serviceModal) {
+                currentServiceTitle = details.title;
+                serviceModalTitle.textContent = details.title;
+                serviceModalIcon.innerHTML = `<i class="fa-solid ${details.icon}"></i>`;
+                serviceModalDescription.textContent = details.description;
+                serviceModalFeatures.innerHTML = details.features.map(f => `<li>${f}</li>`).join('');
+                serviceModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Close Service Modal
+        function closeServiceModal() {
+            if (serviceModal) {
+                serviceModal.classList.remove('active');
+                document.body.style.overflow = '';
+                currentServiceTitle = '';
+            }
+        }
+        
+        // Hire Me button handler - pre-filled email
+        if (hireMeBtn) {
+            hireMeBtn.addEventListener('click', function() {
+                const subject = `Inquiry about ${currentSkillTitle || 'Development Services'}`;
+                const body = `Hello V3,%0D%0A%0D%0AI'm interested in learning more about your ${currentSkillTitle || 'development services'}.%0D%0A%0D%0AHere's a bit about my project:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AProject Description: %0D%0ATimeline: %0D%0ABudget: %0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0ALooking forward to hearing from you!%0D%0A%0D%0ABest regards`;
+                sendInquiry(subject, body);
+            });
+        }
+        
+        // Get Quote button handler - pre-filled email
+        if (getQuoteBtn) {
+            getQuoteBtn.addEventListener('click', function() {
+                const subject = `Quote Request: ${currentServiceTitle || 'Service Inquiry'}`;
+                const body = `Hello V3,%0D%0A%0D%0AI'd like to request a quote for your ${currentServiceTitle || 'services'}.%0D%0A%0D%0AHere are my requirements:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AProject Details: %0D%0ABudget Range: %0D%0ATarget Date: %0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+                sendInquiry(subject, body);
+            });
+        }
+        
+        // Close buttons
+        if (closeSkillModalBtn) {
+            closeSkillModalBtn.addEventListener('click', closeSkillModal);
+        }
+        if (closeServiceModalBtn) {
+            closeServiceModalBtn.addEventListener('click', closeServiceModal);
+        }
+        
+        // Close modals when clicking outside
+        if (skillModal) {
+            skillModal.addEventListener('click', (e) => {
+                if (e.target === skillModal) closeSkillModal();
+            });
+        }
+        if (serviceModal) {
+            serviceModal.addEventListener('click', (e) => {
+                if (e.target === serviceModal) closeServiceModal();
+            });
+        }
+        
+        // Bottom navigation active state
+        let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
+        function setActiveNav(id){
+            bottomNavItems.forEach(i=>{
+                if(i.getAttribute('data-section') === id) i.classList.add('active');
+                else i.classList.remove('active');
+            });
+        }
+        
+        function scrollTo(id){
+            let el = document.getElementById(id);
+            if(el){
+                el.scrollIntoView({behavior:'smooth',block:'start'});
+                setActiveNav(id);
+            }
+        }
+        
+        bottomNavItems.forEach(i=>{
+            i.addEventListener('click',()=>{
+                let s = i.getAttribute('data-section');
+                scrollTo(s);
+            });
+        });
+        
+        function setActiveOnScroll(){
+            let sections = ['about', 'skills', 'services', 'products'];
+            let scrollPos = window.scrollY + 100;
+            let current = '';
+            for(let s of sections){
+                let sec = document.getElementById(s);
+                if(sec && sec.offsetTop <= scrollPos) current = s;
+            }
+            if(current) setActiveNav(current);
+            else setActiveNav('about');
+        }
+        
+        window.addEventListener('scroll', setActiveOnScroll);
+        setActiveOnScroll();
+        
+        // Accessibility modal handling
+        let a11yBtn = document.getElementById('a11yNavBtn');
+        let modalEl = document.getElementById('a11yModal');
+        let closeBtn = document.getElementById('closeModalBtn');
+        
+        function updateBtns(){
+            let hc = document.getElementById('highContrastBtn');
+            let lt = document.getElementById('largeTextBtn');
+            let df = document.getElementById('dyslexicFontBtn');
+            let rm = document.getElementById('reduceMotionBtn');
+            let ha = document.body.classList.contains('high-contrast');
+            let la = document.body.classList.contains('large-text');
+            let da = document.body.classList.contains('dyslexic-font');
+            let ra = document.body.classList.contains('reduce-motion');
+            if(hc){ hc.textContent = ha ? 'On' : 'Off'; hc.classList.toggle('active', ha); }
+            if(lt){ lt.textContent = la ? 'On' : 'Off'; lt.classList.toggle('active', la); }
+            if(df){ df.textContent = da ? 'On' : 'Off'; df.classList.toggle('active', da); }
+            if(rm){ rm.textContent = ra ? 'On' : 'Off'; rm.classList.toggle('active', ra); }
+        }
+        
+        if(a11yBtn && modalEl){
+            a11yBtn.addEventListener('click', function(){
+                modalEl.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateBtns();
+            });
+        }
+        
+        function closeModal(){
+            if(modalEl){
+                modalEl.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        if(closeBtn){
+            closeBtn.addEventListener('click', closeModal);
+        }
+        if(modalEl){
+            modalEl.addEventListener('click', function(e){
+                if(e.target === modalEl) closeModal();
+            });
+        }
+        
+        let hc = document.getElementById('highContrastBtn');
+        let lt = document.getElementById('largeTextBtn');
+        let df = document.getElementById('dyslexicFontBtn');
+        let rm = document.getElementById('reduceMotionBtn');
+        
+        function applyHigh(e){ if(e) document.body.classList.add('high-contrast'); else document.body.classList.remove('high-contrast'); localStorage.setItem('highContrast', e); updateBtns(); }
+        function applyLarge(e){ if(e) document.body.classList.add('large-text'); else document.body.classList.remove('large-text'); localStorage.setItem('largeText', e); updateBtns(); }
+        function applyDys(e){ if(e) document.body.classList.add('dyslexic-font'); else document.body.classList.remove('dyslexic-font'); localStorage.setItem('dyslexicFont', e); updateBtns(); }
+        function applyReduce(e){ if(e) document.body.classList.add('reduce-motion'); else document.body.classList.remove('reduce-motion'); localStorage.setItem('reduceMotion', e); updateBtns(); }
+        
+        if(hc){ hc.addEventListener('click', () => applyHigh(!document.body.classList.contains('high-contrast'))); }
+        if(lt){ lt.addEventListener('click', () => applyLarge(!document.body.classList.contains('large-text'))); }
+        if(df){ df.addEventListener('click', () => applyDys(!document.body.classList.contains('dyslexic-font'))); }
+        if(rm){ rm.addEventListener('click', () => applyReduce(!document.body.classList.contains('reduce-motion'))); }
+        
+        if(localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
+        if(localStorage.getItem('largeText') === 'true') document.body.classList.add('large-text');
+        if(localStorage.getItem('dyslexicFont') === 'true') document.body.classList.add('dyslexic-font');
+        if(localStorage.getItem('reduceMotion') === 'true') document.body.classList.add('reduce-motion');
+        updateBtns();
+        
+        let observer = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting){
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.1, rootMargin: '0px 0px -30px 0px'});
+        
+        document.querySelectorAll('section').forEach(function(s){
+            observer.observe(s);
+        });
+        
+        document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+        document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    })();
+</script>
 </body>
 </html>
