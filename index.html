@@ -288,6 +288,21 @@
             padding: 20px;
         }
 
+        .sold-out-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ff4444;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ff4444;
+            z-index: 2;
+        }
+
         .product-card h3 {
             font-size: 11px;
             font-weight: 600;
@@ -314,6 +329,10 @@
             color: #888;
             text-decoration: line-through;
             margin-left: 4px;
+        }
+
+        .sold-out-price {
+            color: #888;
         }
 
         .trending-badge {
@@ -355,6 +374,17 @@
 
         .buy-btn:active {
             transform: scale(0.94);
+        }
+
+        .sold-out-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        .sold-out-btn:active {
+            transform: none;
         }
 
         @media (max-width: 480px) {
@@ -1100,6 +1130,19 @@
                     <div class="product-price">$13.56<span class="original-price">$15.95</span></div>
                     <div class="zazzle-badge">✨ Zazzle</div>
                     <a href="https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539" target="_blank" class="buy-btn" rel="noopener">Shop →</a>
+                </div>
+
+                <!-- Product 8: Watch What You Say Wireless Charger (Sold Out) -->
+                <div class="product-card" data-product="watch-what-you-say-charger">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/watch_what_you_say_wireless_charger-r4fc6624fae0b457e9849ec6f7afaa4ba_s5511_1024.jpg?rlvnet=1&max_dim=325" alt="Watch What You Say Wireless Charger" onerror="this.parentElement.innerHTML='<i class=\'fas fa-charging-station\'></i>'">
+                        <div class="sold-out-badge">SOLD OUT</div>
+                    </div>
+                    <h3>Watch What You Say</h3>
+                    <p>Wireless Charger</p>
+                    <div class="product-price sold-out-price">$38.66<span class="original-price">$42.95</span></div>
+                    <div class="zazzle-badge">✨ Zazzle</div>
+                    <a href="https://www.zazzle.com/watch_what_you_say_wireless_charger-256239440038678708" target="_blank" class="buy-btn sold-out-btn" rel="noopener">Sold Out</a>
                 </div>
             </div>
         </div>
