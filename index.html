@@ -20,10 +20,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            background: #050505;
+        /* Fluid base sizing - scales with browser zoom naturally */
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
@@ -32,13 +32,13 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
             line-height: 1.5;
             overflow-x: hidden;
-            font-size: 16px;
+            font-size: clamp(0.875rem, 4vw, 1rem);
             -webkit-font-smoothing: antialiased;
         }
 
         main {
             margin-left: 0;
-            padding: 20px 16px 80px 16px;
+            padding: clamp(1rem, 5vw, 2rem) clamp(0.75rem, 4vw, 2rem) clamp(4rem, 10vw, 6rem) clamp(0.75rem, 4vw, 2rem);
             flex: 1;
             width: 100%;
             max-width: 100%;
@@ -51,7 +51,7 @@
         }
 
         section {
-            margin-bottom: 40px;
+            margin-bottom: clamp(2rem, 6vw, 3rem);
             width: 100%;
         }
 
@@ -59,22 +59,23 @@
             margin-bottom: 0;
         }
 
+        /* Fluid section headers */
         .section-header {
-            margin-bottom: 20px;
-            padding: 12px 16px;
+            margin-bottom: clamp(1rem, 4vw, 1.5rem);
+            padding: clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
             background: rgba(0, 212, 255, 0.05);
-            border-left: 3px solid #00d4ff;
-            border-radius: 0 12px 12px 0;
+            border-left: clamp(0.1875rem, 0.5vw, 0.25rem) solid #00d4ff;
+            border-radius: 0 clamp(0.75rem, 2vw, 1rem) clamp(0.75rem, 2vw, 1rem) 0;
             font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
             width: 100%;
         }
 
         .section-header h2 {
-            font-size: 15px;
+            font-size: clamp(0.75rem, 3.5vw, 1rem);
             font-weight: 500;
-            margin-bottom: 6px;
+            margin-bottom: 0.375rem;
             color: #00d4ff;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.02em;
             word-break: break-word;
         }
 
@@ -82,225 +83,170 @@
         .section-header h2 .string { color: #98c379; }
         .section-header h2 .variable { color: #e06c75; }
         .section-header h2 .function { color: #61afef; }
-        .section-header p { color: #7e8a9a; font-size: 11px; font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; letter-spacing: -0.2px; }
+        .section-header p {
+            color: #7e8a9a;
+            font-size: clamp(0.625rem, 2.5vw, 0.75rem);
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            letter-spacing: -0.01em;
+        }
         .section-header p .comment { color: #5c6370; }
 
+        /* About section - fluid */
         .about {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: clamp(1rem, 5vw, 1.5rem);
             align-items: center;
             text-align: center;
             width: 100%;
         }
 
         .about-text { width: 100%; }
-        .about-text p { color: #c0c0c0; margin-bottom: 12px; font-size: 15px; line-height: 1.5; width: 100%; }
+        .about-text p {
+            color: #c0c0c0;
+            margin-bottom: 0.75rem;
+            font-size: clamp(0.875rem, 3.5vw, 1rem);
+            line-height: 1.5;
+            width: 100%;
+        }
         .about-img { display: flex; justify-content: center; width: 100%; }
-        .about-img img { width: 140px; height: 140px; border-radius: 32px; border: 2px solid rgba(0, 212, 255, 0.4); box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2); object-fit: cover; }
+        .about-img img {
+            width: clamp(6rem, 20vw, 8.75rem);
+            height: clamp(6rem, 20vw, 8.75rem);
+            border-radius: clamp(1.5rem, 5vw, 2rem);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
+            object-fit: cover;
+        }
 
         /* ============================================
-           SKILLS GRID - Pure text, no icons
+           SKILLS GRID - Fluid responsive
            ============================================ */
         .skills-grid {
             display: grid;
-            gap: 8px;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
             width: 100%;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
         }
 
-        .skills-grid {
-            grid-template-columns: repeat(2, 1fr);
+        /* Responsive column control */
+        @media (min-width: 480px) {
+            .skills-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr)); }
         }
-
-        @media (min-width: 600px) {
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 900px) {
-            .skills-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .skills-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        @media (min-width: 1600px) {
-            .skills-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
+        @media (min-width: 768px) {
+            .skills-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
         }
 
         .skill-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 8px;
+            border-radius: clamp(0.5rem, 2vw, 0.75rem);
+            padding: clamp(0.75rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vw, 0.75rem);
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: clamp(0.25rem, 1.5vw, 0.5rem);
         }
         .skill-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.06); }
 
         .skill-card h3 {
-            font-size: 11px;
+            font-size: clamp(0.625rem, 3vw, 0.75rem);
             font-weight: 500;
             color: #e0e0e0;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         .skill-card p {
-            font-size: 9px;
+            font-size: clamp(0.5rem, 2.5vw, 0.625rem);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         /* ============================================
-           SERVICES GRID - Pure text, no icons
+           SERVICES GRID - Fluid responsive
            ============================================ */
         .services-grid {
             display: grid;
-            gap: 8px;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
             width: 100%;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
         }
 
-        .services-grid {
-            grid-template-columns: repeat(2, 1fr);
+        @media (min-width: 480px) {
+            .services-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr)); }
         }
-
-        @media (min-width: 600px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 900px) {
-            .services-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .services-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        @media (min-width: 1600px) {
-            .services-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
+        @media (min-width: 768px) {
+            .services-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
         }
 
         .service-card {
             background: rgba(0, 212, 255, 0.03);
             border: 1px solid rgba(0, 212, 255, 0.1);
-            border-radius: 12px;
-            padding: 12px 8px;
+            border-radius: clamp(0.5rem, 2vw, 0.75rem);
+            padding: clamp(0.75rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vw, 0.75rem);
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: clamp(0.25rem, 1.5vw, 0.5rem);
         }
         .service-card:active { transform: scale(0.96); background: rgba(0, 212, 255, 0.06); }
 
         .service-card h3 {
-            font-size: 11px;
+            font-size: clamp(0.625rem, 3vw, 0.75rem);
             font-weight: 500;
             color: #e0e0e0;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         .service-card p {
-            font-size: 9px;
+            font-size: clamp(0.5rem, 2.5vw, 0.625rem);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         /* ============================================
-           PRODUCTS GRID - Pure text, no icons
+           PRODUCTS GRID - Fluid responsive (most columns)
            ============================================ */
         .products-grid {
             display: grid;
-            gap: 8px;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
             width: 100%;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 7rem), 1fr));
         }
 
-        .products-grid {
-            grid-template-columns: repeat(2, 1fr);
+        @media (min-width: 480px) {
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr)); }
         }
-
-        @media (min-width: 500px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
         @media (min-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr)); }
         }
-
         @media (min-width: 1024px) {
-            .products-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .products-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-        @media (min-width: 1600px) {
-            .products-grid {
-                grid-template-columns: repeat(7, 1fr);
-            }
-        }
-
-        @media (min-width: 1920px) {
-            .products-grid {
-                grid-template-columns: repeat(8, 1fr);
-            }
-        }
-
-        @media (min-width: 2560px) {
-            .products-grid {
-                grid-template-columns: repeat(9, 1fr);
-            }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
         }
 
         .product-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 8px;
+            border-radius: clamp(0.5rem, 2vw, 0.75rem);
+            padding: clamp(0.75rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vw, 0.75rem);
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: clamp(0.25rem, 1.5vw, 0.5rem);
         }
         .product-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.06); }
 
         .product-card h3 {
-            font-size: 11px;
+            font-size: clamp(0.6rem, 2.8vw, 0.7rem);
             font-weight: 500;
             color: #e0e0e0;
             line-height: 1.3;
@@ -308,16 +254,16 @@
         }
 
         .product-type {
-            font-size: 9px;
+            font-size: clamp(0.5rem, 2.2vw, 0.6rem);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         .product-price {
-            font-size: 11px;
+            font-size: clamp(0.55rem, 2.5vw, 0.65rem);
             font-weight: 600;
             color: #00d4ff;
-            margin: 2px 0;
+            margin: 0.125rem 0;
         }
 
         .sold-out-price {
@@ -326,7 +272,7 @@
         }
 
         .zazzle-badge {
-            font-size: 7px;
+            font-size: clamp(0.4rem, 2vw, 0.5rem);
             color: #5c6370;
             letter-spacing: 0.5px;
         }
@@ -334,15 +280,15 @@
         .buy-btn {
             background: rgba(0, 212, 255, 0.1);
             border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 5px 8px;
-            font-size: 9px;
+            border-radius: 1.25rem;
+            padding: clamp(0.25rem, 1.5vw, 0.375rem) clamp(0.5rem, 2vw, 0.75rem);
+            font-size: clamp(0.5rem, 2.2vw, 0.6rem);
             font-weight: 500;
             color: #00d4ff;
             cursor: pointer;
             transition: all 0.2s ease;
             width: 100%;
-            margin-top: 4px;
+            margin-top: 0.25rem;
             text-decoration: none;
             display: inline-block;
             text-align: center;
@@ -355,9 +301,9 @@
         .view-more-btn {
             background: rgba(0, 212, 255, 0.08);
             border: 1.5px solid rgba(0, 212, 255, 0.4);
-            border-radius: 30px;
-            padding: 10px 12px;
-            font-size: 11px;
+            border-radius: 1.875rem;
+            padding: clamp(0.5rem, 2vw, 0.625rem) clamp(0.75rem, 3vw, 1rem);
+            font-size: clamp(0.6rem, 2.5vw, 0.7rem);
             font-weight: 600;
             color: #00d4ff;
             cursor: pointer;
@@ -389,14 +335,14 @@
         .service-modal-contact, .skill-modal-contact {
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
             border: none;
-            border-radius: 14px;
-            padding: 14px 20px;
+            border-radius: 0.875rem;
+            padding: clamp(0.75rem, 3vw, 0.875rem) clamp(1rem, 4vw, 1.25rem);
             color: #fff;
             font-weight: 700;
-            font-size: 15px;
+            font-size: clamp(0.75rem, 3.5vw, 0.9375rem);
             cursor: pointer;
             width: 100%;
-            margin-top: 16px;
+            margin-top: 1rem;
             transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
@@ -416,126 +362,30 @@
         .service-modal-contact:hover::before, .skill-modal-contact:hover::before { left: 100%; }
         .service-modal-contact:active, .skill-modal-contact:active { transform: scale(0.96); background: linear-gradient(135deg, #00b8e6, #6a2fc9); }
 
+        /* Bottom Navigation - fluid */
         .bottom-nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 0.25rem;
             background: none;
             border: none;
             color: #7e7e8e;
-            font-size: 10px;
-            padding: 8px 12px;
-            border-radius: 30px;
+            font-size: clamp(0.5rem, 2.5vw, 0.625rem);
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.5rem, 1.5vw, 0.75rem);
+            border-radius: 1.875rem;
             transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
             flex: 1;
-            max-width: 80px;
+            max-width: 5rem;
             position: relative;
         }
-        .bottom-nav-item i { font-size: 22px; margin-bottom: 0; transition: transform 0.2s ease; }
+        .bottom-nav-item i { font-size: clamp(1rem, 5vw, 1.375rem); margin-bottom: 0; transition: transform 0.2s ease; }
         .bottom-nav-item span { font-weight: 500; transition: all 0.2s ease; }
         .bottom-nav-item.active { color: #00d4ff; background: rgba(0, 212, 255, 0.15); }
-        .bottom-nav-item.active i { transform: translateY(-2px); }
+        .bottom-nav-item.active i { transform: translateY(-0.125rem); }
         .bottom-nav-item:active { transform: scale(0.92); }
         .bottom-nav-item:active i { transform: scale(0.9); }
-
-        .opt button {
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 40px;
-            color: #e0e0e0;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            letter-spacing: 0.3px;
-        }
-        .opt button:active { transform: scale(0.94); }
-        .opt button.active { background: #00ff41; border-color: #00ff41; color: #000; box-shadow: 0 0 12px rgba(0, 255, 65, 0.3); }
-
-        .modal-close, .service-modal-close {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .modal-close:active, .service-modal-close:active { transform: scale(0.9); background: rgba(255, 255, 255, 0.1); color: #fff; }
-
-        .skill-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(20px);
-            z-index: 1002;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .skill-modal.active { opacity: 1; visibility: visible; }
-        .skill-modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 28px;
-            padding: 24px 20px;
-            max-width: 320px;
-            width: 85%;
-            text-align: center;
-        }
-        .skill-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%; }
-        .skill-modal-header h3 { font-size: 20px; color: #00d4ff; }
-        .skill-modal-icon { font-size: 48px; color: #00d4ff; margin-bottom: 16px; }
-        .skill-modal-description { color: #c0c0c0; font-size: 14px; line-height: 1.5; margin-bottom: 20px; text-align: center; }
-        .skill-modal-tech { text-align: left; margin: 16px 0; padding-left: 20px; list-style: none; }
-        .skill-modal-tech li { color: #a0a0a0; font-size: 13px; margin-bottom: 8px; }
-
-        .service-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(20px);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .service-modal.active { opacity: 1; visibility: visible; }
-        .service-modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 28px;
-            padding: 24px 20px;
-            max-width: 320px;
-            width: 85%;
-            text-align: center;
-        }
-        .service-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%; }
-        .service-modal-header h3 { font-size: 20px; color: #00d4ff; }
-        .service-modal-icon { font-size: 48px; color: #00d4ff; margin-bottom: 16px; }
-        .service-modal-description { color: #c0c0c0; font-size: 14px; line-height: 1.5; margin-bottom: 20px; text-align: center; }
-        .service-modal-features { text-align: left; margin: 16px 0; padding-left: 20px; list-style: none; }
-        .service-modal-features li { color: #a0a0a0; font-size: 13px; margin-bottom: 8px; }
 
         .bottom-nav {
             position: fixed;
@@ -548,45 +398,76 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 8px 16px 20px;
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.5rem);
             z-index: 100;
         }
 
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
+        /* Modal styles - fluid */
+        .opt button {
+            padding: clamp(0.5rem, 2vw, 0.625rem) clamp(1rem, 4vw, 1.25rem);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 2.5rem;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-size: clamp(0.7rem, 3vw, 0.8125rem);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        .opt button:active { transform: scale(0.94); }
+        .opt button.active { background: #00ff41; border-color: #00ff41; color: #000; box-shadow: 0 0 12px rgba(0, 255, 65, 0.3); }
+
+        .modal-close, .service-modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: clamp(1.5rem, 6vw, 2rem);
+            height: clamp(1.5rem, 6vw, 2rem);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            color: #aaa;
+            font-size: clamp(1rem, 4vw, 1.125rem);
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content {
+        .modal-close:active, .service-modal-close:active { transform: scale(0.9); background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+        .skill-modal-content, .service-modal-content, .modal-content {
             background: #1a1a2e;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 28px;
-            padding: 24px 20px;
-            max-width: 320px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: clamp(1rem, 4vw, 1.75rem);
+            padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.5rem);
+            max-width: 20rem;
             width: 85%;
             text-align: center;
         }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%; }
-        .modal-header h3 { font-size: 18px; color: #00d4ff; }
-        .opt { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 15px; width: 100%; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .skill-modal-header h3, .service-modal-header h3, .modal-header h3 {
+            font-size: clamp(1rem, 5vw, 1.25rem);
+            color: #00d4ff;
         }
-        .fade-in { animation: fadeInUp 0.4s ease-out forwards; }
+
+        .skill-modal-icon, .service-modal-icon {
+            font-size: clamp(2rem, 10vw, 3rem);
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .skill-modal-description, .service-modal-description {
+            color: #c0c0c0;
+            font-size: clamp(0.75rem, 3.5vw, 0.875rem);
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+            text-align: center;
+        }
+
+        .skill-modal-tech li, .service-modal-features li {
+            color: #a0a0a0;
+            font-size: clamp(0.7rem, 3vw, 0.8125rem);
+            margin-bottom: 0.5rem;
+        }
 
         .skip-link {
             position: absolute;
@@ -603,6 +484,14 @@
         }
         .skip-link:focus { top: 16px; }
 
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeInUp 0.4s ease-out forwards; }
+
+        /* Accessibility Modes */
         body.high-contrast { background: #000; color: #fff; }
         body.high-contrast .modal-content, body.high-contrast .skill-card, body.high-contrast .service-card,
         body.high-contrast .product-card, body.high-contrast .service-modal-content, body.high-contrast .skill-modal-content,
@@ -610,14 +499,18 @@
         body.high-contrast .section-header h2 { color: #fff; }
         body.high-contrast .bottom-nav-item.active { background: #fff; color: #000; }
 
-        body.large-text { font-size: 18px; }
-        body.large-text p, body.large-text .skill-card p, body.large-text .service-card p, body.large-text .product-card p { font-size: 14px; }
-        body.large-text .skill-card h3, body.large-text .service-card h3, body.large-text .product-card h3 { font-size: 17px; }
-        body.large-text .section-header h2 { font-size: 17px; }
+        body.large-text {
+            font-size: 1.125rem;
+        }
+        body.large-text p, body.large-text .skill-card p, body.large-text .service-card p, body.large-text .product-card p { font-size: 0.875rem; }
+        body.large-text .skill-card h3, body.large-text .service-card h3, body.large-text .product-card h3 { font-size: 1rem; }
+        body.large-text .section-header h2 { font-size: 1rem; }
 
         body.dyslexic-font, body.dyslexic-font * {
             font-family: 'OpenDyslexic', 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
-            letter-spacing: 0.05em; word-spacing: 0.1em; line-height: 1.6;
+            letter-spacing: 0.05em;
+            word-spacing: 0.1em;
+            line-height: 1.6;
         }
 
         body.reduce-motion * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -667,7 +560,7 @@
             <div class="skills-grid">
                 <div class="skill-card" data-skill="frontend">
                     <h3>Frontend</h3>
-                    <p>React, Vue, Angular, TypeScript</p>
+                    <p>React, Vue, Angular, TS</p>
                 </div>
                 <div class="skill-card" data-skill="backend">
                     <h3>Backend</h3>
@@ -708,11 +601,11 @@
             <div class="services-grid">
                 <div class="service-card" data-service="logo-design">
                     <h3>Logo Design</h3>
-                    <p>Custom brand identities that stand out</p>
+                    <p>Custom brand identities</p>
                 </div>
                 <div class="service-card" data-service="web-dev">
                     <h3>Web Development</h3>
-                    <p>Full-stack modern web applications</p>
+                    <p>Full-stack modern apps</p>
                 </div>
                 <div class="service-card" data-service="ui-ux">
                     <h3>UI/UX Design</h3>
@@ -720,7 +613,7 @@
                 </div>
                 <div class="service-card" data-service="consulting">
                     <h3>Tech Consulting</h3>
-                    <p>Expert architecture & strategy advice</p>
+                    <p>Expert architecture advice</p>
                 </div>
                 <div class="service-card" data-service="performance">
                     <h3>Performance</h3>
@@ -728,7 +621,7 @@
                 </div>
                 <div class="service-card" data-service="security">
                     <h3>Security Audits</h3>
-                    <p>Vulnerability assessment & fixes</p>
+                    <p>Vulnerability fixes</p>
                 </div>
                 <div class="service-card" data-service="maintenance">
                     <h3>Maintenance</h3>
@@ -932,8 +825,9 @@
                 const priceDisplay = product.price > 0 ? `$${product.price.toFixed(2)}` : 'Price on Zazzle';
                 const priceClass = product.soldOut ? 'product-price sold-out-price' : 'product-price';
                 
+                // Truncate title based on viewport using CSS instead
                 productCard.innerHTML = `
-                    <h3>${product.title.length > 35 ? product.title.substring(0, 32) + '...' : product.title}</h3>
+                    <h3>${product.title}</h3>
                     <div class="product-type">${product.type}</div>
                     <div class="${priceClass}">${priceDisplay}</div>
                     <div class="zazzle-badge">Zazzle</div>
