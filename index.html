@@ -327,7 +327,6 @@
             .tablet-spotlight { display: none; }
             .mobile-spotlight { display: flex; }
             .pull-indicator { display: none; }
-            .tablet-search-btn { display: none !important; }
         }
 
         @media (min-width: 481px) and (max-width: 1024px) {
@@ -341,8 +340,23 @@
             .desktop-spotlight { display: flex; }
             .mobile-spotlight { display: none; }
             .tablet-spotlight { display: none; }
-            .tablet-search-btn { display: none !important; }
             .pull-indicator { display: none; }
+        }
+
+        /* Search button visibility - FIXED: only one search button per device */
+        @media (max-width: 480px) {
+            .tablet-search-btn { display: none !important; }
+            .mobile-search-btn { display: flex !important; }
+        }
+
+        @media (min-width: 481px) and (max-width: 1024px) {
+            .tablet-search-btn { display: flex !important; }
+            .mobile-search-btn { display: none !important; }
+        }
+
+        @media (min-width: 1025px) {
+            .tablet-search-btn { display: none !important; }
+            .mobile-search-btn { display: none !important; }
         }
 
         /* Keyboard shortcut hint - desktop only */
@@ -938,7 +952,7 @@
             });
         }
 
-        // Desktop Spotlight
+        // ========== DESKTOP SPOTLIGHT ==========
         const desktopOverlay = document.getElementById('desktopSpotlight');
         const desktopInput = document.getElementById('desktopSpotlightInput');
         const desktopResults = document.getElementById('desktopSpotlightResults');
@@ -1028,15 +1042,14 @@
         if (desktopInput) desktopInput.addEventListener('input', (e) => performDesktopSearch(e.target.value));
         if (desktopOverlay) desktopOverlay.addEventListener('click', (e) => { if (e.target === desktopOverlay) closeDesktopSpotlight(); });
 
-        // Tablet Spotlight
+        // ========== TABLET SPOTLIGHT ==========
         const tabletOverlay = document.getElementById('tabletSpotlight');
         const tabletInput = document.getElementById('tabletSpotlightInput');
         const tabletResults = document.getElementById('tabletSpotlightResults');
         const tabletCloseBtn = document.getElementById('tabletSpotlightClose');
         const tabletSearchBtn = document.getElementById('tabletSearchBtn');
         const pullIndicator = document.getElementById('pullIndicator');
-        let pullStartY = 0;
-        let isPulling = false;
+        let touchStartY = 0;
 
         function renderTabletResults(results) {
             if (!tabletResults) return;
@@ -1127,7 +1140,6 @@
         if (tabletOverlay) tabletOverlay.addEventListener('click', (e) => { if (e.target === tabletOverlay) closeTabletSpotlight(); });
 
         // Pull-to-search for tablets
-        let touchStartY = 0;
         document.addEventListener('touchstart', (e) => {
             if (window.innerWidth >= 481 && window.innerWidth <= 1024 && !tabletOverlay.classList.contains('active')) {
                 touchStartY = e.touches[0].clientY;
@@ -1147,7 +1159,7 @@
             if (pullIndicator) setTimeout(() => pullIndicator.classList.remove('visible'), 500);
         });
 
-        // Mobile Spotlight
+        // ========== MOBILE SPOTLIGHT ==========
         const mobileOverlay = document.getElementById('mobileSpotlight');
         const mobileInput = document.getElementById('mobileSpotlightInput');
         const mobileResults = document.getElementById('mobileSpotlightResults');
@@ -1242,7 +1254,7 @@
         if (mobileOverlay) mobileOverlay.addEventListener('click', (e) => { if (e.target === mobileOverlay) closeMobileSpotlight(); });
         document.querySelector('.mobile-spotlight-handle')?.addEventListener('click', closeMobileSpotlight);
 
-        // Keyboard shortcuts for desktop
+        // ========== KEYBOARD SHORTCUTS ==========
         document.addEventListener('keydown', (e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
                 e.preventDefault();
@@ -1255,6 +1267,7 @@
             }
         });
 
+        // ========== RENDER PRODUCTS ==========
         function renderProducts() {
             const container = document.getElementById('products-grid');
             if (!container) return;
@@ -1279,6 +1292,7 @@
         }
         renderProducts();
 
+        // ========== BOTTOM NAVIGATION ==========
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id) {
             bottomNavItems.forEach(i => {
@@ -1311,10 +1325,14 @@
         }
         window.addEventListener('scroll', setActiveOnScroll);
         setActiveOnScroll();
+
+        // ========== FADE-IN ANIMATION ==========
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } });
         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
         document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+        // ========== PREVENT CONTEXT MENU & DRAG ==========
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
