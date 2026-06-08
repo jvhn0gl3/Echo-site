@@ -252,37 +252,111 @@
             line-height: 1.3;
         }
 
-        /* Products Section - Empty state styling */
+        /* Products Section - Full width grid */
         .products-grid {
             column-count: 1 !important;
             column-gap: 12px;
             width: 100%;
         }
 
-        .empty-store {
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 14px 12px;
             text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 24px;
-            border: 1px dashed rgba(0, 212, 255, 0.3);
-            color: #7e8a9a;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
-        .empty-store i {
-            font-size: 48px;
+        .product-card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .product-image i {
+            font-size: 50px;
             color: #00d4ff;
-            margin-bottom: 16px;
-            opacity: 0.5;
+            margin-bottom: 0;
+            padding: 20px;
         }
 
-        .empty-store p {
+        .product-card h3 {
             font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin: 6px 0;
+        }
+
+        .original-price {
+            font-size: 11px;
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .zazzle-badge {
+            font-size: 9px;
+            color: #00ff41;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block;
             margin-bottom: 8px;
         }
 
-        .empty-store small {
+        .buy-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 30px;
+            padding: 8px 12px;
             font-size: 11px;
-            color: #5c6370;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 8px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.94);
         }
 
         /* Responsive column counts for Skills and Services only */
@@ -751,6 +825,7 @@
         body.high-contrast .modal-content,
         body.high-contrast .skill-card,
         body.high-contrast .service-card,
+        body.high-contrast .product-card,
         body.high-contrast .service-modal-content,
         body.high-contrast .skill-modal-content,
         body.high-contrast .section-header {
@@ -773,12 +848,14 @@
 
         body.large-text p,
         body.large-text .skill-card p,
-        body.large-text .service-card p {
+        body.large-text .service-card p,
+        body.large-text .product-card p {
             font-size: 14px;
         }
 
         body.large-text .skill-card h3,
-        body.large-text .service-card h3 {
+        body.large-text .service-card h3,
+        body.large-text .product-card h3 {
             font-size: 17px;
         }
 
@@ -802,7 +879,9 @@
         body.reduce-motion .bottom-nav-item:active,
         body.reduce-motion .skill-card:active,
         body.reduce-motion .service-card:active,
+        body.reduce-motion .product-card:active,
         body.reduce-motion .view-more-btn:active,
+        body.reduce-motion .buy-btn:active,
         body.reduce-motion .service-modal-contact:active,
         body.reduce-motion .skill-modal-contact:active {
             transform: none !important;
@@ -947,13 +1026,19 @@
                     <span class="keyword">from</span>
                     <span class="string">'@v3/shop'</span>
                 </h2>
-                <p><span class="comment">// Official merchandise · Coming soon</span></p>
+                <p><span class="comment">// Official merchandise · Payment & shipping via Zazzle</span></p>
             </div>
             <div class="products-grid">
-                <div class="empty-store">
-                    <i class="fas fa-box-open"></i>
-                    <p>No products available at the moment</p>
-                    <small>Check back soon for new merchandise</small>
+                <!-- Product 1: Static Snow Metallic Button -->
+                <div class="product-card" data-product="static-snow-button">
+                    <div class="product-image">
+                        <img src="https://rlv.zcache.com/static_snow_metallic_button-r45305ba713774b24af999c9e4fadc6ad_ix7scz_1024.jpg?rlvnet=1&max_dim=325" alt="'Static Snow' metallic button" onerror="this.parentElement.innerHTML='<i class=\'fas fa-circle\'></i>'">
+                    </div>
+                    <h3>'Static Snow' Metallic Button</h3>
+                    <p>2" square metallic button</p>
+                    <div class="product-price">$3.24<span class="original-price">$3.60</span><span style="font-size:10px;color:#00ff41; margin-left:6px;">Save 10%</span></div>
+                    <div class="zazzle-badge">✨ Powered by Zazzle</div>
+                    <a href="https://www.zazzle.com/static_snow_metallic_button-256451615024894965" target="_blank" class="buy-btn" rel="noopener">Shop on Zazzle →</a>
                 </div>
             </div>
         </div>
