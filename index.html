@@ -35,7 +35,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Desktop Spotlight Search Overlay */
+        /* Desktop Spotlight Search Overlay - for tablets and desktop */
         .spotlight-overlay {
             position: fixed;
             top: 0;
@@ -108,7 +108,7 @@
             overflow-y: auto;
         }
 
-        /* Mobile Spotlight - Bottom Sheet Drawer */
+        /* Mobile Spotlight - Bottom Sheet Drawer - ONLY on phones (<480px) */
         .mobile-spotlight {
             position: fixed;
             bottom: 0;
@@ -267,22 +267,37 @@
             font-family: monospace;
         }
 
-        /* Device-specific visibility */
-        @media (max-width: 768px) {
-            .spotlight-overlay {
-                display: none;
+        /* Device-specific visibility - PHONES ONLY (<480px) */
+        @media (max-width: 480px) {
+            .mobile-spotlight {
+                display: flex;
             }
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 481px) {
             .mobile-spotlight {
                 display: none;
             }
         }
 
-        /* Search button in bottom nav */
-        .bottom-nav-item.search-btn {
-            max-width: 60px;
+        /* Desktop Spotlight - TABLETS AND DESKTOP ONLY (>480px) */
+        @media (max-width: 480px) {
+            .spotlight-overlay {
+                display: none;
+            }
+        }
+
+        @media (min-width: 481px) {
+            .spotlight-overlay {
+                display: flex;
+            }
+        }
+
+        /* Hide search button on tablets/desktop */
+        @media (min-width: 481px) {
+            #mobileSearchBtn {
+                display: none;
+            }
         }
 
         /* Keyboard shortcut hint - desktop only */
@@ -551,7 +566,7 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Desktop Spotlight Search Overlay (Cmd+K / Ctrl+K) -->
+<!-- Desktop Spotlight Search Overlay (Cmd+K / Ctrl+K) - tablets and desktop -->
 <div id="spotlightOverlay" class="spotlight-overlay">
     <div class="spotlight-container">
         <div class="spotlight-input-wrapper">
@@ -562,7 +577,7 @@
     </div>
 </div>
 
-<!-- Mobile Spotlight - Bottom Sheet Drawer -->
+<!-- Mobile Spotlight - Bottom Sheet Drawer (phones only) -->
 <div id="mobileSpotlight" class="mobile-spotlight">
     <div class="mobile-spotlight-handle"></div>
     <div class="mobile-spotlight-header">
