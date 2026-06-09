@@ -399,10 +399,21 @@
             border-color: rgba(76, 175, 80, 0.1);
         }
 
-        .client-card i {
-            font-size: var(--text-lg);
-            color: #4caf50;
+        /* Client logo image styling */
+        .client-image-container {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: var(--space-xs);
+            overflow: hidden;
+        }
+
+        .client-logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .creation-card i {
@@ -686,7 +697,7 @@
         </div>
     </section>
 
-    <!-- Clients Section - Single Client -->
+    <!-- Clients Section - Vineyard Church of Augusta -->
     <section id="clients">
         <div class="container">
             <div class="section-header">
@@ -749,7 +760,7 @@
         ];
 
         // ============================================
-        // CLIENTS DATA - Just Vineyard Church of Augusta
+        // CLIENTS DATA - Vineyard Church of Augusta with logo image
         // ============================================
         const clients = [
             { 
@@ -757,7 +768,7 @@
                 type: "Non-Profit / Faith", 
                 description: "Community-focused church organization", 
                 link: "https://vineyardaugusta.org", 
-                icon: "fa-church", 
+                image: "https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png",
                 search: "vineyard church augusta faith non-profit" 
             }
         ];
@@ -804,7 +815,7 @@
 
         clients.forEach(client => {
             searchableItems.push({
-                type: 'client', title: client.name, subtitle: client.type, icon: client.icon || 'fa-users',
+                type: 'client', title: client.name, subtitle: client.type, icon: 'fa-building',
                 link: client.link, sectionId: 'clients',
                 searchText: (client.name + ' ' + client.type + ' ' + (client.search || '')).toLowerCase()
             });
@@ -934,7 +945,9 @@
             clients.forEach(client => {
                 container.innerHTML += `
                     <div class="client-card">
-                        <i class="fas ${client.icon || 'fa-building'}"></i>
+                        <div class="client-image-container">
+                            <img src="${client.image}" alt="${client.name} logo" class="client-logo" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-church\\'></i>'">
+                        </div>
                         <h3>${client.name.length > 25 ? client.name.substring(0, 22) + '...' : client.name}</h3>
                         <div class="client-type">${client.type}</div>
                         <p>${client.description}</p>
