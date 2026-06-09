@@ -523,7 +523,7 @@ section:last-child {
 
 /* ============================================
    RESPONSIVE BOTTOM NAVIGATION
-   Mobile: scrollable with visual scroll dots
+   Mobile: scrollable with static visual dots
    ============================================ */
 .bottom-nav-wrapper {
     position: fixed;
@@ -557,14 +557,10 @@ section:last-child {
     height: 6px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    transition: all 0.2s ease;
 }
 
-.nav-dot.active {
-    width: 16px;
-    border-radius: 3px;
-    background: #00d4ff;
-}
+/* All dots are identical - static visual indicator that nav is scrollable */
+/* No active state needed - dots just exist to show scrollability */
 
 @media (max-width: 768px) {
     .bottom-nav-wrapper {
