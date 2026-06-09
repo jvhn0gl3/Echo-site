@@ -108,7 +108,6 @@
     // Searchable items
     const searchableItems = [];
 
-    // Function to escape HTML
     function escapeHtml(str) {
         return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
     }
@@ -193,12 +192,9 @@
         const input = document.getElementById('quickfindInput');
         const resultsContainer = document.getElementById('quickfindResults');
 
-        // Build searchable items from DOM and data
         function buildSearchableItems() {
-            // Clear existing
             searchableItems.length = 0;
             
-            // Add skills from DOM
             document.querySelectorAll('.skill-card').forEach(card => {
                 const title = card.querySelector('h3')?.innerText || '';
                 const desc = card.querySelector('p')?.innerText || '';
@@ -209,7 +205,6 @@
                 });
             });
 
-            // Add services from DOM
             document.querySelectorAll('.service-card').forEach(card => {
                 const title = card.querySelector('h3')?.innerText || '';
                 const desc = card.querySelector('p')?.innerText || '';
@@ -220,7 +215,6 @@
                 });
             });
 
-            // Add products
             products.forEach(product => {
                 searchableItems.push({
                     type: 'product', title: product.title, subtitle: product.type, icon: 'fa-store',
@@ -230,7 +224,6 @@
                 });
             });
 
-            // Add creations
             creations.forEach(creation => {
                 searchableItems.push({
                     type: 'creation', title: creation.title, subtitle: creation.type, icon: creation.icon || 'fa-gem',
@@ -239,7 +232,6 @@
                 });
             });
 
-            // Add clients
             clients.forEach(client => {
                 searchableItems.push({
                     type: 'client', title: client.name, subtitle: client.type, icon: 'fa-building',
@@ -248,7 +240,6 @@
                 });
             });
 
-            // Add blog posts
             blogPosts.forEach(post => {
                 searchableItems.push({
                     type: 'blog', title: post.title, subtitle: post.date, icon: post.icon || 'fa-newspaper',
@@ -338,37 +329,6 @@
         });
     }
 
-    // ========== SCROLLABLE NAV WITH VISUAL DOTS ==========
-    function setupScrollableNav() {
-        const bottomNav = document.getElementById('bottomNav');
-        const dotsContainer = document.getElementById('navScrollDots');
-        
-        if (bottomNav && window.innerWidth <= 768) {
-            function updateScrollDots() {
-                if (!bottomNav || !dotsContainer) return;
-                
-                const scrollWidth = bottomNav.scrollWidth;
-                const clientWidth = bottomNav.clientWidth;
-                const scrollLeft = bottomNav.scrollLeft;
-                
-                const totalPages = Math.ceil(scrollWidth / clientWidth);
-                const currentPage = Math.floor(scrollLeft / clientWidth);
-                
-                dotsContainer.innerHTML = '';
-                for (let i = 0; i < totalPages; i++) {
-                    const dot = document.createElement('div');
-                    dot.className = 'nav-dot';
-                    if (i === currentPage) dot.classList.add('active');
-                    dotsContainer.appendChild(dot);
-                }
-            }
-            
-            updateScrollDots();
-            bottomNav.addEventListener('scroll', updateScrollDots);
-            window.addEventListener('resize', () => { setTimeout(updateScrollDots, 100); });
-        }
-    }
-
     // ========== BOTTOM NAVIGATION ==========
     function setupBottomNavigation() {
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
@@ -407,12 +367,10 @@
         renderClients();
         renderBlog();
         setupQuickFind();
-        setupScrollableNav();
         setupBottomNavigation();
         setupFadeInAnimation();
         setupPreventions();
     }
 
-    // Start the app
     init();
 })();
