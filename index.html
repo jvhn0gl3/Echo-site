@@ -404,7 +404,6 @@
             border-color: rgba(156, 39, 176, 0.1);
         }
 
-        /* Client logo image styling */
         .client-image-container {
             width: 100%;
             height: 60px;
@@ -534,8 +533,61 @@
         .sold-out-btn { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #666; cursor: not-allowed; }
         .sold-out-btn:active { transform: none; }
 
-        .bottom-nav-item {
+        /* ============================================
+           RESPONSIVE BOTTOM NAVIGATION
+           Mobile: scrollable | Tablet/Desktop: fixed layout
+           ============================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
+            align-items: center;
+            padding: var(--space-sm) var(--space-lg) var(--space-lg);
+            gap: var(--space-xs);
+            z-index: 100;
+        }
+
+        /* Mobile: scrollable */
+        @media (max-width: 768px) {
+            .bottom-nav {
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start;
+            }
+            
+            .bottom-nav::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .bottom-nav-item {
+                flex-shrink: 0;
+                min-width: 60px;
+            }
+        }
+
+        /* Tablet/Desktop: fixed layout, all visible */
+        @media (min-width: 768px) {
+            .bottom-nav {
+                justify-content: space-around;
+                overflow: visible;
+            }
+            
+            .bottom-nav-item {
+                flex: 1;
+                max-width: 80px;
+            }
+        }
+
+        .bottom-nav-item {
+            display: inline-flex;
             flex-direction: column;
             align-items: center;
             gap: var(--space-xs);
@@ -547,31 +599,15 @@
             border-radius: 30px;
             transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
-            flex: 1;
-            max-width: 80px;
             position: relative;
         }
+
         .bottom-nav-item i { font-size: var(--text-md); margin-bottom: 0; transition: transform 0.2s ease; }
         .bottom-nav-item span { font-weight: 500; transition: all 0.2s ease; }
         .bottom-nav-item.active { color: #00d4ff; background: rgba(0, 212, 255, 0.15); }
         .bottom-nav-item.active i { transform: translateY(-2px); }
         .bottom-nav-item:active { transform: scale(0.92); }
         .bottom-nav-item:active i { transform: scale(0.9); }
-
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(30, 30, 46, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: var(--space-sm) var(--space-lg) var(--space-lg);
-            z-index: 100;
-        }
 
         .skip-link {
             position: absolute;
@@ -738,7 +774,6 @@
         </div>
     </section>
 
-    <!-- NEW: Blog Section -->
     <section id="blog">
         <div class="container">
             <div class="section-header">
