@@ -14,8 +14,7 @@
     
     <style>
         /* ============================================
-           COMPLETE FLUID SYSTEM - No fixed breakpoints
-           Everything uses clamp() for smooth scaling
+           COMPLETE FLUID SYSTEM
            ============================================ */
         
         * {
@@ -25,7 +24,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Fluid root - scales with viewport */
         :root {
             --space-xs: clamp(0.25rem, 1vw, 0.5rem);
             --space-sm: clamp(0.5rem, 2vw, 0.75rem);
@@ -62,7 +60,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Spotlight Modal - Fluid on all screens */
+        /* Spotlight Modal */
         .spotlight-overlay {
             position: fixed;
             top: 0;
@@ -131,9 +129,7 @@
         }
 
         @media (max-width: 768px) {
-            .spotlight-shortcut {
-                display: none;
-            }
+            .spotlight-shortcut { display: none; }
         }
 
         .spotlight-results {
@@ -206,7 +202,6 @@
             font-family: monospace;
         }
 
-        /* Quick action chips - fluid */
         .quick-actions {
             padding: var(--space-sm) var(--space-lg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -251,7 +246,6 @@
             color: #ff4444;
         }
 
-        /* Search button - fluid */
         .search-btn {
             display: none;
         }
@@ -262,7 +256,6 @@
             }
         }
 
-        /* Desktop hint */
         .spotlight-hint {
             position: fixed;
             bottom: var(--space-xl);
@@ -284,7 +277,6 @@
             }
         }
 
-        /* Main content - fluid padding */
         main {
             margin-left: 0;
             padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
@@ -309,7 +301,6 @@
             padding-bottom: var(--space-xl);
         }
 
-        /* Section headers - fluid */
         .section-header {
             margin-bottom: var(--space-lg);
             padding: var(--space-md) var(--space-lg);
@@ -341,7 +332,6 @@
         }
         .section-header p .comment { color: #5c6370; }
 
-        /* About section - fluid */
         .about {
             display: flex;
             flex-direction: column;
@@ -369,16 +359,14 @@
             object-fit: cover;
         }
 
-        /* Grids - completely fluid with auto-fit */
-        .skills-grid, .services-grid, .products-grid {
+        .skills-grid, .services-grid, .products-grid, .creations-grid {
             display: grid;
             gap: var(--space-sm);
             width: 100%;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr));
         }
 
-        /* Cards - fluid */
-        .skill-card, .service-card, .product-card {
+        .skill-card, .service-card, .product-card, .creation-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-md);
@@ -391,27 +379,41 @@
             align-items: center;
             gap: var(--space-xs);
         }
-        .skill-card:active, .service-card:active, .product-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.06); }
+        .skill-card:active, .service-card:active, .product-card:active, .creation-card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.06);
+        }
 
         .service-card {
             background: rgba(0, 212, 255, 0.03);
             border-color: rgba(0, 212, 255, 0.1);
         }
 
-        .skill-card h3, .service-card h3, .product-card h3 {
+        .creation-card {
+            background: rgba(255, 215, 0, 0.03);
+            border-color: rgba(255, 215, 0, 0.1);
+        }
+
+        .creation-card i {
+            font-size: var(--text-lg);
+            color: #ffd700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .skill-card h3, .service-card h3, .product-card h3, .creation-card h3 {
             font-size: var(--text-xs);
             font-weight: 500;
             color: #e0e0e0;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
-        .skill-card p, .service-card p {
+        .skill-card p, .service-card p, .creation-card p {
             font-size: calc(var(--text-xs) * 0.85);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
-        .product-type {
+        .product-type, .creation-type {
             font-size: calc(var(--text-xs) * 0.85);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
@@ -422,6 +424,24 @@
             font-weight: 600;
             color: #00d4ff;
             margin: 0;
+        }
+
+        .creation-link {
+            font-size: calc(var(--text-xs) * 0.85);
+            color: #ffd700;
+            text-decoration: none;
+            background: rgba(255, 215, 0, 0.1);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin-top: var(--space-xs);
+            width: 100%;
+        }
+
+        .creation-link:active {
+            transform: scale(0.94);
+            background: rgba(255, 215, 0, 0.2);
         }
 
         .sold-out-price {
@@ -456,7 +476,6 @@
         .sold-out-btn { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #666; cursor: not-allowed; }
         .sold-out-btn:active { transform: none; }
 
-        /* Bottom navigation - fluid */
         .bottom-nav-item {
             display: flex;
             flex-direction: column;
@@ -522,7 +541,7 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Spotlight Modal - Fluid on all screens -->
+<!-- Spotlight Modal -->
 <div id="spotlightOverlay" class="spotlight-overlay">
     <div class="spotlight-container">
         <div class="spotlight-input-wrapper">
@@ -629,6 +648,25 @@
             <div id="products-grid" class="products-grid"></div>
         </div>
     </section>
+
+    <!-- NEW: Creations Section -->
+    <section id="creations">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">export</span>
+                    <span class="keyword">const</span>
+                    <span class="variable">creations</span>
+                    <span class="keyword">=</span>
+                    <span class="function">portfolio</span>()
+                </h2>
+                <p><span class="comment">// My original designs · Custom projects · Creative work</span></p>
+            </div>
+            <div id="creations-grid" class="creations-grid">
+                <!-- Creations will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
 </main>
 
 <div class="bottom-nav">
@@ -636,6 +674,7 @@
     <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
     <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
     <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
+    <button class="bottom-nav-item" data-section="creations"><i class="fas fa-gem"></i><span>Creations</span></button>
     <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
 </div>
 
@@ -657,6 +696,21 @@
             { link: "https://www.zazzle.com/death_is_only_the_beginning_mouse_pad-256894035422871959", title: "Death Is Only The Beginning Mouse Pad", type: "Mouse Pad", price: 0, soldOut: false, search: "death beginning mouse pad" },
             { link: "https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667", title: "Death Is Only The Beginning Throw Pillow", type: "Pillow", price: 0, soldOut: false, search: "death beginning throw pillow" },
             { link: "https://www.zazzle.com/watch_what_you_say_tie-256210376330991604", title: "Watch What You Say Tie", type: "Accessory", price: 0, soldOut: false, search: "watch what you say tie" }
+        ];
+
+        // ============================================
+        // CREATIONS DATA - Your portfolio / custom work
+        // ============================================
+        const creations = [
+            { title: "V3 Brand Identity", type: "Branding", description: "Complete visual identity system", link: "#", icon: "fa-palette", search: "v3 brand identity branding" },
+            { title: "Terminal Portfolio", type: "Web Dev", description: "Code-inspired design system", link: "#", icon: "fa-code", search: "terminal portfolio web dev" },
+            { title: "Spotlight Search UI", type: "UI/UX", description: "Multi-device search interface", link: "#", icon: "fa-search", search: "spotlight search ui ux" },
+            { title: "Zazzle Store Integration", type: "E-commerce", description: "85+ product catalog", link: "#", icon: "fa-store", search: "zazzle store integration" },
+            { title: "Mobile-First Framework", type: "Development", description: "Fluid responsive system", link: "#", icon: "fa-mobile-alt", search: "mobile first framework" },
+            { title: "Custom Animation System", type: "Design", description: "Smooth transitions & effects", link: "#", icon: "fa-play-circle", search: "custom animation system" },
+            { title: "Accessibility Suite", type: "Feature", description: "High contrast & dyslexic fonts", link: "#", icon: "fa-universal-access", search: "accessibility suite high contrast dyslexic" },
+            { title: "Cross-Device Sync", type: "Tech", description: "Unified experience everywhere", link: "#", icon: "fa-sync", search: "cross device sync" },
+            { title: "Performance Optimized", type: "Optimization", description: "Lightning fast load times", link: "#", icon: "fa-rocket", search: "performance optimized fast" }
         ];
 
         // Searchable items
@@ -691,11 +745,19 @@
             });
         });
 
+        creations.forEach(creation => {
+            searchableItems.push({
+                type: 'creation', title: creation.title, subtitle: creation.type, icon: creation.icon || 'fa-gem',
+                link: creation.link, sectionId: 'creations',
+                searchText: (creation.title + ' ' + creation.type + ' ' + (creation.search || '')).toLowerCase()
+            });
+        });
+
         function escapeHtml(str) {
             return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
         }
 
-        // Spotlight
+        // ========== SPOTLIGHT ==========
         const overlay = document.getElementById('spotlightOverlay');
         const input = document.getElementById('spotlightInput');
         const resultsContainer = document.getElementById('spotlightResults');
@@ -706,7 +768,7 @@
                 resultsContainer.innerHTML = '<div class="spotlight-no-results">No results found</div>';
                 return;
             }
-            const grouped = { products: [], skills: [], services: [] };
+            const grouped = { products: [], skills: [], services: [], creations: [] };
             results.forEach(item => grouped[item.type + 's']?.push(item));
             
             let html = '';
@@ -720,7 +782,7 @@
                                 <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
                                 <div class="spotlight-result-subtitle">${item.subtitle}</div>
                             </div>
-                            <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : 'Service')}</div>
+                            <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : item.type === 'service' ? 'Service' : 'View')}</div>
                         </div>`;
                     });
                     html += `</div>`;
@@ -734,7 +796,7 @@
                     const soldOut = el.getAttribute('data-soldout') === 'true';
                     const sectionId = el.getAttribute('data-section');
                     if (type === 'product' && link && !soldOut) window.open(link, '_blank');
-                    else if ((type === 'skill' || type === 'service') && sectionId) {
+                    else if ((type === 'skill' || type === 'service' || type === 'creation') && sectionId) {
                         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                     closeSpotlight();
@@ -768,7 +830,7 @@
             });
         });
 
-        // Render products
+        // ========== RENDER PRODUCTS ==========
         function renderProducts() {
             const container = document.getElementById('products-grid');
             if (!container) return;
@@ -788,9 +850,29 @@
                 `;
             });
         }
-        renderProducts();
 
-        // Bottom navigation
+        // ========== RENDER CREATIONS ==========
+        function renderCreations() {
+            const container = document.getElementById('creations-grid');
+            if (!container) return;
+            container.innerHTML = '';
+            creations.forEach(creation => {
+                container.innerHTML += `
+                    <div class="creation-card">
+                        <i class="fas ${creation.icon || 'fa-gem'}"></i>
+                        <h3>${creation.title.length > 30 ? creation.title.substring(0, 27) + '...' : creation.title}</h3>
+                        <div class="creation-type">${creation.type}</div>
+                        <p>${creation.description.length > 40 ? creation.description.substring(0, 37) + '...' : creation.description}</p>
+                        <a href="${creation.link}" target="_blank" class="creation-link" rel="noopener">View Project →</a>
+                    </div>
+                `;
+            });
+        }
+
+        renderProducts();
+        renderCreations();
+
+        // ========== BOTTOM NAVIGATION ==========
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id) { bottomNavItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id)); }
         function scrollTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActiveNav(id); }
@@ -798,7 +880,7 @@
         
         function setActiveOnScroll() {
             let current = '';
-            for (let s of ['about', 'skills', 'services', 'products']) {
+            for (let s of ['about', 'skills', 'services', 'products', 'creations']) {
                 const sec = document.getElementById(s);
                 if (sec && sec.offsetTop <= window.scrollY + 100) current = s;
             }
@@ -807,9 +889,9 @@
         window.addEventListener('scroll', setActiveOnScroll);
         setActiveOnScroll();
 
-        // Animations
-        new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fade-in'); observer.unobserve(e.target); } }), { threshold: 0.1 })
-            .observe(document.querySelectorAll('section'));
+        // ========== FADE-IN ANIMATION ==========
+        const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fade-in'); observer.unobserve(e.target); } }), { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
         
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
