@@ -35,14 +35,14 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Desktop Spotlight - Center modal */
-        .desktop-spotlight {
+        /* Single Spotlight Modal - Works on all devices */
+        .spotlight-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(12px);
             z-index: 2000;
             display: flex;
@@ -53,12 +53,12 @@
             transition: all 0.3s ease;
         }
 
-        .desktop-spotlight.active {
+        .spotlight-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .desktop-spotlight-container {
+        .spotlight-container {
             width: 90%;
             max-width: 700px;
             margin-top: 15vh;
@@ -69,228 +69,67 @@
             overflow: hidden;
         }
 
-        /* Tablet Spotlight - Slide-down overlay */
-        .tablet-spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(30, 30, 46, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
-            z-index: 2000;
-            transform: translateY(-100%);
-            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border-radius: 0 0 24px 24px;
+        /* Mobile adjustments - larger touch targets */
+        @media (max-width: 768px) {
+            .spotlight-container {
+                width: 95%;
+                margin-top: 10vh;
+            }
+            .spotlight-result-item {
+                padding: 14px 20px;
+            }
+            .spotlight-result-icon {
+                width: 36px;
+                font-size: 1.1rem;
+            }
         }
 
-        .tablet-spotlight.active {
-            transform: translateY(0);
-        }
-
-        .tablet-spotlight-header {
-            padding: 20px 24px 16px;
+        .spotlight-input-wrapper {
+            padding: 16px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
 
-        .tablet-spotlight-input-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 14px 20px;
-        }
-
-        .tablet-spotlight-input-wrapper i {
-            color: #5c6370;
-            font-size: 1.2rem;
-        }
-
-        .tablet-spotlight-input {
-            flex: 1;
+        .spotlight-input {
+            width: 100%;
             background: transparent;
             border: none;
             outline: none;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 5vw, 1.25rem);
             font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-
-        .tablet-spotlight-input::placeholder {
-            color: #5c6370;
-        }
-
-        .tablet-spotlight-close {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 24px;
-            padding: 8px 16px;
-            color: #fff;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
-        .tablet-spotlight-results {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px 0;
-        }
-
-        /* Pull-to-search indicator */
-        .pull-indicator {
-            position: fixed;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 212, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            color: #00d4ff;
-            font-family: monospace;
-            z-index: 1999;
-            transition: top 0.2s ease;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .pull-indicator.visible {
-            top: 10px;
-        }
-
-        /* ============================================
-           MOBILE SPOTLIGHT - Bottom sheet with quick action buttons
-           ============================================ */
-        .mobile-spotlight {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(30, 30, 46, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 24px 24px 0 0;
-            border-top: 1px solid rgba(0, 212, 255, 0.3);
-            z-index: 2000;
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .mobile-spotlight.active {
-            transform: translateY(0);
-        }
-
-        .mobile-spotlight-handle {
-            width: 40px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 2px;
-            margin: 12px auto 8px;
-        }
-
-        .mobile-spotlight-header {
-            padding: 8px 16px 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-spotlight-input-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 12px 16px;
-        }
-
-        .mobile-spotlight-input-wrapper i {
-            color: #5c6370;
-            font-size: 1.1rem;
-        }
-
-        .mobile-spotlight-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #fff;
-            font-size: 1rem;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-
-        .mobile-spotlight-input::placeholder {
-            color: #5c6370;
-        }
-
-        .mobile-spotlight-close {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 20px;
-            padding: 6px 12px;
-            color: #fff;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        /* Quick Action Buttons - Custom keyboard alternative */
-        .quick-actions {
-            padding: 12px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .quick-actions::-webkit-scrollbar {
-            display: none;
-        }
-
-        .quick-action-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 30px;
-            padding: 8px 14px;
-            margin-right: 8px;
-            font-size: 0.75rem;
-            font-family: 'SF Mono', monospace;
-            color: #00d4ff;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .quick-action-chip:active {
-            background: rgba(0, 212, 255, 0.3);
-            transform: scale(0.96);
-        }
-
-        .quick-action-chip i {
-            font-size: 0.7rem;
-        }
-
-        .quick-action-chip.clear-chip {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
-            color: #ff4444;
-        }
-
-        .mobile-spotlight-results {
-            flex: 1;
-            overflow-y: auto;
             padding: 8px 0;
         }
 
-        /* Shared result styles */
+        .spotlight-input::placeholder {
+            color: #5c6370;
+        }
+
+        .spotlight-shortcut {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7rem;
+            color: #5c6370;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+
+        /* Hide shortcut hint on mobile */
+        @media (max-width: 768px) {
+            .spotlight-shortcut {
+                display: none;
+            }
+        }
+
+        .spotlight-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
         .spotlight-section {
             padding: 12px 0;
         }
@@ -305,7 +144,7 @@
         }
 
         .spotlight-result-item {
-            padding: 12px 20px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             gap: 14px;
@@ -314,14 +153,9 @@
             font-family: 'SF Mono', monospace;
         }
 
-        .tablet-spotlight .spotlight-result-item {
-            padding: 14px 24px;
-        }
-
         .spotlight-result-item:hover,
         .spotlight-result-item.selected,
-        .mobile-spotlight-result-item:active,
-        .tablet-spotlight .spotlight-result-item:active {
+        .spotlight-result-item:active {
             background: rgba(0, 212, 255, 0.15);
         }
 
@@ -361,46 +195,70 @@
             font-family: monospace;
         }
 
-        /* Device-specific visibility */
-        @media (max-width: 480px) {
-            .desktop-spotlight { display: none; }
-            .tablet-spotlight { display: none; }
-            .mobile-spotlight { display: flex; }
-            .pull-indicator { display: none; }
+        /* Quick action chips - mobile only */
+        .quick-actions {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            display: none;
         }
 
-        @media (min-width: 481px) and (max-width: 1024px) {
-            .desktop-spotlight { display: none; }
-            .mobile-spotlight { display: none; }
-            .tablet-spotlight { display: flex; }
-            .desktop-search-hint { display: none; }
+        @media (max-width: 768px) {
+            .quick-actions {
+                display: block;
+            }
         }
 
-        @media (min-width: 1025px) {
-            .desktop-spotlight { display: flex; }
-            .mobile-spotlight { display: none; }
-            .tablet-spotlight { display: none; }
-            .pull-indicator { display: none; }
+        .quick-actions::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Search button visibility */
-        @media (max-width: 480px) {
-            .tablet-search-btn { display: none !important; }
-            .mobile-search-btn { display: flex !important; }
+        .quick-action-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 30px;
+            padding: 8px 14px;
+            margin-right: 8px;
+            font-size: 0.75rem;
+            font-family: 'SF Mono', monospace;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        @media (min-width: 481px) and (max-width: 1024px) {
-            .tablet-search-btn { display: flex !important; }
-            .mobile-search-btn { display: none !important; }
+        .quick-action-chip:active {
+            background: rgba(0, 212, 255, 0.3);
+            transform: scale(0.96);
         }
 
-        @media (min-width: 1025px) {
-            .tablet-search-btn { display: none !important; }
-            .mobile-search-btn { display: none !important; }
+        .quick-action-chip i {
+            font-size: 0.7rem;
         }
 
-        /* Keyboard shortcut hint - desktop only */
-        .desktop-search-hint {
+        .quick-action-chip.clear-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #ff4444;
+        }
+
+        /* Search button in bottom nav - visible on mobile only */
+        .search-btn {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .search-btn {
+                display: flex !important;
+            }
+        }
+
+        /* Desktop hint */
+        .spotlight-hint {
             position: fixed;
             bottom: 80px;
             right: 16px;
@@ -415,8 +273,8 @@
             pointer-events: none;
         }
 
-        @media (max-width: 1024px) {
-            .desktop-search-hint {
+        @media (max-width: 768px) {
+            .spotlight-hint {
                 display: none;
             }
         }
@@ -665,76 +523,43 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Pull-to-search indicator (tablet) -->
-<div id="pullIndicator" class="pull-indicator">
-    <i class="fas fa-chevron-down"></i> Pull down to search
-</div>
-
-<!-- DESKTOP SPOTLIGHT - Center modal (Cmd+K) -->
-<div id="desktopSpotlight" class="desktop-spotlight">
-    <div class="desktop-spotlight-container">
-        <div class="spotlight-input-wrapper" style="padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: relative;">
-            <input type="text" id="desktopSpotlightInput" class="spotlight-input" placeholder="Search products, skills, services..." autocomplete="off" style="width:100%; background:transparent; border:none; outline:none; color:#fff; font-size:1.25rem; font-family:'SF Mono','Fira Code',monospace; padding:8px 0;">
-            <span class="spotlight-shortcut" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:0.7rem; color:#5c6370; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:8px;">ESC</span>
+<!-- Single Spotlight Modal - Works on all devices -->
+<div id="spotlightOverlay" class="spotlight-overlay">
+    <div class="spotlight-container">
+        <div class="spotlight-input-wrapper">
+            <input type="text" id="spotlightInput" class="spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
+            <span class="spotlight-shortcut">ESC</span>
         </div>
-        <div id="desktopSpotlightResults" class="spotlight-results"></div>
+        <!-- Quick action chips - visible on mobile only -->
+        <div class="quick-actions" id="quickActions">
+            <div class="quick-action-chip" data-query="tshirt">
+                <i class="fas fa-tshirt"></i> T-Shirt
+            </div>
+            <div class="quick-action-chip" data-query="mug">
+                <i class="fas fa-mug-hot"></i> Mug
+            </div>
+            <div class="quick-action-chip" data-query="pillow">
+                <i class="fas fa-bed"></i> Pillow
+            </div>
+            <div class="quick-action-chip" data-query="charger">
+                <i class="fas fa-charging-station"></i> Charger
+            </div>
+            <div class="quick-action-chip" data-query="button">
+                <i class="fas fa-circle"></i> Button
+            </div>
+            <div class="quick-action-chip" data-query="keychain">
+                <i class="fas fa-key"></i> Keychain
+            </div>
+            <div class="quick-action-chip clear-chip" data-query="clear">
+                <i class="fas fa-times"></i> Clear
+            </div>
+        </div>
+        <div id="spotlightResults" class="spotlight-results"></div>
     </div>
 </div>
 
-<!-- TABLET SPOTLIGHT - Slide-down overlay -->
-<div id="tabletSpotlight" class="tablet-spotlight">
-    <div class="tablet-spotlight-header">
-        <div class="tablet-spotlight-input-wrapper">
-            <i class="fas fa-search"></i>
-            <input type="text" id="tabletSpotlightInput" class="tablet-spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
-            <button id="tabletSpotlightClose" class="tablet-spotlight-close">Cancel</button>
-        </div>
-    </div>
-    <div id="tabletSpotlightResults" class="tablet-spotlight-results"></div>
-</div>
-
-<!-- MOBILE SPOTLIGHT - Bottom sheet with quick action buttons -->
-<div id="mobileSpotlight" class="mobile-spotlight">
-    <div class="mobile-spotlight-handle"></div>
-    <div class="mobile-spotlight-header">
-        <div class="mobile-spotlight-input-wrapper">
-            <i class="fas fa-search"></i>
-            <input type="text" id="mobileSpotlightInput" class="mobile-spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
-            <button id="mobileSpotlightClose" class="mobile-spotlight-close">Cancel</button>
-        </div>
-    </div>
-    <!-- Quick Action Buttons - Custom keyboard alternative -->
-    <div class="quick-actions" id="quickActions">
-        <div class="quick-action-chip" data-query="tshirt">
-            <i class="fas fa-tshirt"></i> T-Shirt
-        </div>
-        <div class="quick-action-chip" data-query="mug">
-            <i class="fas fa-mug-hot"></i> Mug
-        </div>
-        <div class="quick-action-chip" data-query="pillow">
-            <i class="fas fa-bed"></i> Pillow
-        </div>
-        <div class="quick-action-chip" data-query="charger">
-            <i class="fas fa-charging-station"></i> Charger
-        </div>
-        <div class="quick-action-chip" data-query="button">
-            <i class="fas fa-circle"></i> Button
-        </div>
-        <div class="quick-action-chip" data-query="keychain">
-            <i class="fas fa-key"></i> Keychain
-        </div>
-        <div class="quick-action-chip" data-query="sticker">
-            <i class="fas fa-tag"></i> Sticker
-        </div>
-        <div class="quick-action-chip clear-chip" data-query="clear">
-            <i class="fas fa-times"></i> Clear
-        </div>
-    </div>
-    <div id="mobileSpotlightResults" class="mobile-spotlight-results"></div>
-</div>
-
-<!-- Keyboard shortcut hint (desktop only) -->
-<div class="desktop-search-hint">
+<!-- Desktop hint (Cmd+K) - hidden on mobile -->
+<div class="spotlight-hint">
     <i class="fas fa-search"></i> <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd>
 </div>
 
@@ -870,14 +695,13 @@
     <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
     <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
     <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
-    <button class="bottom-nav-item tablet-search-btn" id="tabletSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
-    <button class="bottom-nav-item mobile-search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
+    <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
 </div>
 
 <script>
     (function(){
         // ============================================
-        // PRODUCTS DATA - All 85 products (condensed for brevity - same as before)
+        // PRODUCTS DATA - All products (condensed for brevity)
         // ============================================
         const products = [
             { link: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965", title: "Static Snow Metallic Button", type: "Button", price: 0, soldOut: false, search: "static snow metallic button" },
@@ -893,8 +717,7 @@
             { link: "https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667", title: "Death Is Only The Beginning Throw Pillow", type: "Pillow", price: 0, soldOut: false, search: "death beginning throw pillow" }
         ];
 
-        // Add remaining products (keeping it concise for the response - the full product list is the same as before)
-        // ... (all 85 products from previous version)
+        // Add remaining products (full list would be here)
 
         // Searchable items
         const searchableItems = [];
@@ -949,348 +772,155 @@
             });
         }
 
-        // ========== QUICK ACTIONS FOR MOBILE ==========
-        function setupQuickActions() {
-            const quickChips = document.querySelectorAll('.quick-action-chip');
-            const mobileInput = document.getElementById('mobileSpotlightInput');
+        // ========== SPOTLIGHT FUNCTIONS ==========
+        const overlay = document.getElementById('spotlightOverlay');
+        const input = document.getElementById('spotlightInput');
+        const resultsContainer = document.getElementById('spotlightResults');
+
+        function renderResults(results) {
+            if (!resultsContainer) return;
+            if (!results.length) {
+                resultsContainer.innerHTML = '<div class="spotlight-no-results">No results found</div>';
+                return;
+            }
             
-            quickChips.forEach(chip => {
-                chip.addEventListener('click', () => {
-                    const query = chip.getAttribute('data-query');
+            const grouped = { products: [], skills: [], services: [] };
+            results.forEach(item => {
+                if (item.type === 'product') grouped.products.push(item);
+                else if (item.type === 'skill') grouped.skills.push(item);
+                else if (item.type === 'service') grouped.services.push(item);
+            });
+            
+            let html = '';
+            
+            if (grouped.products.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
+                grouped.products.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content">
+                            <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
+                            <div class="spotlight-result-subtitle">${item.subtitle}</div>
+                        </div>
+                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            
+            if (grouped.skills.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
+                grouped.skills.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content">
+                            <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
+                            <div class="spotlight-result-subtitle">${item.subtitle}</div>
+                        </div>
+                        <div class="spotlight-result-type">Skill</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            
+            if (grouped.services.length) {
+                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
+                grouped.services.forEach(item => {
+                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
+                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                        <div class="spotlight-result-content">
+                            <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
+                            <div class="spotlight-result-subtitle">${item.subtitle}</div>
+                        </div>
+                        <div class="spotlight-result-type">Service</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            
+            resultsContainer.innerHTML = html;
+            
+            // Attach click handlers
+            resultsContainer.querySelectorAll('.spotlight-result-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const type = el.getAttribute('data-type');
+                    const link = el.getAttribute('data-link');
+                    const soldOut = el.getAttribute('data-soldout') === 'true';
+                    const sectionId = el.getAttribute('data-section');
                     
-                    if (query === 'clear') {
-                        if (mobileInput) {
-                            mobileInput.value = '';
-                            performMobileSearch('');
-                            mobileInput.focus();
-                        }
-                    } else {
-                        if (mobileInput) {
-                            mobileInput.value = query;
-                            performMobileSearch(query);
-                            mobileInput.focus();
-                        }
-                    }
-                });
-            });
-        }
-
-        // ========== DESKTOP SPOTLIGHT ==========
-        const desktopOverlay = document.getElementById('desktopSpotlight');
-        const desktopInput = document.getElementById('desktopSpotlightInput');
-        const desktopResults = document.getElementById('desktopSpotlightResults');
-
-        function renderDesktopResults(results) {
-            if (!desktopResults) return;
-            if (!results.length) {
-                desktopResults.innerHTML = '<div class="spotlight-no-results">No results found</div>';
-                return;
-            }
-            const grouped = { products: [], skills: [], services: [] };
-            results.forEach(item => {
-                if (item.type === 'product') grouped.products.push(item);
-                else if (item.type === 'skill') grouped.skills.push(item);
-                else if (item.type === 'service') grouped.services.push(item);
-            });
-            let html = '';
-            if (grouped.products.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
-                grouped.products.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            if (grouped.skills.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
-                grouped.skills.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">Skill</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            if (grouped.services.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
-                grouped.services.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">Service</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            desktopResults.innerHTML = html;
-            desktopResults.querySelectorAll('.spotlight-result-item').forEach(el => {
-                el.addEventListener('click', () => {
-                    const type = el.getAttribute('data-type');
-                    const link = el.getAttribute('data-link');
-                    const soldOut = el.getAttribute('data-soldout') === 'true';
-                    const sectionId = el.getAttribute('data-section');
-                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
-                    else if ((type === 'skill' || type === 'service') && sectionId) {
+                    if (type === 'product' && link && !soldOut) {
+                        window.open(link, '_blank');
+                    } else if ((type === 'skill' || type === 'service') && sectionId) {
                         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                    closeDesktopSpotlight();
+                    closeSpotlight();
                 });
             });
         }
 
-        function performDesktopSearch(query) {
+        function performSearch(query) {
             const lowerQuery = query.toLowerCase().trim();
-            if (!lowerQuery) { renderDesktopResults([]); return; }
+            if (!lowerQuery) {
+                renderResults([]);
+                return;
+            }
             const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
-            renderDesktopResults(results);
+            renderResults(results);
         }
 
-        function openDesktopSpotlight() {
-            desktopOverlay.classList.add('active');
-            desktopInput.value = '';
-            performDesktopSearch('');
-            setTimeout(() => desktopInput.focus(), 100);
+        function openSpotlight() {
+            overlay.classList.add('active');
+            input.value = '';
+            performSearch('');
+            setTimeout(() => input.focus(), 100);
             document.body.style.overflow = 'hidden';
         }
 
-        function closeDesktopSpotlight() {
-            desktopOverlay.classList.remove('active');
+        function closeSpotlight() {
+            overlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        if (desktopInput) desktopInput.addEventListener('input', (e) => performDesktopSearch(e.target.value));
-        if (desktopOverlay) desktopOverlay.addEventListener('click', (e) => { if (e.target === desktopOverlay) closeDesktopSpotlight(); });
+        // Input event
+        input.addEventListener('input', (e) => performSearch(e.target.value));
 
-        // ========== TABLET SPOTLIGHT ==========
-        const tabletOverlay = document.getElementById('tabletSpotlight');
-        const tabletInput = document.getElementById('tabletSpotlightInput');
-        const tabletResults = document.getElementById('tabletSpotlightResults');
-        const tabletCloseBtn = document.getElementById('tabletSpotlightClose');
-        const tabletSearchBtn = document.getElementById('tabletSearchBtn');
-        const pullIndicator = document.getElementById('pullIndicator');
-        let touchStartY = 0;
-
-        function renderTabletResults(results) {
-            if (!tabletResults) return;
-            if (!results.length) {
-                tabletResults.innerHTML = '<div class="spotlight-no-results">No results found</div>';
-                return;
-            }
-            const grouped = { products: [], skills: [], services: [] };
-            results.forEach(item => {
-                if (item.type === 'product') grouped.products.push(item);
-                else if (item.type === 'skill') grouped.skills.push(item);
-                else if (item.type === 'service') grouped.services.push(item);
-            });
-            let html = '';
-            if (grouped.products.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
-                grouped.products.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            if (grouped.skills.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
-                grouped.skills.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">Skill</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            if (grouped.services.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
-                grouped.services.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">Service</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            tabletResults.innerHTML = html;
-            tabletResults.querySelectorAll('.spotlight-result-item').forEach(el => {
-                el.addEventListener('click', () => {
-                    const type = el.getAttribute('data-type');
-                    const link = el.getAttribute('data-link');
-                    const soldOut = el.getAttribute('data-soldout') === 'true';
-                    const sectionId = el.getAttribute('data-section');
-                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
-                    else if ((type === 'skill' || type === 'service') && sectionId) {
-                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    closeTabletSpotlight();
-                });
-            });
-        }
-
-        function performTabletSearch(query) {
-            const lowerQuery = query.toLowerCase().trim();
-            if (!lowerQuery) { renderTabletResults([]); return; }
-            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
-            renderTabletResults(results);
-        }
-
-        function openTabletSpotlight() {
-            tabletOverlay.classList.add('active');
-            tabletInput.value = '';
-            performTabletSearch('');
-            setTimeout(() => tabletInput.focus(), 100);
-            document.body.style.overflow = 'hidden';
-            if (pullIndicator) pullIndicator.classList.remove('visible');
-        }
-
-        function closeTabletSpotlight() {
-            tabletOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        if (tabletInput) tabletInput.addEventListener('input', (e) => performTabletSearch(e.target.value));
-        if (tabletCloseBtn) tabletCloseBtn.addEventListener('click', closeTabletSpotlight);
-        if (tabletSearchBtn) tabletSearchBtn.addEventListener('click', openTabletSpotlight);
-        if (tabletOverlay) tabletOverlay.addEventListener('click', (e) => { if (e.target === tabletOverlay) closeTabletSpotlight(); });
-
-        // Pull-to-search for tablets
-        document.addEventListener('touchstart', (e) => {
-            if (window.innerWidth >= 481 && window.innerWidth <= 1024 && !tabletOverlay.classList.contains('active')) {
-                touchStartY = e.touches[0].clientY;
-                if (touchStartY < 30 && pullIndicator) pullIndicator.classList.add('visible');
-            }
-        });
-        document.addEventListener('touchmove', (e) => {
-            if (window.innerWidth >= 481 && window.innerWidth <= 1024 && !tabletOverlay.classList.contains('active')) {
-                const currentY = e.touches[0].clientY;
-                if (touchStartY < 30 && currentY > touchStartY + 50) {
-                    openTabletSpotlight();
-                    if (pullIndicator) pullIndicator.classList.remove('visible');
-                }
-            }
-        });
-        document.addEventListener('touchend', () => {
-            if (pullIndicator) setTimeout(() => pullIndicator.classList.remove('visible'), 500);
+        // Close on outside click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeSpotlight();
         });
 
-        // ========== MOBILE SPOTLIGHT ==========
-        const mobileOverlay = document.getElementById('mobileSpotlight');
-        const mobileInput = document.getElementById('mobileSpotlightInput');
-        const mobileResults = document.getElementById('mobileSpotlightResults');
-        const mobileCloseBtn = document.getElementById('mobileSpotlightClose');
-        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-
-        function renderMobileResults(results) {
-            if (!mobileResults) return;
-            if (!results.length) {
-                mobileResults.innerHTML = '<div class="spotlight-no-results">No results found</div>';
-                return;
-            }
-            const grouped = { products: [], skills: [], services: [] };
-            results.forEach(item => {
-                if (item.type === 'product') grouped.products.push(item);
-                else if (item.type === 'skill') grouped.skills.push(item);
-                else if (item.type === 'service') grouped.services.push(item);
-            });
-            let html = '';
-            if (grouped.products.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
-                grouped.products.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            if (grouped.skills.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
-                grouped.skills.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">Skill</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            if (grouped.services.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
-                grouped.services.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content"><div class="spotlight-result-title">${escapeHtml(item.title)}</div><div class="spotlight-result-subtitle">${item.subtitle}</div></div>
-                        <div class="spotlight-result-type">Service</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            mobileResults.innerHTML = html;
-            mobileResults.querySelectorAll('.spotlight-result-item').forEach(el => {
-                el.addEventListener('click', () => {
-                    const type = el.getAttribute('data-type');
-                    const link = el.getAttribute('data-link');
-                    const soldOut = el.getAttribute('data-soldout') === 'true';
-                    const sectionId = el.getAttribute('data-section');
-                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
-                    else if ((type === 'skill' || type === 'service') && sectionId) {
-                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    closeMobileSpotlight();
-                });
-            });
-        }
-
-        function performMobileSearch(query) {
-            const lowerQuery = query.toLowerCase().trim();
-            if (!lowerQuery) { renderMobileResults([]); return; }
-            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
-            renderMobileResults(results);
-        }
-
-        function openMobileSpotlight() {
-            mobileOverlay.classList.add('active');
-            mobileInput.value = '';
-            performMobileSearch('');
-            setTimeout(() => mobileInput.focus(), 100);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMobileSpotlight() {
-            mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        if (mobileInput) mobileInput.addEventListener('input', (e) => performMobileSearch(e.target.value));
-        if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeMobileSpotlight);
-        if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', openMobileSpotlight);
-        if (mobileOverlay) mobileOverlay.addEventListener('click', (e) => { if (e.target === mobileOverlay) closeMobileSpotlight(); });
-        document.querySelector('.mobile-spotlight-handle')?.addEventListener('click', closeMobileSpotlight);
-
-        // Setup quick action buttons
-        setupQuickActions();
-
-        // ========== KEYBOARD SHORTCUTS ==========
+        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
                 e.preventDefault();
-                if (window.innerWidth >= 1025) openDesktopSpotlight();
+                openSpotlight();
             }
-            if (e.key === 'Escape') {
-                if (desktopOverlay.classList.contains('active')) closeDesktopSpotlight();
-                if (tabletOverlay.classList.contains('active')) closeTabletSpotlight();
-                if (mobileOverlay.classList.contains('active')) closeMobileSpotlight();
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeSpotlight();
             }
+        });
+
+        // Mobile search button
+        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+        if (mobileSearchBtn) {
+            mobileSearchBtn.addEventListener('click', openSpotlight);
+        }
+
+        // Quick action chips (mobile only)
+        const quickChips = document.querySelectorAll('.quick-action-chip');
+        quickChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const query = chip.getAttribute('data-query');
+                if (query === 'clear') {
+                    input.value = '';
+                    performSearch('');
+                    input.focus();
+                } else {
+                    input.value = query;
+                    performSearch(query);
+                    input.focus();
+                }
+            });
         });
 
         // ========== RENDER PRODUCTS ==========
@@ -1354,7 +984,12 @@
 
         // ========== FADE-IN ANIMATION ==========
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
