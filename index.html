@@ -535,13 +535,17 @@
 
         /* ============================================
            RESPONSIVE BOTTOM NAVIGATION
-           Mobile: scrollable | Tablet/Desktop: fixed layout
+           Mobile: scrollable with visual scroll dots
            ============================================ */
-        .bottom-nav {
+        .bottom-nav-wrapper {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
+            z-index: 100;
+        }
+
+        .bottom-nav {
             background: rgba(30, 30, 46, 0.95);
             backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -549,11 +553,38 @@
             align-items: center;
             padding: var(--space-sm) var(--space-lg) var(--space-lg);
             gap: var(--space-xs);
-            z-index: 100;
         }
 
-        /* Mobile: scrollable */
+        /* Scroll dots container */
+        .nav-scroll-dots {
+            display: none;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 0 12px;
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .nav-dot.active {
+            width: 16px;
+            border-radius: 3px;
+            background: #00d4ff;
+        }
+
+        /* Mobile: scrollable with visible scroll dots */
         @media (max-width: 768px) {
+            .bottom-nav-wrapper {
+                background: rgba(30, 30, 46, 0.95);
+            }
+            
             .bottom-nav {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -561,6 +592,7 @@
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
                 justify-content: flex-start;
+                padding-bottom: var(--space-sm);
             }
             
             .bottom-nav::-webkit-scrollbar {
@@ -571,9 +603,14 @@
                 flex-shrink: 0;
                 min-width: 60px;
             }
+            
+            /* Show scroll dots on mobile */
+            .nav-scroll-dots {
+                display: flex;
+            }
         }
 
-        /* Tablet/Desktop: fixed layout, all visible */
+        /* Tablet/Desktop: fixed layout, all visible, no dots */
         @media (min-width: 768px) {
             .bottom-nav {
                 justify-content: space-around;
@@ -583,6 +620,10 @@
             .bottom-nav-item {
                 flex: 1;
                 max-width: 80px;
+            }
+            
+            .nav-scroll-dots {
+                display: none;
             }
         }
 
@@ -791,15 +832,18 @@
     </section>
 </main>
 
-<div class="bottom-nav">
-    <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-    <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
-    <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
-    <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
-    <button class="bottom-nav-item" data-section="creations"><i class="fas fa-gem"></i><span>Creations</span></button>
-    <button class="bottom-nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
-    <button class="bottom-nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
-    <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Find</span></button>
+<div class="bottom-nav-wrapper">
+    <div class="bottom-nav" id="bottomNav">
+        <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
+        <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
+        <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
+        <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
+        <button class="bottom-nav-item" data-section="creations"><i class="fas fa-gem"></i><span>Creations</span></button>
+        <button class="bottom-nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
+        <button class="bottom-nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
+        <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Find</span></button>
+    </div>
+    <div class="nav-scroll-dots" id="navScrollDots"></div>
 </div>
 
 <script>
@@ -1119,6 +1163,45 @@
         renderCreations();
         renderClients();
         renderBlog();
+
+        // ========== SCROLLABLE NAV WITH VISUAL DOTS ==========
+        const bottomNav = document.getElementById('bottomNav');
+        const dotsContainer = document.getElementById('navScrollDots');
+        
+        if (bottomNav && window.innerWidth <= 768) {
+            // Calculate number of "pages" based on visible width
+            function updateScrollDots() {
+                if (!bottomNav || !dotsContainer) return;
+                
+                const scrollWidth = bottomNav.scrollWidth;
+                const clientWidth = bottomNav.clientWidth;
+                const scrollLeft = bottomNav.scrollLeft;
+                
+                // Calculate how many pages (each page = clientWidth)
+                const totalPages = Math.ceil(scrollWidth / clientWidth);
+                const currentPage = Math.floor(scrollLeft / clientWidth);
+                
+                // Create or update dots
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalPages; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'nav-dot';
+                    if (i === currentPage) dot.classList.add('active');
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            // Initial dots
+            updateScrollDots();
+            
+            // Update dots on scroll
+            bottomNav.addEventListener('scroll', updateScrollDots);
+            
+            // Update dots on resize
+            window.addEventListener('resize', () => {
+                setTimeout(updateScrollDots, 100);
+            });
+        }
 
         // ========== BOTTOM NAVIGATION ==========
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
