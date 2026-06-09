@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
+        /* ============================================
+           COMPLETE FLUID SYSTEM - No fixed breakpoints
+           Everything uses clamp() for smooth scaling
+           ============================================ */
+        
         * {
             margin: 0;
             padding: 0;
@@ -20,9 +25,31 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
-            font-size: 100%;
-            -webkit-text-size-adjust: 100%;
+        /* Fluid root - scales with viewport */
+        :root {
+            --space-xs: clamp(0.25rem, 1vw, 0.5rem);
+            --space-sm: clamp(0.5rem, 2vw, 0.75rem);
+            --space-md: clamp(0.75rem, 3vw, 1rem);
+            --space-lg: clamp(1rem, 4vw, 1.5rem);
+            --space-xl: clamp(1.5rem, 5vw, 2rem);
+            --space-2xl: clamp(2rem, 6vw, 3rem);
+            
+            --text-xs: clamp(0.625rem, 2vw, 0.75rem);
+            --text-sm: clamp(0.75rem, 2.5vw, 0.875rem);
+            --text-base: clamp(0.875rem, 3vw, 1rem);
+            --text-md: clamp(1rem, 3.5vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 4vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 5vw, 1.5rem);
+            
+            --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
+            --radius-md: clamp(0.75rem, 2vw, 1rem);
+            --radius-lg: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #050505;
         }
 
         body {
@@ -31,11 +58,11 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
             line-height: 1.5;
             overflow-x: hidden;
-            font-size: clamp(0.875rem, 4vw, 1rem);
+            font-size: var(--text-base);
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Single Spotlight Modal - Works on all devices */
+        /* Spotlight Modal - Fluid on all screens */
         .spotlight-overlay {
             position: fixed;
             top: 0;
@@ -46,7 +73,7 @@
             backdrop-filter: blur(12px);
             z-index: 2000;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
@@ -59,33 +86,18 @@
         }
 
         .spotlight-container {
-            width: 90%;
-            max-width: 700px;
-            margin-top: 15vh;
+            width: min(90%, 700px);
+            max-width: 90vw;
             background: rgba(30, 30, 46, 0.95);
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             border: 1px solid rgba(0, 212, 255, 0.3);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-        }
-
-        /* Mobile adjustments - larger touch targets */
-        @media (max-width: 768px) {
-            .spotlight-container {
-                width: 95%;
-                margin-top: 10vh;
-            }
-            .spotlight-result-item {
-                padding: 14px 20px;
-            }
-            .spotlight-result-icon {
-                width: 36px;
-                font-size: 1.1rem;
-            }
+            margin: auto;
         }
 
         .spotlight-input-wrapper {
-            padding: 16px 20px;
+            padding: var(--space-md) var(--space-lg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
         }
@@ -96,9 +108,9 @@
             border: none;
             outline: none;
             color: #fff;
-            font-size: clamp(1rem, 5vw, 1.25rem);
+            font-size: var(--text-md);
             font-family: 'SF Mono', 'Fira Code', monospace;
-            padding: 8px 0;
+            padding: var(--space-xs) 0;
         }
 
         .spotlight-input::placeholder {
@@ -107,18 +119,17 @@
 
         .spotlight-shortcut {
             position: absolute;
-            right: 20px;
+            right: var(--space-lg);
             top: 50%;
             transform: translateY(-50%);
-            font-size: 0.7rem;
+            font-size: var(--text-xs);
             color: #5c6370;
             background: rgba(255, 255, 255, 0.1);
-            padding: 4px 8px;
-            border-radius: 8px;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
             font-family: monospace;
         }
 
-        /* Hide shortcut hint on mobile */
         @media (max-width: 768px) {
             .spotlight-shortcut {
                 display: none;
@@ -126,17 +137,17 @@
         }
 
         .spotlight-results {
-            max-height: 400px;
+            max-height: 60vh;
             overflow-y: auto;
         }
 
         .spotlight-section {
-            padding: 12px 0;
+            padding: var(--space-sm) 0;
         }
 
         .spotlight-section-title {
-            padding: 8px 20px;
-            font-size: 0.7rem;
+            padding: var(--space-xs) var(--space-lg);
+            font-size: var(--text-xs);
             text-transform: uppercase;
             color: #5c6370;
             letter-spacing: 1px;
@@ -144,10 +155,10 @@
         }
 
         .spotlight-result-item {
-            padding: 10px 20px;
+            padding: var(--space-sm) var(--space-lg);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: var(--space-md);
             cursor: pointer;
             transition: all 0.15s ease;
             font-family: 'SF Mono', monospace;
@@ -160,8 +171,8 @@
         }
 
         .spotlight-result-icon {
-            width: 32px;
-            font-size: 1rem;
+            width: clamp(2rem, 5vw, 2.5rem);
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             color: #00d4ff;
             text-align: center;
         }
@@ -171,44 +182,38 @@
         }
 
         .spotlight-result-title {
-            font-size: 0.9rem;
+            font-size: var(--text-sm);
             color: #fff;
         }
 
         .spotlight-result-subtitle {
-            font-size: 0.7rem;
+            font-size: var(--text-xs);
             color: #5c6370;
         }
 
         .spotlight-result-type {
-            font-size: 0.65rem;
+            font-size: var(--text-xs);
             color: #00d4ff;
             background: rgba(0, 212, 255, 0.1);
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-lg);
         }
 
         .spotlight-no-results {
-            padding: 60px 20px;
+            padding: var(--space-2xl) var(--space-lg);
             text-align: center;
             color: #5c6370;
             font-family: monospace;
         }
 
-        /* Quick action chips - mobile only */
+        /* Quick action chips - fluid */
         .quick-actions {
-            padding: 12px 16px;
+            padding: var(--space-sm) var(--space-lg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .quick-actions {
-                display: block;
-            }
+            scrollbar-width: none;
         }
 
         .quick-actions::-webkit-scrollbar {
@@ -218,13 +223,13 @@
         .quick-action-chip {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: var(--space-xs);
             background: rgba(0, 212, 255, 0.1);
             border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 30px;
-            padding: 8px 14px;
-            margin-right: 8px;
-            font-size: 0.75rem;
+            padding: var(--space-sm) var(--space-md);
+            margin-right: var(--space-sm);
+            font-size: var(--text-xs);
             font-family: 'SF Mono', monospace;
             color: #00d4ff;
             cursor: pointer;
@@ -237,7 +242,7 @@
         }
 
         .quick-action-chip i {
-            font-size: 0.7rem;
+            font-size: var(--text-xs);
         }
 
         .quick-action-chip.clear-chip {
@@ -246,27 +251,27 @@
             color: #ff4444;
         }
 
-        /* Search button in bottom nav - visible on mobile only */
+        /* Search button - fluid */
         .search-btn {
-            display: none !important;
+            display: none;
         }
 
         @media (max-width: 768px) {
             .search-btn {
-                display: flex !important;
+                display: flex;
             }
         }
 
         /* Desktop hint */
         .spotlight-hint {
             position: fixed;
-            bottom: 80px;
-            right: 16px;
+            bottom: var(--space-xl);
+            right: var(--space-lg);
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-xs);
             color: #5c6370;
             font-family: monospace;
             z-index: 99;
@@ -279,9 +284,10 @@
             }
         }
 
+        /* Main content - fluid padding */
         main {
             margin-left: 0;
-            padding: clamp(1rem, 5vw, 2rem) clamp(0.75rem, 4vw, 2rem) clamp(5rem, 12vw, 8rem) clamp(0.75rem, 4vw, 2rem);
+            padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
             flex: 1;
             width: 100%;
             max-width: 100%;
@@ -294,29 +300,30 @@
         }
 
         section {
-            margin-bottom: clamp(2rem, 6vw, 3rem);
+            margin-bottom: var(--space-2xl);
             width: 100%;
         }
 
         section:last-child {
             margin-bottom: 0;
-            padding-bottom: clamp(1rem, 4vw, 2rem);
+            padding-bottom: var(--space-xl);
         }
 
+        /* Section headers - fluid */
         .section-header {
-            margin-bottom: clamp(1rem, 4vw, 1.5rem);
-            padding: clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
+            margin-bottom: var(--space-lg);
+            padding: var(--space-md) var(--space-lg);
             background: rgba(0, 212, 255, 0.05);
-            border-left: clamp(0.1875rem, 0.5vw, 0.25rem) solid #00d4ff;
-            border-radius: 0 clamp(0.75rem, 2vw, 1rem) clamp(0.75rem, 2vw, 1rem) 0;
+            border-left: 3px solid #00d4ff;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
             font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
             width: 100%;
         }
 
         .section-header h2 {
-            font-size: clamp(0.75rem, 3.5vw, 1rem);
+            font-size: var(--text-sm);
             font-weight: 500;
-            margin-bottom: 0.375rem;
+            margin-bottom: var(--space-xs);
             color: #00d4ff;
             letter-spacing: -0.02em;
             word-break: break-word;
@@ -328,16 +335,17 @@
         .section-header h2 .function { color: #61afef; }
         .section-header p {
             color: #7e8a9a;
-            font-size: clamp(0.625rem, 2.5vw, 0.75rem);
+            font-size: var(--text-xs);
             font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
             letter-spacing: -0.01em;
         }
         .section-header p .comment { color: #5c6370; }
 
+        /* About section - fluid */
         .about {
             display: flex;
             flex-direction: column;
-            gap: clamp(1rem, 5vw, 1.5rem);
+            gap: var(--space-xl);
             align-items: center;
             text-align: center;
             width: 100%;
@@ -346,52 +354,42 @@
         .about-text { width: 100%; }
         .about-text p {
             color: #c0c0c0;
-            margin-bottom: 0.75rem;
-            font-size: clamp(0.875rem, 3.5vw, 1rem);
+            margin-bottom: var(--space-sm);
+            font-size: var(--text-base);
             line-height: 1.5;
             width: 100%;
         }
         .about-img { display: flex; justify-content: center; width: 100%; }
         .about-img img {
-            width: clamp(6rem, 20vw, 8.75rem);
-            height: clamp(6rem, 20vw, 8.75rem);
-            border-radius: clamp(1.5rem, 5vw, 2rem);
+            width: min(140px, 25vw);
+            height: min(140px, 25vw);
+            border-radius: var(--radius-lg);
             border: 2px solid rgba(0, 212, 255, 0.4);
             box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
             object-fit: cover;
         }
 
+        /* Grids - completely fluid with auto-fit */
         .skills-grid, .services-grid, .products-grid {
             display: grid;
-            gap: clamp(0.5rem, 2vw, 0.75rem);
+            gap: var(--space-sm);
             width: 100%;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr));
         }
 
-        @media (min-width: 480px) {
-            .skills-grid, .services-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr)); }
-            .products-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr)); }
-        }
-        @media (min-width: 768px) {
-            .skills-grid, .services-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
-            .products-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr)); }
-        }
-        @media (min-width: 1024px) {
-            .products-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
-        }
-
+        /* Cards - fluid */
         .skill-card, .service-card, .product-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: clamp(0.5rem, 2vw, 0.75rem);
-            padding: clamp(0.75rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vw, 0.75rem);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-sm);
             text-align: center;
             transition: all 0.2s ease;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: clamp(0.25rem, 1.5vw, 0.5rem);
+            gap: var(--space-xs);
         }
         .skill-card:active, .service-card:active, .product-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.06); }
 
@@ -401,29 +399,29 @@
         }
 
         .skill-card h3, .service-card h3, .product-card h3 {
-            font-size: clamp(0.625rem, 3vw, 0.75rem);
+            font-size: var(--text-xs);
             font-weight: 500;
             color: #e0e0e0;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         .skill-card p, .service-card p {
-            font-size: clamp(0.5rem, 2.5vw, 0.625rem);
+            font-size: calc(var(--text-xs) * 0.85);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         .product-type {
-            font-size: clamp(0.5rem, 2.2vw, 0.6rem);
+            font-size: calc(var(--text-xs) * 0.85);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
         .product-price {
-            font-size: clamp(0.55rem, 2.5vw, 0.65rem);
+            font-size: var(--text-xs);
             font-weight: 600;
             color: #00d4ff;
-            margin: 0.125rem 0;
+            margin: 0;
         }
 
         .sold-out-price {
@@ -432,7 +430,7 @@
         }
 
         .zazzle-badge {
-            font-size: clamp(0.4rem, 2vw, 0.5rem);
+            font-size: calc(var(--text-xs) * 0.7);
             color: #5c6370;
             letter-spacing: 0.5px;
         }
@@ -440,15 +438,15 @@
         .buy-btn {
             background: rgba(0, 212, 255, 0.1);
             border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 1.25rem;
-            padding: clamp(0.25rem, 1.5vw, 0.375rem) clamp(0.5rem, 2vw, 0.75rem);
-            font-size: clamp(0.5rem, 2.2vw, 0.6rem);
+            border-radius: 30px;
+            padding: var(--space-xs) var(--space-sm);
+            font-size: calc(var(--text-xs) * 0.85);
             font-weight: 500;
             color: #00d4ff;
             cursor: pointer;
             transition: all 0.2s ease;
             width: 100%;
-            margin-top: 0.25rem;
+            margin-top: var(--space-xs);
             text-decoration: none;
             display: inline-block;
             text-align: center;
@@ -458,27 +456,28 @@
         .sold-out-btn { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #666; cursor: not-allowed; }
         .sold-out-btn:active { transform: none; }
 
+        /* Bottom navigation - fluid */
         .bottom-nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.25rem;
+            gap: var(--space-xs);
             background: none;
             border: none;
             color: #7e7e8e;
-            font-size: clamp(0.5rem, 2.5vw, 0.625rem);
-            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.5rem, 1.5vw, 0.75rem);
-            border-radius: 1.875rem;
+            font-size: var(--text-xs);
+            padding: var(--space-sm);
+            border-radius: 30px;
             transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
             flex: 1;
-            max-width: 5rem;
+            max-width: 80px;
             position: relative;
         }
-        .bottom-nav-item i { font-size: clamp(1rem, 5vw, 1.375rem); margin-bottom: 0; transition: transform 0.2s ease; }
+        .bottom-nav-item i { font-size: var(--text-md); margin-bottom: 0; transition: transform 0.2s ease; }
         .bottom-nav-item span { font-weight: 500; transition: all 0.2s ease; }
         .bottom-nav-item.active { color: #00d4ff; background: rgba(0, 212, 255, 0.15); }
-        .bottom-nav-item.active i { transform: translateY(-0.125rem); }
+        .bottom-nav-item.active i { transform: translateY(-2px); }
         .bottom-nav-item:active { transform: scale(0.92); }
         .bottom-nav-item:active i { transform: scale(0.9); }
 
@@ -493,7 +492,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.5rem);
+            padding: var(--space-sm) var(--space-lg) var(--space-lg);
             z-index: 100;
         }
 
@@ -523,42 +522,26 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Single Spotlight Modal - Works on all devices -->
+<!-- Spotlight Modal - Fluid on all screens -->
 <div id="spotlightOverlay" class="spotlight-overlay">
     <div class="spotlight-container">
         <div class="spotlight-input-wrapper">
             <input type="text" id="spotlightInput" class="spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
             <span class="spotlight-shortcut">ESC</span>
         </div>
-        <!-- Quick action chips - visible on mobile only -->
         <div class="quick-actions" id="quickActions">
-            <div class="quick-action-chip" data-query="tshirt">
-                <i class="fas fa-tshirt"></i> T-Shirt
-            </div>
-            <div class="quick-action-chip" data-query="mug">
-                <i class="fas fa-mug-hot"></i> Mug
-            </div>
-            <div class="quick-action-chip" data-query="pillow">
-                <i class="fas fa-bed"></i> Pillow
-            </div>
-            <div class="quick-action-chip" data-query="charger">
-                <i class="fas fa-charging-station"></i> Charger
-            </div>
-            <div class="quick-action-chip" data-query="button">
-                <i class="fas fa-circle"></i> Button
-            </div>
-            <div class="quick-action-chip" data-query="keychain">
-                <i class="fas fa-key"></i> Keychain
-            </div>
-            <div class="quick-action-chip clear-chip" data-query="clear">
-                <i class="fas fa-times"></i> Clear
-            </div>
+            <div class="quick-action-chip" data-query="tshirt"><i class="fas fa-tshirt"></i> T-Shirt</div>
+            <div class="quick-action-chip" data-query="mug"><i class="fas fa-mug-hot"></i> Mug</div>
+            <div class="quick-action-chip" data-query="pillow"><i class="fas fa-bed"></i> Pillow</div>
+            <div class="quick-action-chip" data-query="charger"><i class="fas fa-charging-station"></i> Charger</div>
+            <div class="quick-action-chip" data-query="button"><i class="fas fa-circle"></i> Button</div>
+            <div class="quick-action-chip" data-query="keychain"><i class="fas fa-key"></i> Keychain</div>
+            <div class="quick-action-chip clear-chip" data-query="clear"><i class="fas fa-times"></i> Clear</div>
         </div>
         <div id="spotlightResults" class="spotlight-results"></div>
     </div>
 </div>
 
-<!-- Desktop hint (Cmd+K) - hidden on mobile -->
 <div class="spotlight-hint">
     <i class="fas fa-search"></i> <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd>
 </div>
@@ -597,30 +580,12 @@
                 <p><span class="comment">// Technologies I work with daily</span></p>
             </div>
             <div class="skills-grid">
-                <div class="skill-card" data-skill="frontend" data-search="frontend react vue angular typescript">
-                    <h3>Frontend</h3>
-                    <p>React, Vue, Angular, TypeScript</p>
-                </div>
-                <div class="skill-card" data-skill="backend" data-search="backend node.js python go java">
-                    <h3>Backend</h3>
-                    <p>Node.js, Python, Go, Java</p>
-                </div>
-                <div class="skill-card" data-skill="database" data-search="database postgresql mongodb redis mysql">
-                    <h3>Database</h3>
-                    <p>PostgreSQL, MongoDB, Redis</p>
-                </div>
-                <div class="skill-card" data-skill="cloud" data-search="cloud aws azure gcp docker kubernetes">
-                    <h3>Cloud</h3>
-                    <p>AWS, Azure, GCP, Docker</p>
-                </div>
-                <div class="skill-card" data-skill="mobile" data-search="mobile react native flutter swift kotlin">
-                    <h3>Mobile</h3>
-                    <p>React Native, Flutter, Swift</p>
-                </div>
-                <div class="skill-card" data-skill="devops" data-search="devops ci/cd jenkins github actions">
-                    <h3>DevOps</h3>
-                    <p>CI/CD, Jenkins, GitHub Actions</p>
-                </div>
+                <div class="skill-card" data-skill="frontend" data-search="frontend react vue angular typescript"><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div>
+                <div class="skill-card" data-skill="backend" data-search="backend node.js python go java"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div>
+                <div class="skill-card" data-skill="database" data-search="database postgresql mongodb redis mysql"><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div>
+                <div class="skill-card" data-skill="cloud" data-search="cloud aws azure gcp docker kubernetes"><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div>
+                <div class="skill-card" data-skill="mobile" data-search="mobile react native flutter swift kotlin"><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div>
+                <div class="skill-card" data-skill="devops" data-search="devops ci/cd jenkins github actions"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div>
             </div>
         </div>
     </section>
@@ -638,38 +603,14 @@
                 <p><span class="comment">// What I offer as a digital architect</span></p>
             </div>
             <div class="services-grid">
-                <div class="service-card" data-service="logo-design" data-search="logo design brand identity">
-                    <h3>Logo Design</h3>
-                    <p>Custom brand identities</p>
-                </div>
-                <div class="service-card" data-service="web-dev" data-search="web development full stack">
-                    <h3>Web Development</h3>
-                    <p>Full-stack modern apps</p>
-                </div>
-                <div class="service-card" data-service="ui-ux" data-search="ui ux design interface">
-                    <h3>UI/UX Design</h3>
-                    <p>Beautiful, intuitive interfaces</p>
-                </div>
-                <div class="service-card" data-service="consulting" data-search="tech consulting architecture strategy">
-                    <h3>Tech Consulting</h3>
-                    <p>Expert architecture advice</p>
-                </div>
-                <div class="service-card" data-service="performance" data-search="performance optimization speed scaling">
-                    <h3>Performance</h3>
-                    <p>Speed optimization & scaling</p>
-                </div>
-                <div class="service-card" data-service="security" data-search="security audit vulnerability">
-                    <h3>Security Audits</h3>
-                    <p>Vulnerability fixes</p>
-                </div>
-                <div class="service-card" data-service="maintenance" data-search="maintenance support updates">
-                    <h3>Maintenance</h3>
-                    <p>Ongoing support & updates</p>
-                </div>
-                <div class="service-card" data-service="cloud" data-search="cloud migration aws azure gcp">
-                    <h3>Cloud Migration</h3>
-                    <p>AWS, Azure, GCP expertise</p>
-                </div>
+                <div class="service-card" data-service="logo-design" data-search="logo design brand identity"><h3>Logo Design</h3><p>Custom brand identities</p></div>
+                <div class="service-card" data-service="web-dev" data-search="web development full stack"><h3>Web Development</h3><p>Full-stack modern apps</p></div>
+                <div class="service-card" data-service="ui-ux" data-search="ui ux design interface"><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces</p></div>
+                <div class="service-card" data-service="consulting" data-search="tech consulting architecture strategy"><h3>Tech Consulting</h3><p>Expert architecture advice</p></div>
+                <div class="service-card" data-service="performance" data-search="performance optimization speed scaling"><h3>Performance</h3><p>Speed optimization & scaling</p></div>
+                <div class="service-card" data-service="security" data-search="security audit vulnerability"><h3>Security Audits</h3><p>Vulnerability fixes</p></div>
+                <div class="service-card" data-service="maintenance" data-search="maintenance support updates"><h3>Maintenance</h3><p>Ongoing support & updates</p></div>
+                <div class="service-card" data-service="cloud" data-search="cloud migration aws azure gcp"><h3>Cloud Migration</h3><p>AWS, Azure, GCP expertise</p></div>
             </div>
         </div>
     </section>
@@ -701,7 +642,7 @@
 <script>
     (function(){
         // ============================================
-        // PRODUCTS DATA - All products (condensed for brevity)
+        // PRODUCTS DATA
         // ============================================
         const products = [
             { link: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965", title: "Static Snow Metallic Button", type: "Button", price: 0, soldOut: false, search: "static snow metallic button" },
@@ -714,10 +655,9 @@
             { link: "https://www.zazzle.com/watch_what_you_say_wireless_charger-256239440038678708", title: "Watch What You Say Wireless Charger", type: "Charger", price: 0, soldOut: true, search: "watch what you say wireless charger" },
             { link: "https://www.zazzle.com/death_is_only_the_beginning_wireless_charger-256201869212628736", title: "Death Is Only The Beginning Wireless Charger", type: "Charger", price: 0, soldOut: true, search: "death beginning wireless charger" },
             { link: "https://www.zazzle.com/death_is_only_the_beginning_mouse_pad-256894035422871959", title: "Death Is Only The Beginning Mouse Pad", type: "Mouse Pad", price: 0, soldOut: false, search: "death beginning mouse pad" },
-            { link: "https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667", title: "Death Is Only The Beginning Throw Pillow", type: "Pillow", price: 0, soldOut: false, search: "death beginning throw pillow" }
+            { link: "https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667", title: "Death Is Only The Beginning Throw Pillow", type: "Pillow", price: 0, soldOut: false, search: "death beginning throw pillow" },
+            { link: "https://www.zazzle.com/watch_what_you_say_tie-256210376330991604", title: "Watch What You Say Tie", type: "Accessory", price: 0, soldOut: false, search: "watch what you say tie" }
         ];
-
-        // Add remaining products (full list would be here)
 
         // Searchable items
         const searchableItems = [];
@@ -727,11 +667,7 @@
             const desc = card.querySelector('p')?.innerText || '';
             const searchText = card.getAttribute('data-search') || `${title} ${desc}`;
             searchableItems.push({
-                type: 'skill',
-                title: title,
-                subtitle: desc,
-                icon: 'fa-code',
-                sectionId: 'skills',
+                type: 'skill', title: title, subtitle: desc, icon: 'fa-code', sectionId: 'skills',
                 searchText: searchText.toLowerCase()
             });
         });
@@ -741,38 +677,25 @@
             const desc = card.querySelector('p')?.innerText || '';
             const searchText = card.getAttribute('data-search') || `${title} ${desc}`;
             searchableItems.push({
-                type: 'service',
-                title: title,
-                subtitle: desc,
-                icon: 'fa-cogs',
-                sectionId: 'services',
+                type: 'service', title: title, subtitle: desc, icon: 'fa-cogs', sectionId: 'services',
                 searchText: searchText.toLowerCase()
             });
         });
 
         products.forEach(product => {
             searchableItems.push({
-                type: 'product',
-                title: product.title,
-                subtitle: product.type,
-                icon: 'fa-store',
-                link: product.link,
-                soldOut: product.soldOut,
+                type: 'product', title: product.title, subtitle: product.type, icon: 'fa-store',
+                link: product.link, soldOut: product.soldOut,
                 searchText: (product.title + ' ' + product.type + ' ' + (product.search || '')).toLowerCase(),
                 sectionId: 'products'
             });
         });
 
         function escapeHtml(str) {
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
+            return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
         }
 
-        // ========== SPOTLIGHT FUNCTIONS ==========
+        // Spotlight
         const overlay = document.getElementById('spotlightOverlay');
         const input = document.getElementById('spotlightInput');
         const resultsContainer = document.getElementById('spotlightResults');
@@ -783,74 +706,35 @@
                 resultsContainer.innerHTML = '<div class="spotlight-no-results">No results found</div>';
                 return;
             }
-            
             const grouped = { products: [], skills: [], services: [] };
-            results.forEach(item => {
-                if (item.type === 'product') grouped.products.push(item);
-                else if (item.type === 'skill') grouped.skills.push(item);
-                else if (item.type === 'service') grouped.services.push(item);
-            });
+            results.forEach(item => grouped[item.type + 's']?.push(item));
             
             let html = '';
-            
-            if (grouped.products.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Products</div>`;
-                grouped.products.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="product" data-link="${item.link || ''}" data-soldout="${item.soldOut}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content">
-                            <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
-                            <div class="spotlight-result-subtitle">${item.subtitle}</div>
-                        </div>
-                        <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : 'Shop'}</div>
-                    </div>`;
-                });
-                html += `</div>`;
+            for (const [type, items] of Object.entries(grouped)) {
+                if (items.length) {
+                    html += `<div class="spotlight-section"><div class="spotlight-section-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>`;
+                    items.forEach(item => {
+                        html += `<div class="spotlight-result-item" data-type="${item.type}" data-link="${item.link || ''}" data-soldout="${item.soldOut}" data-section="${item.sectionId || ''}">
+                            <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
+                            <div class="spotlight-result-content">
+                                <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
+                                <div class="spotlight-result-subtitle">${item.subtitle}</div>
+                            </div>
+                            <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : 'Service')}</div>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                }
             }
-            
-            if (grouped.skills.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Skills</div>`;
-                grouped.skills.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="skill" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content">
-                            <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
-                            <div class="spotlight-result-subtitle">${item.subtitle}</div>
-                        </div>
-                        <div class="spotlight-result-type">Skill</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            
-            if (grouped.services.length) {
-                html += `<div class="spotlight-section"><div class="spotlight-section-title">Services</div>`;
-                grouped.services.forEach(item => {
-                    html += `<div class="spotlight-result-item" data-type="service" data-section="${item.sectionId}">
-                        <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                        <div class="spotlight-result-content">
-                            <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
-                            <div class="spotlight-result-subtitle">${item.subtitle}</div>
-                        </div>
-                        <div class="spotlight-result-type">Service</div>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            
             resultsContainer.innerHTML = html;
-            
-            // Attach click handlers
             resultsContainer.querySelectorAll('.spotlight-result-item').forEach(el => {
                 el.addEventListener('click', () => {
                     const type = el.getAttribute('data-type');
                     const link = el.getAttribute('data-link');
                     const soldOut = el.getAttribute('data-soldout') === 'true';
                     const sectionId = el.getAttribute('data-section');
-                    
-                    if (type === 'product' && link && !soldOut) {
-                        window.open(link, '_blank');
-                    } else if ((type === 'skill' || type === 'service') && sectionId) {
+                    if (type === 'product' && link && !soldOut) window.open(link, '_blank');
+                    else if ((type === 'skill' || type === 'service') && sectionId) {
                         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                     closeSpotlight();
@@ -860,140 +744,73 @@
 
         function performSearch(query) {
             const lowerQuery = query.toLowerCase().trim();
-            if (!lowerQuery) {
-                renderResults([]);
-                return;
-            }
-            const results = searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20);
-            renderResults(results);
+            renderResults(lowerQuery ? searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20) : []);
         }
 
-        function openSpotlight() {
-            overlay.classList.add('active');
-            input.value = '';
-            performSearch('');
-            setTimeout(() => input.focus(), 100);
-            document.body.style.overflow = 'hidden';
-        }
+        function openSpotlight() { overlay.classList.add('active'); input.value = ''; performSearch(''); setTimeout(() => input.focus(), 100); document.body.style.overflow = 'hidden'; }
+        function closeSpotlight() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
 
-        function closeSpotlight() {
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Input event
         input.addEventListener('input', (e) => performSearch(e.target.value));
-
-        // Close on outside click
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeSpotlight();
-        });
-
-        // Keyboard shortcuts
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSpotlight(); });
+        
         document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                openSpotlight();
-            }
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                closeSpotlight();
-            }
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSpotlight(); }
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeSpotlight();
         });
 
-        // Mobile search button
-        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-        if (mobileSearchBtn) {
-            mobileSearchBtn.addEventListener('click', openSpotlight);
-        }
-
-        // Quick action chips (mobile only)
-        const quickChips = document.querySelectorAll('.quick-action-chip');
-        quickChips.forEach(chip => {
+        document.getElementById('mobileSearchBtn')?.addEventListener('click', openSpotlight);
+        
+        document.querySelectorAll('.quick-action-chip').forEach(chip => {
             chip.addEventListener('click', () => {
                 const query = chip.getAttribute('data-query');
-                if (query === 'clear') {
-                    input.value = '';
-                    performSearch('');
-                    input.focus();
-                } else {
-                    input.value = query;
-                    performSearch(query);
-                    input.focus();
-                }
+                if (query === 'clear') { input.value = ''; performSearch(''); input.focus(); }
+                else { input.value = query; performSearch(query); input.focus(); }
             });
         });
 
-        // ========== RENDER PRODUCTS ==========
+        // Render products
         function renderProducts() {
             const container = document.getElementById('products-grid');
             if (!container) return;
             container.innerHTML = '';
             products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
                 const btnClass = product.soldOut ? 'buy-btn sold-out-btn' : 'buy-btn';
                 const btnText = product.soldOut ? 'Sold Out' : 'Shop →';
-                const btnLink = product.soldOut ? 'javascript:void(0)' : product.link;
                 const priceDisplay = product.price > 0 ? `$${product.price.toFixed(2)}` : 'Price on Zazzle';
-                const priceClass = product.soldOut ? 'product-price sold-out-price' : 'product-price';
-                productCard.innerHTML = `
-                    <h3>${product.title.length > 40 ? product.title.substring(0, 37) + '...' : product.title}</h3>
-                    <div class="product-type">${product.type}</div>
-                    <div class="${priceClass}">${priceDisplay}</div>
-                    <div class="zazzle-badge">Zazzle</div>
-                    <a href="${btnLink}" target="_blank" class="${btnClass}" rel="noopener">${btnText}</a>
+                container.innerHTML += `
+                    <div class="product-card">
+                        <h3>${product.title.length > 40 ? product.title.substring(0, 37) + '...' : product.title}</h3>
+                        <div class="product-type">${product.type}</div>
+                        <div class="product-price ${product.soldOut ? 'sold-out-price' : ''}">${priceDisplay}</div>
+                        <div class="zazzle-badge">Zazzle</div>
+                        <a href="${product.soldOut ? 'javascript:void(0)' : product.link}" target="_blank" class="${btnClass}" rel="noopener">${btnText}</a>
+                    </div>
                 `;
-                container.appendChild(productCard);
             });
         }
         renderProducts();
 
-        // ========== BOTTOM NAVIGATION ==========
+        // Bottom navigation
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
-        function setActiveNav(id) {
-            bottomNavItems.forEach(i => {
-                if (i.getAttribute('data-section') === id) i.classList.add('active');
-                else i.classList.remove('active');
-            });
-        }
-        function scrollTo(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setActiveNav(id);
-            }
-        }
-        bottomNavItems.forEach(i => {
-            i.addEventListener('click', () => {
-                const s = i.getAttribute('data-section');
-                if (s) scrollTo(s);
-            });
-        });
+        function setActiveNav(id) { bottomNavItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id)); }
+        function scrollTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActiveNav(id); }
+        bottomNavItems.forEach(i => i.addEventListener('click', () => scrollTo(i.getAttribute('data-section'))));
+        
         function setActiveOnScroll() {
-            const sections = ['about', 'skills', 'services', 'products'];
-            const scrollPos = window.scrollY + 100;
             let current = '';
-            for (let s of sections) {
+            for (let s of ['about', 'skills', 'services', 'products']) {
                 const sec = document.getElementById(s);
-                if (sec && sec.offsetTop <= scrollPos) current = s;
+                if (sec && sec.offsetTop <= window.scrollY + 100) current = s;
             }
             setActiveNav(current || 'about');
         }
         window.addEventListener('scroll', setActiveOnScroll);
         setActiveOnScroll();
 
-        // ========== FADE-IN ANIMATION ==========
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
-
-        // ========== PREVENT CONTEXT MENU & DRAG ==========
+        // Animations
+        new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fade-in'); observer.unobserve(e.target); } }), { threshold: 0.1 })
+            .observe(document.querySelectorAll('section'));
+        
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
