@@ -60,8 +60,8 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Spotlight Modal */
-        .spotlight-overlay {
+        /* V3 QuickFind Modal - Formerly Spotlight */
+        .quickfind-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -78,12 +78,12 @@
             transition: all 0.3s ease;
         }
 
-        .spotlight-overlay.active {
+        .quickfind-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .spotlight-container {
+        .quickfind-container {
             width: min(90%, 700px);
             max-width: 90vw;
             background: rgba(30, 30, 46, 0.95);
@@ -94,13 +94,13 @@
             margin: auto;
         }
 
-        .spotlight-input-wrapper {
+        .quickfind-input-wrapper {
             padding: var(--space-md) var(--space-lg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
         }
 
-        .spotlight-input {
+        .quickfind-input {
             width: 100%;
             background: transparent;
             border: none;
@@ -111,11 +111,11 @@
             padding: var(--space-xs) 0;
         }
 
-        .spotlight-input::placeholder {
+        .quickfind-input::placeholder {
             color: #5c6370;
         }
 
-        .spotlight-shortcut {
+        .quickfind-shortcut {
             position: absolute;
             right: var(--space-lg);
             top: 50%;
@@ -129,19 +129,19 @@
         }
 
         @media (max-width: 768px) {
-            .spotlight-shortcut { display: none; }
+            .quickfind-shortcut { display: none; }
         }
 
-        .spotlight-results {
+        .quickfind-results {
             max-height: 60vh;
             overflow-y: auto;
         }
 
-        .spotlight-section {
+        .quickfind-section {
             padding: var(--space-sm) 0;
         }
 
-        .spotlight-section-title {
+        .quickfind-section-title {
             padding: var(--space-xs) var(--space-lg);
             font-size: var(--text-xs);
             text-transform: uppercase;
@@ -150,7 +150,7 @@
             font-family: 'SF Mono', monospace;
         }
 
-        .spotlight-result-item {
+        .quickfind-result-item {
             padding: var(--space-sm) var(--space-lg);
             display: flex;
             align-items: center;
@@ -160,34 +160,34 @@
             font-family: 'SF Mono', monospace;
         }
 
-        .spotlight-result-item:hover,
-        .spotlight-result-item.selected,
-        .spotlight-result-item:active {
+        .quickfind-result-item:hover,
+        .quickfind-result-item.selected,
+        .quickfind-result-item:active {
             background: rgba(0, 212, 255, 0.15);
         }
 
-        .spotlight-result-icon {
+        .quickfind-result-icon {
             width: clamp(2rem, 5vw, 2.5rem);
             font-size: clamp(0.9rem, 3vw, 1.1rem);
             color: #00d4ff;
             text-align: center;
         }
 
-        .spotlight-result-content {
+        .quickfind-result-content {
             flex: 1;
         }
 
-        .spotlight-result-title {
+        .quickfind-result-title {
             font-size: var(--text-sm);
             color: #fff;
         }
 
-        .spotlight-result-subtitle {
+        .quickfind-result-subtitle {
             font-size: var(--text-xs);
             color: #5c6370;
         }
 
-        .spotlight-result-type {
+        .quickfind-result-type {
             font-size: var(--text-xs);
             color: #00d4ff;
             background: rgba(0, 212, 255, 0.1);
@@ -195,14 +195,14 @@
             border-radius: var(--radius-lg);
         }
 
-        .spotlight-no-results {
+        .quickfind-no-results {
             padding: var(--space-2xl) var(--space-lg);
             text-align: center;
             color: #5c6370;
             font-family: monospace;
         }
 
-        .quick-actions {
+        .quickfind-actions {
             padding: var(--space-sm) var(--space-lg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             overflow-x: auto;
@@ -211,11 +211,11 @@
             scrollbar-width: none;
         }
 
-        .quick-actions::-webkit-scrollbar {
+        .quickfind-actions::-webkit-scrollbar {
             display: none;
         }
 
-        .quick-action-chip {
+        .quickfind-chip {
             display: inline-flex;
             align-items: center;
             gap: var(--space-xs);
@@ -231,16 +231,16 @@
             transition: all 0.2s ease;
         }
 
-        .quick-action-chip:active {
+        .quickfind-chip:active {
             background: rgba(0, 212, 255, 0.3);
             transform: scale(0.96);
         }
 
-        .quick-action-chip i {
+        .quickfind-chip i {
             font-size: var(--text-xs);
         }
 
-        .quick-action-chip.clear-chip {
+        .quickfind-chip.clear-chip {
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(255, 255, 255, 0.15);
             color: #ff4444;
@@ -256,7 +256,7 @@
             }
         }
 
-        .spotlight-hint {
+        .quickfind-hint {
             position: fixed;
             bottom: var(--space-xl);
             right: var(--space-lg);
@@ -272,7 +272,7 @@
         }
 
         @media (max-width: 768px) {
-            .spotlight-hint {
+            .quickfind-hint {
                 display: none;
             }
         }
@@ -541,27 +541,27 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Spotlight Modal -->
-<div id="spotlightOverlay" class="spotlight-overlay">
-    <div class="spotlight-container">
-        <div class="spotlight-input-wrapper">
-            <input type="text" id="spotlightInput" class="spotlight-input" placeholder="Search products, skills, services..." autocomplete="off">
-            <span class="spotlight-shortcut">ESC</span>
+<!-- V3 QuickFind Modal -->
+<div id="quickfindOverlay" class="quickfind-overlay">
+    <div class="quickfind-container">
+        <div class="quickfind-input-wrapper">
+            <input type="text" id="quickfindInput" class="quickfind-input" placeholder="Search products, skills, services, creations..." autocomplete="off">
+            <span class="quickfind-shortcut">ESC</span>
         </div>
-        <div class="quick-actions" id="quickActions">
-            <div class="quick-action-chip" data-query="tshirt"><i class="fas fa-tshirt"></i> T-Shirt</div>
-            <div class="quick-action-chip" data-query="mug"><i class="fas fa-mug-hot"></i> Mug</div>
-            <div class="quick-action-chip" data-query="pillow"><i class="fas fa-bed"></i> Pillow</div>
-            <div class="quick-action-chip" data-query="charger"><i class="fas fa-charging-station"></i> Charger</div>
-            <div class="quick-action-chip" data-query="button"><i class="fas fa-circle"></i> Button</div>
-            <div class="quick-action-chip" data-query="keychain"><i class="fas fa-key"></i> Keychain</div>
-            <div class="quick-action-chip clear-chip" data-query="clear"><i class="fas fa-times"></i> Clear</div>
+        <div class="quickfind-actions" id="quickfindActions">
+            <div class="quickfind-chip" data-query="tshirt"><i class="fas fa-tshirt"></i> T-Shirt</div>
+            <div class="quickfind-chip" data-query="mug"><i class="fas fa-mug-hot"></i> Mug</div>
+            <div class="quickfind-chip" data-query="pillow"><i class="fas fa-bed"></i> Pillow</div>
+            <div class="quickfind-chip" data-query="charger"><i class="fas fa-charging-station"></i> Charger</div>
+            <div class="quickfind-chip" data-query="button"><i class="fas fa-circle"></i> Button</div>
+            <div class="quickfind-chip" data-query="keychain"><i class="fas fa-key"></i> Keychain</div>
+            <div class="quickfind-chip clear-chip" data-query="clear"><i class="fas fa-times"></i> Clear</div>
         </div>
-        <div id="spotlightResults" class="spotlight-results"></div>
+        <div id="quickfindResults" class="quickfind-results"></div>
     </div>
 </div>
 
-<div class="spotlight-hint">
+<div class="quickfind-hint">
     <i class="fas fa-search"></i> <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd>
 </div>
 
@@ -649,7 +649,6 @@
         </div>
     </section>
 
-    <!-- NEW: Creations Section -->
     <section id="creations">
         <div class="container">
             <div class="section-header">
@@ -662,9 +661,7 @@
                 </h2>
                 <p><span class="comment">// My original designs · Custom projects · Creative work</span></p>
             </div>
-            <div id="creations-grid" class="creations-grid">
-                <!-- Creations will be loaded dynamically -->
-            </div>
+            <div id="creations-grid" class="creations-grid"></div>
         </div>
     </section>
 </main>
@@ -675,7 +672,7 @@
     <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
     <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
     <button class="bottom-nav-item" data-section="creations"><i class="fas fa-gem"></i><span>Creations</span></button>
-    <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Search</span></button>
+    <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Find</span></button>
 </div>
 
 <script>
@@ -699,12 +696,12 @@
         ];
 
         // ============================================
-        // CREATIONS DATA - Your portfolio / custom work
+        // CREATIONS DATA
         // ============================================
         const creations = [
             { title: "V3 Brand Identity", type: "Branding", description: "Complete visual identity system", link: "#", icon: "fa-palette", search: "v3 brand identity branding" },
             { title: "Terminal Portfolio", type: "Web Dev", description: "Code-inspired design system", link: "#", icon: "fa-code", search: "terminal portfolio web dev" },
-            { title: "Spotlight Search UI", type: "UI/UX", description: "Multi-device search interface", link: "#", icon: "fa-search", search: "spotlight search ui ux" },
+            { title: "V3 QuickFind", type: "UI/UX", description: "Multi-device universal search", link: "#", icon: "fa-search", search: "quickfind universal search" },
             { title: "Zazzle Store Integration", type: "E-commerce", description: "85+ product catalog", link: "#", icon: "fa-store", search: "zazzle store integration" },
             { title: "Mobile-First Framework", type: "Development", description: "Fluid responsive system", link: "#", icon: "fa-mobile-alt", search: "mobile first framework" },
             { title: "Custom Animation System", type: "Design", description: "Smooth transitions & effects", link: "#", icon: "fa-play-circle", search: "custom animation system" },
@@ -757,15 +754,15 @@
             return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
         }
 
-        // ========== SPOTLIGHT ==========
-        const overlay = document.getElementById('spotlightOverlay');
-        const input = document.getElementById('spotlightInput');
-        const resultsContainer = document.getElementById('spotlightResults');
+        // ========== V3 QUICKFIND ==========
+        const overlay = document.getElementById('quickfindOverlay');
+        const input = document.getElementById('quickfindInput');
+        const resultsContainer = document.getElementById('quickfindResults');
 
         function renderResults(results) {
             if (!resultsContainer) return;
             if (!results.length) {
-                resultsContainer.innerHTML = '<div class="spotlight-no-results">No results found</div>';
+                resultsContainer.innerHTML = '<div class="quickfind-no-results">No results found</div>';
                 return;
             }
             const grouped = { products: [], skills: [], services: [], creations: [] };
@@ -774,22 +771,22 @@
             let html = '';
             for (const [type, items] of Object.entries(grouped)) {
                 if (items.length) {
-                    html += `<div class="spotlight-section"><div class="spotlight-section-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>`;
+                    html += `<div class="quickfind-section"><div class="quickfind-section-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>`;
                     items.forEach(item => {
-                        html += `<div class="spotlight-result-item" data-type="${item.type}" data-link="${item.link || ''}" data-soldout="${item.soldOut}" data-section="${item.sectionId || ''}">
-                            <div class="spotlight-result-icon"><i class="fas ${item.icon}"></i></div>
-                            <div class="spotlight-result-content">
-                                <div class="spotlight-result-title">${escapeHtml(item.title)}</div>
-                                <div class="spotlight-result-subtitle">${item.subtitle}</div>
+                        html += `<div class="quickfind-result-item" data-type="${item.type}" data-link="${item.link || ''}" data-soldout="${item.soldOut}" data-section="${item.sectionId || ''}">
+                            <div class="quickfind-result-icon"><i class="fas ${item.icon}"></i></div>
+                            <div class="quickfind-result-content">
+                                <div class="quickfind-result-title">${escapeHtml(item.title)}</div>
+                                <div class="quickfind-result-subtitle">${item.subtitle}</div>
                             </div>
-                            <div class="spotlight-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : item.type === 'service' ? 'Service' : 'View')}</div>
+                            <div class="quickfind-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : item.type === 'service' ? 'Service' : 'View')}</div>
                         </div>`;
                     });
                     html += `</div>`;
                 }
             }
             resultsContainer.innerHTML = html;
-            resultsContainer.querySelectorAll('.spotlight-result-item').forEach(el => {
+            resultsContainer.querySelectorAll('.quickfind-result-item').forEach(el => {
                 el.addEventListener('click', () => {
                     const type = el.getAttribute('data-type');
                     const link = el.getAttribute('data-link');
@@ -799,7 +796,7 @@
                     else if ((type === 'skill' || type === 'service' || type === 'creation') && sectionId) {
                         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                    closeSpotlight();
+                    closeQuickFind();
                 });
             });
         }
@@ -809,20 +806,20 @@
             renderResults(lowerQuery ? searchableItems.filter(item => item.searchText.includes(lowerQuery)).slice(0, 20) : []);
         }
 
-        function openSpotlight() { overlay.classList.add('active'); input.value = ''; performSearch(''); setTimeout(() => input.focus(), 100); document.body.style.overflow = 'hidden'; }
-        function closeSpotlight() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        function openQuickFind() { overlay.classList.add('active'); input.value = ''; performSearch(''); setTimeout(() => input.focus(), 100); document.body.style.overflow = 'hidden'; }
+        function closeQuickFind() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
 
         input.addEventListener('input', (e) => performSearch(e.target.value));
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSpotlight(); });
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) closeQuickFind(); });
         
         document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSpotlight(); }
-            if (e.key === 'Escape' && overlay.classList.contains('active')) closeSpotlight();
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openQuickFind(); }
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeQuickFind();
         });
 
-        document.getElementById('mobileSearchBtn')?.addEventListener('click', openSpotlight);
+        document.getElementById('mobileSearchBtn')?.addEventListener('click', openQuickFind);
         
-        document.querySelectorAll('.quick-action-chip').forEach(chip => {
+        document.querySelectorAll('.quickfind-chip').forEach(chip => {
             chip.addEventListener('click', () => {
                 const query = chip.getAttribute('data-query');
                 if (query === 'clear') { input.value = ''; performSearch(''); input.focus(); }
