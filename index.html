@@ -686,7 +686,7 @@
         </div>
     </section>
 
-    <!-- NEW: Clients Section -->
+    <!-- Clients Section - Single Client -->
     <section id="clients">
         <div class="container">
             <div class="section-header">
@@ -696,7 +696,7 @@
                     <span class="keyword">=</span>
                     <span class="function">trustedBy</span>()
                 </h2>
-                <p><span class="comment">// Companies and individuals I've worked with</span></p>
+                <p><span class="comment">// Partners I've had the privilege to work with</span></p>
             </div>
             <div id="clients-grid" class="clients-grid"></div>
         </div>
@@ -749,17 +749,17 @@
         ];
 
         // ============================================
-        // CLIENTS DATA
+        // CLIENTS DATA - Just Vineyard Church of Augusta
         // ============================================
         const clients = [
-            { name: "TechStart Inc.", type: "Startup", description: "Full-stack platform development", link: "#", icon: "fa-rocket", search: "techstart inc startup" },
-            { name: "Creative Agency Co.", type: "Agency", description: "Brand identity & web design", link: "#", icon: "fa-palette", search: "creative agency co branding" },
-            { name: "Enterprise Solutions", type: "Enterprise", description: "Cloud migration & scaling", link: "#", icon: "fa-cloud", search: "enterprise solutions cloud" },
-            { name: "Design Studio X", type: "Studio", description: "UI/UX design system", link: "#", icon: "fa-object-group", search: "design studio x ui ux" },
-            { name: "Ecom Brands", type: "E-commerce", description: "Store optimization & growth", link: "#", icon: "fa-shopping-cart", search: "ecom brands ecommerce" },
-            { name: "Media House", type: "Media", description: "Content platform architecture", link: "#", icon: "fa-video", search: "media house content" },
-            { name: "FinTech Labs", type: "Finance", description: "Secure payment integration", link: "#", icon: "fa-chart-line", search: "fintech labs finance secure" },
-            { name: "HealthTech Co.", type: "Healthcare", description: "Patient portal development", link: "#", icon: "fa-heartbeat", search: "healthtech co healthcare" }
+            { 
+                name: "Vineyard Church of Augusta", 
+                type: "Non-Profit / Faith", 
+                description: "Community-focused church organization", 
+                link: "https://vineyardaugusta.org", 
+                icon: "fa-church", 
+                search: "vineyard church augusta faith non-profit" 
+            }
         ];
 
         // Searchable items
@@ -937,8 +937,8 @@
                         <i class="fas ${client.icon || 'fa-building'}"></i>
                         <h3>${client.name.length > 25 ? client.name.substring(0, 22) + '...' : client.name}</h3>
                         <div class="client-type">${client.type}</div>
-                        <p>${client.description.length > 40 ? client.description.substring(0, 37) + '...' : client.description}</p>
-                        <a href="${client.link}" target="_blank" class="client-link" rel="noopener">Learn More →</a>
+                        <p>${client.description}</p>
+                        <a href="${client.link}" target="_blank" class="client-link" rel="noopener">Visit Website →</a>
                     </div>
                 `;
             });
