@@ -359,14 +359,14 @@
             object-fit: cover;
         }
 
-        .skills-grid, .services-grid, .products-grid, .creations-grid, .clients-grid {
+        .skills-grid, .services-grid, .products-grid, .creations-grid, .clients-grid, .blog-grid {
             display: grid;
             gap: var(--space-sm);
             width: 100%;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr));
         }
 
-        .skill-card, .service-card, .product-card, .creation-card, .client-card {
+        .skill-card, .service-card, .product-card, .creation-card, .client-card, .blog-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-md);
@@ -379,7 +379,7 @@
             align-items: center;
             gap: var(--space-xs);
         }
-        .skill-card:active, .service-card:active, .product-card:active, .creation-card:active, .client-card:active {
+        .skill-card:active, .service-card:active, .product-card:active, .creation-card:active, .client-card:active, .blog-card:active {
             transform: scale(0.96);
             background: rgba(255, 255, 255, 0.06);
         }
@@ -399,6 +399,11 @@
             border-color: rgba(76, 175, 80, 0.1);
         }
 
+        .blog-card {
+            background: rgba(156, 39, 176, 0.03);
+            border-color: rgba(156, 39, 176, 0.1);
+        }
+
         /* Client logo image styling */
         .client-image-container {
             width: 100%;
@@ -416,29 +421,40 @@
             object-fit: contain;
         }
 
-        .creation-card i {
+        .creation-card i, .blog-card i {
             font-size: var(--text-lg);
-            color: #ffd700;
             margin-bottom: var(--space-xs);
         }
 
-        .skill-card h3, .service-card h3, .product-card h3, .creation-card h3, .client-card h3 {
+        .creation-card i {
+            color: #ffd700;
+        }
+
+        .blog-card i {
+            color: #9c27b0;
+        }
+
+        .skill-card h3, .service-card h3, .product-card h3, .creation-card h3, .client-card h3, .blog-card h3 {
             font-size: var(--text-xs);
             font-weight: 500;
             color: #e0e0e0;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
-        .skill-card p, .service-card p, .creation-card p, .client-card p {
+        .skill-card p, .service-card p, .creation-card p, .client-card p, .blog-card p {
             font-size: calc(var(--text-xs) * 0.85);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
-        .product-type, .creation-type, .client-type {
+        .product-type, .creation-type, .client-type, .blog-date {
             font-size: calc(var(--text-xs) * 0.85);
             color: #5c6370;
             font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        .blog-date {
+            color: #9c27b0;
         }
 
         .product-price {
@@ -448,7 +464,7 @@
             margin: 0;
         }
 
-        .creation-link, .client-link {
+        .creation-link, .client-link, .blog-link {
             font-size: calc(var(--text-xs) * 0.85);
             color: #ffd700;
             text-decoration: none;
@@ -466,6 +482,11 @@
             background: rgba(76, 175, 80, 0.1);
         }
 
+        .blog-link {
+            color: #9c27b0;
+            background: rgba(156, 39, 176, 0.1);
+        }
+
         .client-link:active {
             transform: scale(0.94);
             background: rgba(76, 175, 80, 0.2);
@@ -474,6 +495,11 @@
         .creation-link:active {
             transform: scale(0.94);
             background: rgba(255, 215, 0, 0.2);
+        }
+
+        .blog-link:active {
+            transform: scale(0.94);
+            background: rgba(156, 39, 176, 0.2);
         }
 
         .sold-out-price {
@@ -577,7 +603,7 @@
 <div id="quickfindOverlay" class="quickfind-overlay">
     <div class="quickfind-container">
         <div class="quickfind-input-wrapper">
-            <input type="text" id="quickfindInput" class="quickfind-input" placeholder="Search products, skills, services, creations, clients..." autocomplete="off">
+            <input type="text" id="quickfindInput" class="quickfind-input" placeholder="Search products, skills, services, creations, clients, blog..." autocomplete="off">
             <span class="quickfind-shortcut">ESC</span>
         </div>
         <div class="quickfind-actions" id="quickfindActions">
@@ -697,7 +723,6 @@
         </div>
     </section>
 
-    <!-- Clients Section - Vineyard Church of Augusta -->
     <section id="clients">
         <div class="container">
             <div class="section-header">
@@ -712,6 +737,23 @@
             <div id="clients-grid" class="clients-grid"></div>
         </div>
     </section>
+
+    <!-- NEW: Blog Section -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">export</span>
+                    <span class="keyword">const</span>
+                    <span class="variable">blog</span>
+                    <span class="keyword">=</span>
+                    <span class="function">getPosts</span>()
+                </h2>
+                <p><span class="comment">// Thoughts, tutorials, and insights on development & design</span></p>
+            </div>
+            <div id="blog-grid" class="blog-grid"></div>
+        </div>
+    </section>
 </main>
 
 <div class="bottom-nav">
@@ -721,6 +763,7 @@
     <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
     <button class="bottom-nav-item" data-section="creations"><i class="fas fa-gem"></i><span>Creations</span></button>
     <button class="bottom-nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
+    <button class="bottom-nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
     <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Find</span></button>
 </div>
 
@@ -760,7 +803,7 @@
         ];
 
         // ============================================
-        // CLIENTS DATA - Vineyard Church of Augusta with logo image
+        // CLIENTS DATA
         // ============================================
         const clients = [
             { 
@@ -770,6 +813,60 @@
                 link: "https://vineyardaugusta.org", 
                 image: "https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png",
                 search: "vineyard church augusta faith non-profit" 
+            }
+        ];
+
+        // ============================================
+        // BLOG DATA
+        // ============================================
+        const blogPosts = [
+            {
+                title: "Building a Fluid Responsive System",
+                date: "June 9, 2024",
+                excerpt: "Using clamp() and CSS custom properties for true fluidity across all devices.",
+                link: "#",
+                icon: "fa-mobile-alt",
+                search: "fluid responsive css clamp design"
+            },
+            {
+                title: "The Power of Text-Only Design",
+                date: "June 5, 2024",
+                excerpt: "Why sometimes less is more in interface design.",
+                link: "#",
+                icon: "fa-font",
+                search: "text only minimal design ui ux"
+            },
+            {
+                title: "V3 QuickFind: Building a Universal Search",
+                date: "May 28, 2024",
+                excerpt: "How I built a Spotlight-like search that works on every device.",
+                link: "#",
+                icon: "fa-search",
+                search: "quickfind universal search spotlight"
+            },
+            {
+                title: "Zazzle Integration Case Study",
+                date: "May 20, 2024",
+                excerpt: "Integrating 85+ products from Zazzle into a custom storefront.",
+                link: "#",
+                icon: "fa-store",
+                search: "zazzle ecommerce integration case study"
+            },
+            {
+                title: "Accessibility First: Beyond WCAG",
+                date: "May 15, 2024",
+                excerpt: "Building inclusive experiences that work for everyone.",
+                link: "#",
+                icon: "fa-universal-access",
+                search: "accessibility wcag inclusive design"
+            },
+            {
+                title: "Mobile Development Tips",
+                date: "May 10, 2024",
+                excerpt: "Lessons learned from coding entirely on a mobile device.",
+                link: "#",
+                icon: "fa-mobile-alt",
+                search: "mobile development coding tips"
             }
         ];
 
@@ -821,6 +918,14 @@
             });
         });
 
+        blogPosts.forEach(post => {
+            searchableItems.push({
+                type: 'blog', title: post.title, subtitle: post.date, icon: post.icon || 'fa-newspaper',
+                link: post.link, sectionId: 'blog',
+                searchText: (post.title + ' ' + post.date + ' ' + (post.search || '')).toLowerCase()
+            });
+        });
+
         function escapeHtml(str) {
             return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
         }
@@ -836,7 +941,7 @@
                 resultsContainer.innerHTML = '<div class="quickfind-no-results">No results found</div>';
                 return;
             }
-            const grouped = { products: [], skills: [], services: [], creations: [], clients: [] };
+            const grouped = { products: [], skills: [], services: [], creations: [], clients: [], blog: [] };
             results.forEach(item => grouped[item.type + 's']?.push(item));
             
             let html = '';
@@ -850,7 +955,7 @@
                                 <div class="quickfind-result-title">${escapeHtml(item.title)}</div>
                                 <div class="quickfind-result-subtitle">${item.subtitle}</div>
                             </div>
-                            <div class="quickfind-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : item.type === 'service' ? 'Service' : item.type === 'creation' ? 'View' : 'Visit')}</div>
+                            <div class="quickfind-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'skill' ? 'Skill' : item.type === 'service' ? 'Service' : item.type === 'creation' ? 'View' : item.type === 'client' ? 'Visit' : 'Read')}</div>
                         </div>`;
                     });
                     html += `</div>`;
@@ -864,7 +969,7 @@
                     const soldOut = el.getAttribute('data-soldout') === 'true';
                     const sectionId = el.getAttribute('data-section');
                     if (type === 'product' && link && !soldOut) window.open(link, '_blank');
-                    else if ((type === 'skill' || type === 'service' || type === 'creation' || type === 'client') && sectionId) {
+                    else if ((type === 'skill' || type === 'service' || type === 'creation' || type === 'client' || type === 'blog') && sectionId) {
                         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                     closeQuickFind();
@@ -957,9 +1062,28 @@
             });
         }
 
+        // ========== RENDER BLOG ==========
+        function renderBlog() {
+            const container = document.getElementById('blog-grid');
+            if (!container) return;
+            container.innerHTML = '';
+            blogPosts.forEach(post => {
+                container.innerHTML += `
+                    <div class="blog-card">
+                        <i class="fas ${post.icon || 'fa-newspaper'}"></i>
+                        <h3>${post.title.length > 30 ? post.title.substring(0, 27) + '...' : post.title}</h3>
+                        <div class="blog-date">${post.date}</div>
+                        <p>${post.excerpt.length > 50 ? post.excerpt.substring(0, 47) + '...' : post.excerpt}</p>
+                        <a href="${post.link}" target="_blank" class="blog-link" rel="noopener">Read More →</a>
+                    </div>
+                `;
+            });
+        }
+
         renderProducts();
         renderCreations();
         renderClients();
+        renderBlog();
 
         // ========== BOTTOM NAVIGATION ==========
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
@@ -969,7 +1093,7 @@
         
         function setActiveOnScroll() {
             let current = '';
-            for (let s of ['about', 'skills', 'services', 'products', 'creations', 'clients']) {
+            for (let s of ['about', 'skills', 'services', 'products', 'creations', 'clients', 'blog']) {
                 const sec = document.getElementById(s);
                 if (sec && sec.offsetTop <= window.scrollY + 100) current = s;
             }
