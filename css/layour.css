@@ -1,0 +1,70 @@
+/* Creates the main layout structure container holding the sidebar and content */
+.app-layout {
+    display: flex; /* Arranges the inner sidebar and main content side-by-side using Flexbox */
+    min-height: 100vh; /* Expands the layout area to take up at least the full height of the display screen */
+}
+
+/* Shifts primary structural layout containers alongside side column panel tracks */
+.main-content {
+    flex: 1; /* Fills remaining page canvas real-estate dynamically outside sidebar channels */
+    margin-left: var(--sidebar-width); /* Offsets content block rightward exactly to avoid hiding behind fixed nav */
+    width: calc(100% - var(--sidebar-width)); /* Mathematically computes fluid viewport adjustments perfectly */
+}
+
+/* Primary grid tracking boundary limits container framework dimensions */
+.site-container {
+    width: 100%; /* Locks width dimensions to match parent frame layout channels safely */
+    max-width: 100%; /* Inhibits structural layout breakout failures inside content sections */
+    padding: var(--space-lg) var(--space-md); /* Applies proportional dynamic borders padding margins around core items */
+}
+
+/* Styling guidelines framing regulatory page privacy disclosure nodes */
+.disclaimer-section {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.03), rgba(124, 58, 237, 0.03)); /* Fills plate with beautiful soft dual gradient tint */
+    border-radius: var(--radius-md); /* Rounds design corners cleanly to mimic framework styles */
+    padding: var(--space-xl) var(--space-lg); /* Allocates deep breathing spaces inside notice boards */
+    margin: var(--space-xl) 0; /* Imposes thick stack gaps isolating structural items vertically */
+    border: 1px solid var(--border-light); /* Outlines plate borders using soft, thin, low-contrast lines */
+}
+
+/* Bounds notice board layout scopes nicely for reading ease */
+.disclaimer-container {
+    max-width: 900px; /* Limits content width to comfortable text scanning maximums */
+    margin: 0 auto; /* Centers content block horizontally inside its parent block */
+}
+
+/* Heading aesthetics on information components sections */
+.disclaimer-container h2 {
+    font-size: var(--text-xl); /* Scales titles cleanly across devices using typography tokens */
+    color: var(--accent-cyan); /* Assigns signature cyan branding accent values to text characters */
+    margin-bottom: var(--space-md); /* Keeps content title text properly split from description descriptions */
+    display: flex; /* Allows inline icon layouts using flex formatting tools */
+    align-items: center; /* Aligns graphics vectors on center paths with surrounding words */
+    gap: var(--space-sm); /* Inserts standard clear space buffer intervals inside block titles */
+}
+
+/* Core readable paragraph structure formatting on privacy panels */
+.disclaimer-container p {
+    font-size: var(--text-sm); /* Pulls typography to elegant, compact reading scales */
+    color: var(--text-secondary); /* Uses lighter muted font palettes to ease visual fatigue */
+    line-height: 1.6; /* Loosens text lines slightly to increase general reading comfort */
+    margin-bottom: var(--space-md); /* Spaces paragraphs evenly across text columns */
+}
+
+/* Formatting characteristics regulating privacy status badges */
+.disclaimer-container .privacy-badge {
+    display: inline-flex; /* Shrinks container border width down to perfectly match label length */
+    align-items: center; /* Aligns nested elements squarely on center lines */
+    gap: var(--space-xs); /* Separates graphic icons cleanly from text descriptors */
+    background: rgba(0, 212, 255, 0.1); /* Infuses subtle cyan color base fills into backdrop spaces */
+    padding: var(--space-xs) var(--space-md); /* Adds spacing cushion inside the layout boundary */
+    border-radius: var(--radius-sm); /* Shapes soft visual corners on target identification plate */
+    font-size: var(--text-xs); /* Compresses typography sizing definitions elegantly for status tags */
+    color: var(--accent-cyan); /* Colors the text bright electric cyan */
+    margin-top: var(--space-sm); /* Offsets layout nicely below main reading tracks */
+}
+
+/* Basic utility padding parameters isolating icon typography interfaces */
+.disclaimer-container i {
+    margin-right: var(--space-2xs); /* Inserts clean whitespace gaps between font symbols and leading words */
+}

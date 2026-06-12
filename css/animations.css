@@ -1,0 +1,11 @@
+/* ===== ANIMATIONS ===== */
+/* Custom hardware-accelerated linear animation sequence mapping content element entrance tracking paths */
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-10px); } /* Sets entry baseline zero tracking visibility and pushes element 10px leftward */
+    to { opacity: 1; transform: translateX(0); } /* Reveals full text properties clean and pulls object back to default geometric rest points */
+}
+
+/* Practical animation implementation structural utility class tags mapping visibility calls */
+.fade-in {
+    animation: fadeInLeft 0.25s ease forwards; /* Fires swift 0.25s translation fade animations running across target elements maps loops */
+}

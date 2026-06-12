@@ -1,0 +1,169 @@
+/* Fixes the navigation bar to the left side of the viewport screen */
+.sidebar-nav {
+    position: fixed; /* Locks navigation container in place so it doesn't move when scrolling */
+    left: 0; /* Snaps the navigation frame container to the exact left edge */
+    top: 0; /* Snaps navigation frame container to the exact top edge */
+    bottom: 0; /* Extends navigation frame container all the way down to the bottom edge */
+    width: var(--sidebar-width); /* Sets the width based on our responsive clamp variable */
+    background: rgba(10, 10, 10, 0.96); /* Sets dark background with subtle transparency */
+    backdrop-filter: blur(20px); /* Gives background a modern frosted-glass blur effect */
+    border-right: 1px solid var(--border-light); /* Adds a thin decorative separation line on the right edge */
+    display: flex; /* Converts container to flexbox model for inner element formatting */
+    flex-direction: column; /* Stacks navigation components vertically */
+    align-items: center; /* Aligns inner navigation contents perfectly down the center line */
+    padding: var(--space-xl) var(--space-xs); /* Sets inner padding spacing on top/bottom and sides */
+    z-index: 100; /* Guarantees the sidebar floats above all normal page layout content layers */
+    gap: var(--space-md); /* Sets consistent spacing between each menu item option element */
+    overflow-y: auto; /* Adds a scrollbar automatically inside the sidebar if menu options overflow vertically */
+}
+
+/* Styles the logo grouping wrapper block at the top of the navigation panel */
+.sidebar-logo {
+    text-align: center; /* Centers the logo text content horizontally */
+    margin-bottom: var(--space-md); /* Adds spacing below the logo block */
+    flex-shrink: 0; /* Prevents the logo block from compressing if the screen height shrinks */
+}
+
+/* Formats the primary stylized text component of the logo branding */
+.sidebar-logo .logo-text {
+    font-family: 'Major Mono Display', monospace; /* Uses the imported stylized custom monospace font */
+    font-size: clamp(1.2rem, 4vw, 1.6rem); /* Dynamically sizes logo based on width available */
+    color: var(--accent-cyan); /* Paints the logo text electric cyan */
+    word-break: break-word; /* Forces word wrapping safely if the logo text exceeds bounds */
+    line-height: 1.2; /* Sets tighter line spacing for the title layout */
+}
+
+/* Styles the secondary structural subtitle text directly beneath the main logo */
+.sidebar-logo .logo-sub {
+    font-size: clamp(0.7rem, 1.8vw, 0.85rem); /* Sizes the subtitle text cleanly */
+    color: var(--text-tertiary); /* Paints text using the subtle grey tertiary scheme color */
+    margin-top: var(--space-3xs); /* Creates a tiny gap directly above the text block */
+}
+
+/* Creates an independent scrollable inner area group within the sidebar nav items */
+.nav-scroll-group {
+    flex: 1; /* Instructs the group container to fill up all available vertical space */
+    overflow-y: auto; /* Permits individual interior vertical scrolling for navigation links */
+    overflow-x: hidden; /* Strict prevention of side scrolling bugs */
+    width: 100%; /* Spans across the full width of the side dashboard menu panel */
+    min-height: 0; /* Essential flexbox layout patch for enabling container scroll actions safely */
+}
+
+/* Customizes scrollbar thickness for clean presentation inside webkit rendering engines */
+.nav-scroll-group::-webkit-scrollbar {
+    width: 3px; /* Limits standard scrollbar track thickness to a fine 3px line */
+}
+
+/* Standard track background setup for layout scrollbar components */
+.nav-scroll-group::-webkit-scrollbar-track {
+    background: transparent; /* Makes the scrollbar track background completely invisible */
+}
+
+/* Enhances scrollbar handles visually inside the scroll section container layout */
+.nav-scroll-group::-webkit-scrollbar-thumb {
+    background: var(--accent-cyan); /* Fills scroll slider bar with cyan highlight accent color */
+    border-radius: 3px; /* Fully rounds off scroll slider edges beautifully */
+}
+
+/* Vertical alignment wrapper for list item action buttons */
+.nav-items {
+    display: flex; /* Converts target view block to standard flex matrix formatting */
+    flex-direction: column; /* Stacks all functional page navigation links vertically */
+    gap: var(--space-sm); /* Imposes even spacing gaps between list target navigation buttons */
+    width: 100%; /* Stretches element to maximize surface dimensions fully */
+    padding-bottom: var(--space-md); /* Leaves buffer room layout margin at bottom inside container */
+}
+
+/* Bottom action tools tray element layout within side panel control deck */
+.nav-bottom {
+    flex-shrink: 0; /* Keeps layout from resizing under compact screen conditions */
+    width: 100%; /* Fits system wrapper snugly to side dashboard grid margins */
+    display: flex; /* Employs flexible orientation configuration systems */
+    flex-direction: column; /* Directs children stacking order downward layout lines */
+    gap: var(--space-sm); /* Uniformly splits button interfaces apart on the grid */
+    padding-top: var(--space-md); /* Pads surface interior spacing above line separators */
+    border-top: 1px solid var(--border-light); /* Forms crisp boundary separation lines above tools */
+    margin-top: var(--space-xs); /* Buffers physical separation gap spaces from scrolling components above */
+}
+
+/* Central layout parameters styling individual menu control components */
+.nav-item {
+    display: flex; /* Formats interior child component objects using flexible alignment engines */
+    flex-direction: column; /* Positions graphic symbols directly above descriptive title labels */
+    align-items: center; /* Locks internal visual icons/text items securely to geometric center lines */
+    gap: var(--space-2xs); /* Places balanced spacing pads inside menu navigation elements */
+    background: none; /* Strip standard background plates off base button frames */
+    border: none; /* Wipe traditional border outlines cleanly from structure elements */
+    color: var(--text-tertiary); /* Sets inactive button content colors to default subtle muted gray */
+    font-size: clamp(0.7rem, 1.8vw, 0.85rem); /* Adapts sizing patterns smoothly for labels */
+    font-weight: 500; /* Uses a medium font thickness setting weight */
+    padding: var(--space-sm) var(--space-xs); /* Infuses comfortable dimensional padding layout metrics */
+    min-height: var(--touch-target-min); /* Maintains secure minimum interaction dimensions for touch screens */
+    width: 100%; /* Commands full fluid button scaling inside row block bounds */
+    border-radius: var(--radius-sm); /* Moderately shapes corners of focus panels cleanly */
+    cursor: pointer; /* Displays standard pointer cursor graphics during interactions */
+    transition: all 0.12s ease; /* Applies fast, smooth animation transitions across property upgrades */
+    text-align: center; /* Forces paragraph typography flow lines onto standard balance points */
+}
+
+/* Target sizing matrices regulating descriptive menu graphic vectors */
+.nav-item i {
+    font-size: clamp(1.2rem, 4vw, 1.6rem); /* Governs size measurements dynamically on user viewports */
+    margin: 0; /* Enforces strict zero-margin boundary settings around graphic iconography */
+    transition: all 0.12s ease; /* Couples layout change animations with smooth curves */
+}
+
+/* Direct feature color styling definitions across designated profile sections */
+.nav-item[data-section="hero"] i { color: var(--accent-cyan); } /* Set intro button graphics to cyan color */
+.nav-item[data-section="about"] i { color: var(--accent-purple); } /* Set profile link icons to deep purple */
+.nav-item[data-section="skills"] i { color: var(--accent-green); } /* Paints application technical skill nodes green */
+.nav-item[data-section="services"] i { color: var(--accent-yellow); } /* Sets task presentation highlights to yellow */
+.nav-item[data-section="store"] i { color: var(--accent-pink); } /* Updates sales channel buttons to sharp pink colors */
+.nav-item[data-section="clients"] i { color: var(--accent-blue); } /* Transforms company profile access links to blue */
+.nav-item[data-section="blog"] i { color: var(--accent-orange); } /* Formats article review feed vectors to vibrant orange */
+#socialNavBtn i { color: var(--accent-indigo); } /* Paints social directory shortcut triggers indigo */
+#accessibilityNavBtn i { color: var(--accent-green); } /* Colors user preference access options green */
+
+/* Adjustments formatting text details under display badges */
+.nav-item span {
+    font-size: clamp(0.65rem, 1.6vw, 0.8rem); /* Maps label fonts efficiently to device sizing patterns */
+    font-weight: 500; /* Locks typography structure definitions to clean, balanced weights */
+    white-space: nowrap; /* Rigidly blocks text from breaking down across multiple display lines */
+    overflow-x: hidden; /* Caps text leakage safely on narrow panels */
+    text-overflow: ellipsis; /* Appends clean trailing dots (...) automatically if character overflow hits thresholds */
+    max-width: 100%; /* Caps sizing models safely inside element borders */
+    color: var(--text-tertiary); /* Sets font paint values to neutral muted tone schemes */
+    transition: color 0.12s ease; /* Automates smooth text fade animations upon states changes */
+}
+
+/* Active structural states formatting selected interface buttons */
+.nav-item.active i {
+    filter: brightness(1.2) drop-shadow(0 0 4px currentColor); /* Blends subtle neon glow designs around live tabs */
+}
+
+/* Active color updates applied directly to dynamic category markers */
+.nav-item.active span {
+    color: var(--accent-cyan); /* Paints labels electric cyan whenever section state turns active */
+}
+
+/* Standard card backing changes during active menu visibility configurations */
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.05); /* Paints clear faint plate under current screen markers */
+}
+
+/* Tactile physical feedback reactions generated on active system touch inputs */
+.nav-item:active {
+    transform: scale(0.96); /* Slightly compresses the item size during click interactions for realism */
+}
+
+/* Standard style enhancement policies isolating traditional desktop hover setups */
+@media (hover: hover) {
+    /* brightens the icon color when a mouse pointer rests over it */
+    .nav-item:hover i {
+        filter: brightness(1.2);
+    }
+    /* Upgrades item label colors for clear mouse tracking visual validation loops */
+    .nav-item:hover span {
+        color: var(--text-secondary);
+    }
+}

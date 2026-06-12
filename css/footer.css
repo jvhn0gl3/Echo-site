@@ -1,0 +1,171 @@
+/* ===== FOOTER STYLES ===== */
+/* Main footer container structural settings */
+.site-footer {
+    background: rgba(10, 10, 10, 0.96); /* Dark matching background with slight transparency for depth */
+    backdrop-filter: blur(10px); /* Frosted glass effect consistent with sidebar navigation */
+    border-top: 1px solid var(--border-light); /* Subtle top separation line matching site design language */
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0; /* Curves top corners elegantly to match card styles */
+    margin-top: var(--space-2xl); /* Generous spacing above footer to separate from content above */
+    padding: var(--space-2xl) var(--space-lg) var(--space-lg); /* Comfortable internal spacing for footer content */
+}
+
+/* Flex grid layout for footer columns allowing responsive wrapping */
+.footer-container {
+    display: flex; /* Enables flexible column arrangement */
+    flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+    justify-content: space-between; /* Distributes columns evenly with space between */
+    gap: var(--space-xl); /* Consistent spacing between footer sections */
+    max-width: 1400px; /* Limits maximum width for readability on large displays */
+    margin: 0 auto; /* Centers footer container horizontally */
+}
+
+/* Brand column styling for logo and social icons area */
+.footer-brand {
+    flex: 1.5; /* Gives brand column slightly more visual weight */
+    min-width: 200px; /* Prevents column from becoming too narrow on small devices */
+}
+
+/* Stylized footer logo matching sidebar branding aesthetics */
+.footer-logo {
+    font-family: 'Major Mono Display', monospace; /* Consistent monospace brand font from main navigation */
+    font-size: clamp(1.5rem, 4vw, 2rem); /* Responsive logo sizing scaling with viewport */
+    color: var(--accent-cyan); /* Signature electric cyan brand color */
+    margin-bottom: var(--space-sm); /* Space between logo and tagline text */
+}
+
+/* Footer descriptive tagline text styling */
+.footer-tagline {
+    color: var(--text-secondary); /* Muted secondary text color for visual comfort */
+    font-size: var(--text-sm); /* Compact but readable text size */
+    margin-bottom: var(--space-md); /* Separation from social icons section */
+    line-height: 1.5; /* Standard line height for readability */
+}
+
+/* Mini social icons row container for compact footer social links */
+.footer-social-mini {
+    display: flex; /* Horizontal icon arrangement */
+    gap: var(--space-md); /* Even spacing between social icon buttons */
+}
+
+/* Individual social icon styling in footer */
+.footer-social-icon {
+    color: var(--text-tertiary); /* Default muted tertiary color for subtle appearance */
+    font-size: var(--text-lg); /* Icon size matching visual hierarchy */
+    transition: all 0.12s ease; /* Smooth hover transitions */
+    width: 40px; /* Fixed width for consistent circle shape */
+    height: 40px; /* Fixed height for consistent circle shape */
+    display: flex; /* Flex centering for icon inside circle */
+    align-items: center; /* Vertical centering of icon */
+    justify-content: center; /* Horizontal centering of icon */
+    border-radius: 50%; /* Perfect circular background shape */
+    background: rgba(255, 255, 255, 0.05); /* Subtle translucent background for depth */
+}
+
+/* Hover effect for footer social icons */
+.footer-social-icon:hover {
+    color: var(--accent-cyan); /* Bright cyan highlight on interaction */
+    transform: translateY(-2px); /* Subtle lift effect for tactile feedback */
+    background: rgba(0, 212, 255, 0.1); /* Cyan-tinted background on hover */
+}
+
+/* Footer link columns styling for navigation and resource links */
+.footer-links {
+    flex: 1; /* Flexible width distribution */
+    min-width: 140px; /* Minimum width before wrapping on mobile */
+}
+
+/* Column header styling within footer sections */
+.footer-links h4 {
+    font-size: var(--text-md); /* Clear heading size */
+    color: var(--accent-green); /* Emerald green accent for section headers */
+    margin-bottom: var(--space-md); /* Space below heading before links list */
+    font-weight: 600; /* Semi-bold weight for visual emphasis */
+}
+
+/* Reset list styles for footer navigation menus */
+.footer-links ul {
+    list-style: none; /* Removes default bullet points */
+    padding: 0; /* Eliminates default padding */
+}
+
+/* Individual list item spacing in footer columns */
+.footer-links li {
+    margin-bottom: var(--space-sm); /* Consistent vertical spacing between links */
+}
+
+/* Footer link anchor styling */
+.footer-links a {
+    color: var(--text-secondary); /* Muted secondary text color for readability */
+    text-decoration: none; /* Removes default underline */
+    font-size: var(--text-sm); /* Compact link text size */
+    transition: all 0.12s ease; /* Smooth hover transition effects */
+    display: inline-block; /* Allows transform animations on hover */
+}
+
+/* Hover effect for footer navigation links */
+.footer-links a:hover {
+    color: var(--accent-cyan); /* Cyan highlight on interaction matching brand identity */
+    transform: translateX(4px); /* Subtle slide effect for visual feedback */
+}
+
+/* Contact information column styling */
+.footer-contact {
+    flex: 1.2; /* Slightly larger weight for contact details */
+    min-width: 220px; /* Ensures contact details remain readable on smaller screens */
+}
+
+/* Contact column header styling */
+.footer-contact h4 {
+    font-size: var(--text-md); /* Consistent heading size with other footer columns */
+    color: var(--accent-green); /* Emerald green accent matching design system */
+    margin-bottom: var(--space-md); /* Space below heading */
+    font-weight: 600; /* Semi-bold weight for visual hierarchy */
+}
+
+/* Contact information paragraph styling */
+.footer-contact p {
+    color: var(--text-secondary); /* Muted text color for comfortable reading */
+    font-size: var(--text-sm); /* Consistent compact text size */
+    margin-bottom: var(--space-sm); /* Spacing between contact lines */
+    display: flex; /* Flex layout for icon alignment */
+    align-items: center; /* Vertically centers icons with text */
+    gap: var(--space-sm); /* Consistent spacing between icon and text */
+}
+
+/* Icon styling within contact information */
+.footer-contact i {
+    width: 24px; /* Fixed width for icon alignment consistency */
+    color: var(--accent-cyan); /* Cyan accent color for visual appeal */
+}
+
+/* Email link styling in contact section */
+.footer-contact a {
+    color: var(--text-secondary); /* Muted color matching surrounding text */
+    text-decoration: none; /* Removes default link underline */
+    transition: color 0.12s ease; /* Smooth color transition on hover */
+}
+
+/* Email link hover effect */
+.footer-contact a:hover {
+    color: var(--accent-cyan); /* Cyan highlight matching brand interaction patterns */
+}
+
+/* Footer bottom bar styling for copyright and credits */
+.footer-bottom {
+    text-align: center; /* Centers bottom content horizontally */
+    padding-top: var(--space-xl); /* Top padding separating from main footer content */
+    margin-top: var(--space-xl); /* Margin above bottom bar creating visual separation */
+    border-top: 1px solid var(--border-light); /* Thin border line separating bottom bar from above content */
+}
+
+/* Bottom bar paragraph styling */
+.footer-bottom p {
+    color: var(--text-tertiary); /* Muted tertiary color for less prominent footer text */
+    font-size: var(--text-xs); /* Smaller text size appropriate for footer credits */
+    margin-bottom: var(--space-xs); /* Spacing between copyright and built-with line */
+}
+
+/* Built with credit line specific styling */
+.footer-built {
+    font-size: var(--text-2xs) !important; /* Extra small text for legal/credit information */
+}

@@ -1,0 +1,42 @@
+/* Selects every element on the page to reset default spacings */
+* {
+    margin: 0; /* Removes default outer margins from all elements */
+    padding: 0; /* Removes default inner paddings from all elements */
+    box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
+    -webkit-font-smoothing: antialiased; /* Makes fonts render smoother and sharper on webkit browsers like Safari */
+}
+
+/* Overrides the default typography with an accessible font when the dyslexic-font class is active */
+body.dyslexic-font {
+    font-family: 'OpenDyslexic', 'Open Dyslexic', 'Comic Sans MS', sans-serif !important;
+}
+
+/* Configures default structural body settings for the page appearance */
+body {
+    background: var(--bg-primary); /* Assigns the main dark background color */
+    color: var(--text-primary); /* Assigns the main white font color */
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif; /* Setup system font stack */
+    line-height: 1.5; /* Adds comfortable line spacing for reading text blocks */
+    font-size: var(--text-base); /* Sets default text size using fluid variables */
+    transition: background 0.2s ease, color 0.2s ease; /* Smoothly switches colors when themes change */
+}
+
+/* Keyboard user shortcut tools driving structural navigation safety profiles compliance checks */
+.skip-link {
+    position: absolute; /* Pulls navigation helpers out from normal page presentation flows paths */
+    top: -40px; /* Casts visibility tracks entirely out above top viewport windows borders lines by default */
+    left: var(--space-sm); /* Tracks alignment borders safely down left-hand side screen margins pathways */
+    background: var(--accent-cyan); /* Injects sharp cyan indicator colors onto skip links components track backings */
+    color: var(--bg-primary); /* Drops layout font fills down to deep background charcoal colors shades */
+    padding: var(--space-sm) var(--space-md); /* Pads bypass links button frameworks safely to grant wide typing target fields */
+    text-decoration: none; /* Destroys link underlines parameters on utility access links systems */
+    z-index: 1001; /* Drives bypass buttons straight over highest sidebar overlays blocks during activation operations tracks */
+    border-radius: var(--radius-sm); /* Curvature settings shaping corners cleanly on skip links buttons nodes templates */
+    font-size: var(--text-sm); /* Keeps helper shortcuts cleanly balanced inside compact standard structural font sizing levels */
+    font-weight: 600; /* Applies intense semi-bold font structural thickness descriptions weights onto accessibility links text strings */
+}
+
+/* Displays bypass tools immediately when screen reader keyboard tab pathways trigger focus tracking events */
+.skip-link:focus {
+    top: var(--space-sm); /* Snaps hidden bypass triggers straight down inside legible viewing regions areas instantly upon tab entries */
+}

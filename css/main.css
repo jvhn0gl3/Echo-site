@@ -1,0 +1,32 @@
+/**
+ * V3 Digital Architect - Main Stylesheet
+ * This file imports all modular CSS partials
+ * Organized by component for better maintainability
+ */
+
+/* 1. Core Variables & Configuration */
+@import 'variables.css';
+
+/* 2. Base Reset & Body Styles */
+@import 'reset.css';
+
+/* 3. Layout Structure */
+@import 'layout.css';
+
+/* 4. Navigation Components */
+@import 'navigation.css';
+
+/* 5. UI Components (Hero, Cards, Grids, Code Headers) */
+@import 'components.css';
+
+/* 6. Footer Styles */
+@import 'footer.css';
+
+/* 7. Accessibility Modal & Toggle Components */
+@import 'accessibility.css';
+
+/* 8. Responsive Media Queries */
+@import 'responsive.css';
+
+/* 9. Animations & Keyframes */
+@import 'animations.css';

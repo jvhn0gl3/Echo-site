@@ -1,0 +1,223 @@
+/* ===== OVERLAY & MODAL ===== */
+/* Overlay base layer properties framing modal control screens */
+.modal-overlay {
+    position: fixed; /* Freezes overlay setup firmly onto viewport windows unconditionally */
+    top: 0; /* Maps overlay layer boundaries to top viewport bounds */
+    left: 0; /* Anchors overlay left edge layout boundaries across screen tracks */
+    right: 0; /* Stretches panel dimensions across full horizontal viewport scales */
+    bottom: 0; /* Fully envelopes full web client heights under dark safety fields */
+    background: rgba(0, 0, 0, 0.85); /* Blackout color layer filtering background graphics underneath */
+    backdrop-filter: blur(8px); /* Softens details of the main site behind when modals fly out */
+    display: flex; /* Converts window space to standard coordinate formatting models */
+    align-items: center; /* Centers floating dialogue frames on vertical axes */
+    justify-content: center; /* Directs children alignment vectors straight down page centers */
+    z-index: 1000; /* Places popup overlays definitively over baseline app windows layouts */
+    opacity: 0; /* Sets hidden visual states as default configurations */
+    visibility: hidden; /* Completely disables interaction access models while element stays inactive */
+    transition: all 0.2s ease; /* Animates fade visibility sequences smoothly on states adjustments */
+}
+
+/* Displays modal structures immediately on execution of target state calls */
+.modal-overlay.active {
+    opacity: 1; /* Pulls visibility levels to full transparency limits */
+    visibility: visible; /* Activates active screen reading and clicking access rules */
+}
+
+/* Floating interaction cards box metrics structures */
+.modal-dialog {
+    background: var(--bg-card); /* Pulls backing colors from pre-configured core palette layers */
+    backdrop-filter: blur(20px); /* Quadruples background frost styling attributes inside popup units */
+    border: 1px solid var(--border-medium); /* Enforces structured border framing definitions around system modals */
+    border-radius: var(--radius-lg); /* Employs broader edge rounding limits on structural cards */
+    width: min(90%, 600px); /* Sets width to 90% of screen, capped at 600px max */
+    max-width: 600px; /* Safe layout max width restraint rule */
+    max-height: 85vh; /* Caps dialog boxes safely inside 85% of physical view heights */
+    overflow-y: auto; /* Introduces self-contained scrolling paths inside dialog sheets if needed */
+    padding: var(--space-2xl); /* Grants lavish structural padding inside active presentation decks */
+    transform: scale(0.95); /* Shrinks dialogue frame scale down slightly by default for punchy animations */
+    transition: transform 0.2s ease; /* Connects dimension scaling changes with fluid transition curves */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Projects intense dark drop shadows beneath menu plates */
+}
+
+/* Scales popups up to full default dimensions when activation hooks click on */
+.modal-overlay.active .modal-dialog {
+    transform: scale(1); /* Returns dialogue box to standard proportions upon interface reveal calls */
+}
+
+/* Modal header grid configurations separating main text spaces */
+.modal-header {
+    display: flex; /* Formats interior child component objects using flexible alignment engines */
+    justify-content: space-between; /* Positions text elements and exits items perfectly at opposite ends */
+    align-items: center; /* Locks title text layouts horizontally across matching center lanes */
+    margin-bottom: var(--space-lg); /* Inserts layout margin cushions beneath heading segments */
+    padding-bottom: var(--space-sm); /* Leaves structural margin pads directly above card dividers */
+    border-bottom: 1px solid var(--border-light); /* Traces faint border line separating header categories from data fields */
+}
+
+/* Typography parameters managing header label styles inside dialog templates */
+.modal-header h2 {
+    font-size: var(--text-xl); /* Matches text size smoothly to pre-scaled system typography arrays */
+    color: var(--accent-cyan); /* Assigns brand identity signature color tones to text lines */
+    font-weight: 600; /* Uses a slightly heavier semi-bold font layout thickness setting */
+}
+
+/* Close button styles within utility popup modal layouts */
+.modal-close {
+    background: none; /* Destroys default background graphics settings on button elements */
+    border: none; /* Sweeps default border parameters from target button areas */
+    color: var(--text-tertiary); /* Sets exit actions graphics to neutral muted palette scales */
+    font-size: var(--text-xl); /* Scales cross symbol sizes safely into clear target ranges */
+    cursor: pointer; /* Displays interactive finger indicators during item inspection events */
+    padding: var(--space-sm); /* Pads target dimensions outwards safely to prevent input misses */
+    min-width: var(--touch-target-min); /* Compliance tracking check defining accessibility tap target widths */
+    min-height: var(--touch-target-min); /* Compliance tracking check defining accessibility tap target heights */
+    transition: all 0.12s ease; /* Smooths visual feedback adjustments over time */
+    border-radius: var(--radius-sm); /* Adds subtle rounding tweaks to element border areas */
+}
+
+/* Visual pointer states transformations altering active interface close buttons */
+.modal-close:hover {
+    color: var(--accent-pink); /* Swaps vector colors to warning pinks upon inspection tracking inputs */
+    transform: scale(1.1); /* Grows exit toggle graphic sizes subtly to register intent confirmation loops */
+}
+
+/* Touch compression signals validating close action inputs */
+.modal-close:active {
+    transform: scale(0.95); /* Shrinks toggle dimensions slightly under direct user clicking events */
+}
+
+/* Base text metadata presentation structures tracking layout bottoms */
+.modal-footer {
+    margin-top: var(--space-lg); /* Adds spatial insulation cushions above target layout footnote lines */
+    text-align: center; /* Centers message text entries inside window content fields */
+    font-size: var(--text-xs); /* Shrinks footnote scripts elegantly down to compact secondary display metrics */
+    color: var(--text-tertiary); /* Tints character paths cleanly via muted gray color scales */
+}
+
+/* ===== ACCESSIBILITY SETTINGS ===== */
+/* Structural layouts formatting individual preference configurations options profiles */
+.accessibility-section {
+    margin-bottom: var(--space-xl); /* Drives separation gaps deep between stacked options blocks */
+}
+
+/* Category block labels spacing profiles inside settings windows */
+.accessibility-section h3 {
+    font-size: var(--text-md); /* Drives category indicator labels to legible secondary scales */
+    color: var(--accent-green); /* Highlights options segments with clear emerald colors */
+    margin-bottom: var(--space-md); /* Drops space anchors directly between category tags and settings lists */
+    display: flex; /* Maps nested label features onto shared layout lines */
+    align-items: center; /* Centers system typography arrays around companion asset images */
+    gap: var(--space-sm); /* Uniform spacing values between text frames and support markers */
+}
+
+/* Target settings configuring vector dimension models across system category banners */
+.accessibility-section h3 i {
+    font-size: var(--text-lg); /* Forces icons up to scale smoothly with neighboring titles text fields */
+}
+
+/* Individual selection control plate modules spacing parameters */
+.setting-card {
+    background: rgba(255, 255, 255, 0.05); /* Fills control strips with subtle, very transparent white plates */
+    border-radius: var(--radius-md); /* Smooths out option card plates corners nicely */
+    padding: var(--space-md); /* Pads settings details safely within boundaries */
+    margin-bottom: var(--space-sm); /* Spaces listed options cards apart cleanly down column chains */
+    display: flex; /* Adapts row presentation modules into highly fluid systems */
+    align-items: center; /* Centers interaction elements horizontally across component rows */
+    justify-content: space-between; /* Ensures text descriptions stay far left and toggles stay far right */
+    flex-wrap: wrap; /* Permits safe row breakdown updates on narrow mobile panels */
+    gap: var(--space-md); /* Inserts layout margin break defenses inside option component cells */
+}
+
+/* Primary column structural controls managing preference labeling content lists */
+.setting-info {
+    flex: 1; /* Encourages text zones to capture all layout width margins available */
+}
+
+/* Preference interaction labels spacing rules */
+.setting-info label {
+    font-size: var(--text-sm); /* Maps control items headers to clean compact profiles */
+    font-weight: 600; /* Locks typography assets to bold text weights */
+    display: block; /* Declares option layout labels as individual structural blocks */
+    margin-bottom: var(--space-2xs); /* Keeps title words separated from descriptive secondary lines */
+    cursor: pointer; /* Signals option toggle accessibility areas during inspection states */
+}
+
+/* Explanatory text properties defining active preferences scopes */
+.setting-info p {
+    font-size: var(--text-xs); /* Scales options documentation scripts downward to avoid cluttering screens */
+    color: var(--text-tertiary); /* Softens text visibility levels via tertiary muted configurations */
+}
+
+/* ===== TOGGLE SWITCH ===== */
+/* Outer framework dimensions establishing custom structural switch outlines */
+.toggle-switch {
+    position: relative; /* Builds local structural coordinate bases for internal indicator modules */
+    display: inline-block; /* Aligns checkbox frames safely alongside companion text fields */
+    width: 60px; /* Locks physical slider track frameworks width sizes to 60px */
+    height: 34px; /* Locks physical slider track frameworks height sizes to 34px */
+    flex-shrink: 0; /* Prevents toggle shapes from distorting inside dense horizontal layouts */
+}
+
+/* Strict opacity modifications isolating default system HTML checkboxes */
+.toggle-switch input {
+    opacity: 0; /* Conceals default browser input elements visually from page layouts */
+    width: 0; /* Wipes dimension scopes completely to hide structural frames */
+    height: 0; /* Removes physical footprints to enable custom design tracks underneath */
+}
+
+/* Visual display track components within customizable option toggle systems */
+.toggle-slider {
+    position: absolute; /* Frees slider skin objects to position across parent coordinate paths */
+    cursor: pointer; /* Confirms clickable status parameters upon item tracking checks */
+    top: 0; /* Snaps switch tracks skin to uppermost frame boundaries */
+    left: 0; /* Snaps switch tracks skin to leftmost frame boundaries */
+    right: 0; /* Extends custom switch track assets to rightmost frame parameters */
+    bottom: 0; /* Bounds slider tracking skin heights cleanly inside layout boxes */
+    background-color: var(--text-tertiary); /* Sets passive switch tracks background to muted grey colors */
+    transition: 0.2s; /* Governs toggle animation shift intervals smoothly over 0.2s speeds */
+    border-radius: 34px; /* Perfectly curves track borders to establish capsules outlines layouts */
+}
+
+/* Circular sliding handle elements inside toggle switch nodes */
+.toggle-slider:before {
+    position: absolute; /* Frees interaction nodes to move dynamically across parent track paths */
+    content: ""; /* Injects empty text strings data required to generate pseudo-elements boxes */
+    height: 26px; /* Sets sliding node circle heights down to 26px sizes */
+    width: 26px; /* Sets sliding node circle widths down to 26px sizes */
+    left: 4px; /* Centers passive handle bubbles within left-hand margin track alleys */
+    bottom: 4px; /* Offsets handle nodes smoothly above lower track margins */
+    background-color: white; /* Fills active choice indicator circles with solid white */
+    transition: 0.2s; /* Connects slider bubble shifting tracks with rapid 0.2s movement timing profiles */
+    border-radius: 50%; /* Trims block corners completely to forge perfect circles shapes */
+}
+
+/* Target color updates shifts running across active option toggle slots */
+input:checked + .toggle-slider {
+    background-color: var(--accent-green); /* Swaps grey background sliders skins to alert green when active */
+}
+
+/* Spatial position movements animating active option switch handle loops */
+input:checked + .toggle-slider:before {
+    transform: translateX(26px); /* Drives white slider nodes exactly 26px rightward upon activation states hooks */
+}
+
+/* Styling structural systems configuring global master reset options controls */
+.reset-btn {
+    background: var(--accent-purple); /* Selects signature violet tones to paint system reset actions buttons */
+    color: white; /* Forces text content vectors to clear white configurations */
+    border: none; /* Destroys standard gray input outlines configurations cleanly from layout models */
+    padding: var(--space-sm) var(--space-lg); /* Provides wide structural tap cushion zones inside reset bars */
+    border-radius: var(--radius-sm); /* Shapes button boundaries cleanly to complement adjacent design patterns */
+    font-size: var(--text-sm); /* Draws text sizes downward into crisp modern presentation scales */
+    font-weight: 600; /* Locks typography thick weights firmly to semi-bold layout definitions */
+    cursor: pointer; /* Pulls active click tracking pointers up on desktop inspection operations */
+    width: 100%; /* Commands full fluid length scaling across parent dialog blocks */
+    margin-top: var(--space-lg); /* Inserts layout safety margins above master reset operations buttons */
+    min-height: var(--touch-target-min); /* Compliance tracking check defining accessibility tap target dimensions */
+    transition: all 0.12s ease; /* Links system visual changes cleanly to brief transitional animations paths */
+}
+
+/* Tactile physical feedback reactions generated on active system touch inputs */
+.reset-btn:active {
+    transform: scale(0.96); /* Compresses total element surface areas slightly during interaction confirmations */
+}

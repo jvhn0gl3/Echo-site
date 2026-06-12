@@ -1,0 +1,83 @@
+/* Stores global CSS design variables (custom properties) inside the root element */
+:root {
+    /* Fluid spacing scales using clamp(minimum, preferred, maximum) to scale smoothly with screen width */
+    --space-3xs: clamp(0.25rem, 1vw, 0.5rem);
+    --space-2xs: clamp(0.375rem, 1.5vw, 0.625rem);
+    --space-xs: clamp(0.5rem, 2vw, 0.75rem);
+    --space-sm: clamp(0.75rem, 2.5vw, 1rem);
+    --space-md: clamp(1rem, 3vw, 1.25rem);
+    --space-lg: clamp(1.25rem, 4vw, 1.75rem);
+    --space-xl: clamp(1.5rem, 5vw, 2rem);
+    --space-2xl: clamp(1.75rem, 6vw, 2.5rem);
+    
+    /* Fluid text typography sizes that scale dynamically based on the display device size */
+    --text-2xs: clamp(0.75rem, 1.8vw, 0.9rem);
+    --text-xs: clamp(0.85rem, 2vw, 1rem);
+    --text-sm: clamp(0.95rem, 2.2vw, 1.1rem);
+    --text-base: clamp(1rem, 2.4vw, 1.2rem);
+    --text-md: clamp(1.1rem, 2.6vw, 1.3rem);
+    --text-lg: clamp(1.2rem, 2.8vw, 1.4rem);
+    --text-xl: clamp(1.3rem, 3.2vw, 1.6rem);
+    --text-2xl: clamp(1.4rem, 3.6vw, 1.8rem);
+    --text-3xl: clamp(1.6rem, 4vw, 2rem);
+    
+    /* Dynamic corner rounding radiuses for design consistency */
+    --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
+    --radius-md: clamp(0.75rem, 2vw, 1rem);
+    --radius-lg: clamp(1rem, 2.5vw, 1.25rem);
+    
+    /* Global theme color palette definitions */
+    --bg-primary: #0a0a0a; /* Main background color (very dark grey) */
+    --bg-card: rgba(18, 18, 24, 0.8); /* Semi-transparent background color for profile cards */
+    --text-primary: #ffffff; /* Primary text color (white) */
+    --text-secondary: #b0b0c0; /* Secondary text color (light muted grey) */
+    --text-tertiary: #8a8a9a; /* Tertiary text color (darker muted grey) */
+    --accent-cyan: #00d4ff; /* Electric cyan color for links and features */
+    --accent-purple: #7c3aed; /* Violet purple theme accent color */
+    --accent-pink: #ec4899; /* Hot pink indicator color */
+    --accent-green: #10b981; /* Emerald green theme accent color */
+    --accent-yellow: #f59e0b; /* Bright amber yellow accent color */
+    --accent-orange: #f97316; /* Vivid orange accent color */
+    --accent-red: #ef4444; /* Alert red theme color */
+    --accent-blue: #3b82f6; /* Classic blue brand color */
+    --accent-indigo: #6366f1; /* Deep indigo color for social icons */
+    --border-light: rgba(255, 255, 255, 0.08); /* Soft faint white divider line */
+    --border-medium: rgba(255, 255, 255, 0.12); /* Slightly more visible card divider line */
+    
+    /* Responsive structural sizing controls */
+    --sidebar-width: clamp(80px, 15vw, 130px); /* Adjusts side menu width dynamically between 80px and 130px */
+    --touch-target-min: 48px; /* Standard minimum touch size for accessible buttons */
+}
+
+/* Overrides variables with high-contrast color values when the high-contrast class is added to the body */
+body.high-contrast {
+    --bg-primary: #000000; /* Pitch black background */
+    --bg-card: #111111; /* Dark solid card backgrounds */
+    --text-primary: #ffffff; /* Pure white text */
+    --text-secondary: #ffff00; /* High visibility yellow secondary text */
+    --text-tertiary: #00ff00; /* High visibility green tertiary text */
+    --accent-cyan: #ffff00; /* Swap cyan for vibrant yellow */
+    --accent-purple: #ff00ff; /* Swap purple for bright magenta */
+    --accent-pink: #00ffff; /* Swap pink for cyan */
+    --accent-green: #00ff00; /* Pure lime green */
+    --accent-yellow: #ffff00; /* Pure yellow */
+    --accent-orange: #ffa500; /* High visibility web orange */
+    --accent-red: #ff0000; /* Pure primary red */
+    --accent-blue: #0000ff; /* Pure primary blue */
+    --accent-indigo: #4b0082; /* Deep solid indigo */
+    --border-light: #ffffff; /* Solid white thin borders */
+    --border-medium: #ffff00; /* Solid yellow medium borders */
+}
+
+/* Scales up all fluid text sizes when the large-text class is applied to the body */
+body.large-text {
+    --text-2xs: clamp(1rem, 2.2vw, 1.2rem);
+    --text-xs: clamp(1.1rem, 2.4vw, 1.3rem);
+    --text-sm: clamp(1.2rem, 2.6vw, 1.4rem);
+    --text-base: clamp(1.3rem, 2.8vw, 1.5rem);
+    --text-md: clamp(1.4rem, 3vw, 1.6rem);
+    --text-lg: clamp(1.5rem, 3.2vw, 1.7rem);
+    --text-xl: clamp(1.6rem, 3.6vw, 1.9rem);
+    --text-2xl: clamp(1.7rem, 4vw, 2.1rem);
+    --text-3xl: clamp(1.9rem, 4.5vw, 2.3rem);
+}

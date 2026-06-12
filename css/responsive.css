@@ -1,0 +1,51 @@
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+/* Speeds up animations and transitions instantly for users who prefer reduced motion */
+body.reduced-motion * {
+    animation-duration: 0.001s !important; /* Force animations to complete almost instantly */
+    transition-duration: 0.001s !important; /* Force visual changes to happen instantly */
+    scroll-behavior: auto !important; /* Disable smooth scrolling behavior across elements */
+}
+
+/* Micro responsive overrides media query tuning layout parameters across mobile sized device viewports screen tracks */
+@media (max-width: 768px) {
+    /* Expands individual action interaction control bar footprints on compact touchscreens interfaces layout tracks */
+    .btn-primary, .btn-secondary, .btn-message {
+        min-height: 52px; /* Scales tap coordinates up safely to 52px heights to help mobile fingers click items easily */
+    }
+    
+    /* Broadens side panel button options footprints inside smartphone presentation displays systems */
+    .nav-item {
+        min-height: 52px; /* Guarantees mobile dashboard selectors hit accessible 52px vertical screen bounds sizes */
+    }
+    
+    /* Expands tap coordinates bounding network connections nodes entries links catalogs platforms sheets */
+    .social-link {
+        min-height: 80px; /* Grants large 80px block spaces to facilitate rapid tap input responses paths on phones screens */
+    }
+    
+    /* Footer responsive adjustments */
+    .site-footer {
+        padding: var(--space-xl) var(--space-md) var(--space-lg); /* Reduced padding on mobile for better space usage */
+    }
+    
+    .footer-container {
+        flex-direction: column; /* Stacks all footer columns vertically on mobile */
+        gap: var(--space-lg); /* Consistent vertical spacing between stacked columns */
+    }
+    
+    .footer-brand, .footer-links, .footer-contact {
+        text-align: center; /* Centers content in all footer sections on mobile */
+    }
+    
+    .footer-social-mini {
+        justify-content: center; /* Centers social icons row horizontally */
+    }
+    
+    .footer-contact p {
+        justify-content: center; /* Centers contact information text and icons on mobile */
+    }
+    
+    .footer-links a:hover {
+        transform: translateX(0); /* Disables slide effect on mobile for cleaner interaction */
+    }
+}

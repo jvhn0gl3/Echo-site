@@ -1,0 +1,291 @@
+/* ===== BUTTONS ===== */
+/* Shared foundation parameters managing global interactive system communication actions controllers */
+.btn-primary, .btn-secondary, .btn-message {
+    display: flex; /* Coordinates children items positions cleanly through flex model tools */
+    align-items: center; /* Locks nested content vectors securely across global alignment axis lines */
+    justify-content: center; /* Centers active interface labels inside button surface boundaries */
+    gap: var(--space-2xs); /* Keeps font structures split cleanly away from adjacent graphics icons */
+    padding: var(--space-md) var(--space-lg); /* Insures deep cushion areas spread out across click targets */
+    min-height: var(--touch-target-min); /* Absolute minimum target heights regulation enforcement checks */
+    border-radius: var(--radius-md); /* Rounds interface corner assets cleanly to align with cards patterns */
+    text-decoration: none; /* Banishes default anchor links typography underlines rules completely */
+    font-weight: 600; /* Assures bold text thicknesses configurations across system call buttons */
+    font-size: var(--text-md); /* Sizes interface command labels to clear readability ranges */
+    transition: all 0.12s ease; /* Couples visual changes smoothly over fast execution tracks */
+    cursor: pointer; /* Signals action capability to desktop system mouse users instantly */
+    border: none; /* Erases baseline browser border styling components */
+    width: 100%; /* Stretches core width properties across entire matching framework limits */
+}
+
+/* Style aesthetics parameters outlining primary call-to-action controllers */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); /* Fills primary triggers with beautiful split energetic brand gradient */
+    color: white; /* Validates maximum contrast metrics via solid white label text layers */
+}
+
+/* Style aesthetics parameters outlining auxiliary supportive navigation controllers */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05); /* Soft, low-contrast dark translucent plates foundation fill */
+    border: 1px solid var(--border-medium); /* Outlines auxiliary triggers using structured medium borders lines */
+    color: var(--accent-cyan); /* Restores core link identifiers color paths back to sharp cyan fields */
+}
+
+/* Direct email messaging contact shortcuts triggering templates styling profiles */
+.btn-message {
+    background: rgba(0, 212, 255, 0.15); /* Injects distinct localized cyan color washes under message triggers */
+    border: 1px solid var(--accent-cyan); /* Radiates vibrant signature cyan lines around container limits */
+    color: var(--accent-cyan); /* Sets typography color arrays to rich cyan accent tones */
+    margin-top: var(--space-xs); /* Splits messaging items safely away from card informational data rows */
+    min-height: calc(var(--touch-target-min) - 8px); /* Compact layout parameter tuning heights precisely inside blocks cards */
+}
+
+/* Parameter scaling systems tuning graphic elements sizes inside inline text message buttons */
+.btn-message i {
+    font-size: var(--text-sm); /* Matches icon size to standard subtext typography sizing limits */
+}
+
+/* Collective physical compression setups tracking all interaction button elements */
+.btn-primary:active, .btn-secondary:active, .btn-message:active {
+    transform: scale(0.96); /* Pulls coordinates slightly down inward upon direct click confirmations */
+}
+
+/* ===== HERO COMPONENT ===== */
+/* Primary introduction showcase block structural component properties */
+.component-hero {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05)); /* Floats elegant low-opacity cyan/purple visual clouds onto background paths */
+    border-radius: var(--radius-md); /* Conforms splash card corners safely to template radius scales */
+    padding: var(--space-xl) var(--space-lg); /* Generates generous cushion tracks enveloping top introduction items */
+    margin-bottom: var(--space-xl); /* Positions thick vertical buffer lanes directly below introduction zones */
+    border: 1px solid var(--border-light); /* Encases banner limits inside soft low-contrast thin frames lines */
+}
+
+/* Structural layout grid configurations processing split introduction layouts data columns */
+.hero-container {
+    display: flex; /* Converts welcome frame layouts into highly fluid multi-directional formats */
+    flex-wrap: wrap; /* Permits automatic column stack breakdowns on space-restricted devices screens */
+    gap: var(--space-lg); /* Splits interior vertical presentation categories cleanly across layout systems */
+}
+
+/* Left-hand column structural parameters managing main splash headers elements links */
+.hero-left {
+    flex: 2; /* Instructs text layout blocks to capture double parts of layout column spacing tracks */
+    min-width: 220px; /* Safe minimum row resolution breakpoint width parameter */
+}
+
+/* Right-hand column structural parameters managing brief summary bio details fields */
+.hero-right {
+    flex: 1; /* Maps bio statement summaries layouts into singular column allocations models */
+    min-width: 220px; /* Aligns side column breakpoint dimensions to equal settings limits */
+}
+
+/* Main page title aesthetic configurations matching splash layouts text */
+.hero-left h1 {
+    font-size: var(--text-3xl); /* Drives core introduction text fields up to massive display scales */
+    margin-bottom: var(--space-lg); /* Allocates clean display breathing spaces below primary titles headers */
+    background: linear-gradient(135deg, #ffffff, var(--accent-cyan)); /* Maps brilliant white-to-cyan color gradient onto text frames tracks */
+    -webkit-background-clip: text; /* Masks gradient tracks securely inside letter characters tracks shapes on Webkit systems */
+    background-clip: text; /* Standards compliance tracking rule masking text color backgrounds patterns */
+    color: transparent; /* Makes baseline solid text fills transparent to let core color gradient show through */
+    line-height: 1.2; /* Tightens space paths tracking between huge vertically stacked text words groups */
+}
+
+/* Horizontal split parameters ordering companion actions triggers groups */
+.hero-buttons {
+    display: flex; /* Maps action button elements alongside identical display baseline axes */
+    flex-wrap: wrap; /* Halts interface breakage by letting buttons break to new rows if squished */
+    gap: var(--space-md); /* Enforces even layout separation breaks between dashboard trigger buttons entries */
+}
+
+/* Column scaling normalization settings organizing split landing buttons layouts */
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+    flex: 1; /* Dictates that buttons expand evenly to match each other's layout spaces inside arrays */
+    min-width: 140px; /* Prevents action button labels from getting unreadably squished on slim panels */
+}
+
+/* Core description copy tuning variables regulating splash summary statements */
+.hero-right p {
+    font-size: var(--text-md); /* Advances biography summaries text layouts up to clear reading sizes */
+    color: var(--text-secondary); /* Relaxes character tone brightness levels down to comfortable light gray channels */
+    line-height: 1.6; /* Sets wider line spaces to clear readability roadblocks for users scan layouts */
+}
+
+/* ===== CODE HEADER COMPONENT ===== */
+/* Stylized mockup code interface box layout parameters modules settings */
+.component-code-header {
+    background: rgba(0, 212, 255, 0.04); /* Fills code headers with faint electric cyan background shades */
+    border-left: 4px solid var(--accent-cyan); /* Injects thick structural cyan accent border bar along left boundaries margins */
+    padding: var(--space-xl) var(--space-2xl); /* Sets spacious inner layout pads inside code simulator zones */
+    font-family: 'SF Mono', 'Fira Code', monospace; /* Swaps typography stacks out to clean developer terminal coding engines fonts */
+    border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Rounds corners only on right side edges of code bars */
+    margin: var(--space-xl) 0; /* Inserts wide vertical separation spaces above and below script header plates */
+    width: 100%; /* Spans code title containers securely across matching app width dimensions */
+    user-select: none; /* Disables standard text highlights selections models to protect visual layouts aesthetics */
+}
+
+/* Coding syntax design elements regulating component title simulations text layout */
+.component-code-header h2 {
+    font-size: var(--text-lg); /* Maps text dimensions to beautiful clean intermediate developer block sizing tracks */
+    margin-bottom: var(--space-sm); /* Isolates technical coding strings cleanly from comments lines underneath */
+    color: var(--accent-cyan); /* Default developer title code strings default color state definition */
+    font-weight: 500; /* Locks typography thickness to clean, crisp medium weight profiles */
+    white-space: normal; /* Permits text wrapping rules naturally if lines overflow display fields */
+    word-break: break-word; /* Security parameters tracking extreme code string text overflows boundaries safely */
+    line-height: 1.4; /* Standard line spacing parameters for technical titles layout models */
+}
+
+/* Specific IDE syntax color theme modifications formatting mockup coding phrases */
+.component-code-header .keyword { color: #c678dd; } /* Paints code statements keywords like 'import' soft magenta purple */
+.component-code-header .string { color: #98c379; } /* Paints hardcoded data paths string text packages fields grass green */
+.component-code-header .variable { color: #e06c75; } /* Paints programmatic variable declarations terms light sunset crimson */
+.component-code-header .function { color: #61afef; } /* Paints execution function call terms sky blue codes accents */
+
+/* Injected pseudo code documentation text line structural parameters formatting controls */
+.component-code-header .comment { 
+    color: var(--text-tertiary); /* Tints terminal feedback commentary tracks via tertiary gray palettes */
+    font-size: var(--text-sm); /* Pulls instruction comments typography dimensions down to clear compact tracks */
+    margin-top: var(--space-xs); /* Sets clear split distances between code statements lines and comments rows */
+    display: block; /* Declares commentary paths as independent layout text rows lines */
+}
+
+/* ===== ABOUT COMPONENT ===== */
+/* Typography framing guidelines shaping personal narrative statement blocks sections */
+.component-about {
+    margin-bottom: var(--space-xl); /* Buffers deep layout breathing channels between narrative tracks and subsequent grids rows */
+    padding: 0 var(--space-xs); /* Tiny lateral layout padding cushions lining internal bio details scopes columns */
+}
+
+/* Narrative biography paragraphs layout characteristics adjustments monitoring readability channels */
+.component-about p {
+    margin-bottom: var(--space-sm); /* Splits consecutive storytelling layout text components apart down text rows tracks */
+    color: var(--text-secondary); /* Settles narrative text into comfortable soft high-contrast readability parameters dark light grey colors */
+    font-size: var(--text-md); /* Steps narrative descriptions up to elegant intermediate reading scale definitions */
+    max-width: min(100%, 750px); /* Restrains text line lengths safely under 750px to optimize horizontal layout scanning speed indexes */
+    line-height: 1.6; /* Sets relaxed line spaces layout tracking paths to streamline reading operations across long text files blocks */
+}
+
+/* ===== CARDS & GRIDS ===== */
+/* Flexible responsive grid array parameters organizing profile cards showcases arrays layouts */
+.grid-container,
+.products-container,
+.clients-container,
+.blog-container {
+    display: grid; /* Activates multi-column grid layouts formatting control centers across lists */
+    gap: var(--space-lg); /* Applies uniform horizontal and vertical spacing gaps between card nodes */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); /* Advanced grid formula fitting 320px columns perfectly on any device size screen */
+    margin-bottom: var(--space-xl); /* Packs thick lower margins underneath individual categories presentation cards grids */
+}
+
+/* Collective foundation layouts structural cards characteristics formatting item nodes grids */
+.grid-card,
+.product-card,
+.client-card,
+.blog-card {
+    background: var(--bg-card); /* Feeds smooth semi-transparent theme colors across component blocks panels */
+    backdrop-filter: blur(10px); /* Runs glass frost styling blur filters across backing layout tracks */
+    border: 1px solid var(--border-light); /* Encases card outlines inside low-contrast thin borders frameworks lines */
+    border-radius: var(--radius-md); /* Syncs item module boundaries cleanly with system border curve standards */
+    padding: var(--space-lg) var(--space-lg); /* Imposes even, thick interior formatting padding lines across description details fields */
+    transition: all 0.15s ease; /* Couples layout movement animations with smooth timing paths settings */
+    display: flex; /* Converts system cards into responsive stack structural elements packages layouts */
+    flex-direction: column; /* Organizes nested structural items into vertical down tracks alignments */
+    gap: var(--space-md); /* Drives consistent separation spacing paths through interior card cells objects */
+    cursor: pointer; /* Confirms element click capabilities instantly upon mouse pointer tracking matches */
+}
+
+/* Primary horizontal data orientation modules systems formatting upper cards tracks */
+.card-row {
+    display: flex; /* Converts text clusters and companion asset icons into inline row groupings tools */
+    flex-direction: row; /* Directs asset child elements horizontally across unified display lines */
+    align-items: center; /* Locks system symbols and labels text squarely along identical midlines tracks */
+    gap: var(--space-lg); /* Breaks display rows cleanly to split graphics away from content descriptions text strings */
+}
+
+/* System interface button columns layouts stacks positioning interaction items inside profile cards */
+.card-actions {
+    display: flex; /* Maps interaction button modules into flexible framework arrays layouts */
+    flex-direction: column; /* Stacks multiple utility button modules vertically inside grid element spaces */
+    gap: var(--space-sm); /* Uniform spacing splits separating stacked buttons tracks apart cleanly */
+    margin-top: var(--space-xs); /* Pushes actionable control decks slightly below structural data tracks entries */
+}
+
+/* Graphic vector tracking dimensions formatting imagery inside profile showcase grids elements */
+.grid-card i,
+.product-card i,
+.blog-card i {
+    font-size: clamp(1.5rem, 6vw, 2rem); /* Dynamic font icon scale parameters shifting vectors sizes precisely across devices */
+    width: clamp(48px, 10vw, 64px); /* Locks graphic assets into solid structural layout boundary boxes width dimensions */
+    flex-shrink: 0; /* Shields font icons elements from warping during responsive window alterations scenarios */
+    text-align: center; /* Centers font graphics items horizontally within their allocated boundary boxes sizes */
+    pointer-events: none; /* Disables click intersection checking on icons to boost javascript speed performance metrics */
+}
+
+/* Specific visual branding coloration rules assigned across framework display icons slots */
+.grid-card i { color: var(--accent-cyan); } /* Set professional skill graphic markers to bright cyan */
+.blog-card i { color: var(--accent-pink); } /* Set digital newsletter log indexes icons to sharp hot pink */
+.product-card i { color: var(--accent-cyan); } /* Set commercial merchandise sales catalog vectors to energetic cyan */
+
+/* Text blocks structural containers formatting content descriptions entries next to grid vectors */
+.grid-card-content,
+.product-info,
+.client-info,
+.blog-content {
+    flex: 1; /* Instructs description text clusters to expand and capture remaining card width spaces available */
+    min-width: 0; /* Flexbox text bug defense setting allowing clean string breaks without layout widening */
+    word-wrap: break-word; /* Breaks long continuous words groups safely if strings surpass card wall blocks boundaries */
+    overflow-wrap: break-word; /* Standards rule wrapping dense alphanumeric character sets securely inside grids blocks slots */
+}
+
+/* Title text styling parameters monitoring descriptive category cards headers text blocks */
+.grid-card-content h3,
+.product-info h3,
+.client-info h3,
+.blog-content h3 {
+    font-size: var(--text-md); /* Maps grid component card headers font sizes to clear secondary reading scales */
+    font-weight: 600; /* Locks typography configurations to distinct semi-bold visibility levels */
+    margin-bottom: var(--space-2xs); /* Places small spacing pads beneath product labels before descriptions text entries start */
+}
+
+/* Content data block paragraph elements definitions formatting secondary descriptions text strings */
+.grid-card-content p,
+.product-info p,
+.client-info p,
+.blog-content p {
+    font-size: var(--text-sm); /* Sets text to standard crisp compact reading tracks dimensions scales */
+    color: var(--text-secondary); /* Drops brightness parameters back down to secondary soft light gray levels */
+    line-height: 1.5; /* Balanced regular line height spacing profiles configuration setting */
+}
+
+/* Commercial pricing text module configurations formatting storefront catalog item listings card items */
+.product-price {
+    font-size: var(--text-md); /* Drives financial valuation labels to clear intermediate scales levels */
+    font-weight: 600; /* Uses solid semi-bold typography configurations to call visual focus to sales cost entries */
+    color: var(--accent-cyan); /* Paints commercial asset sales evaluation strings electric cyan brand hues */
+    margin-top: var(--space-2xs); /* Inserts small layout padding buffers directly above pricing label trackers lines */
+}
+
+/* Framework sizing regulations filtering external company branding logo images templates assets */
+.client-logo {
+    max-width: clamp(70px, 18vw, 100px); /* Dynamically limits corporate client graphic image width footprints smoothly across devices screens */
+    height: auto; /* Scales aspect height levels proportionally to safeguard incoming files parameters descriptions */
+    flex-shrink: 0; /* Defends corporate logo vectors sizes against layout compression forces inside columns tracks */
+    pointer-events: none; /* Strips selection layers off imagery assets to eliminate client browser click bugs scenarios */
+}
+
+/* Meta parameters coordinating titles rows inside article listings feed modules systems */
+.blog-title-row {
+    display: flex; /* Links article labels and publication date arrays onto shared row axes paths */
+    justify-content: space-between; /* Drives newsletter header text fields far left and publication date vectors far right */
+    align-items: baseline; /* Aligns typography baselines across components to maintain uniform flow lines fields */
+    flex-wrap: wrap; /* Prevents text colliding errors on ultra tiny mobile devices interface viewports */
+    gap: var(--space-xs); /* Emergency layout gap spacing buffer configurations breaking dense rows entries safely */
+    margin-bottom: var(--space-2xs); /* Small layout margins splitting article headers away from content snippet copy block lines */
+}
+
+/* Publication calendar timestamp indicators styling controls mapping blog feed elements lists */
+.blog-date {
+    font-size: var(--text-2xs); /* Drops timing metadata copy fields down to elegant miniature verification tracks text size */
+    color: var(--accent-pink); /* Paints timeline dates labels distinct bright accent pink tones for crisp visibility tracking */
+}
+
+/* Tactile sensory physics action
