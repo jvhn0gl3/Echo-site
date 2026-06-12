@@ -8,14 +8,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Digital Architect</title>
+    <title>V3 | Horizontal Layout</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           COMPACT FLUID SYSTEM
-           Dense, efficient, information-rich
+           HORIZONTAL, LEFT-ALIGNED COMPACT SYSTEM
+           Icons left of titles, buttons side by side
            ============================================ */
         
         * {
@@ -26,7 +26,7 @@
         }
         
         :root {
-            /* Compact spacing - minimal, efficient */
+            /* Compact spacing */
             --space-3xs: clamp(0.125rem, 0.5vw, 0.25rem);
             --space-2xs: clamp(0.25rem, 0.8vw, 0.375rem);
             --space-xs: clamp(0.375rem, 1vw, 0.5rem);
@@ -34,9 +34,8 @@
             --space-md: clamp(0.75rem, 2vw, 1rem);
             --space-lg: clamp(1rem, 2.5vw, 1.25rem);
             --space-xl: clamp(1.25rem, 3vw, 1.5rem);
-            --space-2xl: clamp(1.5rem, 3.5vw, 2rem);
             
-            /* Compact typography */
+            /* Typography */
             --text-2xs: clamp(0.6rem, 1.2vw, 0.65rem);
             --text-xs: clamp(0.65rem, 1.4vw, 0.7rem);
             --text-sm: clamp(0.7rem, 1.6vw, 0.8rem);
@@ -45,33 +44,18 @@
             --text-lg: clamp(1rem, 2.2vw, 1.125rem);
             --text-xl: clamp(1.125rem, 2.5vw, 1.25rem);
             --text-2xl: clamp(1.25rem, 3vw, 1.5rem);
-            --text-3xl: clamp(1.5rem, 3.5vw, 1.75rem);
-            
-            /* Smaller radius for compact look */
-            --radius-sm: clamp(0.25rem, 1vw, 0.375rem);
-            --radius-md: clamp(0.375rem, 1.5vw, 0.5rem);
-            --radius-lg: clamp(0.5rem, 2vw, 0.75rem);
-            --radius-full: 9999px;
             
             /* Colors */
             --bg-primary: #0a0a0a;
-            --bg-secondary: #0f0f0f;
             --bg-card: rgba(18, 18, 24, 0.8);
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-tertiary: #6b6b7a;
             --accent-cyan: #00d4ff;
             --accent-purple: #7c3aed;
-            --accent-gold: #fbbf24;
-            --accent-green: #10b981;
             --accent-pink: #ec4899;
             --border-light: rgba(255, 255, 255, 0.06);
             --border-medium: rgba(255, 255, 255, 0.1);
-            --glow-cyan: rgba(0, 212, 255, 0.15);
-            
-            /* Fast transitions for compact feel */
-            --transition-fast: 0.12s ease;
-            --transition-base: 0.15s ease;
         }
         
         body {
@@ -80,11 +64,10 @@
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
             line-height: 1.5;
             font-size: var(--text-base);
-            overflow-x: hidden;
         }
         
         /* ========================================== */
-        /* MAIN CONTAINER - compact padding */
+        /* MAIN CONTAINER */
         /* ========================================== */
         .section {
             width: 100%;
@@ -92,7 +75,7 @@
         }
         
         /* ========================================== */
-        /* GRID SYSTEM - tighter gap */
+        /* GRID - keeps cards side by side */
         /* ========================================== */
         .section > div:not(.code-block) {
             display: grid;
@@ -102,68 +85,86 @@
         }
         
         .section > div:not(.code-block) {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
         }
         
         /* ========================================== */
-        /* CARDS - compact, dense */
+        /* CARDS - HORIZONTAL LAYOUT (icon left of title) */
         /* ========================================== */
         .section > div:not(.code-block) > div {
             background: var(--bg-card);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            transition: all var(--transition-base);
-            height: 100%;
+            border-radius: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        /* Icon container - fixed width, left aligned */
+        .section > div:not(.code-block) > div i {
+            font-size: var(--text-xl);
+            color: var(--accent-cyan);
+            margin: 0;
+            flex-shrink: 0;
+            width: 32px;
+            text-align: center;
+        }
+        
+        /* Content container - takes remaining space */
+        .card-content {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            position: relative;
+            gap: var(--space-3xs);
         }
         
-        .section > div:not(.code-block) > div:hover {
-            transform: translateY(-2px);
-            border-color: var(--border-medium);
-            background: rgba(20, 20, 28, 0.9);
-        }
-        
-        /* ========================================== */
-        /* TYPOGRAPHY - tight */
-        /* ========================================== */
-        h1 {
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: var(--space-xs);
-            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        h2 {
-            font-size: var(--text-md);
-            font-weight: 600;
-            margin-bottom: var(--space-2xs);
-            color: var(--text-primary);
-        }
-        
-        h3 {
+        .card-content h3 {
             font-size: var(--text-sm);
             font-weight: 600;
-            margin-bottom: var(--space-3xs);
+            margin: 0;
             color: var(--text-primary);
         }
         
-        p {
+        .card-content p {
             font-size: var(--text-xs);
             color: var(--text-secondary);
+            margin: 0;
             line-height: 1.4;
-            margin-bottom: var(--space-2xs);
+        }
+        
+        /* Price styling for products */
+        .product-price {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin: 0;
+        }
+        
+        /* Buttons inside cards - right aligned */
+        .card-action {
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        
+        .card-action a, .card-action button {
+            padding: var(--space-2xs) var(--space-md);
+            font-size: var(--text-2xs);
+            white-space: nowrap;
+        }
+        
+        /* Hover effect */
+        .section > div:not(.code-block) > div:hover {
+            background: rgba(25, 25, 35, 0.9);
+            border-color: var(--border-medium);
+            transform: translateX(2px);
         }
         
         /* ========================================== */
-        /* BUTTONS - compact */
+        /* BUTTONS - side by side */
         /* ========================================== */
         a, button {
             display: inline-flex;
@@ -171,27 +172,21 @@
             justify-content: center;
             gap: var(--space-2xs);
             padding: var(--space-2xs) var(--space-md);
-            border-radius: var(--radius-full);
+            border-radius: var(--space-sm);
             text-decoration: none;
             font-weight: 500;
             font-size: var(--text-xs);
-            transition: all var(--transition-fast);
+            transition: all 0.12s ease;
             cursor: pointer;
             border: none;
             background: transparent;
         }
         
-        a:active, button:active {
-            transform: scale(0.96);
-        }
-        
-        /* Primary button */
-        .btn-primary, a[href]:not(.btn-secondary):not(.btn-ghost) {
+        .btn-primary {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             color: white;
         }
         
-        /* Secondary button */
         .btn-secondary {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-medium);
@@ -202,73 +197,46 @@
             background: rgba(0, 212, 255, 0.1);
         }
         
-        /* Card buttons - compact */
-        .section > div:not(.code-block) > div a,
-        .section > div:not(.code-block) > div button {
-            margin-top: var(--space-xs);
-            align-self: flex-start;
-            padding: var(--space-3xs) var(--space-sm);
-            font-size: var(--text-2xs);
-        }
-        
         /* ========================================== */
-        /* IMAGES - compact */
-        /* ========================================== */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--radius-sm);
-        }
-        
-        .client-logo {
-            max-width: min(100px, 40%);
-            margin: 0 auto var(--space-sm);
-            display: block;
-        }
-        
-        /* ========================================== */
-        /* ICONS - smaller, tighter */
-        /* ========================================== */
-        i {
-            color: var(--accent-cyan);
-            font-size: var(--text-md);
-            margin-bottom: var(--space-2xs);
-            display: inline-block;
-        }
-        
-        /* ========================================== */
-        /* HERO SECTION - compact */
+        /* HERO SECTION - left aligned, side by side buttons */
         /* ========================================== */
         .section > div:has(h1) {
-            text-align: center;
-            padding: var(--space-xl) var(--space-md);
+            text-align: left;
+            padding: var(--space-lg) var(--space-md);
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-radius: var(--radius-lg);
+            border-radius: var(--space-md);
             margin-bottom: var(--space-xl);
-            display: block;
-            width: 100%;
             border: 1px solid var(--border-light);
+        }
+        
+        .section > div:has(h1) h1 {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-xs);
         }
         
         .section > div:has(h1) p {
             max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: var(--space-md);
             font-size: var(--text-sm);
         }
         
+        .flex-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        
         /* ========================================== */
-        /* CODE HEADER - compact */
+        /* CODE HEADER - left aligned */
         /* ========================================== */
         .code-block {
             background: rgba(0, 212, 255, 0.04);
             border-left: 2px solid var(--accent-cyan);
             padding: var(--space-sm) var(--space-md);
             font-family: 'SF Mono', 'Fira Code', monospace;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            border-radius: 0 var(--space-sm) var(--space-sm) 0;
             margin-bottom: var(--space-md);
             width: 100%;
-            overflow-x: auto;
         }
         
         .code-block h2 {
@@ -276,11 +244,6 @@
             margin-bottom: var(--space-3xs);
             color: var(--accent-cyan);
             font-weight: 500;
-            white-space: nowrap;
-        }
-        
-        @media (max-width: 640px) {
-            .code-block h2 { white-space: normal; word-break: break-word; }
         }
         
         .code-block .keyword { color: #c678dd; }
@@ -290,14 +253,77 @@
         .code-block .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
         
         /* ========================================== */
-        /* FLEX BUTTONS - compact */
+        /* ABOUT TEXT - left aligned */
         /* ========================================== */
-        .flex-buttons {
+        .about-text {
+            text-align: left;
+            max-width: 700px;
+        }
+        
+        .about-text p {
+            margin-bottom: var(--space-xs);
+        }
+        
+        /* ========================================== */
+        /* CLIENT CARD - horizontal layout with logo left */
+        /* ========================================== */
+        .client-card {
             display: flex;
-            gap: var(--space-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: var(--space-md);
+            flex-direction: row;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .client-logo {
+            max-width: 80px;
+            height: auto;
+            flex-shrink: 0;
+        }
+        
+        .client-info {
+            flex: 1;
+        }
+        
+        .client-info h3 {
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-3xs);
+        }
+        
+        .client-info p {
+            font-size: var(--text-xs);
+            margin-bottom: var(--space-2xs);
+        }
+        
+        /* ========================================== */
+        /* BLOG CARD - horizontal layout */
+        /* ========================================== */
+        .blog-card {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+        
+        .blog-card i {
+            font-size: var(--text-lg);
+            color: var(--accent-pink);
+            flex-shrink: 0;
+            margin: 0;
+        }
+        
+        .blog-content {
+            flex: 1;
+        }
+        
+        .blog-content h3 {
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-3xs);
+        }
+        
+        .blog-date {
+            font-size: var(--text-2xs);
+            color: var(--accent-pink);
+            margin-bottom: var(--space-2xs);
         }
         
         /* ========================================== */
@@ -316,11 +342,7 @@
             padding: var(--space-2xs) var(--space-md) var(--space-sm);
             z-index: 100;
             gap: var(--space-2xs);
-            overflow-x: auto;
-            width: 100%;
         }
-        
-        .bottom-nav::-webkit-scrollbar { display: none; }
         
         .nav-item {
             display: flex;
@@ -332,17 +354,13 @@
             color: var(--text-tertiary);
             font-size: var(--text-2xs);
             padding: var(--space-2xs) var(--space-sm);
-            border-radius: var(--radius-full);
+            border-radius: var(--space-sm);
             cursor: pointer;
-            transition: all var(--transition-fast);
-            white-space: nowrap;
-            font-weight: 500;
         }
         
         .nav-item i {
             font-size: var(--text-sm);
             margin: 0;
-            color: inherit;
         }
         
         .nav-item.active {
@@ -350,49 +368,27 @@
             background: rgba(0, 212, 255, 0.1);
         }
         
-        .nav-item.active i {
-            transform: translateY(-1px);
-        }
-        
         /* ========================================== */
-        /* SCROLLBAR - subtle */
+        /* ANIMATIONS */
         /* ========================================== */
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--text-tertiary);
-            border-radius: var(--radius-full);
-        }
-        
-        /* ========================================== */
-        /* ANIMATIONS - faster for compact feel */
-        /* ========================================== */
-        @keyframes fadeInUp {
+        @keyframes fadeInLeft {
             from {
                 opacity: 0;
-                transform: translateY(15px);
+                transform: translateX(-10px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
         
         .fade-in {
-            animation: fadeInUp 0.3s ease forwards;
+            animation: fadeInLeft 0.25s ease forwards;
         }
         
-        /* Stagger children animations - faster */
         .section > div:not(.code-block) > div {
             opacity: 0;
-            animation: fadeInUp 0.25s ease forwards;
+            animation: fadeInLeft 0.2s ease forwards;
         }
         
         .section > div:not(.code-block) > div:nth-child(1) { animation-delay: 0.02s; }
@@ -400,7 +396,6 @@
         .section > div:not(.code-block) > div:nth-child(3) { animation-delay: 0.06s; }
         .section > div:not(.code-block) > div:nth-child(4) { animation-delay: 0.08s; }
         .section > div:not(.code-block) > div:nth-child(5) { animation-delay: 0.1s; }
-        .section > div:not(.code-block) > div:nth-child(6) { animation-delay: 0.12s; }
         
         /* ========================================== */
         /* UTILITIES */
@@ -419,8 +414,7 @@
             padding: var(--space-2xs) var(--space-sm);
             text-decoration: none;
             z-index: 1001;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
+            border-radius: var(--space-sm);
             font-size: var(--text-xs);
         }
         
@@ -435,12 +429,12 @@
 
 <div class="section" id="main-content">
     
-    <!-- HERO SECTION - compact -->
+    <!-- HERO - left aligned, buttons side by side -->
     <div>
         <h1>V3 Digital Architect</h1>
-        <p>Full-stack dev · 10+ years · Fast & efficient</p>
+        <p>Full-stack developer · 10+ years · Building products people love</p>
         <div class="flex-buttons">
-            <a href="#">Get Started</a>
+            <a href="#" class="btn-primary">Get Started</a>
             <a href="#" class="btn-secondary">Learn More</a>
         </div>
     </div>
@@ -451,12 +445,10 @@
         <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
     </div>
 
-    <!-- ABOUT SECTION - compact -->
-    <div>
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p>Self-taught developer with a decade-long career. Worked with startups, agencies, and enterprises.</p>
-            <p style="margin-top: var(--space-xs);">Every line of code serves a purpose.</p>
-        </div>
+    <!-- ABOUT - left aligned text -->
+    <div class="about-text">
+        <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+        <p>Every line of code serves a purpose, every pixel has meaning.</p>
     </div>
 
     <!-- SKILLS HEADER -->
@@ -465,14 +457,14 @@
         <p class="comment">// Technologies I work with daily</p>
     </div>
 
-    <!-- SKILLS GRID - compact -->
+    <!-- SKILLS - icons left of titles -->
     <div>
-        <div><i class="fa-brands fa-react"></i> <h3>Frontend</h3> <p>React, Vue, Angular, TS</p></div>
-        <div><i class="fa-solid fa-server"></i> <h3>Backend</h3> <p>Node.js, Python, Go, Java</p></div>
-        <div><i class="fa-solid fa-database"></i> <h3>Database</h3> <p>PostgreSQL, MongoDB, Redis</p></div>
-        <div><i class="fa-solid fa-cloud"></i> <h3>Cloud</h3> <p>AWS, Azure, GCP, Docker</p></div>
-        <div><i class="fa-solid fa-mobile-alt"></i> <h3>Mobile</h3> <p>React Native, Flutter, Swift</p></div>
-        <div><i class="fa-solid fa-code-branch"></i> <h3>DevOps</h3> <p>CI/CD, Jenkins, GitHub Actions</p></div>
+        <div><i class="fa-brands fa-react"></i> <div class="card-content"><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div></div>
+        <div><i class="fa-solid fa-server"></i> <div class="card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
+        <div><i class="fa-solid fa-database"></i> <div class="card-content"><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div></div>
+        <div><i class="fa-solid fa-cloud"></i> <div class="card-content"><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div></div>
+        <div><i class="fa-solid fa-mobile-alt"></i> <div class="card-content"><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div></div>
+        <div><i class="fa-solid fa-code-branch"></i> <div class="card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
     </div>
 
     <!-- SERVICES HEADER -->
@@ -481,14 +473,14 @@
         <p class="comment">// What I offer as a digital architect</p>
     </div>
 
-    <!-- SERVICES GRID - compact -->
+    <!-- SERVICES - icons left of titles -->
     <div>
-        <div><i class="fa-solid fa-pen-nib"></i> <h3>Logo Design</h3> <p>Custom brand identities</p></div>
-        <div><i class="fa-solid fa-laptop-code"></i> <h3>Web Development</h3> <p>Full-stack modern apps</p></div>
-        <div><i class="fa-solid fa-palette"></i> <h3>UI/UX Design</h3> <p>Beautiful interfaces</p></div>
-        <div><i class="fa-solid fa-chart-line"></i> <h3>Tech Consulting</h3> <p>Expert advice</p></div>
-        <div><i class="fa-solid fa-rocket"></i> <h3>Performance</h3> <p>Speed optimization</p></div>
-        <div><i class="fa-solid fa-shield-alt"></i> <h3>Security</h3> <p>Vulnerability fixes</p></div>
+        <div><i class="fa-solid fa-pen-nib"></i> <div class="card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
+        <div><i class="fa-solid fa-laptop-code"></i> <div class="card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
+        <div><i class="fa-solid fa-palette"></i> <div class="card-content"><h3>UI/UX Design</h3><p>Beautiful interfaces</p></div></div>
+        <div><i class="fa-solid fa-chart-line"></i> <div class="card-content"><h3>Tech Consulting</h3><p>Expert advice</p></div></div>
+        <div><i class="fa-solid fa-rocket"></i> <div class="card-content"><h3>Performance</h3><p>Speed optimization</p></div></div>
+        <div><i class="fa-solid fa-shield-alt"></i> <div class="card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
     </div>
 
     <!-- STORE HEADER -->
@@ -497,12 +489,12 @@
         <p class="comment">// Official merchandise</p>
     </div>
 
-    <!-- PRODUCTS GRID - compact -->
+    <!-- PRODUCTS - horizontal with price and button -->
     <div>
-        <div><h3>Static Snow Button</h3> <p>2" metallic</p> <p style="color: var(--accent-cyan); font-weight: 600;">$3.24</p> <a href="#" class="btn-secondary">Shop →</a></div>
-        <div><h3>Pattern T-Shirt</h3> <p>Premium cotton</p> <p style="color: var(--accent-cyan); font-weight: 600;">$21.04</p> <a href="#" class="btn-secondary">Shop →</a></div>
-        <div><h3>All White T-Shirt</h3> <p>Minimalist</p> <p style="color: var(--accent-cyan); font-weight: 600;">$21.04</p> <a href="#" class="btn-secondary">Shop →</a></div>
-        <div><h3>Black Round Pillow</h3> <p>Comfortable</p> <p style="color: var(--accent-cyan); font-weight: 600;">$40.50</p> <a href="#" class="btn-secondary">Shop →</a></div>
+        <div><i class="fa-solid fa-circle"></i> <div class="card-content"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+        <div><i class="fa-solid fa-tshirt"></i> <div class="card-content"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+        <div><i class="fa-solid fa-tshirt"></i> <div class="card-content"><h3>All White T-Shirt</h3><p>Minimalist design</p><div class="product-price">$21.04</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+        <div><i class="fa-solid fa-bed"></i> <div class="card-content"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
     </div>
 
     <!-- CLIENTS HEADER -->
@@ -511,13 +503,15 @@
         <p class="comment">// Partners I've worked with</p>
     </div>
 
-    <!-- CLIENTS GRID - compact -->
+    <!-- CLIENTS - horizontal with logo left -->
     <div>
-        <div>
+        <div class="client-card">
             <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
-            <h3>Vineyard Church of Augusta</h3>
-            <p>Community-focused organization</p>
-            <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
+            <div class="client-info">
+                <h3>Vineyard Church of Augusta</h3>
+                <p>Community-focused church organization</p>
+                <a href="https://vineyardaugusta.org" class="btn-secondary">Visit Website →</a>
+            </div>
         </div>
     </div>
 
@@ -527,16 +521,16 @@
         <p class="comment">// Thoughts & tutorials</p>
     </div>
 
-    <!-- BLOG GRID - compact -->
+    <!-- BLOG - horizontal with icon left -->
     <div>
-        <div><i class="fas fa-mobile-alt"></i> <h3>Fluid Responsive System</h3> <p style="color: var(--accent-pink); font-size: var(--text-2xs);">Jun 9, 2024</p> <p>Using clamp() for true fluidity</p> <a href="#" class="btn-secondary">Read →</a></div>
-        <div><i class="fas fa-font"></i> <h3>Power of Text-Only Design</h3> <p style="color: var(--accent-pink); font-size: var(--text-2xs);">Jun 5, 2024</p> <p>Why less is more in UI</p> <a href="#" class="btn-secondary">Read →</a></div>
-        <div><i class="fas fa-search"></i> <h3>V3 QuickFind</h3> <p style="color: var(--accent-pink); font-size: var(--text-2xs);">May 28, 2024</p> <p>Universal search system</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><h3>Fluid Responsive System</h3><div class="blog-date">June 9, 2024</div><p>Using clamp() for true fluidity on all screens</p><a href="#" class="btn-secondary">Read More →</a></div></div>
+        <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><h3>The Power of Text-Only Design</h3><div class="blog-date">June 5, 2024</div><p>Why sometimes less is more in interface design</p><a href="#" class="btn-secondary">Read More →</a></div></div>
+        <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><h3>V3 QuickFind</h3><div class="blog-date">May 28, 2024</div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read More →</a></div></div>
     </div>
 
 </div>
 
-<!-- BOTTOM NAVIGATION - compact -->
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
     <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
@@ -620,7 +614,6 @@
         
         document.querySelectorAll('.section > div').forEach(el => observer.observe(el));
         
-        // Prevent context menu and drag
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
