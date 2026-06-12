@@ -8,15 +8,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Pure Fluid System</title>
+    <title>V3 | Digital Architect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
            ZERO BREAKPOINTS - PURE FLUID SYSTEM
-           Everything scales continuously with clamp()
-           No media queries anywhere
            ============================================ */
         
         * {
@@ -26,7 +24,6 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* All values scale fluidly between 320px and 2560px */
         :root {
             --space-3xs: clamp(0.125rem, 0.5vw, 0.25rem);
             --space-2xs: clamp(0.25rem, 1vw, 0.375rem);
@@ -71,7 +68,6 @@
             font-size: var(--text-base);
         }
         
-        /* Main container - fluid width */
         .site-container {
             width: 100%;
             max-width: 100%;
@@ -79,9 +75,9 @@
         }
         
         /* ========================================== */
-        /* BUTTONS - fluid sizing */
+        /* BUTTONS */
         /* ========================================== */
-        .btn-primary, .btn-secondary {
+        .btn-primary, .btn-secondary, .btn-message {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -109,14 +105,23 @@
             color: var(--accent-cyan);
         }
         
-        .btn-primary:active,
-        .btn-secondary:active {
+        .btn-message {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            margin-top: var(--space-xs);
+        }
+        
+        .btn-message i {
+            font-size: var(--text-xs);
+        }
+        
+        .btn-primary:active, .btn-secondary:active, .btn-message:active {
             transform: scale(0.96);
-            transition: transform 0.05s ease;
         }
         
         /* ========================================== */
-        /* HERO - fluid layout */
+        /* HERO */
         /* ========================================== */
         .component-hero {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
@@ -126,7 +131,6 @@
             border: 1px solid var(--border-light);
         }
         
-        /* Hero container - fluid flex that wraps naturally */
         .hero-container {
             display: flex;
             flex-wrap: wrap;
@@ -171,7 +175,7 @@
         }
         
         /* ========================================== */
-        /* CODE BLOCKS - fluid dividers */
+        /* CODE BLOCKS - DIVIDERS */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
@@ -205,13 +209,12 @@
             display: block;
         }
         
-        /* First code block after hero - connects naturally */
         .component-hero + .component-code-header {
             margin-top: 0;
         }
         
         /* ========================================== */
-        /* CARDS - fluid grid (auto-fit, no media queries) */
+        /* CARDS */
         /* ========================================== */
         .grid-container,
         .products-container,
@@ -219,11 +222,10 @@
         .blog-container {
             display: grid;
             gap: var(--space-md);
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             margin-bottom: var(--space-xl);
         }
         
-        /* Card base styles - fluid */
         .grid-card,
         .product-card,
         .client-card,
@@ -235,13 +237,41 @@
             padding: var(--space-md) var(--space-lg);
             transition: all 0.15s ease;
             display: flex;
-            flex-direction: row;
-            align-items: center;
+            flex-direction: column;
             gap: var(--space-md);
             cursor: pointer;
         }
         
-        /* Card content - fluid */
+        /* Card row layout for icon + content */
+        .card-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        /* Card actions (buttons) */
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+            margin-top: var(--space-xs);
+        }
+        
+        .grid-card i,
+        .product-card i,
+        .blog-card i {
+            font-size: clamp(1rem, 5vw, 1.5rem);
+            width: clamp(32px, 8vw, 48px);
+            flex-shrink: 0;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        .grid-card i { color: var(--accent-cyan); }
+        .blog-card i { color: var(--accent-pink); }
+        .product-card i { color: var(--accent-cyan); }
+        
         .grid-card-content,
         .product-info,
         .client-info,
@@ -269,22 +299,6 @@
             color: var(--text-secondary);
         }
         
-        /* Icons - fluid */
-        .grid-card i,
-        .product-card i,
-        .blog-card i {
-            font-size: clamp(1rem, 5vw, 1.5rem);
-            width: clamp(32px, 8vw, 48px);
-            flex-shrink: 0;
-            text-align: center;
-            pointer-events: none;
-        }
-        
-        .grid-card i { color: var(--accent-cyan); }
-        .blog-card i { color: var(--accent-pink); }
-        .product-card i { color: var(--accent-cyan); }
-        
-        /* Price tag - fluid */
         .product-price {
             font-size: var(--text-sm);
             font-weight: 600;
@@ -292,23 +306,6 @@
             margin-top: var(--space-3xs);
         }
         
-        /* Action buttons - fluid */
-        .product-action,
-        .card-action {
-            flex-shrink: 0;
-            min-width: clamp(70px, 15vw, 100px);
-        }
-        
-        .product-action .btn-secondary,
-        .client-info .btn-secondary,
-        .blog-content .btn-secondary {
-            min-height: clamp(2.5rem, 7vw, 3rem);
-            width: 100%;
-            margin-top: var(--space-xs);
-            padding: var(--space-2xs) var(--space-sm);
-        }
-        
-        /* Client logo - fluid */
         .client-logo {
             max-width: clamp(50px, 15vw, 80px);
             height: auto;
@@ -316,7 +313,6 @@
             pointer-events: none;
         }
         
-        /* Blog title row - fluid */
         .blog-title-row {
             display: flex;
             justify-content: space-between;
@@ -331,7 +327,6 @@
             color: var(--accent-pink);
         }
         
-        /* About section - fluid */
         .component-about {
             margin-bottom: var(--space-xl);
             padding: 0 var(--space-xs);
@@ -365,7 +360,7 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAV - fluid */
+        /* BOTTOM NAV */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -422,9 +417,6 @@
             animation: fadeInLeft 0.25s ease forwards;
         }
         
-        /* ========================================== */
-        /* UTILITIES */
-        /* ========================================== */
         ::selection {
             background: var(--accent-cyan);
             color: var(--bg-primary);
@@ -485,33 +477,189 @@
     <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
-        <p class="comment">// Technologies I work with daily to build modern, scalable applications</p>
+        <p class="comment">// Technologies I work with daily — click "Send Message" to inquire about any skill</p>
     </div>
 
     <!-- SKILLS -->
     <div class="grid-container" id="skills">
-        <div class="grid-card"><i class="fa-brands fa-react"></i><div class="grid-card-content"><h3>Frontend</h3><p>React, Vue, Angular, TS</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-server"></i><div class="grid-card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-database"></i><div class="grid-card-content"><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-cloud"></i><div class="grid-card-content"><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-mobile-alt"></i><div class="grid-card-content"><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-code-branch"></i><div class="grid-card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
+        <div class="grid-card" data-skill="Frontend Development" data-desc="React, Vue, Angular, TypeScript">
+            <div class="card-row">
+                <i class="fa-brands fa-react"></i>
+                <div class="grid-card-content">
+                    <h3>Frontend</h3>
+                    <p>React, Vue, Angular, TypeScript</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendSkillMessage('Frontend Development', 'React, Vue, Angular, TypeScript')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-skill="Backend Development" data-desc="Node.js, Python, Go, Java">
+            <div class="card-row">
+                <i class="fa-solid fa-server"></i>
+                <div class="grid-card-content">
+                    <h3>Backend</h3>
+                    <p>Node.js, Python, Go, Java</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendSkillMessage('Backend Development', 'Node.js, Python, Go, Java')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-skill="Database Engineering" data-desc="PostgreSQL, MongoDB, Redis">
+            <div class="card-row">
+                <i class="fa-solid fa-database"></i>
+                <div class="grid-card-content">
+                    <h3>Database</h3>
+                    <p>PostgreSQL, MongoDB, Redis</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendSkillMessage('Database Engineering', 'PostgreSQL, MongoDB, Redis')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-skill="Cloud Architecture" data-desc="AWS, Azure, GCP, Docker">
+            <div class="card-row">
+                <i class="fa-solid fa-cloud"></i>
+                <div class="grid-card-content">
+                    <h3>Cloud</h3>
+                    <p>AWS, Azure, GCP, Docker</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendSkillMessage('Cloud Architecture', 'AWS, Azure, GCP, Docker')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-skill="Mobile Development" data-desc="React Native, Flutter, Swift">
+            <div class="card-row">
+                <i class="fa-solid fa-mobile-alt"></i>
+                <div class="grid-card-content">
+                    <h3>Mobile</h3>
+                    <p>React Native, Flutter, Swift</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendSkillMessage('Mobile Development', 'React Native, Flutter, Swift')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-skill="DevOps & CI/CD" data-desc="CI/CD, Jenkins, GitHub Actions">
+            <div class="card-row">
+                <i class="fa-solid fa-code-branch"></i>
+                <div class="grid-card-content">
+                    <h3>DevOps</h3>
+                    <p>CI/CD, Jenkins, GitHub Actions</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendSkillMessage('DevOps & CI/CD', 'CI/CD, Jenkins, GitHub Actions')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
     </div>
 
     <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
-        <p class="comment">// What I offer as a digital architect — from concept to deployment</p>
+        <p class="comment">// What I offer as a digital architect — click "Send Message" to get a quote</p>
     </div>
 
     <!-- SERVICES -->
     <div class="grid-container" id="services">
-        <div class="grid-card"><i class="fa-solid fa-pen-nib"></i><div class="grid-card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-laptop-code"></i><div class="grid-card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-palette"></i><div class="grid-card-content"><h3>UI/UX Design</h3><p>Beautiful interfaces</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-chart-line"></i><div class="grid-card-content"><h3>Tech Consulting</h3><p>Expert advice</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-rocket"></i><div class="grid-card-content"><h3>Performance</h3><p>Speed optimization</p></div></div>
-        <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><div class="grid-card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
+        <div class="grid-card" data-service="Logo Design" data-desc="Custom brand identities that stand out">
+            <div class="card-row">
+                <i class="fa-solid fa-pen-nib"></i>
+                <div class="grid-card-content">
+                    <h3>Logo Design</h3>
+                    <p>Custom brand identities that stand out</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Logo Design', 'Custom brand identities that stand out')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="Web Development" data-desc="Full-stack modern web applications">
+            <div class="card-row">
+                <i class="fa-solid fa-laptop-code"></i>
+                <div class="grid-card-content">
+                    <h3>Web Development</h3>
+                    <p>Full-stack modern web applications</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Web Development', 'Full-stack modern web applications')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="UI/UX Design" data-desc="Beautiful, intuitive interfaces">
+            <div class="card-row">
+                <i class="fa-solid fa-palette"></i>
+                <div class="grid-card-content">
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful, intuitive interfaces</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('UI/UX Design', 'Beautiful, intuitive interfaces')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="Tech Consulting" data-desc="Expert architecture & strategy advice">
+            <div class="card-row">
+                <i class="fa-solid fa-chart-line"></i>
+                <div class="grid-card-content">
+                    <h3>Tech Consulting</h3>
+                    <p>Expert architecture & strategy advice</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Tech Consulting', 'Expert architecture & strategy advice')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="Performance Optimization" data-desc="Speed optimization & scaling">
+            <div class="card-row">
+                <i class="fa-solid fa-rocket"></i>
+                <div class="grid-card-content">
+                    <h3>Performance</h3>
+                    <p>Speed optimization & scaling</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Performance Optimization', 'Speed optimization & scaling')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="Security Audits" data-desc="Vulnerability assessment & fixes">
+            <div class="card-row">
+                <i class="fa-solid fa-shield-alt"></i>
+                <div class="grid-card-content">
+                    <h3>Security</h3>
+                    <p>Vulnerability assessment & fixes</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Security Audits', 'Vulnerability assessment & fixes')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="Maintenance & Support" data-desc="Ongoing support & updates">
+            <div class="card-row">
+                <i class="fa-solid fa-headset"></i>
+                <div class="grid-card-content">
+                    <h3>Maintenance</h3>
+                    <p>Ongoing support & updates</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Maintenance & Support', 'Ongoing support & updates')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
+        <div class="grid-card" data-service="Cloud Migration" data-desc="AWS, Azure, GCP expertise">
+            <div class="card-row">
+                <i class="fa-solid fa-cloud-upload-alt"></i>
+                <div class="grid-card-content">
+                    <h3>Cloud Migration</h3>
+                    <p>AWS, Azure, GCP expertise</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-message" onclick="sendServiceMessage('Cloud Migration', 'AWS, Azure, GCP expertise')"><i class="fas fa-envelope"></i> Send Message</button>
+            </div>
+        </div>
     </div>
 
     <!-- DIVIDER -->
@@ -522,10 +670,58 @@
 
     <!-- PRODUCTS -->
     <div class="products-container" id="store">
-        <div class="product-card"><i class="fa-solid fa-circle"></i><div class="product-info"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
-        <div class="product-card"><i class="fa-solid fa-tshirt"></i><div class="product-info"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
-        <div class="product-card"><i class="fa-solid fa-tshirt"></i><div class="product-info"><h3>All White T-Shirt</h3><p>Minimalist design</p><div class="product-price">$21.04</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
-        <div class="product-card"><i class="fa-solid fa-bed"></i><div class="product-info"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+        <div class="product-card">
+            <div class="card-row">
+                <i class="fa-solid fa-circle"></i>
+                <div class="product-info">
+                    <h3>Static Snow Button</h3>
+                    <p>2" metallic button</p>
+                    <div class="product-price">$3.24</div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Shop →</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="card-row">
+                <i class="fa-solid fa-tshirt"></i>
+                <div class="product-info">
+                    <h3>Pattern T-Shirt</h3>
+                    <p>Premium cotton</p>
+                    <div class="product-price">$21.04</div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Shop →</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="card-row">
+                <i class="fa-solid fa-tshirt"></i>
+                <div class="product-info">
+                    <h3>All White T-Shirt</h3>
+                    <p>Minimalist design</p>
+                    <div class="product-price">$21.04</div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Shop →</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="card-row">
+                <i class="fa-solid fa-bed"></i>
+                <div class="product-info">
+                    <h3>Black Round Pillow</h3>
+                    <p>Comfortable throw pillow</p>
+                    <div class="product-price">$40.50</div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Shop →</a>
+            </div>
+        </div>
     </div>
 
     <!-- DIVIDER -->
@@ -537,10 +733,14 @@
     <!-- CLIENTS -->
     <div class="clients-container" id="clients">
         <div class="client-card">
-            <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
-            <div class="client-info">
-                <h3>Vineyard Church of Augusta</h3>
-                <p>Community-focused church organization</p>
+            <div class="card-row">
+                <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
+                <div class="client-info">
+                    <h3>Vineyard Church of Augusta</h3>
+                    <p>Community-focused church organization</p>
+                </div>
+            </div>
+            <div class="card-actions">
                 <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
             </div>
         </div>
@@ -554,9 +754,51 @@
 
     <!-- BLOG -->
     <div class="blog-container" id="blog">
-        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">Jun 9, 2024</span></div><p>Using clamp() for true fluidity on all screens — no breakpoints needed</p><a href="#" class="btn-secondary">Read →</a></div></div>
-        <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><div class="blog-title-row"><h3>The Power of Text-Only Design</h3><span class="blog-date">Jun 5, 2024</span></div><p>Why sometimes less is more in interface design</p><a href="#" class="btn-secondary">Read →</a></div></div>
-        <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><div class="blog-title-row"><h3>V3 QuickFind</h3><span class="blog-date">May 28, 2024</span></div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read →</a></div></div>
+        <div class="blog-card">
+            <div class="card-row">
+                <i class="fas fa-mobile-alt"></i>
+                <div class="blog-content">
+                    <div class="blog-title-row">
+                        <h3>Fluid Responsive System</h3>
+                        <span class="blog-date">Jun 9, 2024</span>
+                    </div>
+                    <p>Using clamp() for true fluidity on all screens — no breakpoints needed</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Read →</a>
+            </div>
+        </div>
+        <div class="blog-card">
+            <div class="card-row">
+                <i class="fas fa-font"></i>
+                <div class="blog-content">
+                    <div class="blog-title-row">
+                        <h3>The Power of Text-Only Design</h3>
+                        <span class="blog-date">Jun 5, 2024</span>
+                    </div>
+                    <p>Why sometimes less is more in interface design</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Read →</a>
+            </div>
+        </div>
+        <div class="blog-card">
+            <div class="card-row">
+                <i class="fas fa-search"></i>
+                <div class="blog-content">
+                    <div class="blog-title-row">
+                        <h3>V3 QuickFind</h3>
+                        <span class="blog-date">May 28, 2024</span>
+                    </div>
+                    <p>Universal search that works on every device</p>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="#" class="btn-secondary">Read →</a>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -573,6 +815,25 @@
 </div>
 
 <script>
+    // ============================================
+    // EMAIL FUNCTIONS - Send message to jvhn0gl3@proton.me
+    // ============================================
+    
+    const CONTACT_EMAIL = 'jvhn0gl3@proton.me';
+    
+    function sendSkillMessage(skillName, skillDetails) {
+        const subject = `Inquiry about: ${skillName}`;
+        const body = `Hello V3,%0D%0A%0D%0AI'm interested in your ${skillName} service.%0D%0A%0D%0ASkill Details: ${skillDetails}%0D%0A%0D%0A%0D%0A--- Please fill out the following ---%0D%0A%0D%0AProject Description:%0D%0A%0D%0ATimeline:%0D%0A%0D%0ABudget Range:%0D%0A%0D%0AAdditional Notes:%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    
+    function sendServiceMessage(serviceName, serviceDetails) {
+        const subject = `Quote Request: ${serviceName}`;
+        const body = `Hello V3,%0D%0A%0D%0AI'd like to request a quote for your ${serviceName} service.%0D%0A%0D%0AService Details: ${serviceDetails}%0D%0A%0D%0A%0D%0A--- Please fill out the following ---%0D%0A%0D%0AProject Description:%0D%0A%0D%0ATimeline:%0D%0A%0D%0ABudget Range:%0D%0A%0D%0AAdditional Requirements:%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    
+    // Navigation and animations
     (function(){
         const sectionIds = ['hero', 'about', 'skills', 'services', 'store', 'clients', 'blog'];
         
