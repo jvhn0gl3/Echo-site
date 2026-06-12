@@ -15,7 +15,6 @@
     <style>
         /* ============================================
            HORIZONTAL, LEFT-ALIGNED COMPACT SYSTEM
-           Icons left of titles, buttons side by side
            ============================================ */
         
         * {
@@ -204,31 +203,69 @@
             background: rgba(0, 212, 255, 0.1);
         }
         
-        /* Hero section */
-        .section > div:has(h1) {
-            text-align: left;
-            padding: var(--space-lg) var(--space-md);
+        /* ========================================== */
+        /* HERO SECTION - Two column layout */
+        /* Header + Buttons in left cell, subheading right */
+        /* ========================================== */
+        .hero-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-xl);
+            flex-wrap: wrap;
+        }
+        
+        .hero-left {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .hero-right {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .hero-left h1 {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        
+        .hero-right p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Hero section container styling */
+        .hero-wrapper {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
             border-radius: var(--space-md);
+            padding: var(--space-lg) var(--space-md);
             margin-bottom: var(--space-xl);
             border: 1px solid var(--border-light);
         }
         
-        .section > div:has(h1) h1 {
-            font-size: var(--text-2xl);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .section > div:has(h1) p {
-            max-width: 500px;
-            margin-bottom: var(--space-md);
-            font-size: var(--text-sm);
-        }
-        
-        .flex-buttons {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
+        /* Responsive: stack on mobile */
+        @media (max-width: 640px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
         }
         
         /* Code header */
@@ -294,7 +331,7 @@
             margin-bottom: var(--space-2xs);
         }
         
-        /* Blog card - specific overrides */
+        /* Blog card */
         .blog-card {
             width: 100%;
         }
@@ -359,16 +396,21 @@
             animation: fadeInLeft 0.25s ease forwards;
         }
         
-        .section > div:not(.code-block) > div {
+        .section > div:not(.code-block):not(.hero-wrapper) > div {
             opacity: 0;
             animation: fadeInLeft 0.2s ease forwards;
         }
         
-        .section > div:not(.code-block) > div:nth-child(1) { animation-delay: 0.02s; }
-        .section > div:not(.code-block) > div:nth-child(2) { animation-delay: 0.04s; }
-        .section > div:not(.code-block) > div:nth-child(3) { animation-delay: 0.06s; }
-        .section > div:not(.code-block) > div:nth-child(4) { animation-delay: 0.08s; }
-        .section > div:not(.code-block) > div:nth-child(5) { animation-delay: 0.1s; }
+        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(1) { animation-delay: 0.02s; }
+        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(2) { animation-delay: 0.04s; }
+        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(3) { animation-delay: 0.06s; }
+        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(4) { animation-delay: 0.08s; }
+        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(5) { animation-delay: 0.1s; }
+        
+        .hero-wrapper {
+            opacity: 0;
+            animation: fadeInLeft 0.3s ease forwards;
+        }
         
         ::selection {
             background: var(--accent-cyan);
@@ -399,13 +441,19 @@
 
 <div class="section" id="main-content">
     
-    <!-- HERO -->
-    <div>
-        <h1>V3 Digital Architect</h1>
-        <p>Full-stack developer · 10+ years · Building products people love</p>
-        <div class="flex-buttons">
-            <a href="#" class="btn-primary">Get Started</a>
-            <a href="#" class="btn-secondary">Learn More</a>
+    <!-- HERO - Two column layout: Header+Buttons left, Subheading right -->
+    <div class="hero-wrapper">
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1>V3 Digital Architect</h1>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Get Started</a>
+                    <a href="#" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <p>Full-stack developer · 10+ years · Building products people love with clean code and thoughtful design.</p>
+            </div>
         </div>
     </div>
 
@@ -491,7 +539,7 @@
         <p class="comment">// Thoughts & tutorials</p>
     </div>
 
-    <!-- BLOG - Date on the right of title -->
+    <!-- BLOG -->
     <div>
         <div class="blog-card">
             <i class="fas fa-mobile-alt"></i>
@@ -612,7 +660,7 @@
             { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
         );
         
-        document.querySelectorAll('.section > div').forEach(el => observer.observe(el));
+        document.querySelectorAll('.section > div:not(.code-block):not(.hero-wrapper), .hero-wrapper').forEach(el => observer.observe(el));
         
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
