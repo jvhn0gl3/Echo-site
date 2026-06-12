@@ -1,27 +1,45 @@
+<!-- Tells the browser that this is an HTML5 document -->
 <!DOCTYPE html>
+<!-- Opens the HTML document and sets the primary language to English -->
 <html lang="en">
+<!-- Contains background information (metadata) about the webpage that users don't see directly -->
 <head>
+    <!-- Sets the character encoding to UTF-8 to support almost all written characters and symbols -->
     <meta charset="UTF-8" />
+    <!-- Ensures the site is responsive on mobile devices, allows zooming, and uses the full display area -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+    <!-- Provides a brief summary of the website for search engine results -->
     <meta name="description" content="V3 - Digital Architect & Full-Stack Developer" />
+    <!-- Identifies the creator or author of the website -->
     <meta name="author" content="V3" />
+    <!-- Allows the website to be saved and run like a full-screen app on Apple iOS devices -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Makes the status bar translucent black when launched as an iOS web app -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Sets the browser theme toolbar color on compatible mobile operating systems -->
     <meta name="theme-color" content="#050505" />
+    <!-- Sets the title that appears on the browser tab -->
     <title>V3 | Digital Architect</title>
+    <!-- Loads Font Awesome icon styles from a content delivery network (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Loads the 'Major Mono Display' monospace font style sheet from a CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
+    <!-- Loads the 'Open Dyslexic' readability font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Dyslexic&display=swap" rel="stylesheet" />
     
+    <!-- Begins the embedded CSS stylesheet for defining element layouts and designs -->
     <style>
+        /* Selects every element on the page to reset default spacings */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
+            margin: 0; /* Removes default outer margins from all elements */
+            padding: 0; /* Removes default inner paddings from all elements */
+            box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
+            -webkit-font-smoothing: antialiased; /* Makes fonts render smoother and sharper on webkit browsers like Safari */
         }
         
+        /* Stores global CSS design variables (custom properties) inside the root element */
         :root {
+            /* Fluid spacing scales using clamp(minimum, preferred, maximum) to scale smoothly with screen width */
             --space-3xs: clamp(0.25rem, 1vw, 0.5rem);
             --space-2xs: clamp(0.375rem, 1.5vw, 0.625rem);
             --space-xs: clamp(0.5rem, 2vw, 0.75rem);
@@ -31,6 +49,7 @@
             --space-xl: clamp(1.5rem, 5vw, 2rem);
             --space-2xl: clamp(1.75rem, 6vw, 2.5rem);
             
+            /* Fluid text typography sizes that scale dynamically based on the display device size */
             --text-2xs: clamp(0.75rem, 1.8vw, 0.9rem);
             --text-xs: clamp(0.85rem, 2vw, 1rem);
             --text-sm: clamp(0.95rem, 2.2vw, 1.1rem);
@@ -41,59 +60,62 @@
             --text-2xl: clamp(1.4rem, 3.6vw, 1.8rem);
             --text-3xl: clamp(1.6rem, 4vw, 2rem);
             
+            /* Dynamic corner rounding radiuses for design consistency */
             --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
             --radius-md: clamp(0.75rem, 2vw, 1rem);
             --radius-lg: clamp(1rem, 2.5vw, 1.25rem);
             
-            --bg-primary: #0a0a0a;
-            --bg-card: rgba(18, 18, 24, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c0;
-            --text-tertiary: #8a8a9a;
-            --accent-cyan: #00d4ff;
-            --accent-purple: #7c3aed;
-            --accent-pink: #ec4899;
-            --accent-green: #10b981;
-            --accent-yellow: #f59e0b;
-            --accent-orange: #f97316;
-            --accent-red: #ef4444;
-            --accent-blue: #3b82f6;
-            --accent-indigo: #6366f1;
-            --border-light: rgba(255, 255, 255, 0.08);
-            --border-medium: rgba(255, 255, 255, 0.12);
+            /* Global theme color palette definitions */
+            --bg-primary: #0a0a0a; /* Main background color (very dark grey) */
+            --bg-card: rgba(18, 18, 24, 0.8); /* Semi-transparent background color for profile cards */
+            --text-primary: #ffffff; /* Primary text color (white) */
+            --text-secondary: #b0b0c0; /* Secondary text color (light muted grey) */
+            --text-tertiary: #8a8a9a; /* Tertiary text color (darker muted grey) */
+            --accent-cyan: #00d4ff; /* Electric cyan color for links and features */
+            --accent-purple: #7c3aed; /* Violet purple theme accent color */
+            --accent-pink: #ec4899; /* Hot pink indicator color */
+            --accent-green: #10b981; /* Emerald green theme accent color */
+            --accent-yellow: #f59e0b; /* Bright amber yellow accent color */
+            --accent-orange: #f97316; /* Vivid orange accent color */
+            --accent-red: #ef4444; /* Alert red theme color */
+            --accent-blue: #3b82f6; /* Classic blue brand color */
+            --accent-indigo: #6366f1; /* Deep indigo color for social icons */
+            --border-light: rgba(255, 255, 255, 0.08); /* Soft faint white divider line */
+            --border-medium: rgba(255, 255, 255, 0.12); /* Slightly more visible card divider line */
             
-            --sidebar-width: clamp(80px, 15vw, 130px);
-            --touch-target-min: 48px;
+            /* Responsive structural sizing controls */
+            --sidebar-width: clamp(80px, 15vw, 130px); /* Adjusts side menu width dynamically between 80px and 130px */
+            --touch-target-min: 48px; /* Standard minimum touch size for accessible buttons */
         }
         
-        /* High Contrast Mode */
+        /* Overrides variables with high-contrast color values when the high-contrast class is added to the body */
         body.high-contrast {
-            --bg-primary: #000000;
-            --bg-card: #111111;
-            --text-primary: #ffffff;
-            --text-secondary: #ffff00;
-            --text-tertiary: #00ff00;
-            --accent-cyan: #ffff00;
-            --accent-purple: #ff00ff;
-            --accent-pink: #00ffff;
-            --accent-green: #00ff00;
-            --accent-yellow: #ffff00;
-            --accent-orange: #ffa500;
-            --accent-red: #ff0000;
-            --accent-blue: #0000ff;
-            --accent-indigo: #4b0082;
-            --border-light: #ffffff;
-            --border-medium: #ffff00;
+            --bg-primary: #000000; /* Pitch black background */
+            --bg-card: #111111; /* Dark solid card backgrounds */
+            --text-primary: #ffffff; /* Pure white text */
+            --text-secondary: #ffff00; /* High visibility yellow secondary text */
+            --text-tertiary: #00ff00; /* High visibility green tertiary text */
+            --accent-cyan: #ffff00; /* Swap cyan for vibrant yellow */
+            --accent-purple: #ff00ff; /* Swap purple for bright magenta */
+            --accent-pink: #00ffff; /* Swap pink for cyan */
+            --accent-green: #00ff00; /* Pure lime green */
+            --accent-yellow: #ffff00; /* Pure yellow */
+            --accent-orange: #ffa500; /* High visibility web orange */
+            --accent-red: #ff0000; /* Pure primary red */
+            --accent-blue: #0000ff; /* Pure primary blue */
+            --accent-indigo: #4b0082; /* Deep solid indigo */
+            --border-light: #ffffff; /* Solid white thin borders */
+            --border-medium: #ffff00; /* Solid yellow medium borders */
         }
         
-        /* Reduced Motion */
+        /* Speeds up animations and transitions instantly for users who prefer reduced motion */
         body.reduced-motion * {
-            animation-duration: 0.001s !important;
-            transition-duration: 0.001s !important;
-            scroll-behavior: auto !important;
+            animation-duration: 0.001s !important; /* Force animations to complete almost instantly */
+            transition-duration: 0.001s !important; /* Force visual changes to happen instantly */
+            scroll-behavior: auto !important; /* Disable smooth scrolling behavior across elements */
         }
         
-        /* Large Text Mode */
+        /* Scales up all fluid text sizes when the large-text class is applied to the body */
         body.large-text {
             --text-2xs: clamp(1rem, 2.2vw, 1.2rem);
             --text-xs: clamp(1.1rem, 2.4vw, 1.3rem);
@@ -106,1248 +128,1492 @@
             --text-3xl: clamp(1.9rem, 4.5vw, 2.3rem);
         }
         
-        /* Dyslexia-friendly Font */
+        /* Overrides the default typography with an accessible font when the dyslexic-font class is active */
         body.dyslexic-font {
             font-family: 'OpenDyslexic', 'Open Dyslexic', 'Comic Sans MS', sans-serif !important;
         }
         
+        /* Configures default structural body settings for the page appearance */
         body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.5;
-            font-size: var(--text-base);
-            transition: background 0.2s ease, color 0.2s ease;
+            background: var(--bg-primary); /* Assigns the main dark background color */
+            color: var(--text-primary); /* Assigns the main white font color */
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif; /* Setup system font stack */
+            line-height: 1.5; /* Adds comfortable line spacing for reading text blocks */
+            font-size: var(--text-base); /* Sets default text size using fluid variables */
+            transition: background 0.2s ease, color 0.2s ease; /* Smoothly switches colors when themes change */
         }
         
+        /* Creates the main layout structure container holding the sidebar and content */
         .app-layout {
-            display: flex;
-            min-height: 100vh;
+            display: flex; /* Arranges the inner sidebar and main content side-by-side using Flexbox */
+            min-height: 100vh; /* Expands the layout area to take up at least the full height of the display screen */
         }
         
+        /* Fixes the navigation bar to the left side of the viewport screen */
         .sidebar-nav {
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: var(--sidebar-width);
-            background: rgba(10, 10, 10, 0.96);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border-light);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: var(--space-xl) var(--space-xs);
-            z-index: 100;
-            gap: var(--space-md);
-            overflow-y: auto;
+            position: fixed; /* Locks navigation container in place so it doesn't move when scrolling */
+            left: 0; /* Snaps the navigation frame container to the exact left edge */
+            top: 0; /* Snaps navigation frame container to the exact top edge */
+            bottom: 0; /* Extends navigation frame container all the way down to the bottom edge */
+            width: var(--sidebar-width); /* Sets the width based on our responsive clamp variable */
+            background: rgba(10, 10, 10, 0.96); /* Sets dark background with subtle transparency */
+            backdrop-filter: blur(20px); /* Gives background a modern frosted-glass blur effect */
+            border-right: 1px solid var(--border-light); /* Adds a thin decorative separation line on the right edge */
+            display: flex; /* Converts container to flexbox model for inner element formatting */
+            flex-direction: column; /* Stacks navigation components vertically */
+            align-items: center; /* Aligns inner navigation contents perfectly down the center line */
+            padding: var(--space-xl) var(--space-xs); /* Sets inner padding spacing on top/bottom and sides */
+            z-index: 100; /* Guarantees the sidebar floats above all normal page layout content layers */
+            gap: var(--space-md); /* Sets consistent spacing between each menu item option element */
+            overflow-y: auto; /* Adds a scrollbar automatically inside the sidebar if menu options overflow vertically */
         }
         
+        /* Styles the logo grouping wrapper block at the top of the navigation panel */
         .sidebar-logo {
-            text-align: center;
-            margin-bottom: var(--space-md);
-            flex-shrink: 0;
+            text-align: center; /* Centers the logo text content horizontally */
+            margin-bottom: var(--space-md); /* Adds spacing below the logo block */
+            flex-shrink: 0; /* Prevents the logo block from compressing if the screen height shrinks */
         }
         
+        /* Formats the primary stylized text component of the logo branding */
         .sidebar-logo .logo-text {
-            font-family: 'Major Mono Display', monospace;
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            color: var(--accent-cyan);
-            word-break: break-word;
-            line-height: 1.2;
+            font-family: 'Major Mono Display', monospace; /* Uses the imported stylized custom monospace font */
+            font-size: clamp(1.2rem, 4vw, 1.6rem); /* Dynamically sizes logo based on width available */
+            color: var(--accent-cyan); /* Paints the logo text electric cyan */
+            word-break: break-word; /* Forces word wrapping safely if the logo text exceeds bounds */
+            line-height: 1.2; /* Sets tighter line spacing for the title layout */
         }
         
+        /* Styles the secondary structural subtitle text directly beneath the main logo */
         .sidebar-logo .logo-sub {
-            font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-            color: var(--text-tertiary);
-            margin-top: var(--space-3xs);
+            font-size: clamp(0.7rem, 1.8vw, 0.85rem); /* Sizes the subtitle text cleanly */
+            color: var(--text-tertiary); /* Paints text using the subtle grey tertiary scheme color */
+            margin-top: var(--space-3xs); /* Creates a tiny gap directly above the text block */
         }
         
+        /* Creates an independent scrollable inner area group within the sidebar nav items */
         .nav-scroll-group {
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            width: 100%;
-            min-height: 0;
+            flex: 1; /* Instructs the group container to fill up all available vertical space */
+            overflow-y: auto; /* Permits individual interior vertical scrolling for navigation links */
+            overflow-x: hidden; /* Strict prevention of side scrolling bugs */
+            width: 100%; /* Spans across the full width of the side dashboard menu panel */
+            min-height: 0; /* Essential flexbox layout patch for enabling container scroll actions safely */
         }
         
+        /* Customizes scrollbar thickness for clean presentation inside webkit rendering engines */
         .nav-scroll-group::-webkit-scrollbar {
-            width: 3px;
+            width: 3px; /* Limits standard scrollbar track thickness to a fine 3px line */
         }
         
+        /* Standard track background setup for layout scrollbar components */
         .nav-scroll-group::-webkit-scrollbar-track {
-            background: transparent;
+            background: transparent; /* Makes the scrollbar track background completely invisible */
         }
         
+        /* Enhances scrollbar handles visually inside the scroll section container layout */
         .nav-scroll-group::-webkit-scrollbar-thumb {
-            background: var(--accent-cyan);
-            border-radius: 3px;
+            background: var(--accent-cyan); /* Fills scroll slider bar with cyan highlight accent color */
+            border-radius: 3px; /* Fully rounds off scroll slider edges beautifully */
         }
         
+        /* Vertical alignment wrapper for list item action buttons */
         .nav-items {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-            width: 100%;
-            padding-bottom: var(--space-md);
+            display: flex; /* Converts target view block to standard flex matrix formatting */
+            flex-direction: column; /* Stacks all functional page navigation links vertically */
+            gap: var(--space-sm); /* Imposes even spacing gaps between list target navigation buttons */
+            width: 100%; /* Stretches element to maximize surface dimensions fully */
+            padding-bottom: var(--space-md); /* Leaves buffer room layout margin at bottom inside container */
         }
         
+        /* Bottom action tools tray element layout within side panel control deck */
         .nav-bottom {
-            flex-shrink: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-            padding-top: var(--space-md);
-            border-top: 1px solid var(--border-light);
-            margin-top: var(--space-xs);
+            flex-shrink: 0; /* Keeps layout from resizing under compact screen conditions */
+            width: 100%; /* Fits system wrapper snugly to side dashboard grid margins */
+            display: flex; /* Employs flexible orientation configuration systems */
+            flex-direction: column; /* Directs children stacking order downward layout lines */
+            gap: var(--space-sm); /* Uniformly splits button interfaces apart on the grid */
+            padding-top: var(--space-md); /* Pads surface interior spacing above line separators */
+            border-top: 1px solid var(--border-light); /* Forms crisp boundary separation lines above tools */
+            margin-top: var(--space-xs); /* Buffers physical separation gap spaces from scrolling components above */
         }
         
+        /* Central layout parameters styling individual menu control components */
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-2xs);
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-            font-weight: 500;
-            padding: var(--space-sm) var(--space-xs);
-            min-height: var(--touch-target-min);
-            width: 100%;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all 0.12s ease;
-            text-align: center;
+            display: flex; /* Formats interior child component objects using flexible alignment engines */
+            flex-direction: column; /* Positions graphic symbols directly above descriptive title labels */
+            align-items: center; /* Locks internal visual icons/text items securely to geometric center lines */
+            gap: var(--space-2xs); /* Places balanced spacing pads inside menu navigation elements */
+            background: none; /* Strip standard background plates off base button frames */
+            border: none; /* Wipe traditional border outlines cleanly from structure elements */
+            color: var(--text-tertiary); /* Sets inactive button content colors to default subtle muted gray */
+            font-size: clamp(0.7rem, 1.8vw, 0.85rem); /* Adapts sizing patterns smoothly for labels */
+            font-weight: 500; /* Uses a medium font thickness setting weight */
+            padding: var(--space-sm) var(--space-xs); /* Infuses comfortable dimensional padding layout metrics */
+            min-height: var(--touch-target-min); /* Maintains secure minimum interaction dimensions for touch screens */
+            width: 100%; /* Commands full fluid button scaling inside row block bounds */
+            border-radius: var(--radius-sm); /* Moderately shapes corners of focus panels cleanly */
+            cursor: pointer; /* Displays standard pointer cursor graphics during interactions */
+            transition: all 0.12s ease; /* Applies fast, smooth animation transitions across property upgrades */
+            text-align: center; /* Forces paragraph typography flow lines onto standard balance points */
         }
         
+        /* Target sizing matrices regulating descriptive menu graphic vectors */
         .nav-item i {
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            margin: 0;
-            transition: all 0.12s ease;
+            font-size: clamp(1.2rem, 4vw, 1.6rem); /* Governs size measurements dynamically on user viewports */
+            margin: 0; /* Enforces strict zero-margin boundary settings around graphic iconography */
+            transition: all 0.12s ease; /* Couples layout change animations with smooth curves */
         }
         
-        /* Individual nav icon colors */
-        .nav-item[data-section="hero"] i {
-            color: var(--accent-cyan);
-        }
+        /* Direct feature color styling definitions across designated profile sections */
+        .nav-item[data-section="hero"] i { color: var(--accent-cyan); } /* Set intro button graphics to cyan color */
+        .nav-item[data-section="about"] i { color: var(--accent-purple); } /* Set profile link icons to deep purple */
+        .nav-item[data-section="skills"] i { color: var(--accent-green); } /* Paints application technical skill nodes green */
+        .nav-item[data-section="services"] i { color: var(--accent-yellow); } /* Sets task presentation highlights to yellow */
+        .nav-item[data-section="store"] i { color: var(--accent-pink); } /* Updates sales channel buttons to sharp pink colors */
+        .nav-item[data-section="clients"] i { color: var(--accent-blue); } /* Transforms company profile access links to blue */
+        .nav-item[data-section="blog"] i { color: var(--accent-orange); } /* Formats article review feed vectors to vibrant orange */
+        #socialNavBtn i { color: var(--accent-indigo); } /* Paints social directory shortcut triggers indigo */
+        #accessibilityNavBtn i { color: var(--accent-green); } /* Colors user preference access options green */
         
-        .nav-item[data-section="about"] i {
-            color: var(--accent-purple);
-        }
-        
-        .nav-item[data-section="skills"] i {
-            color: var(--accent-green);
-        }
-        
-        .nav-item[data-section="services"] i {
-            color: var(--accent-yellow);
-        }
-        
-        .nav-item[data-section="store"] i {
-            color: var(--accent-pink);
-        }
-        
-        .nav-item[data-section="clients"] i {
-            color: var(--accent-blue);
-        }
-        
-        .nav-item[data-section="blog"] i {
-            color: var(--accent-orange);
-        }
-        
-        #socialNavBtn i {
-            color: var(--accent-indigo);
-        }
-        
-        #accessibilityNavBtn i {
-            color: var(--accent-green);
-        }
-        
-        /* Text color for nav items */
+        /* Adjustments formatting text details under display badges */
         .nav-item span {
-            font-size: clamp(0.65rem, 1.6vw, 0.8rem);
-            font-weight: 500;
-            white-space: nowrap;
-            overflow-x: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            color: var(--text-tertiary);
-            transition: color 0.12s ease;
+            font-size: clamp(0.65rem, 1.6vw, 0.8rem); /* Maps label fonts efficiently to device sizing patterns */
+            font-weight: 500; /* Locks typography structure definitions to clean, balanced weights */
+            white-space: nowrap; /* Rigidly blocks text from breaking down across multiple display lines */
+            overflow-x: hidden; /* Caps text leakage safely on narrow panels */
+            text-overflow: ellipsis; /* Appends clean trailing dots (...) automatically if character overflow hits thresholds */
+            max-width: 100%; /* Caps sizing models safely inside element borders */
+            color: var(--text-tertiary); /* Sets font paint values to neutral muted tone schemes */
+            transition: color 0.12s ease; /* Automates smooth text fade animations upon states changes */
         }
         
-        /* Active state */
+        /* Active structural states formatting selected interface buttons */
         .nav-item.active i {
-            filter: brightness(1.2) drop-shadow(0 0 4px currentColor);
+            filter: brightness(1.2) drop-shadow(0 0 4px currentColor); /* Blends subtle neon glow designs around live tabs */
         }
         
+        /* Active color updates applied directly to dynamic category markers */
         .nav-item.active span {
-            color: var(--accent-cyan);
+            color: var(--accent-cyan); /* Paints labels electric cyan whenever section state turns active */
         }
         
+        /* Standard card backing changes during active menu visibility configurations */
         .nav-item.active {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.05); /* Paints clear faint plate under current screen markers */
         }
         
+        /* Tactile physical feedback reactions generated on active system touch inputs */
         .nav-item:active {
-            transform: scale(0.96);
+            transform: scale(0.96); /* Slightly compresses the item size during click interactions for realism */
         }
         
+        /* Standard style enhancement policies isolating traditional desktop hover setups */
         @media (hover: hover) {
+            /* brightens the icon color when a mouse pointer rests over it */
             .nav-item:hover i {
                 filter: brightness(1.2);
             }
+            /* Upgrades item label colors for clear mouse tracking visual validation loops */
             .nav-item:hover span {
                 color: var(--text-secondary);
             }
         }
         
+        /* Shifts primary structural layout containers alongside side column panel tracks */
         .main-content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
+            flex: 1; /* Fills remaining page canvas real-estate dynamically outside sidebar channels */
+            margin-left: var(--sidebar-width); /* Offsets content block rightward exactly to avoid hiding behind fixed nav */
+            width: calc(100% - var(--sidebar-width)); /* Mathematically computes fluid viewport adjustments perfectly */
         }
         
+        /* Primary grid tracking boundary limits container framework dimensions */
         .site-container {
-            width: 100%;
-            max-width: 100%;
-            padding: var(--space-lg) var(--space-md);
+            width: 100%; /* Locks width dimensions to match parent frame layout channels safely */
+            max-width: 100%; /* Inhibits structural layout breakout failures inside content sections */
+            padding: var(--space-lg) var(--space-md); /* Applies proportional dynamic borders padding margins around core items */
         }
         
-        /* Disclaimer Section */
+        /* Styling guidelines framing regulatory page privacy disclosure nodes */
         .disclaimer-section {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03), rgba(124, 58, 237, 0.03));
-            border-radius: var(--radius-md);
-            padding: var(--space-xl) var(--space-lg);
-            margin: var(--space-xl) 0;
-            border: 1px solid var(--border-light);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03), rgba(124, 58, 237, 0.03)); /* Fills plate with beautiful soft dual gradient tint */
+            border-radius: var(--radius-md); /* Rounds design corners cleanly to mimic framework styles */
+            padding: var(--space-xl) var(--space-lg); /* Allocates deep breathing spaces inside notice boards */
+            margin: var(--space-xl) 0; /* Imposes thick stack gaps isolating structural items vertically */
+            border: 1px solid var(--border-light); /* Outlines plate borders using soft, thin, low-contrast lines */
         }
         
+        /* Bounds notice board layout scopes nicely for reading ease */
         .disclaimer-container {
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 900px; /* Limits content width to comfortable text scanning maximums */
+            margin: 0 auto; /* Centers content block horizontally inside its parent block */
         }
         
+        /* Heading aesthetics on information components sections */
         .disclaimer-container h2 {
-            font-size: var(--text-xl);
-            color: var(--accent-cyan);
-            margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
+            font-size: var(--text-xl); /* Scales titles cleanly across devices using typography tokens */
+            color: var(--accent-cyan); /* Assigns signature cyan branding accent values to text characters */
+            margin-bottom: var(--space-md); /* Keeps content title text properly split from description descriptions */
+            display: flex; /* Allows inline icon layouts using flex formatting tools */
+            align-items: center; /* Aligns graphics vectors on center paths with surrounding words */
+            gap: var(--space-sm); /* Inserts standard clear space buffer intervals inside block titles */
         }
         
+        /* Core readable paragraph structure formatting on privacy panels */
         .disclaimer-container p {
-            font-size: var(--text-sm);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: var(--space-md);
+            font-size: var(--text-sm); /* Pulls typography to elegant, compact reading scales */
+            color: var(--text-secondary); /* Uses lighter muted font palettes to ease visual fatigue */
+            line-height: 1.6; /* Loosens text lines slightly to increase general reading comfort */
+            margin-bottom: var(--space-md); /* Spaces paragraphs evenly across text columns */
         }
         
+        /* Formatting characteristics regulating privacy status badges */
         .disclaimer-container .privacy-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            background: rgba(0, 212, 255, 0.1);
-            padding: var(--space-xs) var(--space-md);
-            border-radius: var(--radius-sm);
-            font-size: var(--text-xs);
-            color: var(--accent-cyan);
-            margin-top: var(--space-sm);
+            display: inline-flex; /* Shrinks container border width down to perfectly match label length */
+            align-items: center; /* Aligns nested elements squarely on center lines */
+            gap: var(--space-xs); /* Separates graphic icons cleanly from text descriptors */
+            background: rgba(0, 212, 255, 0.1); /* Infuses subtle cyan color base fills into backdrop spaces */
+            padding: var(--space-xs) var(--space-md); /* Adds spacing cushion inside the layout boundary */
+            border-radius: var(--radius-sm); /* Shapes soft visual corners on target identification plate */
+            font-size: var(--text-xs); /* Compresses typography sizing definitions elegantly for status tags */
+            color: var(--accent-cyan); /* Colors the text bright electric cyan */
+            margin-top: var(--space-sm); /* Offsets layout nicely below main reading tracks */
         }
         
+        /* Basic utility padding parameters isolating icon typography interfaces */
         .disclaimer-container i {
-            margin-right: var(--space-2xs);
+            margin-right: var(--space-2xs); /* Inserts clean whitespace gaps between font symbols and leading words */
         }
         
-        /* Modal Styles */
+        /* Overlay base layer properties framing modal control screens */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
+            position: fixed; /* Freezes overlay setup firmly onto viewport windows unconditionally */
+            top: 0; /* Maps overlay layer boundaries to top viewport bounds */
+            left: 0; /* Anchors overlay left edge layout boundaries across screen tracks */
+            right: 0; /* Stretches panel dimensions across full horizontal viewport scales */
+            bottom: 0; /* Fully envelopes full web client heights under dark safety fields */
+            background: rgba(0, 0, 0, 0.85); /* Blackout color layer filtering background graphics underneath */
+            backdrop-filter: blur(8px); /* Softens details of the main site behind when modals fly out */
+            display: flex; /* Converts window space to standard coordinate formatting models */
+            align-items: center; /* Centers floating dialogue frames on vertical axes */
+            justify-content: center; /* Directs children alignment vectors straight down page centers */
+            z-index: 1000; /* Places popup overlays definitively over baseline app windows layouts */
+            opacity: 0; /* Sets hidden visual states as default configurations */
+            visibility: hidden; /* Completely disables interaction access models while element stays inactive */
+            transition: all 0.2s ease; /* Animates fade visibility sequences smoothly on states adjustments */
         }
         
+        /* Displays modal structures immediately on execution of target state calls */
         .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
+            opacity: 1; /* Pulls visibility levels to full transparency limits */
+            visibility: visible; /* Activates active screen reading and clicking access rules */
         }
         
+        /* Floating interaction cards box metrics structures */
         .modal-dialog {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-medium);
-            border-radius: var(--radius-lg);
-            width: min(90%, 600px);
-            max-width: 600px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: var(--space-2xl);
-            transform: scale(0.95);
-            transition: transform 0.2s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: var(--bg-card); /* Pulls backing colors from pre-configured core palette layers */
+            backdrop-filter: blur(20px); /* Quadruples background frost styling attributes inside popup units */
+            border: 1px solid var(--border-medium); /* Enforces structured border framing definitions around system modals */
+            border-radius: var(--radius-lg); /* Employs broader edge rounding limits on structural cards */
+            width: min(90%, 600px); /* Sets width to 90% of screen, capped at 600px max */
+            max-width: 600px; /* Safe layout max width restraint rule */
+            max-height: 85vh; /* Caps dialog boxes safely inside 85% of physical view heights */
+            overflow-y: auto; /* Introduces self-contained scrolling paths inside dialog sheets if needed */
+            padding: var(--space-2xl); /* Grants lavish structural padding inside active presentation decks */
+            transform: scale(0.95); /* Shrinks dialogue frame scale down slightly by default for punchy animations */
+            transition: transform 0.2s ease; /* Connects dimension scaling changes with fluid transition curves */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Projects intense dark drop shadows beneath menu plates */
         }
         
+        /* Scales popups up to full default dimensions when activation hooks click on */
         .modal-overlay.active .modal-dialog {
-            transform: scale(1);
+            transform: scale(1); /* Returns dialogue box to standard proportions upon interface reveal calls */
         }
         
+        /* Modal header grid configurations separating main text spaces */
         .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-lg);
-            padding-bottom: var(--space-sm);
-            border-bottom: 1px solid var(--border-light);
+            display: flex; /* Formats interior child component objects using flexible alignment engines */
+            justify-content: space-between; /* Positions text elements and exits items perfectly at opposite ends */
+            align-items: center; /* Locks title text layouts horizontally across matching center lanes */
+            margin-bottom: var(--space-lg); /* Inserts layout margin cushions beneath heading segments */
+            padding-bottom: var(--space-sm); /* Leaves structural margin pads directly above card dividers */
+            border-bottom: 1px solid var(--border-light); /* Traces faint border line separating header categories from data fields */
         }
         
+        /* Typography parameters managing header label styles inside dialog templates */
         .modal-header h2 {
-            font-size: var(--text-xl);
-            color: var(--accent-cyan);
-            font-weight: 600;
+            font-size: var(--text-xl); /* Matches text size smoothly to pre-scaled system typography arrays */
+            color: var(--accent-cyan); /* Assigns brand identity signature color tones to text lines */
+            font-weight: 600; /* Uses a slightly heavier semi-bold font layout thickness setting */
         }
         
+        /* Close button styles within utility popup modal layouts */
         .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            font-size: var(--text-xl);
-            cursor: pointer;
-            padding: var(--space-sm);
-            min-width: var(--touch-target-min);
-            min-height: var(--touch-target-min);
-            transition: all 0.12s ease;
-            border-radius: var(--radius-sm);
+            background: none; /* Destroys default background graphics settings on button elements */
+            border: none; /* Sweeps default border parameters from target button areas */
+            color: var(--text-tertiary); /* Sets exit actions graphics to neutral muted palette scales */
+            font-size: var(--text-xl); /* Scales cross symbol sizes safely into clear target ranges */
+            cursor: pointer; /* Displays interactive finger indicators during item inspection events */
+            padding: var(--space-sm); /* Pads target dimensions outwards safely to prevent input misses */
+            min-width: var(--touch-target-min); /* Compliance tracking check defining accessibility tap target widths */
+            min-height: var(--touch-target-min); /* Compliance tracking check defining accessibility tap target heights */
+            transition: all 0.12s ease; /* Smooths visual feedback adjustments over time */
+            border-radius: var(--radius-sm); /* Adds subtle rounding tweaks to element border areas */
         }
         
+        /* Visual pointer states transformations altering active interface close buttons */
         .modal-close:hover {
-            color: var(--accent-pink);
-            transform: scale(1.1);
+            color: var(--accent-pink); /* Swaps vector colors to warning pinks upon inspection tracking inputs */
+            transform: scale(1.1); /* Grows exit toggle graphic sizes subtly to register intent confirmation loops */
         }
         
+        /* Touch compression signals validating close action inputs */
         .modal-close:active {
-            transform: scale(0.95);
+            transform: scale(0.95); /* Shrinks toggle dimensions slightly under direct user clicking events */
         }
         
-        /* Accessibility Settings Styles */
+        /* Structural layouts formatting individual preference configurations options profiles */
         .accessibility-section {
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-xl); /* Drives separation gaps deep between stacked options blocks */
         }
         
+        /* Category block labels spacing profiles inside settings windows */
         .accessibility-section h3 {
-            font-size: var(--text-md);
-            color: var(--accent-green);
-            margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
+            font-size: var(--text-md); /* Drives category indicator labels to legible secondary scales */
+            color: var(--accent-green); /* Highlights options segments with clear emerald colors */
+            margin-bottom: var(--space-md); /* Drops space anchors directly between category tags and settings lists */
+            display: flex; /* Maps nested label features onto shared layout lines */
+            align-items: center; /* Centers system typography arrays around companion asset images */
+            gap: var(--space-sm); /* Uniform spacing values between text frames and support markers */
         }
         
+        /* Target settings configuring vector dimension models across system category banners */
         .accessibility-section h3 i {
-            font-size: var(--text-lg);
+            font-size: var(--text-lg); /* Forces icons up to scale smoothly with neighboring titles text fields */
         }
         
+        /* Individual selection control plate modules spacing parameters */
         .setting-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            margin-bottom: var(--space-sm);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: var(--space-md);
+            background: rgba(255, 255, 255, 0.05); /* Fills control strips with subtle, very transparent white plates */
+            border-radius: var(--radius-md); /* Smooths out option card plates corners nicely */
+            padding: var(--space-md); /* Pads settings details safely within boundaries */
+            margin-bottom: var(--space-sm); /* Spaces listed options cards apart cleanly down column chains */
+            display: flex; /* Adapts row presentation modules into highly fluid systems */
+            align-items: center; /* Centers interaction elements horizontally across component rows */
+            justify-content: space-between; /* Ensures text descriptions stay far left and toggles stay far right */
+            flex-wrap: wrap; /* Permits safe row breakdown updates on narrow mobile panels */
+            gap: var(--space-md); /* Inserts layout margin break defenses inside option component cells */
         }
         
+        /* Primary column structural controls managing preference labeling content lists */
         .setting-info {
-            flex: 1;
+            flex: 1; /* Encourages text zones to capture all layout width margins available */
         }
         
+        /* Preference interaction labels spacing rules */
         .setting-info label {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            display: block;
-            margin-bottom: var(--space-2xs);
-            cursor: pointer;
+            font-size: var(--text-sm); /* Maps control items headers to clean compact profiles */
+            font-weight: 600; /* Locks typography assets to bold text weights */
+            display: block; /* Declares option layout labels as individual structural blocks */
+            margin-bottom: var(--space-2xs); /* Keeps title words separated from descriptive secondary lines */
+            cursor: pointer; /* Signals option toggle accessibility areas during inspection states */
         }
         
+        /* Explanatory text properties defining active preferences scopes */
         .setting-info p {
-            font-size: var(--text-xs);
-            color: var(--text-tertiary);
+            font-size: var(--text-xs); /* Scales options documentation scripts downward to avoid cluttering screens */
+            color: var(--text-tertiary); /* Softens text visibility levels via tertiary muted configurations */
         }
         
-        /* Toggle Switch */
+        /* Outer framework dimensions establishing custom structural switch outlines */
         .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            flex-shrink: 0;
+            position: relative; /* Builds local structural coordinate bases for internal indicator modules */
+            display: inline-block; /* Aligns checkbox frames safely alongside companion text fields */
+            width: 60px; /* Locks physical slider track frameworks width sizes to 60px */
+            height: 34px; /* Locks physical slider track frameworks height sizes to 34px */
+            flex-shrink: 0; /* Prevents toggle shapes from distorting inside dense horizontal layouts */
         }
         
+        /* Strict opacity modifications isolating default system HTML checkboxes */
         .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+            opacity: 0; /* Conceals default browser input elements visually from page layouts */
+            width: 0; /* Wipes dimension scopes completely to hide structural frames */
+            height: 0; /* Removes physical footprints to enable custom design tracks underneath */
         }
         
+        /* Visual display track components within customizable option toggle systems */
         .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--text-tertiary);
-            transition: 0.2s;
-            border-radius: 34px;
+            position: absolute; /* Frees slider skin objects to position across parent coordinate paths */
+            cursor: pointer; /* Confirms clickable status parameters upon item tracking checks */
+            top: 0; /* Snaps switch tracks skin to uppermost frame boundaries */
+            left: 0; /* Snaps switch tracks skin to leftmost frame boundaries */
+            right: 0; /* Extends custom switch track assets to rightmost frame parameters */
+            bottom: 0; /* Bounds slider tracking skin heights cleanly inside layout boxes */
+            background-color: var(--text-tertiary); /* Sets passive switch tracks background to muted grey colors */
+            transition: 0.2s; /* Governs toggle animation shift intervals smoothly over 0.2s speeds */
+            border-radius: 34px; /* Perfectly curves track borders to establish capsules outlines layouts */
         }
         
+        /* Circular sliding handle elements inside toggle switch nodes */
         .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: 0.2s;
-            border-radius: 50%;
+            position: absolute; /* Frees interaction nodes to move dynamically across parent track paths */
+            content: ""; /* Injects empty text strings data required to generate pseudo-elements boxes */
+            height: 26px; /* Sets sliding node circle heights down to 26px sizes */
+            width: 26px; /* Sets sliding node circle widths down to 26px sizes */
+            left: 4px; /* Centers passive handle bubbles within left-hand margin track alleys */
+            bottom: 4px; /* Offsets handle nodes smoothly above lower track margins */
+            background-color: white; /* Fills active choice indicator circles with solid white */
+            transition: 0.2s; /* Connects slider bubble shifting tracks with rapid 0.2s movement timing profiles */
+            border-radius: 50%; /* Trims block corners completely to forge perfect circles shapes */
         }
         
+        /* Target color updates shifts running across active option toggle slots */
         input:checked + .toggle-slider {
-            background-color: var(--accent-green);
+            background-color: var(--accent-green); /* Swaps grey background sliders skins to alert green when active */
         }
         
+        /* Spatial position movements animating active option switch handle loops */
         input:checked + .toggle-slider:before {
-            transform: translateX(26px);
+            transform: translateX(26px); /* Drives white slider nodes exactly 26px rightward upon activation states hooks */
         }
         
-        /* Reset Button */
+        /* Styling structural systems configuring global master reset options controls */
         .reset-btn {
-            background: var(--accent-purple);
-            color: white;
-            border: none;
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-sm);
-            font-size: var(--text-sm);
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: var(--space-lg);
-            min-height: var(--touch-target-min);
-            transition: all 0.12s ease;
+            background: var(--accent-purple); /* Selects signature violet tones to paint system reset actions buttons */
+            color: white; /* Forces text content vectors to clear white configurations */
+            border: none; /* Destroys standard gray input outlines configurations cleanly from layout models */
+            padding: var(--space-sm) var(--space-lg); /* Provides wide structural tap cushion zones inside reset bars */
+            border-radius: var(--radius-sm); /* Shapes button boundaries cleanly to complement adjacent design patterns */
+            font-size: var(--text-sm); /* Draws text sizes downward into crisp modern presentation scales */
+            font-weight: 600; /* Locks typography thick weights firmly to semi-bold layout definitions */
+            cursor: pointer; /* Pulls active click tracking pointers up on desktop inspection operations */
+            width: 100%; /* Commands full fluid length scaling across parent dialog blocks */
+            margin-top: var(--space-lg); /* Inserts layout safety margins above master reset operations buttons */
+            min-height: var(--touch-target-min); /* Compliance tracking check defining accessibility tap target dimensions */
+            transition: all 0.12s ease; /* Links system visual changes cleanly to brief transitional animations paths */
         }
         
+        /* Tactile physical feedback reactions generated on active system touch inputs */
         .reset-btn:active {
-            transform: scale(0.96);
+            transform: scale(0.96); /* Compresses total element surface areas slightly during interaction confirmations */
         }
         
-        /* Social Grid */
+        /* Responsive column distribution frameworks ordering community profile index links */
         .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: var(--space-md);
-            margin: var(--space-lg) 0;
+            display: grid; /* Swaps container system configurations over to multi-column CSS Grid models */
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Automates columns numbers dynamically down to 130px caps */
+            gap: var(--space-md); /* Equalizes distance separation splits run between active layout columns grids */
+            margin: var(--space-lg) 0; /* Creates spatial margins top and bottom outside column grid tracks */
         }
         
+        /* Direct interaction properties styling listed social connectivity items anchors */
         .social-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-xs);
-            padding: var(--space-md);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: all 0.12s ease;
-            cursor: pointer;
-            min-height: calc(var(--touch-target-min) + 20px);
+            display: flex; /* Converts target link structures into flexible layout frameworks cards */
+            flex-direction: column; /* Positions graphic branding icons directly atop social name fields */
+            align-items: center; /* Locks internal text lines securely across center track lines */
+            gap: var(--space-xs); /* Inserts vertical air spaces inside social networking links cards */
+            padding: var(--space-md); /* Buffers card interior walls safely away from inner details lines */
+            background: rgba(255, 255, 255, 0.03); /* Injects trace white base plates behind contact nodes shortcuts */
+            border: 1px solid var(--border-light); /* Outlines anchor slots with subtle low-contrast lines */
+            border-radius: var(--radius-md); /* Aligns card corners seamlessly to global framework styles */
+            text-decoration: none; /* Strips default browser underlines off active link text arrays */
+            color: var(--text-secondary); /* Restores general text colors to light muted gray scheme systems */
+            transition: all 0.12s ease; /* Applies fast animation curves directly onto element property upgrades */
+            cursor: pointer; /* Forces user pointer transformations during inspection processes */
+            min-height: calc(var(--touch-target-min) + 20px); /* Safety patch expanding tap margins nicely on mobile dashboards */
         }
         
+        /* Target dimension adjustments governing font symbol metrics across social arrays */
         .social-link i {
-            font-size: clamp(1.8rem, 6vw, 2.2rem);
+            font-size: clamp(1.8rem, 6vw, 2.2rem); /* Dynamic scale tracking rules adapting social icons cleanly */
         }
         
+        /* Title styling rules governing network descriptions strings inside links grids */
         .social-link span {
-            font-size: var(--text-sm);
-            font-weight: 500;
+            font-size: var(--text-sm); /* Configures network naming layouts to clean text sizes */
+            font-weight: 500; /* Uses standard medium typography structural weights descriptions definitions */
         }
         
+        /* Interactive feedback tracking variables monitoring active network profiles entries hover states */
         .social-link:hover {
-            background: rgba(0, 212, 255, 0.1);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            transform: translateY(-2px);
+            background: rgba(0, 212, 255, 0.1); /* Infuses soft cyan coloring layers under targeted links cards */
+            border-color: var(--accent-cyan); /* Upgrades card boundary border contrast up to vivid bright cyan */
+            color: var(--accent-cyan); /* Transforms graphic characters and fonts to brand cyan themes instantly */
+            transform: translateY(-2px); /* Levitates targeted link block up by 2px to signal tracking confirmation loops */
         }
         
+        /* Compress factor tracking setups running across active connectivity buttons grid links */
         .social-link:active {
-            transform: scale(0.97);
+            transform: scale(0.97); /* Flattens item coordinates slightly during direct user pressing events */
         }
         
+        /* Base text metadata presentation structures tracking layout bottoms */
         .modal-footer {
-            margin-top: var(--space-lg);
-            text-align: center;
-            font-size: var(--text-xs);
-            color: var(--text-tertiary);
+            margin-top: var(--space-lg); /* Adds spatial insulation cushions above target layout footnote lines */
+            text-align: center; /* Centers message text entries inside window content fields */
+            font-size: var(--text-xs); /* Shrinks footnote scripts elegantly down to compact secondary display metrics */
+            color: var(--text-tertiary); /* Tints character paths cleanly via muted gray color scales */
         }
         
-        /* Rest of existing styles */
+        /* Shared foundation parameters managing global interactive system communication actions controllers */
         .btn-primary, .btn-secondary, .btn-message {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-2xs);
-            padding: var(--space-md) var(--space-lg);
-            min-height: var(--touch-target-min);
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: var(--text-md);
-            transition: all 0.12s ease;
-            cursor: pointer;
-            border: none;
-            width: 100%;
+            display: flex; /* Coordinates children items positions cleanly through flex model tools */
+            align-items: center; /* Locks nested content vectors securely across global alignment axis lines */
+            justify-content: center; /* Centers active interface labels inside button surface boundaries */
+            gap: var(--space-2xs); /* Keeps font structures split cleanly away from adjacent graphics icons */
+            padding: var(--space-md) var(--space-lg); /* Insures deep cushion areas spread out across click targets */
+            min-height: var(--touch-target-min); /* Absolute minimum target heights regulation enforcement checks */
+            border-radius: var(--radius-md); /* Rounds interface corner assets cleanly to align with cards patterns */
+            text-decoration: none; /* Banishes default anchor links typography underlines rules completely */
+            font-weight: 600; /* Assures bold text thicknesses configurations across system call buttons */
+            font-size: var(--text-md); /* Sizes interface command labels to clear readability ranges */
+            transition: all 0.12s ease; /* Couples visual changes smoothly over fast execution tracks */
+            cursor: pointer; /* Signals action capability to desktop system mouse users instantly */
+            border: none; /* Erases baseline browser border styling components */
+            width: 100%; /* Stretches core width properties across entire matching framework limits */
         }
         
+        /* Style aesthetics parameters outlining primary call-to-action controllers */
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: white;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); /* Fills primary triggers with beautiful split energetic brand gradient */
+            color: white; /* Validates maximum contrast metrics via solid white label text layers */
         }
         
+        /* Style aesthetics parameters outlining auxiliary supportive navigation controllers */
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-medium);
-            color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.05); /* Soft, low-contrast dark translucent plates foundation fill */
+            border: 1px solid var(--border-medium); /* Outlines auxiliary triggers using structured medium borders lines */
+            color: var(--accent-cyan); /* Restores core link identifiers color paths back to sharp cyan fields */
         }
         
+        /* Direct email messaging contact shortcuts triggering templates styling profiles */
         .btn-message {
-            background: rgba(0, 212, 255, 0.15);
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            margin-top: var(--space-xs);
-            min-height: calc(var(--touch-target-min) - 8px);
+            background: rgba(0, 212, 255, 0.15); /* Injects distinct localized cyan color washes under message triggers */
+            border: 1px solid var(--accent-cyan); /* Radiates vibrant signature cyan lines around container limits */
+            color: var(--accent-cyan); /* Sets typography color arrays to rich cyan accent tones */
+            margin-top: var(--space-xs); /* Splits messaging items safely away from card informational data rows */
+            min-height: calc(var(--touch-target-min) - 8px); /* Compact layout parameter tuning heights precisely inside blocks cards */
         }
         
+        /* Parameter scaling systems tuning graphic elements sizes inside inline text message buttons */
         .btn-message i {
-            font-size: var(--text-sm);
+            font-size: var(--text-sm); /* Matches icon size to standard subtext typography sizing limits */
         }
         
+        /* Collective physical compression setups tracking all interaction button elements */
         .btn-primary:active, .btn-secondary:active, .btn-message:active {
-            transform: scale(0.96);
+            transform: scale(0.96); /* Pulls coordinates slightly down inward upon direct click confirmations */
         }
         
+        /* Primary introduction showcase block structural component properties */
         .component-hero {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-radius: var(--radius-md);
-            padding: var(--space-xl) var(--space-lg);
-            margin-bottom: var(--space-xl);
-            border: 1px solid var(--border-light);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05)); /* Floats elegant low-opacity cyan/purple visual clouds onto background paths */
+            border-radius: var(--radius-md); /* Conforms splash card corners safely to template radius scales */
+            padding: var(--space-xl) var(--space-lg); /* Generates generous cushion tracks enveloping top introduction items */
+            margin-bottom: var(--space-xl); /* Positions thick vertical buffer lanes directly below introduction zones */
+            border: 1px solid var(--border-light); /* Encases banner limits inside soft low-contrast thin frames lines */
         }
         
+        /* Structural layout grid configurations processing split introduction layouts data columns */
         .hero-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-lg);
+            display: flex; /* Converts welcome frame layouts into highly fluid multi-directional formats */
+            flex-wrap: wrap; /* Permits automatic column stack breakdowns on space-restricted devices screens */
+            gap: var(--space-lg); /* Splits interior vertical presentation categories cleanly across layout systems */
         }
         
+        /* Left-hand column structural parameters managing main splash headers elements links */
         .hero-left {
-            flex: 2;
-            min-width: 220px;
+            flex: 2; /* Instructs text layout blocks to capture double parts of layout column spacing tracks */
+            min-width: 220px; /* Safe minimum row resolution breakpoint width parameter */
         }
         
+        /* Right-hand column structural parameters managing brief summary bio details fields */
         .hero-right {
-            flex: 1;
-            min-width: 220px;
+            flex: 1; /* Maps bio statement summaries layouts into singular column allocations models */
+            min-width: 220px; /* Aligns side column breakpoint dimensions to equal settings limits */
         }
         
+        /* Main page title aesthetic configurations matching splash layouts text */
         .hero-left h1 {
-            font-size: var(--text-3xl);
-            margin-bottom: var(--space-lg);
-            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
+            font-size: var(--text-3xl); /* Drives core introduction text fields up to massive display scales */
+            margin-bottom: var(--space-lg); /* Allocates clean display breathing spaces below primary titles headers */
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan)); /* Maps brilliant white-to-cyan color gradient onto text frames tracks */
+            -webkit-background-clip: text; /* Masks gradient tracks securely inside letter characters tracks shapes on Webkit systems */
+            background-clip: text; /* Standards compliance tracking rule masking text color backgrounds patterns */
+            color: transparent; /* Makes baseline solid text fills transparent to let core color gradient show through */
+            line-height: 1.2; /* Tightens space paths tracking between huge vertically stacked text words groups */
         }
         
+        /* Horizontal split parameters ordering companion actions triggers groups */
         .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-md);
+            display: flex; /* Maps action button elements alongside identical display baseline axes */
+            flex-wrap: wrap; /* Halts interface breakage by letting buttons break to new rows if squished */
+            gap: var(--space-md); /* Enforces even layout separation breaks between dashboard trigger buttons entries */
         }
         
+        /* Column scaling normalization settings organizing split landing buttons layouts */
         .hero-buttons .btn-primary,
         .hero-buttons .btn-secondary {
-            flex: 1;
-            min-width: 140px;
+            flex: 1; /* Dictates that buttons expand evenly to match each other's layout spaces inside arrays */
+            min-width: 140px; /* Prevents action button labels from getting unreadably squished on slim panels */
         }
         
+        /* Core description copy tuning variables regulating splash summary statements */
         .hero-right p {
-            font-size: var(--text-md);
-            color: var(--text-secondary);
-            line-height: 1.6;
+            font-size: var(--text-md); /* Advances biography summaries text layouts up to clear reading sizes */
+            color: var(--text-secondary); /* Relaxes character tone brightness levels down to comfortable light gray channels */
+            line-height: 1.6; /* Sets wider line spaces to clear readability roadblocks for users scan layouts */
         }
         
+        /* Stylized mockup code interface box layout parameters modules settings */
         .component-code-header {
-            background: rgba(0, 212, 255, 0.04);
-            border-left: 4px solid var(--accent-cyan);
-            padding: var(--space-xl) var(--space-2xl);
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin: var(--space-xl) 0;
-            width: 100%;
-            user-select: none;
+            background: rgba(0, 212, 255, 0.04); /* Fills code headers with faint electric cyan background shades */
+            border-left: 4px solid var(--accent-cyan); /* Injects thick structural cyan accent border bar along left boundaries margins */
+            padding: var(--space-xl) var(--space-2xl); /* Sets spacious inner layout pads inside code simulator zones */
+            font-family: 'SF Mono', 'Fira Code', monospace; /* Swaps typography stacks out to clean developer terminal coding engines fonts */
+            border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Rounds corners only on right side edges of code bars */
+            margin: var(--space-xl) 0; /* Inserts wide vertical separation spaces above and below script header plates */
+            width: 100%; /* Spans code title containers securely across matching app width dimensions */
+            user-select: none; /* Disables standard text highlights selections models to protect visual layouts aesthetics */
         }
         
+        /* Coding syntax design elements regulating component title simulations text layout */
         .component-code-header h2 {
-            font-size: var(--text-lg);
-            margin-bottom: var(--space-sm);
-            color: var(--accent-cyan);
-            font-weight: 500;
-            white-space: normal;
-            word-break: break-word;
-            line-height: 1.4;
+            font-size: var(--text-lg); /* Maps text dimensions to beautiful clean intermediate developer block sizing tracks */
+            margin-bottom: var(--space-sm); /* Isolates technical coding strings cleanly from comments lines underneath */
+            color: var(--accent-cyan); /* Default developer title code strings default color state definition */
+            font-weight: 500; /* Locks typography thickness to clean, crisp medium weight profiles */
+            white-space: normal; /* Permits text wrapping rules naturally if lines overflow display fields */
+            word-break: break-word; /* Security parameters tracking extreme code string text overflows boundaries safely */
+            line-height: 1.4; /* Standard line spacing parameters for technical titles layout models */
         }
         
-        .component-code-header .keyword { color: #c678dd; }
-        .component-code-header .string { color: #98c379; }
-        .component-code-header .variable { color: #e06c75; }
-        .component-code-header .function { color: #61afef; }
+        /* Specific IDE syntax color theme modifications formatting mockup coding phrases */
+        .component-code-header .keyword { color: #c678dd; } /* Paints code statements keywords like 'import' soft magenta purple */
+        .component-code-header .string { color: #98c379; } /* Paints hardcoded data paths string text packages fields grass green */
+        .component-code-header .variable { color: #e06c75; } /* Paints programmatic variable declarations terms light sunset crimson */
+        .component-code-header .function { color: #61afef; } /* Paints execution function call terms sky blue codes accents */
+        
+        /* Injected pseudo code documentation text line structural parameters formatting controls */
         .component-code-header .comment { 
-            color: var(--text-tertiary); 
-            font-size: var(--text-sm);
-            margin-top: var(--space-xs);
-            display: block;
+            color: var(--text-tertiary); /* Tints terminal feedback commentary tracks via tertiary gray palettes */
+            font-size: var(--text-sm); /* Pulls instruction comments typography dimensions down to clear compact tracks */
+            margin-top: var(--space-xs); /* Sets clear split distances between code statements lines and comments rows */
+            display: block; /* Declares commentary paths as independent layout text rows lines */
         }
         
+        /* Flexible responsive grid array parameters organizing profile cards showcases arrays layouts */
         .grid-container,
         .products-container,
         .clients-container,
         .blog-container {
-            display: grid;
-            gap: var(--space-lg);
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-            margin-bottom: var(--space-xl);
+            display: grid; /* Activates multi-column grid layouts formatting control centers across lists */
+            gap: var(--space-lg); /* Applies uniform horizontal and vertical spacing gaps between card nodes */
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); /* Advanced grid formula fitting 320px columns perfectly on any device size screen */
+            margin-bottom: var(--space-xl); /* Packs thick lower margins underneath individual categories presentation cards grids */
         }
         
+        /* Collective foundation layouts structural cards characteristics formatting item nodes grids */
         .grid-card,
         .product-card,
         .client-card,
         .blog-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg) var(--space-lg);
-            transition: all 0.15s ease;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
-            cursor: pointer;
+            background: var(--bg-card); /* Feeds smooth semi-transparent theme colors across component blocks panels */
+            backdrop-filter: blur(10px); /* Runs glass frost styling blur filters across backing layout tracks */
+            border: 1px solid var(--border-light); /* Encases card outlines inside low-contrast thin borders frameworks lines */
+            border-radius: var(--radius-md); /* Syncs item module boundaries cleanly with system border curve standards */
+            padding: var(--space-lg) var(--space-lg); /* Imposes even, thick interior formatting padding lines across description details fields */
+            transition: all 0.15s ease; /* Couples layout movement animations with smooth timing paths settings */
+            display: flex; /* Converts system cards into responsive stack structural elements packages layouts */
+            flex-direction: column; /* Organizes nested structural items into vertical down tracks alignments */
+            gap: var(--space-md); /* Drives consistent separation spacing paths through interior card cells objects */
+            cursor: pointer; /* Confirms element click capabilities instantly upon mouse pointer tracking matches */
         }
         
+        /* Primary horizontal data orientation modules systems formatting upper cards tracks */
         .card-row {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--space-lg);
+            display: flex; /* Converts text clusters and companion asset icons into inline row groupings tools */
+            flex-direction: row; /* Directs asset child elements horizontally across unified display lines */
+            align-items: center; /* Locks system symbols and labels text squarely along identical midlines tracks */
+            gap: var(--space-lg); /* Breaks display rows cleanly to split graphics away from content descriptions text strings */
         }
         
+        /* System interface button columns layouts stacks positioning interaction items inside profile cards */
         .card-actions {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-            margin-top: var(--space-xs);
+            display: flex; /* Maps interaction button modules into flexible framework arrays layouts */
+            flex-direction: column; /* Stacks multiple utility button modules vertically inside grid element spaces */
+            gap: var(--space-sm); /* Uniform spacing splits separating stacked buttons tracks apart cleanly */
+            margin-top: var(--space-xs); /* Pushes actionable control decks slightly below structural data tracks entries */
         }
         
+        /* Graphic vector tracking dimensions formatting imagery inside profile showcase grids elements */
         .grid-card i,
         .product-card i,
         .blog-card i {
-            font-size: clamp(1.5rem, 6vw, 2rem);
-            width: clamp(48px, 10vw, 64px);
-            flex-shrink: 0;
-            text-align: center;
-            pointer-events: none;
+            font-size: clamp(1.5rem, 6vw, 2rem); /* Dynamic font icon scale parameters shifting vectors sizes precisely across devices */
+            width: clamp(48px, 10vw, 64px); /* Locks graphic assets into solid structural layout boundary boxes width dimensions */
+            flex-shrink: 0; /* Shields font icons elements from warping during responsive window alterations scenarios */
+            text-align: center; /* Centers font graphics items horizontally within their allocated boundary boxes sizes */
+            pointer-events: none; /* Disables click intersection checking on icons to boost javascript speed performance metrics */
         }
         
-        .grid-card i { color: var(--accent-cyan); }
-        .blog-card i { color: var(--accent-pink); }
-        .product-card i { color: var(--accent-cyan); }
+        /* Specific visual branding coloration rules assigned across framework display icons slots */
+        .grid-card i { color: var(--accent-cyan); } /* Set professional skill graphic markers to bright cyan */
+        .blog-card i { color: var(--accent-pink); } /* Set digital newsletter log indexes icons to sharp hot pink */
+        .product-card i { color: var(--accent-cyan); } /* Set commercial merchandise sales catalog vectors to energetic cyan */
         
+        /* Text blocks structural containers formatting content descriptions entries next to grid vectors */
         .grid-card-content,
         .product-info,
         .client-info,
         .blog-content {
-            flex: 1;
-            min-width: 0;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            flex: 1; /* Instructs description text clusters to expand and capture remaining card width spaces available */
+            min-width: 0; /* Flexbox text bug defense setting allowing clean string breaks without layout widening */
+            word-wrap: break-word; /* Breaks long continuous words groups safely if strings surpass card wall blocks boundaries */
+            overflow-wrap: break-word; /* Standards rule wrapping dense alphanumeric character sets securely inside grids blocks slots */
         }
         
+        /* Title text styling parameters monitoring descriptive category cards headers text blocks */
         .grid-card-content h3,
         .product-info h3,
         .client-info h3,
         .blog-content h3 {
-            font-size: var(--text-md);
-            font-weight: 600;
-            margin-bottom: var(--space-2xs);
+            font-size: var(--text-md); /* Maps grid component card headers font sizes to clear secondary reading scales */
+            font-weight: 600; /* Locks typography configurations to distinct semi-bold visibility levels */
+            margin-bottom: var(--space-2xs); /* Places small spacing pads beneath product labels before descriptions text entries start */
         }
         
+        /* Content data block paragraph elements definitions formatting secondary descriptions text strings */
         .grid-card-content p,
         .product-info p,
         .client-info p,
         .blog-content p {
-            font-size: var(--text-sm);
-            color: var(--text-secondary);
-            line-height: 1.5;
+            font-size: var(--text-sm); /* Sets text to standard crisp compact reading tracks dimensions scales */
+            color: var(--text-secondary); /* Drops brightness parameters back down to secondary soft light gray levels */
+            line-height: 1.5; /* Balanced regular line height spacing profiles configuration setting */
         }
         
+        /* Commercial pricing text module configurations formatting storefront catalog item listings card items */
         .product-price {
-            font-size: var(--text-md);
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin-top: var(--space-2xs);
+            font-size: var(--text-md); /* Drives financial valuation labels to clear intermediate scales levels */
+            font-weight: 600; /* Uses solid semi-bold typography configurations to call visual focus to sales cost entries */
+            color: var(--accent-cyan); /* Paints commercial asset sales evaluation strings electric cyan brand hues */
+            margin-top: var(--space-2xs); /* Inserts small layout padding buffers directly above pricing label trackers lines */
         }
         
+        /* Framework sizing regulations filtering external company branding logo images templates assets */
         .client-logo {
-            max-width: clamp(70px, 18vw, 100px);
-            height: auto;
-            flex-shrink: 0;
-            pointer-events: none;
+            max-width: clamp(70px, 18vw, 100px); /* Dynamically limits corporate client graphic image width footprints smoothly across devices screens */
+            height: auto; /* Scales aspect height levels proportionally to safeguard incoming files parameters descriptions */
+            flex-shrink: 0; /* Defends corporate logo vectors sizes against layout compression forces inside columns tracks */
+            pointer-events: none; /* Strips selection layers off imagery assets to eliminate client browser click bugs scenarios */
         }
         
+        /* Meta parameters coordinating titles rows inside article listings feed modules systems */
         .blog-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: var(--space-xs);
-            margin-bottom: var(--space-2xs);
+            display: flex; /* Links article labels and publication date arrays onto shared row axes paths */
+            justify-content: space-between; /* Drives newsletter header text fields far left and publication date vectors far right */
+            align-items: baseline; /* Aligns typography baselines across components to maintain uniform flow lines fields */
+            flex-wrap: wrap; /* Prevents text colliding errors on ultra tiny mobile devices interface viewports */
+            gap: var(--space-xs); /* Emergency layout gap spacing buffer configurations breaking dense rows entries safely */
+            margin-bottom: var(--space-2xs); /* Small layout margins splitting article headers away from content snippet copy block lines */
         }
         
+        /* Publication calendar timestamp indicators styling controls mapping blog feed elements lists */
         .blog-date {
-            font-size: var(--text-2xs);
-            color: var(--accent-pink);
+            font-size: var(--text-2xs); /* Drops timing metadata copy fields down to elegant miniature verification tracks text size */
+            color: var(--accent-pink); /* Paints timeline dates labels distinct bright accent pink tones for crisp visibility tracking */
         }
         
+        /* Typography framing guidelines shaping personal narrative statement blocks sections */
         .component-about {
-            margin-bottom: var(--space-xl);
-            padding: 0 var(--space-xs);
+            margin-bottom: var(--space-xl); /* Buffers deep layout breathing channels between narrative tracks and subsequent grids rows */
+            padding: 0 var(--space-xs); /* Tiny lateral layout padding cushions lining internal bio details scopes columns */
         }
         
+        /* Narrative biography paragraphs layout characteristics adjustments monitoring readability channels */
         .component-about p {
-            margin-bottom: var(--space-sm);
-            color: var(--text-secondary);
-            font-size: var(--text-md);
-            max-width: min(100%, 750px);
-            line-height: 1.6;
+            margin-bottom: var(--space-sm); /* Splits consecutive storytelling layout text components apart down text rows tracks */
+            color: var(--text-secondary); /* Settles narrative text into comfortable soft high-contrast readability parameters dark light grey colors */
+            font-size: var(--text-md); /* Steps narrative descriptions up to elegant intermediate reading scale definitions */
+            max-width: min(100%, 750px); /* Restrains text line lengths safely under 750px to optimize horizontal layout scanning speed indexes */
+            line-height: 1.6; /* Sets relaxed line spaces layout tracking paths to streamline reading operations across long text files blocks */
         }
         
+        /* Tactile sensory physics actions mapping item cards under active selection inputs events */
         .grid-card:active,
         .product-card:active,
         .client-card:active,
         .blog-card:active {
-            transform: scale(0.99);
-            background: rgba(30, 30, 40, 0.95);
+            transform: scale(0.99); /* Compresses card size maps infinitesimally downward to replicate physical buttons mechanics click fields */
+            background: rgba(30, 30, 40, 0.95); /* Swaps internal tracking backing plates to darker density gray tones upon selection events hooks */
         }
         
+        /* Desktop pointer hover tracking transition rules optimizing cards lists entries interaction paths */
         @media (hover: hover) {
+            /* Adjustments executed whenever pointer indexes enter grid card item spaces */
             .grid-card:hover,
             .product-card:hover,
             .client-card:hover,
             .blog-card:hover {
-                background: rgba(25, 25, 35, 0.9);
-                border-color: var(--border-medium);
-                transform: translateX(2px);
+                background: rgba(25, 25, 35, 0.9); /* Infuses deeper dark card fill tints underneath pointer tracks channels */
+                border-color: var(--border-medium); /* sharpens framework border contrast parameters up to visible boundaries lines */
+                transform: translateX(2px); /* Slides targeted layout cards rightward by an elegant 2px step to register focus feedback checks */
             }
         }
         
+        /* Custom hardware-accelerated linear animation sequence mapping content element entrance tracking paths */
         @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(-10px); } /* Sets entry baseline zero tracking visibility and pushes element 10px leftward */
+            to { opacity: 1; transform: translateX(0); } /* Reveals full text properties clean and pulls object back to default geometric rest points */
         }
         
+        /* Practical animation implementation structural utility class tags mapping visibility calls */
         .fade-in {
-            animation: fadeInLeft 0.25s ease forwards;
+            animation: fadeInLeft 0.25s ease forwards; /* Fires swift 0.25s translation fade animations running across target elements maps loops */
         }
         
+        /* Global typography tracking parameter changes monitoring text selections adjustments fields */
         ::selection {
-            background: var(--accent-cyan);
-            color: var(--bg-primary);
+            background: var(--accent-cyan); /* Fills chosen character highlight text tracks via glowing signature cyan palettes markers */
+            color: var(--bg-primary); /* Flips highlight font text color paths over to solid deep pitch dark black for max legibility */
         }
         
+        /* Keyboard user shortcut tools driving structural navigation safety profiles compliance checks */
         .skip-link {
-            position: absolute;
-            top: -40px;
-            left: var(--space-sm);
-            background: var(--accent-cyan);
-            color: var(--bg-primary);
-            padding: var(--space-sm) var(--space-md);
-            text-decoration: none;
-            z-index: 1001;
-            border-radius: var(--radius-sm);
-            font-size: var(--text-sm);
-            font-weight: 600;
+            position: absolute; /* Pulls navigation helpers out from normal page presentation flows paths */
+            top: -40px; /* Casts visibility tracks entirely out above top viewport windows borders lines by default */
+            left: var(--space-sm); /* Tracks alignment borders safely down left-hand side screen margins pathways */
+            background: var(--accent-cyan); /* Injects sharp cyan indicator colors onto skip links components track backings */
+            color: var(--bg-primary); /* Drops layout font fills down to deep background charcoal colors shades */
+            padding: var(--space-sm) var(--space-md); /* Pads bypass links button frameworks safely to grant wide typing target fields */
+            text-decoration: none; /* Destroys link underlines parameters on utility access links systems */
+            z-index: 1001; /* Drives bypass buttons straight over highest sidebar overlays blocks during activation operations tracks */
+            border-radius: var(--radius-sm); /* Curvature settings shaping corners cleanly on skip links buttons nodes templates */
+            font-size: var(--text-sm); /* Keeps helper shortcuts cleanly balanced inside compact standard structural font sizing levels */
+            font-weight: 600; /* Applies intense semi-bold font structural thickness descriptions weights onto accessibility links text strings */
         }
         
+        /* Displays bypass tools immediately when screen reader keyboard tab pathways trigger focus tracking events */
         .skip-link:focus {
-            top: var(--space-sm);
+            top: var(--space-sm); /* Snaps hidden bypass triggers straight down inside legible viewing regions areas instantly upon tab entries */
         }
         
+        /* Micro responsive overrides media query tuning layout parameters across mobile sized device viewports screen tracks */
         @media (max-width: 768px) {
+            /* Expands individual action interaction control bar footprints on compact touchscreens interfaces layout tracks */
             .btn-primary, .btn-secondary, .btn-message {
-                min-height: 52px;
+                min-height: 52px; /* Scales tap coordinates up safely to 52px heights to help mobile fingers click items easily */
             }
             
+            /* Broadens side panel button options footprints inside smartphone presentation displays systems */
             .nav-item {
-                min-height: 52px;
+                min-height: 52px; /* Guarantees mobile dashboard selectors hit accessible 52px vertical screen bounds sizes */
             }
             
+            /* Expands tap coordinates bounding network connections nodes entries links catalogs platforms sheets */
             .social-link {
-                min-height: 80px;
+                min-height: 80px; /* Grants large 80px block spaces to facilitate rapid tap input responses paths on phones screens */
             }
         }
-    </style>
+    </style> <!-- Concludes the embedded CSS styling block rules definitions -->
 </head>
+<!-- Opens the visible body structural element layout where all application components reside -->
 <body>
 
+<!-- Accessible keyboard helper shortcut enabling tab users to bypass main menu items immediately -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
+<!-- Main layout wrapper system block encapsulating the sidebar nav panels and main text canvas tracks -->
 <div class="app-layout">
+    <!-- Fixed left dashboard navigation panel displaying corporate title tags and sections tracking controls tools -->
     <nav class="sidebar-nav" aria-label="Main navigation">
+        <!-- Logo packaging card element group managing platform branding scripts tags -->
         <div class="sidebar-logo">
+            <!-- Stylized primary moniker title text entry item -->
             <div class="logo-text">V3</div>
+            <!-- Subtitle design descriptor detailing operational specialization streams lists -->
             <div class="logo-sub">ARCHITECT</div>
         </div>
         
+        <!-- Scroll tracks manager block processing side column buttons lists cleanly -->
         <div class="nav-scroll-group">
+            <!-- Structural listing pack ordering individual interface section jump links triggers buttons elements -->
             <div class="nav-items">
+                <!-- Jump navigation button tracking introduction splash framework component structures slots -->
                 <button class="nav-item" data-section="hero" aria-label="Home">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
+                    <i class="fas fa-home"></i> <!-- Home vector graphics icon symbol asset link node -->
+                    <span>Home</span> <!-- Categorized button label navigation description string -->
                 </button>
+                <!-- Jump navigation button tracking personal bio summaries storytelling blocks structures records -->
                 <button class="nav-item" data-section="about" aria-label="Profile">
-                    <i class="fas fa-user"></i>
-                    <span>Profile</span>
+                    <i class="fas fa-user"></i> <!-- User portrait outline vector graphics font symbol tool -->
+                    <span>Profile</span> <!-- Categorized button label navigation description string -->
                 </button>
+                <!-- Jump navigation button tracking technical development skills data arrays sheets metrics cards -->
                 <button class="nav-item" data-section="skills" aria-label="Skills">
-                    <i class="fas fa-code"></i>
-                    <span>Skills</span>
+                    <i class="fas fa-code"></i> <!-- Developer coding brackets vector shape icon asset indicator -->
+                    <span>Skills</span> <!-- Categorized button label navigation description string -->
                 </button>
+                <!-- Jump navigation button tracking commercial architectural task offerings information sheets boards -->
                 <button class="nav-item" data-section="services" aria-label="Services">
-                    <i class="fas fa-cogs"></i>
-                    <span>Services</span>
+                    <i class="fas fa-cogs"></i> <!-- System configuration gears matrix graphic vector icon node -->
+                    <span>Services</span> <!-- Categorized button label navigation description string -->
                 </button>
+                <!-- Jump navigation button tracking official physical merchandise ecommerce sales lists frames catalogs -->
                 <button class="nav-item" data-section="store" aria-label="Store">
-                    <i class="fas fa-store"></i>
-                    <span>Store</span>
+                    <i class="fas fa-store"></i> <!-- Commercial retail storefront vector graphic icon layout slot -->
+                    <span>Store</span> <!-- Categorized button label navigation description string -->
                 </button>
+                <!-- Jump navigation button tracking trusted corporate alliance profile records indexing cards components -->
                 <button class="nav-item" data-section="clients" aria-label="Clients">
-                    <i class="fas fa-users"></i>
-                    <span>Clients</span>
+                    <i class="fas fa-users"></i> <!-- Multiple community members profile silhouette group vector icon shortcut -->
+                    <span>Clients</span> <!-- Categorized button label navigation description string -->
                 </button>
+                <!-- Jump navigation button tracking informative tutorial publication feeds items listing panels entries -->
                 <button class="nav-item" data-section="blog" aria-label="Blog">
-                    <i class="fas fa-newspaper"></i>
-                    <span>Blog</span>
+                    <i class="fas fa-newspaper"></i> <!-- Periodical news journal print layout vector asset icon symbol link -->
+                    <span>Blog</span> <!-- Categorized button label navigation description string -->
                 </button>
             </div>
         </div>
         
+        <!-- Lower tools dock tray containing popup trigger interfaces buttons groups options -->
         <div class="nav-bottom">
+            <!-- Modal popup controller button unlocking community profile social anchor index menus panels -->
             <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
-                <i class="fas fa-share-alt"></i>
-                <span>Social</span>
+                <i class="fas fa-share-alt"></i> <!-- Interconnected network nodes communication graphics vector asset shortcut -->
+                <span>Social</span> <!-- Categorized button label navigation description string -->
             </button>
+            <!-- Modal popup controller button unlocking accessibility preferences optimization panels tools menus -->
             <button class="nav-item" id="accessibilityNavBtn" aria-label="Accessibility Settings">
-                <i class="fas fa-universal-access"></i>
-                <span>Accessibility</span>
+                <i class="fas fa-universal-access"></i> <!-- Universal access design emblem vector profile icon indicator badge -->
+                <span>Accessibility</span> <!-- Categorized button label navigation description string -->
             </button>
         </div>
     </nav>
 
+    <!-- Main application viewport core content display grid canvas tracker lane frame elements -->
     <main class="main-content" id="main-content">
+        <!-- Structural content bounds limitation alignment container grid blocks slots fields -->
         <div class="site-container">
             
+            <!-- High impact welcome presentation introduction component card block section panel frame -->
             <div class="component-hero" id="hero">
+                <!-- Two-column content tracking manager flex formatting container structure elements links -->
                 <div class="hero-container">
+                    <!-- Leftward tracking metadata data block column processing primary screen title elements strings -->
                     <div class="hero-left">
-                        <h1>V3 Digital Architect</h1>
+                        <h1>V3 Digital Architect</h1> <!-- Primary high visibility text title tag headline record entry -->
+                        <!-- Call-to-action core triggers row container structural layout system block -->
                         <div class="hero-buttons">
+                            <!-- Conversion funnel starting interface link option shortcut point command -->
                             <a href="#" class="btn-primary">Get Started</a>
+                            <!-- Secondary information lookup overview directory option shortcut navigation button -->
                             <a href="#" class="btn-secondary">Learn More</a>
                         </div>
                     </div>
+                    <!-- Rightward tracking text metadata column processing personal summary bio statements metrics fields -->
                     <div class="hero-right">
+                        <!-- Short professional identity narrative statement copy block line layout track -->
                         <p>Full-stack developer · 10+ years · Building products people love with clean code that scales everywhere.</p>
                     </div>
                 </div>
             </div>
 
+            <!-- Programmatic syntax header component simulation displaying simulated text code lines layouts -->
             <div class="component-code-header">
+                <!-- Simulated javascript import dependency command text structure line sequence -->
                 <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
+                <!-- Simulated backend terminal commentary documentation statement layout description text string -->
                 <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</p>
             </div>
 
+            <!-- Profile presentation container holding deep storytelling narrative statements paragraphs components -->
             <div class="component-about" id="about">
+                <!-- Core biographical summary overview copy block paragraph string record item layout tracking -->
                 <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+                <!-- Supportive ideological focus positioning statement copy block layout line tracker -->
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
 
+            <!-- Programmatic syntax header component simulation displaying simulated text code lines layouts -->
             <div class="component-code-header">
+                <!-- Simulated developer assignment variable declaration script statement string logic -->
                 <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
+                <!-- Simulated backend terminal commentary documentation statement layout description text string -->
                 <p class="comment">// Technologies I work with daily — click "Send Message" to inquire about any skill</p>
             </div>
 
+            <!-- Responsive grid presentation grid organizing engineering capability listings cards blocks channels -->
             <div class="grid-container" id="skills">
-                <!-- Skills cards content -->
+                
+                <!-- Technical node component profile item card tracking user frontend expertise layout matrix -->
                 <div class="grid-card" data-skill="Frontend Development" data-desc="React, Vue, Angular, TypeScript">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-brands fa-react"></i>
+                        <i class="fa-brands fa-react"></i> <!-- React library corporate brand vector graphic shape font icon symbol -->
                         <div class="grid-card-content">
-                            <h3>Frontend</h3>
-                            <p>React, Vue, Angular, TypeScript</p>
+                            <h3>Frontend</h3> <!-- Skill engineering category header line text locator tag -->
+                            <p>React, Vue, Angular, TypeScript</p> <!-- Listed technical frameworks names entries data fields -->
                         </div>
                     </div>
+                    <!-- Action button wrapper deck managing automated context inquiries triggers options lines -->
                     <div class="card-actions">
+                        <!-- Action trigger passing dynamic content values straight into mail handler core function routines -->
                         <button class="btn-message" onclick="sendSkillMessage('Frontend Development', 'React, Vue, Angular, TypeScript')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Technical node component profile item card tracking user backend expertise layout matrix -->
                 <div class="grid-card" data-skill="Backend Development" data-desc="Node.js, Python, Go, Java">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-server"></i>
+                        <i class="fa-solid fa-server"></i> <!-- Solid server rack terminal engineering vector graphic shape icon layout asset -->
                         <div class="grid-card-content">
-                            <h3>Backend</h3>
-                            <p>Node.js, Python, Go, Java</p>
+                            <h3>Backend</h3> <!-- Skill engineering category header line text locator tag -->
+                            <p>Node.js, Python, Go, Java</p> <!-- Listed technical frameworks names entries data fields -->
                         </div>
                     </div>
+                    <!-- Action button wrapper deck managing automated context inquiries triggers options lines -->
                     <div class="card-actions">
+                        <!-- Action trigger passing dynamic content values straight into mail handler core function routines -->
                         <button class="btn-message" onclick="sendSkillMessage('Backend Development', 'Node.js, Python, Go, Java')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Technical node component profile item card tracking user data architecture expertise layout matrix -->
                 <div class="grid-card" data-skill="Database Engineering" data-desc="PostgreSQL, MongoDB, Redis">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-database"></i>
+                        <i class="fa-solid fa-database"></i> <!-- Relational database storage cylinder vector shape font icon component indicator -->
                         <div class="grid-card-content">
-                            <h3>Database</h3>
-                            <p>PostgreSQL, MongoDB, Redis</p>
+                            <h3>Database</h3> <!-- Skill engineering category header line text locator tag -->
+                            <p>PostgreSQL, MongoDB, Redis</p> <!-- Listed technical frameworks names entries data fields -->
                         </div>
                     </div>
+                    <!-- Action button wrapper deck managing automated context inquiries triggers options lines -->
                     <div class="card-actions">
+                        <!-- Action trigger passing dynamic content values straight into mail handler core function routines -->
                         <button class="btn-message" onclick="sendSkillMessage('Database Engineering', 'PostgreSQL, MongoDB, Redis')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Technical node component profile item card tracking user cloud deployment expertise layout matrix -->
                 <div class="grid-card" data-skill="Cloud Architecture" data-desc="AWS, Azure, GCP, Docker">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-cloud"></i>
+                        <i class="fa-solid fa-cloud"></i> <!-- Solid cloud infrastructure network node graphics vector shape asset shortcut -->
                         <div class="grid-card-content">
-                            <h3>Cloud</h3>
-                            <p>AWS, Azure, GCP, Docker</p>
+                            <h3>Cloud</h3> <!-- Skill engineering category header line text locator tag -->
+                            <p>AWS, Azure, GCP, Docker</p> <!-- Listed technical frameworks names entries data fields -->
                         </div>
                     </div>
+                    <!-- Action button wrapper deck managing automated context inquiries triggers options lines -->
                     <div class="card-actions">
+                        <!-- Action trigger passing dynamic content values straight into mail handler core function routines -->
                         <button class="btn-message" onclick="sendSkillMessage('Cloud Architecture', 'AWS, Azure, GCP, Docker')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Technical node component profile item card tracking user native app development expertise layout matrix -->
                 <div class="grid-card" data-skill="Mobile Development" data-desc="React Native, Flutter, Swift">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-mobile-alt"></i>
+                        <i class="fa-solid fa-mobile-alt"></i> <!-- Mobile hardware device chassis vector graphic shape font icon asset locator -->
                         <div class="grid-card-content">
-                            <h3>Mobile</h3>
-                            <p>React Native, Flutter, Swift</p>
+                            <h3>Mobile</h3> <!-- Skill engineering category header line text locator tag -->
+                            <p>React Native, Flutter, Swift</p> <!-- Listed technical frameworks names entries data fields -->
                         </div>
                     </div>
+                    <!-- Action button wrapper deck managing automated context inquiries triggers options lines -->
                     <div class="card-actions">
+                        <!-- Action trigger passing dynamic content values straight into mail handler core function routines -->
                         <button class="btn-message" onclick="sendSkillMessage('Mobile Development', 'React Native, Flutter, Swift')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Technical node component profile item card tracking user lifecycle pipeline automation expertise layout matrix -->
                 <div class="grid-card" data-skill="DevOps & CI/CD" data-desc="CI/CD, Jenkins, GitHub Actions">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-code-branch"></i>
+                        <i class="fa-solid fa-code-branch"></i> <!-- Programmatic code repository branching track system vector graphic shape icon marker -->
                         <div class="grid-card-content">
-                            <h3>DevOps</h3>
-                            <p>CI/CD, Jenkins, GitHub Actions</p>
+                            <h3>DevOps</h3> <!-- Skill engineering category header line text locator tag -->
+                            <p>CI/CD, Jenkins, GitHub Actions</p> <!-- Listed technical frameworks names entries data fields -->
                         </div>
                     </div>
+                    <!-- Action button wrapper deck managing automated context inquiries triggers options lines -->
                     <div class="card-actions">
+                        <!-- Action trigger passing dynamic content values straight into mail handler core function routines -->
                         <button class="btn-message" onclick="sendSkillMessage('DevOps & CI/CD', 'CI/CD, Jenkins, GitHub Actions')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Programmatic syntax header component simulation displaying simulated text code lines layouts -->
             <div class="component-code-header">
+                <!-- Simulated javascript export block statement sequence rendering data parameters code layout -->
                 <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
+                <!-- Simulated backend terminal commentary documentation statement layout description text string -->
                 <p class="comment">// What I offer as a digital architect — click "Send Message" to get a quote</p>
             </div>
 
+            <!-- Responsive layout column matrix positioning operational assignment service listings cards packages -->
             <div class="grid-container" id="services">
-                <!-- Services cards content -->
+                
+                <!-- Operational task option card indexing brand visual creation offerings details fields -->
                 <div class="grid-card" data-service="Logo Design" data-desc="Custom brand identities that stand out">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-pen-nib"></i>
+                        <i class="fa-solid fa-pen-nib"></i> <!-- Vector illustration ink pen nib asset icon graphic character symbol -->
                         <div class="grid-card-content">
-                            <h3>Logo Design</h3>
-                            <p>Custom brand identities that stand out</p>
+                            <h3>Logo Design</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Custom brand identities that stand out</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Logo Design', 'Custom brand identities that stand out')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing application programming contract details fields -->
                 <div class="grid-card" data-service="Web Development" data-desc="Full-stack modern web applications">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-laptop-code"></i>
+                        <i class="fa-solid fa-laptop-code"></i> <!-- Electronic personal computer computing code engineering vector graphic symbol asset -->
                         <div class="grid-card-content">
-                            <h3>Web Development</h3>
-                            <p>Full-stack modern web applications</p>
+                            <h3>Web Development</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Full-stack modern web applications</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Web Development', 'Full-stack modern web applications')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing interface asset layouts planning details fields -->
                 <div class="grid-card" data-service="UI/UX Design" data-desc="Beautiful, intuitive interfaces">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-palette"></i>
+                        <i class="fa-solid fa-palette"></i> <!-- Fine artist blending paint palette creation vector graphic shape icon shortcut -->
                         <div class="grid-card-content">
-                            <h3>UI/UX Design</h3>
-                            <p>Beautiful, intuitive interfaces</p>
+                            <h3>UI/UX Design</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Beautiful, intuitive interfaces</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('UI/UX Design', 'Beautiful, intuitive interfaces')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing systems strategy advising details fields -->
                 <div class="grid-card" data-service="Tech Consulting" data-desc="Expert architecture & strategy advice">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-chart-line"></i>
+                        <i class="fa-solid fa-chart-line"></i> <!-- Analytical tracking data projection growth chart arrow graphic vector tool -->
                         <div class="grid-card-content">
-                            <h3>Tech Consulting</h3>
-                            <p>Expert architecture & strategy advice</p>
+                            <h3>Tech Consulting</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Expert architecture & strategy advice</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Tech Consulting', 'Expert architecture & strategy advice')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing software acceleration engineering details fields -->
                 <div class="grid-card" data-service="Performance Optimization" data-desc="Speed optimization & scaling">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-rocket"></i>
+                        <i class="fa-solid fa-rocket"></i> <!-- Atmospheric rocket ship propulsion acceleration velocity vector shape icon element -->
                         <div class="grid-card-content">
-                            <h3>Performance</h3>
-                            <p>Speed optimization & scaling</p>
+                            <h3>Performance</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Speed optimization & scaling</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Performance Optimization', 'Speed optimization & scaling')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing security threat inspection contract details fields -->
                 <div class="grid-card" data-service="Security Audits" data-desc="Vulnerability assessment & fixes">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-shield-alt"></i>
+                        <i class="fa-solid fa-shield-alt"></i> <!-- Safe security armor protection shield outline graphics vector shape shortcut -->
                         <div class="grid-card-content">
-                            <h3>Security</h3>
-                            <p>Vulnerability assessment & fixes</p>
+                            <h3>Security</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Vulnerability assessment & fixes</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Security Audits', 'Vulnerability assessment & fixes')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing long-term codebase support updates details fields -->
                 <div class="grid-card" data-service="Maintenance & Support" data-desc="Ongoing support & updates">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-headset"></i>
+                        <i class="fa-solid fa-headset"></i> <!-- Live communication customer support telephony headset vector graphic shape icon marker -->
                         <div class="grid-card-content">
-                            <h3>Maintenance</h3>
-                            <p>Ongoing support & updates</p>
+                            <h3>Maintenance</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>Ongoing support & updates</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Maintenance & Support', 'Ongoing support & updates')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
+
+                <!-- Operational task option card indexing global multi-cloud transition operations details fields -->
                 <div class="grid-card" data-service="Cloud Migration" data-desc="AWS, Azure, GCP expertise">
+                    <!-- Structural data layout tracking row positioning asset graphics alongside descriptions text clusters -->
                     <div class="card-row">
-                        <i class="fa-solid fa-cloud-upload-alt"></i>
+                        <i class="fa-solid fa-cloud-upload-alt"></i> <!-- Online cloud system file upload data transaction vector shape icon element -->
                         <div class="grid-card-content">
-                            <h3>Cloud Migration</h3>
-                            <p>AWS, Azure, GCP expertise</p>
+                            <h3>Cloud Migration</h3> <!-- Service core assignment heading line string character locator -->
+                            <p>AWS, Azure, GCP expertise</p> <!-- Brief capability parameter description statement copy block -->
                         </div>
                     </div>
+                    <!-- Action trigger deck routing message generation variables straight to browser email processes -->
                     <div class="card-actions">
+                        <!-- Action call activation toggle launching contextual message string generators scripts operations -->
                         <button class="btn-message" onclick="sendServiceMessage('Cloud Migration', 'AWS, Azure, GCP expertise')"><i class="fas fa-envelope"></i> Send Message</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Programmatic syntax header component simulation displaying simulated text code lines layouts -->
             <div class="component-code-header">
+                <!-- Simulated javascript item extraction layout module parsing sales inventory datasets arrays -->
                 <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
+                <!-- Simulated backend terminal commentary documentation statement layout description text string -->
                 <p class="comment">// Official merchandise — exclusive designs available now</p>
             </div>
 
+            <!-- Responsive marketplace product card showcase matrix managing retail design listing data cards -->
             <div class="products-container" id="store">
-                <!-- Products content -->
+                
+                <!-- Retail entry component item card managing collectible novelty button inventory stats -->
                 <div class="product-card">
+                    <!-- Horizontal card row formatting asset images identifiers next to product specifications labels -->
                     <div class="card-row">
-                        <i class="fa-solid fa-circle"></i>
+                        <i class="fa-solid fa-circle"></i> <!-- Geometric circle button simulation graphic vector icon shape asset node -->
                         <div class="product-info">
-                            <h3>Static Snow Button</h3>
-                            <p>2" metallic button</p>
-                            <div class="product-price">$3.24</div>
+                            <h3>Static Snow Button</h3> <!-- Commercial merchandise inventory item listing title text string -->
+                            <p>2" metallic button</p> <!-- Item engineering fabrication dimensions product data record line -->
+                            <div class="product-price">$3.24</div> <!-- Retail sales value pricing string character layout tag -->
                         </div>
                     </div>
+                    <!-- Action controller deck processing outbound ecommerce client transaction requests paths -->
                     <div class="card-actions">
+                        <!-- External landing trigger link shortcut navigating checkout processing panels systems -->
                         <a href="#" class="btn-secondary">Shop →</a>
                     </div>
                 </div>
+
+                <!-- Retail entry component item card managing designer fabric shirt apparel inventory stats -->
                 <div class="product-card">
+                    <!-- Horizontal card row formatting asset images identifiers next to product specifications labels -->
                     <div class="card-row">
-                        <i class="fa-solid fa-tshirt"></i>
+                        <i class="fa-solid fa-tshirt"></i> <!-- Fabric casual apparel short sleeve t-shirt outline vector graphic symbol asset -->
                         <div class="product-info">
-                            <h3>Pattern T-Shirt</h3>
-                            <p>Premium cotton</p>
-                            <div class="product-price">$21.04</div>
+                            <h3>Pattern T-Shirt</h3> <!-- Commercial merchandise inventory item listing title text string -->
+                            <p>Premium cotton</p> <!-- Item engineering fabrication dimensions product data record line -->
+                            <div class="product-price">$21.04</div> <!-- Retail sales value pricing string character layout tag -->
                         </div>
                     </div>
+                    <!-- Action controller deck processing outbound ecommerce client transaction requests paths -->
                     <div class="card-actions">
+                        <!-- External landing trigger link shortcut navigating checkout processing panels systems -->
                         <a href="#" class="btn-secondary">Shop →</a>
                     </div>
                 </div>
+
+                <!-- Retail entry component item card managing minimalist premium shirt apparel inventory stats -->
                 <div class="product-card">
+                    <!-- Horizontal card row formatting asset images identifiers next to product specifications labels -->
                     <div class="card-row">
-                        <i class="fa-solid fa-tshirt"></i>
+                        <i class="fa-solid fa-tshirt"></i> <!-- Fabric casual apparel short sleeve t-shirt outline vector graphic symbol asset -->
                         <div class="product-info">
-                            <h3>All White T-Shirt</h3>
-                            <p>Minimalist design</p>
-                            <div class="product-price">$21.04</div>
+                            <h3>All White T-Shirt</h3> <!-- Commercial merchandise inventory item listing title text string -->
+                            <p>Minimalist design</p> <!-- Item engineering fabrication dimensions product data record line -->
+                            <div class="product-price">$21.04</div> <!-- Retail sales value pricing string character layout tag -->
                         </div>
                     </div>
+                    <!-- Action controller deck processing outbound ecommerce client transaction requests paths -->
                     <div class="card-actions">
+                        <!-- External landing trigger link shortcut navigating checkout processing panels systems -->
                         <a href="#" class="btn-secondary">Shop →</a>
                     </div>
                 </div>
+
+                <!-- Retail entry component item card managing custom home furnishings inventory stats -->
                 <div class="product-card">
+                    <!-- Horizontal card row formatting asset images identifiers next to product specifications labels -->
                     <div class="card-row">
-                        <i class="fa-solid fa-bed"></i>
+                        <i class="fa-solid fa-bed"></i> <!-- Domestic comfort bed furniture interior design vector graphic shape icon shortcut -->
                         <div class="product-info">
-                            <h3>Black Round Pillow</h3>
-                            <p>Comfortable throw pillow</p>
-                            <div class="product-price">$40.50</div>
+                            <h3>Black Round Pillow</h3> <!-- Commercial merchandise inventory item listing title text string -->
+                            <p>Comfortable throw pillow</p> <!-- Item engineering fabrication dimensions product data record line -->
+                            <div class="product-price">$40.50</div> <!-- Retail sales value pricing string character layout tag -->
                         </div>
                     </div>
+                    <!-- Action controller deck processing outbound ecommerce client transaction requests paths -->
                     <div class="card-actions">
+                        <!-- External landing trigger link shortcut navigating checkout processing panels systems -->
                         <a href="#" class="btn-secondary">Shop →</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Programmatic syntax header component simulation displaying simulated text code lines layouts -->
             <div class="component-code-header">
+                <!-- Simulated corporate lookup variable call execution mapping business profile arrays tracks -->
                 <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
+                <!-- Simulated backend terminal commentary documentation statement layout description text string -->
                 <p class="comment">// Partners I've had the privilege to work with</p>
             </div>
 
+            <!-- Responsive grid layout container displaying corporate brand partnership index cards blocks -->
             <div class="clients-container" id="clients">
+                <!-- Business alignment verification module panel tracking verified enterprise engagement records -->
                 <div class="client-card">
+                    <!-- Horizontal alignment track clustering external network images assets next to partner profiles copy -->
                     <div class="card-row">
+                        <!-- Injected high-resolution company branding logotype illustration image asset file source -->
                         <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
                         <div class="client-info">
-                            <h3>Vineyard Church of Augusta</h3>
-                            <p>Community-focused church organization</p>
+                            <h3>Vineyard Church of Augusta</h3> <!-- Corporate alliance account corporate identity title label line -->
+                            <p>Community-focused church organization</p> <!-- Short operational summary characterizing target corporate client focus profile -->
                         </div>
                     </div>
+                    <!-- External directory link dispatch deck linking straight to corporate production servers -->
                     <div class="card-actions">
+                        <!-- Hyperlink routing channel opening verified partner production website anchors portals-->
                         <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Programmatic syntax header component simulation displaying simulated text code lines layouts -->
             <div class="component-code-header">
+                <!-- Simulated javascript export array initialization parsing publication indexes channels feeds -->
                 <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
+                <!-- Simulated backend terminal commentary documentation statement layout description text string -->
                 <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
             </div>
 
+            <!-- Responsive article catalog grid matrix tracking text tutorials listings feeds item cards -->
             <div class="blog-container" id="blog">
+                
+                <!-- Editorial article narrative node card tracking web engineering typography fluids scales papers -->
                 <div class="blog-card">
+                    <!-- Horizontal row asset grouping linking vector imagery alongside content columns tracks data -->
                     <div class="card-row">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-mobile-alt"></i> <!-- Portable hardware communications chassis outline vector graphic symbol indicator -->
                         <div class="blog-content">
+                            <!-- Header metadata matrix line splitting article headers text smoothly away from timestamps -->
                             <div class="blog-title-row">
-                                <h3>Fluid Responsive System</h3>
-                                <span class="blog-date">Jun 9, 2024</span>
+                                <h3>Fluid Responsive System</h3> <!-- Editorial newsletter presentation article title text header line -->
+                                <span class="blog-date">Jun 9, 2024</span> <!-- Structural chronological record documenting article publication date calendar maps -->
                             </div>
-                            <p>Using clamp() for true fluidity on all screens — no breakpoints needed</p>
+                            <p>Using clamp() for true fluidity on all screens — no breakpoints needed</p> <!-- Short informational overview abstract summarizing tutorial lesson parameters -->
                         </div>
                     </div>
+                    <!-- Operational navigation panel processing outbound article file payload requests pathways -->
                     <div class="card-actions">
+                        <!-- Anchor directory hypermedia link element fetching article complete reading documents text files -->
                         <a href="#" class="btn-secondary">Read →</a>
                     </div>
                 </div>
+
+                <!-- Editorial article narrative node card tracking minimalist user interaction design whitepapers -->
                 <div class="blog-card">
+                    <!-- Horizontal row asset grouping linking vector imagery alongside content columns tracks data -->
                     <div class="card-row">
-                        <i class="fas fa-font"></i>
+                        <i class="fas fa-font"></i> <!-- Typographic alphabet character lettering font vector graphic shape tool icon -->
                         <div class="blog-content">
+                            <!-- Header metadata matrix line splitting article headers text smoothly away from timestamps -->
                             <div class="blog-title-row">
-                                <h3>The Power of Text-Only Design</h3>
-                                <span class="blog-date">Jun 5, 2024</span>
+                                <h3>The Power of Text-Only Design</h3> <!-- Editorial newsletter presentation article title text header line -->
+                                <span class="blog-date">Jun 5, 2024</span> <!-- Structural chronological record documenting article publication date calendar maps -->
                             </div>
-                            <p>Why sometimes less is more in interface design</p>
+                            <p>Why sometimes less is more in interface design</p> <!-- Short informational overview abstract summarizing tutorial lesson parameters -->
                         </div>
                     </div>
+                    <!-- Operational navigation panel processing outbound article file payload requests pathways -->
                     <div class="card-actions">
+                        <!-- Anchor directory hypermedia link element fetching article complete reading documents text files -->
                         <a href="#" class="btn-secondary">Read →</a>
                     </div>
                 </div>
+
+                <!-- Editorial article narrative node card detailing universal software discovery utility builds documentation -->
                 <div class="blog-card">
+                    <!-- Horizontal row asset grouping linking vector imagery alongside content columns tracks data -->
                     <div class="card-row">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-search"></i> <!-- Optical search magnifying lens validation check vector graphic shape icon symbol -->
                         <div class="blog-content">
+                            <!-- Header metadata matrix line splitting article headers text smoothly away from timestamps -->
                             <div class="blog-title-row">
-                                <h3>V3 QuickFind</h3>
-                                <span class="blog-date">May 28, 2024</span>
+                                <h3>V3 QuickFind</h3> <!-- Editorial newsletter presentation article title text header line -->
+                                <span class="blog-date">May 28, 2024</span> <!-- Structural chronological record documenting article publication date calendar maps -->
                             </div>
-                            <p>Universal search that works on every device</p>
+                            <p>Universal search that works on every device</p> <!-- Short informational overview abstract summarizing tutorial lesson parameters -->
                         </div>
                     </div>
+                    <!-- Operational navigation panel processing outbound article file payload requests pathways -->
                     <div class="card-actions">
+                        <!-- Anchor directory hypermedia link element fetching article complete reading documents text files -->
                         <a href="#" class="btn-secondary">Read →</a>
                     </div>
                 </div>
             </div>
 
             <!-- DISCLAIMER / PRIVACY SECTION -->
+            <!-- Transparent operational information and telemetry disclosure statement container board section block -->
             <div class="disclaimer-section">
+                <!-- Spatial width constraint center-alignment container limiting text lines widths layout models -->
                 <div class="disclaimer-container">
+                    <!-- Notice board section identity header block clustering titles text with privacy graphics keys -->
                     <h2>
-                        <i class="fas fa-lock"></i> 
-                        Privacy & Transparency
+                        <i class="fas fa-lock"></i> <!-- Solid security system padlock outline vector graphic shape icon character indicator -->
+                        Privacy & Transparency <!-- Section header label typography string text component layout -->
                     </h2>
+                    <!-- Zero tracking privacy policy clarification copy statement block paragraph asset line -->
                     <p>
                         <i class="fas fa-eye"></i> I respect your privacy. This website does not track you, does not use cookies, and does not collect any personal data. 
                         No analytics. No third-party scripts. Your email goes directly to me when you choose to reach out.
                     </p>
+                    <!-- Injected code transparency philosophy instructional documentation block paragraph copy track -->
                     <p>
                         <i class="fas fa-code"></i> Every line of code in this website is intentionally commented — because I believe in transparency. 
                         You can read exactly how everything works, from the fluid responsive system to the accessibility toggles. 
                         The code is public, documented, and designed to be understood by everyone, not just developers.
                     </p>
+                    <!-- Interactive validation description explaining simulated comment markup blocks patterns found inside text files streams -->
                     <p>
                         <i class="fas fa-comment-dots"></i> That's why you'll find comments like <span class="comment">// Digital Architect · Full-Stack Developer</span> 
                         and <span class="comment">// Technologies I work with daily</span> throughout this site. 
                         I take the time to explain what every section does because clarity builds trust.
                     </p>
+                    <!-- Visual authorization badge signaling zero tracking operations compliance parameters instantly to layout viewers -->
                     <div class="privacy-badge">
                         <i class="fas fa-shield-alt"></i> No tracking · No cookies · Fully transparent code
                     </div>
@@ -1359,209 +1625,269 @@
 </div>
 
 <!-- SOCIAL MEDIA MODAL -->
+<!-- Floating overlay shield veil component blocking interaction loops with background pages windows layers -->
 <div class="modal-overlay" id="socialModal">
+    <!-- Centered dialog box interaction menu structural card framework module -->
     <div class="modal-dialog">
+        <!-- Header grouping segment organizing popup title descriptors along exit action triggers elements links -->
         <div class="modal-header">
-            <h2><i class="fas fa-share-alt"></i> Connect With Me</h2>
+            <h2><i class="fas fa-share-alt"></i> Connect With Me</h2> <!-- Dialog directional headline header text item layout slot -->
+            <!-- Direct interface window termination button execution trigger command element -->
             <button class="modal-close" id="closeSocialModalBtn" aria-label="Close">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times"></i> <!-- Cross cancellation multiplication math vector graphic shape symbol indicator node -->
             </button>
         </div>
+        <!-- Column tracking matrix framework positioning individual social connection hub anchor shortcut panels channels -->
         <div class="social-grid">
+            <!-- Social directory networking hypermedia channel anchor shortcut navigating external GitHub profiles tracks -->
             <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
+                <i class="fab fa-github"></i> <!-- GitHub developer profile system brand visual identity vector icon node -->
+                <span>GitHub</span> <!-- Social identity network title descriptor string label -->
             </a>
+            <!-- Social directory networking hypermedia channel anchor shortcut navigating external LinkedIn profiles tracks -->
             <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-linkedin-in"></i>
-                <span>LinkedIn</span>
+                <i class="fab fa-linkedin-in"></i> <!-- LinkedIn corporate communication channel branding silhouette vector icon marker -->
+                <span>LinkedIn</span> <!-- Social identity network title descriptor string label -->
             </a>
+            <!-- Social directory networking hypermedia channel anchor shortcut navigating external Twitter profiles tracks -->
             <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-twitter"></i>
-                <span>Twitter/X</span>
+                <i class="fab fa-twitter"></i> <!-- Twitter X communication media service brand vector graphic silhouette asset -->
+                <span>Twitter/X</span> <!-- Social identity network title descriptor string label -->
             </a>
+            <!-- Social directory networking hypermedia channel anchor shortcut navigating external Instagram profiles tracks -->
             <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-instagram"></i>
-                <span>Instagram</span>
+                <i class="fab fa-instagram"></i> <!-- Instagram photography social channel brand geometric visual vector shape asset -->
+                <span>Instagram</span> <!-- Social identity network title descriptor string label -->
             </a>
+            <!-- Social directory networking hypermedia channel anchor shortcut navigating external Dev.to developer forums tracks -->
             <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-dev"></i>
-                <span>Dev.to</span>
+                <i class="fab fa-dev"></i> <!-- Dev to developer ecosystem platform corporate brand vector graphic typography icon layout -->
+                <span>Dev.to</span> <!-- Social identity network title descriptor string label -->
             </a>
+            <!-- Social directory networking hypermedia channel anchor shortcut navigating external Medium reading channels tracks -->
             <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-medium"></i>
-                <span>Medium</span>
+                <i class="fab fa-medium"></i> <!-- Medium publishing platform brand logotype vector character icon shape shortcut -->
+                <span>Medium</span> <!-- Social identity network title descriptor string label -->
             </a>
         </div>
+        <!-- Footnote context notification line processing structural dialog box layout ends records labels -->
         <div class="modal-footer">
-            <p>Follow me for coding tips, projects, and tech insights</p>
+            <p>Follow me for coding tips, projects, and tech insights</p> <!-- Support summary direction instruction text data line -->
         </div>
     </div>
 </div>
 
 <!-- ACCESSIBILITY MODAL -->
+<!-- Floating overlay shield veil component blocking interaction loops with background pages windows layers -->
 <div class="modal-overlay" id="accessibilityModal">
+    <!-- Centered dialog box interaction menu structural card framework module -->
     <div class="modal-dialog">
+        <!-- Header grouping segment organizing popup title descriptors along exit action triggers elements links -->
         <div class="modal-header">
-            <h2><i class="fas fa-universal-access"></i> Accessibility Settings</h2>
+            <h2><i class="fas fa-universal-access"></i> Accessibility Settings</h2> <!-- Dialog directional headline header text item layout slot -->
+            <!-- Direct interface window termination button execution trigger command element -->
             <button class="modal-close" id="closeAccessibilityModalBtn" aria-label="Close">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times"></i> <!-- Cross cancellation multiplication math vector graphic shape symbol indicator node -->
             </button>
         </div>
         
+        <!-- Interactive option tier grouping system column ordering visual layout customization settings tools parameters -->
         <div class="accessibility-section">
-            <h3><i class="fas fa-eye"></i> Visual Accommodations</h3>
+            <h3><i class="fas fa-eye"></i> Visual Accommodations</h3> <!-- Category group column identification line subtitle layout tracking -->
             
+            <!-- Preference interface choice module panel housing high contrast activation toggles options -->
             <div class="setting-card">
+                <!-- Text tracking description columns detailing preference adjustment scopes features -->
                 <div class="setting-info">
-                    <label for="highContrastToggle">High Contrast Mode</label>
-                    <p>Increases color contrast for better readability</p>
+                    <label for="highContrastToggle">High Contrast Mode</label> <!-- Interaction component target identification label title string -->
+                    <p>Increases color contrast for better readability</p> <!-- Explanatory function documentation detailing utility tracking changes maps -->
                 </div>
+                <!-- Custom checkbox capsule track wrapper framework building slider interfaces nodes fields -->
                 <label class="toggle-switch">
-                    <input type="checkbox" id="highContrastToggle">
-                    <span class="toggle-slider"></span>
+                    <input type="checkbox" id="highContrastToggle"> <!-- Structural hidden HTML native selection checkbox state tracker input -->
+                    <span class="toggle-slider"></span> <!-- Programmatic design canvas overlay layer drawing slider bubble skins animations -->
                 </label>
             </div>
             
+            <!-- Preference interface choice module panel housing typography sizing modification switches -->
             <div class="setting-card">
+                <!-- Text tracking description columns detailing preference adjustment scopes features -->
                 <div class="setting-info">
-                    <label for="largeTextToggle">Large Text Mode</label>
-                    <p>Increases all text sizes by approximately 25%</p>
+                    <label for="largeTextToggle">Large Text Mode</label> <!-- Interaction component target identification label title string -->
+                    <p>Increases all text sizes by approximately 25%</p> <!-- Explanatory function documentation detailing utility tracking changes maps -->
                 </div>
+                <!-- Custom checkbox capsule track wrapper framework building slider interfaces nodes fields -->
                 <label class="toggle-switch">
-                    <input type="checkbox" id="largeTextToggle">
-                    <span class="toggle-slider"></span>
+                    <input type="checkbox" id="largeTextToggle"> <!-- Structural hidden HTML native selection checkbox state tracker input -->
+                    <span class="toggle-slider"></span> <!-- Programmatic design canvas overlay layer drawing slider bubble skins animations -->
                 </label>
             </div>
         </div>
         
+        <!-- Interactive option tier grouping system column ordering reading process optimization configurations tools controls -->
         <div class="accessibility-section">
-            <h3><i class="fas fa-font"></i> Reading Accommodations</h3>
+            <h3><i class="fas fa-font"></i> Reading Accommodations</h3> <!-- Category group column identification line subtitle layout tracking -->
             
+            <!-- Preference interface choice module panel housing open dyslexic font optimization hooks toggles -->
             <div class="setting-card">
+                <!-- Text tracking description columns detailing preference adjustment scopes features -->
                 <div class="setting-info">
-                    <label for="dyslexicFontToggle">Dyslexia-Friendly Font</label>
-                    <p>Uses OpenDyslexic font for easier reading</p>
+                    <label for="dyslexicFontToggle">Dyslexia-Friendly Font</label> <!-- Interaction component target identification label title string -->
+                    <p>Uses OpenDyslexic font for easier reading</p> <!-- Explanatory function documentation detailing utility tracking changes maps -->
                 </div>
+                <!-- Custom checkbox capsule track wrapper framework building slider interfaces nodes fields -->
                 <label class="toggle-switch">
-                    <input type="checkbox" id="dyslexicFontToggle">
-                    <span class="toggle-slider"></span>
+                    <input type="checkbox" id="dyslexicFontToggle"> <!-- Structural hidden HTML native selection checkbox state tracker input -->
+                    <span class="toggle-slider"></span> <!-- Programmatic design canvas overlay layer drawing slider bubble skins animations -->
                 </label>
             </div>
             
+            <!-- Preference interface choice module panel housing visual transition suppression controls switches components -->
             <div class="setting-card">
+                <!-- Text tracking description columns detailing preference adjustment scopes features -->
                 <div class="setting-info">
-                    <label for="reducedMotionToggle">Reduced Motion</label>
-                    <p>Disables animations and smooth scrolling</p>
+                    <label for="reducedMotionToggle">Reduced Motion</label> <!-- Interaction component target identification label title string -->
+                    <p>Disables animations and smooth scrolling</p> <!-- Explanatory function documentation detailing utility tracking changes maps -->
                 </div>
+                <!-- Custom checkbox capsule track wrapper framework building slider interfaces nodes fields -->
                 <label class="toggle-switch">
-                    <input type="checkbox" id="reducedMotionToggle">
-                    <span class="toggle-slider"></span>
+                    <input type="checkbox" id="reducedMotionToggle"> <!-- Structural hidden HTML native selection checkbox state tracker input -->
+                    <span class="toggle-slider"></span> <!-- Programmatic design canvas overlay layer drawing slider bubble skins animations -->
                 </label>
             </div>
         </div>
         
+        <!-- Interactive option tier grouping system column ordering device peripheral navigation optimization tools components -->
         <div class="accessibility-section">
-            <h3><i class="fas fa-sliders-h"></i> Display Options</h3>
+            <h3><i class="fas fa-sliders-h"></i> Display Options</h3> <!-- Category group column identification line subtitle layout tracking -->
             
+            <!-- Preference interface choice module panel housing keyboard navigation indicator outlines upgrades settings -->
             <div class="setting-card">
+                <!-- Text tracking description columns detailing preference adjustment scopes features -->
                 <div class="setting-info">
-                    <label for="focusOutlineToggle">Enhanced Focus Indicators</label>
-                    <p>Adds prominent outlines for keyboard navigation</p>
+                    <label for="focusOutlineToggle">Enhanced Focus Indicators</label> <!-- Interaction component target identification label title string -->
+                    <p>Adds prominent outlines for keyboard navigation</p> <!-- Explanatory function documentation detailing utility tracking changes maps -->
                 </div>
+                <!-- Custom checkbox capsule track wrapper framework building slider interfaces nodes fields -->
                 <label class="toggle-switch">
-                    <input type="checkbox" id="focusOutlineToggle">
-                    <span class="toggle-slider"></span>
+                    <input type="checkbox" id="focusOutlineToggle"> <!-- Structural hidden HTML native selection checkbox state tracker input -->
+                    <span class="toggle-slider"></span> <!-- Programmatic design canvas overlay layer drawing slider bubble skins animations -->
                 </label>
             </div>
         </div>
         
+        <!-- Global master reset trigger clearing customized user browser memory structures inputs values -->
         <button class="reset-btn" id="resetAccessibilityBtn">
-            <i class="fas fa-undo-alt"></i> Reset All Settings
+            <i class="fas fa-undo-alt"></i> Reset All Settings <!-- Interface backward rotation restore visual asset graphic icon alongside command label -->
         </button>
         
+        <!-- Footnote context notification line processing structural dialog box layout ends records labels -->
         <div class="modal-footer">
-            <p>Settings are saved to your browser and persist across visits</p>
+            <p>Settings are saved to your browser and persist across visits</p> <!-- State serialization memory verification assurance instruction message text -->
         </div>
     </div>
 </div>
 
+<!-- Opens the client programmatic scripting execution sequence container block processing interface instructions -->
 <script>
+    // Global variable configuration string holding user personal encryption modified secure communication routing target address
     const CONTACT_EMAIL = 'jvhn0gl3@proton.me';
     
+    // Automation helper function assembling and launching context-specific email queries regarding application technical skills
     function sendSkillMessage(skillName, skillDetails) {
+        // Build customized inquiry title string variable utilizing argument strings passed via item interaction click calls
         const subject = `Inquiry about: ${skillName}`;
+        // Multi-line template generation routine packing raw inquiry context arrays together with clean user inputs placeholder lines
         const body = `Hello V3,%0D%0A%0D%0AI'm interested in your ${skillName} service.%0D%0A%0D%0ASkill Details: ${skillDetails}%0D%0A%0D%0A%0D%0A--- Please fill out the following ---%0D%0A%0D%0AProject Description:%0D%0A%0D%0ATimeline:%0D%0A%0D%0ABudget Range:%0D%0A%0D%0AAdditional Notes:%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+        // Fires browser window allocation operations driving direct mail client app handshakes passing completed instruction payloads
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
     
+    // Automation helper function assembling and launching formal project estimation quote request emails routing assignment variables
     function sendServiceMessage(serviceName, serviceDetails) {
+        // Builds customized business quotation subject headers labels incorporating structural interaction parameters values
         const subject = `Quote Request: ${serviceName}`;
+        // Multi-line project proposal structural prompt injection skeleton tracking commercial service deployment metrics requests lines
         const body = `Hello V3,%0D%0A%0D%0AI'd like to request a quote for your ${serviceName} service.%0D%0A%0D%0AService Details: ${serviceDetails}%0D%0A%0D%0A%0D%0A--- Please fill out the following ---%0D%0A%0D%0AProject Description:%0D%0A%0D%0ATimeline:%0D%0A%0D%0ABudget Range:%0D%0A%0D%0AAdditional Requirements:%0D%0A%0D%0A%0D%0AThank you!%0D%0A%0D%0ABest regards`;
+        // Dispatches assembled commercial request strings straight to native system email processors engines safely
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
     
-    // Modal functionality
+    // Immediately Invoked Function Expression (IIFE) encapsulating dialogue window visual activation hooks tracking states actions
     (function() {
-        const socialModal = document.getElementById('socialModal');
-        const accessibilityModal = document.getElementById('accessibilityModal');
-        const socialOpenBtn = document.getElementById('socialNavBtn');
-        const accessibilityOpenBtn = document.getElementById('accessibilityNavBtn');
-        const socialCloseBtn = document.getElementById('closeSocialModalBtn');
-        const accessibilityCloseBtn = document.getElementById('closeAccessibilityModalBtn');
+        // Collect target elements nodes pointers from page DOM trees to attach interactive javascript logic controls handles
+        const socialModal = document.getElementById('socialModal'); /* Fetch user connectivity network hub dialog screen overlay tracking container */
+        const accessibilityModal = document.getElementById('accessibilityModal'); /* Fetch user preference adjustment cockpit system dialog structure card */
+        const socialOpenBtn = document.getElementById('socialNavBtn'); /* Grab sidebar contact channel access menu link click target node trigger button */
+        const accessibilityOpenBtn = document.getElementById('accessibilityNavBtn'); /* Grab user preferences console launch interface shortcut menu option key pointer */
+        const socialCloseBtn = document.getElementById('closeSocialModalBtn'); /* Grab exit cancellation cross toggle trigger button mapping social screens templates */
+        const accessibilityCloseBtn = document.getElementById('closeAccessibilityModalBtn'); /* Grab exit cancellation cross toggle trigger button mapping options cards models */
         
+        // Base state modification routine visibility rendering targeted popup panels active instantly on execution
         function openModal(modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            modal.classList.add('active'); /* Injects design visibility framework class hooks to initiate css scaling fade routines animations */
+            document.body.style.overflow = 'hidden'; /* Disables page background content layout scroll tracks to keep user focus locked inside popups spaces */
         }
         
+        // Base state modification routine tearing down active popup visibility filters instantly to return to baseline app flows
         function closeModal(modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+            modal.classList.remove('active'); /* Tears down design visibility framework class hooks to fire exit closure transitions paths */
+            document.body.style.overflow = ''; /* RESTORES standard vertical scroll tracking functionality back across primary page elements lines safely */
         }
         
+        // Wire up interaction trigger listener events mapping launch links shortcuts over to visibility activation drivers routines
         socialOpenBtn.addEventListener('click', () => openModal(socialModal));
         accessibilityOpenBtn.addEventListener('click', () => openModal(accessibilityModal));
         
+        // Wire up input termination listener events connecting close buttons directly onto closure tear down execution sequences
         socialCloseBtn.addEventListener('click', () => closeModal(socialModal));
         accessibilityCloseBtn.addEventListener('click', () => closeModal(accessibilityModal));
         
+        // Multi-element structural loop processing background click intersections to let users exit menus by clicking outside modal boundaries
         [socialModal, accessibilityModal].forEach(modal => {
             modal.addEventListener('click', (e) => {
+                // Check if user click targets match raw background veil masks properties directly instead of inside cards spaces lines
                 if (e.target === modal) {
-                    closeModal(modal);
+                    closeModal(modal); /* Fires interface termination routing safely to clear screen layouts automatically */
                 }
             });
         });
         
+        // Hardware keyboard keystroke input observer loop processing emergency exit safety operations sequences
         document.addEventListener('keydown', (e) => {
+            // Check if user keyboard operations event codes match system physical Escape keys indicators signals
             if (e.key === 'Escape') {
-                if (socialModal.classList.contains('active')) closeModal(socialModal);
-                if (accessibilityModal.classList.contains('active')) closeModal(accessibilityModal);
+                if (socialModal.classList.contains('active')) closeModal(socialModal); /* Close social panels instantly if active during keydown events */
+                if (accessibilityModal.classList.contains('active')) closeModal(accessibilityModal); /* Wipe settings dialog tracks instantly if live on screens channels */
             }
         });
-    })();
+    })(); // Execute dialogue system encapsulation function package modules immediately
     
-    // Accessibility settings
+    // Immediately Invoked Function Expression (IIFE) isolation module managing user preference storage state serialization routines
     (function() {
+        // Memory extraction routine querying browser persistent memory stores to map custom layout settings upon returning visits
         function loadSettings() {
+            // Query browser database records checking local text string markers parameters states definitions values
             const highContrast = localStorage.getItem('highContrast') === 'true';
             const largeText = localStorage.getItem('largeText') === 'true';
             const dyslexicFont = localStorage.getItem('dyslexicFont') === 'true';
             const reducedMotion = localStorage.getItem('reducedMotion') === 'true';
             const focusOutline = localStorage.getItem('focusOutline') === 'true';
             
+            // Sync structural HTML options interface switch checkboxes checked states to match incoming memory boolean states
             document.getElementById('highContrastToggle').checked = highContrast;
             document.getElementById('largeTextToggle').checked = largeText;
             document.getElementById('dyslexicFontToggle').checked = dyslexicFont;
             document.getElementById('reducedMotionToggle').checked = reducedMotion;
             document.getElementById('focusOutlineToggle').checked = focusOutline;
             
+            // Execute real-time theme structural adaptation style overwrites if saved settings states confirm active flags
             if (highContrast) document.body.classList.add('high-contrast');
             if (largeText) document.body.classList.add('large-text');
             if (dyslexicFont) document.body.classList.add('dyslexic-font');
             if (reducedMotion) document.body.classList.add('reduced-motion');
             if (focusOutline) {
+                // Dynamically compile and inject explicit CSS high contrast focus outline blocks directly into head document fields tracks
                 const style = document.createElement('style');
                 style.id = 'focusOutlineStyle';
                 style.textContent = `
@@ -1574,46 +1900,53 @@
                         outline-offset: 4px !important;
                     }
                 `;
-                document.head.appendChild(style);
+                document.head.appendChild(style); // Append focus stylesheet block layout definitions safely onto active heads paths references
             }
         }
         
+        // Serialization writing wrapper saving choice records straight into persistent browser database tables fields
         function saveSetting(setting, value, applyCallback) {
-            localStorage.setItem(setting, value);
-            applyCallback(value);
+            localStorage.setItem(setting, value); /* Update item data value strings keys tracks directly inside localStorage systems records */
+            applyCallback(value); /* Pass output parameter updates down inside operational execution loop tracks to trigger page style changes */
         }
         
+        // Input modification listener event tracking state updates shifts across high contrast interface toggles option switches
         document.getElementById('highContrastToggle').addEventListener('change', (e) => {
             saveSetting('highContrast', e.target.checked, (val) => {
-                if (val) document.body.classList.add('high-contrast');
-                else document.body.classList.remove('high-contrast');
+                if (val) document.body.classList.add('high-contrast'); /* Apply high-contrast CSS color override class definitions hooks immediately */
+                else document.body.classList.remove('high-contrast'); /* Wipe high-visibility color modifiers from page canvas tracks safely */
             });
         });
         
+        // Input modification listener event tracking state updates shifts across typography scaling interface toggles option switches
         document.getElementById('largeTextToggle').addEventListener('change', (e) => {
             saveSetting('largeText', e.target.checked, (val) => {
-                if (val) document.body.classList.add('large-text');
-                else document.body.classList.remove('large-text');
+                if (val) document.body.classList.add('large-text'); /* Inject dynamic text enlargement scales tokens into system root frameworks variables */
+                else document.body.classList.remove('large-text'); /* Strip text inflation rules instantly to reset standard reading layout footprints */
             });
         });
         
+        // Input modification listener event tracking state updates shifts across accessible reading typography switches components
         document.getElementById('dyslexicFontToggle').addEventListener('change', (e) => {
             saveSetting('dyslexicFont', e.target.checked, (val) => {
-                if (val) document.body.classList.add('dyslexic-font');
-                else document.body.classList.remove('dyslexic-font');
+                if (val) document.body.classList.add('dyslexic-font'); /* Override typography stacks instantly with OpenDyslexic structural readability rules layout shapes */
+                else document.body.classList.remove('dyslexic-font'); /* Restore core elegant sans-serif system branding font stack variables rules definitions */
             });
         });
         
+        // Input modification listener event tracking state updates shifts across transition animation suppression switches components
         document.getElementById('reducedMotionToggle').addEventListener('change', (e) => {
             saveSetting('reducedMotion', e.target.checked, (val) => {
-                if (val) document.body.classList.add('reduced-motion');
-                else document.body.classList.remove('reduced-motion');
+                if (val) document.body.classList.add('reduced-motion'); /* Halt visual rendering timelines animations and cancel smooth scrolling paths mechanics instantly */
+                else document.body.classList.remove('reduced-motion'); /* Permit standard transitional graphics behaviors curves to run naturally across layout changes */
             });
         });
         
+        // Input modification listener event tracking state updates shifts across keyboard access indicator switches components
         document.getElementById('focusOutlineToggle').addEventListener('change', (e) => {
             saveSetting('focusOutline', e.target.checked, (val) => {
                 const existingStyle = document.getElementById('focusOutlineStyle');
+                // Check if switch activation requests clash with existing styles sheets instances data configurations paths
                 if (val && !existingStyle) {
                     const style = document.createElement('style');
                     style.id = 'focusOutlineStyle';
@@ -1627,19 +1960,21 @@
                             outline-offset: 4px !important;
                         }
                     `;
-                    document.head.appendChild(style);
+                    document.head.appendChild(style); // Inject keyboard outline injection sheet safely onto live head targets maps arrays
                 } else if (!val && existingStyle) {
-                    existingStyle.remove();
+                    existingStyle.remove(); /* Instantly wipe explicit focus outline stylesheet blocks elements to revert to stock browser tracks */
                 }
             });
         });
         
+        // Destructive master preference wiping operation execution listener tracking user format clear queries click events
         document.getElementById('resetAccessibilityBtn').addEventListener('click', () => {
-            localStorage.clear();
-            document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'reduced-motion');
+            localStorage.clear(); /* Complete destruction purge clearing all saved user configuration keys metrics entries from browser cache database profiles tables */
+            document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'reduced-motion'); /* Sweep preference override configuration classes clear from body nodes arrays */
             const existingStyle = document.getElementById('focusOutlineStyle');
-            if (existingStyle) existingStyle.remove();
+            if (existingStyle) existingStyle.remove(); /* Purge dynamic accessibility tracking outline stylesheets components records from head layers */
             
+            // Set individual preference switch interface controls graphic switches checkboxes completely back to default off settings values
             document.getElementById('highContrastToggle').checked = false;
             document.getElementById('largeTextToggle').checked = false;
             document.getElementById('dyslexicFontToggle').checked = false;
@@ -1647,11 +1982,13 @@
             document.getElementById('focusOutlineToggle').checked = false;
         });
         
+        // Automatically fire database reading loops sequences immediately upon page runtime lifecycle initiation checkpoints
         loadSettings();
-    })();
+    })(); // Concludes persistent preference optimization logic initialization sequence scripts
     
-    // Navigation and animations
+    // Immediately Invoked Function Expression (IIFE) running structural page positioning calculations and lazy entrance animation observers
     (function(){
+        // Structured registry array grouping tracking layout properties, companion DOM card elements anchors, and code decoration headings
         const sections = [
             { id: 'hero', element: document.querySelector('.component-hero'), codeBlock: null },
             { id: 'about', element: document.querySelector('.component-about'), codeBlock: document.querySelector('.component-hero + .component-code-header') },
@@ -1662,18 +1999,21 @@
             { id: 'blog', element: document.querySelector('.blog-container'), codeBlock: document.querySelectorAll('.component-code-header')[6] }
         ];
         
+        // Normalization processing scan checking that all structural elements maps anchor points carry explicitly active HTML ID tag keys
         sections.forEach(section => {
             if (section.element && !section.element.id) {
-                section.element.id = section.id;
+                section.element.id = section.id; /* Map configuration names keys straight into hardware element identifier attributes fields fields */
             }
         });
         
+        // Flatten list records mapping both components cards nodes and structural coding header simulations side-by-side inside tracking indexes
         const scrollElements = [];
         sections.forEach(section => {
             if (section.element) {
                 scrollElements.push({ id: section.id, element: section.element });
             }
             if (section.codeBlock) {
+                // Parse dynamic NodeList arrays packages safely to extract nested data arrays structures elements links maps loops
                 if (section.codeBlock.length) {
                     section.codeBlock.forEach(block => {
                         scrollElements.push({ id: section.id, element: block });
@@ -1684,83 +2024,99 @@
             }
         });
         
+        // Collect list array links formatting sidebar dashboard indicator button links nodes parameters elements
         const navItems = document.querySelectorAll('.nav-item[data-section]');
         
+        // Structural theme style updater setting active configuration classes across selected category shortcuts button layouts links
         function setActive(id) {
             navItems.forEach(item => {
                 const sectionId = item.getAttribute('data-section');
+                // Check if current target items match calculation location keys variables output
                 if (sectionId === id) {
-                    item.classList.add('active');
+                    item.classList.add('active'); /* Add neon display indicators highlighting active choices states instantly */
                 } else {
-                    item.classList.remove('active');
+                    item.classList.remove('active'); /* Tear down highlights modifiers from inactive menu categories button lines tags */
                 }
             });
         }
         
+        // Automated smooth viewport scroll tracking navigation driver routing screen tracks precisely to targeted component blocks cards
         function scrollTo(id) {
             const el = document.getElementById(id);
             if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setActive(id);
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' }); /* Fire fluid native layout scroll engine sequences targeting topmost screen edges layout lines */
+                setActive(id); /* Force navigation panel active state markers updates ahead of scroll calculation loops delays checks */
             }
         }
         
+        // Attach action click processing interception loops across menu buttons shortcuts to manage animated view transformations tracks
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 const section = item.getAttribute('data-section');
-                if (section) scrollTo(section);
+                if (section) scrollTo(section); /* Launch automated positioning animations drivers immediately upon link clicking inputs events */
             });
         });
         
+        // Performance throttled vertical coordinate observation calculation logic managing tracking changes indicator updates maps rules
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
+                // Request client display thread optimization hooks to run calculations safely along hardware frame refresh markers lines
                 requestAnimationFrame(() => {
-                    const viewportTop = window.scrollY + 100;
-                    let currentSection = 'hero';
-                    let closestDistance = Infinity;
+                    const viewportTop = window.scrollY + 100; /* Factor small upper layout cushion buffer spaces into current viewport position numbers */
+                    let currentSection = 'hero'; // Set fallback default positioning states zones indices labels
+                    let closestDistance = Infinity; // Set calculation threshold tracking parameter limits to initialization infinity values
                     
+                    // Loop across tracking records lists evaluating element proximity margins relative to viewport viewing boxes thresholds
                     scrollElements.forEach(({ id, element }) => {
                         if (element) {
-                            const rect = element.getBoundingClientRect();
-                            const elementTop = rect.top + window.scrollY;
-                            const distance = Math.abs(elementTop - viewportTop);
+                            const rect = element.getBoundingClientRect(); // Capture physical screen matrix pixel positions coordinates tracking parameters
+                            const elementTop = rect.top + window.scrollY; // Calculate absolute vertical distance maps values measuring from top layout origins
+                            const distance = Math.abs(elementTop - viewportTop); // Compute mathematical gap intervals running between viewport points and card edges lines
                             
+                            // Check if current layout items have breached top view thresholds lines safely under closer parameters matches
                             if (rect.top <= 200 && distance < closestDistance) {
-                                closestDistance = distance;
-                                currentSection = id;
+                                closestDistance = distance; /* Overwrite previous records with tightest spacing verification matches scores metrics */
+                                currentSection = id; /* Extract current target identity tags to determine valid tracking zone locations names */
                             }
                         }
                     });
                     
-                    setActive(currentSection);
-                    ticking = false;
+                    setActive(currentSection); /* Sync sidebar selection highlights markers directly to match computed positioning values output */
+                    ticking = false; /* Open throttling barriers blocks safely to permit subsequent coordinate tracking computations data entries */
                 });
-                ticking = true;
+                ticking = true; /* Close structural checking gates to block layout observation flood bugs across active animation sequences threads */
             }
         });
         
+        // Fire synthetic initial scroll tracking trigger routines to configure starting selection markers locations during load screens checkpoints
         setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));
         }, 100);
         
+        // Modern asynchronous Intersection Observer tracker managing dynamic entrance animation lazy deployment workflows metrics
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
+                    // Check if targeted components cards cards have crossed visually inside browser scanning margins parameters parameters
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                        observer.unobserve(entry.target);
+                        entry.target.classList.add('fade-in'); /* Fire hardware accelerated slide and transition entry visualization styles class tags paths */
+                        observer.unobserve(entry.target); /* Strip observation checks tracking loops off elements maps once visual reveal cycles finish successfully */
                     }
                 });
             },
-            { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+            { threshold: 0.1, rootMargin: '0px 0px -30px 0px' } // Fine-tuned layout trigger configuration bounds adjusting tracking entry lines padding parameters
         );
         
+        // Register all functional page section panel containers and simulated code elements blocks targets directly inside lazy animation engines tracks
         document.querySelectorAll('.component-hero, .component-about, .grid-container, .products-container, .clients-container, .blog-container, .component-code-header, .disclaimer-section').forEach(el => observer.observe(el));
         
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('dragstart', e => e.preventDefault());
-    })();
+        // Global system security parameters restricting standard browser mouse operations to optimize application structural design safety profiles
+        document.addEventListener('contextmenu', e => e.preventDefault()); /* Absolute block suppression blocking traditional mouse right-click popup context options listings tracks menus templates */
+        document.addEventListener('dragstart', e => e.preventDefault()); /* Strict interception blocking item asset click dragging operations to protect visual elements tracks coordinates metrics */
+    })(); // Terminate core scroll positioning calculations layout scripts packages completely
 </script>
 </body>
+<!-- Closes the visible page body element layout safely -->
 </html>
+<!-- Closes the entire HTML document wrapper completely -->
