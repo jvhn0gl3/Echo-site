@@ -23,7 +23,7 @@
 <div id="quickfindOverlay" class="quickfind-overlay">
     <div class="quickfind-container">
         <div class="quickfind-input-wrapper">
-            <input type="text" id="quickfindInput" class="quickfind-input" placeholder="Search products, skills, services, creations, clients, blog..." autocomplete="off">
+            <input type="text" id="quickfindInput" class="quickfind-input" placeholder="Search..." autocomplete="off">
             <span class="quickfind-shortcut">ESC</span>
         </div>
         <div class="quickfind-actions" id="quickfindActions">
@@ -72,133 +72,6 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION: SKILLS -->
-    <!-- ========================================== -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2>
-                    <span class="keyword">const</span>
-                    <span class="variable">techStack</span>
-                    <span class="keyword">=</span>
-                    <span class="function">useSkills</span>()
-                </h2>
-                <p><span class="comment">// Technologies I work with daily</span></p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card" data-skill="frontend" data-search="frontend react vue angular typescript"><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div>
-                <div class="skill-card" data-skill="backend" data-search="backend node.js python go java"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div>
-                <div class="skill-card" data-skill="database" data-search="database postgresql mongodb redis mysql"><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div>
-                <div class="skill-card" data-skill="cloud" data-search="cloud aws azure gcp docker kubernetes"><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div>
-                <div class="skill-card" data-skill="mobile" data-search="mobile react native flutter swift kotlin"><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div>
-                <div class="skill-card" data-skill="devops" data-search="devops ci/cd jenkins github actions"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION: SERVICES -->
-    <!-- ========================================== -->
-    <section id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>
-                    <span class="keyword">export</span>
-                    <span class="keyword">const</span>
-                    <span class="variable">services</span>
-                    <span class="keyword">=</span>
-                    <span class="function">provide</span>()
-                </h2>
-                <p><span class="comment">// What I offer as a digital architect</span></p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-service="logo-design" data-search="logo design brand identity"><h3>Logo Design</h3><p>Custom brand identities</p></div>
-                <div class="service-card" data-service="web-dev" data-search="web development full stack"><h3>Web Development</h3><p>Full-stack modern apps</p></div>
-                <div class="service-card" data-service="ui-ux" data-search="ui ux design interface"><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces</p></div>
-                <div class="service-card" data-service="consulting" data-search="tech consulting architecture strategy"><h3>Tech Consulting</h3><p>Expert architecture advice</p></div>
-                <div class="service-card" data-service="performance" data-search="performance optimization speed scaling"><h3>Performance</h3><p>Speed optimization & scaling</p></div>
-                <div class="service-card" data-service="security" data-search="security audit vulnerability"><h3>Security Audits</h3><p>Vulnerability fixes</p></div>
-                <div class="service-card" data-service="maintenance" data-search="maintenance support updates"><h3>Maintenance</h3><p>Ongoing support & updates</p></div>
-                <div class="service-card" data-service="cloud" data-search="cloud migration aws azure gcp"><h3>Cloud Migration</h3><p>AWS, Azure, GCP expertise</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION: STORE / PRODUCTS -->
-    <!-- ========================================== -->
-    <section id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2>
-                    <span class="keyword">import</span>
-                    <span class="string">{ merchandise }</span>
-                    <span class="keyword">from</span>
-                    <span class="string">'@v3/shop'</span>
-                </h2>
-                <p><span class="comment">// Official merchandise · Text-only minimal store</span></p>
-            </div>
-            <div id="products-grid" class="products-grid"></div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION: CREATIONS -->
-    <!-- ========================================== -->
-    <section id="creations">
-        <div class="container">
-            <div class="section-header">
-                <h2>
-                    <span class="keyword">export</span>
-                    <span class="keyword">const</span>
-                    <span class="variable">creations</span>
-                    <span class="keyword">=</span>
-                    <span class="function">portfolio</span>()
-                </h2>
-                <p><span class="comment">// My original designs · Custom projects · Creative work</span></p>
-            </div>
-            <div id="creations-grid" class="creations-grid"></div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION: CLIENTS -->
-    <!-- ========================================== -->
-    <section id="clients">
-        <div class="container">
-            <div class="section-header">
-                <h2>
-                    <span class="keyword">const</span>
-                    <span class="variable">clients</span>
-                    <span class="keyword">=</span>
-                    <span class="function">trustedBy</span>()
-                </h2>
-                <p><span class="comment">// Partners I've had the privilege to work with</span></p>
-            </div>
-            <div id="clients-grid" class="clients-grid"></div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION: BLOG -->
-    <!-- ========================================== -->
-    <section id="blog">
-        <div class="container">
-            <div class="section-header">
-                <h2>
-                    <span class="keyword">export</span>
-                    <span class="keyword">const</span>
-                    <span class="variable">blog</span>
-                    <span class="keyword">=</span>
-                    <span class="function">getPosts</span>()
-                </h2>
-                <p><span class="comment">// Thoughts, tutorials, and insights on development & design</span></p>
-            </div>
-            <div id="blog-grid" class="blog-grid"></div>
-        </div>
-    </section>
-
 </main>
 
 <!-- ============================================ -->
@@ -207,12 +80,6 @@
 <div class="bottom-nav-wrapper">
     <div class="bottom-nav" id="bottomNav">
         <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-        <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
-        <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
-        <button class="bottom-nav-item" data-section="products"><i class="fas fa-store"></i><span>Store</span></button>
-        <button class="bottom-nav-item" data-section="creations"><i class="fas fa-gem"></i><span>Creations</span></button>
-        <button class="bottom-nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
-        <button class="bottom-nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
         <button class="bottom-nav-item search-btn" id="mobileSearchBtn"><i class="fas fa-search"></i><span>Find</span></button>
     </div>
     <div class="nav-scroll-dots">

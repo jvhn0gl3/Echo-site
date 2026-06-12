@@ -5,105 +5,24 @@
 
 (function(){
     // ============================================
-    // DATA: PRODUCTS
+    // DATA: PRODUCTS (empty for now)
     // ============================================
-    const products = [
-        { link: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965", title: "Static Snow Metallic Button", type: "Button", price: 0, soldOut: false, search: "static snow metallic button" },
-        { link: "https://www.zazzle.com/jimhmamhmm_pattern_white_t_shirt-256846965567827904", title: "JIMHMAMHMM Pattern White T-Shirt", type: "T-Shirt", price: 0, soldOut: false, search: "jimhmamhmm pattern white tshirt t-shirt" },
-        { link: "https://www.zazzle.com/jimhmamhmm_all_white_t_shirt-256457032536678862", title: "JIMHMAMHMM All White T-Shirt", type: "T-Shirt", price: 0, soldOut: false, search: "jimhmamhmm all white tshirt" },
-        { link: "https://www.zazzle.com/jismhmamhmm_pattern_all_black_round_pillow-256052469847980223", title: "JISMHMAMHMM Pattern All Black Round Pillow", type: "Pillow", price: 0, soldOut: false, search: "jismhmamhmm black round pillow" },
-        { link: "https://www.zazzle.com/jesus_is_my_helmet_my_armor_my_heart_my_mind_coffee_mug-256496112367869316", title: "Jesus Is My Helmet Coffee Mug", type: "Mug", price: 0, soldOut: false, search: "jesus helmet coffee mug" },
-        { link: "https://www.zazzle.com/im_not_a_robot_wrapping_paper_sheets-256535853045480459", title: "I'm Not A Robot Wrapping Paper Sheets", type: "Wrapping Paper", price: 0, soldOut: false, search: "not robot wrapping paper" },
-        { link: "https://www.zazzle.com/m_monogram_coffee_mug-256735958378556539", title: "M Monogram Coffee Mug", type: "Mug", price: 0, soldOut: false, search: "monogram coffee mug" },
-        { link: "https://www.zazzle.com/watch_what_you_say_wireless_charger-256239440038678708", title: "Watch What You Say Wireless Charger", type: "Charger", price: 0, soldOut: true, search: "watch what you say wireless charger" },
-        { link: "https://www.zazzle.com/death_is_only_the_beginning_wireless_charger-256201869212628736", title: "Death Is Only The Beginning Wireless Charger", type: "Charger", price: 0, soldOut: true, search: "death beginning wireless charger" },
-        { link: "https://www.zazzle.com/death_is_only_the_beginning_mouse_pad-256894035422871959", title: "Death Is Only The Beginning Mouse Pad", type: "Mouse Pad", price: 0, soldOut: false, search: "death beginning mouse pad" },
-        { link: "https://www.zazzle.com/death_is_only_the_begining_throw_pillow-256035514657056667", title: "Death Is Only The Beginning Throw Pillow", type: "Pillow", price: 0, soldOut: false, search: "death beginning throw pillow" },
-        { link: "https://www.zazzle.com/watch_what_you_say_tie-256210376330991604", title: "Watch What You Say Tie", type: "Accessory", price: 0, soldOut: false, search: "watch what you say tie" }
-    ];
+    const products = [];
 
     // ============================================
-    // DATA: CREATIONS
+    // DATA: CREATIONS (empty for now)
     // ============================================
-    const creations = [
-        { title: "V3 Brand Identity", type: "Branding", description: "Complete visual identity system", link: "#", icon: "fa-palette", search: "v3 brand identity branding" },
-        { title: "Terminal Portfolio", type: "Web Dev", description: "Code-inspired design system", link: "#", icon: "fa-code", search: "terminal portfolio web dev" },
-        { title: "V3 QuickFind", type: "UI/UX", description: "Multi-device universal search", link: "#", icon: "fa-search", search: "quickfind universal search" },
-        { title: "Zazzle Store Integration", type: "E-commerce", description: "85+ product catalog", link: "#", icon: "fa-store", search: "zazzle store integration" },
-        { title: "Mobile-First Framework", type: "Development", description: "Fluid responsive system", link: "#", icon: "fa-mobile-alt", search: "mobile first framework" },
-        { title: "Custom Animation System", type: "Design", description: "Smooth transitions & effects", link: "#", icon: "fa-play-circle", search: "custom animation system" },
-        { title: "Accessibility Suite", type: "Feature", description: "High contrast & dyslexic fonts", link: "#", icon: "fa-universal-access", search: "accessibility suite high contrast dyslexic" },
-        { title: "Cross-Device Sync", type: "Tech", description: "Unified experience everywhere", link: "#", icon: "fa-sync", search: "cross device sync" },
-        { title: "Performance Optimized", type: "Optimization", description: "Lightning fast load times", link: "#", icon: "fa-rocket", search: "performance optimized fast" }
-    ];
+    const creations = [];
 
     // ============================================
-    // DATA: CLIENTS
+    // DATA: CLIENTS (empty for now)
     // ============================================
-    const clients = [
-        { 
-            name: "Vineyard Church of Augusta", 
-            type: "Non-Profit / Faith", 
-            description: "Community-focused church organization", 
-            link: "https://vineyardaugusta.org", 
-            image: "https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png",
-            search: "vineyard church augusta faith non-profit" 
-        }
-    ];
+    const clients = [];
 
     // ============================================
-    // DATA: BLOG POSTS
+    // DATA: BLOG POSTS (empty for now)
     // ============================================
-    const blogPosts = [
-        {
-            title: "Building a Fluid Responsive System",
-            date: "June 9, 2024",
-            excerpt: "Using clamp() and CSS custom properties for true fluidity across all devices.",
-            link: "#",
-            icon: "fa-mobile-alt",
-            search: "fluid responsive css clamp design"
-        },
-        {
-            title: "The Power of Text-Only Design",
-            date: "June 5, 2024",
-            excerpt: "Why sometimes less is more in interface design.",
-            link: "#",
-            icon: "fa-font",
-            search: "text only minimal design ui ux"
-        },
-        {
-            title: "V3 QuickFind: Building a Universal Search",
-            date: "May 28, 2024",
-            excerpt: "How I built a Spotlight-like search that works on every device.",
-            link: "#",
-            icon: "fa-search",
-            search: "quickfind universal search spotlight"
-        },
-        {
-            title: "Zazzle Integration Case Study",
-            date: "May 20, 2024",
-            excerpt: "Integrating 85+ products from Zazzle into a custom storefront.",
-            link: "#",
-            icon: "fa-store",
-            search: "zazzle ecommerce integration case study"
-        },
-        {
-            title: "Accessibility First: Beyond WCAG",
-            date: "May 15, 2024",
-            excerpt: "Building inclusive experiences that work for everyone.",
-            link: "#",
-            icon: "fa-universal-access",
-            search: "accessibility wcag inclusive design"
-        },
-        {
-            title: "Mobile Development Tips",
-            date: "May 10, 2024",
-            excerpt: "Lessons learned from coding entirely on a mobile device.",
-            link: "#",
-            icon: "fa-mobile-alt",
-            search: "mobile development coding tips"
-        }
-    ];
+    const blogPosts = [];
 
     // ============================================
     // HELPERS
@@ -120,21 +39,7 @@
     function renderProducts() {
         const container = document.getElementById('products-grid');
         if (!container) return;
-        container.innerHTML = '';
-        products.forEach(product => {
-            const btnClass = product.soldOut ? 'buy-btn sold-out-btn' : 'buy-btn';
-            const btnText = product.soldOut ? 'Sold Out' : 'Shop →';
-            const priceDisplay = product.price > 0 ? `$${product.price.toFixed(2)}` : 'Price on Zazzle';
-            container.innerHTML += `
-                <div class="product-card">
-                    <h3>${product.title.length > 40 ? product.title.substring(0, 37) + '...' : product.title}</h3>
-                    <div class="product-type">${product.type}</div>
-                    <div class="product-price ${product.soldOut ? 'sold-out-price' : ''}">${priceDisplay}</div>
-                    <div class="zazzle-badge">Zazzle</div>
-                    <a href="${product.soldOut ? 'javascript:void(0)' : product.link}" target="_blank" class="${btnClass}" rel="noopener">${btnText}</a>
-                </div>
-            `;
-        });
+        container.innerHTML = '<div class="empty-state" style="grid-column:1/-1; text-align:center; padding:40px; color:#5c6370;">No products yet</div>';
     }
 
     // ============================================
@@ -143,18 +48,7 @@
     function renderCreations() {
         const container = document.getElementById('creations-grid');
         if (!container) return;
-        container.innerHTML = '';
-        creations.forEach(creation => {
-            container.innerHTML += `
-                <div class="creation-card">
-                    <i class="fas ${creation.icon || 'fa-gem'}"></i>
-                    <h3>${creation.title.length > 30 ? creation.title.substring(0, 27) + '...' : creation.title}</h3>
-                    <div class="creation-type">${creation.type}</div>
-                    <p>${creation.description.length > 40 ? creation.description.substring(0, 37) + '...' : creation.description}</p>
-                    <a href="${creation.link}" target="_blank" class="creation-link" rel="noopener">View Project →</a>
-                </div>
-            `;
-        });
+        container.innerHTML = '<div class="empty-state" style="grid-column:1/-1; text-align:center; padding:40px; color:#5c6370;">No creations yet</div>';
     }
 
     // ============================================
@@ -163,20 +57,7 @@
     function renderClients() {
         const container = document.getElementById('clients-grid');
         if (!container) return;
-        container.innerHTML = '';
-        clients.forEach(client => {
-            container.innerHTML += `
-                <div class="client-card">
-                    <div class="client-image-container">
-                        <img src="${client.image}" alt="${client.name} logo" class="client-logo" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-church\\'></i>'">
-                    </div>
-                    <h3>${client.name.length > 25 ? client.name.substring(0, 22) + '...' : client.name}</h3>
-                    <div class="client-type">${client.type}</div>
-                    <p>${client.description}</p>
-                    <a href="${client.link}" target="_blank" class="client-link" rel="noopener">Visit Website →</a>
-                </div>
-            `;
-        });
+        container.innerHTML = '<div class="empty-state" style="grid-column:1/-1; text-align:center; padding:40px; color:#5c6370;">No clients yet</div>';
     }
 
     // ============================================
@@ -185,18 +66,7 @@
     function renderBlog() {
         const container = document.getElementById('blog-grid');
         if (!container) return;
-        container.innerHTML = '';
-        blogPosts.forEach(post => {
-            container.innerHTML += `
-                <div class="blog-card">
-                    <i class="fas ${post.icon || 'fa-newspaper'}"></i>
-                    <h3>${post.title.length > 30 ? post.title.substring(0, 27) + '...' : post.title}</h3>
-                    <div class="blog-date">${post.date}</div>
-                    <p>${post.excerpt.length > 50 ? post.excerpt.substring(0, 47) + '...' : post.excerpt}</p>
-                    <a href="${post.link}" target="_blank" class="blog-link" rel="noopener">Read More →</a>
-                </div>
-            `;
-        });
+        container.innerHTML = '<div class="empty-state" style="grid-column:1/-1; text-align:center; padding:40px; color:#5c6370;">No blog posts yet</div>';
     }
 
     // ============================================
@@ -355,7 +225,8 @@
         
         function setActiveOnScroll() {
             let current = '';
-            for (let s of ['about', 'skills', 'services', 'products', 'creations', 'clients', 'blog']) {
+            const sections = ['about'];
+            for (let s of sections) {
                 const sec = document.getElementById(s);
                 if (sec && sec.offsetTop <= window.scrollY + 100) current = s;
             }
