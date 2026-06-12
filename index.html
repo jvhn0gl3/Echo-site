@@ -59,7 +59,7 @@
             --border-light: rgba(255, 255, 255, 0.06);
             --border-medium: rgba(255, 255, 255, 0.1);
             
-            /* Sidebar width - fluid but never too small */
+            /* Sidebar width */
             --sidebar-width: clamp(70px, 14vw, 120px);
         }
         
@@ -71,14 +71,14 @@
             font-size: var(--text-base);
         }
         
-        /* Layout with sidebar - ALWAYS sidebar */
+        /* Layout with sidebar */
         .app-layout {
             display: flex;
             min-height: 100vh;
         }
         
         /* ========================================== */
-        /* SIDEBAR NAVIGATION - ALWAYS VISIBLE */
+        /* SIDEBAR NAVIGATION */
         /* ========================================== */
         .sidebar-nav {
             position: fixed;
@@ -98,7 +98,6 @@
             overflow-y: auto;
         }
         
-        /* Logo area in sidebar */
         .sidebar-logo {
             text-align: center;
             margin-bottom: var(--space-md);
@@ -172,7 +171,6 @@
             }
         }
         
-        /* Scrollbar styling for sidebar */
         .sidebar-nav::-webkit-scrollbar {
             width: 3px;
         }
@@ -186,7 +184,7 @@
             border-radius: 3px;
         }
         
-        /* Main content - always offset by sidebar width */
+        /* Main content */
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
@@ -197,6 +195,132 @@
             width: 100%;
             max-width: 100%;
             padding: var(--space-lg) var(--space-md);
+        }
+        
+        /* ========================================== */
+        /* MODAL / DIALOG STYLES */
+        /* ========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+ backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-dialog {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-lg);
+            width: min(90%, 500px);
+            max-width: 500px;
+            padding: var(--space-2xl);
+            transform: scale(0.95);
+            transition: transform 0.2s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-overlay.active .modal-dialog {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .modal-header h2 {
+            font-size: var(--text-xl);
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: var(--text-xl);
+            cursor: pointer;
+            padding: var(--space-2xs);
+            transition: all 0.12s ease;
+            border-radius: var(--radius-sm);
+        }
+        
+        .modal-close:hover {
+            color: var(--accent-pink);
+            transform: scale(1.1);
+        }
+        
+        .modal-close:active {
+            transform: scale(0.95);
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.12s ease;
+            cursor: pointer;
+        }
+        
+        .social-link i {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+        }
+        
+        .social-link span {
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+        
+        .social-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+        
+        .social-link:active {
+            transform: scale(0.97);
+        }
+        
+        .modal-footer {
+            margin-top: var(--space-lg);
+            text-align: center;
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
         }
         
         /* ========================================== */
@@ -300,7 +424,7 @@
         }
         
         /* ========================================== */
-        /* CODE BLOCKS - DIVIDERS */
+        /* CODE BLOCKS */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
@@ -334,10 +458,6 @@
             display: block;
         }
         
-        .component-hero + .component-code-header {
-            margin-top: 0;
-        }
-        
         /* ========================================== */
         /* CARDS */
         /* ========================================== */
@@ -367,7 +487,6 @@
             cursor: pointer;
         }
         
-        /* Card row layout for icon + content */
         .card-row {
             display: flex;
             flex-direction: row;
@@ -375,7 +494,6 @@
             gap: var(--space-md);
         }
         
-        /* Card actions (buttons) */
         .card-actions {
             display: flex;
             flex-direction: column;
@@ -464,7 +582,6 @@
             max-width: min(100%, 700px);
         }
         
-        /* Card interactions */
         .grid-card:active,
         .product-card:active,
         .client-card:active,
@@ -524,7 +641,7 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="app-layout">
-    <!-- SIDEBAR NAVIGATION - ALWAYS VISIBLE ON ALL SCREENS -->
+    <!-- SIDEBAR NAVIGATION -->
     <nav class="sidebar-nav" aria-label="Main navigation">
         <div class="sidebar-logo">
             <div class="logo-text">V3</div>
@@ -558,6 +675,11 @@
             <button class="nav-item" data-section="blog" aria-label="Blog">
                 <i class="fas fa-newspaper"></i>
                 <span>Blog</span>
+            </button>
+            <!-- NEW: Social button that opens dialog -->
+            <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
+                <i class="fas fa-share-alt"></i>
+                <span>Social</span>
             </button>
         </div>
     </nav>
@@ -594,6 +716,7 @@
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
 
+            <!-- REST OF CONTENT (skills, services, store, clients, blog) same as before -->
             <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
@@ -925,9 +1048,50 @@
     </main>
 </div>
 
+<!-- SOCIAL MEDIA MODAL / DIALOG -->
+<div class="modal-overlay" id="socialModal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h2><i class="fas fa-share-alt"></i> Connect With Me</h2>
+            <button class="modal-close" id="closeModalBtn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="social-grid">
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter/X</span>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-dev"></i>
+                <span>Dev.to</span>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-medium"></i>
+                <span>Medium</span>
+            </a>
+        </div>
+        <div class="modal-footer">
+            <p>Follow me for coding tips, projects, and tech insights</p>
+        </div>
+    </div>
+</div>
+
 <script>
     // ============================================
-    // EMAIL FUNCTIONS - Send message to jvhn0gl3@proton.me
+    // EMAIL FUNCTIONS
     // ============================================
     
     const CONTACT_EMAIL = 'jvhn0gl3@proton.me';
@@ -944,7 +1108,43 @@
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
     
-    // Navigation and animations
+    // ============================================
+    // MODAL FUNCTIONALITY
+    // ============================================
+    (function() {
+        const modal = document.getElementById('socialModal');
+        const openBtn = document.getElementById('socialNavBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+        
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    })();
+    
+    // ============================================
+    // NAVIGATION AND ANIMATIONS
+    // ============================================
     (function(){
         const sectionIds = ['hero', 'about', 'skills', 'services', 'store', 'clients', 'blog'];
         
