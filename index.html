@@ -55,6 +55,10 @@
             --accent-pink: #ec4899;
             --accent-green: #10b981;
             --accent-yellow: #f59e0b;
+            --accent-orange: #f97316;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+            --accent-indigo: #6366f1;
             --border-light: rgba(255, 255, 255, 0.08);
             --border-medium: rgba(255, 255, 255, 0.12);
             
@@ -72,6 +76,12 @@
             --accent-cyan: #ffff00;
             --accent-purple: #ff00ff;
             --accent-pink: #00ffff;
+            --accent-green: #00ff00;
+            --accent-yellow: #ffff00;
+            --accent-orange: #ffa500;
+            --accent-red: #ff0000;
+            --accent-blue: #0000ff;
+            --accent-indigo: #4b0082;
             --border-light: #ffffff;
             --border-medium: #ffff00;
         }
@@ -215,8 +225,47 @@
         .nav-item i {
             font-size: clamp(1.2rem, 4vw, 1.6rem);
             margin: 0;
+            transition: all 0.12s ease;
         }
         
+        /* Individual nav icon colors */
+        .nav-item[data-section="hero"] i {
+            color: var(--accent-cyan);
+        }
+        
+        .nav-item[data-section="about"] i {
+            color: var(--accent-purple);
+        }
+        
+        .nav-item[data-section="skills"] i {
+            color: var(--accent-green);
+        }
+        
+        .nav-item[data-section="services"] i {
+            color: var(--accent-yellow);
+        }
+        
+        .nav-item[data-section="store"] i {
+            color: var(--accent-pink);
+        }
+        
+        .nav-item[data-section="clients"] i {
+            color: var(--accent-blue);
+        }
+        
+        .nav-item[data-section="blog"] i {
+            color: var(--accent-orange);
+        }
+        
+        #socialNavBtn i {
+            color: var(--accent-indigo);
+        }
+        
+        #accessibilityNavBtn i {
+            color: var(--accent-green);
+        }
+        
+        /* Text color for nav items - inherit from icon or use tertiary */
         .nav-item span {
             font-size: clamp(0.65rem, 1.6vw, 0.8rem);
             font-weight: 500;
@@ -224,11 +273,21 @@
             overflow-x: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
+            color: var(--text-tertiary);
+            transition: color 0.12s ease;
+        }
+        
+        /* Active state - icon becomes brighter, text becomes accent color */
+        .nav-item.active i {
+            filter: brightness(1.2) drop-shadow(0 0 4px currentColor);
+        }
+        
+        .nav-item.active span {
+            color: var(--accent-cyan);
         }
         
         .nav-item.active {
-            color: var(--accent-cyan);
-            background: rgba(0, 212, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .nav-item:active {
@@ -236,9 +295,11 @@
         }
         
         @media (hover: hover) {
-            .nav-item:hover {
-                background: rgba(255, 255, 255, 0.05);
-                color: var(--accent-cyan);
+            .nav-item:hover i {
+                filter: brightness(1.2);
+            }
+            .nav-item:hover span {
+                color: var(--text-secondary);
             }
         }
         
@@ -498,7 +559,7 @@
             color: var(--text-tertiary);
         }
         
-        /* Rest of existing styles remain */
+        /* Rest of existing styles */
         .btn-primary, .btn-secondary, .btn-message {
             display: flex;
             align-items: center;
