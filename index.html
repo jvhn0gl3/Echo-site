@@ -14,10 +14,9 @@
     
     <style>
         /* ============================================
-           kernel.css - V3 Digital Architect
-           Complete Fluid System & Styles
+           BASE STYLES - DO NOT REMOVE
+           These keep the site functional
            ============================================ */
-
         * {
             margin: 0;
             padding: 0;
@@ -61,7 +60,33 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* V3 QuickFind Modal */
+        main {
+            margin-left: 0;
+            padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
+            flex: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        section {
+            margin-bottom: var(--space-2xl);
+            width: 100%;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+            padding-bottom: var(--space-xl);
+        }
+
+        /* ========================================== */
+        /* QUICKFIND SEARCH STYLES */
+        /* ========================================== */
         .quickfind-overlay {
             position: fixed;
             top: 0;
@@ -278,30 +303,40 @@
             }
         }
 
-        main {
-            margin-left: 0;
-            padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
-            flex: 1;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
+        /* ========================================== */
+        /* ABOUT SECTION MODULAR STYLES */
+        /* ========================================== */
+        .about {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            align-items: center;
+            text-align: center;
             width: 100%;
         }
 
-        section {
-            margin-bottom: var(--space-2xl);
+        /* Component 1: Image - can be removed entirely */
+        .about-img {
+            display: flex;
+            justify-content: center;
             width: 100%;
         }
 
-        section:last-child {
-            margin-bottom: 0;
-            padding-bottom: var(--space-xl);
+        .about-img img {
+            width: min(140px, 25vw);
+            height: min(140px, 25vw);
+            border-radius: var(--radius-lg);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
+            object-fit: cover;
         }
 
+        /* Component 2: Text Block */
+        .about-text {
+            width: 100%;
+        }
+
+        /* Component 2a: Code Header - can be removed */
         .section-header {
             margin-bottom: var(--space-lg);
             padding: var(--space-md) var(--space-lg);
@@ -333,34 +368,18 @@
         }
         .section-header p .comment { color: #5c6370; }
 
-        .about {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-xl);
-            align-items: center;
-            text-align: center;
-            width: 100%;
-        }
-
-        .about-text { width: 100%; }
-        .about-text p {
+        /* Component 2b: Paragraphs container - can add/remove any number of paragraphs */
+        .about-paragraphs p {
             color: #c0c0c0;
             margin-bottom: var(--space-sm);
             font-size: var(--text-base);
             line-height: 1.5;
             width: 100%;
         }
-        .about-img { display: flex; justify-content: center; width: 100%; }
-        .about-img img {
-            width: min(140px, 25vw);
-            height: min(140px, 25vw);
-            border-radius: var(--radius-lg);
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
-            object-fit: cover;
-        }
 
-        /* Bottom Navigation */
+        /* ========================================== */
+        /* BOTTOM NAVIGATION STYLES */
+        /* ========================================== */
         .bottom-nav-wrapper {
             position: fixed;
             bottom: 0;
@@ -519,14 +538,24 @@
 <main id="main-content">
 
     <!-- ========================================== -->
-    <!-- SECTION: ABOUT -->
+    <!-- SECTION: ABOUT - MODULAR TEMPLATE -->
+    <!-- Each component can be removed independently -->
     <!-- ========================================== -->
     <section id="about">
         <div class="container about">
+            
+            <!-- COMPONENT 1: IMAGE -->
+            <!-- TO REMOVE: Delete this entire div -->
             <div class="about-img">
                 <img src="images/logos/V3.png" alt="V3 brand logo">
             </div>
+            <!-- END COMPONENT 1 -->
+            
+            <!-- COMPONENT 2: TEXT BLOCK -->
             <div class="about-text">
+                
+                <!-- COMPONENT 2a: CODE HEADER -->
+                <!-- TO REMOVE: Delete this entire div -->
                 <div class="section-header">
                     <h2>
                         <span class="keyword">import</span>
@@ -536,11 +565,23 @@
                     </h2>
                     <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
                 </div>
-                <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-                <p>Every line of code serves a purpose, every pixel has meaning.</p>
+                <!-- END COMPONENT 2a -->
+                
+                <!-- COMPONENT 2b: PARAGRAPHS -->
+                <!-- TO ADD MORE: Copy the <p> line -->
+                <!-- TO REMOVE: Delete any <p> line -->
+                <div class="about-paragraphs">
+                    <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+                    <p>Every line of code serves a purpose, every pixel has meaning.</p>
+                </div>
+                <!-- END COMPONENT 2b -->
+                
             </div>
+            <!-- END COMPONENT 2 -->
+            
         </div>
     </section>
+    <!-- END ABOUT SECTION -->
 
 </main>
 
