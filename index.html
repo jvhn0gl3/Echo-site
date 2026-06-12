@@ -15,7 +15,7 @@
     <style>
         /* ============================================
            CONSISTENT PADDING SYSTEM
-           Everything has balanced padding
+           Code blocks have extra generous padding
            ============================================ */
         
         * {
@@ -33,6 +33,7 @@
             --space-md: clamp(0.75rem, 3vw, 1rem);
             --space-lg: clamp(1rem, 4vw, 1.25rem);
             --space-xl: clamp(1.25rem, 5vw, 1.5rem);
+            --space-2xl: clamp(1.5rem, 6vw, 2rem);
             
             --text-2xs: clamp(0.5rem, 1.2vw, 0.65rem);
             --text-xs: clamp(0.55rem, 1.5vw, 0.7rem);
@@ -72,7 +73,7 @@
             font-size: var(--text-base);
         }
         
-        /* Main container - consistent outer padding */
+        /* Main container */
         .site-container {
             width: 100%;
             max-width: 100%;
@@ -81,7 +82,7 @@
         }
         
         /* ========================================== */
-        /* BUTTONS - consistent padding */
+        /* BUTTONS */
         /* ========================================== */
         .btn-primary, .btn-secondary {
             display: flex;
@@ -112,7 +113,42 @@
         }
         
         /* ========================================== */
-        /* COMPONENT: HERO - consistent padding */
+        /* CODE BLOCKS - EXTRA GENEROUS PADDING */
+        /* ========================================== */
+        .component-code-header {
+            background: rgba(0, 212, 255, 0.04);
+            border-left: 3px solid var(--accent-cyan);
+            padding: var(--space-xl) var(--space-2xl);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-bottom: var(--space-xl);
+            width: 100%;
+            user-select: none;
+        }
+        
+        .component-code-header h2 {
+            font-size: var(--text-md);
+            margin-bottom: var(--space-sm);
+            color: var(--accent-cyan);
+            font-weight: 500;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        
+        .component-code-header .keyword { color: #c678dd; }
+        .component-code-header .string { color: #98c379; }
+        .component-code-header .variable { color: #e06c75; }
+        .component-code-header .function { color: #61afef; }
+        .component-code-header .comment { 
+            color: var(--text-tertiary); 
+            font-size: var(--text-sm);
+            margin-top: var(--space-xs);
+            display: block;
+        }
+        
+        /* ========================================== */
+        /* COMPONENT: HERO */
         /* ========================================== */
         .component-hero {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
@@ -162,36 +198,7 @@
         }
         
         /* ========================================== */
-        /* CODE HEADER - consistent padding */
-        /* ========================================== */
-        .component-code-header {
-            background: rgba(0, 212, 255, 0.04);
-            border-left: 2px solid var(--accent-cyan);
-            padding: var(--space-md) var(--space-lg);
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-bottom: var(--space-lg);
-            width: 100%;
-            user-select: none;
-        }
-        
-        .component-code-header h2 {
-            font-size: var(--text-xs);
-            margin-bottom: var(--space-3xs);
-            color: var(--accent-cyan);
-            font-weight: 500;
-            white-space: normal;
-            word-break: break-word;
-        }
-        
-        .component-code-header .keyword { color: #c678dd; }
-        .component-code-header .string { color: #98c379; }
-        .component-code-header .variable { color: #e06c75; }
-        .component-code-header .function { color: #61afef; }
-        .component-code-header .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
-        
-        /* ========================================== */
-        /* ABOUT - consistent padding */
+        /* ABOUT */
         /* ========================================== */
         .component-about {
             margin-bottom: var(--space-xl);
@@ -206,7 +213,7 @@
         }
         
         /* ========================================== */
-        /* CARDS - consistent inner padding */
+        /* CARDS */
         /* ========================================== */
         .grid-container,
         .products-container,
@@ -218,7 +225,6 @@
             width: 100%;
         }
         
-        /* Cards - balanced internal padding */
         .grid-card,
         .product-card,
         .client-card,
@@ -240,7 +246,6 @@
             cursor: pointer;
         }
         
-        /* Card spacing between elements */
         .grid-card-content,
         .product-info,
         .client-info,
@@ -276,7 +281,6 @@
             margin-top: var(--space-3xs);
         }
         
-        /* Icons inside cards */
         .grid-card i,
         .product-card i,
         .blog-card i {
@@ -287,7 +291,10 @@
             pointer-events: none;
         }
         
-        /* Action buttons inside cards */
+        .grid-card i { color: var(--accent-cyan); }
+        .blog-card i { color: var(--accent-pink); }
+        .product-card i { color: var(--accent-cyan); }
+        
         .product-action,
         .card-action {
             flex-shrink: 0;
@@ -306,7 +313,6 @@
             padding: var(--space-2xs) var(--space-sm);
         }
         
-        /* Client specific - logo padding */
         .client-logo {
             max-width: min(70px, 25%);
             height: auto;
@@ -315,7 +321,6 @@
             margin-right: var(--space-xs);
         }
         
-        /* Blog specific - title row spacing */
         .blog-title-row {
             display: flex;
             justify-content: space-between;
@@ -330,7 +335,6 @@
             color: var(--accent-pink);
         }
         
-        /* Card hover/active states */
         .grid-card:active,
         .product-card:active,
         .client-card:active,
@@ -351,7 +355,7 @@
         }
         
         /* ========================================== */
-        /* GRID VIEW - responsive grid */
+        /* GRID VIEW */
         /* ========================================== */
         @media (min-width: 480px) {
             .hero-buttons {
@@ -400,7 +404,7 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAV - consistent padding */
+        /* BOTTOM NAV */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -505,10 +509,10 @@
         </div>
     </div>
 
-    <!-- CODE HEADER -->
+    <!-- CODE BLOCK 1 - Extra padding -->
     <div class="component-code-header">
         <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
-        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
+        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience building products people love</p>
     </div>
 
     <!-- ABOUT -->
@@ -517,10 +521,10 @@
         <p>Every line of code serves a purpose, every pixel has meaning.</p>
     </div>
 
-    <!-- SKILLS HEADER -->
+    <!-- CODE BLOCK 2 - Extra padding -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
-        <p class="comment">// Technologies I work with daily</p>
+        <p class="comment">// Technologies I work with daily to build modern, scalable applications</p>
     </div>
 
     <!-- SKILLS -->
@@ -533,10 +537,10 @@
         <div class="grid-card"><i class="fa-solid fa-code-branch"></i><div class="grid-card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
     </div>
 
-    <!-- SERVICES HEADER -->
+    <!-- CODE BLOCK 3 - Extra padding -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
-        <p class="comment">// What I offer as a digital architect</p>
+        <p class="comment">// What I offer as a digital architect — from concept to deployment</p>
     </div>
 
     <!-- SERVICES -->
@@ -549,10 +553,10 @@
         <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><div class="grid-card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
     </div>
 
-    <!-- STORE HEADER -->
+    <!-- CODE BLOCK 4 - Extra padding -->
     <div class="component-code-header">
         <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
-        <p class="comment">// Official merchandise</p>
+        <p class="comment">// Official merchandise — exclusive designs available now</p>
     </div>
 
     <!-- PRODUCTS -->
@@ -563,10 +567,10 @@
         <div class="product-card"><i class="fa-solid fa-bed"></i><div class="product-info"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
     </div>
 
-    <!-- CLIENTS HEADER -->
+    <!-- CODE BLOCK 5 - Extra padding -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
-        <p class="comment">// Partners I've worked with</p>
+        <p class="comment">// Partners I've had the privilege to work with</p>
     </div>
 
     <!-- CLIENTS -->
@@ -581,10 +585,10 @@
         </div>
     </div>
 
-    <!-- BLOG HEADER -->
+    <!-- CODE BLOCK 6 - Extra padding -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
-        <p class="comment">// Thoughts & tutorials</p>
+        <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
     </div>
 
     <!-- BLOG -->
