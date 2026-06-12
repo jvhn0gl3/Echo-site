@@ -1,7 +1,7 @@
-<!-- Tells the browser that this is an HTML5 document -->
 <!DOCTYPE html>
-<!-- Opens the HTML document and sets the primary language to English -->
+<!-- Tells the browser that this is an HTML5 document -->
 <html lang="en">
+<!-- Opens the HTML document and sets the primary language to English -->
 <!-- Contains background information (metadata) about the webpage that users don't see directly -->
 <head>
     <!-- Sets the character encoding to UTF-8 to support almost all written characters and symbols -->
@@ -382,6 +382,206 @@
         /* Basic utility padding parameters isolating icon typography interfaces */
         .disclaimer-container i {
             margin-right: var(--space-2xs); /* Inserts clean whitespace gaps between font symbols and leading words */
+        }
+        
+        /* ===== FOOTER STYLES ===== */
+        /* Main footer container structural settings */
+        .site-footer {
+            background: rgba(10, 10, 10, 0.96); /* Dark matching background with slight transparency for depth */
+            backdrop-filter: blur(10px); /* Frosted glass effect consistent with sidebar navigation */
+            border-top: 1px solid var(--border-light); /* Subtle top separation line matching site design language */
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0; /* Curves top corners elegantly to match card styles */
+            margin-top: var(--space-2xl); /* Generous spacing above footer to separate from content above */
+            padding: var(--space-2xl) var(--space-lg) var(--space-lg); /* Comfortable internal spacing for footer content */
+        }
+
+        /* Flex grid layout for footer columns allowing responsive wrapping */
+        .footer-container {
+            display: flex; /* Enables flexible column arrangement */
+            flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+            justify-content: space-between; /* Distributes columns evenly with space between */
+            gap: var(--space-xl); /* Consistent spacing between footer sections */
+            max-width: 1400px; /* Limits maximum width for readability on large displays */
+            margin: 0 auto; /* Centers footer container horizontally */
+        }
+
+        /* Brand column styling for logo and social icons area */
+        .footer-brand {
+            flex: 1.5; /* Gives brand column slightly more visual weight */
+            min-width: 200px; /* Prevents column from becoming too narrow on small devices */
+        }
+
+        /* Stylized footer logo matching sidebar branding aesthetics */
+        .footer-logo {
+            font-family: 'Major Mono Display', monospace; /* Consistent monospace brand font from main navigation */
+            font-size: clamp(1.5rem, 4vw, 2rem); /* Responsive logo sizing scaling with viewport */
+            color: var(--accent-cyan); /* Signature electric cyan brand color */
+            margin-bottom: var(--space-sm); /* Space between logo and tagline text */
+        }
+
+        /* Footer descriptive tagline text styling */
+        .footer-tagline {
+            color: var(--text-secondary); /* Muted secondary text color for visual comfort */
+            font-size: var(--text-sm); /* Compact but readable text size */
+            margin-bottom: var(--space-md); /* Separation from social icons section */
+            line-height: 1.5; /* Standard line height for readability */
+        }
+
+        /* Mini social icons row container for compact footer social links */
+        .footer-social-mini {
+            display: flex; /* Horizontal icon arrangement */
+            gap: var(--space-md); /* Even spacing between social icon buttons */
+        }
+
+        /* Individual social icon styling in footer */
+        .footer-social-icon {
+            color: var(--text-tertiary); /* Default muted tertiary color for subtle appearance */
+            font-size: var(--text-lg); /* Icon size matching visual hierarchy */
+            transition: all 0.12s ease; /* Smooth hover transitions */
+            width: 40px; /* Fixed width for consistent circle shape */
+            height: 40px; /* Fixed height for consistent circle shape */
+            display: flex; /* Flex centering for icon inside circle */
+            align-items: center; /* Vertical centering of icon */
+            justify-content: center; /* Horizontal centering of icon */
+            border-radius: 50%; /* Perfect circular background shape */
+            background: rgba(255, 255, 255, 0.05); /* Subtle translucent background for depth */
+        }
+
+        /* Hover effect for footer social icons */
+        .footer-social-icon:hover {
+            color: var(--accent-cyan); /* Bright cyan highlight on interaction */
+            transform: translateY(-2px); /* Subtle lift effect for tactile feedback */
+            background: rgba(0, 212, 255, 0.1); /* Cyan-tinted background on hover */
+        }
+
+        /* Footer link columns styling for navigation and resource links */
+        .footer-links {
+            flex: 1; /* Flexible width distribution */
+            min-width: 140px; /* Minimum width before wrapping on mobile */
+        }
+
+        /* Column header styling within footer sections */
+        .footer-links h4 {
+            font-size: var(--text-md); /* Clear heading size */
+            color: var(--accent-green); /* Emerald green accent for section headers */
+            margin-bottom: var(--space-md); /* Space below heading before links list */
+            font-weight: 600; /* Semi-bold weight for visual emphasis */
+        }
+
+        /* Reset list styles for footer navigation menus */
+        .footer-links ul {
+            list-style: none; /* Removes default bullet points */
+            padding: 0; /* Eliminates default padding */
+        }
+
+        /* Individual list item spacing in footer columns */
+        .footer-links li {
+            margin-bottom: var(--space-sm); /* Consistent vertical spacing between links */
+        }
+
+        /* Footer link anchor styling */
+        .footer-links a {
+            color: var(--text-secondary); /* Muted secondary text color for readability */
+            text-decoration: none; /* Removes default underline */
+            font-size: var(--text-sm); /* Compact link text size */
+            transition: all 0.12s ease; /* Smooth hover transition effects */
+            display: inline-block; /* Allows transform animations on hover */
+        }
+
+        /* Hover effect for footer navigation links */
+        .footer-links a:hover {
+            color: var(--accent-cyan); /* Cyan highlight on interaction matching brand identity */
+            transform: translateX(4px); /* Subtle slide effect for visual feedback */
+        }
+
+        /* Contact information column styling */
+        .footer-contact {
+            flex: 1.2; /* Slightly larger weight for contact details */
+            min-width: 220px; /* Ensures contact details remain readable on smaller screens */
+        }
+
+        /* Contact column header styling */
+        .footer-contact h4 {
+            font-size: var(--text-md); /* Consistent heading size with other footer columns */
+            color: var(--accent-green); /* Emerald green accent matching design system */
+            margin-bottom: var(--space-md); /* Space below heading */
+            font-weight: 600; /* Semi-bold weight for visual hierarchy */
+        }
+
+        /* Contact information paragraph styling */
+        .footer-contact p {
+            color: var(--text-secondary); /* Muted text color for comfortable reading */
+            font-size: var(--text-sm); /* Consistent compact text size */
+            margin-bottom: var(--space-sm); /* Spacing between contact lines */
+            display: flex; /* Flex layout for icon alignment */
+            align-items: center; /* Vertically centers icons with text */
+            gap: var(--space-sm); /* Consistent spacing between icon and text */
+        }
+
+        /* Icon styling within contact information */
+        .footer-contact i {
+            width: 24px; /* Fixed width for icon alignment consistency */
+            color: var(--accent-cyan); /* Cyan accent color for visual appeal */
+        }
+
+        /* Email link styling in contact section */
+        .footer-contact a {
+            color: var(--text-secondary); /* Muted color matching surrounding text */
+            text-decoration: none; /* Removes default link underline */
+            transition: color 0.12s ease; /* Smooth color transition on hover */
+        }
+
+        /* Email link hover effect */
+        .footer-contact a:hover {
+            color: var(--accent-cyan); /* Cyan highlight matching brand interaction patterns */
+        }
+
+        /* Footer bottom bar styling for copyright and credits */
+        .footer-bottom {
+            text-align: center; /* Centers bottom content horizontally */
+            padding-top: var(--space-xl); /* Top padding separating from main footer content */
+            margin-top: var(--space-xl); /* Margin above bottom bar creating visual separation */
+            border-top: 1px solid var(--border-light); /* Thin border line separating bottom bar from above content */
+        }
+
+        /* Bottom bar paragraph styling */
+        .footer-bottom p {
+            color: var(--text-tertiary); /* Muted tertiary color for less prominent footer text */
+            font-size: var(--text-xs); /* Smaller text size appropriate for footer credits */
+            margin-bottom: var(--space-xs); /* Spacing between copyright and built-with line */
+        }
+
+        /* Built with credit line specific styling */
+        .footer-built {
+            font-size: var(--text-2xs) !important; /* Extra small text for legal/credit information */
+        }
+
+        /* Responsive footer adjustments for mobile devices */
+        @media (max-width: 768px) {
+            .site-footer {
+                padding: var(--space-xl) var(--space-md) var(--space-lg); /* Reduced padding on mobile for better space usage */
+            }
+            
+            .footer-container {
+                flex-direction: column; /* Stacks all footer columns vertically on mobile */
+                gap: var(--space-lg); /* Consistent vertical spacing between stacked columns */
+            }
+            
+            .footer-brand, .footer-links, .footer-contact {
+                text-align: center; /* Centers content in all footer sections on mobile */
+            }
+            
+            .footer-social-mini {
+                justify-content: center; /* Centers social icons row horizontally */
+            }
+            
+            .footer-contact p {
+                justify-content: center; /* Centers contact information text and icons on mobile */
+            }
+            
+            .footer-links a:hover {
+                transform: translateX(0); /* Disables slide effect on mobile for cleaner interaction */
+            }
         }
         
         /* Overlay base layer properties framing modal control screens */
@@ -1620,6 +1820,64 @@
                 </div>
             </div>
 
+            <!-- FOOTER SECTION -->
+            <!-- Main footer component containing navigation, contact info, and copyright details -->
+            <footer class="site-footer">
+                <!-- Footer container with flexible column layout for responsive design -->
+                <div class="footer-container">
+                    <!-- Footer brand column - logo and tagline area -->
+                    <div class="footer-brand">
+                        <div class="footer-logo">V3</div> <!-- Brand logo matching main sidebar identity -->
+                        <p class="footer-tagline">Building digital experiences that matter.</p> <!-- Brand mission statement tagline -->
+                        <!-- Mini social icons row for quick access to professional networks -->
+                        <div class="footer-social-mini">
+                            <a href="#" aria-label="GitHub" class="footer-social-icon"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn" class="footer-social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email" class="footer-social-icon" onclick="window.location.href='mailto:jvhn0gl3@proton.me'"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Footer navigation links column - quick access to main site sections -->
+                    <div class="footer-links">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#" onclick="scrollToSection('hero'); return false;">Home</a></li>
+                            <li><a href="#" onclick="scrollToSection('about'); return false;">Profile</a></li>
+                            <li><a href="#" onclick="scrollToSection('skills'); return false;">Skills</a></li>
+                            <li><a href="#" onclick="scrollToSection('services'); return false;">Services</a></li>
+                            <li><a href="#" onclick="scrollToSection('store'); return false;">Store</a></li>
+                            <li><a href="#" onclick="scrollToSection('blog'); return false;">Blog</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer resources column - utility and policy links -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#" onclick="document.getElementById('accessibilityNavBtn').click(); return false;">Accessibility</a></li>
+                            <li><a href="#" onclick="document.getElementById('socialNavBtn').click(); return false;">Social Media</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer contact column - direct communication channels -->
+                    <div class="footer-contact">
+                        <h4>Get in Touch</h4>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:jvhn0gl3@proton.me">jvhn0gl3@proton.me</a></p>
+                        <p><i class="fas fa-map-marker-alt"></i> Digital Nomad · Worldwide</p>
+                        <p><i class="fas fa-clock"></i> Response within 24 hours</p>
+                    </div>
+                </div>
+
+                <!-- Footer bottom bar - copyright and credit information -->
+                <div class="footer-bottom">
+                    <p>&copy; 2026 V3 — Digital Architect. All code is open source and transparent.</p>
+                    <p class="footer-built">Built with <i class="fas fa-heart" style="color: var(--accent-pink);"></i> for performance, accessibility, and clarity.</p>
+                </div>
+            </footer>
+
         </div>
     </main>
 </div>
@@ -1792,6 +2050,21 @@
 <script>
     // Global variable configuration string holding user personal encryption modified secure communication routing target address
     const CONTACT_EMAIL = 'jvhn0gl3@proton.me';
+    
+    // Helper function for footer navigation links (make scrollTo globally accessible)
+    // Enables smooth scrolling to any section by its ID, used by footer navigation links
+    window.scrollToSection = function(id) {
+        const el = document.getElementById(id); /* Locate target section element by its identifier */
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' }); /* Smooth scroll to the target section */
+            // Also update active nav state in sidebar for visual consistency
+            const navItem = document.querySelector(`.nav-item[data-section="${id}"]`); /* Find matching sidebar button */
+            if (navItem) {
+                document.querySelectorAll('.nav-item[data-section]').forEach(item => item.classList.remove('active')); /* Clear existing active states */
+                navItem.classList.add('active'); /* Set current section as active in navigation */
+            }
+        }
+    };
     
     // Automation helper function assembling and launching context-specific email queries regarding application technical skills
     function sendSkillMessage(skillName, skillDetails) {
@@ -2109,7 +2382,7 @@
         );
         
         // Register all functional page section panel containers and simulated code elements blocks targets directly inside lazy animation engines tracks
-        document.querySelectorAll('.component-hero, .component-about, .grid-container, .products-container, .clients-container, .blog-container, .component-code-header, .disclaimer-section').forEach(el => observer.observe(el));
+        document.querySelectorAll('.component-hero, .component-about, .grid-container, .products-container, .clients-container, .blog-container, .component-code-header, .disclaimer-section, .site-footer').forEach(el => observer.observe(el));
         
         // Global system security parameters restricting standard browser mouse operations to optimize application structural design safety profiles
         document.addEventListener('contextmenu', e => e.preventDefault()); /* Absolute block suppression blocking traditional mouse right-click popup context options listings tracks menus templates */
