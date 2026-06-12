@@ -8,13 +8,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Digital Architect</title>
+    <title>V3 | Component Library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           HORIZONTAL, LEFT-ALIGNED COMPACT SYSTEM
+           GLOBAL STYLES - DO NOT EDIT (works for all components)
            ============================================ */
         
         * {
@@ -62,151 +62,24 @@
             font-size: var(--text-base);
         }
         
-        .section {
+        /* Main container */
+        .site-container {
             width: 100%;
             padding: var(--space-lg) var(--space-md);
         }
         
-        /* Grid */
-        .section > div:not(.code-block) {
-            display: grid;
-            gap: var(--space-sm);
+        /* ========================================== */
+        /* COMPONENT 1: HERO (2-column) */
+        /* Copy from <!-- COMPONENT: HERO --> to <!-- END COMPONENT: HERO --> */
+        /* ========================================== */
+        .component-hero {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
+            border-radius: var(--space-md);
+            padding: var(--space-lg) var(--space-md);
             margin-bottom: var(--space-xl);
-            width: 100%;
-        }
-        
-        .section > div:not(.code-block) {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-        }
-        
-        /* Cards - horizontal layout */
-        .section > div:not(.code-block) > div {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
-            border-radius: var(--space-sm);
-            padding: var(--space-sm) var(--space-md);
-            transition: all 0.15s ease;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--space-md);
         }
         
-        .section > div:not(.code-block) > div i {
-            font-size: var(--text-xl);
-            color: var(--accent-cyan);
-            margin: 0;
-            flex-shrink: 0;
-            width: 32px;
-            text-align: center;
-        }
-        
-        .card-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-3xs);
-        }
-        
-        .card-content h3 {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            margin: 0;
-            color: var(--text-primary);
-        }
-        
-        .card-content p {
-            font-size: var(--text-xs);
-            color: var(--text-secondary);
-            margin: 0;
-            line-height: 1.4;
-        }
-        
-        /* Title row with date on the right */
-        .title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: var(--space-2xs);
-            margin-bottom: var(--space-3xs);
-        }
-        
-        .title-row h3 {
-            margin: 0;
-            font-size: var(--text-sm);
-            font-weight: 600;
-        }
-        
-        .blog-date {
-            font-size: var(--text-2xs);
-            color: var(--accent-pink);
-            white-space: nowrap;
-        }
-        
-        /* Product price */
-        .product-price {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin: 0;
-        }
-        
-        /* Card action button */
-        .card-action {
-            flex-shrink: 0;
-            margin-left: auto;
-        }
-        
-        .card-action a, .card-action button {
-            padding: var(--space-2xs) var(--space-md);
-            font-size: var(--text-2xs);
-            white-space: nowrap;
-        }
-        
-        .section > div:not(.code-block) > div:hover {
-            background: rgba(25, 25, 35, 0.9);
-            border-color: var(--border-medium);
-            transform: translateX(2px);
-        }
-        
-        /* Buttons */
-        a, button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-2xs);
-            padding: var(--space-2xs) var(--space-md);
-            border-radius: var(--space-sm);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: var(--text-xs);
-            transition: all 0.12s ease;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-medium);
-            color: var(--accent-cyan);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        /* ========================================== */
-        /* HERO SECTION - Two column layout */
-        /* Header + Buttons in left cell, subheading right */
-        /* ========================================== */
         .hero-container {
             display: flex;
             flex-direction: row;
@@ -248,16 +121,6 @@
             margin: 0;
         }
         
-        /* Hero section container styling */
-        .hero-wrapper {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-radius: var(--space-md);
-            padding: var(--space-lg) var(--space-md);
-            margin-bottom: var(--space-xl);
-            border: 1px solid var(--border-light);
-        }
-        
-        /* Responsive: stack on mobile */
         @media (max-width: 640px) {
             .hero-container {
                 flex-direction: column;
@@ -268,8 +131,11 @@
             }
         }
         
-        /* Code header */
-        .code-block {
+        /* ========================================== */
+        /* COMPONENT: CODE HEADER */
+        /* Copy from <!-- COMPONENT: CODE HEADER --> to <!-- END COMPONENT: CODE HEADER --> */
+        /* ========================================== */
+        .component-code-header {
             background: rgba(0, 212, 255, 0.04);
             border-left: 2px solid var(--accent-cyan);
             padding: var(--space-sm) var(--space-md);
@@ -279,40 +145,181 @@
             width: 100%;
         }
         
-        .code-block h2 {
+        .component-code-header h2 {
             font-size: var(--text-xs);
             margin-bottom: var(--space-3xs);
             color: var(--accent-cyan);
             font-weight: 500;
         }
         
-        .code-block .keyword { color: #c678dd; }
-        .code-block .string { color: #98c379; }
-        .code-block .variable { color: #e06c75; }
-        .code-block .function { color: #61afef; }
-        .code-block .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
+        .component-code-header .keyword { color: #c678dd; }
+        .component-code-header .string { color: #98c379; }
+        .component-code-header .variable { color: #e06c75; }
+        .component-code-header .function { color: #61afef; }
+        .component-code-header .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
         
-        /* About text */
-        .about-text {
-            text-align: left;
+        /* ========================================== */
+        /* COMPONENT: ABOUT TEXT */
+        /* ========================================== */
+        .component-about {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .component-about p {
+            margin-bottom: var(--space-xs);
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
             max-width: 700px;
         }
         
-        .about-text p {
-            margin-bottom: var(--space-xs);
+        /* ========================================== */
+        /* COMPONENT: GRID SECTION (Skills/Services) */
+        /* Copy the entire grid container with cards */
+        /* ========================================== */
+        .component-grid {
+            margin-bottom: var(--space-xl);
         }
         
-        /* Client card */
-        .client-card {
+        .grid-container {
+            display: grid;
+            gap: var(--space-sm);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
+        .grid-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            transition: all 0.15s ease;
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: var(--space-md);
-            width: 100%;
+        }
+        
+        .grid-card i {
+            font-size: var(--text-xl);
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+            width: 32px;
+            text-align: center;
+        }
+        
+        .grid-card-content {
+            flex: 1;
+        }
+        
+        .grid-card-content h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-3xs);
+        }
+        
+        .grid-card-content p {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+        
+        .grid-card:hover {
+            background: rgba(25, 25, 35, 0.9);
+            border-color: var(--border-medium);
+            transform: translateX(2px);
+        }
+        
+        /* ========================================== */
+        /* COMPONENT: PRODUCTS / STORE */
+        /* ========================================== */
+        .component-products {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .products-container {
+            display: grid;
+            gap: var(--space-sm);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
+        .product-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .product-card i {
+            font-size: var(--text-xl);
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+            width: 32px;
+            text-align: center;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-info h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-3xs);
+        }
+        
+        .product-info p {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+        
+        .product-price {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-top: var(--space-3xs);
+        }
+        
+        .product-action {
+            flex-shrink: 0;
+        }
+        
+        .product-card:hover {
+            background: rgba(25, 25, 35, 0.9);
+            border-color: var(--border-medium);
+            transform: translateX(2px);
+        }
+        
+        /* ========================================== */
+        /* COMPONENT: CLIENTS */
+        /* ========================================== */
+        .component-clients {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .clients-container {
+            display: grid;
+            gap: var(--space-sm);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
+        .client-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--space-md);
         }
         
         .client-logo {
-            max-width: 80px;
+            max-width: 70px;
             height: auto;
             flex-shrink: 0;
         }
@@ -323,24 +330,132 @@
         
         .client-info h3 {
             font-size: var(--text-sm);
+            font-weight: 600;
             margin-bottom: var(--space-3xs);
         }
         
         .client-info p {
             font-size: var(--text-xs);
+            color: var(--text-secondary);
             margin-bottom: var(--space-2xs);
         }
         
-        /* Blog card */
+        .client-card:hover {
+            background: rgba(25, 25, 35, 0.9);
+            border-color: var(--border-medium);
+            transform: translateX(2px);
+        }
+        
+        /* ========================================== */
+        /* COMPONENT: BLOG */
+        /* ========================================== */
+        .component-blog {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .blog-container {
+            display: grid;
+            gap: var(--space-sm);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
         .blog-card {
-            width: 100%;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: var(--space-md);
         }
         
         .blog-card i {
+            font-size: var(--text-xl);
             color: var(--accent-pink);
+            flex-shrink: 0;
+            width: 32px;
+            text-align: center;
         }
         
-        /* Bottom nav */
+        .blog-content {
+            flex: 1;
+        }
+        
+        .blog-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: var(--space-2xs);
+            margin-bottom: var(--space-3xs);
+        }
+        
+        .blog-title-row h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .blog-date {
+            font-size: var(--text-2xs);
+            color: var(--accent-pink);
+            white-space: nowrap;
+        }
+        
+        .blog-content p {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .blog-card:hover {
+            background: rgba(25, 25, 35, 0.9);
+            border-color: var(--border-medium);
+            transform: translateX(2px);
+        }
+        
+        /* ========================================== */
+        /* BUTTON STYLES (used in all components) */
+        /* ========================================== */
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2xs);
+            padding: var(--space-2xs) var(--space-md);
+            border-radius: var(--space-sm);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--text-xs);
+            transition: all 0.12s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-medium);
+            color: var(--accent-cyan);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        a, button {
+            cursor: pointer;
+        }
+        
+        /* ========================================== */
+        /* BOTTOM NAVIGATION */
+        /* ========================================== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -380,38 +495,21 @@
             background: rgba(0, 212, 255, 0.1);
         }
         
-        /* Animations */
+        /* ========================================== */
+        /* ANIMATIONS */
+        /* ========================================== */
         @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .fade-in {
             animation: fadeInLeft 0.25s ease forwards;
         }
         
-        .section > div:not(.code-block):not(.hero-wrapper) > div {
-            opacity: 0;
-            animation: fadeInLeft 0.2s ease forwards;
-        }
-        
-        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(1) { animation-delay: 0.02s; }
-        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(2) { animation-delay: 0.04s; }
-        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(3) { animation-delay: 0.06s; }
-        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(4) { animation-delay: 0.08s; }
-        .section > div:not(.code-block):not(.hero-wrapper) > div:nth-child(5) { animation-delay: 0.1s; }
-        
-        .hero-wrapper {
-            opacity: 0;
-            animation: fadeInLeft 0.3s ease forwards;
-        }
-        
+        /* ========================================== */
+        /* UTILITIES */
+        /* ========================================== */
         ::selection {
             background: var(--accent-cyan);
             color: var(--bg-primary);
@@ -439,10 +537,13 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<div class="section" id="main-content">
+<div class="site-container" id="main-content">
     
-    <!-- HERO - Two column layout: Header+Buttons left, Subheading right -->
-    <div class="hero-wrapper">
+    <!-- ========================================== -->
+    <!-- COMPONENT: HERO -->
+    <!-- Copy this entire block to add a hero section -->
+    <!-- ========================================== -->
+    <div class="component-hero" id="hero">
         <div class="hero-container">
             <div class="hero-left">
                 <h1>V3 Digital Architect</h1>
@@ -456,130 +557,150 @@
             </div>
         </div>
     </div>
+    <!-- END COMPONENT: HERO -->
 
-    <!-- CODE HEADER -->
-    <div class="code-block">
+    <!-- ========================================== -->
+    <!-- COMPONENT: CODE HEADER -->
+    <!-- Copy this before any section for code styling -->
+    <!-- ========================================== -->
+    <div class="component-code-header" id="about-header">
         <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
         <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
     </div>
+    <!-- END COMPONENT: CODE HEADER -->
 
-    <!-- ABOUT -->
-    <div class="about-text">
+    <!-- ========================================== -->
+    <!-- COMPONENT: ABOUT TEXT -->
+    <!-- ========================================== -->
+    <div class="component-about" id="about">
         <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
         <p>Every line of code serves a purpose, every pixel has meaning.</p>
     </div>
+    <!-- END COMPONENT: ABOUT -->
 
-    <!-- SKILLS HEADER -->
-    <div class="code-block">
+    <!-- ========================================== -->
+    <!-- COMPONENT: CODE HEADER (Skills) -->
+    <!-- ========================================== -->
+    <div class="component-code-header" id="skills-header">
         <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
         <p class="comment">// Technologies I work with daily</p>
     </div>
 
-    <!-- SKILLS -->
-    <div>
-        <div><i class="fa-brands fa-react"></i> <div class="card-content"><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div></div>
-        <div><i class="fa-solid fa-server"></i> <div class="card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
-        <div><i class="fa-solid fa-database"></i> <div class="card-content"><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div></div>
-        <div><i class="fa-solid fa-cloud"></i> <div class="card-content"><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div></div>
-        <div><i class="fa-solid fa-mobile-alt"></i> <div class="card-content"><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div></div>
-        <div><i class="fa-solid fa-code-branch"></i> <div class="card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
+    <!-- ========================================== -->
+    <!-- COMPONENT: GRID (Skills) -->
+    <!-- Add/remove grid-card divs freely -->
+    <!-- ========================================== -->
+    <div class="component-grid" id="skills">
+        <div class="grid-container">
+            <div class="grid-card"><i class="fa-brands fa-react"></i><div class="grid-card-content"><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-server"></i><div class="grid-card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-database"></i><div class="grid-card-content"><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-cloud"></i><div class="grid-card-content"><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-mobile-alt"></i><div class="grid-card-content"><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-code-branch"></i><div class="grid-card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
+        </div>
     </div>
+    <!-- END COMPONENT: GRID -->
 
-    <!-- SERVICES HEADER -->
-    <div class="code-block">
+    <!-- ========================================== -->
+    <!-- COMPONENT: CODE HEADER (Services) -->
+    <!-- ========================================== -->
+    <div class="component-code-header" id="services-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
         <p class="comment">// What I offer as a digital architect</p>
     </div>
 
-    <!-- SERVICES -->
-    <div>
-        <div><i class="fa-solid fa-pen-nib"></i> <div class="card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
-        <div><i class="fa-solid fa-laptop-code"></i> <div class="card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
-        <div><i class="fa-solid fa-palette"></i> <div class="card-content"><h3>UI/UX Design</h3><p>Beautiful interfaces</p></div></div>
-        <div><i class="fa-solid fa-chart-line"></i> <div class="card-content"><h3>Tech Consulting</h3><p>Expert advice</p></div></div>
-        <div><i class="fa-solid fa-rocket"></i> <div class="card-content"><h3>Performance</h3><p>Speed optimization</p></div></div>
-        <div><i class="fa-solid fa-shield-alt"></i> <div class="card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
+    <!-- ========================================== -->
+    <!-- COMPONENT: GRID (Services) -->
+    <!-- ========================================== -->
+    <div class="component-grid" id="services">
+        <div class="grid-container">
+            <div class="grid-card"><i class="fa-solid fa-pen-nib"></i><div class="grid-card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-laptop-code"></i><div class="grid-card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-palette"></i><div class="grid-card-content"><h3>UI/UX Design</h3><p>Beautiful interfaces</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-chart-line"></i><div class="grid-card-content"><h3>Tech Consulting</h3><p>Expert advice</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-rocket"></i><div class="grid-card-content"><h3>Performance</h3><p>Speed optimization</p></div></div>
+            <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><div class="grid-card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
+        </div>
     </div>
+    <!-- END COMPONENT: GRID -->
 
-    <!-- STORE HEADER -->
-    <div class="code-block">
+    <!-- ========================================== -->
+    <!-- COMPONENT: CODE HEADER (Store) -->
+    <!-- ========================================== -->
+    <div class="component-code-header" id="store-header">
         <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
         <p class="comment">// Official merchandise</p>
     </div>
 
-    <!-- PRODUCTS -->
-    <div>
-        <div><i class="fa-solid fa-circle"></i> <div class="card-content"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
-        <div><i class="fa-solid fa-tshirt"></i> <div class="card-content"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
-        <div><i class="fa-solid fa-tshirt"></i> <div class="card-content"><h3>All White T-Shirt</h3><p>Minimalist design</p><div class="product-price">$21.04</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
-        <div><i class="fa-solid fa-bed"></i> <div class="card-content"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+    <!-- ========================================== -->
+    <!-- COMPONENT: PRODUCTS -->
+    <!-- Add/remove product-card divs freely -->
+    <!-- ========================================== -->
+    <div class="component-products" id="store">
+        <div class="products-container">
+            <div class="product-card"><i class="fa-solid fa-circle"></i><div class="product-info"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+            <div class="product-card"><i class="fa-solid fa-tshirt"></i><div class="product-info"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+            <div class="product-card"><i class="fa-solid fa-tshirt"></i><div class="product-info"><h3>All White T-Shirt</h3><p>Minimalist design</p><div class="product-price">$21.04</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+            <div class="product-card"><i class="fa-solid fa-bed"></i><div class="product-info"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
+        </div>
     </div>
+    <!-- END COMPONENT: PRODUCTS -->
 
-    <!-- CLIENTS HEADER -->
-    <div class="code-block">
+    <!-- ========================================== -->
+    <!-- COMPONENT: CODE HEADER (Clients) -->
+    <!-- ========================================== -->
+    <div class="component-code-header" id="clients-header">
         <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
         <p class="comment">// Partners I've worked with</p>
     </div>
 
-    <!-- CLIENTS -->
-    <div>
-        <div class="client-card">
-            <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
-            <div class="client-info">
-                <h3>Vineyard Church of Augusta</h3>
-                <p>Community-focused church organization</p>
-                <a href="https://vineyardaugusta.org" class="btn-secondary">Visit Website →</a>
+    <!-- ========================================== -->
+    <!-- COMPONENT: CLIENTS -->
+    <!-- ========================================== -->
+    <div class="component-clients" id="clients">
+        <div class="clients-container">
+            <div class="client-card">
+                <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
+                <div class="client-info">
+                    <h3>Vineyard Church of Augusta</h3>
+                    <p>Community-focused church organization</p>
+                    <a href="https://vineyardaugusta.org" class="btn-secondary">Visit Website →</a>
+                </div>
             </div>
         </div>
     </div>
+    <!-- END COMPONENT: CLIENTS -->
 
-    <!-- BLOG HEADER -->
-    <div class="code-block">
+    <!-- ========================================== -->
+    <!-- COMPONENT: CODE HEADER (Blog) -->
+    <!-- ========================================== -->
+    <div class="component-code-header" id="blog-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
         <p class="comment">// Thoughts & tutorials</p>
     </div>
 
-    <!-- BLOG -->
-    <div>
-        <div class="blog-card">
-            <i class="fas fa-mobile-alt"></i>
-            <div class="card-content">
-                <div class="title-row">
-                    <h3>Fluid Responsive System</h3>
-                    <span class="blog-date">June 9, 2024</span>
-                </div>
-                <p>Using clamp() for true fluidity on all screens</p>
-                <a href="#" class="btn-secondary">Read More →</a>
-            </div>
-        </div>
-        <div class="blog-card">
-            <i class="fas fa-font"></i>
-            <div class="card-content">
-                <div class="title-row">
-                    <h3>The Power of Text-Only Design</h3>
-                    <span class="blog-date">June 5, 2024</span>
-                </div>
-                <p>Why sometimes less is more in interface design</p>
-                <a href="#" class="btn-secondary">Read More →</a>
-            </div>
-        </div>
-        <div class="blog-card">
-            <i class="fas fa-search"></i>
-            <div class="card-content">
-                <div class="title-row">
-                    <h3>V3 QuickFind</h3>
-                    <span class="blog-date">May 28, 2024</span>
-                </div>
-                <p>Universal search that works on every device</p>
-                <a href="#" class="btn-secondary">Read More →</a>
-            </div>
+    <!-- ========================================== -->
+    <!-- COMPONENT: BLOG -->
+    <!-- Add/remove blog-card divs freely -->
+    <!-- ========================================== -->
+    <div class="component-blog" id="blog">
+        <div class="blog-container">
+            <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">June 9, 2024</span></div><p>Using clamp() for true fluidity on all screens</p><a href="#" class="btn-secondary">Read More →</a></div></div>
+            <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><div class="blog-title-row"><h3>The Power of Text-Only Design</h3><span class="blog-date">June 5, 2024</span></div><p>Why sometimes less is more in interface design</p><a href="#" class="btn-secondary">Read More →</a></div></div>
+            <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><div class="blog-title-row"><h3>V3 QuickFind</h3><span class="blog-date">May 28, 2024</span></div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read More →</a></div></div>
         </div>
     </div>
+    <!-- END COMPONENT: BLOG -->
 
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- ========================================== -->
+<!-- BOTTOM NAVIGATION -->
+<!-- Add nav-item for each section you have -->
+<!-- ========================================== -->
 <div class="bottom-nav">
+    <button class="nav-item" data-section="hero"><i class="fas fa-home"></i><span>Home</span></button>
     <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
     <button class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
@@ -590,19 +711,22 @@
 
 <script>
     (function(){
-        // Auto-ID sections for navigation
-        const sectionMap = {
-            'about': 2,
-            'skills': 4,
-            'services': 6,
-            'store': 8,
-            'clients': 10,
-            'blog': 12
+        // All sections with IDs for navigation
+        const sectionIds = ['hero', 'about', 'skills', 'services', 'store', 'clients', 'blog'];
+        
+        // Add IDs to their parent containers if not already set
+        const sections = {
+            'hero': document.querySelector('.component-hero'),
+            'about': document.querySelector('.component-about'),
+            'skills': document.querySelector('.component-grid#skills'),
+            'services': document.querySelector('.component-grid#services'),
+            'store': document.querySelector('.component-products'),
+            'clients': document.querySelector('.component-clients'),
+            'blog': document.querySelector('.component-blog')
         };
         
-        for (const [id, index] of Object.entries(sectionMap)) {
-            const el = document.querySelectorAll('.section > div')[index];
-            if (el) el.id = id;
+        for (const [id, el] of Object.entries(sections)) {
+            if (el && !el.id) el.id = id;
         }
         
         const navItems = document.querySelectorAll('.nav-item[data-section]');
@@ -632,22 +756,22 @@
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    const scrollPos = window.scrollY + 100;
+                    const scrollPos = window.scrollY + 120;
                     let current = '';
                     
-                    for (const id of ['about', 'skills', 'services', 'store', 'clients', 'blog']) {
+                    for (const id of sectionIds) {
                         const el = document.getElementById(id);
                         if (el && el.offsetTop <= scrollPos) current = id;
                     }
                     
-                    setActive(current || 'about');
+                    setActive(current || 'hero');
                     ticking = false;
                 });
                 ticking = true;
             }
         });
         
-        // Fade-in animation
+        // Fade-in animation for all components
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
@@ -660,7 +784,7 @@
             { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
         );
         
-        document.querySelectorAll('.section > div:not(.code-block):not(.hero-wrapper), .hero-wrapper').forEach(el => observer.observe(el));
+        document.querySelectorAll('.component-hero, .component-code-header, .component-about, .component-grid, .component-products, .component-clients, .component-blog').forEach(el => observer.observe(el));
         
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
