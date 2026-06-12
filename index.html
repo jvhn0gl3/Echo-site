@@ -8,14 +8,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Ultra-Responsive</title>
+    <title>V3 | Touch Optimized</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           ULTRA-RESPONSIVE - Supports down to 140px
-           No horizontal scroll, ever
+           ULTRA-RESPONSIVE + TOUCH OPTIMIZED
+           Minimum 44px touch targets everywhere
            ============================================ */
         
         * {
@@ -68,7 +68,7 @@
             font-size: var(--text-base);
         }
         
-        /* Main container - no overflow */
+        /* Main container */
         .site-container {
             width: 100%;
             max-width: 100%;
@@ -77,18 +77,19 @@
         }
         
         /* ========================================== */
-        /* BUTTON STYLES - FULL WIDTH on tiny screens */
+        /* BUTTON STYLES - Minimum 44px touch target */
         /* ========================================== */
         .btn-primary, .btn-secondary {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: var(--space-2xs);
-            padding: var(--space-2xs) var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            min-height: 44px;
             border-radius: var(--space-sm);
             text-decoration: none;
             font-weight: 500;
-            font-size: var(--text-xs);
+            font-size: var(--text-sm);
             transition: all 0.12s ease;
             cursor: pointer;
             border: none;
@@ -108,6 +109,12 @@
         
         .btn-secondary:hover {
             background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .btn-primary:active,
+        .btn-secondary:active {
+            transform: scale(0.96);
+            transition: transform 0.05s ease;
         }
         
         /* ========================================== */
@@ -149,8 +156,13 @@
         .hero-buttons {
             display: flex;
             flex-direction: column;
-            gap: var(--space-sm);
+            gap: var(--space-md);
             width: 100%;
+        }
+        
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-secondary {
+            min-height: 48px;
         }
         
         .hero-right p {
@@ -171,6 +183,7 @@
             border-radius: 0 var(--space-sm) var(--space-sm) 0;
             margin-bottom: var(--space-md);
             width: 100%;
+            user-select: none;
         }
         
         .component-code-header h2 {
@@ -203,7 +216,7 @@
         }
         
         /* ========================================== */
-        /* ULTRA-RESPONSIVE GRIDS - List on tiny screens, Grid when possible */
+        /* CARDS - Touch optimized */
         /* ========================================== */
         .grid-container,
         .products-container,
@@ -211,11 +224,11 @@
         .blog-container {
             display: flex;
             flex-direction: column;
-            gap: var(--space-sm);
+            gap: var(--space-md);
             width: 100%;
         }
         
-        /* Cards - full width, never overflow */
+        /* Cards - entire area tappable with feedback */
         .grid-card,
         .product-card,
         .client-card,
@@ -226,17 +239,43 @@
             background: var(--bg-card);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
-            border-radius: var(--space-sm);
-            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--space-md);
+            padding: var(--space-md);
             transition: all 0.15s ease;
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: var(--space-md);
             box-sizing: border-box;
+            cursor: pointer;
+            position: relative;
         }
         
-        /* Allow text wrapping */
+        /* Visual feedback for card taps */
+        .grid-card:active,
+        .product-card:active,
+        .client-card:active,
+        .blog-card:active {
+            transform: scale(0.99);
+            background: rgba(30, 30, 40, 0.95);
+        }
+        
+        /* Icons inside cards - not separate touch targets */
+        .grid-card i,
+        .product-card i,
+        .blog-card i {
+            font-size: clamp(1rem, 5vw, 1.25rem);
+            width: clamp(24px, 8vw, 32px);
+            flex-shrink: 0;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        .grid-card i { color: var(--accent-cyan); }
+        .blog-card i { color: var(--accent-pink); }
+        .product-card i { color: var(--accent-cyan); }
+        
+        /* Card content containers */
         .grid-card-content,
         .product-info,
         .client-info,
@@ -246,20 +285,6 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-        
-        /* Icons - scale with screen */
-        .grid-card i,
-        .product-card i,
-        .blog-card i {
-            font-size: clamp(1rem, 5vw, 1.25rem);
-            width: clamp(24px, 8vw, 32px);
-            flex-shrink: 0;
-            text-align: center;
-        }
-        
-        .grid-card i { color: var(--accent-cyan); }
-        .blog-card i { color: var(--accent-pink); }
-        .product-card i { color: var(--accent-cyan); }
         
         .grid-card-content h3,
         .product-info h3,
@@ -285,17 +310,30 @@
             margin-top: var(--space-3xs);
         }
         
+        /* Action buttons inside cards - must be easily tappable */
         .product-action,
         .card-action {
             flex-shrink: 0;
-            min-width: 70px;
+            min-width: 80px;
+        }
+        
+        .product-action .btn-secondary,
+        .client-info .btn-secondary,
+        .blog-content .btn-secondary {
+            min-height: 44px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: var(--space-xs);
         }
         
         /* Client specific */
         .client-logo {
-            max-width: min(60px, 25%);
+            max-width: min(70px, 25%);
             height: auto;
             flex-shrink: 0;
+            pointer-events: none;
         }
         
         /* Blog specific */
@@ -313,14 +351,16 @@
             color: var(--accent-pink);
         }
         
-        /* Hover effects */
-        .grid-card:hover,
-        .product-card:hover,
-        .client-card:hover,
-        .blog-card:hover {
-            background: rgba(25, 25, 35, 0.9);
-            border-color: var(--border-medium);
-            transform: translateX(2px);
+        /* Hover effects for non-touch devices */
+        @media (hover: hover) {
+            .grid-card:hover,
+            .product-card:hover,
+            .client-card:hover,
+            .blog-card:hover {
+                background: rgba(25, 25, 35, 0.9);
+                border-color: var(--border-medium);
+                transform: translateX(2px);
+            }
         }
         
         /* ========================================== */
@@ -341,26 +381,26 @@
         @media (min-width: 560px) {
             .grid-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                gap: var(--space-sm);
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--space-md);
             }
             
             .products-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                gap: var(--space-sm);
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--space-md);
             }
             
             .clients-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--space-sm);
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: var(--space-md);
             }
             
             .blog-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--space-sm);
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: var(--space-md);
             }
         }
         
@@ -372,95 +412,8 @@
             }
         }
         
-        @media (min-width: 900px) {
-            .grid-container {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            }
-            .products-container {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            .grid-container {
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            }
-            .products-container {
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            }
-            .clients-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-            .blog-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-        }
-        
         /* ========================================== */
-        /* TINY SCREEN SPECIFIC (100-200px) */
-        /* ========================================== */
-        @media (max-width: 200px) {
-            .site-container {
-                padding: var(--space-sm) var(--space-2xs);
-            }
-            
-            .component-hero,
-            .component-code-header,
-            .grid-card,
-            .product-card,
-            .client-card,
-            .blog-card {
-                padding: var(--space-2xs);
-            }
-            
-            .hero-left h1 {
-                font-size: 1.1rem;
-            }
-            
-            .hero-right p {
-                font-size: 0.65rem;
-            }
-            
-            .grid-card-content h3,
-            .product-info h3,
-            .client-info h3,
-            .blog-content h3 {
-                font-size: 0.7rem;
-            }
-            
-            .grid-card-content p,
-            .product-info p,
-            .client-info p,
-            .blog-content p {
-                font-size: 0.55rem;
-            }
-            
-            .btn-primary, .btn-secondary {
-                font-size: 0.55rem;
-                padding: var(--space-3xs) var(--space-xs);
-            }
-            
-            .blog-title-row {
-                flex-direction: column;
-                gap: var(--space-3xs);
-            }
-            
-            .blog-date {
-                white-space: normal;
-            }
-            
-            .product-action {
-                min-width: 55px;
-            }
-            
-            .product-action .btn-secondary {
-                font-size: 0.5rem;
-                padding: var(--space-3xs) var(--space-2xs);
-            }
-        }
-        
-        /* ========================================== */
-        /* BOTTOM NAVIGATION */
+        /* BOTTOM NAVIGATION - Touch optimized */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -473,9 +426,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: var(--space-2xs) var(--space-xs) var(--space-sm);
+            padding: var(--space-sm) var(--space-xs) var(--space-lg);
             z-index: 100;
-            gap: var(--space-2xs);
+            gap: var(--space-sm);
         }
         
         .nav-item {
@@ -487,19 +440,50 @@
             border: none;
             color: var(--text-tertiary);
             font-size: clamp(0.5rem, 2.5vw, 0.6rem);
-            padding: var(--space-2xs) var(--space-xs);
+            padding: var(--space-sm) var(--space-xs);
+            min-height: 44px;
+            min-width: 60px;
             border-radius: var(--space-sm);
             cursor: pointer;
+            transition: all 0.12s ease;
+        }
+        
+        .nav-item:active {
+            transform: scale(0.94);
         }
         
         .nav-item i {
-            font-size: clamp(0.8rem, 4vw, 1rem);
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
             margin: 0;
         }
         
         .nav-item.active {
             color: var(--accent-cyan);
             background: rgba(0, 212, 255, 0.1);
+        }
+        
+        /* ========================================== */
+        /* TINY SCREEN ADJUSTMENTS */
+        /* ========================================== */
+        @media (max-width: 200px) {
+            .site-container {
+                padding: var(--space-sm) var(--space-2xs);
+            }
+            
+            .btn-primary, .btn-secondary {
+                min-height: 40px;
+                font-size: 0.6rem;
+                padding: var(--space-2xs) var(--space-xs);
+            }
+            
+            .nav-item {
+                min-width: 50px;
+                padding: var(--space-2xs) var(--space-3xs);
+            }
+            
+            .product-action {
+                min-width: 65px;
+            }
         }
         
         /* ========================================== */
@@ -580,7 +564,7 @@
         <p class="comment">// Technologies I work with daily</p>
     </div>
 
-    <!-- SKILLS GRID -->
+    <!-- SKILLS -->
     <div class="grid-container" id="skills">
         <div class="grid-card"><i class="fa-brands fa-react"></i><div class="grid-card-content"><h3>Frontend</h3><p>React, Vue, Angular, TS</p></div></div>
         <div class="grid-card"><i class="fa-solid fa-server"></i><div class="grid-card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
@@ -596,7 +580,7 @@
         <p class="comment">// What I offer as a digital architect</p>
     </div>
 
-    <!-- SERVICES GRID -->
+    <!-- SERVICES -->
     <div class="grid-container" id="services">
         <div class="grid-card"><i class="fa-solid fa-pen-nib"></i><div class="grid-card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
         <div class="grid-card"><i class="fa-solid fa-laptop-code"></i><div class="grid-card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
