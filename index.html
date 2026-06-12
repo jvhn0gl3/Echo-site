@@ -101,6 +101,7 @@
         .sidebar-logo {
             text-align: center;
             margin-bottom: var(--space-md);
+            flex-shrink: 0;
         }
         
         .sidebar-logo .logo-text {
@@ -117,21 +118,46 @@
             margin-top: var(--space-3xs);
         }
         
+        /* Scrollable nav group */
+        .nav-scroll-group {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 0; /* Important for flex child scrolling */
+        }
+        
+        .nav-scroll-group::-webkit-scrollbar {
+            width: 3px;
+        }
+        
+        .nav-scroll-group::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .nav-scroll-group::-webkit-scrollbar-thumb {
+            background: var(--accent-cyan);
+            border-radius: 3px;
+        }
+        
         .nav-items {
             display: flex;
             flex-direction: column;
             gap: var(--space-sm);
             width: 100%;
-            flex: 1;
+            padding-bottom: var(--space-md);
         }
         
         /* Bottom nav item container - pushes social button to bottom */
         .nav-bottom {
-            margin-top: auto;
+            flex-shrink: 0;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: var(--space-sm);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border-light);
+            margin-top: var(--space-xs);
         }
         
         .nav-item {
@@ -180,6 +206,7 @@
             }
         }
         
+        /* Custom scrollbar for sidebar itself (when needed) */
         .sidebar-nav::-webkit-scrollbar {
             width: 3px;
         }
@@ -656,43 +683,47 @@
             <div class="logo-text">V3</div>
             <div class="logo-sub">ARCHITECT</div>
         </div>
-        <div class="nav-items">
-            <button class="nav-item" data-section="hero" aria-label="Home">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </button>
-            <button class="nav-item" data-section="about" aria-label="Profile">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </button>
-            <button class="nav-item" data-section="skills" aria-label="Skills">
-                <i class="fas fa-code"></i>
-                <span>Skills</span>
-            </button>
-            <button class="nav-item" data-section="services" aria-label="Services">
-                <i class="fas fa-cogs"></i>
-                <span>Services</span>
-            </button>
-            <button class="nav-item" data-section="store" aria-label="Store">
-                <i class="fas fa-store"></i>
-                <span>Store</span>
-            </button>
-            <button class="nav-item" data-section="clients" aria-label="Clients">
-                <i class="fas fa-users"></i>
-                <span>Clients</span>
-            </button>
-            <button class="nav-item" data-section="blog" aria-label="Blog">
-                <i class="fas fa-newspaper"></i>
-                <span>Blog</span>
-            </button>
-            
-            <!-- BOTTOM SECTION with Social button at bottom -->
-            <div class="nav-bottom">
-                <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
-                    <i class="fas fa-share-alt"></i>
-                    <span>Social</span>
+        
+        <!-- SCROLLABLE NAVIGATION GROUP -->
+        <div class="nav-scroll-group">
+            <div class="nav-items">
+                <button class="nav-item" data-section="hero" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-item" data-section="about" aria-label="Profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </button>
+                <button class="nav-item" data-section="skills" aria-label="Skills">
+                    <i class="fas fa-code"></i>
+                    <span>Skills</span>
+                </button>
+                <button class="nav-item" data-section="services" aria-label="Services">
+                    <i class="fas fa-cogs"></i>
+                    <span>Services</span>
+                </button>
+                <button class="nav-item" data-section="store" aria-label="Store">
+                    <i class="fas fa-store"></i>
+                    <span>Store</span>
+                </button>
+                <button class="nav-item" data-section="clients" aria-label="Clients">
+                    <i class="fas fa-users"></i>
+                    <span>Clients</span>
+                </button>
+                <button class="nav-item" data-section="blog" aria-label="Blog">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Blog</span>
                 </button>
             </div>
+        </div>
+        
+        <!-- BOTTOM SECTION with Social button (always visible, never scrolls) -->
+        <div class="nav-bottom">
+            <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
+                <i class="fas fa-share-alt"></i>
+                <span>Social</span>
+            </button>
         </div>
     </nav>
 
