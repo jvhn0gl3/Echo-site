@@ -8,14 +8,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Touch Optimized</title>
+    <title>V3 | Pure Fluid System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           ULTRA-RESPONSIVE + TOUCH OPTIMIZED
-           Minimum 44px touch targets everywhere
+           PURE FLUID INTERPOLATION
+           Formula: target = min + (max - min) * (100vw - 320) / (1920 - 320)
+           Every value calculated, no clamp shortcuts
            ============================================ */
         
         * {
@@ -25,24 +26,40 @@
             -webkit-font-smoothing: antialiased;
         }
         
+        /* Fluid interpolation variables - calculated at 320px to 1920px range */
         :root {
-            --space-3xs: clamp(0.125rem, 1vw, 0.25rem);
-            --space-2xs: clamp(0.25rem, 1.5vw, 0.375rem);
-            --space-xs: clamp(0.375rem, 2vw, 0.5rem);
-            --space-sm: clamp(0.5rem, 2.5vw, 0.75rem);
-            --space-md: clamp(0.75rem, 3vw, 1rem);
-            --space-lg: clamp(1rem, 4vw, 1.25rem);
-            --space-xl: clamp(1.25rem, 5vw, 1.5rem);
+            --vw-diff: calc(100vw - 320px);
+            --range-diff: 1600px; /* 1920 - 320 */
             
-            --text-2xs: clamp(0.5rem, 1.2vw, 0.65rem);
-            --text-xs: clamp(0.55rem, 1.5vw, 0.7rem);
-            --text-sm: clamp(0.6rem, 1.8vw, 0.8rem);
-            --text-base: clamp(0.7rem, 2vw, 0.9rem);
-            --text-md: clamp(0.8rem, 2.5vw, 1rem);
-            --text-lg: clamp(0.9rem, 3vw, 1.125rem);
-            --text-xl: clamp(1rem, 3.5vw, 1.25rem);
-            --text-2xl: clamp(1.1rem, 4vw, 1.5rem);
+            /* SPACING - interpolated */
+            --space-3xs: calc(0.125rem + (0.125 * (var(--vw-diff) / var(--range-diff))));
+            --space-2xs: calc(0.25rem + (0.125 * (var(--vw-diff) / var(--range-diff))));
+            --space-xs: calc(0.375rem + (0.125 * (var(--vw-diff) / var(--range-diff))));
+            --space-sm: calc(0.5rem + (0.25 * (var(--vw-diff) / var(--range-diff))));
+            --space-md: calc(0.75rem + (0.25 * (var(--vw-diff) / var(--range-diff))));
+            --space-lg: calc(1rem + (0.5 * (var(--vw-diff) / var(--range-diff))));
+            --space-xl: calc(1.25rem + (0.75 * (var(--vw-diff) / var(--range-diff))));
             
+            /* TYPOGRAPHY - interpolated */
+            --text-2xs: calc(0.625rem + (0.125 * (var(--vw-diff) / var(--range-diff))));
+            --text-xs: calc(0.6875rem + (0.125 * (var(--vw-diff) / var(--range-diff))));
+            --text-sm: calc(0.75rem + (0.125 * (var(--vw-diff) / var(--range-diff))));
+            --text-base: calc(0.8125rem + (0.1875 * (var(--vw-diff) / var(--range-diff))));
+            --text-md: calc(0.875rem + (0.25 * (var(--vw-diff) / var(--range-diff))));
+            --text-lg: calc(1rem + (0.25 * (var(--vw-diff) / var(--range-diff))));
+            --text-xl: calc(1.125rem + (0.375 * (var(--vw-diff) / var(--range-diff))));
+            --text-2xl: calc(1.25rem + (0.5 * (var(--vw-diff) / var(--range-diff))));
+            
+            /* RADIUS - interpolated */
+            --radius-sm: calc(0.375rem + (0.25 * (var(--vw-diff) / var(--range-diff))));
+            --radius-md: calc(0.5rem + (0.375 * (var(--vw-diff) / var(--range-diff))));
+            --radius-lg: calc(0.75rem + (0.5 * (var(--vw-diff) / var(--range-diff))));
+            
+            /* TOUCH TARGETS - interpolated (44px min at 320px) */
+            --btn-height: calc(2.75rem + (0.75 * (var(--vw-diff) / var(--range-diff))));
+            --nav-height: calc(2.75rem + (0.5 * (var(--vw-diff) / var(--range-diff))));
+            
+            /* Colors */
             --bg-primary: #0a0a0a;
             --bg-card: rgba(18, 18, 24, 0.8);
             --text-primary: #ffffff;
@@ -77,7 +94,7 @@
         }
         
         /* ========================================== */
-        /* BUTTON STYLES - Minimum 44px touch target */
+        /* BUTTONS - using interpolated height */
         /* ========================================== */
         .btn-primary, .btn-secondary {
             display: flex;
@@ -85,8 +102,8 @@
             justify-content: center;
             gap: var(--space-2xs);
             padding: var(--space-sm) var(--space-md);
-            min-height: 44px;
-            border-radius: var(--space-sm);
+            min-height: var(--btn-height);
+            border-radius: var(--radius-sm);
             text-decoration: none;
             font-weight: 500;
             font-size: var(--text-sm);
@@ -107,10 +124,6 @@
             color: var(--accent-cyan);
         }
         
-        .btn-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
         .btn-primary:active,
         .btn-secondary:active {
             transform: scale(0.96);
@@ -122,7 +135,7 @@
         /* ========================================== */
         .component-hero {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-radius: var(--space-md);
+            border-radius: var(--radius-md);
             padding: var(--space-lg) var(--space-md);
             margin-bottom: var(--space-xl);
             border: 1px solid var(--border-light);
@@ -160,11 +173,6 @@
             width: 100%;
         }
         
-        .hero-buttons .btn-primary,
-        .hero-buttons .btn-secondary {
-            min-height: 48px;
-        }
-        
         .hero-right p {
             font-size: var(--text-sm);
             color: var(--text-secondary);
@@ -173,14 +181,14 @@
         }
         
         /* ========================================== */
-        /* COMPONENT: CODE HEADER */
+        /* CODE HEADER */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
             border-left: 2px solid var(--accent-cyan);
             padding: var(--space-sm) var(--space-md);
             font-family: 'SF Mono', 'Fira Code', monospace;
-            border-radius: 0 var(--space-sm) var(--space-sm) 0;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             margin-bottom: var(--space-md);
             width: 100%;
             user-select: none;
@@ -202,7 +210,7 @@
         .component-code-header .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
         
         /* ========================================== */
-        /* COMPONENT: ABOUT */
+        /* ABOUT */
         /* ========================================== */
         .component-about {
             margin-bottom: var(--space-xl);
@@ -216,7 +224,7 @@
         }
         
         /* ========================================== */
-        /* CARDS - Touch optimized */
+        /* CARDS */
         /* ========================================== */
         .grid-container,
         .products-container,
@@ -228,7 +236,6 @@
             width: 100%;
         }
         
-        /* Cards - entire area tappable with feedback */
         .grid-card,
         .product-card,
         .client-card,
@@ -239,7 +246,7 @@
             background: var(--bg-card);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
-            border-radius: var(--space-md);
+            border-radius: var(--radius-md);
             padding: var(--space-md);
             transition: all 0.15s ease;
             display: flex;
@@ -248,10 +255,8 @@
             gap: var(--space-md);
             box-sizing: border-box;
             cursor: pointer;
-            position: relative;
         }
         
-        /* Visual feedback for card taps */
         .grid-card:active,
         .product-card:active,
         .client-card:active,
@@ -260,12 +265,11 @@
             background: rgba(30, 30, 40, 0.95);
         }
         
-        /* Icons inside cards - not separate touch targets */
         .grid-card i,
         .product-card i,
         .blog-card i {
-            font-size: clamp(1rem, 5vw, 1.25rem);
-            width: clamp(24px, 8vw, 32px);
+            font-size: var(--text-xl);
+            width: calc(var(--text-xl) * 1.5);
             flex-shrink: 0;
             text-align: center;
             pointer-events: none;
@@ -275,7 +279,6 @@
         .blog-card i { color: var(--accent-pink); }
         .product-card i { color: var(--accent-cyan); }
         
-        /* Card content containers */
         .grid-card-content,
         .product-info,
         .client-info,
@@ -310,17 +313,16 @@
             margin-top: var(--space-3xs);
         }
         
-        /* Action buttons inside cards - must be easily tappable */
         .product-action,
         .card-action {
             flex-shrink: 0;
-            min-width: 80px;
+            min-width: calc(var(--btn-height) * 1.5);
         }
         
         .product-action .btn-secondary,
         .client-info .btn-secondary,
         .blog-content .btn-secondary {
-            min-height: 44px;
+            min-height: var(--btn-height);
             width: 100%;
             display: flex;
             align-items: center;
@@ -328,15 +330,13 @@
             margin-top: var(--space-xs);
         }
         
-        /* Client specific */
         .client-logo {
-            max-width: min(70px, 25%);
+            max-width: calc(var(--text-2xl) * 3);
             height: auto;
             flex-shrink: 0;
             pointer-events: none;
         }
         
-        /* Blog specific */
         .blog-title-row {
             display: flex;
             justify-content: space-between;
@@ -351,7 +351,6 @@
             color: var(--accent-pink);
         }
         
-        /* Hover effects for non-touch devices */
         @media (hover: hover) {
             .grid-card:hover,
             .product-card:hover,
@@ -364,20 +363,8 @@
         }
         
         /* ========================================== */
-        /* GRID VIEW - Switch when enough space */
+        /* GRID VIEW - at sufficient width */
         /* ========================================== */
-        @media (min-width: 480px) {
-            .hero-buttons {
-                flex-direction: row;
-            }
-            
-            .hero-buttons .btn-primary,
-            .hero-buttons .btn-secondary {
-                width: auto;
-                flex: 1;
-            }
-        }
-        
         @media (min-width: 560px) {
             .grid-container {
                 display: grid;
@@ -404,6 +391,18 @@
             }
         }
         
+        @media (min-width: 480px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+            
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: auto;
+                flex: 1;
+            }
+        }
+        
         @media (min-width: 640px) {
             .hero-container {
                 flex-direction: row;
@@ -413,7 +412,7 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAVIGATION - Touch optimized */
+        /* BOTTOM NAV - interpolated height */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -439,11 +438,11 @@
             background: none;
             border: none;
             color: var(--text-tertiary);
-            font-size: clamp(0.5rem, 2.5vw, 0.6rem);
+            font-size: var(--text-2xs);
             padding: var(--space-sm) var(--space-xs);
-            min-height: 44px;
+            min-height: var(--nav-height);
             min-width: 60px;
-            border-radius: var(--space-sm);
+            border-radius: var(--radius-sm);
             cursor: pointer;
             transition: all 0.12s ease;
         }
@@ -453,37 +452,13 @@
         }
         
         .nav-item i {
-            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            font-size: var(--text-md);
             margin: 0;
         }
         
         .nav-item.active {
             color: var(--accent-cyan);
             background: rgba(0, 212, 255, 0.1);
-        }
-        
-        /* ========================================== */
-        /* TINY SCREEN ADJUSTMENTS */
-        /* ========================================== */
-        @media (max-width: 200px) {
-            .site-container {
-                padding: var(--space-sm) var(--space-2xs);
-            }
-            
-            .btn-primary, .btn-secondary {
-                min-height: 40px;
-                font-size: 0.6rem;
-                padding: var(--space-2xs) var(--space-xs);
-            }
-            
-            .nav-item {
-                min-width: 50px;
-                padding: var(--space-2xs) var(--space-3xs);
-            }
-            
-            .product-action {
-                min-width: 65px;
-            }
         }
         
         /* ========================================== */
@@ -515,7 +490,7 @@
             padding: var(--space-2xs) var(--space-sm);
             text-decoration: none;
             z-index: 1001;
-            border-radius: var(--space-sm);
+            border-radius: var(--radius-sm);
             font-size: var(--text-xs);
         }
         
@@ -630,7 +605,7 @@
 
     <!-- BLOG -->
     <div class="blog-container" id="blog">
-        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">Jun 9, 2024</span></div><p>Using clamp() for true fluidity on all screens</p><a href="#" class="btn-secondary">Read →</a></div></div>
+        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">Jun 9, 2024</span></div><p>Using pure interpolation for true fluidity</p><a href="#" class="btn-secondary">Read →</a></div></div>
         <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><div class="blog-title-row"><h3>The Power of Text-Only Design</h3><span class="blog-date">Jun 5, 2024</span></div><p>Why less is more in interface design</p><a href="#" class="btn-secondary">Read →</a></div></div>
         <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><div class="blog-title-row"><h3>V3 QuickFind</h3><span class="blog-date">May 28, 2024</span></div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read →</a></div></div>
     </div>
