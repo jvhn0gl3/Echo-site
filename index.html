@@ -8,95 +8,128 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Digital Architect</title>
+    <title>V3 | Raw HTML System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           ONE-STOP UTILITY SYSTEM
-           Everything you need is right here
-           Edit this file, commit in seconds
+           THE SYSTEM: Just add raw HTML
+           CSS automatically styles everything
+           No classes needed (except .section on container)
            ============================================ */
         
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        /* ----- CHANGE THESE TO THEME YOUR SITE (1 second) ----- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
             --bg: #050505;
             --text: #e8e8e8;
             --accent: #00d4ff;
             --accent2: #7c3aed;
             --gray: #5c6370;
-            --gray-light: #c0c0c0;
-            --space: clamp(1rem, 4vw, 1.5rem);
         }
-
+        
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.5;
-            font-size: clamp(0.875rem, 3vw, 1rem);
         }
-
-        /* ----- LAYOUT (add these classes to your HTML) ----- */
-        .container { max-width: 1400px; margin: 0 auto; padding: var(--space); }
-        .grid { display: grid; gap: 1rem; }
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-        .flex { display: flex; }
-        .flex-center { display: flex; align-items: center; justify-content: center; }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        .gap-sm { gap: 0.5rem; }
-        .gap-md { gap: 1rem; }
-        .gap-lg { gap: 1.5rem; }
-        .text-center { text-align: center; }
         
-        /* ----- COMPONENTS (copy-paste these blocks) ----- */
-        .card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 1rem;
-            padding: 1rem;
-            transition: transform 0.2s;
+        /* Only ONE class needed - everything inside gets styled automatically */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
         }
-        .card:active { transform: scale(0.96); }
         
-        .btn {
+        /* ========================================== */
+        /* AUTOMATIC STYLES - Add any HTML, it just works */
+        /* ========================================== */
+        
+        /* Headers */
+        h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); margin-bottom: 0.5rem; }
+        h2 { font-size: clamp(1.2rem, 5vw, 1.8rem); margin-bottom: 0.5rem; }
+        h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+        
+        /* Paragraphs */
+        p { color: var(--gray); margin-bottom: 0.5rem; }
+        
+        /* Images */
+        img { max-width: 100%; height: auto; border-radius: 1rem; }
+        
+        /* Buttons */
+        a, button {
             display: inline-block;
             padding: 0.5rem 1.5rem;
             border-radius: 2rem;
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.2s;
+            cursor: pointer;
+            border: none;
         }
-        .btn:active { transform: scale(0.96); }
-        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
+        a:active, button:active { transform: scale(0.96); }
+        
+        /* Primary button style */
+        .btn-primary, a[href="#"]:first-of-type { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
+        
+        /* Secondary button style */
         .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--accent); }
         
-        .code-header {
-            background: rgba(0,212,255,0.05);
-            border-left: 3px solid var(--accent);
-            padding: 0.75rem 1rem;
-            margin-bottom: 1.5rem;
-            font-family: monospace;
-            border-radius: 0 0.75rem 0.75rem 0;
+        /* Cards - any div with multiple children gets card style automatically */
+        .section > div > div {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1rem;
+            padding: 1rem;
+            transition: transform 0.2s;
         }
-        .code-header h2 { font-size: 0.875rem; color: var(--accent); margin-bottom: 0.25rem; }
-        .code-header .comment { color: var(--gray); font-size: 0.7rem; }
+        .section > div > div:active { transform: scale(0.96); }
         
-        /* ----- QUICK EDIT ZONE - Change these values (2 seconds) ----- */
-        .hero {
+        /* Grid layout - any container with multiple child divs becomes a grid */
+        .section > div {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Auto-grid based on how many items */
+        .section > div:has(> :nth-child(2)) { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .section > div:has(> :nth-child(3)) { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+        .section > div:has(> :nth-child(4)) { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .section > div:has(> :nth-child(5)) { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+        .section > div:has(> :nth-child(6)) { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+        
+        /* Hero section - any div with an h1 and p becomes hero */
+        .section > div:has(h1) {
             text-align: center;
             padding: 3rem 1rem;
             background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(124,58,237,0.05));
             border-radius: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            display: block;
         }
         
-        /* ----- BOTTOM NAV (already works, don't touch) ----- */
+        /* Code header style - any div with monospace text */
+        .section .code-block {
+            background: rgba(0,212,255,0.05);
+            border-left: 3px solid var(--accent);
+            padding: 0.75rem 1rem;
+            font-family: monospace;
+            border-radius: 0 0.75rem 0.75rem 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Icons */
+        i { color: var(--accent); margin-right: 0.25rem; }
+        
+        /* Flex for buttons */
+        .flex-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+        
+        /* ========================================== */
+        /* BOTTOM NAV (copy-paste ready) */
+        /* ========================================== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -124,7 +157,7 @@
             cursor: pointer;
         }
         .nav-item.active { color: var(--accent); background: rgba(0,212,255,0.15); }
-        .nav-item i { font-size: 1.25rem; }
+        .nav-item i { font-size: 1.25rem; margin: 0; }
         
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in { animation: fadeIn 0.4s ease-out; }
@@ -132,116 +165,111 @@
 </head>
 <body>
 
-<main class="container">
+<!-- ========================================== -->
+<!-- JUST RAW HTML - Copy, paste, edit, repeat -->
+<!-- Everything inside .section gets styled automatically -->
+<!-- ========================================== -->
+
+<div class="section">
     
-    <!-- ========================================== -->
-    <!-- EDIT ZONE: Change anything below in SECONDS -->
-    ========================================== -->
-    
-    <!-- HERO SECTION - Edit text, buttons, colors -->
-    <div class="hero">
-        <h1 style="font-size: clamp(1.5rem, 6vw, 2.5rem); margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent;">V3 Digital Architect</h1>
-        <p style="color: var(--gray-light); max-width: 600px; margin: 0 auto 1.5rem;">Build fast. Edit faster. Commit in seconds.</p>
-        <div class="flex flex-center gap-md">
-            <a href="#" class="btn btn-primary">Get Started</a>
-            <a href="#" class="btn btn-secondary">Learn More</a>
+    <!-- HERO BLOCK - Copy this whole thing -->
+    <div>
+        <h1>V3 Digital Architect</h1>
+        <p>Build fast. Edit faster. Commit in seconds.</p>
+        <div class="flex-buttons">
+            <a href="#">Get Started</a>
+            <a href="#" class="btn-secondary">Learn More</a>
         </div>
     </div>
 
-    <!-- ABOUT SECTION - Add/remove image by uncommenting -->
-    <div id="about" style="margin-bottom: 2rem;">
-        <div class="code-header">
-            <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ about }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/profile'</span></h2>
-            <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
-        </div>
-        <div class="text-center" style="max-width: 600px; margin: 0 auto;">
-            <!-- QUICK EDIT: Uncomment next line to add an image -->
-            <!-- <img src="images/logos/V3.png" style="width: 120px; border-radius: 50%; margin-bottom: 1rem;"> -->
-            <p style="color: var(--gray-light); margin-bottom: 0.75rem;">Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-            <p style="color: var(--gray-light);">Every line of code serves a purpose, every pixel has meaning.</p>
+    <!-- CODE HEADER - Optional decorative block -->
+    <div class="code-block">
+        <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ about }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/profile'</span></h2>
+        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Digital Architect · Full-Stack Developer · 10+ years</p>
+    </div>
+
+    <!-- ABOUT TEXT - Just raw text -->
+    <div>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+            <p style="margin-top: 0.5rem;">Every line of code serves a purpose, every pixel has meaning.</p>
         </div>
     </div>
 
-    <!-- SKILLS SECTION - Add/remove cards freely -->
-    <div id="skills" style="margin-bottom: 2rem;">
-        <div class="code-header">
-            <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">techStack</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">useSkills</span>()</h2>
-            <p class="comment">// Technologies I work with daily</p>
-        </div>
-        <div class="grid grid-4">
-            <!-- QUICK EDIT: Duplicate these lines to add more skills -->
-            <div class="card text-center"><i class="fa-brands fa-react" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Frontend</h3><p style="color: var(--gray); font-size: 0.7rem;">React, Vue, Angular, TS</p></div>
-            <div class="card text-center"><i class="fa-solid fa-server" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Backend</h3><p style="color: var(--gray); font-size: 0.7rem;">Node, Python, Go, Java</p></div>
-            <div class="card text-center"><i class="fa-solid fa-database" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Database</h3><p style="color: var(--gray); font-size: 0.7rem;">PostgreSQL, MongoDB, Redis</p></div>
-            <div class="card text-center"><i class="fa-solid fa-cloud" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Cloud</h3><p style="color: var(--gray); font-size: 0.7rem;">AWS, Azure, GCP, Docker</p></div>
-            <div class="card text-center"><i class="fa-solid fa-mobile-alt" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Mobile</h3><p style="color: var(--gray); font-size: 0.7rem;">React Native, Flutter, Swift</p></div>
-            <div class="card text-center"><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">DevOps</h3><p style="color: var(--gray); font-size: 0.7rem;">CI/CD, Jenkins, GitHub Actions</p></div>
-        </div>
+    <!-- CODE HEADER - Skills -->
+    <div class="code-block">
+        <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">techStack</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">useSkills</span>()</h2>
+        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Technologies I work with daily</p>
     </div>
 
-    <!-- SERVICES SECTION - Add/remove cards freely -->
-    <div id="services" style="margin-bottom: 2rem;">
-        <div class="code-header">
-            <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">services</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">provide</span>()</h2>
-            <p class="comment">// What I offer as a digital architect</p>
-        </div>
-        <div class="grid grid-3">
-            <div class="card text-center"><i class="fa-solid fa-pen-nib" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Logo Design</h3><p style="color: var(--gray); font-size: 0.7rem;">Custom brand identities</p></div>
-            <div class="card text-center"><i class="fa-solid fa-laptop-code" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Web Development</h3><p style="color: var(--gray); font-size: 0.7rem;">Full-stack modern apps</p></div>
-            <div class="card text-center"><i class="fa-solid fa-palette" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">UI/UX Design</h3><p style="color: var(--gray); font-size: 0.7rem;">Beautiful interfaces</p></div>
-            <div class="card text-center"><i class="fa-solid fa-chart-line" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Tech Consulting</h3><p style="color: var(--gray); font-size: 0.7rem;">Expert advice</p></div>
-            <div class="card text-center"><i class="fa-solid fa-rocket" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Performance</h3><p style="color: var(--gray); font-size: 0.7rem;">Speed optimization</p></div>
-            <div class="card text-center"><i class="fa-solid fa-shield-alt" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Security</h3><p style="color: var(--gray); font-size: 0.7rem;">Vulnerability fixes</p></div>
-        </div>
+    <!-- SKILLS GRID - Add/remove any of these divs -->
+    <div>
+        <div><i class="fa-brands fa-react"></i> <h3>Frontend</h3> <p>React, Vue, Angular, TS</p></div>
+        <div><i class="fa-solid fa-server"></i> <h3>Backend</h3> <p>Node.js, Python, Go, Java</p></div>
+        <div><i class="fa-solid fa-database"></i> <h3>Database</h3> <p>PostgreSQL, MongoDB, Redis</p></div>
+        <div><i class="fa-solid fa-cloud"></i> <h3>Cloud</h3> <p>AWS, Azure, GCP, Docker</p></div>
+        <div><i class="fa-solid fa-mobile-alt"></i> <h3>Mobile</h3> <p>React Native, Flutter, Swift</p></div>
+        <div><i class="fa-solid fa-code-branch"></i> <h3>DevOps</h3> <p>CI/CD, Jenkins, GitHub Actions</p></div>
     </div>
 
-    <!-- STORE SECTION - Edit products, prices, links -->
-    <div id="store" style="margin-bottom: 2rem;">
-        <div class="code-header">
-            <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ merchandise }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/shop'</span></h2>
-            <p class="comment">// Official merchandise · Text-only minimal store</p>
-        </div>
-        <div class="grid grid-4">
-            <div class="card text-center"><h3>Static Snow Button</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">Button</p><p style="color: var(--accent); font-weight: 600;">$3.24</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
-            <div class="card text-center"><h3>Pattern T-Shirt</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">T-Shirt</p><p style="color: var(--accent); font-weight: 600;">$21.04</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
-            <div class="card text-center"><h3>All White T-Shirt</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">T-Shirt</p><p style="color: var(--accent); font-weight: 600;">$21.04</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
-            <div class="card text-center"><h3>Black Round Pillow</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">Pillow</p><p style="color: var(--accent); font-weight: 600;">$40.50</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
-        </div>
+    <!-- CODE HEADER - Services -->
+    <div class="code-block">
+        <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">services</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">provide</span>()</h2>
+        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// What I offer as a digital architect</p>
     </div>
 
-    <!-- CLIENTS SECTION - Edit client info -->
-    <div id="clients" style="margin-bottom: 2rem;">
-        <div class="code-header">
-            <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">clients</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">trustedBy</span>()</h2>
-            <p class="comment">// Partners I've had the privilege to work with</p>
-        </div>
-        <div class="grid grid-2">
-            <div class="card text-center">
-                <img src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" style="max-width: 120px; margin: 0 auto 1rem; display: block;">
-                <h3>Vineyard Church of Augusta</h3>
-                <p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Community-focused church organization</p>
-                <a href="https://vineyardaugusta.org" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Visit →</a>
-            </div>
-            <!-- Add more clients by duplicating the div above -->
-        </div>
+    <!-- SERVICES GRID - Add/remove any of these divs -->
+    <div>
+        <div><i class="fa-solid fa-pen-nib"></i> <h3>Logo Design</h3> <p>Custom brand identities</p></div>
+        <div><i class="fa-solid fa-laptop-code"></i> <h3>Web Development</h3> <p>Full-stack modern apps</p></div>
+        <div><i class="fa-solid fa-palette"></i> <h3>UI/UX Design</h3> <p>Beautiful interfaces</p></div>
+        <div><i class="fa-solid fa-chart-line"></i> <h3>Tech Consulting</h3> <p>Expert advice</p></div>
+        <div><i class="fa-solid fa-rocket"></i> <h3>Performance</h3> <p>Speed optimization</p></div>
+        <div><i class="fa-solid fa-shield-alt"></i> <h3>Security</h3> <p>Vulnerability fixes</p></div>
     </div>
 
-    <!-- BLOG SECTION - Edit posts -->
-    <div id="blog" style="margin-bottom: 2rem;">
-        <div class="code-header">
-            <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">blog</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">getPosts</span>()</h2>
-            <p class="comment">// Thoughts, tutorials, and insights</p>
-        </div>
-        <div class="grid grid-3">
-            <div class="card"><i class="fas fa-mobile-alt" style="color: #9c27b0; font-size: 1.25rem;"></i><h3 style="margin: 0.5rem 0 0.25rem;">Fluid Responsive System</h3><p style="color: #9c27b0; font-size: 0.6rem;">June 9, 2024</p><p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Using clamp() for true fluidity</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Read →</a></div>
-            <div class="card"><i class="fas fa-font" style="color: #9c27b0; font-size: 1.25rem;"></i><h3 style="margin: 0.5rem 0 0.25rem;">Power of Text-Only Design</h3><p style="color: #9c27b0; font-size: 0.6rem;">June 5, 2024</p><p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Why less is more in UI</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Read →</a></div>
-            <div class="card"><i class="fas fa-search" style="color: #9c27b0; font-size: 1.25rem;"></i><h3 style="margin: 0.5rem 0 0.25rem;">V3 QuickFind</h3><p style="color: #9c27b0; font-size: 0.6rem;">May 28, 2024</p><p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Universal search system</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Read →</a></div>
-        </div>
+    <!-- CODE HEADER - Store -->
+    <div class="code-block">
+        <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ merchandise }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/shop'</span></h2>
+        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Official merchandise · Text-only minimal store</p>
     </div>
 
-</main>
+    <!-- PRODUCTS GRID - Add/remove any of these divs -->
+    <div>
+        <div><h3>Static Snow Button</h3> <p>Button</p> <p style="color: var(--accent); font-weight: 600;">$3.24</p> <a href="#">Shop →</a></div>
+        <div><h3>Pattern T-Shirt</h3> <p>T-Shirt</p> <p style="color: var(--accent); font-weight: 600;">$21.04</p> <a href="#">Shop →</a></div>
+        <div><h3>All White T-Shirt</h3> <p>T-Shirt</p> <p style="color: var(--accent); font-weight: 600;">$21.04</p> <a href="#">Shop →</a></div>
+        <div><h3>Black Round Pillow</h3> <p>Pillow</p> <p style="color: var(--accent); font-weight: 600;">$40.50</p> <a href="#">Shop →</a></div>
+    </div>
 
-<!-- BOTTOM NAV (don't need to touch this) -->
+    <!-- CODE HEADER - Clients -->
+    <div class="code-block">
+        <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">clients</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">trustedBy</span>()</h2>
+        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Partners I've had the privilege to work with</p>
+    </div>
+
+    <!-- CLIENTS GRID - Add/remove client divs -->
+    <div>
+        <div><img src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" style="max-width: 120px; margin: 0 auto 1rem; display: block;"> <h3>Vineyard Church of Augusta</h3> <p>Community-focused church organization</p> <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a></div>
+        <!-- Duplicate the div above to add more clients -->
+    </div>
+
+    <!-- CODE HEADER - Blog -->
+    <div class="code-block">
+        <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">blog</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">getPosts</span>()</h2>
+        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Thoughts, tutorials, and insights</p>
+    </div>
+
+    <!-- BLOG GRID - Add/remove blog post divs -->
+    <div>
+        <div><i class="fas fa-mobile-alt"></i> <h3>Fluid Responsive System</h3> <p style="color: #9c27b0; font-size: 0.7rem;">June 9, 2024</p> <p>Using clamp() for true fluidity</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div><i class="fas fa-font"></i> <h3>Power of Text-Only Design</h3> <p style="color: #9c27b0; font-size: 0.7rem;">June 5, 2024</p> <p>Why less is more in UI</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div><i class="fas fa-search"></i> <h3>V3 QuickFind</h3> <p style="color: #9c27b0; font-size: 0.7rem;">May 28, 2024</p> <p>Universal search system</p> <a href="#" class="btn-secondary">Read →</a></div>
+    </div>
+
+</div>
+
+<!-- BOTTOM NAV (copy-paste, change section names) -->
 <div class="bottom-nav">
     <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
@@ -253,37 +281,41 @@
 
 <script>
     // ============================================
-    // ONE SCRIPT TO RULE THEM ALL
-    // Don't touch this - it just works
+    // ONE SCRIPT - Just works. Don't touch.
     // ============================================
     (function(){
-        // Add IDs to each section
-        document.querySelectorAll('[id]').forEach(el => {
-            if (el.id && ['about', 'skills', 'services', 'store', 'clients', 'blog'].includes(el.id)) return;
-        });
+        // Add IDs to each section wrapper for navigation
+        const sections = {
+            'about': document.querySelector('.section > div:nth-child(3)'),
+            'skills': document.querySelectorAll('.section > div')[4],
+            'services': document.querySelectorAll('.section > div')[6],
+            'store': document.querySelectorAll('.section > div')[8],
+            'clients': document.querySelectorAll('.section > div')[10],
+            'blog': document.querySelectorAll('.section > div')[12]
+        };
         
-        // Navigation
+        for (const [id, el] of Object.entries(sections)) {
+            if (el) el.id = id;
+        }
+        
         const navItems = document.querySelectorAll('.nav-item[data-section]');
         function setActive(id) { navItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id)); }
         function scrollTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActive(id); }
         navItems.forEach(i => i.addEventListener('click', () => scrollTo(i.getAttribute('data-section'))));
         
-        // Active on scroll
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY + 100;
             let current = '';
-            ['about', 'skills', 'services', 'store', 'clients', 'blog'].forEach(id => {
+            for (const id of ['about', 'skills', 'services', 'store', 'clients', 'blog']) {
                 const el = document.getElementById(id);
                 if (el && el.offsetTop <= scrollPos) current = id;
-            });
+            }
             setActive(current || 'about');
         });
         
-        // Fade-in animation
         new IntersectionObserver(e => e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }), { threshold: 0.1 })
-            .observe(document.querySelectorAll('.hero, [id]'));
+            .observe(document.querySelectorAll('.section > div'));
         
-        // Prevent right-click and drag
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
