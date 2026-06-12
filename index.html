@@ -14,8 +14,8 @@
     
     <style>
         /* ============================================
-           ULTRA-RESPONSIVE + TOUCH OPTIMIZED
-           Minimum 44px touch targets everywhere
+           CONSISTENT PADDING SYSTEM
+           Everything has balanced padding
            ============================================ */
         
         * {
@@ -43,6 +43,10 @@
             --text-xl: clamp(1rem, 3.5vw, 1.25rem);
             --text-2xl: clamp(1.1rem, 4vw, 1.5rem);
             
+            --radius-sm: clamp(0.375rem, 1.5vw, 0.5rem);
+            --radius-md: clamp(0.5rem, 2vw, 0.75rem);
+            --radius-lg: clamp(0.75rem, 2.5vw, 1rem);
+            
             --bg-primary: #0a0a0a;
             --bg-card: rgba(18, 18, 24, 0.8);
             --text-primary: #ffffff;
@@ -68,16 +72,16 @@
             font-size: var(--text-base);
         }
         
-        /* Main container */
+        /* Main container - consistent outer padding */
         .site-container {
             width: 100%;
             max-width: 100%;
             overflow-x: hidden;
-            padding: var(--space-lg) var(--space-sm);
+            padding: var(--space-lg) var(--space-md);
         }
         
         /* ========================================== */
-        /* BUTTONS - Minimum 44px touch target */
+        /* BUTTONS - consistent padding */
         /* ========================================== */
         .btn-primary, .btn-secondary {
             display: flex;
@@ -107,23 +111,13 @@
             color: var(--accent-cyan);
         }
         
-        .btn-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        .btn-primary:active,
-        .btn-secondary:active {
-            transform: scale(0.96);
-            transition: transform 0.05s ease;
-        }
-        
         /* ========================================== */
-        /* COMPONENT: HERO */
+        /* COMPONENT: HERO - consistent padding */
         /* ========================================== */
         .component-hero {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
             border-radius: var(--radius-md);
-            padding: var(--space-lg) var(--space-md);
+            padding: var(--space-xl) var(--space-lg);
             margin-bottom: var(--space-xl);
             border: 1px solid var(--border-light);
         }
@@ -131,7 +125,7 @@
         .hero-container {
             display: flex;
             flex-direction: column;
-            gap: var(--space-md);
+            gap: var(--space-lg);
         }
         
         .hero-left {
@@ -160,11 +154,6 @@
             width: 100%;
         }
         
-        .hero-buttons .btn-primary,
-        .hero-buttons .btn-secondary {
-            min-height: 48px;
-        }
-        
         .hero-right p {
             font-size: var(--text-sm);
             color: var(--text-secondary);
@@ -173,15 +162,15 @@
         }
         
         /* ========================================== */
-        /* COMPONENT: CODE HEADER */
+        /* CODE HEADER - consistent padding */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
             border-left: 2px solid var(--accent-cyan);
-            padding: var(--space-sm) var(--space-md);
+            padding: var(--space-md) var(--space-lg);
             font-family: 'SF Mono', 'Fira Code', monospace;
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-lg);
             width: 100%;
             user-select: none;
         }
@@ -202,10 +191,11 @@
         .component-code-header .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
         
         /* ========================================== */
-        /* COMPONENT: ABOUT */
+        /* ABOUT - consistent padding */
         /* ========================================== */
         .component-about {
             margin-bottom: var(--space-xl);
+            padding: 0 var(--space-xs);
         }
         
         .component-about p {
@@ -216,7 +206,7 @@
         }
         
         /* ========================================== */
-        /* CARDS - Touch optimized */
+        /* CARDS - consistent inner padding */
         /* ========================================== */
         .grid-container,
         .products-container,
@@ -228,7 +218,7 @@
             width: 100%;
         }
         
-        /* Cards - entire area tappable with feedback */
+        /* Cards - balanced internal padding */
         .grid-card,
         .product-card,
         .client-card,
@@ -240,7 +230,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
-            padding: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
             transition: all 0.15s ease;
             display: flex;
             flex-direction: row;
@@ -248,34 +238,9 @@
             gap: var(--space-md);
             box-sizing: border-box;
             cursor: pointer;
-            position: relative;
         }
         
-        /* Visual feedback for card taps */
-        .grid-card:active,
-        .product-card:active,
-        .client-card:active,
-        .blog-card:active {
-            transform: scale(0.99);
-            background: rgba(30, 30, 40, 0.95);
-        }
-        
-        /* Icons inside cards - not separate touch targets */
-        .grid-card i,
-        .product-card i,
-        .blog-card i {
-            font-size: clamp(1rem, 5vw, 1.25rem);
-            width: clamp(24px, 8vw, 32px);
-            flex-shrink: 0;
-            text-align: center;
-            pointer-events: none;
-        }
-        
-        .grid-card i { color: var(--accent-cyan); }
-        .blog-card i { color: var(--accent-pink); }
-        .product-card i { color: var(--accent-cyan); }
-        
-        /* Card content containers */
+        /* Card spacing between elements */
         .grid-card-content,
         .product-info,
         .client-info,
@@ -301,6 +266,7 @@
         .blog-content p {
             font-size: var(--text-xs);
             color: var(--text-secondary);
+            margin-bottom: 0;
         }
         
         .product-price {
@@ -310,7 +276,18 @@
             margin-top: var(--space-3xs);
         }
         
-        /* Action buttons inside cards - must be easily tappable */
+        /* Icons inside cards */
+        .grid-card i,
+        .product-card i,
+        .blog-card i {
+            font-size: clamp(1rem, 5vw, 1.25rem);
+            width: clamp(24px, 8vw, 32px);
+            flex-shrink: 0;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        /* Action buttons inside cards */
         .product-action,
         .card-action {
             flex-shrink: 0;
@@ -326,17 +303,19 @@
             align-items: center;
             justify-content: center;
             margin-top: var(--space-xs);
+            padding: var(--space-2xs) var(--space-sm);
         }
         
-        /* Client specific */
+        /* Client specific - logo padding */
         .client-logo {
             max-width: min(70px, 25%);
             height: auto;
             flex-shrink: 0;
             pointer-events: none;
+            margin-right: var(--space-xs);
         }
         
-        /* Blog specific */
+        /* Blog specific - title row spacing */
         .blog-title-row {
             display: flex;
             justify-content: space-between;
@@ -351,7 +330,15 @@
             color: var(--accent-pink);
         }
         
-        /* Hover effects for non-touch devices */
+        /* Card hover/active states */
+        .grid-card:active,
+        .product-card:active,
+        .client-card:active,
+        .blog-card:active {
+            transform: scale(0.99);
+            background: rgba(30, 30, 40, 0.95);
+        }
+        
         @media (hover: hover) {
             .grid-card:hover,
             .product-card:hover,
@@ -364,7 +351,7 @@
         }
         
         /* ========================================== */
-        /* GRID VIEW - Switch when enough space */
+        /* GRID VIEW - responsive grid */
         /* ========================================== */
         @media (min-width: 480px) {
             .hero-buttons {
@@ -413,7 +400,7 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAVIGATION - Touch optimized */
+        /* BOTTOM NAV - consistent padding */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -426,7 +413,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: var(--space-sm) var(--space-xs) var(--space-lg);
+            padding: var(--space-sm) var(--space-md) var(--space-lg);
             z-index: 100;
             gap: var(--space-sm);
         }
@@ -440,16 +427,12 @@
             border: none;
             color: var(--text-tertiary);
             font-size: clamp(0.5rem, 2.5vw, 0.6rem);
-            padding: var(--space-sm) var(--space-xs);
+            padding: var(--space-sm) var(--space-md);
             min-height: 44px;
             min-width: 60px;
             border-radius: var(--radius-sm);
             cursor: pointer;
             transition: all 0.12s ease;
-        }
-        
-        .nav-item:active {
-            transform: scale(0.94);
         }
         
         .nav-item i {
