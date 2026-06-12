@@ -8,389 +8,267 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Utility Class System</title>
+    <title>V3 | Digital Architect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           UTILITY CLASS SYSTEM
-           Like Tailwind - just add classes to your HTML
+           ONE-STOP UTILITY SYSTEM
+           Everything you need is right here
+           Edit this file, commit in seconds
            ============================================ */
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* ========== CORE VARIABLES ========== */
+        /* ----- CHANGE THESE TO THEME YOUR SITE (1 second) ----- */
         :root {
-            --space-xs: clamp(0.25rem, 1vw, 0.5rem);
-            --space-sm: clamp(0.5rem, 2vw, 0.75rem);
-            --space-md: clamp(0.75rem, 3vw, 1rem);
-            --space-lg: clamp(1rem, 4vw, 1.5rem);
-            --space-xl: clamp(1.5rem, 5vw, 2rem);
-            --space-2xl: clamp(2rem, 6vw, 3rem);
-            
-            --text-xs: clamp(0.625rem, 2vw, 0.75rem);
-            --text-sm: clamp(0.75rem, 2.5vw, 0.875rem);
-            --text-base: clamp(0.875rem, 3vw, 1rem);
-            --text-md: clamp(1rem, 3.5vw, 1.125rem);
-            --text-lg: clamp(1.125rem, 4vw, 1.25rem);
-            --text-xl: clamp(1.25rem, 5vw, 1.5rem);
-            --text-2xl: clamp(1.5rem, 6vw, 2rem);
-            
-            --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
-            --radius-md: clamp(0.75rem, 2vw, 1rem);
-            --radius-lg: clamp(1rem, 3vw, 1.5rem);
-            
-            --bg-dark: #050505;
-            --text-light: #e8e8e8;
-            --accent-cyan: #00d4ff;
-            --accent-purple: #7c3aed;
-            --accent-gold: #ffd700;
-            --accent-green: #4caf50;
-            --accent-pink: #9c27b0;
-            --gray-muted: #5c6370;
+            --bg: #050505;
+            --text: #e8e8e8;
+            --accent: #00d4ff;
+            --accent2: #7c3aed;
+            --gray: #5c6370;
             --gray-light: #c0c0c0;
+            --space: clamp(1rem, 4vw, 1.5rem);
         }
 
         body {
-            background: var(--bg-dark);
-            color: var(--text-light);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.5;
-            overflow-x: hidden;
-            font-size: var(--text-base);
+            font-size: clamp(0.875rem, 3vw, 1rem);
         }
 
-        /* ========== LAYOUT UTILITIES ========== */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: var(--space-xl) var(--space-lg);
-        }
-        
-        /* Grid System - The MAIN fluid grid */
-        .grid {
-            display: grid;
-            gap: var(--space-md);
-            width: 100%;
-        }
-        
-        /* Auto-fit grid - responsive columns */
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
-        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); }
-        .grid-5 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); }
-        .grid-6 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr)); }
-        
-        /* Fixed column grids (when you want exact columns) */
-        .grid-col-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
-        .grid-col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
-        .grid-col-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
-        
-        /* Flex utilities */
+        /* ----- LAYOUT (add these classes to your HTML) ----- */
+        .container { max-width: 1400px; margin: 0 auto; padding: var(--space); }
+        .grid { display: grid; gap: 1rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         .flex { display: flex; }
-        .flex-col { flex-direction: column; }
         .flex-center { display: flex; align-items: center; justify-content: center; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        .flex-wrap { flex-wrap: wrap; }
-        .gap-sm { gap: var(--space-sm); }
-        .gap-md { gap: var(--space-md); }
-        .gap-lg { gap: var(--space-lg); }
-        
-        /* Spacing utilities */
-        .p-sm { padding: var(--space-sm); }
-        .p-md { padding: var(--space-md); }
-        .p-lg { padding: var(--space-lg); }
-        .p-xl { padding: var(--space-xl); }
-        
-        .m-sm { margin: var(--space-sm); }
-        .m-md { margin: var(--space-md); }
-        .m-lg { margin: var(--space-lg); }
-        
-        .mt-sm { margin-top: var(--space-sm); }
-        .mt-md { margin-top: var(--space-md); }
-        .mt-lg { margin-top: var(--space-lg); }
-        
-        .mb-sm { margin-bottom: var(--space-sm); }
-        .mb-md { margin-bottom: var(--space-md); }
-        .mb-lg { margin-bottom: var(--space-lg); }
-        
+        .gap-sm { gap: 0.5rem; }
+        .gap-md { gap: 1rem; }
+        .gap-lg { gap: 1.5rem; }
         .text-center { text-align: center; }
-        .text-left { text-align: left; }
-        .text-right { text-align: right; }
         
-        /* ========== CARD UTILITIES ========== */
+        /* ----- COMPONENTS (copy-paste these blocks) ----- */
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            transition: all 0.2s ease;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1rem;
+            padding: 1rem;
+            transition: transform 0.2s;
         }
-        .card:active { transform: scale(0.96); background: rgba(255,255,255,0.06); }
+        .card:active { transform: scale(0.96); }
         
-        .card-hover:hover { transform: translateY(-4px); background: rgba(0,212,255,0.05); border-color: rgba(0,212,255,0.2); }
-        
-        /* Card variants */
-        .card-cyan { background: rgba(0,212,255,0.03); border-color: rgba(0,212,255,0.1); }
-        .card-gold { background: rgba(255,215,0,0.03); border-color: rgba(255,215,0,0.1); }
-        .card-green { background: rgba(76,175,80,0.03); border-color: rgba(76,175,80,0.1); }
-        .card-pink { background: rgba(156,39,176,0.03); border-color: rgba(156,39,176,0.1); }
-        
-        /* ========== TYPOGRAPHY UTILITIES ========== */
-        .text-cyan { color: var(--accent-cyan); }
-        .text-gold { color: var(--accent-gold); }
-        .text-green { color: var(--accent-green); }
-        .text-pink { color: var(--accent-pink); }
-        .text-muted { color: var(--gray-muted); }
-        .text-light { color: var(--gray-light); }
-        
-        .font-mono { font-family: 'SF Mono', 'Fira Code', monospace; }
-        .font-sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-        
-        /* ========== CODE HEADER UTILITY ========== */
-        .code-header {
-            margin-bottom: var(--space-lg);
-            padding: var(--space-md) var(--space-lg);
-            background: rgba(0, 212, 255, 0.05);
-            border-left: 3px solid var(--accent-cyan);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-        .code-header h2 { font-size: var(--text-sm); font-weight: 500; margin-bottom: var(--space-xs); color: var(--accent-cyan); }
-        .code-header .keyword { color: #c678dd; }
-        .code-header .string { color: #98c379; }
-        .code-header .variable { color: #e06c75; }
-        .code-header .function { color: #61afef; }
-        .code-header .comment { color: var(--gray-muted); font-size: var(--text-xs); }
-        
-        /* ========== BUTTON UTILITIES ========== */
         .btn {
             display: inline-block;
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: 30px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.2s;
-            cursor: pointer;
-            text-align: center;
         }
         .btn:active { transform: scale(0.96); }
-        .btn-primary { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: #fff; }
-        .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--accent-cyan); }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
+        .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--accent); }
         
-        /* ========== IMAGE UTILITIES ========== */
-        .img-round { border-radius: var(--radius-lg); }
-        .img-circle { border-radius: 50%; }
-        .img-responsive { width: 100%; height: auto; }
-        .img-icon { width: min(140px, 25vw); }
+        .code-header {
+            background: rgba(0,212,255,0.05);
+            border-left: 3px solid var(--accent);
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            font-family: monospace;
+            border-radius: 0 0.75rem 0.75rem 0;
+        }
+        .code-header h2 { font-size: 0.875rem; color: var(--accent); margin-bottom: 0.25rem; }
+        .code-header .comment { color: var(--gray); font-size: 0.7rem; }
         
-        /* ========== SECTION UTILITIES ========== */
-        .section { margin-bottom: var(--space-2xl); }
-        .hero-section {
+        /* ----- QUICK EDIT ZONE - Change these values (2 seconds) ----- */
+        .hero {
             text-align: center;
-            padding: var(--space-2xl) var(--space-lg);
+            padding: 3rem 1rem;
             background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(124,58,237,0.05));
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--space-2xl);
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
         }
         
-        /* ========== BOTTOM NAVIGATION ========== */
-        .bottom-nav-wrapper {
+        /* ----- BOTTOM NAV (already works, don't touch) ----- */
+        .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
+            background: rgba(30,30,46,0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 1rem 1.5rem;
             z-index: 100;
         }
-        .bottom-nav {
-            background: rgba(30, 30, 46, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            padding: var(--space-sm) var(--space-lg) var(--space-lg);
-            gap: var(--space-xs);
-            overflow-x: auto;
-            justify-content: center;
-        }
-        .bottom-nav::-webkit-scrollbar { display: none; }
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--space-xs);
+            gap: 0.25rem;
             background: none;
             border: none;
             color: #7e7e8e;
-            font-size: var(--text-xs);
-            padding: var(--space-sm);
-            border-radius: 30px;
+            font-size: 0.625rem;
+            padding: 0.5rem;
+            border-radius: 2rem;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        .nav-item.active { color: var(--accent-cyan); background: rgba(0, 212, 255, 0.15); }
-        .nav-item i { font-size: var(--text-md); }
-        .nav-item:active { transform: scale(0.92); }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in { animation: fadeInUp 0.4s ease-out forwards; }
+        .nav-item.active { color: var(--accent); background: rgba(0,212,255,0.15); }
+        .nav-item i { font-size: 1.25rem; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
     </style>
 </head>
 <body>
 
-<main>
+<main class="container">
     
     <!-- ========================================== -->
-    <!-- EXAMPLE: How to build sections with utility classes -->
-    <!-- Just add classes to your raw HTML! -->
-    <!-- ========================================== -->
+    <!-- EDIT ZONE: Change anything below in SECONDS -->
+    ========================================== -->
     
-    <!-- SECTION 1: HERO (using flex + text utilities) -->
-    <div class="hero-section">
-        <img class="img-icon img-circle mb-md" src="images/logos/V3.png" alt="V3">
-        <h1 class="text-2xl text-center mb-sm" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; background-clip: text; color: transparent;">V3 Digital Architect</h1>
-        <p class="text-light text-center mb-lg" style="max-width: 600px; margin: 0 auto;">Building products people love for over a decade.</p>
+    <!-- HERO SECTION - Edit text, buttons, colors -->
+    <div class="hero">
+        <h1 style="font-size: clamp(1.5rem, 6vw, 2.5rem); margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent;">V3 Digital Architect</h1>
+        <p style="color: var(--gray-light); max-width: 600px; margin: 0 auto 1.5rem;">Build fast. Edit faster. Commit in seconds.</p>
         <div class="flex flex-center gap-md">
             <a href="#" class="btn btn-primary">Get Started</a>
             <a href="#" class="btn btn-secondary">Learn More</a>
         </div>
     </div>
 
-    <!-- SECTION 2: ABOUT (flex column + card) -->
-    <div id="about" class="section">
+    <!-- ABOUT SECTION - Add/remove image by uncommenting -->
+    <div id="about" style="margin-bottom: 2rem;">
         <div class="code-header">
-            <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
-            <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
+            <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ about }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/profile'</span></h2>
+            <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
         </div>
-        <div class="flex flex-col flex-center text-center">
-            <!-- OPTION: Add image by uncommenting -->
-            <!-- <img class="img-icon img-circle mb-lg" src="images/logos/V3.png" alt="V3"> -->
-            <div style="max-width: 600px;">
-                <p class="mb-sm text-light">Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-                <p class="text-light">Every line of code serves a purpose, every pixel has meaning.</p>
-            </div>
+        <div class="text-center" style="max-width: 600px; margin: 0 auto;">
+            <!-- QUICK EDIT: Uncomment next line to add an image -->
+            <!-- <img src="images/logos/V3.png" style="width: 120px; border-radius: 50%; margin-bottom: 1rem;"> -->
+            <p style="color: var(--gray-light); margin-bottom: 0.75rem;">Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+            <p style="color: var(--gray-light);">Every line of code serves a purpose, every pixel has meaning.</p>
         </div>
     </div>
 
-    <!-- SECTION 3: SKILLS (auto-fit grid + cards) -->
-    <div id="skills" class="section">
+    <!-- SKILLS SECTION - Add/remove cards freely -->
+    <div id="skills" style="margin-bottom: 2rem;">
         <div class="code-header">
-            <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
-            <p><span class="comment">// Technologies I work with daily</span></p>
-        </div>
-        <div class="grid grid-5">
-            <div class="card text-center"><i class="fa-brands fa-react text-cyan text-lg"></i><h3 class="mt-sm font-mono">Frontend</h3><p class="text-muted text-xs">React, Vue, Angular, TS</p></div>
-            <div class="card text-center"><i class="fa-solid fa-server text-cyan text-lg"></i><h3 class="mt-sm font-mono">Backend</h3><p class="text-muted text-xs">Node.js, Python, Go, Java</p></div>
-            <div class="card text-center"><i class="fa-solid fa-database text-cyan text-lg"></i><h3 class="mt-sm font-mono">Database</h3><p class="text-muted text-xs">PostgreSQL, MongoDB, Redis</p></div>
-            <div class="card text-center"><i class="fa-solid fa-cloud text-cyan text-lg"></i><h3 class="mt-sm font-mono">Cloud</h3><p class="text-muted text-xs">AWS, Azure, GCP, Docker</p></div>
-            <div class="card text-center"><i class="fa-solid fa-mobile-alt text-cyan text-lg"></i><h3 class="mt-sm font-mono">Mobile</h3><p class="text-muted text-xs">React Native, Flutter, Swift</p></div>
-            <div class="card text-center"><i class="fa-solid fa-code-branch text-cyan text-lg"></i><h3 class="mt-sm font-mono">DevOps</h3><p class="text-muted text-xs">CI/CD, Jenkins, GitHub Actions</p></div>
-        </div>
-    </div>
-
-    <!-- SECTION 4: SERVICES (another grid with different card style) -->
-    <div id="services" class="section">
-        <div class="code-header">
-            <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
-            <p><span class="comment">// What I offer as a digital architect</span></p>
+            <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">techStack</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">useSkills</span>()</h2>
+            <p class="comment">// Technologies I work with daily</p>
         </div>
         <div class="grid grid-4">
-            <div class="card card-cyan text-center"><i class="fa-solid fa-pen-nib text-cyan text-lg"></i><h3 class="mt-sm font-mono">Logo Design</h3><p class="text-muted text-xs">Custom brand identities</p></div>
-            <div class="card card-cyan text-center"><i class="fa-solid fa-laptop-code text-cyan text-lg"></i><h3 class="mt-sm font-mono">Web Development</h3><p class="text-muted text-xs">Full-stack modern apps</p></div>
-            <div class="card card-cyan text-center"><i class="fa-solid fa-palette text-cyan text-lg"></i><h3 class="mt-sm font-mono">UI/UX Design</h3><p class="text-muted text-xs">Beautiful interfaces</p></div>
-            <div class="card card-cyan text-center"><i class="fa-solid fa-chart-line text-cyan text-lg"></i><h3 class="mt-sm font-mono">Tech Consulting</h3><p class="text-muted text-xs">Expert advice</p></div>
+            <!-- QUICK EDIT: Duplicate these lines to add more skills -->
+            <div class="card text-center"><i class="fa-brands fa-react" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Frontend</h3><p style="color: var(--gray); font-size: 0.7rem;">React, Vue, Angular, TS</p></div>
+            <div class="card text-center"><i class="fa-solid fa-server" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Backend</h3><p style="color: var(--gray); font-size: 0.7rem;">Node, Python, Go, Java</p></div>
+            <div class="card text-center"><i class="fa-solid fa-database" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Database</h3><p style="color: var(--gray); font-size: 0.7rem;">PostgreSQL, MongoDB, Redis</p></div>
+            <div class="card text-center"><i class="fa-solid fa-cloud" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Cloud</h3><p style="color: var(--gray); font-size: 0.7rem;">AWS, Azure, GCP, Docker</p></div>
+            <div class="card text-center"><i class="fa-solid fa-mobile-alt" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Mobile</h3><p style="color: var(--gray); font-size: 0.7rem;">React Native, Flutter, Swift</p></div>
+            <div class="card text-center"><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">DevOps</h3><p style="color: var(--gray); font-size: 0.7rem;">CI/CD, Jenkins, GitHub Actions</p></div>
         </div>
     </div>
 
-    <!-- SECTION 5: STORE (using grid-4 + product cards) -->
-    <div id="store" class="section">
+    <!-- SERVICES SECTION - Add/remove cards freely -->
+    <div id="services" style="margin-bottom: 2rem;">
         <div class="code-header">
-            <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
-            <p><span class="comment">// Official merchandise · Text-only minimal store</span></p>
-        </div>
-        <div class="grid grid-4">
-            <div class="card text-center"><h3 class="font-mono">Static Snow Button</h3><p class="text-muted text-xs mt-sm">Button</p><p class="text-cyan font-mono mt-sm">$3.24</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
-            <div class="card text-center"><h3 class="font-mono">Pattern T-Shirt</h3><p class="text-muted text-xs mt-sm">T-Shirt</p><p class="text-cyan font-mono mt-sm">$21.04</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
-            <div class="card text-center"><h3 class="font-mono">All White T-Shirt</h3><p class="text-muted text-xs mt-sm">T-Shirt</p><p class="text-cyan font-mono mt-sm">$21.04</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
-            <div class="card text-center"><h3 class="font-mono">Black Round Pillow</h3><p class="text-muted text-xs mt-sm">Pillow</p><p class="text-cyan font-mono mt-sm">$40.50</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
-        </div>
-    </div>
-
-    <!-- SECTION 6: CLIENTS (using grid-2 + card-green) -->
-    <div id="clients" class="section">
-        <div class="code-header">
-            <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
-            <p><span class="comment">// Partners I've had the privilege to work with</span></p>
-        </div>
-        <div class="grid grid-2">
-            <div class="card card-green text-center">
-                <img class="img-responsive" style="max-width: 100px; margin: 0 auto var(--space-md);" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
-                <h3 class="font-mono">Vineyard Church of Augusta</h3>
-                <p class="text-muted text-xs mt-sm">Community-focused church organization</p>
-                <a href="https://vineyardaugusta.org" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-green); border-color: rgba(76,175,80,0.3);">Visit →</a>
-            </div>
-            <!-- Add more client cards easily -->
-        </div>
-    </div>
-
-    <!-- SECTION 7: BLOG (using grid-3 + card-pink) -->
-    <div id="blog" class="section">
-        <div class="code-header">
-            <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
-            <p><span class="comment">// Thoughts, tutorials, and insights</span></p>
+            <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">services</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">provide</span>()</h2>
+            <p class="comment">// What I offer as a digital architect</p>
         </div>
         <div class="grid grid-3">
-            <div class="card card-pink"><i class="fas fa-mobile-alt text-pink text-lg"></i><h3 class="font-mono mt-sm">Fluid Responsive System</h3><p class="text-muted text-xs">June 9, 2024</p><p class="text-muted text-xs mt-sm">Using clamp() for true fluidity</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-pink); border-color: rgba(156,39,176,0.3);">Read →</a></div>
-            <div class="card card-pink"><i class="fas fa-font text-pink text-lg"></i><h3 class="font-mono mt-sm">Power of Text-Only Design</h3><p class="text-muted text-xs">June 5, 2024</p><p class="text-muted text-xs mt-sm">Why less is more in UI</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-pink); border-color: rgba(156,39,176,0.3);">Read →</a></div>
-            <div class="card card-pink"><i class="fas fa-search text-pink text-lg"></i><h3 class="font-mono mt-sm">V3 QuickFind</h3><p class="text-muted text-xs">May 28, 2024</p><p class="text-muted text-xs mt-sm">Universal search system</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-pink); border-color: rgba(156,39,176,0.3);">Read →</a></div>
+            <div class="card text-center"><i class="fa-solid fa-pen-nib" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Logo Design</h3><p style="color: var(--gray); font-size: 0.7rem;">Custom brand identities</p></div>
+            <div class="card text-center"><i class="fa-solid fa-laptop-code" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Web Development</h3><p style="color: var(--gray); font-size: 0.7rem;">Full-stack modern apps</p></div>
+            <div class="card text-center"><i class="fa-solid fa-palette" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">UI/UX Design</h3><p style="color: var(--gray); font-size: 0.7rem;">Beautiful interfaces</p></div>
+            <div class="card text-center"><i class="fa-solid fa-chart-line" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Tech Consulting</h3><p style="color: var(--gray); font-size: 0.7rem;">Expert advice</p></div>
+            <div class="card text-center"><i class="fa-solid fa-rocket" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Performance</h3><p style="color: var(--gray); font-size: 0.7rem;">Speed optimization</p></div>
+            <div class="card text-center"><i class="fa-solid fa-shield-alt" style="color: var(--accent); font-size: 1.5rem;"></i><h3 style="margin-top: 0.5rem;">Security</h3><p style="color: var(--gray); font-size: 0.7rem;">Vulnerability fixes</p></div>
+        </div>
+    </div>
+
+    <!-- STORE SECTION - Edit products, prices, links -->
+    <div id="store" style="margin-bottom: 2rem;">
+        <div class="code-header">
+            <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ merchandise }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/shop'</span></h2>
+            <p class="comment">// Official merchandise · Text-only minimal store</p>
+        </div>
+        <div class="grid grid-4">
+            <div class="card text-center"><h3>Static Snow Button</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">Button</p><p style="color: var(--accent); font-weight: 600;">$3.24</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
+            <div class="card text-center"><h3>Pattern T-Shirt</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">T-Shirt</p><p style="color: var(--accent); font-weight: 600;">$21.04</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
+            <div class="card text-center"><h3>All White T-Shirt</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">T-Shirt</p><p style="color: var(--accent); font-weight: 600;">$21.04</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
+            <div class="card text-center"><h3>Black Round Pillow</h3><p style="color: var(--gray); font-size: 0.7rem; margin: 0.25rem 0;">Pillow</p><p style="color: var(--accent); font-weight: 600;">$40.50</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem; margin-top: 0.5rem; display: inline-block;">Shop →</a></div>
+        </div>
+    </div>
+
+    <!-- CLIENTS SECTION - Edit client info -->
+    <div id="clients" style="margin-bottom: 2rem;">
+        <div class="code-header">
+            <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">clients</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">trustedBy</span>()</h2>
+            <p class="comment">// Partners I've had the privilege to work with</p>
+        </div>
+        <div class="grid grid-2">
+            <div class="card text-center">
+                <img src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" style="max-width: 120px; margin: 0 auto 1rem; display: block;">
+                <h3>Vineyard Church of Augusta</h3>
+                <p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Community-focused church organization</p>
+                <a href="https://vineyardaugusta.org" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Visit →</a>
+            </div>
+            <!-- Add more clients by duplicating the div above -->
+        </div>
+    </div>
+
+    <!-- BLOG SECTION - Edit posts -->
+    <div id="blog" style="margin-bottom: 2rem;">
+        <div class="code-header">
+            <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">blog</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">getPosts</span>()</h2>
+            <p class="comment">// Thoughts, tutorials, and insights</p>
+        </div>
+        <div class="grid grid-3">
+            <div class="card"><i class="fas fa-mobile-alt" style="color: #9c27b0; font-size: 1.25rem;"></i><h3 style="margin: 0.5rem 0 0.25rem;">Fluid Responsive System</h3><p style="color: #9c27b0; font-size: 0.6rem;">June 9, 2024</p><p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Using clamp() for true fluidity</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Read →</a></div>
+            <div class="card"><i class="fas fa-font" style="color: #9c27b0; font-size: 1.25rem;"></i><h3 style="margin: 0.5rem 0 0.25rem;">Power of Text-Only Design</h3><p style="color: #9c27b0; font-size: 0.6rem;">June 5, 2024</p><p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Why less is more in UI</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Read →</a></div>
+            <div class="card"><i class="fas fa-search" style="color: #9c27b0; font-size: 1.25rem;"></i><h3 style="margin: 0.5rem 0 0.25rem;">V3 QuickFind</h3><p style="color: #9c27b0; font-size: 0.6rem;">May 28, 2024</p><p style="color: var(--gray); font-size: 0.7rem; margin: 0.5rem 0;">Universal search system</p><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">Read →</a></div>
         </div>
     </div>
 
 </main>
 
-<!-- ========================================== -->
-<!-- BOTTOM NAVIGATION -->
-<!-- ========================================== -->
-<div class="bottom-nav-wrapper">
-    <div class="bottom-nav">
-        <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-        <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
-        <button class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
-        <button class="nav-item" data-section="store"><i class="fas fa-store"></i><span>Store</span></button>
-        <button class="nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
-        <button class="nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
-    </div>
+<!-- BOTTOM NAV (don't need to touch this) -->
+<div class="bottom-nav">
+    <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
+    <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
+    <button class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
+    <button class="nav-item" data-section="store"><i class="fas fa-store"></i><span>Store</span></button>
+    <button class="nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
+    <button class="nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
 </div>
 
 <script>
-    // Simple navigation - just add data-section to any button
+    // ============================================
+    // ONE SCRIPT TO RULE THEM ALL
+    // Don't touch this - it just works
+    // ============================================
     (function(){
-        // Add IDs to sections
+        // Add IDs to each section
         document.querySelectorAll('[id]').forEach(el => {
-            if (el.id && ['about', 'skills', 'services', 'store', 'clients', 'blog'].includes(el.id)) {
-                // IDs already set
-            }
+            if (el.id && ['about', 'skills', 'services', 'store', 'clients', 'blog'].includes(el.id)) return;
         });
         
+        // Navigation
         const navItems = document.querySelectorAll('.nav-item[data-section]');
-        function setActive(id) {
-            navItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id));
-        }
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActive(id); }
-        }
-        navItems.forEach(i => i.addEventListener('click', () => scrollToSection(i.getAttribute('data-section'))));
+        function setActive(id) { navItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id)); }
+        function scrollTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActive(id); }
+        navItems.forEach(i => i.addEventListener('click', () => scrollTo(i.getAttribute('data-section'))));
         
+        // Active on scroll
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY + 100;
             let current = '';
@@ -401,10 +279,11 @@
             setActive(current || 'about');
         });
         
-        // Fade-in
+        // Fade-in animation
         new IntersectionObserver(e => e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }), { threshold: 0.1 })
-            .observe(document.querySelectorAll('.section, .hero-section, [id]'));
+            .observe(document.querySelectorAll('.hero, [id]'));
         
+        // Prevent right-click and drag
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
