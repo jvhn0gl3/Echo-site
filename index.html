@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Horizontal Layout</title>
+    <title>V3 | Digital Architect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
@@ -26,7 +26,6 @@
         }
         
         :root {
-            /* Compact spacing */
             --space-3xs: clamp(0.125rem, 0.5vw, 0.25rem);
             --space-2xs: clamp(0.25rem, 0.8vw, 0.375rem);
             --space-xs: clamp(0.375rem, 1vw, 0.5rem);
@@ -35,7 +34,6 @@
             --space-lg: clamp(1rem, 2.5vw, 1.25rem);
             --space-xl: clamp(1.25rem, 3vw, 1.5rem);
             
-            /* Typography */
             --text-2xs: clamp(0.6rem, 1.2vw, 0.65rem);
             --text-xs: clamp(0.65rem, 1.4vw, 0.7rem);
             --text-sm: clamp(0.7rem, 1.6vw, 0.8rem);
@@ -45,7 +43,6 @@
             --text-xl: clamp(1.125rem, 2.5vw, 1.25rem);
             --text-2xl: clamp(1.25rem, 3vw, 1.5rem);
             
-            /* Colors */
             --bg-primary: #0a0a0a;
             --bg-card: rgba(18, 18, 24, 0.8);
             --text-primary: #ffffff;
@@ -66,17 +63,12 @@
             font-size: var(--text-base);
         }
         
-        /* ========================================== */
-        /* MAIN CONTAINER */
-        /* ========================================== */
         .section {
             width: 100%;
             padding: var(--space-lg) var(--space-md);
         }
         
-        /* ========================================== */
-        /* GRID - keeps cards side by side */
-        /* ========================================== */
+        /* Grid */
         .section > div:not(.code-block) {
             display: grid;
             gap: var(--space-sm);
@@ -88,9 +80,7 @@
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
         }
         
-        /* ========================================== */
-        /* CARDS - HORIZONTAL LAYOUT (icon left of title) */
-        /* ========================================== */
+        /* Cards - horizontal layout */
         .section > div:not(.code-block) > div {
             background: var(--bg-card);
             backdrop-filter: blur(10px);
@@ -104,7 +94,6 @@
             gap: var(--space-md);
         }
         
-        /* Icon container - fixed width, left aligned */
         .section > div:not(.code-block) > div i {
             font-size: var(--text-xl);
             color: var(--accent-cyan);
@@ -114,7 +103,6 @@
             text-align: center;
         }
         
-        /* Content container - takes remaining space */
         .card-content {
             flex: 1;
             display: flex;
@@ -136,7 +124,29 @@
             line-height: 1.4;
         }
         
-        /* Price styling for products */
+        /* Title row with date on the right */
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: var(--space-2xs);
+            margin-bottom: var(--space-3xs);
+        }
+        
+        .title-row h3 {
+            margin: 0;
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+        
+        .blog-date {
+            font-size: var(--text-2xs);
+            color: var(--accent-pink);
+            white-space: nowrap;
+        }
+        
+        /* Product price */
         .product-price {
             font-size: var(--text-sm);
             font-weight: 600;
@@ -144,7 +154,7 @@
             margin: 0;
         }
         
-        /* Buttons inside cards - right aligned */
+        /* Card action button */
         .card-action {
             flex-shrink: 0;
             margin-left: auto;
@@ -156,16 +166,13 @@
             white-space: nowrap;
         }
         
-        /* Hover effect */
         .section > div:not(.code-block) > div:hover {
             background: rgba(25, 25, 35, 0.9);
             border-color: var(--border-medium);
             transform: translateX(2px);
         }
         
-        /* ========================================== */
-        /* BUTTONS - side by side */
-        /* ========================================== */
+        /* Buttons */
         a, button {
             display: inline-flex;
             align-items: center;
@@ -197,9 +204,7 @@
             background: rgba(0, 212, 255, 0.1);
         }
         
-        /* ========================================== */
-        /* HERO SECTION - left aligned, side by side buttons */
-        /* ========================================== */
+        /* Hero section */
         .section > div:has(h1) {
             text-align: left;
             padding: var(--space-lg) var(--space-md);
@@ -226,9 +231,7 @@
             flex-wrap: wrap;
         }
         
-        /* ========================================== */
-        /* CODE HEADER - left aligned */
-        /* ========================================== */
+        /* Code header */
         .code-block {
             background: rgba(0, 212, 255, 0.04);
             border-left: 2px solid var(--accent-cyan);
@@ -252,9 +255,7 @@
         .code-block .function { color: #61afef; }
         .code-block .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
         
-        /* ========================================== */
-        /* ABOUT TEXT - left aligned */
-        /* ========================================== */
+        /* About text */
         .about-text {
             text-align: left;
             max-width: 700px;
@@ -264,14 +265,13 @@
             margin-bottom: var(--space-xs);
         }
         
-        /* ========================================== */
-        /* CLIENT CARD - horizontal layout with logo left */
-        /* ========================================== */
+        /* Client card */
         .client-card {
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: var(--space-md);
+            width: 100%;
         }
         
         .client-logo {
@@ -294,41 +294,16 @@
             margin-bottom: var(--space-2xs);
         }
         
-        /* ========================================== */
-        /* BLOG CARD - horizontal layout */
-        /* ========================================== */
+        /* Blog card - specific overrides */
         .blog-card {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: var(--space-md);
+            width: 100%;
         }
         
         .blog-card i {
-            font-size: var(--text-lg);
             color: var(--accent-pink);
-            flex-shrink: 0;
-            margin: 0;
         }
         
-        .blog-content {
-            flex: 1;
-        }
-        
-        .blog-content h3 {
-            font-size: var(--text-sm);
-            margin-bottom: var(--space-3xs);
-        }
-        
-        .blog-date {
-            font-size: var(--text-2xs);
-            color: var(--accent-pink);
-            margin-bottom: var(--space-2xs);
-        }
-        
-        /* ========================================== */
-        /* BOTTOM NAV - compact */
-        /* ========================================== */
+        /* Bottom nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -368,9 +343,7 @@
             background: rgba(0, 212, 255, 0.1);
         }
         
-        /* ========================================== */
-        /* ANIMATIONS */
-        /* ========================================== */
+        /* Animations */
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
@@ -397,9 +370,6 @@
         .section > div:not(.code-block) > div:nth-child(4) { animation-delay: 0.08s; }
         .section > div:not(.code-block) > div:nth-child(5) { animation-delay: 0.1s; }
         
-        /* ========================================== */
-        /* UTILITIES */
-        /* ========================================== */
         ::selection {
             background: var(--accent-cyan);
             color: var(--bg-primary);
@@ -429,7 +399,7 @@
 
 <div class="section" id="main-content">
     
-    <!-- HERO - left aligned, buttons side by side -->
+    <!-- HERO -->
     <div>
         <h1>V3 Digital Architect</h1>
         <p>Full-stack developer · 10+ years · Building products people love</p>
@@ -445,7 +415,7 @@
         <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
     </div>
 
-    <!-- ABOUT - left aligned text -->
+    <!-- ABOUT -->
     <div class="about-text">
         <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
         <p>Every line of code serves a purpose, every pixel has meaning.</p>
@@ -457,7 +427,7 @@
         <p class="comment">// Technologies I work with daily</p>
     </div>
 
-    <!-- SKILLS - icons left of titles -->
+    <!-- SKILLS -->
     <div>
         <div><i class="fa-brands fa-react"></i> <div class="card-content"><h3>Frontend</h3><p>React, Vue, Angular, TypeScript</p></div></div>
         <div><i class="fa-solid fa-server"></i> <div class="card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
@@ -473,7 +443,7 @@
         <p class="comment">// What I offer as a digital architect</p>
     </div>
 
-    <!-- SERVICES - icons left of titles -->
+    <!-- SERVICES -->
     <div>
         <div><i class="fa-solid fa-pen-nib"></i> <div class="card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
         <div><i class="fa-solid fa-laptop-code"></i> <div class="card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
@@ -489,7 +459,7 @@
         <p class="comment">// Official merchandise</p>
     </div>
 
-    <!-- PRODUCTS - horizontal with price and button -->
+    <!-- PRODUCTS -->
     <div>
         <div><i class="fa-solid fa-circle"></i> <div class="card-content"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
         <div><i class="fa-solid fa-tshirt"></i> <div class="card-content"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="card-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
@@ -503,7 +473,7 @@
         <p class="comment">// Partners I've worked with</p>
     </div>
 
-    <!-- CLIENTS - horizontal with logo left -->
+    <!-- CLIENTS -->
     <div>
         <div class="client-card">
             <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
@@ -521,11 +491,41 @@
         <p class="comment">// Thoughts & tutorials</p>
     </div>
 
-    <!-- BLOG - horizontal with icon left -->
+    <!-- BLOG - Date on the right of title -->
     <div>
-        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><h3>Fluid Responsive System</h3><div class="blog-date">June 9, 2024</div><p>Using clamp() for true fluidity on all screens</p><a href="#" class="btn-secondary">Read More →</a></div></div>
-        <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><h3>The Power of Text-Only Design</h3><div class="blog-date">June 5, 2024</div><p>Why sometimes less is more in interface design</p><a href="#" class="btn-secondary">Read More →</a></div></div>
-        <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><h3>V3 QuickFind</h3><div class="blog-date">May 28, 2024</div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read More →</a></div></div>
+        <div class="blog-card">
+            <i class="fas fa-mobile-alt"></i>
+            <div class="card-content">
+                <div class="title-row">
+                    <h3>Fluid Responsive System</h3>
+                    <span class="blog-date">June 9, 2024</span>
+                </div>
+                <p>Using clamp() for true fluidity on all screens</p>
+                <a href="#" class="btn-secondary">Read More →</a>
+            </div>
+        </div>
+        <div class="blog-card">
+            <i class="fas fa-font"></i>
+            <div class="card-content">
+                <div class="title-row">
+                    <h3>The Power of Text-Only Design</h3>
+                    <span class="blog-date">June 5, 2024</span>
+                </div>
+                <p>Why sometimes less is more in interface design</p>
+                <a href="#" class="btn-secondary">Read More →</a>
+            </div>
+        </div>
+        <div class="blog-card">
+            <i class="fas fa-search"></i>
+            <div class="card-content">
+                <div class="title-row">
+                    <h3>V3 QuickFind</h3>
+                    <span class="blog-date">May 28, 2024</span>
+                </div>
+                <p>Universal search that works on every device</p>
+                <a href="#" class="btn-secondary">Read More →</a>
+            </div>
+        </div>
     </div>
 
 </div>
