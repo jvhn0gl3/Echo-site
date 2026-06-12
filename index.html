@@ -14,8 +14,8 @@
     
     <style>
         /* ============================================
-           CONSISTENT PADDING SYSTEM
-           Code blocks have extra generous padding
+           CODE BLOCKS AS SECTION DIVIDERS
+           Each code block separates content like an HR
            ============================================ */
         
         * {
@@ -73,7 +73,6 @@
             font-size: var(--text-base);
         }
         
-        /* Main container */
         .site-container {
             width: 100%;
             max-width: 100%;
@@ -113,7 +112,8 @@
         }
         
         /* ========================================== */
-        /* CODE BLOCKS - EXTRA GENEROUS PADDING */
+        /* CODE BLOCKS - ACT AS SECTION DIVIDERS */
+        /* Each code block visually separates content */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
@@ -121,9 +121,20 @@
             padding: var(--space-xl) var(--space-2xl);
             font-family: 'SF Mono', 'Fira Code', monospace;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: var(--space-xl);
             margin-bottom: var(--space-xl);
             width: 100%;
             user-select: none;
+        }
+        
+        /* First code block after hero - connects naturally */
+        .component-hero + .component-code-header {
+            margin-top: 0;
+        }
+        
+        /* Last code block gets extra bottom space before footer */
+        .component-code-header:last-of-type {
+            margin-bottom: var(--space-2xl);
         }
         
         .component-code-header h2 {
@@ -198,10 +209,17 @@
         }
         
         /* ========================================== */
-        /* ABOUT */
+        /* CONTENT SECTIONS (between code blocks) */
         /* ========================================== */
-        .component-about {
+        .component-about,
+        .grid-container,
+        .products-container,
+        .clients-container,
+        .blog-container {
             margin-bottom: var(--space-xl);
+        }
+        
+        .component-about {
             padding: 0 var(--space-xs);
         }
         
@@ -493,7 +511,7 @@
 
 <div class="site-container" id="main-content">
     
-    <!-- HERO -->
+    <!-- SECTION: HERO -->
     <div class="component-hero" id="hero">
         <div class="hero-container">
             <div class="hero-left">
@@ -509,25 +527,25 @@
         </div>
     </div>
 
-    <!-- CODE BLOCK 1 - Extra padding -->
+    <!-- DIVIDER: Code block separating Hero from About -->
     <div class="component-code-header">
         <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
         <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience building products people love</p>
     </div>
 
-    <!-- ABOUT -->
+    <!-- SECTION: ABOUT -->
     <div class="component-about" id="about">
         <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
         <p>Every line of code serves a purpose, every pixel has meaning.</p>
     </div>
 
-    <!-- CODE BLOCK 2 - Extra padding -->
+    <!-- DIVIDER: Code block separating About from Skills -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
         <p class="comment">// Technologies I work with daily to build modern, scalable applications</p>
     </div>
 
-    <!-- SKILLS -->
+    <!-- SECTION: SKILLS -->
     <div class="grid-container" id="skills">
         <div class="grid-card"><i class="fa-brands fa-react"></i><div class="grid-card-content"><h3>Frontend</h3><p>React, Vue, Angular, TS</p></div></div>
         <div class="grid-card"><i class="fa-solid fa-server"></i><div class="grid-card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
@@ -537,13 +555,13 @@
         <div class="grid-card"><i class="fa-solid fa-code-branch"></i><div class="grid-card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
     </div>
 
-    <!-- CODE BLOCK 3 - Extra padding -->
+    <!-- DIVIDER: Code block separating Skills from Services -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
         <p class="comment">// What I offer as a digital architect — from concept to deployment</p>
     </div>
 
-    <!-- SERVICES -->
+    <!-- SECTION: SERVICES -->
     <div class="grid-container" id="services">
         <div class="grid-card"><i class="fa-solid fa-pen-nib"></i><div class="grid-card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
         <div class="grid-card"><i class="fa-solid fa-laptop-code"></i><div class="grid-card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
@@ -553,13 +571,13 @@
         <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><div class="grid-card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
     </div>
 
-    <!-- CODE BLOCK 4 - Extra padding -->
+    <!-- DIVIDER: Code block separating Services from Store -->
     <div class="component-code-header">
         <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
         <p class="comment">// Official merchandise — exclusive designs available now</p>
     </div>
 
-    <!-- PRODUCTS -->
+    <!-- SECTION: STORE / PRODUCTS -->
     <div class="products-container" id="store">
         <div class="product-card"><i class="fa-solid fa-circle"></i><div class="product-info"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
         <div class="product-card"><i class="fa-solid fa-tshirt"></i><div class="product-info"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
@@ -567,13 +585,13 @@
         <div class="product-card"><i class="fa-solid fa-bed"></i><div class="product-info"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
     </div>
 
-    <!-- CODE BLOCK 5 - Extra padding -->
+    <!-- DIVIDER: Code block separating Store from Clients -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
         <p class="comment">// Partners I've had the privilege to work with</p>
     </div>
 
-    <!-- CLIENTS -->
+    <!-- SECTION: CLIENTS -->
     <div class="clients-container" id="clients">
         <div class="client-card">
             <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
@@ -585,13 +603,13 @@
         </div>
     </div>
 
-    <!-- CODE BLOCK 6 - Extra padding -->
+    <!-- DIVIDER: Code block separating Clients from Blog -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
         <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
     </div>
 
-    <!-- BLOG -->
+    <!-- SECTION: BLOG -->
     <div class="blog-container" id="blog">
         <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">Jun 9, 2024</span></div><p>Using clamp() for true fluidity on all screens</p><a href="#" class="btn-secondary">Read →</a></div></div>
         <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><div class="blog-title-row"><h3>The Power of Text-Only Design</h3><span class="blog-date">Jun 5, 2024</span></div><p>Why less is more in interface design</p><a href="#" class="btn-secondary">Read →</a></div></div>
@@ -683,7 +701,7 @@
             { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
         );
         
-        document.querySelectorAll('.component-hero, .component-code-header, .component-about, .grid-container, .products-container, .clients-container, .blog-container').forEach(el => observer.observe(el));
+        document.querySelectorAll('.component-hero, .component-about, .grid-container, .products-container, .clients-container, .blog-container, .component-code-header').forEach(el => observer.observe(el));
         
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
