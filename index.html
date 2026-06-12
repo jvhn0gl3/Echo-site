@@ -8,14 +8,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Full-Width Fluid System</title>
+    <title>V3 | No Constraints</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           FULL-WIDTH FLUID SYSTEM
-           No max-width - stretches edge to edge
+           ZERO CONSTRAINTS - No max-width anywhere
+           100% width on every screen, every device
            ============================================ */
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -57,16 +57,14 @@
         }
         
         /* ========================================== */
-        /* FULL-WIDTH CONTAINER - no max-width! */
+        /* NO CONSTRAINTS - 100% width always */
         /* ========================================== */
         .section {
             width: 100%;
             padding: var(--fluid-lg) var(--fluid-md);
         }
         
-        /* ========================================== */
-        /* FLUID GRID - stretches full width */
-        /* ========================================== */
+        /* Everything fills the full width */
         .section > div:not(.code-block) {
             display: grid;
             gap: var(--fluid-md);
@@ -74,13 +72,13 @@
             width: 100%;
         }
         
-        /* Grid fills the entire width - more columns on wider screens */
+        /* Grid fills entire width - columns adjust naturally */
         .section > div:not(.code-block) {
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
         }
         
         /* ========================================== */
-        /* FLUID TYPOGRAPHY */
+        /* TYPOGRAPHY - scales forever */
         /* ========================================== */
         h1 { font-size: var(--text-3xl); margin-bottom: var(--fluid-sm); font-weight: 700; }
         h2 { font-size: var(--text-xl); margin-bottom: var(--fluid-xs); }
@@ -88,7 +86,7 @@
         p { font-size: var(--text-base); color: var(--gray); margin-bottom: var(--fluid-xs); line-height: 1.6; }
         
         /* ========================================== */
-        /* FLUID CARDS - full width inside grid */
+        /* CARDS - fill full width */
         /* ========================================== */
         .section > div:not(.code-block) > div {
             background: rgba(255,255,255,0.03);
@@ -103,13 +101,8 @@
         }
         .section > div:not(.code-block) > div:active { transform: scale(0.98); }
         
-        /* Cards fill their grid cell completely */
-        .section > div:not(.code-block) {
-            align-items: stretch;
-        }
-        
         /* ========================================== */
-        /* FLUID IMAGES */
+        /* IMAGES - never overflow */
         /* ========================================== */
         img {
             max-width: 100%;
@@ -118,13 +111,13 @@
         }
         
         .client-logo {
-            max-width: min(140px, 40%);
+            max-width: min(160px, 50%);
             margin: 0 auto var(--fluid-md);
             display: block;
         }
         
         /* ========================================== */
-        /* FLUID BUTTONS */
+        /* BUTTONS */
         /* ========================================== */
         a, button {
             display: inline-block;
@@ -137,7 +130,6 @@
             border: none;
             font-size: var(--text-sm);
             text-align: center;
-            width: auto;
         }
         a:active, button:active { transform: scale(0.96); }
         
@@ -152,7 +144,6 @@
             color: var(--accent);
         }
         
-        /* Buttons in cards sit at bottom */
         .section > div:not(.code-block) > div a,
         .section > div:not(.code-block) > div button {
             margin-top: auto;
@@ -160,7 +151,7 @@
         }
         
         /* ========================================== */
-        /* HERO SECTION - full width */
+        /* HERO - full width */
         /* ========================================== */
         .section > div:has(h1) {
             text-align: center;
@@ -179,7 +170,7 @@
         }
         
         /* ========================================== */
-        /* CODE HEADER - full width */
+        /* CODE HEADER */
         /* ========================================== */
         .code-block {
             background: rgba(0,212,255,0.05);
@@ -232,7 +223,7 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAV - full width */
+        /* BOTTOM NAV - full width always */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -283,29 +274,18 @@
         .fade-in { animation: fadeIn 0.4s ease-out; }
         
         /* ========================================== */
-        /* SCROLLBAR */
+        /* SCROLLBAR - subtle */
         /* ========================================== */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--gray); border-radius: 3px; }
-        
-        /* ========================================== */
-        /* OPTIONAL: Add visual padding for ultra-wide */
-        /* Keeps content readable but still full-width */
-        /* ========================================== */
-        @media (min-width: 1920px) {
-            .section {
-                padding-left: calc(50% - 900px);
-                padding-right: calc(50% - 900px);
-            }
-        }
     </style>
 </head>
 <body>
 
 <!-- ========================================== -->
-<!-- FULL-WIDTH ZERO-CLASS SYSTEM -->
-<!-- Content stretches edge to edge on wide screens -->
+<!-- NO CONSTRAINTS - 100% width on ALL screens -->
+<!-- Every screen size gets full-width content -->
 <!-- ========================================== -->
 
 <div class="section">
@@ -313,7 +293,7 @@
     <!-- HERO -->
     <div>
         <h1>V3 Digital Architect</h1>
-        <p>Full width. No wasted space. Perfect on every screen.</p>
+        <p>No constraints. No max-width. Pure freedom.</p>
         <div class="flex-buttons">
             <a href="#">Get Started</a>
             <a href="#" class="btn-secondary">Learn More</a>
@@ -328,7 +308,7 @@
 
     <!-- ABOUT -->
     <div>
-        <div style="text-align: center; max-width: min(700px, 90%); margin: 0 auto;">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
             <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
             <p style="margin-top: var(--fluid-sm);">Every line of code serves a purpose, every pixel has meaning.</p>
         </div>
