@@ -5,7 +5,7 @@
 
 (function(){
     // ============================================
-    // PRODUCTS DATA
+    // DATA: PRODUCTS
     // ============================================
     const products = [
         { link: "https://www.zazzle.com/static_snow_metallic_button-256451615024894965", title: "Static Snow Metallic Button", type: "Button", price: 0, soldOut: false, search: "static snow metallic button" },
@@ -23,7 +23,7 @@
     ];
 
     // ============================================
-    // CREATIONS DATA
+    // DATA: CREATIONS
     // ============================================
     const creations = [
         { title: "V3 Brand Identity", type: "Branding", description: "Complete visual identity system", link: "#", icon: "fa-palette", search: "v3 brand identity branding" },
@@ -38,7 +38,7 @@
     ];
 
     // ============================================
-    // CLIENTS DATA
+    // DATA: CLIENTS
     // ============================================
     const clients = [
         { 
@@ -52,7 +52,7 @@
     ];
 
     // ============================================
-    // BLOG DATA
+    // DATA: BLOG POSTS
     // ============================================
     const blogPosts = [
         {
@@ -105,14 +105,18 @@
         }
     ];
 
-    // Searchable items
+    // ============================================
+    // HELPERS
+    // ============================================
     const searchableItems = [];
 
     function escapeHtml(str) {
         return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
     }
 
-    // ========== RENDER FUNCTIONS ==========
+    // ============================================
+    // RENDER: PRODUCTS
+    // ============================================
     function renderProducts() {
         const container = document.getElementById('products-grid');
         if (!container) return;
@@ -133,6 +137,9 @@
         });
     }
 
+    // ============================================
+    // RENDER: CREATIONS
+    // ============================================
     function renderCreations() {
         const container = document.getElementById('creations-grid');
         if (!container) return;
@@ -150,6 +157,9 @@
         });
     }
 
+    // ============================================
+    // RENDER: CLIENTS
+    // ============================================
     function renderClients() {
         const container = document.getElementById('clients-grid');
         if (!container) return;
@@ -169,6 +179,9 @@
         });
     }
 
+    // ============================================
+    // RENDER: BLOG
+    // ============================================
     function renderBlog() {
         const container = document.getElementById('blog-grid');
         if (!container) return;
@@ -186,7 +199,9 @@
         });
     }
 
-    // ========== V3 QUICKFIND ==========
+    // ============================================
+    // QUICKFIND SEARCH
+    // ============================================
     function setupQuickFind() {
         const overlay = document.getElementById('quickfindOverlay');
         const input = document.getElementById('quickfindInput');
@@ -329,7 +344,9 @@
         });
     }
 
-    // ========== BOTTOM NAVIGATION ==========
+    // ============================================
+    // BOTTOM NAVIGATION
+    // ============================================
     function setupBottomNavigation() {
         let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
         function setActiveNav(id) { bottomNavItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id)); }
@@ -348,19 +365,25 @@
         setActiveOnScroll();
     }
 
-    // ========== FADE-IN ANIMATION ==========
+    // ============================================
+    // FADE-IN ANIMATION
+    // ============================================
     function setupFadeInAnimation() {
         const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fade-in'); observer.unobserve(e.target); } }), { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => observer.observe(s));
     }
 
-    // ========== PREVENT CONTEXT MENU & DRAG ==========
+    // ============================================
+    // PREVENT CONTEXT MENU & DRAG
+    // ============================================
     function setupPreventions() {
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     }
 
-    // ========== INITIALIZE EVERYTHING ==========
+    // ============================================
+    // INITIALIZE
+    // ============================================
     function init() {
         renderProducts();
         renderCreations();
