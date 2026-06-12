@@ -69,8 +69,54 @@
         }
         
         /* ========================================== */
+        /* BUTTON STYLES - FULL WIDTH */
+        /* ========================================== */
+        .btn-primary, .btn-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2xs);
+            padding: var(--space-2xs) var(--space-md);
+            border-radius: var(--space-sm);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--text-xs);
+            transition: all 0.12s ease;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-medium);
+            color: var(--accent-cyan);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        /* Hero buttons - side by side but each full width in their flex container */
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-secondary {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        /* ========================================== */
         /* COMPONENT 1: HERO (2-column) */
-        /* Copy from <!-- COMPONENT: HERO --> to <!-- END COMPONENT: HERO --> */
         /* ========================================== */
         .component-hero {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
@@ -108,12 +154,6 @@
             color: transparent;
         }
         
-        .hero-buttons {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-        }
-        
         .hero-right p {
             font-size: var(--text-sm);
             color: var(--text-secondary);
@@ -133,7 +173,6 @@
         
         /* ========================================== */
         /* COMPONENT: CODE HEADER */
-        /* Copy from <!-- COMPONENT: CODE HEADER --> to <!-- END COMPONENT: CODE HEADER --> */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
@@ -174,7 +213,6 @@
         
         /* ========================================== */
         /* COMPONENT: GRID SECTION (Skills/Services) */
-        /* Copy the entire grid container with cards */
         /* ========================================== */
         .component-grid {
             margin-bottom: var(--space-xl);
@@ -285,6 +323,7 @@
         
         .product-action {
             flex-shrink: 0;
+            min-width: 80px;
         }
         
         .product-card:hover {
@@ -417,43 +456,6 @@
         }
         
         /* ========================================== */
-        /* BUTTON STYLES (used in all components) */
-        /* ========================================== */
-        .btn-primary, .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-2xs);
-            padding: var(--space-2xs) var(--space-md);
-            border-radius: var(--space-sm);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: var(--text-xs);
-            transition: all 0.12s ease;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-medium);
-            color: var(--accent-cyan);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        a, button {
-            cursor: pointer;
-        }
-        
-        /* ========================================== */
         /* BOTTOM NAVIGATION */
         /* ========================================== */
         .bottom-nav {
@@ -541,7 +543,6 @@
     
     <!-- ========================================== -->
     <!-- COMPONENT: HERO -->
-    <!-- Copy this entire block to add a hero section -->
     <!-- ========================================== -->
     <div class="component-hero" id="hero">
         <div class="hero-container">
@@ -557,17 +558,14 @@
             </div>
         </div>
     </div>
-    <!-- END COMPONENT: HERO -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: CODE HEADER -->
-    <!-- Copy this before any section for code styling -->
     <!-- ========================================== -->
     <div class="component-code-header" id="about-header">
         <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
         <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
     </div>
-    <!-- END COMPONENT: CODE HEADER -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: ABOUT TEXT -->
@@ -576,7 +574,6 @@
         <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
         <p>Every line of code serves a purpose, every pixel has meaning.</p>
     </div>
-    <!-- END COMPONENT: ABOUT -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: CODE HEADER (Skills) -->
@@ -588,7 +585,6 @@
 
     <!-- ========================================== -->
     <!-- COMPONENT: GRID (Skills) -->
-    <!-- Add/remove grid-card divs freely -->
     <!-- ========================================== -->
     <div class="component-grid" id="skills">
         <div class="grid-container">
@@ -600,7 +596,6 @@
             <div class="grid-card"><i class="fa-solid fa-code-branch"></i><div class="grid-card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
         </div>
     </div>
-    <!-- END COMPONENT: GRID -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: CODE HEADER (Services) -->
@@ -623,7 +618,6 @@
             <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><div class="grid-card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
         </div>
     </div>
-    <!-- END COMPONENT: GRID -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: CODE HEADER (Store) -->
@@ -635,7 +629,6 @@
 
     <!-- ========================================== -->
     <!-- COMPONENT: PRODUCTS -->
-    <!-- Add/remove product-card divs freely -->
     <!-- ========================================== -->
     <div class="component-products" id="store">
         <div class="products-container">
@@ -645,7 +638,6 @@
             <div class="product-card"><i class="fa-solid fa-bed"></i><div class="product-info"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
         </div>
     </div>
-    <!-- END COMPONENT: PRODUCTS -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: CODE HEADER (Clients) -->
@@ -670,7 +662,6 @@
             </div>
         </div>
     </div>
-    <!-- END COMPONENT: CLIENTS -->
 
     <!-- ========================================== -->
     <!-- COMPONENT: CODE HEADER (Blog) -->
@@ -682,7 +673,6 @@
 
     <!-- ========================================== -->
     <!-- COMPONENT: BLOG -->
-    <!-- Add/remove blog-card divs freely -->
     <!-- ========================================== -->
     <div class="component-blog" id="blog">
         <div class="blog-container">
@@ -691,13 +681,11 @@
             <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><div class="blog-title-row"><h3>V3 QuickFind</h3><span class="blog-date">May 28, 2024</span></div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read More →</a></div></div>
         </div>
     </div>
-    <!-- END COMPONENT: BLOG -->
 
 </div>
 
 <!-- ========================================== -->
 <!-- BOTTOM NAVIGATION -->
-<!-- Add nav-item for each section you have -->
 <!-- ========================================== -->
 <div class="bottom-nav">
     <button class="nav-item" data-section="hero"><i class="fas fa-home"></i><span>Home</span></button>
