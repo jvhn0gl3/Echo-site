@@ -8,20 +8,41 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Raw HTML System</title>
+    <title>V3 | Fluid Zero-Class System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           THE SYSTEM: Just add raw HTML
-           CSS automatically styles everything
-           No classes needed (except .section on container)
+           ZERO BREAKPOINT FLUID SYSTEM
+           Everything uses clamp() - scales on ALL screens
+           No media queries needed!
            ============================================ */
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        /* Fluid variables - everything scales from these */
         :root {
+            --fluid-xs: clamp(0.5rem, 1.5vw, 0.75rem);
+            --fluid-sm: clamp(0.75rem, 2vw, 1rem);
+            --fluid-md: clamp(1rem, 3vw, 1.5rem);
+            --fluid-lg: clamp(1.5rem, 4vw, 2rem);
+            --fluid-xl: clamp(2rem, 5vw, 3rem);
+            --fluid-2xl: clamp(2.5rem, 6vw, 4rem);
+            
+            --text-xs: clamp(0.625rem, 1.5vw, 0.75rem);
+            --text-sm: clamp(0.75rem, 2vw, 0.875rem);
+            --text-base: clamp(0.875rem, 2.5vw, 1rem);
+            --text-md: clamp(1rem, 3vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 4vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 5vw, 2rem);
+            --text-3xl: clamp(1.75rem, 6vw, 2.5rem);
+            
+            --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
+            --radius-md: clamp(0.75rem, 2vw, 1rem);
+            --radius-lg: clamp(1rem, 2.5vw, 1.5rem);
+            
             --bg: #050505;
             --text: #e8e8e8;
             --accent: #00d4ff;
@@ -34,101 +55,185 @@
             color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.5;
+            font-size: var(--text-base);
         }
         
-        /* Only ONE class needed - everything inside gets styled automatically */
+        /* ========================================== */
+        /* THE ONLY CONTAINER - fluid width */
+        /* ========================================== */
         .section {
-            max-width: 1400px;
+            max-width: min(1400px, 95%);
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: var(--fluid-lg) var(--fluid-md);
         }
         
         /* ========================================== */
-        /* AUTOMATIC STYLES - Add any HTML, it just works */
+        /* FLUID GRID - auto adjusts to any number of items */
         /* ========================================== */
+        .section > div:not(.code-block) {
+            display: grid;
+            gap: var(--fluid-md);
+            margin-bottom: var(--fluid-xl);
+        }
         
-        /* Headers */
-        h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); margin-bottom: 0.5rem; }
-        h2 { font-size: clamp(1.2rem, 5vw, 1.8rem); margin-bottom: 0.5rem; }
-        h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+        /* Ultra-fluid grid - items get wider on bigger screens, never too narrow */
+        .section > div:not(.code-block) {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+        }
         
-        /* Paragraphs */
-        p { color: var(--gray); margin-bottom: 0.5rem; }
+        /* ========================================== */
+        /* FLUID TYPOGRAPHY - scales perfectly */
+        /* ========================================== */
+        h1 { font-size: var(--text-3xl); margin-bottom: var(--fluid-sm); font-weight: 700; }
+        h2 { font-size: var(--text-xl); margin-bottom: var(--fluid-xs); }
+        h3 { font-size: var(--text-md); margin-bottom: calc(var(--fluid-xs) * 0.5); }
+        p { font-size: var(--text-base); color: var(--gray); margin-bottom: var(--fluid-xs); line-height: 1.6; }
         
-        /* Images */
-        img { max-width: 100%; height: auto; border-radius: 1rem; }
+        /* ========================================== */
+        /* FLUID CARDS - stretch naturally */
+        /* ========================================== */
+        .section > div:not(.code-block) > div {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-md);
+            padding: var(--fluid-md);
+            transition: transform 0.2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .section > div:not(.code-block) > div:active { transform: scale(0.98); }
         
-        /* Buttons */
+        /* Make all cards in a row equal height automatically */
+        .section > div:not(.code-block) {
+            align-items: stretch;
+        }
+        
+        /* ========================================== */
+        /* FLUID IMAGES - never overflow */
+        /* ========================================== */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+        }
+        
+        /* Client logo sizing - fluid */
+        .client-logo {
+            max-width: min(120px, 30%);
+            margin: 0 auto var(--fluid-md);
+            display: block;
+        }
+        
+        /* ========================================== */
+        /* FLUID BUTTONS - scale with text */
+        /* ========================================== */
         a, button {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
+            padding: var(--fluid-xs) var(--fluid-lg);
             border-radius: 2rem;
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.2s;
             cursor: pointer;
             border: none;
+            font-size: var(--text-sm);
+            text-align: center;
+            width: fit-content;
         }
         a:active, button:active { transform: scale(0.96); }
         
-        /* Primary button style */
-        .btn-primary, a[href="#"]:first-of-type { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
-        
-        /* Secondary button style */
-        .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--accent); }
-        
-        /* Cards - any div with multiple children gets card style automatically */
-        .section > div > div {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 1rem;
-            padding: 1rem;
-            transition: transform 0.2s;
-        }
-        .section > div > div:active { transform: scale(0.96); }
-        
-        /* Grid layout - any container with multiple child divs becomes a grid */
-        .section > div {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
+        .btn-primary, a[href]:not(.btn-secondary) {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
         }
         
-        /* Auto-grid based on how many items */
-        .section > div:has(> :nth-child(2)) { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .section > div:has(> :nth-child(3)) { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-        .section > div:has(> :nth-child(4)) { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-        .section > div:has(> :nth-child(5)) { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-        .section > div:has(> :nth-child(6)) { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            color: var(--accent);
+        }
         
-        /* Hero section - any div with an h1 and p becomes hero */
+        /* Buttons in cards sit at bottom naturally */
+        .section > div:not(.code-block) > div a,
+        .section > div:not(.code-block) > div button {
+            margin-top: auto;
+            align-self: center;
+        }
+        
+        /* ========================================== */
+        /* FLUID HERO SECTION - full width love */
+        /* ========================================== */
         .section > div:has(h1) {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: var(--fluid-xl) var(--fluid-md);
             background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(124,58,237,0.05));
-            border-radius: 1.5rem;
-            margin-bottom: 1rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--fluid-xl);
             display: block;
         }
         
-        /* Code header style - any div with monospace text */
-        .section .code-block {
-            background: rgba(0,212,255,0.05);
-            border-left: 3px solid var(--accent);
-            padding: 0.75rem 1rem;
-            font-family: monospace;
-            border-radius: 0 0.75rem 0.75rem 0;
-            margin-bottom: 1.5rem;
+        .section > div:has(h1) p {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* Icons */
-        i { color: var(--accent); margin-right: 0.25rem; }
+        /* ========================================== */
+        /* FLUID CODE HEADER - stays readable */
+        /* ========================================== */
+        .code-block {
+            background: rgba(0,212,255,0.05);
+            border-left: 3px solid var(--accent);
+            padding: var(--fluid-md) var(--fluid-lg);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-bottom: var(--fluid-lg);
+            width: 100%;
+            overflow-x: auto;
+        }
         
-        /* Flex for buttons */
-        .flex-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+        .code-block h2 {
+            font-size: var(--text-sm);
+            margin-bottom: var(--fluid-xs);
+            color: var(--accent);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 640px) {
+            .code-block h2 { white-space: normal; word-break: break-word; }
+        }
+        
+        .code-block .keyword { color: #c678dd; }
+        .code-block .string { color: #98c379; }
+        .code-block .variable { color: #e06c75; }
+        .code-block .function { color: #61afef; }
+        .code-block .comment { color: var(--gray); font-size: var(--text-xs); }
         
         /* ========================================== */
-        /* BOTTOM NAV (copy-paste ready) */
+        /* FLUID FLEX FOR BUTTONS */
+        /* ========================================== */
+        .flex-buttons {
+            display: flex;
+            gap: var(--fluid-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--fluid-md);
+        }
+        
+        /* ========================================== */
+        /* ICONS - fluid size */
+        /* ========================================== */
+        i {
+            color: var(--accent);
+            font-size: var(--text-lg);
+            margin-bottom: var(--fluid-xs);
+            display: inline-block;
+        }
+        
+        /* ========================================== */
+        /* BOTTOM NAV - fluid and fixed */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -140,69 +245,91 @@
             border-top: 1px solid rgba(255,255,255,0.08);
             display: flex;
             justify-content: space-around;
-            padding: 0.5rem 1rem 1.5rem;
+            padding: var(--fluid-xs) var(--fluid-md) var(--fluid-lg);
             z-index: 100;
+            gap: var(--fluid-xs);
+            overflow-x: auto;
         }
+        
+        .bottom-nav::-webkit-scrollbar { display: none; }
+        
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.25rem;
+            gap: var(--fluid-xs);
             background: none;
             border: none;
             color: #7e7e8e;
-            font-size: 0.625rem;
-            padding: 0.5rem;
+            font-size: var(--text-xs);
+            padding: var(--fluid-xs) var(--fluid-sm);
             border-radius: 2rem;
             cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
-        .nav-item.active { color: var(--accent); background: rgba(0,212,255,0.15); }
-        .nav-item i { font-size: 1.25rem; margin: 0; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-item.active { color: var(--accent); background: rgba(0,212,255,0.15); }
+        .nav-item i { font-size: var(--text-md); margin: 0; }
+        .nav-item:active { transform: scale(0.92); }
+        
+        /* ========================================== */
+        /* ANIMATIONS */
+        /* ========================================== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .fade-in { animation: fadeIn 0.4s ease-out; }
+        
+        /* ========================================== */
+        /* SCROLLBAR - subtle */
+        /* ========================================== */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--gray); border-radius: 3px; }
     </style>
 </head>
 <body>
 
 <!-- ========================================== -->
-<!-- JUST RAW HTML - Copy, paste, edit, repeat -->
-<!-- Everything inside .section gets styled automatically -->
+<!-- FLUID ZERO-CLASS SYSTEM -->
+<!-- Just raw HTML - everything scales automatically -->
 <!-- ========================================== -->
 
 <div class="section">
     
-    <!-- HERO BLOCK - Copy this whole thing -->
+    <!-- HERO - scales on every screen -->
     <div>
         <h1>V3 Digital Architect</h1>
-        <p>Build fast. Edit faster. Commit in seconds.</p>
+        <p>Build fast. Edit faster. Perfect on every screen.</p>
         <div class="flex-buttons">
             <a href="#">Get Started</a>
             <a href="#" class="btn-secondary">Learn More</a>
         </div>
     </div>
 
-    <!-- CODE HEADER - Optional decorative block -->
+    <!-- CODE HEADER -->
     <div class="code-block">
-        <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ about }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/profile'</span></h2>
-        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Digital Architect · Full-Stack Developer · 10+ years</p>
+        <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
+        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
     </div>
 
-    <!-- ABOUT TEXT - Just raw text -->
+    <!-- ABOUT TEXT -->
     <div>
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div style="text-align: center; max-width: min(600px, 90%); margin: 0 auto;">
             <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-            <p style="margin-top: 0.5rem;">Every line of code serves a purpose, every pixel has meaning.</p>
+            <p style="margin-top: var(--fluid-sm);">Every line of code serves a purpose, every pixel has meaning.</p>
         </div>
     </div>
 
-    <!-- CODE HEADER - Skills -->
+    <!-- SKILLS HEADER -->
     <div class="code-block">
-        <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">techStack</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">useSkills</span>()</h2>
-        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Technologies I work with daily</p>
+        <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
+        <p class="comment">// Technologies I work with daily</p>
     </div>
 
-    <!-- SKILLS GRID - Add/remove any of these divs -->
+    <!-- SKILLS GRID - Add/remove divs freely, grid auto-adjusts -->
     <div>
         <div><i class="fa-brands fa-react"></i> <h3>Frontend</h3> <p>React, Vue, Angular, TS</p></div>
         <div><i class="fa-solid fa-server"></i> <h3>Backend</h3> <p>Node.js, Python, Go, Java</p></div>
@@ -212,13 +339,13 @@
         <div><i class="fa-solid fa-code-branch"></i> <h3>DevOps</h3> <p>CI/CD, Jenkins, GitHub Actions</p></div>
     </div>
 
-    <!-- CODE HEADER - Services -->
+    <!-- SERVICES HEADER -->
     <div class="code-block">
-        <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">services</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">provide</span>()</h2>
-        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// What I offer as a digital architect</p>
+        <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
+        <p class="comment">// What I offer as a digital architect</p>
     </div>
 
-    <!-- SERVICES GRID - Add/remove any of these divs -->
+    <!-- SERVICES GRID -->
     <div>
         <div><i class="fa-solid fa-pen-nib"></i> <h3>Logo Design</h3> <p>Custom brand identities</p></div>
         <div><i class="fa-solid fa-laptop-code"></i> <h3>Web Development</h3> <p>Full-stack modern apps</p></div>
@@ -228,13 +355,13 @@
         <div><i class="fa-solid fa-shield-alt"></i> <h3>Security</h3> <p>Vulnerability fixes</p></div>
     </div>
 
-    <!-- CODE HEADER - Store -->
+    <!-- STORE HEADER -->
     <div class="code-block">
-        <h2><span style="color:#c678dd;">import</span> <span style="color:#98c379;">{ merchandise }</span> <span style="color:#c678dd;">from</span> <span style="color:#98c379;">'@v3/shop'</span></h2>
-        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Official merchandise · Text-only minimal store</p>
+        <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
+        <p class="comment">// Official merchandise · Text-only minimal store</p>
     </div>
 
-    <!-- PRODUCTS GRID - Add/remove any of these divs -->
+    <!-- PRODUCTS GRID -->
     <div>
         <div><h3>Static Snow Button</h3> <p>Button</p> <p style="color: var(--accent); font-weight: 600;">$3.24</p> <a href="#">Shop →</a></div>
         <div><h3>Pattern T-Shirt</h3> <p>T-Shirt</p> <p style="color: var(--accent); font-weight: 600;">$21.04</p> <a href="#">Shop →</a></div>
@@ -242,34 +369,39 @@
         <div><h3>Black Round Pillow</h3> <p>Pillow</p> <p style="color: var(--accent); font-weight: 600;">$40.50</p> <a href="#">Shop →</a></div>
     </div>
 
-    <!-- CODE HEADER - Clients -->
+    <!-- CLIENTS HEADER -->
     <div class="code-block">
-        <h2><span style="color:#c678dd;">const</span> <span style="color:#e06c75;">clients</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">trustedBy</span>()</h2>
-        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Partners I've had the privilege to work with</p>
+        <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
+        <p class="comment">// Partners I've had the privilege to work with</p>
     </div>
 
-    <!-- CLIENTS GRID - Add/remove client divs -->
+    <!-- CLIENTS GRID -->
     <div>
-        <div><img src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" style="max-width: 120px; margin: 0 auto 1rem; display: block;"> <h3>Vineyard Church of Augusta</h3> <p>Community-focused church organization</p> <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a></div>
-        <!-- Duplicate the div above to add more clients -->
+        <div>
+            <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
+            <h3>Vineyard Church of Augusta</h3>
+            <p>Community-focused church organization</p>
+            <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
+        </div>
+        <!-- Add more clients by duplicating the div above -->
     </div>
 
-    <!-- CODE HEADER - Blog -->
+    <!-- BLOG HEADER -->
     <div class="code-block">
-        <h2><span style="color:#c678dd;">export</span> <span style="color:#c678dd;">const</span> <span style="color:#e06c75;">blog</span> <span style="color:#c678dd;">=</span> <span style="color:#61afef;">getPosts</span>()</h2>
-        <p class="comment" style="color: var(--gray); font-size: 0.7rem;">// Thoughts, tutorials, and insights</p>
+        <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
+        <p class="comment">// Thoughts, tutorials, and insights</p>
     </div>
 
-    <!-- BLOG GRID - Add/remove blog post divs -->
+    <!-- BLOG GRID -->
     <div>
-        <div><i class="fas fa-mobile-alt"></i> <h3>Fluid Responsive System</h3> <p style="color: #9c27b0; font-size: 0.7rem;">June 9, 2024</p> <p>Using clamp() for true fluidity</p> <a href="#" class="btn-secondary">Read →</a></div>
-        <div><i class="fas fa-font"></i> <h3>Power of Text-Only Design</h3> <p style="color: #9c27b0; font-size: 0.7rem;">June 5, 2024</p> <p>Why less is more in UI</p> <a href="#" class="btn-secondary">Read →</a></div>
-        <div><i class="fas fa-search"></i> <h3>V3 QuickFind</h3> <p style="color: #9c27b0; font-size: 0.7rem;">May 28, 2024</p> <p>Universal search system</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div><i class="fas fa-mobile-alt"></i> <h3>Fluid Responsive System</h3> <p style="color: #9c27b0;">June 9, 2024</p> <p>Using clamp() for true fluidity on all screens</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div><i class="fas fa-font"></i> <h3>Power of Text-Only Design</h3> <p style="color: #9c27b0;">June 5, 2024</p> <p>Why sometimes less is more in interface design</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div><i class="fas fa-search"></i> <h3>V3 QuickFind</h3> <p style="color: #9c27b0;">May 28, 2024</p> <p>Universal search that works on every device</p> <a href="#" class="btn-secondary">Read →</a></div>
     </div>
 
 </div>
 
-<!-- BOTTOM NAV (copy-paste, change section names) -->
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
     <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
@@ -280,21 +412,19 @@
 </div>
 
 <script>
-    // ============================================
-    // ONE SCRIPT - Just works. Don't touch.
-    // ============================================
     (function(){
-        // Add IDs to each section wrapper for navigation
-        const sections = {
-            'about': document.querySelector('.section > div:nth-child(3)'),
-            'skills': document.querySelectorAll('.section > div')[4],
-            'services': document.querySelectorAll('.section > div')[6],
-            'store': document.querySelectorAll('.section > div')[8],
-            'clients': document.querySelectorAll('.section > div')[10],
-            'blog': document.querySelectorAll('.section > div')[12]
+        // Auto-ID sections for navigation
+        const sectionMap = {
+            'about': 2,
+            'skills': 4,
+            'services': 6,
+            'store': 8,
+            'clients': 10,
+            'blog': 12
         };
         
-        for (const [id, el] of Object.entries(sections)) {
+        for (const [id, index] of Object.entries(sectionMap)) {
+            const el = document.querySelectorAll('.section > div')[index];
             if (el) el.id = id;
         }
         
@@ -313,8 +443,9 @@
             setActive(current || 'about');
         });
         
-        new IntersectionObserver(e => e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }), { threshold: 0.1 })
-            .observe(document.querySelectorAll('.section > div'));
+        // Fade-in animation
+        const observer = new IntersectionObserver(e => e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }), { threshold: 0.1 });
+        document.querySelectorAll('.section > div').forEach(el => observer.observe(el));
         
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
