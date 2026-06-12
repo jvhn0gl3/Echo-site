@@ -8,14 +8,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Side Quest Ready</title>
+    <title>V3 | Utility Class System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           CORE SYSTEM - The Foundation
-           Change anything here, but it affects everything
+           UTILITY CLASS SYSTEM
+           Like Tailwind - just add classes to your HTML
            ============================================ */
         
         * {
@@ -25,8 +25,8 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* ========== CORE VARIABLES ========== */
         :root {
-            /* SPACING - Play with these to change everything at once */
             --space-xs: clamp(0.25rem, 1vw, 0.5rem);
             --space-sm: clamp(0.5rem, 2vw, 0.75rem);
             --space-md: clamp(0.75rem, 3vw, 1rem);
@@ -34,7 +34,6 @@
             --space-xl: clamp(1.5rem, 5vw, 2rem);
             --space-2xl: clamp(2rem, 6vw, 3rem);
             
-            /* TYPOGRAPHY - Change font sizes globally */
             --text-xs: clamp(0.625rem, 2vw, 0.75rem);
             --text-sm: clamp(0.75rem, 2.5vw, 0.875rem);
             --text-base: clamp(0.875rem, 3vw, 1rem);
@@ -43,12 +42,10 @@
             --text-xl: clamp(1.25rem, 5vw, 1.5rem);
             --text-2xl: clamp(1.5rem, 6vw, 2rem);
             
-            /* RADIUS - Round or sharp corners */
             --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
             --radius-md: clamp(0.75rem, 2vw, 1rem);
             --radius-lg: clamp(1rem, 3vw, 1.5rem);
             
-            /* COLORS - Change theme colors here */
             --bg-dark: #050505;
             --text-light: #e8e8e8;
             --accent-cyan: #00d4ff;
@@ -60,12 +57,6 @@
             --gray-light: #c0c0c0;
         }
 
-        html, body {
-            width: 100%;
-            min-height: 100%;
-            background: var(--bg-dark);
-        }
-
         body {
             background: var(--bg-dark);
             color: var(--text-light);
@@ -73,208 +64,134 @@
             line-height: 1.5;
             overflow-x: hidden;
             font-size: var(--text-base);
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* Main container - controls overall page width */
-        main {
+        /* ========== LAYOUT UTILITIES ========== */
+        .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
+            padding: var(--space-xl) var(--space-lg);
         }
-
-        /* ============================================ */
-        /* COMPONENT: Code Header (reusable) */
-        /* Use this above any section for that code aesthetic */
-        /* ============================================ */
+        
+        /* Grid System - The MAIN fluid grid */
+        .grid {
+            display: grid;
+            gap: var(--space-md);
+            width: 100%;
+        }
+        
+        /* Auto-fit grid - responsive columns */
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); }
+        .grid-5 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); }
+        .grid-6 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr)); }
+        
+        /* Fixed column grids (when you want exact columns) */
+        .grid-col-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+        .grid-col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+        .grid-col-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+        
+        /* Flex utilities */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .flex-wrap { flex-wrap: wrap; }
+        .gap-sm { gap: var(--space-sm); }
+        .gap-md { gap: var(--space-md); }
+        .gap-lg { gap: var(--space-lg); }
+        
+        /* Spacing utilities */
+        .p-sm { padding: var(--space-sm); }
+        .p-md { padding: var(--space-md); }
+        .p-lg { padding: var(--space-lg); }
+        .p-xl { padding: var(--space-xl); }
+        
+        .m-sm { margin: var(--space-sm); }
+        .m-md { margin: var(--space-md); }
+        .m-lg { margin: var(--space-lg); }
+        
+        .mt-sm { margin-top: var(--space-sm); }
+        .mt-md { margin-top: var(--space-md); }
+        .mt-lg { margin-top: var(--space-lg); }
+        
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        
+        /* ========== CARD UTILITIES ========== */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            transition: all 0.2s ease;
+        }
+        .card:active { transform: scale(0.96); background: rgba(255,255,255,0.06); }
+        
+        .card-hover:hover { transform: translateY(-4px); background: rgba(0,212,255,0.05); border-color: rgba(0,212,255,0.2); }
+        
+        /* Card variants */
+        .card-cyan { background: rgba(0,212,255,0.03); border-color: rgba(0,212,255,0.1); }
+        .card-gold { background: rgba(255,215,0,0.03); border-color: rgba(255,215,0,0.1); }
+        .card-green { background: rgba(76,175,80,0.03); border-color: rgba(76,175,80,0.1); }
+        .card-pink { background: rgba(156,39,176,0.03); border-color: rgba(156,39,176,0.1); }
+        
+        /* ========== TYPOGRAPHY UTILITIES ========== */
+        .text-cyan { color: var(--accent-cyan); }
+        .text-gold { color: var(--accent-gold); }
+        .text-green { color: var(--accent-green); }
+        .text-pink { color: var(--accent-pink); }
+        .text-muted { color: var(--gray-muted); }
+        .text-light { color: var(--gray-light); }
+        
+        .font-mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+        .font-sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        
+        /* ========== CODE HEADER UTILITY ========== */
         .code-header {
             margin-bottom: var(--space-lg);
             padding: var(--space-md) var(--space-lg);
             background: rgba(0, 212, 255, 0.05);
             border-left: 3px solid var(--accent-cyan);
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            font-family: 'SF Mono', 'Fira Code', monospace;
         }
-        .code-header h2 {
-            font-size: var(--text-sm);
-            font-weight: 500;
-            margin-bottom: var(--space-xs);
-            color: var(--accent-cyan);
-        }
+        .code-header h2 { font-size: var(--text-sm); font-weight: 500; margin-bottom: var(--space-xs); color: var(--accent-cyan); }
         .code-header .keyword { color: #c678dd; }
         .code-header .string { color: #98c379; }
         .code-header .variable { color: #e06c75; }
         .code-header .function { color: #61afef; }
         .code-header .comment { color: var(--gray-muted); font-size: var(--text-xs); }
-
-        /* ============================================ */
-        /* SECTION: About (modular - duplicate & modify freely) */
-        /* ============================================ */
-        .about-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .about-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-xl);
-            text-align: center;
-        }
-        /* Option A: With image */
-        .about-image {
-            width: min(140px, 25vw);
-            height: min(140px, 25vw);
-            border-radius: var(--radius-lg);
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
-            object-fit: cover;
-        }
-        /* Option B: Without image - just remove .about-image div */
-        .about-text {
-            max-width: 600px;
-        }
-        .about-text p {
-            color: var(--gray-light);
-            margin-bottom: var(--space-sm);
-        }
-
-        /* ============================================ */
-        /* SECTION: Grid Cards (Skills/Services/Anything) */
-        /* Copy this whole block and change the cards */
-        /* ============================================ */
-        .grid-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .grid-container {
-            display: grid;
-            gap: var(--space-sm);
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
-        }
-        .grid-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-md);
-            padding: var(--space-md) var(--space-sm);
-            text-align: center;
-            transition: all 0.2s ease;
+        
+        /* ========== BUTTON UTILITIES ========== */
+        .btn {
+            display: inline-block;
+            padding: var(--space-sm) var(--space-xl);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
             cursor: pointer;
-        }
-        .grid-card:active { transform: scale(0.96); background: rgba(255,255,255,0.06); }
-        .grid-card i { font-size: var(--text-lg); color: var(--accent-cyan); margin-bottom: var(--space-xs); display: block; }
-        .grid-card h3 { font-size: var(--text-xs); font-weight: 500; color: var(--text-light); font-family: monospace; }
-        .grid-card p { font-size: calc(var(--text-xs) * 0.85); color: var(--gray-muted); font-family: monospace; }
-
-        /* ============================================ */
-        /* SECTION: Store / Products */
-        /* ============================================ */
-        .store-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .store-grid {
-            display: grid;
-            gap: var(--space-sm);
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
-        }
-        .product-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-md);
-            padding: var(--space-md) var(--space-sm);
             text-align: center;
-            transition: all 0.2s;
         }
-        .product-card:active { transform: scale(0.96); }
-        .product-card h3 { font-size: var(--text-xs); font-weight: 500; color: var(--text-light); font-family: monospace; }
-        .product-type { font-size: calc(var(--text-xs) * 0.85); color: var(--gray-muted); font-family: monospace; display: block; }
-        .product-price { font-size: var(--text-xs); font-weight: 600; color: var(--accent-cyan); display: block; margin: var(--space-xs) 0; }
-        .product-btn {
-            background: rgba(0,212,255,0.1);
-            border: 1px solid rgba(0,212,255,0.3);
-            border-radius: 30px;
-            padding: var(--space-xs) var(--space-sm);
-            font-size: calc(var(--text-xs) * 0.85);
-            color: var(--accent-cyan);
-            text-decoration: none;
-            display: inline-block;
-            width: 100%;
-            margin-top: var(--space-xs);
-        }
-        .product-btn:active { transform: scale(0.94); background: rgba(0,212,255,0.2); }
-
-        /* ============================================ */
-        /* SECTION: Clients */
-        /* ============================================ */
-        .clients-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .clients-grid {
-            display: grid;
-            gap: var(--space-lg);
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
-        }
-        .client-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            text-align: center;
-            transition: all 0.2s;
-        }
-        .client-card:active { transform: scale(0.96); }
-        .client-logo {
-            max-width: 100%;
-            max-height: 60px;
-            object-fit: contain;
-            margin-bottom: var(--space-md);
-        }
-        .client-card h3 { font-size: var(--text-sm); margin-bottom: var(--space-xs); }
-        .client-card p { font-size: var(--text-xs); color: var(--gray-muted); margin-bottom: var(--space-md); }
-        .client-link {
-            color: var(--accent-green);
-            text-decoration: none;
-            font-size: var(--text-xs);
-            background: rgba(76,175,80,0.1);
-            padding: var(--space-xs) var(--space-md);
-            border-radius: 30px;
-            display: inline-block;
-        }
-
-        /* ============================================ */
-        /* SECTION: Blog */
-        /* ============================================ */
-        .blog-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .blog-grid {
-            display: grid;
-            gap: var(--space-sm);
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
-        }
-        .blog-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            transition: all 0.2s;
-        }
-        .blog-card:active { transform: scale(0.96); }
-        .blog-card i { font-size: var(--text-lg); color: var(--accent-pink); margin-bottom: var(--space-sm); display: block; }
-        .blog-card h3 { font-size: var(--text-sm); margin-bottom: var(--space-xs); font-family: monospace; }
-        .blog-date { font-size: calc(var(--text-xs) * 0.85); color: var(--accent-pink); margin-bottom: var(--space-sm); display: block; }
-        .blog-card p { font-size: calc(var(--text-xs) * 0.85); color: var(--gray-muted); margin-bottom: var(--space-md); }
-        .blog-link {
-            color: var(--accent-pink);
-            text-decoration: none;
-            font-size: var(--text-xs);
-            background: rgba(156,39,176,0.1);
-            padding: var(--space-xs) var(--space-md);
-            border-radius: 30px;
-            display: inline-block;
-        }
-
-        /* ============================================ */
-        /* SECTION: Hero (for landing pages) */
-        /* ============================================ */
+        .btn:active { transform: scale(0.96); }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: #fff; }
+        .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--accent-cyan); }
+        
+        /* ========== IMAGE UTILITIES ========== */
+        .img-round { border-radius: var(--radius-lg); }
+        .img-circle { border-radius: 50%; }
+        .img-responsive { width: 100%; height: auto; }
+        .img-icon { width: min(140px, 25vw); }
+        
+        /* ========== SECTION UTILITIES ========== */
+        .section { margin-bottom: var(--space-2xl); }
         .hero-section {
             text-align: center;
             padding: var(--space-2xl) var(--space-lg);
@@ -282,119 +199,8 @@
             border-radius: var(--radius-lg);
             margin-bottom: var(--space-2xl);
         }
-        .hero-logo {
-            width: min(120px, 25vw);
-            margin-bottom: var(--space-lg);
-            border-radius: var(--radius-lg);
-        }
-        .hero-section h1 {
-            font-size: var(--text-2xl);
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .hero-section p {
-            color: var(--gray-light);
-            max-width: 600px;
-            margin: 0 auto var(--space-lg);
-        }
-        .hero-buttons {
-            display: flex;
-            gap: var(--space-md);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: #fff;
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-        .btn-secondary {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(0,212,255,0.3);
-            color: var(--accent-cyan);
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-        .btn-primary:active, .btn-secondary:active { transform: scale(0.96); }
-
-        /* ============================================ */
-        /* SECTION: Testimonials */
-        /* ============================================ */
-        .testimonial-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .testimonial-grid {
-            display: grid;
-            gap: var(--space-lg);
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-        }
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            text-align: center;
-        }
-        .testimonial-card i { font-size: var(--text-xl); color: var(--accent-gold); margin-bottom: var(--space-md); opacity: 0.5; display: block; }
-        .testimonial-card p { font-size: var(--text-sm); color: var(--gray-light); margin-bottom: var(--space-md); font-style: italic; }
-        .testimonial-card h4 { font-size: var(--text-xs); color: var(--accent-cyan); }
-
-        /* ============================================ */
-        /* SECTION: CTA (Call to Action) */
-        /* ============================================ */
-        .cta-section {
-            text-align: center;
-            padding: var(--space-2xl) var(--space-lg);
-            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(124,58,237,0.1));
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--space-2xl);
-        }
-        .cta-section h2 { font-size: var(--text-lg); margin-bottom: var(--space-sm); }
-        .cta-section p { color: var(--gray-light); margin-bottom: var(--space-lg); }
-        .cta-btn {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: #fff;
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .cta-btn:active { transform: scale(0.96); }
-
-        /* ============================================ */
-        /* SECTION: Features (2 or 3 column) */
-        /* ============================================ */
-        .features-section {
-            margin-bottom: var(--space-2xl);
-        }
-        .features-grid {
-            display: grid;
-            gap: var(--space-xl);
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-        }
-        .feature {
-            text-align: center;
-        }
-        .feature i { font-size: var(--text-xl); color: var(--accent-cyan); margin-bottom: var(--space-md); display: block; }
-        .feature h3 { font-size: var(--text-md); margin-bottom: var(--space-sm); }
-        .feature p { color: var(--gray-light); font-size: var(--text-sm); }
-
-        /* ============================================ */
-        /* BOTTOM NAVIGATION */
-        /* ============================================ */
+        
+        /* ========== BOTTOM NAVIGATION ========== */
         .bottom-nav-wrapper {
             position: fixed;
             bottom: 0;
@@ -414,7 +220,7 @@
             justify-content: center;
         }
         .bottom-nav::-webkit-scrollbar { display: none; }
-        .bottom-nav-item {
+        .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -428,24 +234,9 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .bottom-nav-item.active { color: var(--accent-cyan); background: rgba(0, 212, 255, 0.15); }
-        .bottom-nav-item i { font-size: var(--text-md); }
-        .bottom-nav-item:active { transform: scale(0.92); }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 16px;
-            background: var(--accent-cyan);
-            color: #000;
-            padding: 10px 16px;
-            text-decoration: none;
-            z-index: 1001;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .skip-link:focus { top: 16px; }
+        .nav-item.active { color: var(--accent-cyan); background: rgba(0, 212, 255, 0.15); }
+        .nav-item i { font-size: var(--text-md); }
+        .nav-item:active { transform: scale(0.92); }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
@@ -456,277 +247,164 @@
 </head>
 <body>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<main>
+    
+    <!-- ========================================== -->
+    <!-- EXAMPLE: How to build sections with utility classes -->
+    <!-- Just add classes to your raw HTML! -->
+    <!-- ========================================== -->
+    
+    <!-- SECTION 1: HERO (using flex + text utilities) -->
+    <div class="hero-section">
+        <img class="img-icon img-circle mb-md" src="images/logos/V3.png" alt="V3">
+        <h1 class="text-2xl text-center mb-sm" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; background-clip: text; color: transparent;">V3 Digital Architect</h1>
+        <p class="text-light text-center mb-lg" style="max-width: 600px; margin: 0 auto;">Building products people love for over a decade.</p>
+        <div class="flex flex-center gap-md">
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-secondary">Learn More</a>
+        </div>
+    </div>
 
-<main id="main-content">
-    
-    <!-- ========================================== -->
-    <!-- SIDE QUEST: DUPLICATE THIS WHOLE BLOCK -->
-    <!-- Try adding an image to the about section! -->
-    <!-- Just uncomment the .about-image div below -->
-    <!-- ========================================== -->
-    
-    <!-- SECTION: ABOUT (Original) -->
-    <section class="about-section">
+    <!-- SECTION 2: ABOUT (flex column + card) -->
+    <div id="about" class="section">
         <div class="code-header">
-            <h2>
-                <span class="keyword">import</span>
-                <span class="string">{ about }</span>
-                <span class="keyword">from</span>
-                <span class="string">'@v3/profile'</span>
-            </h2>
+            <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
             <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
         </div>
-        <div class="about-container">
-            <!-- SIDE QUEST: Uncomment this div to add an image! -->
-            <!-- <img class="about-image" src="images/logos/V3.png" alt="V3 brand logo"> -->
-            <div class="about-text">
-                <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-                <p>Every line of code serves a purpose, every pixel has meaning.</p>
+        <div class="flex flex-col flex-center text-center">
+            <!-- OPTION: Add image by uncommenting -->
+            <!-- <img class="img-icon img-circle mb-lg" src="images/logos/V3.png" alt="V3"> -->
+            <div style="max-width: 600px;">
+                <p class="mb-sm text-light">Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+                <p class="text-light">Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- ========================================== -->
-    <!-- SIDE QUEST: DUPLICATE THE ABOUT SECTION -->
-    <!-- Copy the entire section above and paste it here -->
-    <!-- Then modify it - add an image, change the text -->
-    <!-- ========================================== -->
-    
-    <!-- SECTION: ABOUT (Duplicated for side quest) -->
-    <!-- 
-    <section class="about-section">
+    <!-- SECTION 3: SKILLS (auto-fit grid + cards) -->
+    <div id="skills" class="section">
         <div class="code-header">
-            <h2>
-                <span class="keyword">import</span>
-                <span class="string">{ about }</span>
-                <span class="keyword">from</span>
-                <span class="string">'@v3/profile'</span>
-            </h2>
-            <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
-        </div>
-        <div class="about-container">
-            <img class="about-image" src="images/logos/V3.png" alt="V3 brand logo">
-            <div class="about-text">
-                <p>This is my duplicated section! I added an image and changed the text.</p>
-                <p>Side quest complete! 🎉</p>
-            </div>
-        </div>
-    </section>
-    -->
-
-    <!-- ========================================== -->
-    <!-- SECTION: SKILLS (Example grid section) -->
-    <!-- ========================================== -->
-    <section class="grid-section">
-        <div class="code-header">
-            <h2>
-                <span class="keyword">const</span>
-                <span class="variable">techStack</span>
-                <span class="keyword">=</span>
-                <span class="function">useSkills</span>()
-            </h2>
+            <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
             <p><span class="comment">// Technologies I work with daily</span></p>
         </div>
-        <div class="grid-container">
-            <div class="grid-card"><i class="fa-brands fa-react"></i><h3>Frontend</h3><p>React, Vue, Angular, TS</p></div>
-            <div class="grid-card"><i class="fa-solid fa-server"></i><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div>
-            <div class="grid-card"><i class="fa-solid fa-database"></i><h3>Database</h3><p>PostgreSQL, MongoDB, Redis</p></div>
-            <div class="grid-card"><i class="fa-solid fa-cloud"></i><h3>Cloud</h3><p>AWS, Azure, GCP, Docker</p></div>
-            <div class="grid-card"><i class="fa-solid fa-mobile-alt"></i><h3>Mobile</h3><p>React Native, Flutter, Swift</p></div>
-            <div class="grid-card"><i class="fa-solid fa-code-branch"></i><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div>
+        <div class="grid grid-5">
+            <div class="card text-center"><i class="fa-brands fa-react text-cyan text-lg"></i><h3 class="mt-sm font-mono">Frontend</h3><p class="text-muted text-xs">React, Vue, Angular, TS</p></div>
+            <div class="card text-center"><i class="fa-solid fa-server text-cyan text-lg"></i><h3 class="mt-sm font-mono">Backend</h3><p class="text-muted text-xs">Node.js, Python, Go, Java</p></div>
+            <div class="card text-center"><i class="fa-solid fa-database text-cyan text-lg"></i><h3 class="mt-sm font-mono">Database</h3><p class="text-muted text-xs">PostgreSQL, MongoDB, Redis</p></div>
+            <div class="card text-center"><i class="fa-solid fa-cloud text-cyan text-lg"></i><h3 class="mt-sm font-mono">Cloud</h3><p class="text-muted text-xs">AWS, Azure, GCP, Docker</p></div>
+            <div class="card text-center"><i class="fa-solid fa-mobile-alt text-cyan text-lg"></i><h3 class="mt-sm font-mono">Mobile</h3><p class="text-muted text-xs">React Native, Flutter, Swift</p></div>
+            <div class="card text-center"><i class="fa-solid fa-code-branch text-cyan text-lg"></i><h3 class="mt-sm font-mono">DevOps</h3><p class="text-muted text-xs">CI/CD, Jenkins, GitHub Actions</p></div>
         </div>
-    </section>
+    </div>
 
-    <!-- ========================================== -->
-    <!-- SECTION: SERVICES (Another grid section) -->
-    <!-- ========================================== -->
-    <section class="grid-section">
+    <!-- SECTION 4: SERVICES (another grid with different card style) -->
+    <div id="services" class="section">
         <div class="code-header">
-            <h2>
-                <span class="keyword">export</span>
-                <span class="keyword">const</span>
-                <span class="variable">services</span>
-                <span class="keyword">=</span>
-                <span class="function">provide</span>()
-            </h2>
+            <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
             <p><span class="comment">// What I offer as a digital architect</span></p>
         </div>
-        <div class="grid-container">
-            <div class="grid-card"><i class="fa-solid fa-pen-nib"></i><h3>Logo Design</h3><p>Custom brand identities</p></div>
-            <div class="grid-card"><i class="fa-solid fa-laptop-code"></i><h3>Web Development</h3><p>Full-stack modern apps</p></div>
-            <div class="grid-card"><i class="fa-solid fa-palette"></i><h3>UI/UX Design</h3><p>Beautiful interfaces</p></div>
-            <div class="grid-card"><i class="fa-solid fa-chart-line"></i><h3>Tech Consulting</h3><p>Expert advice</p></div>
-            <div class="grid-card"><i class="fa-solid fa-rocket"></i><h3>Performance</h3><p>Speed optimization</p></div>
-            <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><h3>Security</h3><p>Vulnerability fixes</p></div>
+        <div class="grid grid-4">
+            <div class="card card-cyan text-center"><i class="fa-solid fa-pen-nib text-cyan text-lg"></i><h3 class="mt-sm font-mono">Logo Design</h3><p class="text-muted text-xs">Custom brand identities</p></div>
+            <div class="card card-cyan text-center"><i class="fa-solid fa-laptop-code text-cyan text-lg"></i><h3 class="mt-sm font-mono">Web Development</h3><p class="text-muted text-xs">Full-stack modern apps</p></div>
+            <div class="card card-cyan text-center"><i class="fa-solid fa-palette text-cyan text-lg"></i><h3 class="mt-sm font-mono">UI/UX Design</h3><p class="text-muted text-xs">Beautiful interfaces</p></div>
+            <div class="card card-cyan text-center"><i class="fa-solid fa-chart-line text-cyan text-lg"></i><h3 class="mt-sm font-mono">Tech Consulting</h3><p class="text-muted text-xs">Expert advice</p></div>
         </div>
-    </section>
+    </div>
 
-    <!-- ========================================== -->
-    <!-- SECTION: STORE / PRODUCTS -->
-    <!-- ========================================== -->
-    <section class="store-section">
+    <!-- SECTION 5: STORE (using grid-4 + product cards) -->
+    <div id="store" class="section">
         <div class="code-header">
-            <h2>
-                <span class="keyword">import</span>
-                <span class="string">{ merchandise }</span>
-                <span class="keyword">from</span>
-                <span class="string">'@v3/shop'</span>
-            </h2>
+            <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
             <p><span class="comment">// Official merchandise · Text-only minimal store</span></p>
         </div>
-        <div class="store-grid">
-            <div class="product-card"><h3>Static Snow Button</h3><span class="product-type">Button</span><span class="product-price">$3.24</span><a href="#" class="product-btn">Shop →</a></div>
-            <div class="product-card"><h3>Pattern T-Shirt</h3><span class="product-type">T-Shirt</span><span class="product-price">$21.04</span><a href="#" class="product-btn">Shop →</a></div>
-            <div class="product-card"><h3>All White T-Shirt</h3><span class="product-type">T-Shirt</span><span class="product-price">$21.04</span><a href="#" class="product-btn">Shop →</a></div>
-            <div class="product-card"><h3>Black Round Pillow</h3><span class="product-type">Pillow</span><span class="product-price">$40.50</span><a href="#" class="product-btn">Shop →</a></div>
+        <div class="grid grid-4">
+            <div class="card text-center"><h3 class="font-mono">Static Snow Button</h3><p class="text-muted text-xs mt-sm">Button</p><p class="text-cyan font-mono mt-sm">$3.24</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
+            <div class="card text-center"><h3 class="font-mono">Pattern T-Shirt</h3><p class="text-muted text-xs mt-sm">T-Shirt</p><p class="text-cyan font-mono mt-sm">$21.04</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
+            <div class="card text-center"><h3 class="font-mono">All White T-Shirt</h3><p class="text-muted text-xs mt-sm">T-Shirt</p><p class="text-cyan font-mono mt-sm">$21.04</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
+            <div class="card text-center"><h3 class="font-mono">Black Round Pillow</h3><p class="text-muted text-xs mt-sm">Pillow</p><p class="text-cyan font-mono mt-sm">$40.50</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs);">Shop →</a></div>
         </div>
-    </section>
+    </div>
 
-    <!-- ========================================== -->
-    <!-- SECTION: CLIENTS -->
-    <!-- ========================================== -->
-    <section class="clients-section">
+    <!-- SECTION 6: CLIENTS (using grid-2 + card-green) -->
+    <div id="clients" class="section">
         <div class="code-header">
-            <h2>
-                <span class="keyword">const</span>
-                <span class="variable">clients</span>
-                <span class="keyword">=</span>
-                <span class="function">trustedBy</span>()
-            </h2>
+            <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
             <p><span class="comment">// Partners I've had the privilege to work with</span></p>
         </div>
-        <div class="clients-grid">
-            <div class="client-card">
-                <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
-                <h3>Vineyard Church of Augusta</h3>
-                <p>Community-focused church organization</p>
-                <a href="https://vineyardaugusta.org" class="client-link">Visit Website →</a>
+        <div class="grid grid-2">
+            <div class="card card-green text-center">
+                <img class="img-responsive" style="max-width: 100px; margin: 0 auto var(--space-md);" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
+                <h3 class="font-mono">Vineyard Church of Augusta</h3>
+                <p class="text-muted text-xs mt-sm">Community-focused church organization</p>
+                <a href="https://vineyardaugusta.org" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-green); border-color: rgba(76,175,80,0.3);">Visit →</a>
             </div>
+            <!-- Add more client cards easily -->
         </div>
-    </section>
+    </div>
 
-    <!-- ========================================== -->
-    <!-- SECTION: BLOG -->
-    <!-- ========================================== -->
-    <section class="blog-section">
+    <!-- SECTION 7: BLOG (using grid-3 + card-pink) -->
+    <div id="blog" class="section">
         <div class="code-header">
-            <h2>
-                <span class="keyword">export</span>
-                <span class="keyword">const</span>
-                <span class="variable">blog</span>
-                <span class="keyword">=</span>
-                <span class="function">getPosts</span>()
-            </h2>
+            <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
             <p><span class="comment">// Thoughts, tutorials, and insights</span></p>
         </div>
-        <div class="blog-grid">
-            <div class="blog-card"><i class="fas fa-mobile-alt"></i><h3>Fluid Responsive System</h3><span class="blog-date">June 9, 2024</span><p>Using clamp() for true fluidity</p><a href="#" class="blog-link">Read More →</a></div>
-            <div class="blog-card"><i class="fas fa-font"></i><h3>Power of Text-Only Design</h3><span class="blog-date">June 5, 2024</span><p>Why less is more in UI</p><a href="#" class="blog-link">Read More →</a></div>
-            <div class="blog-card"><i class="fas fa-search"></i><h3>V3 QuickFind</h3><span class="blog-date">May 28, 2024</span><p>Universal search system</p><a href="#" class="blog-link">Read More →</a></div>
+        <div class="grid grid-3">
+            <div class="card card-pink"><i class="fas fa-mobile-alt text-pink text-lg"></i><h3 class="font-mono mt-sm">Fluid Responsive System</h3><p class="text-muted text-xs">June 9, 2024</p><p class="text-muted text-xs mt-sm">Using clamp() for true fluidity</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-pink); border-color: rgba(156,39,176,0.3);">Read →</a></div>
+            <div class="card card-pink"><i class="fas fa-font text-pink text-lg"></i><h3 class="font-mono mt-sm">Power of Text-Only Design</h3><p class="text-muted text-xs">June 5, 2024</p><p class="text-muted text-xs mt-sm">Why less is more in UI</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-pink); border-color: rgba(156,39,176,0.3);">Read →</a></div>
+            <div class="card card-pink"><i class="fas fa-search text-pink text-lg"></i><h3 class="font-mono mt-sm">V3 QuickFind</h3><p class="text-muted text-xs">May 28, 2024</p><p class="text-muted text-xs mt-sm">Universal search system</p><a href="#" class="btn btn-secondary btn-sm mt-md" style="padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); color: var(--accent-pink); border-color: rgba(156,39,176,0.3);">Read →</a></div>
         </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SIDE QUEST: Try adding a HERO section! -->
-    <!-- Uncomment below and modify -->
-    <!-- ========================================== -->
-    <!--
-    <section class="hero-section">
-        <img class="hero-logo" src="images/logos/V3.png" alt="V3">
-        <h1>V3 Digital Architect</h1>
-        <p>Building products people love for over a decade.</p>
-        <div class="hero-buttons">
-            <a href="#" class="btn-primary">Get Started</a>
-            <a href="#" class="btn-secondary">Learn More</a>
-        </div>
-    </section>
-    -->
+    </div>
 
 </main>
 
-<!-- ============================================ -->
+<!-- ========================================== -->
 <!-- BOTTOM NAVIGATION -->
-<!-- Add your section IDs here -->
-<!-- ============================================ -->
+<!-- ========================================== -->
 <div class="bottom-nav-wrapper">
-    <div class="bottom-nav" id="bottomNav">
-        <button class="bottom-nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-        <button class="bottom-nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
-        <button class="bottom-nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
-        <button class="bottom-nav-item" data-section="store"><i class="fas fa-store"></i><span>Store</span></button>
-        <button class="bottom-nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
-        <button class="bottom-nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
+    <div class="bottom-nav">
+        <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
+        <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
+        <button class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
+        <button class="nav-item" data-section="store"><i class="fas fa-store"></i><span>Store</span></button>
+        <button class="nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
+        <button class="nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
     </div>
 </div>
 
 <script>
-    // ============================================
-    // SIMPLE NAVIGATION - Add IDs to track sections
-    // ============================================
+    // Simple navigation - just add data-section to any button
     (function(){
-        // Add IDs to each section for navigation
-        const sections = {
-            'about': document.querySelector('.about-section'),
-            'skills': document.querySelector('.grid-section'),
-            'services': document.querySelectorAll('.grid-section')[1],
-            'store': document.querySelector('.store-section'),
-            'clients': document.querySelector('.clients-section'),
-            'blog': document.querySelector('.blog-section')
-        };
-        
-        // Set IDs
-        for (const [id, element] of Object.entries(sections)) {
-            if (element) element.id = id;
-        }
-        
-        // Bottom navigation
-        let bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
-        function setActiveNav(id) {
-            bottomNavItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id));
-        }
-        
-        function scrollTo(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setActiveNav(id);
+        // Add IDs to sections
+        document.querySelectorAll('[id]').forEach(el => {
+            if (el.id && ['about', 'skills', 'services', 'store', 'clients', 'blog'].includes(el.id)) {
+                // IDs already set
             }
-        }
-        
-        bottomNavItems.forEach(i => {
-            i.addEventListener('click', () => {
-                const s = i.getAttribute('data-section');
-                if (s && document.getElementById(s)) scrollTo(s);
-            });
         });
         
-        function setActiveOnScroll() {
+        const navItems = document.querySelectorAll('.nav-item[data-section]');
+        function setActive(id) {
+            navItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id));
+        }
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActive(id); }
+        }
+        navItems.forEach(i => i.addEventListener('click', () => scrollToSection(i.getAttribute('data-section'))));
+        
+        window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY + 100;
             let current = '';
-            for (const id of Object.keys(sections)) {
+            ['about', 'skills', 'services', 'store', 'clients', 'blog'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el && el.offsetTop <= scrollPos) current = id;
-            }
-            setActiveNav(current || 'about');
-        }
-        
-        window.addEventListener('scroll', setActiveOnScroll);
-        setActiveOnScroll();
-        
-        // Fade-in animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
             });
-        }, { threshold: 0.1 });
+            setActive(current || 'about');
+        });
         
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
+        // Fade-in
+        new IntersectionObserver(e => e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }), { threshold: 0.1 })
+            .observe(document.querySelectorAll('.section, .hero-section, [id]'));
         
-        // Prevent right-click and drag
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
