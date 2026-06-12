@@ -125,6 +125,15 @@
             flex: 1;
         }
         
+        /* Bottom nav item container - pushes social button to bottom */
+        .nav-bottom {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -207,7 +216,7 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.85);
- backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -676,11 +685,14 @@
                 <i class="fas fa-newspaper"></i>
                 <span>Blog</span>
             </button>
-            <!-- NEW: Social button that opens dialog -->
-            <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
-                <i class="fas fa-share-alt"></i>
-                <span>Social</span>
-            </button>
+            
+            <!-- BOTTOM SECTION with Social button at bottom -->
+            <div class="nav-bottom">
+                <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Social</span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -716,7 +728,6 @@
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
 
-            <!-- REST OF CONTENT (skills, services, store, clients, blog) same as before -->
             <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
