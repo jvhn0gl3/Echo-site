@@ -265,7 +265,7 @@
             color: var(--accent-green);
         }
         
-        /* Text color for nav items - inherit from icon or use tertiary */
+        /* Text color for nav items */
         .nav-item span {
             font-size: clamp(0.65rem, 1.6vw, 0.8rem);
             font-weight: 500;
@@ -277,7 +277,7 @@
             transition: color 0.12s ease;
         }
         
-        /* Active state - icon becomes brighter, text becomes accent color */
+        /* Active state */
         .nav-item.active i {
             filter: brightness(1.2) drop-shadow(0 0 4px currentColor);
         }
@@ -313,6 +313,52 @@
             width: 100%;
             max-width: 100%;
             padding: var(--space-lg) var(--space-md);
+        }
+        
+        /* Disclaimer Section */
+        .disclaimer-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03), rgba(124, 58, 237, 0.03));
+            border-radius: var(--radius-md);
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--border-light);
+        }
+        
+        .disclaimer-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .disclaimer-container h2 {
+            font-size: var(--text-xl);
+            color: var(--accent-cyan);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .disclaimer-container p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+        
+        .disclaimer-container .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: rgba(0, 212, 255, 0.1);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            color: var(--accent-cyan);
+            margin-top: var(--space-sm);
+        }
+        
+        .disclaimer-container i {
+            margin-right: var(--space-2xs);
         }
         
         /* Modal Styles */
@@ -967,6 +1013,7 @@
             </div>
 
             <div class="grid-container" id="skills">
+                <!-- Skills cards content -->
                 <div class="grid-card" data-skill="Frontend Development" data-desc="React, Vue, Angular, TypeScript">
                     <div class="card-row">
                         <i class="fa-brands fa-react"></i>
@@ -1047,6 +1094,7 @@
             </div>
 
             <div class="grid-container" id="services">
+                <!-- Services cards content -->
                 <div class="grid-card" data-service="Logo Design" data-desc="Custom brand identities that stand out">
                     <div class="card-row">
                         <i class="fa-solid fa-pen-nib"></i>
@@ -1151,6 +1199,7 @@
             </div>
 
             <div class="products-container" id="store">
+                <!-- Products content -->
                 <div class="product-card">
                     <div class="card-row">
                         <i class="fa-solid fa-circle"></i>
@@ -1274,6 +1323,33 @@
                     </div>
                     <div class="card-actions">
                         <a href="#" class="btn-secondary">Read →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISCLAIMER / PRIVACY SECTION -->
+            <div class="disclaimer-section">
+                <div class="disclaimer-container">
+                    <h2>
+                        <i class="fas fa-lock"></i> 
+                        Privacy & Transparency
+                    </h2>
+                    <p>
+                        <i class="fas fa-eye"></i> I respect your privacy. This website does not track you, does not use cookies, and does not collect any personal data. 
+                        No analytics. No third-party scripts. Your email goes directly to me when you choose to reach out.
+                    </p>
+                    <p>
+                        <i class="fas fa-code"></i> Every line of code in this website is intentionally commented — because I believe in transparency. 
+                        You can read exactly how everything works, from the fluid responsive system to the accessibility toggles. 
+                        The code is public, documented, and designed to be understood by everyone, not just developers.
+                    </p>
+                    <p>
+                        <i class="fas fa-comment-dots"></i> That's why you'll find comments like <span class="comment">// Digital Architect · Full-Stack Developer</span> 
+                        and <span class="comment">// Technologies I work with daily</span> throughout this site. 
+                        I take the time to explain what every section does because clarity builds trust.
+                    </p>
+                    <div class="privacy-badge">
+                        <i class="fas fa-shield-alt"></i> No tracking · No cookies · Fully transparent code
                     </div>
                 </div>
             </div>
@@ -1425,9 +1501,7 @@
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
     
-    // ============================================
-    // MODAL FUNCTIONALITY
-    // ============================================
+    // Modal functionality
     (function() {
         const socialModal = document.getElementById('socialModal');
         const accessibilityModal = document.getElementById('accessibilityModal');
@@ -1468,11 +1542,8 @@
         });
     })();
     
-    // ============================================
-    // ACCESSIBILITY SETTINGS
-    // ============================================
+    // Accessibility settings
     (function() {
-        // Load saved settings
         function loadSettings() {
             const highContrast = localStorage.getItem('highContrast') === 'true';
             const largeText = localStorage.getItem('largeText') === 'true';
@@ -1507,13 +1578,11 @@
             }
         }
         
-        // Save and apply settings
         function saveSetting(setting, value, applyCallback) {
             localStorage.setItem(setting, value);
             applyCallback(value);
         }
         
-        // Event listeners
         document.getElementById('highContrastToggle').addEventListener('change', (e) => {
             saveSetting('highContrast', e.target.checked, (val) => {
                 if (val) document.body.classList.add('high-contrast');
@@ -1565,7 +1634,6 @@
             });
         });
         
-        // Reset all settings
         document.getElementById('resetAccessibilityBtn').addEventListener('click', () => {
             localStorage.clear();
             document.body.classList.remove('high-contrast', 'large-text', 'dyslexic-font', 'reduced-motion');
@@ -1582,9 +1650,7 @@
         loadSettings();
     })();
     
-    // ============================================
-    // NAVIGATION AND ANIMATIONS
-    // ============================================
+    // Navigation and animations
     (function(){
         const sections = [
             { id: 'hero', element: document.querySelector('.component-hero'), codeBlock: null },
@@ -1690,7 +1756,7 @@
             { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
         );
         
-        document.querySelectorAll('.component-hero, .component-about, .grid-container, .products-container, .clients-container, .blog-container, .component-code-header').forEach(el => observer.observe(el));
+        document.querySelectorAll('.component-hero, .component-about, .grid-container, .products-container, .clients-container, .blog-container, .component-code-header, .disclaimer-section').forEach(el => observer.observe(el));
         
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
