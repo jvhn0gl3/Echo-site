@@ -8,20 +8,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Fluid Zero-Class System</title>
+    <title>V3 | Full-Width Fluid System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           ZERO BREAKPOINT FLUID SYSTEM
-           Everything uses clamp() - scales on ALL screens
-           No media queries needed!
+           FULL-WIDTH FLUID SYSTEM
+           No max-width - stretches edge to edge
            ============================================ */
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Fluid variables - everything scales from these */
         :root {
             --fluid-xs: clamp(0.5rem, 1.5vw, 0.75rem);
             --fluid-sm: clamp(0.75rem, 2vw, 1rem);
@@ -59,30 +57,30 @@
         }
         
         /* ========================================== */
-        /* THE ONLY CONTAINER - fluid width */
+        /* FULL-WIDTH CONTAINER - no max-width! */
         /* ========================================== */
         .section {
-            max-width: min(1400px, 95%);
-            margin: 0 auto;
+            width: 100%;
             padding: var(--fluid-lg) var(--fluid-md);
         }
         
         /* ========================================== */
-        /* FLUID GRID - auto adjusts to any number of items */
+        /* FLUID GRID - stretches full width */
         /* ========================================== */
         .section > div:not(.code-block) {
             display: grid;
             gap: var(--fluid-md);
             margin-bottom: var(--fluid-xl);
+            width: 100%;
         }
         
-        /* Ultra-fluid grid - items get wider on bigger screens, never too narrow */
+        /* Grid fills the entire width - more columns on wider screens */
         .section > div:not(.code-block) {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
         }
         
         /* ========================================== */
-        /* FLUID TYPOGRAPHY - scales perfectly */
+        /* FLUID TYPOGRAPHY */
         /* ========================================== */
         h1 { font-size: var(--text-3xl); margin-bottom: var(--fluid-sm); font-weight: 700; }
         h2 { font-size: var(--text-xl); margin-bottom: var(--fluid-xs); }
@@ -90,7 +88,7 @@
         p { font-size: var(--text-base); color: var(--gray); margin-bottom: var(--fluid-xs); line-height: 1.6; }
         
         /* ========================================== */
-        /* FLUID CARDS - stretch naturally */
+        /* FLUID CARDS - full width inside grid */
         /* ========================================== */
         .section > div:not(.code-block) > div {
             background: rgba(255,255,255,0.03);
@@ -101,16 +99,17 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
         .section > div:not(.code-block) > div:active { transform: scale(0.98); }
         
-        /* Make all cards in a row equal height automatically */
+        /* Cards fill their grid cell completely */
         .section > div:not(.code-block) {
             align-items: stretch;
         }
         
         /* ========================================== */
-        /* FLUID IMAGES - never overflow */
+        /* FLUID IMAGES */
         /* ========================================== */
         img {
             max-width: 100%;
@@ -118,15 +117,14 @@
             border-radius: var(--radius-md);
         }
         
-        /* Client logo sizing - fluid */
         .client-logo {
-            max-width: min(120px, 30%);
+            max-width: min(140px, 40%);
             margin: 0 auto var(--fluid-md);
             display: block;
         }
         
         /* ========================================== */
-        /* FLUID BUTTONS - scale with text */
+        /* FLUID BUTTONS */
         /* ========================================== */
         a, button {
             display: inline-block;
@@ -139,7 +137,7 @@
             border: none;
             font-size: var(--text-sm);
             text-align: center;
-            width: fit-content;
+            width: auto;
         }
         a:active, button:active { transform: scale(0.96); }
         
@@ -154,7 +152,7 @@
             color: var(--accent);
         }
         
-        /* Buttons in cards sit at bottom naturally */
+        /* Buttons in cards sit at bottom */
         .section > div:not(.code-block) > div a,
         .section > div:not(.code-block) > div button {
             margin-top: auto;
@@ -162,7 +160,7 @@
         }
         
         /* ========================================== */
-        /* FLUID HERO SECTION - full width love */
+        /* HERO SECTION - full width */
         /* ========================================== */
         .section > div:has(h1) {
             text-align: center;
@@ -171,16 +169,17 @@
             border-radius: var(--radius-lg);
             margin-bottom: var(--fluid-xl);
             display: block;
+            width: 100%;
         }
         
         .section > div:has(h1) p {
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
         
         /* ========================================== */
-        /* FLUID CODE HEADER - stays readable */
+        /* CODE HEADER - full width */
         /* ========================================== */
         .code-block {
             background: rgba(0,212,255,0.05);
@@ -212,7 +211,7 @@
         .code-block .comment { color: var(--gray); font-size: var(--text-xs); }
         
         /* ========================================== */
-        /* FLUID FLEX FOR BUTTONS */
+        /* FLEX BUTTONS */
         /* ========================================== */
         .flex-buttons {
             display: flex;
@@ -223,7 +222,7 @@
         }
         
         /* ========================================== */
-        /* ICONS - fluid size */
+        /* ICONS */
         /* ========================================== */
         i {
             color: var(--accent);
@@ -233,7 +232,7 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAV - fluid and fixed */
+        /* BOTTOM NAV - full width */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -249,6 +248,7 @@
             z-index: 100;
             gap: var(--fluid-xs);
             overflow-x: auto;
+            width: 100%;
         }
         
         .bottom-nav::-webkit-scrollbar { display: none; }
@@ -283,26 +283,37 @@
         .fade-in { animation: fadeIn 0.4s ease-out; }
         
         /* ========================================== */
-        /* SCROLLBAR - subtle */
+        /* SCROLLBAR */
         /* ========================================== */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--gray); border-radius: 3px; }
+        
+        /* ========================================== */
+        /* OPTIONAL: Add visual padding for ultra-wide */
+        /* Keeps content readable but still full-width */
+        /* ========================================== */
+        @media (min-width: 1920px) {
+            .section {
+                padding-left: calc(50% - 900px);
+                padding-right: calc(50% - 900px);
+            }
+        }
     </style>
 </head>
 <body>
 
 <!-- ========================================== -->
-<!-- FLUID ZERO-CLASS SYSTEM -->
-<!-- Just raw HTML - everything scales automatically -->
+<!-- FULL-WIDTH ZERO-CLASS SYSTEM -->
+<!-- Content stretches edge to edge on wide screens -->
 <!-- ========================================== -->
 
 <div class="section">
     
-    <!-- HERO - scales on every screen -->
+    <!-- HERO -->
     <div>
         <h1>V3 Digital Architect</h1>
-        <p>Build fast. Edit faster. Perfect on every screen.</p>
+        <p>Full width. No wasted space. Perfect on every screen.</p>
         <div class="flex-buttons">
             <a href="#">Get Started</a>
             <a href="#" class="btn-secondary">Learn More</a>
@@ -315,9 +326,9 @@
         <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
     </div>
 
-    <!-- ABOUT TEXT -->
+    <!-- ABOUT -->
     <div>
-        <div style="text-align: center; max-width: min(600px, 90%); margin: 0 auto;">
+        <div style="text-align: center; max-width: min(700px, 90%); margin: 0 auto;">
             <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
             <p style="margin-top: var(--fluid-sm);">Every line of code serves a purpose, every pixel has meaning.</p>
         </div>
@@ -329,7 +340,7 @@
         <p class="comment">// Technologies I work with daily</p>
     </div>
 
-    <!-- SKILLS GRID - Add/remove divs freely, grid auto-adjusts -->
+    <!-- SKILLS GRID -->
     <div>
         <div><i class="fa-brands fa-react"></i> <h3>Frontend</h3> <p>React, Vue, Angular, TS</p></div>
         <div><i class="fa-solid fa-server"></i> <h3>Backend</h3> <p>Node.js, Python, Go, Java</p></div>
@@ -383,7 +394,6 @@
             <p>Community-focused church organization</p>
             <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
         </div>
-        <!-- Add more clients by duplicating the div above -->
     </div>
 
     <!-- BLOG HEADER -->
