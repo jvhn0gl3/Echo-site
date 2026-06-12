@@ -58,6 +58,9 @@
             --accent-pink: #ec4899;
             --border-light: rgba(255, 255, 255, 0.06);
             --border-medium: rgba(255, 255, 255, 0.1);
+            
+            /* Sidebar width */
+            --sidebar-width: clamp(70px, 12vw, 100px);
         }
         
         body {
@@ -68,10 +71,165 @@
             font-size: var(--text-base);
         }
         
+        /* Layout with sidebar */
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* ========================================== */
+        /* SIDEBAR NAVIGATION */
+        /* ========================================== */
+        .sidebar-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: var(--space-xl) var(--space-xs);
+            z-index: 100;
+            gap: var(--space-md);
+            overflow-y: auto;
+        }
+        
+        /* Logo area in sidebar */
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: var(--space-md);
+        }
+        
+        .sidebar-logo .logo-text {
+            font-family: 'Major Mono Display', monospace;
+            font-size: clamp(0.8rem, 3vw, 1.2rem);
+            color: var(--accent-cyan);
+            word-break: break-word;
+            line-height: 1.2;
+        }
+        
+        .sidebar-logo .logo-sub {
+            font-size: var(--text-2xs);
+            color: var(--text-tertiary);
+            margin-top: var(--space-3xs);
+        }
+        
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            width: 100%;
+            flex: 1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3xs);
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: var(--text-2xs);
+            padding: var(--space-sm) var(--space-xs);
+            width: 100%;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.12s ease;
+            text-align: center;
+        }
+        
+        .nav-item i {
+            font-size: clamp(1rem, 3.5vw, 1.25rem);
+            margin: 0;
+        }
+        
+        .nav-item span {
+            font-size: var(--text-2xs);
+            white-space: nowrap;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        
+        .nav-item.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .nav-item:active {
+            transform: scale(0.96);
+        }
+        
+        @media (hover: hover) {
+            .nav-item:hover {
+                background: rgba(255, 255, 255, 0.05);
+                color: var(--accent-cyan);
+            }
+        }
+        
+        /* Main content - offset by sidebar width */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+        }
+        
         .site-container {
             width: 100%;
             max-width: 100%;
             padding: var(--space-lg) var(--space-md);
+        }
+        
+        /* Mobile: sidebar becomes bottom bar again */
+        @media (max-width: 768px) {
+            .sidebar-nav {
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                padding: var(--space-sm) var(--space-md);
+                border-right: none;
+                border-top: 1px solid var(--border-light);
+                backdrop-filter: blur(20px);
+                background: rgba(10, 10, 10, 0.98);
+                gap: var(--space-xs);
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+            
+            .sidebar-logo {
+                display: none;
+            }
+            
+            .nav-items {
+                flex-direction: row;
+                justify-content: center;
+                gap: var(--space-xs);
+            }
+            
+            .nav-item {
+                padding: var(--space-2xs) var(--space-xs);
+                min-width: clamp(45px, 15vw, 60px);
+            }
+            
+            .nav-item span {
+                font-size: var(--text-2xs);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding-bottom: clamp(60px, 15vh, 80px);
+            }
         }
         
         /* ========================================== */
@@ -360,52 +518,6 @@
         }
         
         /* ========================================== */
-        /* BOTTOM NAV */
-        /* ========================================== */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border-light);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: var(--space-sm) var(--space-md) var(--space-lg);
-            z-index: 100;
-            gap: var(--space-sm);
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-3xs);
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            font-size: clamp(0.5rem, 2vw, 0.7rem);
-            padding: var(--space-sm) var(--space-md);
-            min-height: clamp(2.75rem, 8vw, 3.5rem);
-            min-width: clamp(50px, 12vw, 70px);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all 0.12s ease;
-        }
-        
-        .nav-item i {
-            font-size: clamp(0.9rem, 3.5vw, 1.25rem);
-            margin: 0;
-        }
-        
-        .nav-item.active {
-            color: var(--accent-cyan);
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        /* ========================================== */
         /* ANIMATIONS */
         /* ========================================== */
         @keyframes fadeInLeft {
@@ -444,374 +556,406 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<div class="site-container" id="main-content">
-    
-    <!-- HERO -->
-    <div class="component-hero" id="hero">
-        <div class="hero-container">
-            <div class="hero-left">
-                <h1>V3 Digital Architect</h1>
-                <div class="hero-buttons">
-                    <a href="#" class="btn-primary">Get Started</a>
-                    <a href="#" class="btn-secondary">Learn More</a>
-                </div>
-            </div>
-            <div class="hero-right">
-                <p>Full-stack developer · 10+ years · Building products people love with clean code that scales everywhere.</p>
-            </div>
+<div class="app-layout">
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar-nav" aria-label="Main navigation">
+        <div class="sidebar-logo">
+            <div class="logo-text">V3</div>
+            <div class="logo-sub">ARCHITECT</div>
         </div>
-    </div>
+        <div class="nav-items">
+            <button class="nav-item" data-section="hero" aria-label="Home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-section="about" aria-label="Profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+            <button class="nav-item" data-section="skills" aria-label="Skills">
+                <i class="fas fa-code"></i>
+                <span>Skills</span>
+            </button>
+            <button class="nav-item" data-section="services" aria-label="Services">
+                <i class="fas fa-cogs"></i>
+                <span>Services</span>
+            </button>
+            <button class="nav-item" data-section="store" aria-label="Store">
+                <i class="fas fa-store"></i>
+                <span>Store</span>
+            </button>
+            <button class="nav-item" data-section="clients" aria-label="Clients">
+                <i class="fas fa-users"></i>
+                <span>Clients</span>
+            </button>
+            <button class="nav-item" data-section="blog" aria-label="Blog">
+                <i class="fas fa-newspaper"></i>
+                <span>Blog</span>
+            </button>
+        </div>
+    </nav>
 
-    <!-- DIVIDER -->
-    <div class="component-code-header">
-        <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
-        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</p>
-    </div>
-
-    <!-- ABOUT -->
-    <div class="component-about" id="about">
-        <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-        <p>Every line of code serves a purpose, every pixel has meaning.</p>
-    </div>
-
-    <!-- DIVIDER -->
-    <div class="component-code-header">
-        <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
-        <p class="comment">// Technologies I work with daily — click "Send Message" to inquire about any skill</p>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="grid-container" id="skills">
-        <div class="grid-card" data-skill="Frontend Development" data-desc="React, Vue, Angular, TypeScript">
-            <div class="card-row">
-                <i class="fa-brands fa-react"></i>
-                <div class="grid-card-content">
-                    <h3>Frontend</h3>
-                    <p>React, Vue, Angular, TypeScript</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendSkillMessage('Frontend Development', 'React, Vue, Angular, TypeScript')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-skill="Backend Development" data-desc="Node.js, Python, Go, Java">
-            <div class="card-row">
-                <i class="fa-solid fa-server"></i>
-                <div class="grid-card-content">
-                    <h3>Backend</h3>
-                    <p>Node.js, Python, Go, Java</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendSkillMessage('Backend Development', 'Node.js, Python, Go, Java')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-skill="Database Engineering" data-desc="PostgreSQL, MongoDB, Redis">
-            <div class="card-row">
-                <i class="fa-solid fa-database"></i>
-                <div class="grid-card-content">
-                    <h3>Database</h3>
-                    <p>PostgreSQL, MongoDB, Redis</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendSkillMessage('Database Engineering', 'PostgreSQL, MongoDB, Redis')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-skill="Cloud Architecture" data-desc="AWS, Azure, GCP, Docker">
-            <div class="card-row">
-                <i class="fa-solid fa-cloud"></i>
-                <div class="grid-card-content">
-                    <h3>Cloud</h3>
-                    <p>AWS, Azure, GCP, Docker</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendSkillMessage('Cloud Architecture', 'AWS, Azure, GCP, Docker')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-skill="Mobile Development" data-desc="React Native, Flutter, Swift">
-            <div class="card-row">
-                <i class="fa-solid fa-mobile-alt"></i>
-                <div class="grid-card-content">
-                    <h3>Mobile</h3>
-                    <p>React Native, Flutter, Swift</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendSkillMessage('Mobile Development', 'React Native, Flutter, Swift')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-skill="DevOps & CI/CD" data-desc="CI/CD, Jenkins, GitHub Actions">
-            <div class="card-row">
-                <i class="fa-solid fa-code-branch"></i>
-                <div class="grid-card-content">
-                    <h3>DevOps</h3>
-                    <p>CI/CD, Jenkins, GitHub Actions</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendSkillMessage('DevOps & CI/CD', 'CI/CD, Jenkins, GitHub Actions')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- DIVIDER -->
-    <div class="component-code-header">
-        <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
-        <p class="comment">// What I offer as a digital architect — click "Send Message" to get a quote</p>
-    </div>
-
-    <!-- SERVICES -->
-    <div class="grid-container" id="services">
-        <div class="grid-card" data-service="Logo Design" data-desc="Custom brand identities that stand out">
-            <div class="card-row">
-                <i class="fa-solid fa-pen-nib"></i>
-                <div class="grid-card-content">
-                    <h3>Logo Design</h3>
-                    <p>Custom brand identities that stand out</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Logo Design', 'Custom brand identities that stand out')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="Web Development" data-desc="Full-stack modern web applications">
-            <div class="card-row">
-                <i class="fa-solid fa-laptop-code"></i>
-                <div class="grid-card-content">
-                    <h3>Web Development</h3>
-                    <p>Full-stack modern web applications</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Web Development', 'Full-stack modern web applications')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="UI/UX Design" data-desc="Beautiful, intuitive interfaces">
-            <div class="card-row">
-                <i class="fa-solid fa-palette"></i>
-                <div class="grid-card-content">
-                    <h3>UI/UX Design</h3>
-                    <p>Beautiful, intuitive interfaces</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('UI/UX Design', 'Beautiful, intuitive interfaces')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="Tech Consulting" data-desc="Expert architecture & strategy advice">
-            <div class="card-row">
-                <i class="fa-solid fa-chart-line"></i>
-                <div class="grid-card-content">
-                    <h3>Tech Consulting</h3>
-                    <p>Expert architecture & strategy advice</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Tech Consulting', 'Expert architecture & strategy advice')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="Performance Optimization" data-desc="Speed optimization & scaling">
-            <div class="card-row">
-                <i class="fa-solid fa-rocket"></i>
-                <div class="grid-card-content">
-                    <h3>Performance</h3>
-                    <p>Speed optimization & scaling</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Performance Optimization', 'Speed optimization & scaling')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="Security Audits" data-desc="Vulnerability assessment & fixes">
-            <div class="card-row">
-                <i class="fa-solid fa-shield-alt"></i>
-                <div class="grid-card-content">
-                    <h3>Security</h3>
-                    <p>Vulnerability assessment & fixes</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Security Audits', 'Vulnerability assessment & fixes')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="Maintenance & Support" data-desc="Ongoing support & updates">
-            <div class="card-row">
-                <i class="fa-solid fa-headset"></i>
-                <div class="grid-card-content">
-                    <h3>Maintenance</h3>
-                    <p>Ongoing support & updates</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Maintenance & Support', 'Ongoing support & updates')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-        <div class="grid-card" data-service="Cloud Migration" data-desc="AWS, Azure, GCP expertise">
-            <div class="card-row">
-                <i class="fa-solid fa-cloud-upload-alt"></i>
-                <div class="grid-card-content">
-                    <h3>Cloud Migration</h3>
-                    <p>AWS, Azure, GCP expertise</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <button class="btn-message" onclick="sendServiceMessage('Cloud Migration', 'AWS, Azure, GCP expertise')"><i class="fas fa-envelope"></i> Send Message</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- DIVIDER -->
-    <div class="component-code-header">
-        <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
-        <p class="comment">// Official merchandise — exclusive designs available now</p>
-    </div>
-
-    <!-- PRODUCTS -->
-    <div class="products-container" id="store">
-        <div class="product-card">
-            <div class="card-row">
-                <i class="fa-solid fa-circle"></i>
-                <div class="product-info">
-                    <h3>Static Snow Button</h3>
-                    <p>2" metallic button</p>
-                    <div class="product-price">$3.24</div>
-                </div>
-            </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Shop →</a>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="card-row">
-                <i class="fa-solid fa-tshirt"></i>
-                <div class="product-info">
-                    <h3>Pattern T-Shirt</h3>
-                    <p>Premium cotton</p>
-                    <div class="product-price">$21.04</div>
-                </div>
-            </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Shop →</a>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="card-row">
-                <i class="fa-solid fa-tshirt"></i>
-                <div class="product-info">
-                    <h3>All White T-Shirt</h3>
-                    <p>Minimalist design</p>
-                    <div class="product-price">$21.04</div>
-                </div>
-            </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Shop →</a>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="card-row">
-                <i class="fa-solid fa-bed"></i>
-                <div class="product-info">
-                    <h3>Black Round Pillow</h3>
-                    <p>Comfortable throw pillow</p>
-                    <div class="product-price">$40.50</div>
-                </div>
-            </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Shop →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- DIVIDER -->
-    <div class="component-code-header">
-        <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
-        <p class="comment">// Partners I've had the privilege to work with</p>
-    </div>
-
-    <!-- CLIENTS -->
-    <div class="clients-container" id="clients">
-        <div class="client-card">
-            <div class="card-row">
-                <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
-                <div class="client-info">
-                    <h3>Vineyard Church of Augusta</h3>
-                    <p>Community-focused church organization</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- DIVIDER -->
-    <div class="component-code-header">
-        <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
-        <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
-    </div>
-
-    <!-- BLOG -->
-    <div class="blog-container" id="blog">
-        <div class="blog-card">
-            <div class="card-row">
-                <i class="fas fa-mobile-alt"></i>
-                <div class="blog-content">
-                    <div class="blog-title-row">
-                        <h3>Fluid Responsive System</h3>
-                        <span class="blog-date">Jun 9, 2024</span>
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="main-content">
+        <div class="site-container">
+            
+            <!-- HERO -->
+            <div class="component-hero" id="hero">
+                <div class="hero-container">
+                    <div class="hero-left">
+                        <h1>V3 Digital Architect</h1>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-primary">Get Started</a>
+                            <a href="#" class="btn-secondary">Learn More</a>
+                        </div>
                     </div>
-                    <p>Using clamp() for true fluidity on all screens — no breakpoints needed</p>
-                </div>
-            </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Read →</a>
-            </div>
-        </div>
-        <div class="blog-card">
-            <div class="card-row">
-                <i class="fas fa-font"></i>
-                <div class="blog-content">
-                    <div class="blog-title-row">
-                        <h3>The Power of Text-Only Design</h3>
-                        <span class="blog-date">Jun 5, 2024</span>
+                    <div class="hero-right">
+                        <p>Full-stack developer · 10+ years · Building products people love with clean code that scales everywhere.</p>
                     </div>
-                    <p>Why sometimes less is more in interface design</p>
                 </div>
             </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Read →</a>
+
+            <!-- DIVIDER -->
+            <div class="component-code-header">
+                <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
+                <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</p>
             </div>
-        </div>
-        <div class="blog-card">
-            <div class="card-row">
-                <i class="fas fa-search"></i>
-                <div class="blog-content">
-                    <div class="blog-title-row">
-                        <h3>V3 QuickFind</h3>
-                        <span class="blog-date">May 28, 2024</span>
+
+            <!-- ABOUT -->
+            <div class="component-about" id="about">
+                <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+                <p>Every line of code serves a purpose, every pixel has meaning.</p>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="component-code-header">
+                <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
+                <p class="comment">// Technologies I work with daily — click "Send Message" to inquire about any skill</p>
+            </div>
+
+            <!-- SKILLS -->
+            <div class="grid-container" id="skills">
+                <div class="grid-card" data-skill="Frontend Development" data-desc="React, Vue, Angular, TypeScript">
+                    <div class="card-row">
+                        <i class="fa-brands fa-react"></i>
+                        <div class="grid-card-content">
+                            <h3>Frontend</h3>
+                            <p>React, Vue, Angular, TypeScript</p>
+                        </div>
                     </div>
-                    <p>Universal search that works on every device</p>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendSkillMessage('Frontend Development', 'React, Vue, Angular, TypeScript')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-skill="Backend Development" data-desc="Node.js, Python, Go, Java">
+                    <div class="card-row">
+                        <i class="fa-solid fa-server"></i>
+                        <div class="grid-card-content">
+                            <h3>Backend</h3>
+                            <p>Node.js, Python, Go, Java</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendSkillMessage('Backend Development', 'Node.js, Python, Go, Java')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-skill="Database Engineering" data-desc="PostgreSQL, MongoDB, Redis">
+                    <div class="card-row">
+                        <i class="fa-solid fa-database"></i>
+                        <div class="grid-card-content">
+                            <h3>Database</h3>
+                            <p>PostgreSQL, MongoDB, Redis</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendSkillMessage('Database Engineering', 'PostgreSQL, MongoDB, Redis')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-skill="Cloud Architecture" data-desc="AWS, Azure, GCP, Docker">
+                    <div class="card-row">
+                        <i class="fa-solid fa-cloud"></i>
+                        <div class="grid-card-content">
+                            <h3>Cloud</h3>
+                            <p>AWS, Azure, GCP, Docker</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendSkillMessage('Cloud Architecture', 'AWS, Azure, GCP, Docker')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-skill="Mobile Development" data-desc="React Native, Flutter, Swift">
+                    <div class="card-row">
+                        <i class="fa-solid fa-mobile-alt"></i>
+                        <div class="grid-card-content">
+                            <h3>Mobile</h3>
+                            <p>React Native, Flutter, Swift</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendSkillMessage('Mobile Development', 'React Native, Flutter, Swift')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-skill="DevOps & CI/CD" data-desc="CI/CD, Jenkins, GitHub Actions">
+                    <div class="card-row">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <div class="grid-card-content">
+                            <h3>DevOps</h3>
+                            <p>CI/CD, Jenkins, GitHub Actions</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendSkillMessage('DevOps & CI/CD', 'CI/CD, Jenkins, GitHub Actions')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
                 </div>
             </div>
-            <div class="card-actions">
-                <a href="#" class="btn-secondary">Read →</a>
+
+            <!-- DIVIDER -->
+            <div class="component-code-header">
+                <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
+                <p class="comment">// What I offer as a digital architect — click "Send Message" to get a quote</p>
             </div>
+
+            <!-- SERVICES -->
+            <div class="grid-container" id="services">
+                <div class="grid-card" data-service="Logo Design" data-desc="Custom brand identities that stand out">
+                    <div class="card-row">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        <div class="grid-card-content">
+                            <h3>Logo Design</h3>
+                            <p>Custom brand identities that stand out</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Logo Design', 'Custom brand identities that stand out')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="Web Development" data-desc="Full-stack modern web applications">
+                    <div class="card-row">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <div class="grid-card-content">
+                            <h3>Web Development</h3>
+                            <p>Full-stack modern web applications</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Web Development', 'Full-stack modern web applications')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="UI/UX Design" data-desc="Beautiful, intuitive interfaces">
+                    <div class="card-row">
+                        <i class="fa-solid fa-palette"></i>
+                        <div class="grid-card-content">
+                            <h3>UI/UX Design</h3>
+                            <p>Beautiful, intuitive interfaces</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('UI/UX Design', 'Beautiful, intuitive interfaces')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="Tech Consulting" data-desc="Expert architecture & strategy advice">
+                    <div class="card-row">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <div class="grid-card-content">
+                            <h3>Tech Consulting</h3>
+                            <p>Expert architecture & strategy advice</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Tech Consulting', 'Expert architecture & strategy advice')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="Performance Optimization" data-desc="Speed optimization & scaling">
+                    <div class="card-row">
+                        <i class="fa-solid fa-rocket"></i>
+                        <div class="grid-card-content">
+                            <h3>Performance</h3>
+                            <p>Speed optimization & scaling</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Performance Optimization', 'Speed optimization & scaling')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="Security Audits" data-desc="Vulnerability assessment & fixes">
+                    <div class="card-row">
+                        <i class="fa-solid fa-shield-alt"></i>
+                        <div class="grid-card-content">
+                            <h3>Security</h3>
+                            <p>Vulnerability assessment & fixes</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Security Audits', 'Vulnerability assessment & fixes')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="Maintenance & Support" data-desc="Ongoing support & updates">
+                    <div class="card-row">
+                        <i class="fa-solid fa-headset"></i>
+                        <div class="grid-card-content">
+                            <h3>Maintenance</h3>
+                            <p>Ongoing support & updates</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Maintenance & Support', 'Ongoing support & updates')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+                <div class="grid-card" data-service="Cloud Migration" data-desc="AWS, Azure, GCP expertise">
+                    <div class="card-row">
+                        <i class="fa-solid fa-cloud-upload-alt"></i>
+                        <div class="grid-card-content">
+                            <h3>Cloud Migration</h3>
+                            <p>AWS, Azure, GCP expertise</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-message" onclick="sendServiceMessage('Cloud Migration', 'AWS, Azure, GCP expertise')"><i class="fas fa-envelope"></i> Send Message</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="component-code-header">
+                <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
+                <p class="comment">// Official merchandise — exclusive designs available now</p>
+            </div>
+
+            <!-- PRODUCTS -->
+            <div class="products-container" id="store">
+                <div class="product-card">
+                    <div class="card-row">
+                        <i class="fa-solid fa-circle"></i>
+                        <div class="product-info">
+                            <h3>Static Snow Button</h3>
+                            <p>2" metallic button</p>
+                            <div class="product-price">$3.24</div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Shop →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="card-row">
+                        <i class="fa-solid fa-tshirt"></i>
+                        <div class="product-info">
+                            <h3>Pattern T-Shirt</h3>
+                            <p>Premium cotton</p>
+                            <div class="product-price">$21.04</div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Shop →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="card-row">
+                        <i class="fa-solid fa-tshirt"></i>
+                        <div class="product-info">
+                            <h3>All White T-Shirt</h3>
+                            <p>Minimalist design</p>
+                            <div class="product-price">$21.04</div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Shop →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="card-row">
+                        <i class="fa-solid fa-bed"></i>
+                        <div class="product-info">
+                            <h3>Black Round Pillow</h3>
+                            <p>Comfortable throw pillow</p>
+                            <div class="product-price">$40.50</div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Shop →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="component-code-header">
+                <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
+                <p class="comment">// Partners I've had the privilege to work with</p>
+            </div>
+
+            <!-- CLIENTS -->
+            <div class="clients-container" id="clients">
+                <div class="client-card">
+                    <div class="card-row">
+                        <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
+                        <div class="client-info">
+                            <h3>Vineyard Church of Augusta</h3>
+                            <p>Community-focused church organization</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="component-code-header">
+                <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
+                <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
+            </div>
+
+            <!-- BLOG -->
+            <div class="blog-container" id="blog">
+                <div class="blog-card">
+                    <div class="card-row">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div class="blog-content">
+                            <div class="blog-title-row">
+                                <h3>Fluid Responsive System</h3>
+                                <span class="blog-date">Jun 9, 2024</span>
+                            </div>
+                            <p>Using clamp() for true fluidity on all screens — no breakpoints needed</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Read →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="card-row">
+                        <i class="fas fa-font"></i>
+                        <div class="blog-content">
+                            <div class="blog-title-row">
+                                <h3>The Power of Text-Only Design</h3>
+                                <span class="blog-date">Jun 5, 2024</span>
+                            </div>
+                            <p>Why sometimes less is more in interface design</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Read →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="card-row">
+                        <i class="fas fa-search"></i>
+                        <div class="blog-content">
+                            <div class="blog-title-row">
+                                <h3>V3 QuickFind</h3>
+                                <span class="blog-date">May 28, 2024</span>
+                            </div>
+                            <p>Universal search that works on every device</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-secondary">Read →</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
-
-</div>
-
-<!-- BOTTOM NAV -->
-<div class="bottom-nav">
-    <button class="nav-item" data-section="hero"><i class="fas fa-home"></i><span>Home</span></button>
-    <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
-    <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
-    <button class="nav-item" data-section="services"><i class="fas fa-cogs"></i><span>Services</span></button>
-    <button class="nav-item" data-section="store"><i class="fas fa-store"></i><span>Store</span></button>
-    <button class="nav-item" data-section="clients"><i class="fas fa-users"></i><span>Clients</span></button>
-    <button class="nav-item" data-section="blog"><i class="fas fa-newspaper"></i><span>Blog</span></button>
+    </main>
 </div>
 
 <script>
