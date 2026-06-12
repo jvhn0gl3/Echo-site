@@ -8,14 +8,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | Digital Architect</title>
+    <title>V3 | Pure Fluid System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           CODE BLOCKS AS SECTION DIVIDERS
-           Each code block separates content like an HR
+           ZERO BREAKPOINTS - PURE FLUID SYSTEM
+           Everything scales continuously with clamp()
+           No media queries anywhere
            ============================================ */
         
         * {
@@ -25,28 +26,30 @@
             -webkit-font-smoothing: antialiased;
         }
         
+        /* All values scale fluidly between 320px and 2560px */
         :root {
-            --space-3xs: clamp(0.125rem, 1vw, 0.25rem);
-            --space-2xs: clamp(0.25rem, 1.5vw, 0.375rem);
-            --space-xs: clamp(0.375rem, 2vw, 0.5rem);
-            --space-sm: clamp(0.5rem, 2.5vw, 0.75rem);
-            --space-md: clamp(0.75rem, 3vw, 1rem);
-            --space-lg: clamp(1rem, 4vw, 1.25rem);
-            --space-xl: clamp(1.25rem, 5vw, 1.5rem);
-            --space-2xl: clamp(1.5rem, 6vw, 2rem);
+            --space-3xs: clamp(0.125rem, 0.5vw, 0.25rem);
+            --space-2xs: clamp(0.25rem, 1vw, 0.375rem);
+            --space-xs: clamp(0.375rem, 1.5vw, 0.5rem);
+            --space-sm: clamp(0.5rem, 2vw, 0.75rem);
+            --space-md: clamp(0.75rem, 2.5vw, 1rem);
+            --space-lg: clamp(1rem, 3vw, 1.5rem);
+            --space-xl: clamp(1.25rem, 4vw, 2rem);
+            --space-2xl: clamp(1.5rem, 5vw, 2.5rem);
             
-            --text-2xs: clamp(0.5rem, 1.2vw, 0.65rem);
-            --text-xs: clamp(0.55rem, 1.5vw, 0.7rem);
-            --text-sm: clamp(0.6rem, 1.8vw, 0.8rem);
-            --text-base: clamp(0.7rem, 2vw, 0.9rem);
-            --text-md: clamp(0.8rem, 2.5vw, 1rem);
-            --text-lg: clamp(0.9rem, 3vw, 1.125rem);
-            --text-xl: clamp(1rem, 3.5vw, 1.25rem);
-            --text-2xl: clamp(1.1rem, 4vw, 1.5rem);
+            --text-2xs: clamp(0.5rem, 1.2vw, 0.7rem);
+            --text-xs: clamp(0.55rem, 1.4vw, 0.75rem);
+            --text-sm: clamp(0.6rem, 1.6vw, 0.85rem);
+            --text-base: clamp(0.7rem, 1.8vw, 1rem);
+            --text-md: clamp(0.8rem, 2vw, 1.125rem);
+            --text-lg: clamp(0.9rem, 2.2vw, 1.25rem);
+            --text-xl: clamp(1rem, 2.5vw, 1.5rem);
+            --text-2xl: clamp(1.1rem, 3vw, 1.75rem);
+            --text-3xl: clamp(1.25rem, 3.5vw, 2rem);
             
-            --radius-sm: clamp(0.375rem, 1.5vw, 0.5rem);
-            --radius-md: clamp(0.5rem, 2vw, 0.75rem);
-            --radius-lg: clamp(0.75rem, 2.5vw, 1rem);
+            --radius-sm: clamp(0.25rem, 1vw, 0.5rem);
+            --radius-md: clamp(0.5rem, 1.5vw, 0.75rem);
+            --radius-lg: clamp(0.75rem, 2vw, 1rem);
             
             --bg-primary: #0a0a0a;
             --bg-card: rgba(18, 18, 24, 0.8);
@@ -60,11 +63,6 @@
             --border-medium: rgba(255, 255, 255, 0.1);
         }
         
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
         body {
             background: var(--bg-primary);
             color: var(--text-primary);
@@ -73,15 +71,15 @@
             font-size: var(--text-base);
         }
         
+        /* Main container - fluid width */
         .site-container {
             width: 100%;
             max-width: 100%;
-            overflow-x: hidden;
             padding: var(--space-lg) var(--space-md);
         }
         
         /* ========================================== */
-        /* BUTTONS */
+        /* BUTTONS - fluid sizing */
         /* ========================================== */
         .btn-primary, .btn-secondary {
             display: flex;
@@ -89,7 +87,7 @@
             justify-content: center;
             gap: var(--space-2xs);
             padding: var(--space-sm) var(--space-md);
-            min-height: 44px;
+            min-height: clamp(2.75rem, 8vw, 3.5rem);
             border-radius: var(--radius-sm);
             text-decoration: none;
             font-weight: 500;
@@ -111,9 +109,69 @@
             color: var(--accent-cyan);
         }
         
+        .btn-primary:active,
+        .btn-secondary:active {
+            transform: scale(0.96);
+            transition: transform 0.05s ease;
+        }
+        
         /* ========================================== */
-        /* CODE BLOCKS - ACT AS SECTION DIVIDERS */
-        /* Each code block visually separates content */
+        /* HERO - fluid layout */
+        /* ========================================== */
+        .component-hero {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
+            border-radius: var(--radius-md);
+            padding: var(--space-xl) var(--space-lg);
+            margin-bottom: var(--space-xl);
+            border: 1px solid var(--border-light);
+        }
+        
+        /* Hero container - fluid flex that wraps naturally */
+        .hero-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+        }
+        
+        .hero-left {
+            flex: 2;
+            min-width: 200px;
+        }
+        
+        .hero-right {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .hero-left h1 {
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-secondary {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .hero-right p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* ========================================== */
+        /* CODE BLOCKS - fluid dividers */
         /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
@@ -121,20 +179,9 @@
             padding: var(--space-xl) var(--space-2xl);
             font-family: 'SF Mono', 'Fira Code', monospace;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin-top: var(--space-xl);
-            margin-bottom: var(--space-xl);
+            margin: var(--space-xl) 0;
             width: 100%;
             user-select: none;
-        }
-        
-        /* First code block after hero - connects naturally */
-        .component-hero + .component-code-header {
-            margin-top: 0;
-        }
-        
-        /* Last code block gets extra bottom space before footer */
-        .component-code-header:last-of-type {
-            margin-bottom: var(--space-2xl);
         }
         
         .component-code-header h2 {
@@ -158,98 +205,29 @@
             display: block;
         }
         
-        /* ========================================== */
-        /* COMPONENT: HERO */
-        /* ========================================== */
-        .component-hero {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
-            border-radius: var(--radius-md);
-            padding: var(--space-xl) var(--space-lg);
-            margin-bottom: var(--space-xl);
-            border: 1px solid var(--border-light);
-        }
-        
-        .hero-container {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-lg);
-        }
-        
-        .hero-left {
-            min-width: 0;
-            width: 100%;
-        }
-        
-        .hero-right {
-            min-width: 0;
-            width: 100%;
-        }
-        
-        .hero-left h1 {
-            font-size: var(--text-2xl);
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
-            width: 100%;
-        }
-        
-        .hero-right p {
-            font-size: var(--text-sm);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin: 0;
+        /* First code block after hero - connects naturally */
+        .component-hero + .component-code-header {
+            margin-top: 0;
         }
         
         /* ========================================== */
-        /* CONTENT SECTIONS (between code blocks) */
-        /* ========================================== */
-        .component-about,
-        .grid-container,
-        .products-container,
-        .clients-container,
-        .blog-container {
-            margin-bottom: var(--space-xl);
-        }
-        
-        .component-about {
-            padding: 0 var(--space-xs);
-        }
-        
-        .component-about p {
-            margin-bottom: var(--space-xs);
-            color: var(--text-secondary);
-            font-size: var(--text-sm);
-            max-width: 100%;
-        }
-        
-        /* ========================================== */
-        /* CARDS */
+        /* CARDS - fluid grid (auto-fit, no media queries) */
         /* ========================================== */
         .grid-container,
         .products-container,
         .clients-container,
         .blog-container {
-            display: flex;
-            flex-direction: column;
+            display: grid;
             gap: var(--space-md);
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            margin-bottom: var(--space-xl);
         }
         
+        /* Card base styles - fluid */
         .grid-card,
         .product-card,
         .client-card,
         .blog-card {
-            width: 100%;
-            min-width: 0;
-            max-width: 100%;
             background: var(--bg-card);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
@@ -260,10 +238,10 @@
             flex-direction: row;
             align-items: center;
             gap: var(--space-md);
-            box-sizing: border-box;
             cursor: pointer;
         }
         
+        /* Card content - fluid */
         .grid-card-content,
         .product-info,
         .client-info,
@@ -289,21 +267,14 @@
         .blog-content p {
             font-size: var(--text-xs);
             color: var(--text-secondary);
-            margin-bottom: 0;
         }
         
-        .product-price {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin-top: var(--space-3xs);
-        }
-        
+        /* Icons - fluid */
         .grid-card i,
         .product-card i,
         .blog-card i {
-            font-size: clamp(1rem, 5vw, 1.25rem);
-            width: clamp(24px, 8vw, 32px);
+            font-size: clamp(1rem, 5vw, 1.5rem);
+            width: clamp(32px, 8vw, 48px);
             flex-shrink: 0;
             text-align: center;
             pointer-events: none;
@@ -313,32 +284,39 @@
         .blog-card i { color: var(--accent-pink); }
         .product-card i { color: var(--accent-cyan); }
         
+        /* Price tag - fluid */
+        .product-price {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-top: var(--space-3xs);
+        }
+        
+        /* Action buttons - fluid */
         .product-action,
         .card-action {
             flex-shrink: 0;
-            min-width: 80px;
+            min-width: clamp(70px, 15vw, 100px);
         }
         
         .product-action .btn-secondary,
         .client-info .btn-secondary,
         .blog-content .btn-secondary {
-            min-height: 44px;
+            min-height: clamp(2.5rem, 7vw, 3rem);
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin-top: var(--space-xs);
             padding: var(--space-2xs) var(--space-sm);
         }
         
+        /* Client logo - fluid */
         .client-logo {
-            max-width: min(70px, 25%);
+            max-width: clamp(50px, 15vw, 80px);
             height: auto;
             flex-shrink: 0;
             pointer-events: none;
-            margin-right: var(--space-xs);
         }
         
+        /* Blog title row - fluid */
         .blog-title-row {
             display: flex;
             justify-content: space-between;
@@ -353,6 +331,20 @@
             color: var(--accent-pink);
         }
         
+        /* About section - fluid */
+        .component-about {
+            margin-bottom: var(--space-xl);
+            padding: 0 var(--space-xs);
+        }
+        
+        .component-about p {
+            margin-bottom: var(--space-xs);
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            max-width: min(100%, 700px);
+        }
+        
+        /* Card interactions */
         .grid-card:active,
         .product-card:active,
         .client-card:active,
@@ -373,56 +365,7 @@
         }
         
         /* ========================================== */
-        /* GRID VIEW */
-        /* ========================================== */
-        @media (min-width: 480px) {
-            .hero-buttons {
-                flex-direction: row;
-            }
-            
-            .hero-buttons .btn-primary,
-            .hero-buttons .btn-secondary {
-                width: auto;
-                flex: 1;
-            }
-        }
-        
-        @media (min-width: 560px) {
-            .grid-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--space-md);
-            }
-            
-            .products-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--space-md);
-            }
-            
-            .clients-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: var(--space-md);
-            }
-            
-            .blog-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: var(--space-md);
-            }
-        }
-        
-        @media (min-width: 640px) {
-            .hero-container {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-        
-        /* ========================================== */
-        /* BOTTOM NAV */
+        /* BOTTOM NAV - fluid */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
@@ -448,17 +391,17 @@
             background: none;
             border: none;
             color: var(--text-tertiary);
-            font-size: clamp(0.5rem, 2.5vw, 0.6rem);
+            font-size: clamp(0.5rem, 2vw, 0.7rem);
             padding: var(--space-sm) var(--space-md);
-            min-height: 44px;
-            min-width: 60px;
+            min-height: clamp(2.75rem, 8vw, 3.5rem);
+            min-width: clamp(50px, 12vw, 70px);
             border-radius: var(--radius-sm);
             cursor: pointer;
             transition: all 0.12s ease;
         }
         
         .nav-item i {
-            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            font-size: clamp(0.9rem, 3.5vw, 1.25rem);
             margin: 0;
         }
         
@@ -511,7 +454,7 @@
 
 <div class="site-container" id="main-content">
     
-    <!-- SECTION: HERO -->
+    <!-- HERO -->
     <div class="component-hero" id="hero">
         <div class="hero-container">
             <div class="hero-left">
@@ -522,30 +465,30 @@
                 </div>
             </div>
             <div class="hero-right">
-                <p>Full-stack developer · 10+ years · Building products people love with clean code.</p>
+                <p>Full-stack developer · 10+ years · Building products people love with clean code that scales everywhere.</p>
             </div>
         </div>
     </div>
 
-    <!-- DIVIDER: Code block separating Hero from About -->
+    <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
-        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience building products people love</p>
+        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</p>
     </div>
 
-    <!-- SECTION: ABOUT -->
+    <!-- ABOUT -->
     <div class="component-about" id="about">
         <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
         <p>Every line of code serves a purpose, every pixel has meaning.</p>
     </div>
 
-    <!-- DIVIDER: Code block separating About from Skills -->
+    <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
         <p class="comment">// Technologies I work with daily to build modern, scalable applications</p>
     </div>
 
-    <!-- SECTION: SKILLS -->
+    <!-- SKILLS -->
     <div class="grid-container" id="skills">
         <div class="grid-card"><i class="fa-brands fa-react"></i><div class="grid-card-content"><h3>Frontend</h3><p>React, Vue, Angular, TS</p></div></div>
         <div class="grid-card"><i class="fa-solid fa-server"></i><div class="grid-card-content"><h3>Backend</h3><p>Node.js, Python, Go, Java</p></div></div>
@@ -555,13 +498,13 @@
         <div class="grid-card"><i class="fa-solid fa-code-branch"></i><div class="grid-card-content"><h3>DevOps</h3><p>CI/CD, Jenkins, GitHub Actions</p></div></div>
     </div>
 
-    <!-- DIVIDER: Code block separating Skills from Services -->
+    <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
         <p class="comment">// What I offer as a digital architect — from concept to deployment</p>
     </div>
 
-    <!-- SECTION: SERVICES -->
+    <!-- SERVICES -->
     <div class="grid-container" id="services">
         <div class="grid-card"><i class="fa-solid fa-pen-nib"></i><div class="grid-card-content"><h3>Logo Design</h3><p>Custom brand identities</p></div></div>
         <div class="grid-card"><i class="fa-solid fa-laptop-code"></i><div class="grid-card-content"><h3>Web Development</h3><p>Full-stack modern apps</p></div></div>
@@ -571,13 +514,13 @@
         <div class="grid-card"><i class="fa-solid fa-shield-alt"></i><div class="grid-card-content"><h3>Security</h3><p>Vulnerability fixes</p></div></div>
     </div>
 
-    <!-- DIVIDER: Code block separating Services from Store -->
+    <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
         <p class="comment">// Official merchandise — exclusive designs available now</p>
     </div>
 
-    <!-- SECTION: STORE / PRODUCTS -->
+    <!-- PRODUCTS -->
     <div class="products-container" id="store">
         <div class="product-card"><i class="fa-solid fa-circle"></i><div class="product-info"><h3>Static Snow Button</h3><p>2" metallic button</p><div class="product-price">$3.24</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
         <div class="product-card"><i class="fa-solid fa-tshirt"></i><div class="product-info"><h3>Pattern T-Shirt</h3><p>Premium cotton</p><div class="product-price">$21.04</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
@@ -585,13 +528,13 @@
         <div class="product-card"><i class="fa-solid fa-bed"></i><div class="product-info"><h3>Black Round Pillow</h3><p>Comfortable throw pillow</p><div class="product-price">$40.50</div></div><div class="product-action"><a href="#" class="btn-secondary">Shop →</a></div></div>
     </div>
 
-    <!-- DIVIDER: Code block separating Store from Clients -->
+    <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
         <p class="comment">// Partners I've had the privilege to work with</p>
     </div>
 
-    <!-- SECTION: CLIENTS -->
+    <!-- CLIENTS -->
     <div class="clients-container" id="clients">
         <div class="client-card">
             <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
@@ -603,16 +546,16 @@
         </div>
     </div>
 
-    <!-- DIVIDER: Code block separating Clients from Blog -->
+    <!-- DIVIDER -->
     <div class="component-code-header">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
         <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
     </div>
 
-    <!-- SECTION: BLOG -->
+    <!-- BLOG -->
     <div class="blog-container" id="blog">
-        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">Jun 9, 2024</span></div><p>Using clamp() for true fluidity on all screens</p><a href="#" class="btn-secondary">Read →</a></div></div>
-        <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><div class="blog-title-row"><h3>The Power of Text-Only Design</h3><span class="blog-date">Jun 5, 2024</span></div><p>Why less is more in interface design</p><a href="#" class="btn-secondary">Read →</a></div></div>
+        <div class="blog-card"><i class="fas fa-mobile-alt"></i><div class="blog-content"><div class="blog-title-row"><h3>Fluid Responsive System</h3><span class="blog-date">Jun 9, 2024</span></div><p>Using clamp() for true fluidity on all screens — no breakpoints needed</p><a href="#" class="btn-secondary">Read →</a></div></div>
+        <div class="blog-card"><i class="fas fa-font"></i><div class="blog-content"><div class="blog-title-row"><h3>The Power of Text-Only Design</h3><span class="blog-date">Jun 5, 2024</span></div><p>Why sometimes less is more in interface design</p><a href="#" class="btn-secondary">Read →</a></div></div>
         <div class="blog-card"><i class="fas fa-search"></i><div class="blog-content"><div class="blog-title-row"><h3>V3 QuickFind</h3><span class="blog-date">May 28, 2024</span></div><p>Universal search that works on every device</p><a href="#" class="btn-secondary">Read →</a></div></div>
     </div>
 
