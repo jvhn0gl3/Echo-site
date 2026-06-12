@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
-        /* ============================================
-           ZERO BREAKPOINTS - PURE FLUID SYSTEM
-           ============================================ */
-        
         * {
             margin: 0;
             padding: 0;
@@ -59,7 +55,6 @@
             --border-light: rgba(255, 255, 255, 0.06);
             --border-medium: rgba(255, 255, 255, 0.1);
             
-            /* Sidebar width */
             --sidebar-width: clamp(70px, 14vw, 120px);
         }
         
@@ -71,15 +66,11 @@
             font-size: var(--text-base);
         }
         
-        /* Layout with sidebar */
         .app-layout {
             display: flex;
             min-height: 100vh;
         }
         
-        /* ========================================== */
-        /* SIDEBAR NAVIGATION */
-        /* ========================================== */
         .sidebar-nav {
             position: fixed;
             left: 0;
@@ -118,13 +109,12 @@
             margin-top: var(--space-3xs);
         }
         
-        /* Scrollable nav group */
         .nav-scroll-group {
             flex: 1;
             overflow-y: auto;
             overflow-x: hidden;
             width: 100%;
-            min-height: 0; /* Important for flex child scrolling */
+            min-height: 0;
         }
         
         .nav-scroll-group::-webkit-scrollbar {
@@ -148,7 +138,6 @@
             padding-bottom: var(--space-md);
         }
         
-        /* Bottom nav item container - pushes social button to bottom */
         .nav-bottom {
             flex-shrink: 0;
             width: 100%;
@@ -206,21 +195,6 @@
             }
         }
         
-        /* Custom scrollbar for sidebar itself (when needed) */
-        .sidebar-nav::-webkit-scrollbar {
-            width: 3px;
-        }
-        
-        .sidebar-nav::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-        .sidebar-nav::-webkit-scrollbar-thumb {
-            background: var(--accent-cyan);
-            border-radius: 3px;
-        }
-        
-        /* Main content */
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
@@ -233,9 +207,6 @@
             padding: var(--space-lg) var(--space-md);
         }
         
-        /* ========================================== */
-        /* MODAL / DIALOG STYLES */
-        /* ========================================== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -359,9 +330,6 @@
             color: var(--text-tertiary);
         }
         
-        /* ========================================== */
-        /* BUTTONS */
-        /* ========================================== */
         .btn-primary, .btn-secondary, .btn-message {
             display: flex;
             align-items: center;
@@ -405,9 +373,6 @@
             transform: scale(0.96);
         }
         
-        /* ========================================== */
-        /* HERO */
-        /* ========================================== */
         .component-hero {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
             border-radius: var(--radius-md);
@@ -459,9 +424,6 @@
             line-height: 1.6;
         }
         
-        /* ========================================== */
-        /* CODE BLOCKS */
-        /* ========================================== */
         .component-code-header {
             background: rgba(0, 212, 255, 0.04);
             border-left: 3px solid var(--accent-cyan);
@@ -494,9 +456,6 @@
             display: block;
         }
         
-        /* ========================================== */
-        /* CARDS */
-        /* ========================================== */
         .grid-container,
         .products-container,
         .clients-container,
@@ -637,9 +596,6 @@
             }
         }
         
-        /* ========================================== */
-        /* ANIMATIONS */
-        /* ========================================== */
         @keyframes fadeInLeft {
             from { opacity: 0; transform: translateX(-10px); }
             to { opacity: 1; transform: translateX(0); }
@@ -677,14 +633,12 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="app-layout">
-    <!-- SIDEBAR NAVIGATION -->
     <nav class="sidebar-nav" aria-label="Main navigation">
         <div class="sidebar-logo">
             <div class="logo-text">V3</div>
             <div class="logo-sub">ARCHITECT</div>
         </div>
         
-        <!-- SCROLLABLE NAVIGATION GROUP -->
         <div class="nav-scroll-group">
             <div class="nav-items">
                 <button class="nav-item" data-section="hero" aria-label="Home">
@@ -718,7 +672,6 @@
             </div>
         </div>
         
-        <!-- BOTTOM SECTION with Social button (always visible, never scrolls) -->
         <div class="nav-bottom">
             <button class="nav-item" id="socialNavBtn" aria-label="Social Media">
                 <i class="fas fa-share-alt"></i>
@@ -727,11 +680,9 @@
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content" id="main-content">
         <div class="site-container">
             
-            <!-- HERO -->
             <div class="component-hero" id="hero">
                 <div class="hero-container">
                     <div class="hero-left">
@@ -747,25 +698,21 @@
                 </div>
             </div>
 
-            <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
                 <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</p>
             </div>
 
-            <!-- ABOUT -->
             <div class="component-about" id="about">
                 <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
                 <p>Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
 
-            <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">const</span> <span class="variable">techStack</span> <span class="keyword">=</span> <span class="function">useSkills</span>()</h2>
                 <p class="comment">// Technologies I work with daily — click "Send Message" to inquire about any skill</p>
             </div>
 
-            <!-- SKILLS -->
             <div class="grid-container" id="skills">
                 <div class="grid-card" data-skill="Frontend Development" data-desc="React, Vue, Angular, TypeScript">
                     <div class="card-row">
@@ -841,13 +788,11 @@
                 </div>
             </div>
 
-            <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">services</span> <span class="keyword">=</span> <span class="function">provide</span>()</h2>
                 <p class="comment">// What I offer as a digital architect — click "Send Message" to get a quote</p>
             </div>
 
-            <!-- SERVICES -->
             <div class="grid-container" id="services">
                 <div class="grid-card" data-service="Logo Design" data-desc="Custom brand identities that stand out">
                     <div class="card-row">
@@ -947,13 +892,11 @@
                 </div>
             </div>
 
-            <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">import</span> <span class="string">{ merchandise }</span> <span class="keyword">from</span> <span class="string">'@v3/shop'</span></h2>
                 <p class="comment">// Official merchandise — exclusive designs available now</p>
             </div>
 
-            <!-- PRODUCTS -->
             <div class="products-container" id="store">
                 <div class="product-card">
                     <div class="card-row">
@@ -1009,13 +952,11 @@
                 </div>
             </div>
 
-            <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">const</span> <span class="variable">clients</span> <span class="keyword">=</span> <span class="function">trustedBy</span>()</h2>
                 <p class="comment">// Partners I've had the privilege to work with</p>
             </div>
 
-            <!-- CLIENTS -->
             <div class="clients-container" id="clients">
                 <div class="client-card">
                     <div class="card-row">
@@ -1031,13 +972,11 @@
                 </div>
             </div>
 
-            <!-- DIVIDER -->
             <div class="component-code-header">
                 <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
                 <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
             </div>
 
-            <!-- BLOG -->
             <div class="blog-container" id="blog">
                 <div class="blog-card">
                     <div class="card-row">
@@ -1090,7 +1029,6 @@
     </main>
 </div>
 
-<!-- SOCIAL MEDIA MODAL / DIALOG -->
 <div class="modal-overlay" id="socialModal">
     <div class="modal-dialog">
         <div class="modal-header">
@@ -1132,10 +1070,6 @@
 </div>
 
 <script>
-    // ============================================
-    // EMAIL FUNCTIONS
-    // ============================================
-    
     const CONTACT_EMAIL = 'jvhn0gl3@proton.me';
     
     function sendSkillMessage(skillName, skillDetails) {
@@ -1150,9 +1084,6 @@
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
     
-    // ============================================
-    // MODAL FUNCTIONALITY
-    // ============================================
     (function() {
         const modal = document.getElementById('socialModal');
         const openBtn = document.getElementById('socialNavBtn');
@@ -1184,31 +1115,49 @@
         });
     })();
     
-    // ============================================
-    // NAVIGATION AND ANIMATIONS
-    // ============================================
     (function(){
-        const sectionIds = ['hero', 'about', 'skills', 'services', 'store', 'clients', 'blog'];
+        const sections = [
+            { id: 'hero', element: document.querySelector('.component-hero'), codeBlock: null },
+            { id: 'about', element: document.querySelector('.component-about'), codeBlock: document.querySelector('.component-hero + .component-code-header') },
+            { id: 'skills', element: document.querySelector('.grid-container#skills'), codeBlock: document.querySelectorAll('.component-code-header')[2] },
+            { id: 'services', element: document.querySelector('.grid-container#services'), codeBlock: document.querySelectorAll('.component-code-header')[3] },
+            { id: 'store', element: document.querySelector('.products-container'), codeBlock: document.querySelectorAll('.component-code-header')[4] },
+            { id: 'clients', element: document.querySelector('.clients-container'), codeBlock: document.querySelectorAll('.component-code-header')[5] },
+            { id: 'blog', element: document.querySelector('.blog-container'), codeBlock: document.querySelectorAll('.component-code-header')[6] }
+        ];
         
-        const sections = {
-            'hero': document.querySelector('.component-hero'),
-            'about': document.querySelector('.component-about'),
-            'skills': document.querySelector('.grid-container#skills'),
-            'services': document.querySelector('.grid-container#services'),
-            'store': document.querySelector('.products-container'),
-            'clients': document.querySelector('.clients-container'),
-            'blog': document.querySelector('.blog-container')
-        };
+        sections.forEach(section => {
+            if (section.element && !section.element.id) {
+                section.element.id = section.id;
+            }
+        });
         
-        for (const [id, el] of Object.entries(sections)) {
-            if (el && !el.id) el.id = id;
-        }
+        const scrollElements = [];
+        sections.forEach(section => {
+            if (section.element) {
+                scrollElements.push({ id: section.id, element: section.element });
+            }
+            if (section.codeBlock) {
+                if (section.codeBlock.length) {
+                    section.codeBlock.forEach(block => {
+                        scrollElements.push({ id: section.id, element: block });
+                    });
+                } else if (section.codeBlock) {
+                    scrollElements.push({ id: section.id, element: section.codeBlock });
+                }
+            }
+        });
         
         const navItems = document.querySelectorAll('.nav-item[data-section]');
         
         function setActive(id) {
-            navItems.forEach(i => {
-                i.classList.toggle('active', i.getAttribute('data-section') === id);
+            navItems.forEach(item => {
+                const sectionId = item.getAttribute('data-section');
+                if (sectionId === id) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
             });
         }
         
@@ -1220,9 +1169,9 @@
             }
         }
         
-        navItems.forEach(i => {
-            i.addEventListener('click', () => {
-                const section = i.getAttribute('data-section');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.getAttribute('data-section');
                 if (section) scrollTo(section);
             });
         });
@@ -1231,20 +1180,33 @@
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    const scrollPos = window.scrollY + 120;
-                    let current = '';
+                    const viewportTop = window.scrollY + 100;
+                    let currentSection = 'hero';
+                    let closestDistance = Infinity;
                     
-                    for (const id of sectionIds) {
-                        const el = document.getElementById(id);
-                        if (el && el.offsetTop <= scrollPos) current = id;
-                    }
+                    scrollElements.forEach(({ id, element }) => {
+                        if (element) {
+                            const rect = element.getBoundingClientRect();
+                            const elementTop = rect.top + window.scrollY;
+                            const distance = Math.abs(elementTop - viewportTop);
+                            
+                            if (rect.top <= 200 && distance < closestDistance) {
+                                closestDistance = distance;
+                                currentSection = id;
+                            }
+                        }
+                    });
                     
-                    setActive(current || 'hero');
+                    setActive(currentSection);
                     ticking = false;
                 });
                 ticking = true;
             }
         });
+        
+        setTimeout(() => {
+            window.dispatchEvent(new Event('scroll'));
+        }, 100);
         
         const observer = new IntersectionObserver(
             (entries) => {
