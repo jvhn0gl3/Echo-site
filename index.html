@@ -8,101 +8,261 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#050505" />
-    <title>V3 | No Constraints</title>
+    <title>V3 | Digital Architect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/major-mono-display@5.2.8/index.min.css" />
     
     <style>
         /* ============================================
-           ZERO CONSTRAINTS - No max-width anywhere
-           100% width on every screen, every device
+           POLISHED FLUID SYSTEM
+           Production-ready, smooth, professional
            ============================================ */
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         
         :root {
-            --fluid-xs: clamp(0.5rem, 1.5vw, 0.75rem);
-            --fluid-sm: clamp(0.75rem, 2vw, 1rem);
-            --fluid-md: clamp(1rem, 3vw, 1.5rem);
-            --fluid-lg: clamp(1.5rem, 4vw, 2rem);
-            --fluid-xl: clamp(2rem, 5vw, 3rem);
-            --fluid-2xl: clamp(2.5rem, 6vw, 4rem);
+            /* Fluid spacing - polished */
+            --space-3xs: clamp(0.25rem, 0.5vw, 0.375rem);
+            --space-2xs: clamp(0.375rem, 1vw, 0.5rem);
+            --space-xs: clamp(0.5rem, 1.5vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 2vw, 1rem);
+            --space-md: clamp(1rem, 3vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 4vw, 2rem);
+            --space-xl: clamp(2rem, 5vw, 2.5rem);
+            --space-2xl: clamp(2.5rem, 6vw, 3.5rem);
+            --space-3xl: clamp(3.5rem, 8vw, 5rem);
             
-            --text-xs: clamp(0.625rem, 1.5vw, 0.75rem);
-            --text-sm: clamp(0.75rem, 2vw, 0.875rem);
-            --text-base: clamp(0.875rem, 2.5vw, 1rem);
+            /* Fluid typography - refined */
+            --text-2xs: clamp(0.625rem, 1.5vw, 0.7rem);
+            --text-xs: clamp(0.7rem, 1.8vw, 0.8rem);
+            --text-sm: clamp(0.8rem, 2.2vw, 0.9rem);
+            --text-base: clamp(0.9rem, 2.5vw, 1rem);
             --text-md: clamp(1rem, 3vw, 1.125rem);
             --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);
             --text-xl: clamp(1.25rem, 4vw, 1.5rem);
-            --text-2xl: clamp(1.5rem, 5vw, 2rem);
-            --text-3xl: clamp(1.75rem, 6vw, 2.5rem);
+            --text-2xl: clamp(1.5rem, 5vw, 1.875rem);
+            --text-3xl: clamp(1.875rem, 6vw, 2.5rem);
+            --text-4xl: clamp(2.25rem, 7vw, 3rem);
             
+            /* Radius - elegant */
             --radius-sm: clamp(0.5rem, 1.5vw, 0.75rem);
             --radius-md: clamp(0.75rem, 2vw, 1rem);
-            --radius-lg: clamp(1rem, 2.5vw, 1.5rem);
+            --radius-lg: clamp(1rem, 2.5vw, 1.25rem);
+            --radius-xl: clamp(1.25rem, 3vw, 1.5rem);
+            --radius-full: 9999px;
             
-            --bg: #050505;
-            --text: #e8e8e8;
-            --accent: #00d4ff;
-            --accent2: #7c3aed;
-            --gray: #5c6370;
+            /* Colors - refined palette */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #0f0f0f;
+            --bg-card: rgba(18, 18, 24, 0.6);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-tertiary: #6b6b7a;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-gold: #fbbf24;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --border-light: rgba(255, 255, 255, 0.06);
+            --border-medium: rgba(255, 255, 255, 0.1);
+            --glow-cyan: rgba(0, 212, 255, 0.2);
+            --glow-purple: rgba(124, 58, 237, 0.2);
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.2s ease;
+            --transition-slow: 0.3s ease;
         }
         
         body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.5;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
             font-size: var(--text-base);
+            overflow-x: hidden;
         }
         
         /* ========================================== */
-        /* NO CONSTRAINTS - 100% width always */
+        /* MAIN CONTAINER - full width, polished */
         /* ========================================== */
         .section {
             width: 100%;
-            padding: var(--fluid-lg) var(--fluid-md);
+            padding: var(--space-2xl) var(--space-lg);
         }
         
-        /* Everything fills the full width */
+        /* ========================================== */
+        /* GRID SYSTEM - refined */
+        /* ========================================== */
         .section > div:not(.code-block) {
             display: grid;
-            gap: var(--fluid-md);
-            margin-bottom: var(--fluid-xl);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
             width: 100%;
         }
         
-        /* Grid fills entire width - columns adjust naturally */
         .section > div:not(.code-block) {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
         }
         
         /* ========================================== */
-        /* TYPOGRAPHY - scales forever */
-        /* ========================================== */
-        h1 { font-size: var(--text-3xl); margin-bottom: var(--fluid-sm); font-weight: 700; }
-        h2 { font-size: var(--text-xl); margin-bottom: var(--fluid-xs); }
-        h3 { font-size: var(--text-md); margin-bottom: calc(var(--fluid-xs) * 0.5); }
-        p { font-size: var(--text-base); color: var(--gray); margin-bottom: var(--fluid-xs); line-height: 1.6; }
-        
-        /* ========================================== */
-        /* CARDS - fill full width */
+        /* CARDS - polished, glass-morphism */
         /* ========================================== */
         .section > div:not(.code-block) > div {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: var(--radius-md);
-            padding: var(--fluid-md);
-            transition: transform 0.2s;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            transition: all var(--transition-base);
             height: 100%;
             display: flex;
             flex-direction: column;
-            width: 100%;
+            position: relative;
+            overflow: hidden;
         }
-        .section > div:not(.code-block) > div:active { transform: scale(0.98); }
+        
+        /* Subtle glow on hover */
+        .section > div:not(.code-block) > div::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 0%, var(--glow-cyan), transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            pointer-events: none;
+            border-radius: inherit;
+        }
+        
+        .section > div:not(.code-block) > div:hover::before {
+            opacity: 0.5;
+        }
+        
+        .section > div:not(.code-block) > div:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-medium);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section > div:not(.code-block) > div:active {
+            transform: translateY(-2px);
+        }
         
         /* ========================================== */
-        /* IMAGES - never overflow */
+        /* TYPOGRAPHY - elegant */
+        /* ========================================== */
+        h1 {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-size: var(--text-md);
+            font-weight: 600;
+            margin-bottom: var(--space-2xs);
+            color: var(--text-primary);
+        }
+        
+        p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-xs);
+        }
+        
+        /* ========================================== */
+        /* BUTTONS - polished, smooth */
+        /* ========================================== */
+        a, button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2xs);
+            padding: var(--space-sm) var(--space-xl);
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--text-sm);
+            transition: all var(--transition-base);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            letter-spacing: 0.01em;
+        }
+        
+        a:active, button:active {
+            transform: scale(0.96);
+        }
+        
+        /* Primary button */
+        .btn-primary, a[href]:not(.btn-secondary):not(.btn-ghost) {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            box-shadow: 0 4px 12px var(--glow-cyan);
+        }
+        
+        .btn-primary:hover, a[href]:not(.btn-secondary):not(.btn-ghost):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--glow-cyan);
+        }
+        
+        /* Secondary button */
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-medium);
+            color: var(--accent-cyan);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+        
+        /* Ghost button */
+        .btn-ghost {
+            color: var(--text-secondary);
+        }
+        
+        .btn-ghost:hover {
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+        }
+        
+        /* Card buttons */
+        .section > div:not(.code-block) > div a,
+        .section > div:not(.code-block) > div button {
+            margin-top: auto;
+            align-self: flex-start;
+            width: auto;
+        }
+        
+        /* ========================================== */
+        /* IMAGES - refined */
         /* ========================================== */
         img {
             max-width: 100%;
@@ -111,82 +271,80 @@
         }
         
         .client-logo {
-            max-width: min(160px, 50%);
-            margin: 0 auto var(--fluid-md);
+            max-width: min(140px, 50%);
+            margin: 0 auto var(--space-lg);
             display: block;
+            filter: brightness(0.9) contrast(1.1);
+            transition: filter var(--transition-base);
+        }
+        
+        .client-logo:hover {
+            filter: brightness(1) contrast(1.2);
         }
         
         /* ========================================== */
-        /* BUTTONS */
+        /* ICONS - elegant */
         /* ========================================== */
-        a, button {
+        i {
+            color: var(--accent-cyan);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
             display: inline-block;
-            padding: var(--fluid-xs) var(--fluid-lg);
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-            cursor: pointer;
-            border: none;
-            font-size: var(--text-sm);
-            text-align: center;
-        }
-        a:active, button:active { transform: scale(0.96); }
-        
-        .btn-primary, a[href]:not(.btn-secondary) {
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            color: #fff;
-        }
-        
-        .btn-secondary {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(0,212,255,0.3);
-            color: var(--accent);
-        }
-        
-        .section > div:not(.code-block) > div a,
-        .section > div:not(.code-block) > div button {
-            margin-top: auto;
-            align-self: center;
         }
         
         /* ========================================== */
-        /* HERO - full width */
+        /* HERO SECTION - polished */
         /* ========================================== */
         .section > div:has(h1) {
             text-align: center;
-            padding: var(--fluid-xl) var(--fluid-md);
-            background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(124,58,237,0.05));
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--fluid-xl);
+            padding: var(--space-3xl) var(--space-xl);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-2xl);
             display: block;
             width: 100%;
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section > div:has(h1)::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--glow-cyan) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
         }
         
         .section > div:has(h1) p {
-            max-width: 700px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
         
         /* ========================================== */
-        /* CODE HEADER */
+        /* CODE HEADER - sleek */
         /* ========================================== */
         .code-block {
-            background: rgba(0,212,255,0.05);
-            border-left: 3px solid var(--accent);
-            padding: var(--fluid-md) var(--fluid-lg);
+            background: rgba(0, 212, 255, 0.04);
+            border-left: 3px solid var(--accent-cyan);
+            padding: var(--space-md) var(--space-lg);
             font-family: 'SF Mono', 'Fira Code', monospace;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin-bottom: var(--fluid-lg);
+            margin-bottom: var(--space-lg);
             width: 100%;
             overflow-x: auto;
+            backdrop-filter: blur(5px);
         }
         
         .code-block h2 {
             font-size: var(--text-sm);
-            margin-bottom: var(--fluid-xs);
-            color: var(--accent);
+            margin-bottom: var(--space-2xs);
+            color: var(--accent-cyan);
             font-weight: 500;
             white-space: nowrap;
         }
@@ -199,45 +357,35 @@
         .code-block .string { color: #98c379; }
         .code-block .variable { color: #e06c75; }
         .code-block .function { color: #61afef; }
-        .code-block .comment { color: var(--gray); font-size: var(--text-xs); }
+        .code-block .comment { color: var(--text-tertiary); font-size: var(--text-2xs); }
         
         /* ========================================== */
         /* FLEX BUTTONS */
         /* ========================================== */
         .flex-buttons {
             display: flex;
-            gap: var(--fluid-md);
+            gap: var(--space-md);
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: var(--fluid-md);
+            margin-top: var(--space-lg);
         }
         
         /* ========================================== */
-        /* ICONS */
-        /* ========================================== */
-        i {
-            color: var(--accent);
-            font-size: var(--text-lg);
-            margin-bottom: var(--fluid-xs);
-            display: inline-block;
-        }
-        
-        /* ========================================== */
-        /* BOTTOM NAV - full width always */
+        /* BOTTOM NAV - sleek, polished */
         /* ========================================== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(30,30,46,0.95);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-around;
-            padding: var(--fluid-xs) var(--fluid-md) var(--fluid-lg);
+            padding: var(--space-xs) var(--space-md) var(--space-md);
             z-index: 100;
-            gap: var(--fluid-xs);
+            gap: var(--space-xs);
             overflow-x: auto;
             width: 100%;
         }
@@ -248,52 +396,146 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--fluid-xs);
+            gap: var(--space-3xs);
             background: none;
             border: none;
-            color: #7e7e8e;
-            font-size: var(--text-xs);
-            padding: var(--fluid-xs) var(--fluid-sm);
-            border-radius: 2rem;
+            color: var(--text-tertiary);
+            font-size: var(--text-2xs);
+            padding: var(--space-2xs) var(--space-sm);
+            border-radius: var(--radius-full);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all var(--transition-base);
             white-space: nowrap;
+            font-weight: 500;
         }
         
-        .nav-item.active { color: var(--accent); background: rgba(0,212,255,0.15); }
-        .nav-item i { font-size: var(--text-md); margin: 0; }
-        .nav-item:active { transform: scale(0.92); }
+        .nav-item i {
+            font-size: var(--text-md);
+            margin: 0;
+            color: inherit;
+            transition: all var(--transition-base);
+        }
+        
+        .nav-item:hover {
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.08);
+        }
+        
+        .nav-item.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.12);
+        }
+        
+        .nav-item.active i {
+            transform: translateY(-2px);
+        }
+        
+        .nav-item:active {
+            transform: scale(0.94);
+        }
         
         /* ========================================== */
-        /* ANIMATIONS */
+        /* SCROLLBAR - custom, subtle */
         /* ========================================== */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-tertiary);
+            border-radius: var(--radius-full);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+        
+        /* ========================================== */
+        /* ANIMATIONS - smooth */
+        /* ========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .fade-in { animation: fadeIn 0.4s ease-out; }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+        
+        /* Stagger children animations */
+        .section > div:not(.code-block) > div {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        .section > div:not(.code-block) > div:nth-child(1) { animation-delay: 0.05s; }
+        .section > div:not(.code-block) > div:nth-child(2) { animation-delay: 0.1s; }
+        .section > div:not(.code-block) > div:nth-child(3) { animation-delay: 0.15s; }
+        .section > div:not(.code-block) > div:nth-child(4) { animation-delay: 0.2s; }
+        .section > div:not(.code-block) > div:nth-child(5) { animation-delay: 0.25s; }
+        .section > div:not(.code-block) > div:nth-child(6) { animation-delay: 0.3s; }
         
         /* ========================================== */
-        /* SCROLLBAR - subtle */
+        /* SELECTION STYLING - polished */
         /* ========================================== */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--gray); border-radius: 3px; }
+        ::selection {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+        
+        /* ========================================== */
+        /* FOCUS STATES - accessible */
+        /* ========================================== */
+        a:focus-visible, button:focus-visible, .nav-item:focus-visible {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 2px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: var(--space-md);
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            padding: var(--space-sm) var(--space-md);
+            text-decoration: none;
+            z-index: 1001;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--text-sm);
+        }
+        
+        .skip-link:focus {
+            top: var(--space-md);
+        }
     </style>
 </head>
 <body>
 
-<!-- ========================================== -->
-<!-- NO CONSTRAINTS - 100% width on ALL screens -->
-<!-- Every screen size gets full-width content -->
-<!-- ========================================== -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
-<div class="section">
+<div class="section" id="main-content">
     
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <div>
         <h1>V3 Digital Architect</h1>
-        <p>No constraints. No max-width. Pure freedom.</p>
+        <p>Full-stack developer. Digital architect. Problem solver.</p>
         <div class="flex-buttons">
             <a href="#">Get Started</a>
             <a href="#" class="btn-secondary">Learn More</a>
@@ -303,14 +545,14 @@
     <!-- CODE HEADER -->
     <div class="code-block">
         <h2><span class="keyword">import</span> <span class="string">{ about }</span> <span class="keyword">from</span> <span class="string">'@v3/profile'</span></h2>
-        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years</p>
+        <p class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</p>
     </div>
 
-    <!-- ABOUT -->
+    <!-- ABOUT SECTION -->
     <div>
         <div style="text-align: center; max-width: 700px; margin: 0 auto;">
             <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-            <p style="margin-top: var(--fluid-sm);">Every line of code serves a purpose, every pixel has meaning.</p>
+            <p style="margin-top: var(--space-md);">Every line of code serves a purpose, every pixel has meaning.</p>
         </div>
     </div>
 
@@ -322,7 +564,7 @@
 
     <!-- SKILLS GRID -->
     <div>
-        <div><i class="fa-brands fa-react"></i> <h3>Frontend</h3> <p>React, Vue, Angular, TS</p></div>
+        <div><i class="fa-brands fa-react"></i> <h3>Frontend</h3> <p>React, Vue, Angular, TypeScript</p></div>
         <div><i class="fa-solid fa-server"></i> <h3>Backend</h3> <p>Node.js, Python, Go, Java</p></div>
         <div><i class="fa-solid fa-database"></i> <h3>Database</h3> <p>PostgreSQL, MongoDB, Redis</p></div>
         <div><i class="fa-solid fa-cloud"></i> <h3>Cloud</h3> <p>AWS, Azure, GCP, Docker</p></div>
@@ -338,12 +580,12 @@
 
     <!-- SERVICES GRID -->
     <div>
-        <div><i class="fa-solid fa-pen-nib"></i> <h3>Logo Design</h3> <p>Custom brand identities</p></div>
-        <div><i class="fa-solid fa-laptop-code"></i> <h3>Web Development</h3> <p>Full-stack modern apps</p></div>
-        <div><i class="fa-solid fa-palette"></i> <h3>UI/UX Design</h3> <p>Beautiful interfaces</p></div>
-        <div><i class="fa-solid fa-chart-line"></i> <h3>Tech Consulting</h3> <p>Expert advice</p></div>
-        <div><i class="fa-solid fa-rocket"></i> <h3>Performance</h3> <p>Speed optimization</p></div>
-        <div><i class="fa-solid fa-shield-alt"></i> <h3>Security</h3> <p>Vulnerability fixes</p></div>
+        <div><i class="fa-solid fa-pen-nib"></i> <h3>Logo Design</h3> <p>Custom brand identities that stand out</p></div>
+        <div><i class="fa-solid fa-laptop-code"></i> <h3>Web Development</h3> <p>Full-stack modern web applications</p></div>
+        <div><i class="fa-solid fa-palette"></i> <h3>UI/UX Design</h3> <p>Beautiful, intuitive interfaces</p></div>
+        <div><i class="fa-solid fa-chart-line"></i> <h3>Tech Consulting</h3> <p>Expert architecture & strategy advice</p></div>
+        <div><i class="fa-solid fa-rocket"></i> <h3>Performance</h3> <p>Speed optimization & scaling</p></div>
+        <div><i class="fa-solid fa-shield-alt"></i> <h3>Security</h3> <p>Vulnerability assessment & fixes</p></div>
     </div>
 
     <!-- STORE HEADER -->
@@ -354,10 +596,10 @@
 
     <!-- PRODUCTS GRID -->
     <div>
-        <div><h3>Static Snow Button</h3> <p>Button</p> <p style="color: var(--accent); font-weight: 600;">$3.24</p> <a href="#">Shop →</a></div>
-        <div><h3>Pattern T-Shirt</h3> <p>T-Shirt</p> <p style="color: var(--accent); font-weight: 600;">$21.04</p> <a href="#">Shop →</a></div>
-        <div><h3>All White T-Shirt</h3> <p>T-Shirt</p> <p style="color: var(--accent); font-weight: 600;">$21.04</p> <a href="#">Shop →</a></div>
-        <div><h3>Black Round Pillow</h3> <p>Pillow</p> <p style="color: var(--accent); font-weight: 600;">$40.50</p> <a href="#">Shop →</a></div>
+        <div><h3>Static Snow Button</h3> <p>2" metallic button</p> <p style="color: var(--accent-cyan); font-weight: 600; font-size: var(--text-lg);">$3.24</p> <a href="#" class="btn-secondary">Shop →</a></div>
+        <div><h3>Pattern T-Shirt</h3> <p>Premium cotton t-shirt</p> <p style="color: var(--accent-cyan); font-weight: 600; font-size: var(--text-lg);">$21.04</p> <a href="#" class="btn-secondary">Shop →</a></div>
+        <div><h3>All White T-Shirt</h3> <p>Clean, minimalist design</p> <p style="color: var(--accent-cyan); font-weight: 600; font-size: var(--text-lg);">$21.04</p> <a href="#" class="btn-secondary">Shop →</a></div>
+        <div><h3>Black Round Pillow</h3> <p>Comfortable, stylish</p> <p style="color: var(--accent-cyan); font-weight: 600; font-size: var(--text-lg);">$40.50</p> <a href="#" class="btn-secondary">Shop →</a></div>
     </div>
 
     <!-- CLIENTS HEADER -->
@@ -369,29 +611,29 @@
     <!-- CLIENTS GRID -->
     <div>
         <div>
-            <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church">
+            <img class="client-logo" src="https://vineyardaugusta.org/wp-content/uploads/2021/10/vineyard-logo-horizontal-smaller-size.png" alt="Vineyard Church of Augusta">
             <h3>Vineyard Church of Augusta</h3>
-            <p>Community-focused church organization</p>
-            <a href="https://vineyardaugusta.org" class="btn-secondary">Visit →</a>
+            <p>Community-focused church organization serving the Augusta area with faith-based programs and outreach.</p>
+            <a href="https://vineyardaugusta.org" class="btn-secondary">Visit Website →</a>
         </div>
     </div>
 
     <!-- BLOG HEADER -->
     <div class="code-block">
         <h2><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable">blog</span> <span class="keyword">=</span> <span class="function">getPosts</span>()</h2>
-        <p class="comment">// Thoughts, tutorials, and insights</p>
+        <p class="comment">// Thoughts, tutorials, and insights on development & design</p>
     </div>
 
     <!-- BLOG GRID -->
     <div>
-        <div><i class="fas fa-mobile-alt"></i> <h3>Fluid Responsive System</h3> <p style="color: #9c27b0;">June 9, 2024</p> <p>Using clamp() for true fluidity on all screens</p> <a href="#" class="btn-secondary">Read →</a></div>
-        <div><i class="fas fa-font"></i> <h3>Power of Text-Only Design</h3> <p style="color: #9c27b0;">June 5, 2024</p> <p>Why sometimes less is more in interface design</p> <a href="#" class="btn-secondary">Read →</a></div>
-        <div><i class="fas fa-search"></i> <h3>V3 QuickFind</h3> <p style="color: #9c27b0;">May 28, 2024</p> <p>Universal search that works on every device</p> <a href="#" class="btn-secondary">Read →</a></div>
+        <div><i class="fas fa-mobile-alt"></i> <h3>Fluid Responsive System</h3> <p style="color: var(--accent-pink); font-size: var(--text-2xs); margin-bottom: var(--space-xs);">June 9, 2024</p> <p>Using clamp() and CSS custom properties for true fluidity across all devices.</p> <a href="#" class="btn-secondary">Read More →</a></div>
+        <div><i class="fas fa-font"></i> <h3>The Power of Text-Only Design</h3> <p style="color: var(--accent-pink); font-size: var(--text-2xs); margin-bottom: var(--space-xs);">June 5, 2024</p> <p>Why sometimes less is more in interface design and how minimalism improves UX.</p> <a href="#" class="btn-secondary">Read More →</a></div>
+        <div><i class="fas fa-search"></i> <h3>V3 QuickFind: Universal Search</h3> <p style="color: var(--accent-pink); font-size: var(--text-2xs); margin-bottom: var(--space-xs);">May 28, 2024</p> <p>Building a Spotlight-like search that works seamlessly on every device, every screen size.</p> <a href="#" class="btn-secondary">Read More →</a></div>
     </div>
 
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- BOTTOM NAVIGATION -->
 <div class="bottom-nav">
     <button class="nav-item" data-section="about"><i class="fas fa-user"></i><span>Profile</span></button>
     <button class="nav-item" data-section="skills"><i class="fas fa-code"></i><span>Skills</span></button>
@@ -419,24 +661,67 @@
         }
         
         const navItems = document.querySelectorAll('.nav-item[data-section]');
-        function setActive(id) { navItems.forEach(i => i.classList.toggle('active', i.getAttribute('data-section') === id)); }
-        function scrollTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setActive(id); }
-        navItems.forEach(i => i.addEventListener('click', () => scrollTo(i.getAttribute('data-section'))));
         
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY + 100;
-            let current = '';
-            for (const id of ['about', 'skills', 'services', 'store', 'clients', 'blog']) {
-                const el = document.getElementById(id);
-                if (el && el.offsetTop <= scrollPos) current = id;
+        function setActive(id) {
+            navItems.forEach(i => {
+                const isActive = i.getAttribute('data-section') === id;
+                i.classList.toggle('active', isActive);
+            });
+        }
+        
+        function scrollTo(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setActive(id);
             }
-            setActive(current || 'about');
+        }
+        
+        navItems.forEach(i => {
+            i.addEventListener('click', () => {
+                const section = i.getAttribute('data-section');
+                if (section) scrollTo(section);
+            });
         });
         
-        // Fade-in animation
-        const observer = new IntersectionObserver(e => e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); observer.unobserve(entry.target); } }), { threshold: 0.1 });
+        // Update active nav on scroll with throttling for performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollPos = window.scrollY + 120;
+                    let current = '';
+                    
+                    for (const id of ['about', 'skills', 'services', 'store', 'clients', 'blog']) {
+                        const el = document.getElementById(id);
+                        if (el && el.offsetTop <= scrollPos) {
+                            current = id;
+                        }
+                    }
+                    
+                    setActive(current || 'about');
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // Fade-in animation with Intersection Observer
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+        
         document.querySelectorAll('.section > div').forEach(el => observer.observe(el));
         
+        // Prevent context menu and drag (optional)
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.preventDefault());
     })();
