@@ -14,9 +14,10 @@
     
     <style>
         /* ============================================
-           BASE STYLES - DO NOT REMOVE
-           These keep the site functional
+           UNIVERSAL SECTION SYSTEM
+           One style to rule them all
            ============================================ */
+        
         * {
             margin: 0;
             padding: 0;
@@ -60,32 +61,8 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        main {
-            margin-left: 0;
-            padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
-            flex: 1;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        section {
-            margin-bottom: var(--space-2xl);
-            width: 100%;
-        }
-
-        section:last-child {
-            margin-bottom: 0;
-            padding-bottom: var(--space-xl);
-        }
-
         /* ========================================== */
-        /* QUICKFIND SEARCH STYLES */
+        /* QUICKFIND SEARCH (Universal) */
         /* ========================================== */
         .quickfind-overlay {
             position: fixed;
@@ -304,39 +281,37 @@
         }
 
         /* ========================================== */
-        /* ABOUT SECTION MODULAR STYLES */
+        /* MAIN CONTENT */
         /* ========================================== */
-        .about {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-xl);
-            align-items: center;
-            text-align: center;
+        main {
+            margin-left: 0;
+            padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) * 2) var(--space-lg);
+            flex: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
             width: 100%;
         }
 
-        /* Component 1: Image - can be removed entirely */
-        .about-img {
-            display: flex;
-            justify-content: center;
+        /* ========================================== */
+        /* UNIVERSAL SECTION STYLES */
+        /* Every section uses these same classes */
+        /* ========================================== */
+        section {
+            margin-bottom: var(--space-2xl);
             width: 100%;
         }
 
-        .about-img img {
-            width: min(140px, 25vw);
-            height: min(140px, 25vw);
-            border-radius: var(--radius-lg);
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.2);
-            object-fit: cover;
+        section:last-child {
+            margin-bottom: 0;
+            padding-bottom: var(--space-xl);
         }
 
-        /* Component 2: Text Block */
-        .about-text {
-            width: 100%;
-        }
-
-        /* Component 2a: Code Header - can be removed */
+        /* Section Header - Universal */
         .section-header {
             margin-bottom: var(--space-lg);
             padding: var(--space-md) var(--space-lg);
@@ -368,17 +343,83 @@
         }
         .section-header p .comment { color: #5c6370; }
 
-        /* Component 2b: Paragraphs container - can add/remove any number of paragraphs */
-        .about-paragraphs p {
-            color: #c0c0c0;
-            margin-bottom: var(--space-sm);
-            font-size: var(--text-base);
-            line-height: 1.5;
+        /* Section Grid - Universal */
+        .section-grid {
+            display: grid;
+            gap: var(--space-sm);
+            width: 100%;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
+        }
+
+        /* Section Card - Universal */
+        .section-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .section-card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* Card Icon - Universal (optional) */
+        .card-icon {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-xs);
+        }
+
+        /* Card Title - Universal */
+        .section-card h3 {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: #e0e0e0;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        /* Card Subtitle - Universal (optional) */
+        .card-subtitle {
+            font-size: calc(var(--text-xs) * 0.85);
+            color: #5c6370;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        /* Card Description - Universal */
+        .section-card p {
+            font-size: calc(var(--text-xs) * 0.85);
+            color: #5c6370;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        /* Card Link - Universal */
+        .card-link {
+            font-size: calc(var(--text-xs) * 0.85);
+            color: #00d4ff;
+            text-decoration: none;
+            background: rgba(0, 212, 255, 0.1);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin-top: var(--space-xs);
             width: 100%;
         }
 
+        .card-link:active {
+            transform: scale(0.94);
+            background: rgba(0, 212, 255, 0.2);
+        }
+
         /* ========================================== */
-        /* BOTTOM NAVIGATION STYLES */
+        /* BOTTOM NAVIGATION */
         /* ========================================== */
         .bottom-nav-wrapper {
             position: fixed;
@@ -533,55 +574,72 @@
 </div>
 
 <!-- ============================================ -->
-<!-- MAIN CONTENT -->
+<!-- MAIN CONTENT - UNIVERSAL SECTIONS -->
+<!-- Each section uses the exact same HTML structure -->
+<!-- Just copy/paste and change the content -->
 <!-- ============================================ -->
 <main id="main-content">
 
     <!-- ========================================== -->
-    <!-- SECTION: ABOUT - MODULAR TEMPLATE -->
-    <!-- Each component can be removed independently -->
+    <!-- SECTION: ABOUT (Custom layout - different from grid) -->
     <!-- ========================================== -->
     <section id="about">
-        <div class="container about">
-            
-            <!-- COMPONENT 1: IMAGE -->
-            <!-- TO REMOVE: Delete this entire div -->
-            <div class="about-img">
-                <img src="images/logos/V3.png" alt="V3 brand logo">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">import</span>
+                    <span class="string">{ about }</span>
+                    <span class="keyword">from</span>
+                    <span class="string">'@v3/profile'</span>
+                </h2>
+                <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
             </div>
-            <!-- END COMPONENT 1 -->
-            
-            <!-- COMPONENT 2: TEXT BLOCK -->
-            <div class="about-text">
-                
-                <!-- COMPONENT 2a: CODE HEADER -->
-                <!-- TO REMOVE: Delete this entire div -->
-                <div class="section-header">
-                    <h2>
-                        <span class="keyword">import</span>
-                        <span class="string">{ about }</span>
-                        <span class="keyword">from</span>
-                        <span class="string">'@v3/profile'</span>
-                    </h2>
-                    <p><span class="comment">// Digital Architect · Full-Stack Developer · 10+ years experience</span></p>
+            <div class="about-content" style="text-align: center; padding: var(--space-lg);">
+                <div class="about-img" style="margin-bottom: var(--space-lg);">
+                    <img src="images/logos/V3.png" alt="V3 brand logo" style="width: min(140px, 25vw); border-radius: var(--radius-lg); border: 2px solid rgba(0,212,255,0.4);">
                 </div>
-                <!-- END COMPONENT 2a -->
-                
-                <!-- COMPONENT 2b: PARAGRAPHS -->
-                <!-- TO ADD MORE: Copy the <p> line -->
-                <!-- TO REMOVE: Delete any <p> line -->
-                <div class="about-paragraphs">
-                    <p>Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
-                    <p>Every line of code serves a purpose, every pixel has meaning.</p>
-                </div>
-                <!-- END COMPONENT 2b -->
-                
+                <p style="color: #c0c0c0; max-width: 600px; margin: 0 auto;">Self-taught developer with a decade-long career. I've worked with startups, agencies, and enterprises to build products people love.</p>
+                <p style="color: #c0c0c0; margin-top: var(--space-sm);">Every line of code serves a purpose, every pixel has meaning.</p>
             </div>
-            <!-- END COMPONENT 2 -->
-            
         </div>
     </section>
-    <!-- END ABOUT SECTION -->
+
+    <!-- ========================================== -->
+    <!-- TEMPLATE: How to add a new grid section -->
+    <!-- Copy from here... -->
+    <!-- ========================================== -->
+    <!--
+    <section id="your-section-id">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span class="keyword">const</span>
+                    <span class="variable">yourData</span>
+                    <span class="keyword">=</span>
+                    <span class="function">getData</span>()
+                </h2>
+                <p><span class="comment">// Your section description</span></p>
+            </div>
+            <div class="section-grid">
+                <div class="section-card" data-type="item-type">
+                    <div class="card-icon"><i class="fas fa-star"></i></div>
+                    <h3>Item Title</h3>
+                    <div class="card-subtitle">Subtitle</div>
+                    <p>Item description goes here.</p>
+                    <a href="#" class="card-link">Action →</a>
+                </div>
+                <div class="section-card" data-type="item-type">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Another Item</h3>
+                    <div class="card-subtitle">Another Subtitle</div>
+                    <p>Another description goes here.</p>
+                    <a href="#" class="card-link">Action →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!-- ...to here -->
 
 </main>
 
@@ -603,12 +661,11 @@
 <script>
     // ============================================
     // app.js - V3 Digital Architect
-    // Main application logic
     // ============================================
 
     (function(){
         // ============================================
-        // DATA: Empty arrays for future sections
+        // DATA: For future dynamic sections
         // ============================================
         const products = [];
         const creations = [];
@@ -635,7 +692,7 @@
             function buildSearchableItems() {
                 searchableItems.length = 0;
                 
-                // Add about section to search
+                // Add about section
                 searchableItems.push({
                     type: 'about',
                     title: 'About',
@@ -645,36 +702,22 @@
                     searchText: 'about profile digital architect full stack developer'
                 });
 
-                products.forEach(product => {
+                // Add any sections with data-type="item-type" on cards
+                document.querySelectorAll('.section-card').forEach(card => {
+                    const type = card.getAttribute('data-type') || 'item';
+                    const title = card.querySelector('h3')?.innerText || '';
+                    const subtitle = card.querySelector('.card-subtitle')?.innerText || '';
+                    const desc = card.querySelector('p')?.innerText || '';
+                    const section = card.closest('section');
+                    const sectionId = section?.getAttribute('id') || '';
+                    
                     searchableItems.push({
-                        type: 'product', title: product.title, subtitle: product.type, icon: 'fa-store',
-                        link: product.link, soldOut: product.soldOut,
-                        searchText: (product.title + ' ' + product.type + ' ' + (product.search || '')).toLowerCase(),
-                        sectionId: 'products'
-                    });
-                });
-
-                creations.forEach(creation => {
-                    searchableItems.push({
-                        type: 'creation', title: creation.title, subtitle: creation.type, icon: creation.icon || 'fa-gem',
-                        link: creation.link, sectionId: 'creations',
-                        searchText: (creation.title + ' ' + creation.type + ' ' + (creation.search || '')).toLowerCase()
-                    });
-                });
-
-                clients.forEach(client => {
-                    searchableItems.push({
-                        type: 'client', title: client.name, subtitle: client.type, icon: 'fa-building',
-                        link: client.link, sectionId: 'clients',
-                        searchText: (client.name + ' ' + client.type + ' ' + (client.search || '')).toLowerCase()
-                    });
-                });
-
-                blogPosts.forEach(post => {
-                    searchableItems.push({
-                        type: 'blog', title: post.title, subtitle: post.date, icon: post.icon || 'fa-newspaper',
-                        link: post.link, sectionId: 'blog',
-                        searchText: (post.title + ' ' + post.date + ' ' + (post.search || '')).toLowerCase()
+                        type: type,
+                        title: title,
+                        subtitle: subtitle || desc,
+                        icon: card.querySelector('.card-icon i')?.className?.replace('fas ', '') || 'fa-circle',
+                        sectionId: sectionId,
+                        searchText: (title + ' ' + subtitle + ' ' + desc).toLowerCase()
                     });
                 });
             }
@@ -685,42 +728,35 @@
                     resultsContainer.innerHTML = '<div class="quickfind-no-results">No results found</div>';
                     return;
                 }
-                const grouped = { about: [], products: [], creations: [], clients: [], blog: [] };
+                
+                const grouped = {};
                 results.forEach(item => {
-                    if (item.type === 'about') grouped.about.push(item);
-                    else if (item.type === 'product') grouped.products.push(item);
-                    else if (item.type === 'creation') grouped.creations.push(item);
-                    else if (item.type === 'client') grouped.clients.push(item);
-                    else if (item.type === 'blog') grouped.blog.push(item);
+                    if (!grouped[item.type]) grouped[item.type] = [];
+                    grouped[item.type].push(item);
                 });
                 
                 let html = '';
                 for (const [type, items] of Object.entries(grouped)) {
-                    if (items.length) {
-                        const displayName = type.charAt(0).toUpperCase() + type.slice(1);
-                        html += `<div class="quickfind-section"><div class="quickfind-section-title">${displayName}</div>`;
-                        items.forEach(item => {
-                            html += `<div class="quickfind-result-item" data-type="${item.type}" data-link="${item.link || ''}" data-soldout="${item.soldOut}" data-section="${item.sectionId || ''}">
-                                <div class="quickfind-result-icon"><i class="fas ${item.icon}"></i></div>
-                                <div class="quickfind-result-content">
-                                    <div class="quickfind-result-title">${escapeHtml(item.title)}</div>
-                                    <div class="quickfind-result-subtitle">${item.subtitle}</div>
-                                </div>
-                                <div class="quickfind-result-type">${item.soldOut ? 'Sold Out' : (item.type === 'product' ? 'Shop' : item.type === 'about' ? 'View' : 'Open')}</div>
-                            </div>`;
-                        });
-                        html += `</div>`;
-                    }
+                    const displayName = type.charAt(0).toUpperCase() + type.slice(1);
+                    html += `<div class="quickfind-section"><div class="quickfind-section-title">${displayName}</div>`;
+                    items.forEach(item => {
+                        html += `<div class="quickfind-result-item" data-type="${item.type}" data-link="${item.link || ''}" data-section="${item.sectionId || ''}">
+                            <div class="quickfind-result-icon"><i class="fas ${item.icon.includes('fa-') ? item.icon : 'fa-' + item.icon}"></i></div>
+                            <div class="quickfind-result-content">
+                                <div class="quickfind-result-title">${escapeHtml(item.title)}</div>
+                                <div class="quickfind-result-subtitle">${escapeHtml(item.subtitle)}</div>
+                            </div>
+                            <div class="quickfind-result-type">Open</div>
+                        </div>`;
+                    });
+                    html += `</div>`;
                 }
                 resultsContainer.innerHTML = html;
+                
                 resultsContainer.querySelectorAll('.quickfind-result-item').forEach(el => {
                     el.addEventListener('click', () => {
-                        const type = el.getAttribute('data-type');
-                        const link = el.getAttribute('data-link');
-                        const soldOut = el.getAttribute('data-soldout') === 'true';
                         const sectionId = el.getAttribute('data-section');
-                        if (type === 'product' && link && !soldOut) window.open(link, '_blank');
-                        else if (sectionId) {
+                        if (sectionId) {
                             document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                         closeQuickFind();
@@ -778,7 +814,8 @@
             function setActiveOnScroll() {
                 let current = '';
                 const sections = ['about'];
-                for (let s of sections) {
+                document.querySelectorAll('section[id]').forEach(s => sections.push(s.id));
+                for (let s of [...new Set(sections)]) {
                     const sec = document.getElementById(s);
                     if (sec && sec.offsetTop <= window.scrollY + 100) current = s;
                 }
